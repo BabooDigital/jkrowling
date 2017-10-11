@@ -242,7 +242,7 @@
 				<!-- Buku Populer -->
 				<div class="card mb-15">
 					<div class="card-header">
-						Trending
+						Buku Populer
 					</div>
 					<div class="card-body p-0">
 					  <ul class="list-group list-group-flush">
