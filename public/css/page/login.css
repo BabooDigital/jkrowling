@@ -1,26 +1,169 @@
-html,body {margin:0;padding:0;}
-#app { 
-	height:100%;
-	display: -webkit-box;
-        -webkit-box-orient: vertical;
-	-webkit-box-align:stretch;
+body{
+
+	height: 100vh; margin:0; padding: 0;
 }
-#header { 
-	height:50px; 
-	background-color:#cdcdcd;
+
+.left-side{
+	background-color: #f5f8fa;
+	height:100vh;
 }
-#footer { 
-	height:30px; 
-	background-color:#cdcdcd;
+
+.img-left{
+	height:150px;
 }
-#content {
-	-webkit-box-flex:1;
-	display: -webkit-box;
-        -webkit-box-orient: horizontal;
-	-webkit-box-align:stretch;
+
+.right-side{
+	background-color: #fff;
+	height:100vh;
+	font-family: 'Proxima Nova', Georgia, sans-serif;
 }
-#sidebar { width:120px; background-color:#676767;}
-#main {
-	-webkit-box-flex:1;
-	background-color:green;
+	
+.center-content{
+	margin-top: 200px;
+}
+
+.right-side-p{
+	padding: 50px;
+	color:#1f2d3e;
+	font-size:12px;
+}
+
+.container-fluid{
+	 margin:0;
+	 padding: 0;
+}
+
+.no-gutters {
+  margin-right: 0;
+  margin-left: 0;
+
+
+}
+.text-modal {
+	color: #676767;
+	font-size:16px;
+	font-family: 'Proxima Nova', Georgia, sans-serif; 
+
+}
+
+.btn-signup{
+	background-color: #7554bd;
+	color:#fff;
+	font-family: 'Proxima Nova', Georgia, sans-serif; 
+	font-size:14px;
+	border-radius: 50px;
+	margin-bottom:25px;
+	margin-top:15px;
+	border:2px solid #7554bd;
+}
+
+.btn-login{
+	background-color: transparent;
+	border:2px solid #7554bd;
+	border-radius: 50%;
+	height:50px;
+	width: 50px;
+	color: #7554bd;
+	text-align: center;
+	margin-top: 10px;
+}
+
+
+button.btn-login:hover{
+	background-color: #7554bd;
+	color:#fff;
+	border-color:#7554bd;
+}
+
+.text-daftar{
+	color: #1f2d3e;
+	font-size:14px;
+	font-family: 'Proxima Nova', Georgia, sans-serif;
+	margin-top: 20px;
+}
+
+.text-img{
+	color: gray;
+	font-size:18px;
+	font-weight: 600;
+	font-family: 'Proxima Nova', Georgia, sans-serif;
+}
+
+.skip-text{
+	color: #1f2d3e;
+	font-size:14px;
+	font-family: 'Proxima Nova', Georgia, sans-serif;
+	float: right;
+}
+
+.skip-text:hover{
+	color: #7554bd;
+	text-decoration: none;
+	font-weight: 600;
+}
+
+.right-text{
+	font-size:14px;
+	margin-top:72.2px;
+}
+
+a.link-daftar{
+	color: #1f2d3e;
+	margin-left: 5px;
+	font-family: 'Proxima Nova', Georgia, sans-serif;
+}
+
+a.link-daftar:hover{
+	color: #7554bd;
+	text-decoration: none;
+	font-weight: 600;
+	font-family: 'Proxima Nova', Georgia, sans-serif;
+	margin-left: 5px;
+}
+
+.login-input{
+ 	font-size:14px;"
+ 	color:#eee;
+	font-family: 'Proxima Nova', Georgia, sans-serif;
+    height: 50px;
+    border:1px solid #ddd;
+}
+
+input.login-input:focus{
+	color:#7554bd;
+	border-color:#7554bd;
+    box-shadow: 0px 0px 1px 0px #7554bd;
+    font-size:16px;
+}
+
+input.login-input{
+	color:gray;
+	box-shadow: 0px;
+}
+
+input-placeholder.login-input{
+	color:gray;
+}
+
+.btn-sosmed{
+	height:50px;
+	background-color: #fff;
+  	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.17);
+ 	border: solid 1px #efefef;
+}
+
+.btn-img-sosmed{
+	  width: 30.5px;
+	  height: 28.3px;
+	  object-fit: contain;
+	  border-radius: 1px;
+}
+
+.btn-text-sosmed{
+  	height: 22px;
+  	font-family: calibri;
+  	font-size: 18px;
+  	font-weight: 600;
+  	text-align: left;
+  	color: #2e2e2e;
 }
