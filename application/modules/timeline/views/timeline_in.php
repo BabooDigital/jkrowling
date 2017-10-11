@@ -7,9 +7,8 @@
 	<title>Timeline Baboo - Baca buku online</title>
 
 	<!-- CSS -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/baboo.css">
-	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/baboo-responsive.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/custom-margin-padding.css">
 	<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -17,25 +16,25 @@
 </head>
 <body>
 
-	<nav class="navbar navbar-expand-lg fixed-top baboonav">
+	<nav class="navbar navbar-expand-lg fixed-top" style="background-color: #fff;">
 		<div class="container">
 			<a class="navbar-brand" href="#">
 				<img src="<?php echo base_url(); ?>public/img/logo_purple.png" width="100" alt="">
 			</a>
 
-			<form class="form-inline srcform">
+			<form class="form-inline ml-70">
 				<input class="form-search" type="text" placeholder="Cari di baboo" aria-label="Search">
 			</form>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="fa fa-bars fa-border"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav" style="margin-bottom: -7px;">
+				<ul class="navbar-nav" style="margin-top: 11px;">
 					<li class="nav-item mr-20 active">
-						<a class="nav-link" href="#"><b>Beranda</b></a>
+						<a class="nav-link" href="#">Beranda <span class="sr-only">(current)</span></a>
 					</li>
 					<li class="nav-item mr-30">
-						<a class="nav-link" href="#"><b>Explore</b></a>
+						<a class="nav-link" href="#">Explore</a>
 					</li>
 					<li class="nav-item mr-30">
 						<a class="nav-link btn-newstory" href="#">
@@ -43,13 +42,13 @@
 						</a>
 					</li>
 					<li class="nav-item">
-						<div class="media nav-link martopbot">
+						<div class="media nav-link" style="margin-top: -5px;margin-bottom: -15px;">
 							<a href="#">
 								<img class="d-flex mr-2 rounded-circle" src="http://placehold.it/40x40" alt="Generic placeholder image">
 							</a>
 							<div class="media-body">
-								<p style="font-weight: bold;"><a href="#" style="font-size: 10pt;"><b>Aditia Nugraha</b></a>
-									<span style="display: block;font-size: 7pt;">FIKSI</span></p>
+								<p><a href="#"><b>Aditia Nugraha</b></a>
+									<span style="display: block;font-size: 9pt;">FIKSI</span></p>
 							</div>
 						</div>
 					</li>
@@ -58,7 +57,7 @@
 			</div>
 		</nav>
 
-	<div class="container babooid">
+	<div class="container mt-90 mb-100">
 		<div class="row">
 			<!-- Left Side -->
 			<div class="col-md-3">
@@ -163,7 +162,7 @@
 								<div class="media-body">
 									<h5 class="card-title nametitle2">Marina Saraswati</h5>
 									<p><small><span>Jakarta, Indonesia</span>
-										<span class="ml-10">1 hours ago</span></small></p>
+										<span class="ml-30">1 hours ago</span></small></p>
 								</div>
 							</div>
 						</div>
@@ -199,7 +198,7 @@
 								<div class="media-body">
 									<h5 class="card-title nametitle2">Marina Saraswati</h5>
 									<p><small><span>Jakarta, Indonesia</span>
-										<span class="ml-10">1 hours ago</span></small></p>
+										<span class="ml-30">1 hours ago</span></small></p>
 								</div>
 							</div>
 						</div>
@@ -243,7 +242,7 @@
 				<!-- Buku Populer -->
 				<div class="card mb-15">
 					<div class="card-header">
-						Buku Populer
+						Trending
 					</div>
 					<div class="card-body p-0">
 					  <ul class="list-group list-group-flush">
