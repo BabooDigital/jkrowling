@@ -7,8 +7,9 @@
 	<title>Timeline Baboo - Baca buku online</title>
 
 	<!-- CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/baboo.css">
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/baboo-responsive.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/custom-margin-padding.css">
 	<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Poppins' rel='stylesheet' type='text/css'>
@@ -17,8 +18,8 @@
 
 </head>
 <body>
-
-	<nav class="navbar navbar-expand-lg fixed-top" style="background-color: #fff;">
+	
+	<nav class="navbar navbar-expand-lg fixed-top baboonav">
 		<div class="container">
 			<a class="navbar-brand" href="#">
 				<img src="<?php echo base_url(); ?>public/img/logo_purple.png" width="100" alt="">
@@ -27,22 +28,18 @@
 			<form class="form-inline ml-70">
 				<input class="form-search" type="text" placeholder="Cari di baboo" aria-label="Search">
 			</form>
-			<!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="fa fa-bars fa-border"></span>
-			</button> -->
-			<div class="" id="navbarSupportedContent">
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav"  style="flex-direction: initial;">
 					<li class="nav-item mr-30 active">
 						<a class="nav-link" href="#"><b>Beranda</b></a>
 					</li>
-					<li class="nav-item">
+					<li class="nav-item mr-100">
 						<a class="nav-link" href="#"><b>Explore</b></a>
 					</li>
-				</ul>
-			</div>
-			<div class="pull-right">
-				<ul class="navbar-nav"  style="flex-direction: initial;">
-					<li class="nav-item mr-50">
+					<li class="nav-item mr-30">
 						<a href="#" class="nav-link btn-navmasuk">Masuk</a>
 					</li>
 					<li class="nav-item">
@@ -50,31 +47,53 @@
 					</li>
 				</ul>
 			</div>
-			</div>
 		</nav>
 	<!-- slider -->
-	<div class="mt-70">
-		<div style="display: flex;">
-			<div style="width: 10%;height: 300px;
+	<div class="mt-60 hidden-sm">
+		<div style="display: flex;position: relative;">
+			<div style="position: absolute;left: 0;top: 0;bottom: 0;z-index: 1000;width: 10%;height: auto;
   background-image: linear-gradient(202deg, #8148c2, #7554bd);">
 			
 		</div>
-		<div style="width: 50%;">
-			<ul class="bxslider">
-		  <li style="background-color: #edb6c1;"><img src="http://placehold.it/300x300/aaa" /></li>
-		  <li><img src="http://placehold.it/300x300/bbb" /></li>
-		  <li><img src="http://placehold.it/300x300/ccc" /></li>
-		  <li><img src="http://placehold.it/300x300/ddd" /></li>
-		</ul>
+
+		<div style="width: 100%;height: auto;">
+		<div style="z-index: 1001;position: absolute;top: 45%;right: 0;left: 5%;">
+			<span id="slider-prev"></span>
+			<span id="slider-next" style="padding-left: 40%;"></span>
 		</div>
-		<div style="width: 40%;height: 300px;
-  background-image: linear-gradient(202deg, #8148c2, #7554bd);">
-			
+			<div class="slider6">
+			  <div class="slide"><img src="http://placehold.it/500x300/7db6d0&text=FooBar1"></div>
+			  <div class="slide"><img src="http://placehold.it/500x300/edb6c1&text=FooBar2"></div>
+			  <div class="slide"><img src="http://placehold.it/500x300/7db6d0&text=FooBar3"></div>
+			</div>
+		</div>
+		<div style="border-radius: 50% 0 0 15%;width: 47%;height: auto;
+  background-image: linear-gradient(202deg, #8148c2, #7554bd);position: absolute;right: 0;top: 0;bottom: 0;z-index: 1000;overflow: hidden;">
+  			<div style="position: inherit;color: #fff;z-index: 1005;">
+  				<div class="contenttextslider">
+  					<div class="sidetextslide">
+  						<p style="    position: relative;
+    text-align: right;
+    right: 10%;"><span style="
+  						font-size: 15pt;
+  						">Kamu suka nulis cerpen? atau buku?</span>
+  						<span style="
+  						font-size: 22pt;
+  						font-weight: bold;
+  						">Gabung bersama Baboo dan dapatkan penghasilan dari hobimu</span>
+  						<span class="mt-10" style="
+    font-size: 14pt;
+"><a href="#" style="
+    color: #fff;
+">Mulai Gabung <i class="fa fa-arrow-right ml-10"></i></a></span></p>
+  					</div>
+  				</div>
+  			</div>
+  			<img src="https://yesassets.okdk.co.uk/east/cache/east-2285-q80-w450-h300-f0.jpg" style="opacity: 0.1;width: 100%;">
 		</div>
 		</div>
 	</div>
-	
-	<div class="container mt-50 mb-90">
+	<div class="container babooid">
 		<div class="row">
 			<div class="col-md-3">
 				<!-- Penulis Minggu Ini -->
