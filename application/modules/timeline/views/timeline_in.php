@@ -30,7 +30,7 @@
 				<span class="fa fa-bars fa-border"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav">
+				<ul class="navbar-nav" style="margin-bottom: -7px;">
 					<li class="nav-item mr-20 active">
 						<a class="nav-link" href="#"><b>Beranda</b></a>
 					</li>
@@ -163,7 +163,7 @@
 								<div class="media-body">
 									<h5 class="card-title nametitle2">Marina Saraswati</h5>
 									<p><small><span>Jakarta, Indonesia</span>
-										<span class="ml-30">1 hours ago</span></small></p>
+										<span class="ml-10">1 hours ago</span></small></p>
 								</div>
 							</div>
 						</div>
@@ -199,7 +199,7 @@
 								<div class="media-body">
 									<h5 class="card-title nametitle2">Marina Saraswati</h5>
 									<p><small><span>Jakarta, Indonesia</span>
-										<span class="ml-30">1 hours ago</span></small></p>
+										<span class="ml-10">1 hours ago</span></small></p>
 								</div>
 							</div>
 						</div>
