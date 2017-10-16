@@ -25,15 +25,15 @@
 				<img src="<?php echo base_url(); ?>public/img/logo_purple.png" width="100" alt="">
 			</a>
 
-			<form class="form-inline ml-70">
+			<form class="form-inline srcform">
 				<input class="form-search" type="text" placeholder="Cari di baboo" aria-label="Search">
 			</form>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="fa fa-bars fa-border"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav"  style="flex-direction: initial;">
-					<li class="nav-item mr-30 active">
+				<ul class="navbar-nav">
+					<li class="nav-item mr-20 active">
 						<a class="nav-link" href="#"><b>Beranda</b></a>
 					</li>
 					<li class="nav-item mr-100">
@@ -43,11 +43,15 @@
 						<a href="#" class="nav-link btn-navmasuk">Masuk</a>
 					</li>
 					<li class="nav-item">
-						<a href="#" class="nav-link btn-navdaftar"><span class="navdaftar">Daftar</span></a>
+						<div class="mb-10">
+							<a href="#" class="nav-link btn-navdaftar"><span class="navdaftar">Daftar</span></a>
+						</div>
 					</li>
 				</ul>
 			</div>
-		</nav>
+		</div>
+	</nav>
+
 	<!-- slider -->
 	<div class="mt-60 hidden-sm">
 		<div style="display: flex;position: relative;">
@@ -191,7 +195,7 @@
 											<div class="media-body">
 												<h5 class="card-title nametitle2">Marina Saraswati</h5>
 												<p><small><span>Jakarta, Indonesia</span>
-													<span class="ml-30">1 hours ago</span></small></p>
+													<span class="ml-10">1 hours ago</span></small></p>
 											</div>
 										</div>
 									</div>
@@ -229,7 +233,7 @@
 											<div class="media-body">
 												<h5 class="card-title nametitle2">Marina Saraswati</h5>
 												<p><small><span>Jakarta, Indonesia</span>
-													<span class="ml-30">1 hours ago</span></small></p>
+													<span class="ml-10">1 hours ago</span></small></p>
 											</div>
 										</div>
 									</div>
@@ -267,7 +271,7 @@
 											<div class="media-body">
 												<h5 class="card-title nametitle2">Marina Saraswati</h5>
 												<p><small><span>Jakarta, Indonesia</span>
-													<span class="ml-30">1 hours ago</span></small></p>
+													<span class="ml-10">1 hours ago</span></small></p>
 											</div>
 										</div>
 									</div>
@@ -305,7 +309,7 @@
 											<div class="media-body">
 												<h5 class="card-title nametitle2">Marina Saraswati</h5>
 												<p><small><span>Jakarta, Indonesia</span>
-													<span class="ml-30">1 hours ago</span></small></p>
+													<span class="ml-10">1 hours ago</span></small></p>
 											</div>
 										</div>
 									</div>
@@ -343,7 +347,7 @@
 											<div class="media-body">
 												<h5 class="card-title nametitle2">Marina Saraswati</h5>
 												<p><small><span>Jakarta, Indonesia</span>
-													<span class="ml-30">1 hours ago</span></small></p>
+													<span class="ml-10">1 hours ago</span></small></p>
 											</div>
 										</div>
 									</div>
@@ -381,7 +385,7 @@
 											<div class="media-body">
 												<h5 class="card-title nametitle2">Marina Saraswati</h5>
 												<p><small><span>Jakarta, Indonesia</span>
-													<span class="ml-30">1 hours ago</span></small></p>
+													<span class="ml-10">1 hours ago</span></small></p>
 											</div>
 										</div>
 									</div>
@@ -419,7 +423,7 @@
 											<div class="media-body">
 												<h5 class="card-title nametitle2">Marina Saraswati</h5>
 												<p><small><span>Jakarta, Indonesia</span>
-													<span class="ml-30">1 hours ago</span></small></p>
+													<span class="ml-10">1 hours ago</span></small></p>
 											</div>
 										</div>
 									</div>
@@ -457,7 +461,7 @@
 											<div class="media-body">
 												<h5 class="card-title nametitle2">Marina Saraswati</h5>
 												<p><small><span>Jakarta, Indonesia</span>
-													<span class="ml-30">1 hours ago</span></small></p>
+													<span class="ml-10">1 hours ago</span></small></p>
 											</div>
 										</div>
 									</div>
