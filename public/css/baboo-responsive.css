@@ -31,10 +31,15 @@
   .srcform {
     width: 45%;
   }
+  .textinboo {
+    font-size: 10pt !important;
+  } 
 }
 
 @media screen and (max-width: 992px) {
-  
+  .textinboo {
+    font-size: 15pt;
+  } 
 }
 
 @media screen and (max-width: 1200px) {
