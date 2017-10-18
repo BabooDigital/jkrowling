@@ -8,8 +8,8 @@
 	<link href="<?php echo base_url();?>public/css/baboo.css" rel="stylesheet" type="text/css">
 	<link href="<?php echo base_url();?>public/css/baboo-responsive.css" rel="stylesheet" type="text/css">
 	<link href="<?php echo base_url();?>public/css/custom-margin-padding.css" rel="stylesheet" type="text/css">
-	<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
-	<link href='http://fonts.googleapis.com/css?family=Poppins' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet' type='text/css'>
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.12/jquery.bxslider.min.css" rel="stylesheet" type="text/css">
 </head>
@@ -43,15 +43,15 @@
 	<div class="mt-60 hidden-sm hidden-xs">
 		<div class="slideboo">
 			<div class="leftboo"></div>
-			<div style="width: 100%;height: auto;">
 				<div class="slidecontrols">
 					<span id="slider-prev"></span> <span id="slider-next" style="padding-left: 40%;"></span>
 				</div>
-				<div class="slider6">
+			<div style="width: 100%;height: auto;position: relative;">
+				<div class="slider6" style="left: 11% !important;">
 					<div class="slide">
 						<div style="padding: 5%;background-color: #7db6d0;">
 							<div class="media">
-							  <img class="d-flex mr-3" src="http://placehold.it/160x250/&text=Buku1" style="box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);">
+							  <img class="d-flex mr-3" src="https://placehold.it/160x250/&text=Buku1" style="box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);">
 							  <div class="media-body blueslide" style="padding: 5% 0;">
 							    <h4 class="mt-0"><b>Kite Runner</b></h4>
 							    <p>by Khaled Hosseini</p>
@@ -64,7 +64,7 @@
 					<div class="slide">
 						<div style="padding: 5%;background-color: #edb6c1;">
 							<div class="media">
-							  <img class="d-flex mr-3" src="http://placehold.it/160x250/&text=Buku2" style="box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);">
+							  <img class="d-flex mr-3" src="https://placehold.it/160x250/&text=Buku2" style="box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);">
 							  <div class="media-body pinkslide" style="padding: 5% 0;">
 							    <h4 class="mt-0"><b>Kite Runner</b></h4>
 							    <p>by Khaled Hosseini</p>
@@ -77,7 +77,7 @@
 					<div class="slide">
 						<div style="padding: 5%;background-color: #7db6d0;">
 							<div class="media">
-							  <img class="d-flex mr-3" src="http://placehold.it/160x250/&text=Buku1" style="box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);">
+							  <img class="d-flex mr-3" src="https://placehold.it/160x250/&text=Buku3" style="box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);">
 							  <div class="media-body blueslide" style="padding: 5% 0;">
 							    <h4 class="mt-0"><b>Kite Runner</b></h4>
 							    <p>by Khaled Hosseini</p>
@@ -90,7 +90,7 @@
 					<div class="slide">
 						<div style="padding: 5%;background-color: #edb6c1;">
 							<div class="media">
-							  <img class="d-flex mr-3" src="http://placehold.it/160x250/&text=Buku2" style="box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);">
+							  <img class="d-flex mr-3" src="https://placehold.it/160x250/&text=Buku4" style="box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);">
 							  <div class="media-body pinkslide" style="padding: 5% 0;">
 							    <h4 class="mt-0"><b>Kite Runner</b></h4>
 							    <p>by Khaled Hosseini</p>
@@ -115,70 +115,74 @@
 	<div class="container babooid">
 		<div class="row">
 			<div class="col-md-3">
-				<!-- Penulis Minggu Ini -->
-				<div class="card mb-15" style="background-color: transparent;border: none;">
-					<div class="card-header" style="border: none;">
-						Penulis minggu ini
-					</div>
-					<div class="card-body p-0">
-						<ul class="list-group list-group-flush">
-							<li class="media baboocontents">
-								<img alt="Name" class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50">
-								<div class="media-body">
-									<h5 class="mt-0 mb-1"><a class="nametitle" href="#">Rian</a></h5><small>Fiksi</small>
-								</div>
-							</li>
-							<li class="media baboocontents">
-								<img alt="Name" class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50">
-								<div class="media-body">
-									<h5 class="mt-0 mb-1"><a class="nametitle" href="#">Risa Sulis</a></h5><small>Fiksi</small>
-								</div>
-							</li>
-							<li class="media baboocontents">
-								<img alt="Name" class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50">
-								<div class="media-body">
-									<h5 class="mt-0 mb-1"><a class="nametitle" href="#">Rizky Ramadhan</a></h5><small>Fiksi</small>
-								</div>
-							</li>
-						</ul>
-					</div>
-				</div><!-- Penulis Minggu Ini -->
-				<!-- Buku Populer -->
-				<div class="card mb-15" style="background-color: transparent;border: none;">
-					<div class="card-header" style="border: none;">
-						Buku Populer
-					</div>
-					<div class="card-body p-0">
-						<ul class="list-group list-group-flush">
-							<li class="list-group-item" style="background-color: transparent;border: none;">
-								<div class="media">
-									<div class="media-left mr-10">
-										<a href="#"><img class="media-object" src="http://placehold.it/60x80"></a>
-									</div>
+				<div class="stickymenu">
+					<!-- Penulis Minggu Ini -->
+					<div class="card mb-15" style="background-color: transparent;border: none;">
+						<div class="card-header" style="border: none;">
+							Penulis minggu ini
+						</div>
+						<div class="card-body p-0">
+							<ul class="list-group list-group-flush">
+								<li class="media baboocontents">
+									<img alt="Name" class="d-flex mr-3 rounded-circle" src="https://placehold.it/50x50">
 									<div class="media-body">
-										<div>
-											<h4 class="media-heading bold mt-10"><a href="#">Big Magic: Creative Living Beyon Fear</a></h4>
-											<p style="font-size: 10pt;">by <a href="#">Aditia Nugraha</a></p>
+										<h5 class="mt-0 mb-1"><a class="nametitle" href="#">Rian</a></h5><small>Fiksi</small>
+									</div>
+								</li>
+								<li class="media baboocontents">
+									<img alt="Name" class="d-flex mr-3 rounded-circle" src="https://placehold.it/50x50">
+									<div class="media-body">
+										<h5 class="mt-0 mb-1"><a class="nametitle" href="#">Risa Sulis</a></h5><small>Fiksi</small>
+									</div>
+								</li>
+								<li class="media baboocontents">
+									<img alt="Name" class="d-flex mr-3 rounded-circle" src="https://placehold.it/50x50">
+									<div class="media-body">
+										<h5 class="mt-0 mb-1"><a class="nametitle" href="#">Rizky Ramadhan</a></h5><small>Fiksi</small>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<!-- Penulis Minggu Ini -->
+					<!-- Buku Populer -->
+					<div class="card mb-15" style="background-color: transparent;border: none;">
+						<div class="card-header" style="border: none;">
+							Buku Populer
+						</div>
+						<div class="card-body p-0">
+							<ul class="list-group list-group-flush">
+								<li class="list-group-item" style="background-color: transparent;border: none;">
+									<div class="media">
+										<div class="media-left mr-10">
+											<a href="#"><img class="media-object" src="https://placehold.it/60x80"></a>
+										</div>
+										<div class="media-body">
+											<div>
+												<h4 class="media-heading bold mt-10"><a href="#">Big Magic: Creative Living Beyon Fear</a></h4>
+												<p style="font-size: 10pt;">by <a href="#">Aditia Nugraha</a></p>
+											</div>
 										</div>
 									</div>
-								</div>
-							</li>
-							<li class="list-group-item" style="background-color: transparent;border: none;">
-								<div class="media">
-									<div class="media-left mr-10">
-										<a href="#"><img class="media-object" src="http://placehold.it/60x80"></a>
-									</div>
-									<div class="media-body">
-										<div>
-											<h4 class="media-heading bold mt-10"><a href="#">The Painter's Daughter</a></h4>
-											<p style="font-size: 10pt;">by <a href="#">Juli Kasi</a></p>
+								</li>
+								<li class="list-group-item" style="background-color: transparent;border: none;">
+									<div class="media">
+										<div class="media-left mr-10">
+											<a href="#"><img class="media-object" src="https://placehold.it/60x80"></a>
+										</div>
+										<div class="media-body">
+											<div>
+												<h4 class="media-heading bold mt-10"><a href="#">The Painter's Daughter</a></h4>
+												<p style="font-size: 10pt;">by <a href="#">Juli Kasi</a></p>
+											</div>
 										</div>
 									</div>
-								</div>
-							</li>
-						</ul>
+								</li>
+							</ul>
+						</div>
 					</div>
-				</div><!-- Buku Populer -->
+					<!-- Buku Populer -->
+				</div>
 			</div>
 			<div class="col-md-9">
 				<div class="row mt-10">
@@ -208,7 +212,7 @@
 							<div class="card-body p-0 p-20">
 								<div class="row mb-30">
 									<div class="media">
-										<img alt="Generic placeholder image" class="d-flex align-self-start mr-30 rounded-circle" src="http://placehold.it/70x70">
+										<img alt="Generic placeholder image" class="d-flex align-self-start mr-30 rounded-circle" src="https://placehold.it/70x70">
 										<div class="media-body">
 											<h5 class="card-title nametitle2">Marina Saraswati</h5>
 											<p><small><span>Jakarta, Indonesia</span> <span class="ml-10">1 hours ago</span></small></p>
@@ -217,7 +221,7 @@
 								</div>
 								<div class="row">
 									<div class="media">
-										<img alt="Generic placeholder image" class="d-flex align-self-start mr-20" src="http://placehold.it/110x170">
+										<img alt="Generic placeholder image" class="d-flex align-self-start mr-20" src="https://placehold.it/110x170">
 										<div class="media-body">
 											<h5 class="card-title nametitle3">Story Of Drama</h5>
 											<p>FIKSI</p>
@@ -241,7 +245,7 @@
 							<div class="card-body p-0 p-20">
 								<div class="row mb-30">
 									<div class="media">
-										<img alt="Generic placeholder image" class="d-flex align-self-start mr-30 rounded-circle" src="http://placehold.it/70x70">
+										<img alt="Generic placeholder image" class="d-flex align-self-start mr-30 rounded-circle" src="https://placehold.it/70x70">
 										<div class="media-body">
 											<h5 class="card-title nametitle2">Marina Saraswati</h5>
 											<p><small><span>Jakarta, Indonesia</span> <span class="ml-10">1 hours ago</span></small></p>
@@ -250,7 +254,7 @@
 								</div>
 								<div class="row">
 									<div class="media">
-										<img alt="Generic placeholder image" class="d-flex align-self-start mr-20" src="http://placehold.it/110x170">
+										<img alt="Generic placeholder image" class="d-flex align-self-start mr-20" src="https://placehold.it/110x170">
 										<div class="media-body">
 											<h5 class="card-title nametitle3">Story Of Drama</h5>
 											<p>FIKSI</p>
@@ -274,7 +278,7 @@
 							<div class="card-body p-0 p-20">
 								<div class="row mb-30">
 									<div class="media">
-										<img alt="Generic placeholder image" class="d-flex align-self-start mr-30 rounded-circle" src="http://placehold.it/70x70">
+										<img alt="Generic placeholder image" class="d-flex align-self-start mr-30 rounded-circle" src="https://placehold.it/70x70">
 										<div class="media-body">
 											<h5 class="card-title nametitle2">Marina Saraswati</h5>
 											<p><small><span>Jakarta, Indonesia</span> <span class="ml-10">1 hours ago</span></small></p>
@@ -283,7 +287,7 @@
 								</div>
 								<div class="row">
 									<div class="media">
-										<img alt="Generic placeholder image" class="d-flex align-self-start mr-20" src="http://placehold.it/110x170">
+										<img alt="Generic placeholder image" class="d-flex align-self-start mr-20" src="https://placehold.it/110x170">
 										<div class="media-body">
 											<h5 class="card-title nametitle3">Story Of Drama</h5>
 											<p>FIKSI</p>
@@ -307,7 +311,7 @@
 							<div class="card-body p-0 p-20">
 								<div class="row mb-30">
 									<div class="media">
-										<img alt="Generic placeholder image" class="d-flex align-self-start mr-30 rounded-circle" src="http://placehold.it/70x70">
+										<img alt="Generic placeholder image" class="d-flex align-self-start mr-30 rounded-circle" src="https://placehold.it/70x70">
 										<div class="media-body">
 											<h5 class="card-title nametitle2">Marina Saraswati</h5>
 											<p><small><span>Jakarta, Indonesia</span> <span class="ml-10">1 hours ago</span></small></p>
@@ -316,7 +320,7 @@
 								</div>
 								<div class="row">
 									<div class="media">
-										<img alt="Generic placeholder image" class="d-flex align-self-start mr-20" src="http://placehold.it/110x170">
+										<img alt="Generic placeholder image" class="d-flex align-self-start mr-20" src="https://placehold.it/110x170">
 										<div class="media-body">
 											<h5 class="card-title nametitle3">Story Of Drama</h5>
 											<p>FIKSI</p>
@@ -340,7 +344,7 @@
 							<div class="card-body p-0 p-20">
 								<div class="row mb-30">
 									<div class="media">
-										<img alt="Generic placeholder image" class="d-flex align-self-start mr-30 rounded-circle" src="http://placehold.it/70x70">
+										<img alt="Generic placeholder image" class="d-flex align-self-start mr-30 rounded-circle" src="https://placehold.it/70x70">
 										<div class="media-body">
 											<h5 class="card-title nametitle2">Marina Saraswati</h5>
 											<p><small><span>Jakarta, Indonesia</span> <span class="ml-10">1 hours ago</span></small></p>
@@ -349,7 +353,7 @@
 								</div>
 								<div class="row">
 									<div class="media">
-										<img alt="Generic placeholder image" class="d-flex align-self-start mr-20" src="http://placehold.it/110x170">
+										<img alt="Generic placeholder image" class="d-flex align-self-start mr-20" src="https://placehold.it/110x170">
 										<div class="media-body">
 											<h5 class="card-title nametitle3">Story Of Drama</h5>
 											<p>FIKSI</p>
@@ -373,7 +377,7 @@
 							<div class="card-body p-0 p-20">
 								<div class="row mb-30">
 									<div class="media">
-										<img alt="Generic placeholder image" class="d-flex align-self-start mr-30 rounded-circle" src="http://placehold.it/70x70">
+										<img alt="Generic placeholder image" class="d-flex align-self-start mr-30 rounded-circle" src="https://placehold.it/70x70">
 										<div class="media-body">
 											<h5 class="card-title nametitle2">Marina Saraswati</h5>
 											<p><small><span>Jakarta, Indonesia</span> <span class="ml-10">1 hours ago</span></small></p>
@@ -382,7 +386,7 @@
 								</div>
 								<div class="row">
 									<div class="media">
-										<img alt="Generic placeholder image" class="d-flex align-self-start mr-20" src="http://placehold.it/110x170">
+										<img alt="Generic placeholder image" class="d-flex align-self-start mr-20" src="https://placehold.it/110x170">
 										<div class="media-body">
 											<h5 class="card-title nametitle3">Story Of Drama</h5>
 											<p>FIKSI</p>
@@ -406,7 +410,7 @@
 							<div class="card-body p-0 p-20">
 								<div class="row mb-30">
 									<div class="media">
-										<img alt="Generic placeholder image" class="d-flex align-self-start mr-30 rounded-circle" src="http://placehold.it/70x70">
+										<img alt="Generic placeholder image" class="d-flex align-self-start mr-30 rounded-circle" src="https://placehold.it/70x70">
 										<div class="media-body">
 											<h5 class="card-title nametitle2">Marina Saraswati</h5>
 											<p><small><span>Jakarta, Indonesia</span> <span class="ml-10">1 hours ago</span></small></p>
@@ -415,7 +419,7 @@
 								</div>
 								<div class="row">
 									<div class="media">
-										<img alt="Generic placeholder image" class="d-flex align-self-start mr-20" src="http://placehold.it/110x170">
+										<img alt="Generic placeholder image" class="d-flex align-self-start mr-20" src="https://placehold.it/110x170">
 										<div class="media-body">
 											<h5 class="card-title nametitle3">Story Of Drama</h5>
 											<p>FIKSI</p>
@@ -439,7 +443,7 @@
 							<div class="card-body p-0 p-20">
 								<div class="row mb-30">
 									<div class="media">
-										<img alt="Generic placeholder image" class="d-flex align-self-start mr-30 rounded-circle" src="http://placehold.it/70x70">
+										<img alt="Generic placeholder image" class="d-flex align-self-start mr-30 rounded-circle" src="https://placehold.it/70x70">
 										<div class="media-body">
 											<h5 class="card-title nametitle2">Marina Saraswati</h5>
 											<p><small><span>Jakarta, Indonesia</span> <span class="ml-10">1 hours ago</span></small></p>
@@ -448,7 +452,7 @@
 								</div>
 								<div class="row">
 									<div class="media">
-										<img alt="Generic placeholder image" class="d-flex align-self-start mr-20" src="http://placehold.it/110x170">
+										<img alt="Generic placeholder image" class="d-flex align-self-start mr-20" src="https://placehold.it/110x170">
 										<div class="media-body">
 											<h5 class="card-title nametitle3">Story Of Drama</h5>
 											<p>FIKSI</p>
@@ -471,15 +475,16 @@
 			</div>
 		</div>
 	</div><!-- JS -->
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js">
-	</script> 
+	  <script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js">
 	</script> 
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js">
 	</script> 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.12/jquery.bxslider.min.js" type="text/javascript">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.12/jquery.bxslider.min.js">
 	</script> 
-	<script src="<?php echo base_url(); ?>public/js/baboo.js" type="text/javascript">
+	<script src="https://cdn.rawgit.com/leafo/sticky-kit/v1.1.2/jquery.sticky-kit.js">
+	</script> 
+	<script src="<?php echo base_url(); ?>public/js/baboo.js">
 	</script>
 </body>
 </html>

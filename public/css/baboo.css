@@ -87,6 +87,7 @@ a:hover {
 	border: none !important;
 	background: transparent !important;
 	margin-bottom: 0 !important;
+	max-width: 1300px !important;
 }
 
 .bx-wrapper .bx-next {
@@ -611,3 +612,7 @@ select.form-control:focus {
 	text-shadow: 1px 1px 5px rgba(224, 224, 224, 0.65);
 }
 /*SLIDER*/
+
+.is_stuck {
+	margin-top: 6%;
+}
