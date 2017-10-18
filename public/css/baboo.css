@@ -22,13 +22,24 @@ a:hover {
 	padding: 0.2rem 1rem !important;
 }
 .navbar-collapse {
-	flex-basis: 50%;
+	flex-basis: 45%;
 }
-
+.fixed-top {
+	z-index: 9999;
+}
+.baboonav {
+	background-color: #fff;
+	box-shadow: 0px 0px 15px rgba(74, 74, 74, 0.15);
+}
+.martopbot {
+	margin-top: -5px;margin-bottom: -20px;
+}
+.srcform {
+	width: 30%;
+}
 .form-search {
-	/*margin-top: 9px;*/
-	/*width: %;*/
-	padding: 3px 15px;
+	width: 90%;
+	padding: 3px 15px 3px 12px;
 	color: #848484;
 	border: 2px solid rgba(210, 215, 218, 0.6);
 	border-radius: 100px;
@@ -60,8 +71,26 @@ a:hover {
 	-webkit-box-shadow: none !important;
     border: none !important; 
     background: transparent !important;
-    /*width: 40% !important; 
-    max-width: 40% !important; */
+    margin-bottom: 0 !important;
+}
+.bx-wrapper .bx-next {
+	right: 45% !important;
+}
+.bx-wrapper .bx-prev {
+	left: 10% !important;
+}
+.contslider {
+	width: 5%;
+    padding: 15px 20px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 2px 7px 0 rgba(0, 0, 0, 0.18);
+}
+.contenttextslider p span{
+	display: block;
+}
+.sidetextslide {
+	padding: 11%;
 }
 
 .list-group-item > p span {

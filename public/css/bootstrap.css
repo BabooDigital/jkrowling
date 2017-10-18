@@ -1065,7 +1065,7 @@ pre code {
   }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
   .col-lg {
     -ms-flex-preferred-size: 0;
         flex-basis: 0;
