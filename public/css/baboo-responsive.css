@@ -1,4 +1,4 @@
-@media only screen and (max-width: 350px) {
+@media screen and (max-width: 350px) {
   .navbar-brand {
       margin: auto !important;
     }
@@ -12,30 +12,44 @@
   }
 }
 
-@media only screen and (max-width: 576px) {
-  .navbar-brand {
+@media screen and (max-width: 576px) {
+  /*.navbar-brand {
       margin: auto !important;
-    }
-}
-
-@media only screen and (max-width: 768px) {
-  .form-search {
-    font-size: 8pt;
+    }*/
+  .srcform {
+    width: 45%;
+  }
+  .hidden-sm {
+    display: none;
   }
 }
 
-@media only screen and (max-width: 992px) {
+@media screen and (max-width: 768px) {
+  .form-search {
+    font-size: 8pt;
+  }
+  .srcform {
+    width: 45%;
+  }
+  .textinboo {
+    font-size: 10pt !important;
+  } 
+}
+
+@media screen and (max-width: 992px) {
+  .textinboo {
+    font-size: 15pt;
+  } 
+}
+
+@media screen and (max-width: 1200px) {
   
 }
 
-@media only screen and (max-width: 1200px) {
-  
-}
 
 
 
-
-@media only screen and (min-width: 320px) {
+@media screen and (min-width: 320px) {
   .babooid {
     padding-top: 20%;
   }
@@ -51,43 +65,45 @@
   }
 }
 
-@media only screen and (min-width: 576px) {
+@media screen and (min-width: 576px) {
   .babooid {
-    padding-top: 14%;
+    padding-top: 10%;
   }
 }
 
-@media only screen and (min-width: 768px) {
+@media screen and (min-width: 768px) {
   .babooid {
-    padding-top: 12%;
+    padding-top: 7%;
   }
 }
 
-@media only screen and (min-width: 992px) {
+@media screen and (min-width: 992px) {
   .babooid {
-    padding-top: 9%;
+    padding-top: 8%;
   }
+
+
 }
 
-@media only screen and (min-width: 1200px) {
-  .babooid {
-    padding-top: 6%;
-  }
-}
-
-@media only screen and (min-width: 1300px) {
+@media screen and (min-width: 1200px) {
   .babooid {
     padding-top: 6%;
   }
 }
 
-@media only screen and (min-width: 1500px) {
+@media screen and (min-width: 1300px) {
+  .babooid {
+    padding-top: 5%;
+  }
+}
+
+@media screen and (min-width: 1500px) {
   .babooid {
     padding-top: 6%;
   }
 }
 
-@media only screen and (min-width: 1600px) {
+@media screen and (min-width: 1600px) {
   .babooid {
     padding-top: 4%;
   }

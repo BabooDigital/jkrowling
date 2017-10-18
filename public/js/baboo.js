@@ -2,9 +2,13 @@
 // FILTER-GALERI TIMELINE OUT
 $(document).ready(function(){
     $('.slider6').bxSlider({
+        auto: true,
+        autoHover: true,
+        shrinkItems: true,
         slideWidth: 500,    
-        minSlides: 2,
-        maxSlides: 3,
+        minSlides: 1,
+        // moveSlides: 2,
+        // maxSlides: 2,
         pager: false,
         /* Controls must be true */
         controls: true,
@@ -35,5 +39,7 @@ $(document).ready(function(){
             $(".all").filter('.'+filterValue).show("slow");
         }
     });
+
+    $(".stickymenu").stick_in_parent();
 
 });
