@@ -4,12 +4,13 @@ body{
 }
 
 .left-side{
-	background-color: #f5f8fa;
+	background-color:#fff;
+	background : url(../../img/wallpaper/wp.png);
 	height:100vh;
 }
 
 .img-left{
-	height:150px;
+	height:180px;
 }
 
 .right-side{
@@ -22,8 +23,37 @@ body{
 	margin-top: 200px;
 }
 
+.footer-link{
+	float:left;
+	text-decoration: none;
+	display: block;
+	font-size: 14px;
+}
+
+@media (max-width: 1024px;){
+.footer-link{
+	float:left;
+	text-decoration: none;
+	display: block;
+	font-size: 2px;
+}
+}
+
+li a.footer-link{
+	color:gray;
+}
+
+li a.footer-link:hover{
+	color:#7554bd;
+	text-decoration: none;
+}
+.m-l-20{
+	margin-left:20px;
+}
+
 .right-side-p{
-	padding: 50px;
+	padding-left: 50px;
+	padding-right: 50px;
 	color:#1f2d3e;
 	font-size:12px;
 }
@@ -41,8 +71,7 @@ body{
 }
 .text-modal {
 	color: #676767;
-	font-size:16px;
-	font-family: 'Proxima Nova', Georgia, sans-serif; 
+	font-size:12px;	
 
 }
 
@@ -52,9 +81,10 @@ body{
 	font-family: 'Proxima Nova', Georgia, sans-serif; 
 	font-size:14px;
 	border-radius: 50px;
-	margin-bottom:25px;
-	margin-top:15px;
+	margin-top:30px;
 	border:2px solid #7554bd;
+	height:40px;
+	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.17);
 }
 
 .btn-login{
@@ -65,7 +95,7 @@ body{
 	width: 50px;
 	color: #7554bd;
 	text-align: center;
-	margin-top: 10px;
+	margin-top: 20px;
 }
 
 
@@ -73,6 +103,15 @@ button.btn-login:hover{
 	background-color: #7554bd;
 	color:#fff;
 	border-color:#7554bd;
+}
+
+button.btn-primary:active:focus{
+	background-color: #7554bd;
+	color:#fff;
+	border-color:#7554bd;
+}
+.btn:focus, .btn.focus{
+	box-shadow: 0px 0px 1px 1px #7554bd;
 }
 
 .text-daftar{
@@ -84,16 +123,25 @@ button.btn-login:hover{
 
 .text-img{
 	color: gray;
-	font-size:18px;
+	font-size:22px;
 	font-weight: 600;
 	font-family: 'Proxima Nova', Georgia, sans-serif;
+	margin-top:-20px;
+}
+
+.text-img-modal{
+	color: gray;
+	font-size:19px;
+	font-family: 'Proxima Nova', Georgia, sans-serif;
+	margin-top:10px;
 }
 
 .skip-text{
 	color: #1f2d3e;
-	font-size:14px;
+	font-size:12px;
 	font-family: 'Proxima Nova', Georgia, sans-serif;
 	float: right;
+	margin-top: 30px;
 }
 
 .skip-text:hover{
@@ -126,14 +174,15 @@ a.link-daftar:hover{
  	color:#eee;
 	font-family: 'Proxima Nova', Georgia, sans-serif;
     height: 50px;
-    border:1px solid #ddd;
+    border:1px solid #d7d7d7;
+    box-shadow: #eee 0px 0px 0px 1px;
 }
 
 input.login-input:focus{
 	color:#7554bd;
 	border-color:#7554bd;
     box-shadow: 0px 0px 1px 0px #7554bd;
-    font-size:16px;
+    font-size:15.5px;
 }
 
 input.login-input{
@@ -150,6 +199,7 @@ input-placeholder.login-input{
 	background-color: #fff;
   	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.17);
  	border: solid 1px #efefef;
+ 	margin-top:10px;
 }
 
 .btn-img-sosmed{
@@ -166,4 +216,77 @@ input-placeholder.login-input{
   	font-weight: 600;
   	text-align: left;
   	color: #2e2e2e;
+
+}
+
+
+
+
+.badar-radio{
+	width:24px;
+	height:24px;
+	position:relative;
+	top:6px
+}
+
+input[type='radio'] {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    outline: none;
+    border: 3px solid silver;
+    }
+
+input[type='radio']:before {
+    content: '';
+    display: block;
+    width: 60%;
+    height: 60%;
+    margin: 20% auto;
+    border-radius: 50%;
+    }
+
+input[type="radio"]:checked:before {
+    background: #7554bd;
+        
+    }
+
+input[type="radio"]:hover {
+    background: #fff;
+	border-color:#7554bd;
+        
+    }
+    
+input[type="radio"]:checked {
+      border-color:#7554bd;
+    }
+@media (max-width: 1800px) {
+	.modal-dialog 
+		{
+		  height: 100%;
+		  margin-top: 0;
+		  margin-bottom: 0;
+		  padding-top: 0;
+		  padding-bottom: 0;
+		}
+	}
+
+.modal-content {
+  height: auto;
+  min-height: 100%;
+  border-radius: 0;
+}
+
+.floating{
+	animation-name: floating;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes floating {
+    from { transform: translate(0,  0px); }
+    65%  { transform: translate(0, 15px); }
+    to   { transform: translate(0, -0px); }    
 }
