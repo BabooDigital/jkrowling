@@ -8,8 +8,6 @@
 	<link href="<?php echo base_url();?>public/css/baboo.css" rel="stylesheet" type="text/css">
 	<link href="<?php echo base_url();?>public/css/baboo-responsive.css" rel="stylesheet" type="text/css">
 	<link href="<?php echo base_url();?>public/css/custom-margin-padding.css" rel="stylesheet" type="text/css">
-	<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
-	<link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet' type='text/css'>
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.12/jquery.bxslider.min.css" rel="stylesheet" type="text/css">
 </head>
@@ -52,11 +50,11 @@
 						<div style="padding: 5%;background-color: #7db6d0;">
 							<div class="media">
 							  <img class="d-flex mr-3" src="https://placehold.it/160x250/&text=Buku1" style="box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);">
-							  <div class="media-body blueslide" style="padding: 5% 0;">
+							  <div class="media-body mt-10 blueslide" style="padding: 5% 0;">
 							    <h4 class="mt-0"><b>Kite Runner</b></h4>
 							    <p>by Khaled Hosseini</p>
 							    <p>Aku tahu ribuan kalimat kau tulis untuk memberi tanda bahwa kamu selalu sabar menungguku, yang...</p>
-							    <a href="#" style="border: 1px #333 transparent;  border-radius: 23px;background-color: #ffffff;box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.14);padding: 8px 40px;"><span style="">Baca Buku</span></a>
+							    <div class="mt-20"><a href="#" class="btnbooread"><span style="">Baca Buku</span></a></div>
 							  </div>
 							</div>
 						</div>
@@ -65,11 +63,11 @@
 						<div style="padding: 5%;background-color: #edb6c1;">
 							<div class="media">
 							  <img class="d-flex mr-3" src="https://placehold.it/160x250/&text=Buku2" style="box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);">
-							  <div class="media-body pinkslide" style="padding: 5% 0;">
+							  <div class="media-body mt-10 pinkslide" style="padding: 5% 0;">
 							    <h4 class="mt-0"><b>Kite Runner</b></h4>
 							    <p>by Khaled Hosseini</p>
 							    <p>Aku tahu ribuan kalimat kau tulis untuk memberi tanda bahwa kamu selalu sabar menungguku, yang...</p>
-							    <a href="#" style="border: 1px #333 transparent;  border-radius: 23px;background-color: #ffffff;box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.14);padding: 8px 40px;"><span style="">Baca Buku</span></a>
+							    <div class="mt-20"><a href="#" class="btnbooread"><span style="">Baca Buku</span></a></div>
 							  </div>
 							</div>
 						</div>
@@ -78,11 +76,11 @@
 						<div style="padding: 5%;background-color: #7db6d0;">
 							<div class="media">
 							  <img class="d-flex mr-3" src="https://placehold.it/160x250/&text=Buku3" style="box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);">
-							  <div class="media-body blueslide" style="padding: 5% 0;">
+							  <div class="media-body mt-10 blueslide" style="padding: 5% 0;">
 							    <h4 class="mt-0"><b>Kite Runner</b></h4>
 							    <p>by Khaled Hosseini</p>
 							    <p>Aku tahu ribuan kalimat kau tulis untuk memberi tanda bahwa kamu selalu sabar menungguku, yang...</p>
-							    <a href="#" style="border: 1px #333 transparent;  border-radius: 23px;background-color: #ffffff;box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.14);padding: 8px 40px;"><span style="">Baca Buku</span></a>
+							    <div class="mt-20"><a href="#" class="btnbooread"><span style="">Baca Buku</span></a></div>
 							  </div>
 							</div>
 						</div>
@@ -91,11 +89,11 @@
 						<div style="padding: 5%;background-color: #edb6c1;">
 							<div class="media">
 							  <img class="d-flex mr-3" src="https://placehold.it/160x250/&text=Buku4" style="box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);">
-							  <div class="media-body pinkslide" style="padding: 5% 0;">
+							  <div class="media-body mt-10 pinkslide" style="padding: 5% 0;">
 							    <h4 class="mt-0"><b>Kite Runner</b></h4>
 							    <p>by Khaled Hosseini</p>
 							    <p>Aku tahu ribuan kalimat kau tulis untuk memberi tanda bahwa kamu selalu sabar menungguku, yang...</p>
-							    <a href="#" style="border: 1px #333 transparent;  border-radius: 23px;background-color: #ffffff;box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.14);padding: 8px 40px;"><span style="">Baca Buku</span></a>
+							    <div class="mt-20"><a href="#" class="btnbooread"><span style="">Baca Buku</span></a></div>
 							  </div>
 							</div>
 						</div>
@@ -186,21 +184,21 @@
 			</div>
 			<div class="col-md-9">
 				<div class="row mt-10">
-					<div class="col-md-4">
-						Buku Pilihan
+					<div class="col-md-2">
+						<span class="bukupilihan">Buku Pilihan</span>
 					</div>
-					<div class="col-md-8">
-						<ul style="display: inline-block;list-style: none;float: right;">
-							<li style="float: left;margin-left: 20px">
+					<div class="col-md-10">
+						<ul class="catul">
+							<li class="catli">
 								<a class="btnfilter" data-filter="all" href="javascript:;">Semua Buku</a>
 							</li>
-							<li style="float: left;margin-left: 20px">
+							<li class="catli">
 								<a class="btnfilter" data-filter="fiksi" href="javascript:;">Fiksi</a>
 							</li>
-							<li style="float: left;margin-left: 20px">
+							<li class="catli">
 								<a class="btnfilter" data-filter="komik" href="javascript:;">Komik</a>
 							</li>
-							<li style="float: left;margin-left: 20px">
+							<li class="catli">
 								<a class="btnfilter" data-filter="nonfiksi" href="javascript:;">Non Fiksi</a>
 							</li>
 						</ul>
@@ -213,7 +211,7 @@
 								<div class="row mb-30">
 									<div class="media">
 										<img alt="Generic placeholder image" class="d-flex align-self-start mr-30 rounded-circle" src="https://placehold.it/70x70">
-										<div class="media-body">
+										<div class="media-body mt-10">
 											<h5 class="card-title nametitle2">Marina Saraswati</h5>
 											<p><small><span>Jakarta, Indonesia</span> <span class="ml-10">1 hours ago</span></small></p>
 										</div>
@@ -222,10 +220,10 @@
 								<div class="row">
 									<div class="media">
 										<img alt="Generic placeholder image" class="d-flex align-self-start mr-20" src="https://placehold.it/110x170">
-										<div class="media-body">
+										<div class="media-body mt-10">
 											<h5 class="card-title nametitle3">Story Of Drama</h5>
-											<p>FIKSI</p>
-											<p class="text-desc">Aku tahu ribuan kalimat kau tulis untuk memberi tanda bahwa kamu selalu sabar menungguku, yang seolah-olah kau ingin mengatakan pada dunia bahwa kamu sangat... <a class="readmore" href="#">Lanjut</a></p>
+											<p class="catbook">FIKSI</p>
+											<p class="text-desc-out">Aku tahu ribuan kalimat kau tulis untuk memberi tanda bahwa kamu selalu sabar menungguku, yang seolah-olah kau ingin mengatakan pada dunia bahwa kamu sangat... <a class="readmore" href="#">Lanjut</a></p>
 										</div>
 									</div>
 								</div>
@@ -246,7 +244,7 @@
 								<div class="row mb-30">
 									<div class="media">
 										<img alt="Generic placeholder image" class="d-flex align-self-start mr-30 rounded-circle" src="https://placehold.it/70x70">
-										<div class="media-body">
+										<div class="media-body mt-10">
 											<h5 class="card-title nametitle2">Marina Saraswati</h5>
 											<p><small><span>Jakarta, Indonesia</span> <span class="ml-10">1 hours ago</span></small></p>
 										</div>
@@ -255,10 +253,10 @@
 								<div class="row">
 									<div class="media">
 										<img alt="Generic placeholder image" class="d-flex align-self-start mr-20" src="https://placehold.it/110x170">
-										<div class="media-body">
+										<div class="media-body mt-10">
 											<h5 class="card-title nametitle3">Story Of Drama</h5>
-											<p>FIKSI</p>
-											<p class="text-desc">Aku tahu ribuan kalimat kau tulis untuk memberi tanda bahwa kamu selalu sabar menungguku, yang seolah-olah kau ingin mengatakan pada dunia bahwa kamu sangat... <a class="readmore" href="#">Lanjut</a></p>
+											<p class="catbook">FIKSI</p>
+											<p class="text-desc-out">Aku tahu ribuan kalimat kau tulis untuk memberi tanda bahwa kamu selalu sabar menungguku, yang seolah-olah kau ingin mengatakan pada dunia bahwa kamu sangat... <a class="readmore" href="#">Lanjut</a></p>
 										</div>
 									</div>
 								</div>
@@ -279,7 +277,7 @@
 								<div class="row mb-30">
 									<div class="media">
 										<img alt="Generic placeholder image" class="d-flex align-self-start mr-30 rounded-circle" src="https://placehold.it/70x70">
-										<div class="media-body">
+										<div class="media-body mt-10">
 											<h5 class="card-title nametitle2">Marina Saraswati</h5>
 											<p><small><span>Jakarta, Indonesia</span> <span class="ml-10">1 hours ago</span></small></p>
 										</div>
@@ -288,10 +286,10 @@
 								<div class="row">
 									<div class="media">
 										<img alt="Generic placeholder image" class="d-flex align-self-start mr-20" src="https://placehold.it/110x170">
-										<div class="media-body">
+										<div class="media-body mt-10">
 											<h5 class="card-title nametitle3">Story Of Drama</h5>
-											<p>FIKSI</p>
-											<p class="text-desc">Aku tahu ribuan kalimat kau tulis untuk memberi tanda bahwa kamu selalu sabar menungguku, yang seolah-olah kau ingin mengatakan pada dunia bahwa kamu sangat... <a class="readmore" href="#">Lanjut</a></p>
+											<p class="catbook">FIKSI</p>
+											<p class="text-desc-out">Aku tahu ribuan kalimat kau tulis untuk memberi tanda bahwa kamu selalu sabar menungguku, yang seolah-olah kau ingin mengatakan pada dunia bahwa kamu sangat... <a class="readmore" href="#">Lanjut</a></p>
 										</div>
 									</div>
 								</div>
@@ -312,7 +310,7 @@
 								<div class="row mb-30">
 									<div class="media">
 										<img alt="Generic placeholder image" class="d-flex align-self-start mr-30 rounded-circle" src="https://placehold.it/70x70">
-										<div class="media-body">
+										<div class="media-body mt-10">
 											<h5 class="card-title nametitle2">Marina Saraswati</h5>
 											<p><small><span>Jakarta, Indonesia</span> <span class="ml-10">1 hours ago</span></small></p>
 										</div>
@@ -321,10 +319,10 @@
 								<div class="row">
 									<div class="media">
 										<img alt="Generic placeholder image" class="d-flex align-self-start mr-20" src="https://placehold.it/110x170">
-										<div class="media-body">
+										<div class="media-body mt-10">
 											<h5 class="card-title nametitle3">Story Of Drama</h5>
-											<p>FIKSI</p>
-											<p class="text-desc">Aku tahu ribuan kalimat kau tulis untuk memberi tanda bahwa kamu selalu sabar menungguku, yang seolah-olah kau ingin mengatakan pada dunia bahwa kamu sangat... <a class="readmore" href="#">Lanjut</a></p>
+											<p class="catbook">FIKSI</p>
+											<p class="text-desc-out">Aku tahu ribuan kalimat kau tulis untuk memberi tanda bahwa kamu selalu sabar menungguku, yang seolah-olah kau ingin mengatakan pada dunia bahwa kamu sangat... <a class="readmore" href="#">Lanjut</a></p>
 										</div>
 									</div>
 								</div>
@@ -345,7 +343,7 @@
 								<div class="row mb-30">
 									<div class="media">
 										<img alt="Generic placeholder image" class="d-flex align-self-start mr-30 rounded-circle" src="https://placehold.it/70x70">
-										<div class="media-body">
+										<div class="media-body mt-10">
 											<h5 class="card-title nametitle2">Marina Saraswati</h5>
 											<p><small><span>Jakarta, Indonesia</span> <span class="ml-10">1 hours ago</span></small></p>
 										</div>
@@ -354,10 +352,10 @@
 								<div class="row">
 									<div class="media">
 										<img alt="Generic placeholder image" class="d-flex align-self-start mr-20" src="https://placehold.it/110x170">
-										<div class="media-body">
+										<div class="media-body mt-10">
 											<h5 class="card-title nametitle3">Story Of Drama</h5>
-											<p>FIKSI</p>
-											<p class="text-desc">Aku tahu ribuan kalimat kau tulis untuk memberi tanda bahwa kamu selalu sabar menungguku, yang seolah-olah kau ingin mengatakan pada dunia bahwa kamu sangat... <a class="readmore" href="#">Lanjut</a></p>
+											<p class="catbook">FIKSI</p>
+											<p class="text-desc-out">Aku tahu ribuan kalimat kau tulis untuk memberi tanda bahwa kamu selalu sabar menungguku, yang seolah-olah kau ingin mengatakan pada dunia bahwa kamu sangat... <a class="readmore" href="#">Lanjut</a></p>
 										</div>
 									</div>
 								</div>
@@ -378,7 +376,7 @@
 								<div class="row mb-30">
 									<div class="media">
 										<img alt="Generic placeholder image" class="d-flex align-self-start mr-30 rounded-circle" src="https://placehold.it/70x70">
-										<div class="media-body">
+										<div class="media-body mt-10">
 											<h5 class="card-title nametitle2">Marina Saraswati</h5>
 											<p><small><span>Jakarta, Indonesia</span> <span class="ml-10">1 hours ago</span></small></p>
 										</div>
@@ -387,10 +385,10 @@
 								<div class="row">
 									<div class="media">
 										<img alt="Generic placeholder image" class="d-flex align-self-start mr-20" src="https://placehold.it/110x170">
-										<div class="media-body">
+										<div class="media-body mt-10">
 											<h5 class="card-title nametitle3">Story Of Drama</h5>
-											<p>FIKSI</p>
-											<p class="text-desc">Aku tahu ribuan kalimat kau tulis untuk memberi tanda bahwa kamu selalu sabar menungguku, yang seolah-olah kau ingin mengatakan pada dunia bahwa kamu sangat... <a class="readmore" href="#">Lanjut</a></p>
+											<p class="catbook">FIKSI</p>
+											<p class="text-desc-out">Aku tahu ribuan kalimat kau tulis untuk memberi tanda bahwa kamu selalu sabar menungguku, yang seolah-olah kau ingin mengatakan pada dunia bahwa kamu sangat... <a class="readmore" href="#">Lanjut</a></p>
 										</div>
 									</div>
 								</div>
@@ -411,7 +409,7 @@
 								<div class="row mb-30">
 									<div class="media">
 										<img alt="Generic placeholder image" class="d-flex align-self-start mr-30 rounded-circle" src="https://placehold.it/70x70">
-										<div class="media-body">
+										<div class="media-body mt-10">
 											<h5 class="card-title nametitle2">Marina Saraswati</h5>
 											<p><small><span>Jakarta, Indonesia</span> <span class="ml-10">1 hours ago</span></small></p>
 										</div>
@@ -420,10 +418,10 @@
 								<div class="row">
 									<div class="media">
 										<img alt="Generic placeholder image" class="d-flex align-self-start mr-20" src="https://placehold.it/110x170">
-										<div class="media-body">
+										<div class="media-body mt-10">
 											<h5 class="card-title nametitle3">Story Of Drama</h5>
-											<p>FIKSI</p>
-											<p class="text-desc">Aku tahu ribuan kalimat kau tulis untuk memberi tanda bahwa kamu selalu sabar menungguku, yang seolah-olah kau ingin mengatakan pada dunia bahwa kamu sangat... <a class="readmore" href="#">Lanjut</a></p>
+											<p class="catbook">FIKSI</p>
+											<p class="text-desc-out">Aku tahu ribuan kalimat kau tulis untuk memberi tanda bahwa kamu selalu sabar menungguku, yang seolah-olah kau ingin mengatakan pada dunia bahwa kamu sangat... <a class="readmore" href="#">Lanjut</a></p>
 										</div>
 									</div>
 								</div>
@@ -444,7 +442,7 @@
 								<div class="row mb-30">
 									<div class="media">
 										<img alt="Generic placeholder image" class="d-flex align-self-start mr-30 rounded-circle" src="https://placehold.it/70x70">
-										<div class="media-body">
+										<div class="media-body mt-10">
 											<h5 class="card-title nametitle2">Marina Saraswati</h5>
 											<p><small><span>Jakarta, Indonesia</span> <span class="ml-10">1 hours ago</span></small></p>
 										</div>
@@ -453,10 +451,10 @@
 								<div class="row">
 									<div class="media">
 										<img alt="Generic placeholder image" class="d-flex align-self-start mr-20" src="https://placehold.it/110x170">
-										<div class="media-body">
+										<div class="media-body mt-10">
 											<h5 class="card-title nametitle3">Story Of Drama</h5>
-											<p>FIKSI</p>
-											<p class="text-desc">Aku tahu ribuan kalimat kau tulis untuk memberi tanda bahwa kamu selalu sabar menungguku, yang seolah-olah kau ingin mengatakan pada dunia bahwa kamu sangat... <a class="readmore" href="#">Lanjut</a></p>
+											<p class="catbook">FIKSI</p>
+											<p class="text-desc-out">Aku tahu ribuan kalimat kau tulis untuk memberi tanda bahwa kamu selalu sabar menungguku, yang seolah-olah kau ingin mengatakan pada dunia bahwa kamu sangat... <a class="readmore" href="#">Lanjut</a></p>
 										</div>
 									</div>
 								</div>
@@ -474,12 +472,12 @@
 				</div>
 			</div>
 		</div>
-	</div><!-- JS -->
-	  <script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js">
-	</script> 
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js">
-	</script> 
+	</div>
+
+	<!-- JS -->
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.12/jquery.bxslider.min.js">
 	</script> 
 	<script src="https://cdn.rawgit.com/leafo/sticky-kit/v1.1.2/jquery.sticky-kit.js">
