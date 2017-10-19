@@ -9,3 +9,5 @@ php_value upload_max_filesize 40M
 php_value post_max_size 42M
 
 ErrorDocument 404 "<H1>Page not found</H1>"
+
+Header set Access-Control-Allow-Origin "*"

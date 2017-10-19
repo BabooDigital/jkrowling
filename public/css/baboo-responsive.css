@@ -67,19 +67,19 @@
 
 @media screen and (min-width: 576px) {
   .babooid {
-    padding-top: 10%;
+    padding-top: 15%;
   }
 }
 
 @media screen and (min-width: 768px) {
   .babooid {
-    padding-top: 7%;
+    padding-top: 11%;
   }
 }
 
 @media screen and (min-width: 992px) {
   .babooid {
-    padding-top: 8%;
+    padding-top: 10%;
   }
 
 
@@ -93,7 +93,7 @@
 
 @media screen and (min-width: 1300px) {
   .babooid {
-    padding-top: 5%;
+    padding-top: 7%;
   }
 }
 
