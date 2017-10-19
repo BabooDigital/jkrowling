@@ -40,6 +40,29 @@ $(document).ready(function(){
         }
     });
 
-    $(".stickymenu").stick_in_parent();
+    // $(".stickymenu").stick_in_parent();
 
+    var window_width = $( window ).width();
+
+    if (window_width < 768) {
+      $(".stickymenu").trigger("sticky_kit:detach");
+    } else {
+      make_sticky();
+    }
+
+    $( window ).resize(function() {
+
+      window_width = $( window ).width();
+
+      if (window_width < 768) {
+        $(".stickymenu").trigger("sticky_kit:detach");
+      } else {
+        make_sticky();
+      }
+
+    });
+
+    function make_sticky() {
+      $(".stickymenu").stick_in_parent();
+    }
 });
