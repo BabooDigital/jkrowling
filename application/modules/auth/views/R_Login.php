@@ -40,11 +40,11 @@
 								 			<p class="text-img animated slideInDown" style="margin-top:2px; color:#222;">Masuk ke Baboo</p>
 						      		</div>
 		 							<div class="col-lg-12">
-		 								<p class="right-text" style="margin-top:0px; margin-bottom: 20px;">Lanjutkan dengan</p>
+		 								<p class="right-text" style="margin-top:0px; margin-bottom: 20px;">Lanjutkan dengan hal</p>
 		 							</div>
 
 		 							<div class="col-lg-6 col-6" style="padding-right:5px;">
-		 								<button class="btn btn-sosmed" style="width: 100%;">	
+		 								<button class="btn btn-sosmed" style="width: 100%;">
 											<img src="public/img/assets/fb-icon.svg" class="btn-img-sosmed"> <span class="btn-text-sosmed" style="font-size:13px;">Facebook</span>
 										</button>
 		 							</div>
