@@ -49,12 +49,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'auth/c_login';
+$route['default_controller'] = 'auth/C_Login';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 
 
 /*Timeline*/
-$route['beranda'] = 'timeline/c_timeline/beranda';
-$route['timeline '] = 'timeline/c_timeline';
+$route['beranda'] = 'timeline/C_timeline/beranda';
+$route['timeline '] = 'timeline/C_timeline';
