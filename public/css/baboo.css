@@ -37,8 +37,9 @@ a:hover {
 
 .baboonav {
 	background-color: #fff;
-	box-shadow: 0px 0px 15px rgba(74, 74, 74, 0.15);
+	box-shadow: 0px 0px 5px 1px rgba(74, 74, 74, 0.15);
 }
+
 
 .martopbot {
 	margin-top: -5px;

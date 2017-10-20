@@ -10,13 +10,15 @@
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/simple-line-icons.css">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/fonts/fonts.css">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/sweetalert2.css">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/font-awesome.min.css">
 <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 
 <body>
 	<div class="container-fluid">
 		<div class="row no-gutters">
+
+			<!-- Left Side Content -->
 				<div class="col-lg-8 col-md-7 col-xl-9 nopadding">
 		 			<div class="left-side">
 		 				<center>
@@ -26,17 +28,19 @@
 
 		 			</div>
 		 		</div>
+		 	<!-- End Left Side Content -->
 
+		 	<!-- Right Side Content -->
 				<div class="col-lg-4 col-md-5 col-xl-3 nopadding">
 		 			<div class="right-side">
 		 				<div class="right-side-p">
 		 						<div class="row">
 		 							<div class="col-lg-12">
-		 								<a href="<?php echo site_url(); ?>timeline/C_timeline/Beranda" class="skip-text" style="font-size:14px;">Langsung Baca Buku</a>
+		 								<a href="<?php echo site_url(); ?>timeline/C_timeline/Beranda" class="skip-text">Langsung Baca Buku</a>
 		 							</div>
 
 		 							<div class="col-lg-12">
-		 								<p class="right-text" style="margin-top:72.2px; font-size:15px; ">Lanjutkan dengan</p>
+		 								<p class="right-text">Lanjutkan dengan</p>
 		 							</div>
 
 		 							<div class="col-lg-6 col-md-12 col-xl-6">
@@ -56,16 +60,18 @@
 		 							</div>
 
 		 							<div class="col-lg-12">
-										<form action="#" method="POST">
+										<form id="login-form" action="asdsa.html" method="POST">
 										  <div class="form-group">
-										    <input id="email" type="email" class="form-control login-input" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email"  oninvalid="this.setCustomValidity('Email harus menggunakan @')">
+										    <input lclass="form-control login-input" placeholder="Email">
 										  </div>
 
 										  <div class="form-group">
-										    <input id="password" type="password" class="form-control login-input" id="exampleInputPassword1" placeholder="Password">
+										    <input type="password" class="required password error  form-control login-input" id="exampleInputPassword1" placeholder="Password">
 										  </div>
+
 										  <p class="text-right text-daftar">Belum punya akun ? <a  data-toggle="modal" data-target="#myModal" href="#" class="link-daftar">Daftar disini</a></p>
-										  <button value="daftar" type="submit" class="btn btn-primary pull-right btn-login"><i class="icon-arrow-right"></i></button>
+										  <div class="pull-right">
+										  <button type="submit" class="btn btn-primary pull-right btn-login"><i class="icon-arrow-right"></i></button>	
 										</form>
 		 							</div>
 
@@ -73,11 +79,13 @@
 		 				</div>
 		 			</div>
 		 		</div>	
+		 	<!-- End Right Side Content -->
+
 	 	</div>
 	</div>
 </body>
 
-<!-- Modal -->
+<!-- Modal Register -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content" style="width: 105% !important;">
@@ -91,6 +99,7 @@
 		 	<div class="col-lg-12 col-xl-12">
 
 		 		<p class="text-img-modal">Selamat datang di Baboo</p>
+
 				<form>
 					<div class="form-group">
 						<input type="text" class="form-control login-input" placeholder="Nama Lengkap">
@@ -114,7 +123,7 @@
 							<div class="form-group">
 								<div class="form-check">
 								    <input class="badar-radio" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked> 
-								    <span class="text-modal" style="margin-left:15px; font-size:12px;">Laki-laki</span>
+								    <span class="text-modal">Laki-laki</span>
 								</div>
 							</div>
 						</div>
@@ -142,9 +151,9 @@
     </div>
   </div>
 </div>
+<!-- End Modal Register -->
 
-
-<!-- FOOTER -->
+<!-- Footer -->
 <div class="container">
 	<ul style="position: absolute; bottom: 10px; left:20px;">
   		<li class="footer-link"><a href="#" class="footer-link">Masuk</a></li>
@@ -155,19 +164,73 @@
   		<li class="footer-link m-l-20"><a href="#" class="footer-link">Baboo Carrier</a></li>
   	</ul>
 </div>
-<!-- FOOTER -->
+<!-- End Footer -->
+
+
 
 <!-- Javascript -->
 <script type="text/javascript" src="<?php echo base_url();?>public/js/jquery.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>public/js/tether.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+<script type="text/javascript" src="<?php echo base_url();?>public/js/umd/popper.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>public/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>public/js/moment.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>public/js/combodate.js"></script>
+<script src="<?php echo base_url();?>public./js/jquery.validate.js"></script>
+<script src="<?php echo base_url();?>public./js/additional-methods.js"></script>
 <script type="text/javascript">
 $(function(){
     $('#date').combodate('method');
     firstItem: 'name'	
+});
+</script>
+
+
+<script>
+$("#commentForm").validate();
+</script>
+<!-- End Java Script -->
+
+
+<script type="text/javascript">
+$(document).ready(function() {
+$("#login-form").validate({
+
+    errorPlacement: function(label, element) {
+        label.addClass('errormsg');
+        label.insertAfter(element);
+    },
+    wrapper: 'span',
+    rules:{ nama:"required",
+            umur:{required:true,number: true},      
+            username:"required",
+            password:{required: true,minlength:5},      
+            cpassword:{required: true,equalTo: "#password"},
+            email:{required:true,email:true},
+            website:{required:true,url:true}
+          },
+    messages:{ 
+            nama:{required:'Nama harus di isi'},
+            umur:{
+                required:'Umur harus di isi',
+                number  :'Hanya boleh di isi Angka'},
+            username: {
+                required:'Username harus di isi'},
+            password: {
+                required :'Password harus di isi',
+                minlength:'Password minimal 5 karakter'},
+            cpassword: {
+                required:'Ulangi Password harus di isi',
+                equalTo :'Isinya harus sama dengan Password'},
+            email: {
+                required:'Email harus di isi',
+                email   :'Email harus valid'},
+            website: {
+                required:'Website harus di isi',
+                url     :'Alamat website harus valid'}
+            },
+     success: function(label) {
+        label.text('<i class=""></i>').addClass('valid');}
+    });
 });
 </script>
 

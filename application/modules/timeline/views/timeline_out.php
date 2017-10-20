@@ -21,10 +21,10 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav">
 					<li class="nav-item mr-20 active">
-						<a class="nav-link" href="#"><b>Beranda</b></a>
+						<a class="nav-link b-nav-link" href="#">Beranda</a>
 					</li>
 					<li class="nav-item mr-100">
-						<a class="nav-link" href="#"><b>Explore</b></a>
+						<a class="nav-link" href="#">Explore</a>
 					</li>
 					<li class="nav-item mr-30">
 						<a class="nav-link btn-navmasuk" href="#">Masuk</a>
