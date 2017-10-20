@@ -62,7 +62,7 @@
 		 							<div class="col-lg-12">
 										<form id="login-form" action="asdsa.html" method="POST">
 										  <div class="form-group">
-										    <input lclass="form-control login-input" placeholder="Email">
+										    <input type="email" class="form-control login-input" id="exampleInputPassword1" placeholder="Alamat Email">
 										  </div>
 
 										  <div class="form-group">
