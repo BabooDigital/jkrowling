@@ -7,15 +7,15 @@ class C_Login extends MX_Controller {
 	{
 		if ($this->agent->is_mobile('ipad'))
 		{
-		        $this->load->view('d_login');
+		        $this->load->view('D_login');
 		}
 		if ($this->agent->is_mobile())
 		{
-		        $this->load->view('r_login');
+		        $this->load->view('R_login');
 		}
 		else
 		{
-		        $this->load->view('d_login');
+		        $this->load->view('D_login');
 		}
 	}
 
