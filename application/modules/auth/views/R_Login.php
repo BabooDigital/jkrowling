@@ -10,8 +10,10 @@
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/animate.css">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/simple-line-icons.css">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/fonts/fonts.css">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/sweetalert2.css">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/font-awesome.min.css">
 <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 
 <body>
 	<div class="container-fluid">
@@ -20,7 +22,7 @@
 		 			<div class="left-side d-none hidden-md-down">
 		 				<center>
 		 					<img src="<?php echo base_url();?>public/img/logo_purple.png" class="img-fluid img-left animated slideInDown center-content">
-		 					<p class="text-img animated slideInDown">Selamat datang di Baboo</p>
+		 					<p class="text-img animated slideInDown" style="font-size:12px;">Masuk ke Baboo</p>
 		 				</center>
 		 			</div>
 		 		</div>
@@ -28,34 +30,32 @@
 				<div class="col-lg-4 col-xl-3 nopadding">
 		 			<div class="right-side">
 		 				<div class="right-side-p">
-		 						<div class="row">
-		 							<div class="col-lg-12">
-		 								<a href="#" class="skip-text" style="margin-top:-30px;">Langsung Baca Buku</a>
+		 						<div class="row" style="margin-right:-32px; margin-left:-32px;">
+		 							<div class="col-lg-12 col-xs-12 text-right" style="margin-top:20px;">
+		 								<a href="<?php echo site_url();?>timeline/c_timeline/beranda" style="right: 10px; top:10px; text-decoration: none; color:grey;">Langsung Baca Buku</a>
 		 							</div>
 
 						      		<div class="col-lg-12 col-xl-12">
-						      			<center>
-						      				<img  src="<?php echo base_url();?>public/img/logo_purple.png" style="height:80px; margin-top:30px;" class="animated slideInDown">
-								 			<p class="text-img animated slideInDown">Selamat datang di Baboo</p>
-						      			</center>
+						      				<img  src="<?php echo base_url();?>public/img/logo_purple.png" style="height:54px; margin-top:0px;" class="animated slideInDown">
+								 			<p class="text-img animated slideInDown" style="margin-top:2px; color:#222;">Masuk ke Baboo</p>
 						      		</div>
 		 							<div class="col-lg-12">
-		 								<p class="right-text" style="margin-top:20px; margin-bottom: 20px;">Lanjutkan dengan</p>
+		 								<p class="right-text" style="margin-top:0px; margin-bottom: 20px;">Lanjutkan dengan</p>
 		 							</div>
 
-		 							<div class="col-lg-6 col-6">
-		 								<button class="btn btn-sosmed">
-											<img src="public/img/assets/fb-icon.svg" class="btn-img-sosmed"> <span class="btn-text-sosmed">Facebook</span>
+		 							<div class="col-lg-6 col-6" style="padding-right:5px;">
+		 								<button class="btn btn-sosmed" style="width: 100%;">	
+											<img src="public/img/assets/fb-icon.svg" class="btn-img-sosmed"> <span class="btn-text-sosmed" style="font-size:13px;">Facebook</span>
 										</button>
 		 							</div>
 
-		 							<div class="col-lg-6 col-6">
-		 								<button class="btn btn-sosmed">	
-											<img src="public/img/assets/google-icon.png" class="btn-img-sosmed"> <span class="btn-text-sosmed">Google</span>
+		 							<div class="col-lg-6 col-6" style="padding-left:5px;">
+		 								<button class="btn btn-sosmed" style="width: 100%;">	
+											<img src="public/img/assets/google-icon.png" class="btn-img-sosmed"> <span class="btn-text-sosmed" style="font-size:13px;">Google</span>
 		 								</button>
 		 							</div>
 
-		 							<div class="col-lg-12" style="margin-top:55.1px;">
+		 							<div class="col-lg-12" style="margin-top:30.1px;">
 		 								<p style="font-size:14px;">Atau login dengan email</p>
 		 							</div>
 
@@ -69,7 +69,8 @@
 										    <input type="password" class="form-control login-input" id="exampleInputPassword1" placeholder="Password">
 										  </div>
 										  <p class="text-right text-daftar">Belum punya akun ? <a  data-toggle="modal" data-target="#myModal" href="#" class="link-daftar">Daftar disini</a></p>
-											<button class="btn btn-signup btn-block"><b>Masuk</b></button>
+										  <div class="pull-right">
+										  <button type="submit" class="btn btn-primary pull-right btn-login"><i class="icon-arrow-right"></i></button>	
 										</form>
 		 							</div>
 
@@ -77,27 +78,25 @@
 		 				</div>
 		 			</div>
 		 		</div>	
-	 	</div>
+	 	</div>	
 	</div>
 </body>
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
+  <div class="modal-dialog" role="document" style="width: 100%; height: 100%; padding: 0; margin:0;">
+    <div class="modal-content" style="height:100%; border-radius:0; color:#333; overflow:auto;">
       <div class="modal-body">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true"> &times;</span>
+          <span aria-hidden="true" style="font-size:13px; 	font-family: 'Proxima Nova', Georgia, sans-serif; ">Daftar Nanti </span>
       	</button>
-      	<div class="row" style="margin-top:30px;">
+      	<div class="row">
       		<div class="col-lg-12 col-xl-12">
-      			<center>
-      				<img src="<?php echo base_url();?>public/img/logo_purple.png" style="height:80px;" class="animated slideInDown">
-		 			<p class="text-img animated slideInDown">Daftar Baboo</p>
-      			</center>
+				<img  src="<?php echo base_url();?>public/img/logo_purple.png" style="height:54px; margin-top:30px;" class="animated slideInDown">
+				<p class="text-img animated slideInDown" style="margin-top:2px; color:#222; font-size:15px;">Selamat datang di baboo</6p>
       		</div>
       	</div>
-      	<div class="container">
+      	<div class="row">
 		 	<div class="col-lg-12 col-xl-12">
 				<form>
 					<div class="form-group">
@@ -143,7 +142,7 @@
 								<div class="form-check">
 								  <label class="form-check-label">
 								    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked> 
-								    <span class="text-modal">Laki-laki</span>
+								    <span class="text-modal" style="margin-left:5px;">Laki-laki</span>
 								  </label>
 								</div>
 							</div>
@@ -154,16 +153,14 @@
 								<div class="form-check">
 								  <label class="form-check-label">
 								    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-								    <span class="text-modal">Perempuan</span>
+								    <span class="text-modal" style="margin-left:10px;">Perempuan</span>
 								  </label>
 								</div>
 							</div>
 						</div>
 					</div>
-					<center>
-						<p class="text-daftar" style="text-align:center;">Dengan mengklik tombol daftar, anda setuju pada <br><a  data-toggle="modal" data-target="#myModal" href="#" class="link-daftar"><b>Terms of Service</b></a></p>
-					</center>
-					<button class="btn btn-signup btn-block"><b>Daftar</b></button>
+						<p class="text-daftar">Dengan mengklik tombol daftar, anda setuju pada <br><a  data-toggle="modal" data-target="#myModal" href="#" class="link-daftar"><b>Terms of Service</b></a> Baboo</p>
+						<button class="btn btn-signup btn-block"><b>Daftar</b></button>
 					</div> 
 				</form>
 		 	</div>
@@ -177,6 +174,10 @@
 <!-- Javascript -->
 <script type="text/javascript" src="<?php echo base_url();?>public/js/jquery.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>public/js/tether.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+<script type="text/javascript" src="<?php echo base_url();?>public/js/umd/popper.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>public/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>public/js/moment.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>public/js/combodate.js"></script>
+<script src="<?php echo base_url();?>public./js/jquery.validate.js"></script>
+<script src="<?php echo base_url();?>public./js/additional-methods.js"></script>	
 </html>
