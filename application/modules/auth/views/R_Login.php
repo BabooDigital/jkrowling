@@ -32,7 +32,7 @@
 		 				<div class="right-side-p">
 		 						<div class="row" style="margin-right:-32px; margin-left:-32px;">
 		 							<div class="col-lg-12 col-xs-12 text-right" style="margin-top:20px;">
-		 								<a href="<?php echo site_url();?>timeline/c_timeline/beranda" style="right: 10px; top:10px; text-decoration: none; color:grey;">Langsung Baca Buku</a>
+		 								<a href="<?php echo site_url();?>timeline/beranda" style="right: 10px; top:10px; color:grey;">Langsung Baca Buku</a>
 		 							</div>
 
 						      		<div class="col-lg-12 col-xl-12">
