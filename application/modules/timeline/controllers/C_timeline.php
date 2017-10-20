@@ -8,10 +8,10 @@ class C_timeline extends MX_Controller {
 
 	public function index()
 	{
-		$this->load->view('timeline_in');
+		$this->load->view('Timeline_in');
 	}
 	public function beranda()
 	{
-		$this->load->view('timeline_out');
+		$this->load->view('Timeline_out');
 	}
 }
