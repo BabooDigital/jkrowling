@@ -151,7 +151,7 @@
 							<div class="media">
 								<img class="d-flex align-self-start mr-20 rounded-circle" src="http://placehold.it/60x60" alt="Generic placeholder image">
 								<div class="media-body mt-5">
-									<h5 class="card-title nametitle2">Paulsen Siahaan</h5>
+									<h5 class="card-title nametitle2">Paulsen JS</h5>
 									<p><small><span>Jakarta, Indonesia</span>
 										<span class="ml-10">1 hours ago</span></small></p>
 								</div>
