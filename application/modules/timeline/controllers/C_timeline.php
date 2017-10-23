@@ -6,12 +6,36 @@ class C_timeline extends MX_Controller {
 		parent::__construct();
 	}
 
-	public function index()
+
+	public function timeline()
 	{
-		$this->load->view('Timeline_in');
+		if ($this->agent->is_mobile('ipad'))
+		{
+		        $this->load->view('D_Timeline_in');
+		}
+		if ($this->agent->is_mobile())
+		{
+		        $this->load->view('R_Timeline_in');
+		}
+		else
+		{
+		        $this->load->view('D_Timeline_in');
+		}
 	}
+
 	public function beranda()
 	{
-		$this->load->view('Timeline_out');
+		if ($this->agent->is_mobile('ipad'))
+		{
+		        $this->load->view('D_Timeline_out');
+		}
+		if ($this->agent->is_mobile())
+		{
+		        $this->load->view('R_Timeline_out');
+		}
+		else
+		{
+		        $this->load->view('D_Timeline_out');
+		}
 	}
 }

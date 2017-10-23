@@ -106,11 +106,23 @@ a:hover {
 }
 
 .contslider {
-	width: 5%;
+	width: 20;
 	padding: 15px 20px;
 	border-radius: 50%;
 	background-color: rgba(255, 255, 255, 0.8);
 	box-shadow: 0 2px 7px 0 rgba(0, 0, 0, 0.18);
+}
+
+@media screen and (max-width: 500px) {
+.contslider {
+	width: 35px;
+	height:35px;
+	padding: 10px 10px 10px 10px;
+	border-radius: 50%;
+	background-color: transparent;);
+	box-shadow: 0 2px 7px 0 rgba(0, 0, 0, 0.18);
+	color: #fff;
+}
 }
 
 .contenttextslider p span {
@@ -165,6 +177,11 @@ a:hover {
 	list-style: none;
 	float: right;
 }
+.Rcatul {
+	display: inline-block;
+	list-style: none;
+	box-shadow: 0px 0px 1px 0px #222;
+}
 .catli {
 	float: left;
 	margin-left: 20px
@@ -172,6 +189,21 @@ a:hover {
 .catli > a {
 	font-family: 'Poppins';
 	font-size: 10pt;
+}
+.Rcatli {
+	float: left;
+	color:#fff;
+	padding-top: 8px;
+	height:100%;
+}
+.Rcatul .active {
+	border-bottom: 3px solid #fff;
+}
+
+.Rcatli > a {
+	font-family: 'Poppins';
+	font-size: 10pt;
+	color:#fff;
 }
 
 .content-desc {
@@ -212,12 +244,25 @@ a:hover {
   	line-height: 1;
 }
 
+.Rnametitle2 {
+	font-size: 15px;
+	font-weight: bold;
+	font-family: Proxima Nova;
+  	line-height: 1;
+}
+
 .nametitle3 {
     font-size: 20px !important;
     font-weight: bold;
     font-family: Poppins;
     line-height: 1;
     color: #000;
+}
+.Rnametitle3 {
+	font-size: 16px;
+	font-weight: bold;
+	font-family: Proxima Nova;
+  	line-height: 1;
 }
 
 .mt-7 {
@@ -456,7 +501,10 @@ a:hover {
 	color: #2e2e2e;
 	padding-left: 10px;
 }
-
+/*
+.aktip{
+	border-bottom:solid 3px #fff;
+}*/
 .Combined-Shape-Copy {
 	width: 30.5px;
 	height: 28.3px;
@@ -645,6 +693,15 @@ select.form-control:focus {
 	top: 45%;
 	right: 0;
 	left: 5%;
+}
+@media screen and (max-width: 500px) {
+.slidecontrols {
+	z-index: 1001;
+	position: absolute;
+	top: 45%;
+	right: 5%;
+	left: 5%;
+}
 }
 
 .inrightboo {

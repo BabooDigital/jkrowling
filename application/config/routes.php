@@ -57,4 +57,4 @@ $route['translate_uri_dashes'] = FALSE;
 
 /*Timeline*/
 $route['beranda'] = 'timeline/C_timeline/beranda';
-$route['timeline '] = 'timeline/C_timeline';
+$route['timelines'] = 'timeline/C_timeline/timeline';
