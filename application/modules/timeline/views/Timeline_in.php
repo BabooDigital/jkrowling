@@ -2,17 +2,17 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
 
 	<title>Timeline Baboo - Baca buku online</title>
 
 	<!-- CSS -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/baboo.css">
-	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/baboo-responsive.css">
-	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/custom-margin-padding.css">
-	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
+	<link href="<?php echo base_url();?>public/css/bootstrap.min.css" rel="stylesheet">
+	<link href="<?php echo base_url();?>public/css/baboo.css" rel="stylesheet" type="text/css">
+	<link href="<?php echo base_url();?>public/css/baboo-responsive.css" rel="stylesheet" type="text/css">
+	<link href="<?php echo base_url();?>public/css/custom-margin-padding.css" rel="stylesheet" type="text/css">
+	<link href="<?php echo base_url();?>public/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<link href="<?php echo base_url();?>public/css/jquery.bxslider.min.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 
@@ -44,7 +44,7 @@
 					<li class="nav-item">
 						<div class="media nav-link martopbot">
 							<a href="#">
-								<img class="d-flex mr-2 rounded-circle" src="http://placehold.it/40x40" alt="Generic placeholder image">
+								<img class="d-flex mr-2 rounded-circle" src="<?php echo base_url(); ?>public/img/profile/pp_wanita2.png" width="40" alt="Generic placeholder image">
 							</a>
 							<div class="media-body">
 								<p style="font-weight: bold;"><a href="#" style="font-size: 10pt;"><b>Aditia Nugraha</b></a>
@@ -57,7 +57,7 @@
 			</div>
 		</nav>
 
-	<div class="container babooid">
+	<div class="container babooidin">
 		<div class="row">
 			<!-- Left Side -->
 			<div class="col-md-3">
@@ -69,7 +69,7 @@
 					<div class="card-body p-0">
 						<ul class="list-group list-group-flush">
 							<li class="media baboocontent">
-								<img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="Name">
+								<img alt="Name" class="d-flex mr-3 rounded-circle" src="<?php echo base_url(); ?>public/img/profile/pp_wanita2.png" width="50">
 								<div class="media-body mt-7">
 									<h5 class="mt-0 mb-1 nametitle">Rian</h5>
 									<small>Fiksi</small>
@@ -81,7 +81,7 @@
 								</div>
 							</li>
 							<li class="media baboocontent">
-								<img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="Name">
+								<img alt="Name" class="d-flex mr-3 rounded-circle" src="<?php echo base_url(); ?>public/img/profile/pp_pria2.png" width="50">
 								<div class="media-body mt-7">
 									<h5 class="mt-0 mb-1 nametitle">Risa Sulis</h5>
 									<small>Fiksi</small>
@@ -93,7 +93,7 @@
 								</div>
 							</li>
 							<li class="media baboocontent">
-								<img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="Name">
+								<img alt="Name" class="d-flex mr-3 rounded-circle" src="<?php echo base_url(); ?>public/img/profile/pp_laki2.png" width="50">
 								<div class="media-body mt-7">
 									<h5 class="mt-0 mb-1 nametitle">Rizky Ramadhan</h5>
 									<small>Fiksi</small>
@@ -149,9 +149,9 @@
 					<div class="card-body p-0 p-20">
 						<div class="row mb-30">
 							<div class="media">
-								<img class="d-flex align-self-start mr-20 rounded-circle" src="http://placehold.it/60x60" alt="Generic placeholder image">
+								<img class="d-flex align-self-start mr-20 rounded-circle" src="<?php echo base_url(); ?>public/img/profile/pp_wanita2.png" width="60" alt="Generic placeholder image">
 								<div class="media-body mt-5">
-									<h5 class="card-title nametitle2">Paulsen JS</h5>
+									<h5 class="card-title nametitle2">Marina Saraswati</h5>
 									<p><small><span>Jakarta, Indonesia</span>
 										<span class="ml-10">1 hours ago</span></small></p>
 								</div>
@@ -159,7 +159,7 @@
 						</div>
 						<div class="row">
 							<div class="media">
-								<img class="d-flex align-self-start mr-10" src="http://placehold.it/110x160" alt="Profile">
+								<img class="d-flex align-self-start mr-10" src="<?php echo base_url(); ?>public/img/book-cover/book_cover2.png" width="120" alt="Profile">
 								<div class="media-body">
 									<h5 class="card-title nametitle3">Story Of Drama</h5>
 									<p class="catbook"><a href="#" class="mr-20"><span style="border: 1px #7554bd solid;border-radius: 25px;padding: 0px 10px;color: #7554bd;">FIKSI</span></a> <span class="mr-20"><img src="<?php echo base_url(); ?>public/img/assets/icon_view.svg"> 290</span> <span><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg"> 12</span></p>
@@ -184,7 +184,7 @@
 					<div class="card-body p-0 p-20">
 						<div class="row mb-30">
 							<div class="media">
-								<img class="d-flex align-self-start mr-20 rounded-circle" src="http://placehold.it/60x60" alt="Generic placeholder image">
+								<img class="d-flex align-self-start mr-20 rounded-circle" src="<?php echo base_url(); ?>public/img/profile/pp_wanita2.png" width="60" alt="Generic placeholder image">
 								<div class="media-body mt-5">
 									<h5 class="card-title nametitle2">Marina Saraswati</h5>
 									<p><small><span>Jakarta, Indonesia</span>
@@ -194,7 +194,7 @@
 						</div>
 						<div class="row">
 							<div class="media">
-								<img class="d-flex align-self-start mr-10" src="http://placehold.it/110x160" alt="Profile">
+								<img class="d-flex align-self-start mr-10" src="<?php echo base_url(); ?>public/img/book-cover/book_cover1.png" width="120" alt="Profile">
 								<div class="media-body">
 									<h5 class="card-title nametitle3">Story Of Drama</h5>
 									<p class="catbook"><a href="#" class="mr-20"><span style="border: 1px #7554bd solid;border-radius: 25px;padding: 0px 10px;color: #7554bd;">FIKSI</span></a> <span class="mr-20"><img src="<?php echo base_url(); ?>public/img/assets/icon_view.svg"> 290</span> <span><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg"> 12</span></p>
@@ -239,7 +239,7 @@
 						    <li class="list-group-item">
 						    	<div class="media">
 									<div class="media-left mr-10">
-										<a href="#"><img class="media-object" src="http://placehold.it/60x80"></a>
+										<a href="#"><img class="media-object" src="http://placehold.it/60x80/6454bd"></a>
 									</div>
 									<div class="media-body">
 										<div>
@@ -252,7 +252,7 @@
 						    <li class="list-group-item">
 						    	<div class="media">
 									<div class="media-left mr-10">
-										<a href="#"><img class="media-object" src="http://placehold.it/60x80"></a>
+										<a href="#"><img class="media-object" src="http://placehold.it/60x80/c53949"></a>
 									</div>
 									<div class="media-body">
 										<div>
@@ -265,7 +265,7 @@
 						    <li class="list-group-item">
 						    	<div class="media">
 									<div class="media-left mr-10">
-										<a href="#"><img class="media-object" src="http://placehold.it/60x80"></a>
+										<a href="#"><img class="media-object" src="http://placehold.it/60x80/e2a9c9"></a>
 									</div>
 									<div class="media-body">
 										<div>
@@ -285,12 +285,12 @@
 	</div>
 
 	<!-- JS -->
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.12/jquery.bxslider.min.js">
+	<script src="<?php echo base_url(); ?>public/js/jquery-3.2.1.slim.min.js"></script>
+	<script src="<?php echo base_url(); ?>public/js/umd/popper.min.js"></script>
+	<script src="<?php echo base_url(); ?>public/js/bootstrap.min.js"></script>
+	<script src="<?php echo base_url(); ?>public/js/jquery.bxslider.min.js">
 	</script> 
-	<script src="https://cdn.rawgit.com/leafo/sticky-kit/v1.1.2/jquery.sticky-kit.js">
+	<script src="<?php echo base_url(); ?>public/js/jquery.sticky-kit.min.js">
 	</script> 
 	<script src="<?php echo base_url(); ?>public/js/baboo.js">
 	</script>

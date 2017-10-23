@@ -63,10 +63,6 @@ li a.footer-link:hover{
 	 padding: 0;
 }
 
-.errormsg{
-	padding-top:2000px;
-}
-
 .no-gutters {
   margin-right: 0;
   margin-left: 0;
@@ -87,7 +83,7 @@ li a.footer-link:hover{
 	border-radius: 50px;
 	margin-top:30px;
 	border:2px solid #7554bd;
-	height:50px;
+	height:40px;
 	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.17);
 }
 
@@ -161,6 +157,7 @@ button.btn-primary:active:focus{
 
 a.link-daftar{
 	color: #1f2d3e;
+	margin-left: 5px;
 	font-family: 'Proxima Nova', Georgia, sans-serif;
 }
 
@@ -169,6 +166,7 @@ a.link-daftar:hover{
 	text-decoration: none;
 	font-weight: 600;
 	font-family: 'Proxima Nova', Georgia, sans-serif;
+	margin-left: 5px;
 }
 
 .login-input{
