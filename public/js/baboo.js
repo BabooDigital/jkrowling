@@ -19,7 +19,8 @@ $(document).ready(function(){
 
         nextText: '<i class="fa fa-chevron-right fa-2x contslider"></i>',
         prevText: '<i class="fa fa-chevron-left fa-2x contslider"></i>',
-      });   
+      }); 
+      
 
     // clicking button with class "category-button"
     $(".btnfilter").click(function(){
