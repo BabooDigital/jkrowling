@@ -36,7 +36,7 @@
 		 				<div class="right-side-p">
 		 						<div class="row">
 		 							<div class="col-lg-12">
-		 								<a href="<?php echo site_url(); ?>timeline/C_timeline/Beranda" class="skip-text">Langsung Baca Buku</a>
+		 								<a href="<?php echo site_url(); ?>beranda" class="skip-text">Langsung Baca Buku</a>
 		 							</div>
 
 		 							<div class="col-lg-12">
