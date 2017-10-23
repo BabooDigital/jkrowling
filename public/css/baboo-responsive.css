@@ -53,6 +53,9 @@
   .babooid {
     padding-top: 20%;
   }
+  .babooidin {
+    padding-top: 20%;
+  }
 
   .btn-newstory {
     width: 110% !important;
@@ -69,10 +72,16 @@
   .babooid {
     padding-top: 15%;
   }
+  .babooidin {
+    padding-top: 17%;
+  }
 }
 
 @media screen and (min-width: 768px) {
   .babooid {
+    padding-top: 11%;
+  }
+  .babooidin {
     padding-top: 11%;
   }
 }
@@ -80,6 +89,9 @@
 @media screen and (min-width: 992px) {
   .babooid {
     padding-top: 10%;
+  }
+  .babooidin {
+    padding-top: 9%;
   }
 
 
@@ -89,10 +101,16 @@
   .babooid {
     padding-top: 6%;
   }
+  .babooidin {
+    padding-top: 8%;
+  }
 }
 
 @media screen and (min-width: 1300px) {
   .babooid {
+    padding-top: 4%;
+  }
+  .babooidin {
     padding-top: 7%;
   }
 }
@@ -101,10 +119,16 @@
   .babooid {
     padding-top: 6%;
   }
+  .babooidin {
+    padding-top: 7%;
+  }
 }
 
 @media screen and (min-width: 1600px) {
   .babooid {
     padding-top: 4%;
+  }
+  .babooidin {
+    padding-top: 6%;
   }
 }

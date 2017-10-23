@@ -40,8 +40,6 @@ $(document).ready(function(){
         }
     });
 
-    // $(".stickymenu").stick_in_parent();
-
     var window_width = $( window ).width();
 
     if (window_width < 768) {
