@@ -6,6 +6,8 @@
 	<title>Timeline Baboo - Baca buku online</title><!-- CSS -->
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet">
 	<link href="<?php echo base_url();?>public/css/baboo.css" rel="stylesheet" type="text/css">
+	<link href="<?php echo base_url();?>public/css/slick.css" rel="stylesheet" type="text/css">
+	<link href="<?php echo base_url();?>public/css/slick-theme.css" rel="stylesheet" type="text/css">
 	<link href="<?php echo base_url();?>public/css/baboo-responsive.css" rel="stylesheet" type="text/css">
 	<link href="<?php echo base_url();?>public/css/custom-margin-padding.css" rel="stylesheet" type="text/css">
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -15,7 +17,7 @@
 	<nav class="navbar navbar-expand-lg fixed-top baboonav">
 		<button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbarSupportedContent" data-toggle="collapse" type="button"><span class="fa fa-bars"></span></button>
 			<a class="navbar-brand" href="#"><img alt="" src="<?php echo base_url(); ?>public/img/logo_purple.png" width="100"></a>
-			<a href="#" class="btn bukupilihan" style="background-color:#f6e8ff; border:solid 1px #7554bd; color:#7554bd; ">Masuk</a>
+			<a href="<?php echo site_url();?>login" class="btn bukupilihan" style="background-color:#f6e8ff; border:solid 1px #7554bd; color:#7554bd; ">Masuk</a>
 
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav">
@@ -37,66 +39,58 @@
 			</div>
 	</nav><!-- slider -->
 	<div class="mt-60">
-		<div class="slideboo">
-				<div class="slidecontrols">
-					<span id="slider-prev" style="font-size:8px;" class="pull-left"></span> <span id="slider-next"  style="font-size:8px;" class="pull-right"></span>
-				</div>
-			<div style="width: 100%;height: auto;position: relative;">
-				<div class="slider6">
-					<div class="slide">
-						<div style="padding: 5%;background-color: #7db6d0;">
-							<div class="media">
-							  <img class="d-flex mr-3" src="https://placehold.it/150x250/&text=Buku1" style="box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5); height:200px;">
-							  <div class="media-body mt-10 blueslide" style="padding: 5% 0;">
-							    <h4 class="mt-0"><b>Kite Runner</b></h4>
-							    <p style="font-size:12px;">by Khaled Hosseini</p>
-							    <p style="font-size:10px;">Aku tahu ribuan kalimat kau tulis untuk memberi tanda bahwa kamu selalu sabar menungguku, yang...</p>
-							    <div class="mt-20"><a href="#" class="btnbooread"><span style="">Baca Buku</span></a></div>
-							  </div>
-							</div>
-						</div>
+		
+<div class="your-class">
+	  <div style="background-color: #edb6c1;">
+	  	<div style="padding:5%;">
+			<div class="media">
+				<img class="d-flex mr-3" src="https://spark.adobe.com/images/landing/examples/how-to-book-cover.jpg" style="box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5); height:150px;">
+					<div class="media-body mt-10 pinkslide" style="padding: 5% 0;">
+						<h6 class="mt-0"><b>Kite Runner</b></h6>
+						<p style="font-size:10px;">by Khaled Hosseini</p>
+						<p style="font-size:8px;">Aku tahu ribuan kalimat kau tulis untuk memberi tanda bahwa kamu selalu sabar menungguku, yang...</p>
 					</div>
-					<div class="slide">
-						<div style="padding: 5%;background-color: #edb6c1;">
-							<div class="media">
-							  <img class="d-flex mr-3" src="https://placehold.it/150x250/&text=Buku2" style="box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5); height:200px;">
-							  <div class="media-body mt-10 pinkslide" style="padding: 5% 0;">
-							    <h4 class="mt-0"><b>Kite Runner</b></h4>
-							    <p style="font-size:12px;">by Khaled Hosseini</p>
-							    <p style="font-size:10px;">Aku tahu ribuan kalimat kau tulis untuk memberi tanda bahwa kamu selalu sabar menungguku, yang...</p>
-							    <div class="mt-20"><a href="#" class="btnbooread"><span style="">Baca Buku</span></a></div>
-							  </div>
-							</div>
-						</div>
+			</div>								
+	  	</div>
+	  </div>
+	  <div style="background-color: #7db6d0;">
+	  	<div style="padding:5%;">
+			<div class="media">
+				<img class="d-flex mr-3" src="https://spark.adobe.com/images/landing/examples/how-to-book-cover.jpg" style="box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5); height:150px;">
+					<div class="media-body mt-10 blueslide" style="padding: 5% 0;">
+						<h6 class="mt-0"><b>Kite Runner</b></h6>
+						<p style="font-size:10px;">by Khaled Hosseini</p>
+						<p style="font-size:8px;">Aku tahu ribuan kalimat kau tulis untuk memberi tanda bahwa kamu selalu sabar menungguku, yang...</p>
 					</div>
-					<div class="slide">
-						<div style="padding: 5%;background-color: #7db6d0;">
-							<div class="media">
-							  <img class="d-flex mr-3" src="https://placehold.it/150x250/&text=Buku3" style="box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5); height:200px;">
-							  <div class="media-body mt-10 blueslide" style="padding: 5% 0;">
-							    <h4 class="mt-0"><b>Kite Runner</b></h4>
-							    <p style="font-size:12px;">by Khaled Hosseini</p>
-							    <p style="font-size:10px;">Aku tahu ribuan kalimat kau tulis untuk memberi tanda bahwa kamu selalu sabar menungguku, yang...</p>
-							    <div class="mt-20"><a href="#" class="btnbooread"><span style="">Baca Buku</span></a></div>
-							  </div>
-							</div>
-						</div>
+			</div>								
+	  	</div>
+	 </div>
+	  <div style="background-color: #edb6c1;">
+	  	<div style="padding:5%;">
+			<div class="media">
+				<img class="d-flex mr-3" src="https://spark.adobe.com/images/landing/examples/how-to-book-cover.jpg" style="box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5); height:150px;">
+					<div class="media-body mt-10 pinkslide" style="padding: 5% 0;">
+						<h6 class="mt-0"><b>Kite Runner</b></h6>
+						<p style="font-size:10px;">by Khaled Hosseini</p>
+						<p style="font-size:8px;">Aku tahu ribuan kalimat kau tulis untuk memberi tanda bahwa kamu selalu sabar menungguku, yang...</p>
 					</div>
-					<div class="slide">
-						<div style="padding: 5%;background-color: #edb6c1;">
-							<div class="media">
-							  <img class="d-flex mr-3" src="https://placehold.it/150x250/&text=Buku4" style="box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5); height:200px;">
-							  <div class="media-body mt-10 pinkslide" style="padding: 5% 0;">
-							    <h4 class="mt-0"><b>Kite Runner</b></h4>
-							    <p style="font-size:12px;">by Khaled Hosseini</p>
-							    <p style="font-size:10px;">Aku tahu ribuan kalimat kau tulis untuk memberi tanda bahwa kamu selalu sabar menungguku, yang...</p>
-							    <div class="mt-20"><a href="#" class="btnbooread"><span style="">Baca Buku</span></a></div>
-							  </div>
-							</div>
-						</div>
+			</div>								
+	  	</div>
+	 </div>
+	  <div style="background-color: #7db6d0;">
+	  	<div style="padding:5%;">
+			<div class="media">
+				<img class="d-flex mr-3" src="https://spark.adobe.com/images/landing/examples/how-to-book-cover.jpg" style="box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5); height:150px;">
+					<div class="media-body mt-10 blueslide" style="padding: 5% 0;">
+						<h6 class="mt-0"><b>Kite Runner</b></h6>
+						<p style="font-size:10px;">by Khaled Hosseini</p>
+						<p style="font-size:8px;">Aku tahu ribuan kalimat kau tulis untuk memberi tanda bahwa kamu selalu sabar menungguku, yang...</p>
 					</div>
-				</div>
-			</div>
+			</div>								
+	  	</div>
+	 </div>
+</div>
+
 	</div>
 
 	<div style="background-color: #7554bd; height:40px;">
@@ -243,14 +237,48 @@
 	</div>
 
 	<!-- JS -->
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+<!-- Javascript -->
+<script type="text/javascript" src="<?php echo base_url();?>public/js/jquery.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>public/js/tether.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>public/js/umd/popper.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>public/js/bootstrap.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.12/jquery.bxslider.min.js">
 	</script> 
 	<script src="https://cdn.rawgit.com/leafo/sticky-kit/v1.1.2/jquery.sticky-kit.js">
 	</script> 
 	<script src="<?php echo base_url(); ?>public/js/baboo.js">
+	</script>
+	<script src="<?php echo base_url(); ?>public/js/slick.js">
+	</script>
+
+	<script type="text/javascript">
+$('.your-class').slick({
+  centerMode: true,
+  centerPadding: '30px',
+  slidesToShow: 1,
+  responsive: [
+    {
+      breakpoint: 768,
+      settings: {
+        arrows: true,
+        centerMode: true,
+        centerPadding: '166px',
+        slidesToShow: 1
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        arrows: true,
+        centerMode: true,
+        centerPadding: '40px',
+        slidesToShow: 1,
+      }
+    }
+  ]
+});
+		
+		
 	</script>
 </body>
 </html>

@@ -54,6 +54,7 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 
+$route['login'] = 'auth/C_Login';
 
 /*Timeline*/
 $route['beranda'] = 'timeline/C_timeline/beranda';

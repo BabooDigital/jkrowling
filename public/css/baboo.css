@@ -37,8 +37,9 @@ a:hover {
 
 .baboonav {
 	background-color: #fff;
-	box-shadow: 0px 0px 15px rgba(74, 74, 74, 0.15);
+	box-shadow: 0px 0px 5px 1px rgba(74, 74, 74, 0.15);
 }
+
 
 .martopbot {
 	margin-top: -5px;
@@ -119,9 +120,8 @@ a:hover {
 	height:35px;
 	padding: 10px 10px 10px 10px;
 	border-radius: 50%;
-	background-color: transparent;);
+	background-color: rgba(255, 255, 255, 0.8);
 	box-shadow: 0 2px 7px 0 rgba(0, 0, 0, 0.18);
-	color: #fff;
 }
 }
 
@@ -211,16 +211,14 @@ a:hover {
 }
 
 .text-desc-in {
+	font-size: 11pt !important;
 	font-family: Poppins;
-    font-size: 14px;
-    line-height: 1.7;
-    color: #000;
+	line-height: 1.7;
 }
 .text-desc-out {
-    font-family: Poppins;
-    font-size: 12px;
-    line-height: 1.64;
-    color: #000;
+	font-size: 9pt !important;
+	font-family: Poppins;
+	line-height: 1.5;
 }
 
 .readmore {
@@ -252,11 +250,10 @@ a:hover {
 }
 
 .nametitle3 {
-    font-size: 20px !important;
-    font-weight: bold;
-    font-family: Poppins;
-    line-height: 1;
-    color: #000;
+	font-size: 1.35rem !important;
+	font-weight: bold;
+	font-family: Proxima Nova;
+  	line-height: 1;
 }
 .Rnametitle3 {
 	font-size: 16px;
@@ -391,10 +388,10 @@ a:hover {
 }
 
 .card {
-	border-radius: 10px;
-    background-color: #ffffff;
-    box-shadow: 0 2px 2px 0 rgba(167, 167, 167, 0.04);
-    border: solid 1px #e1e6e9;
+	border-radius: 5px;
+	background-color: #ffffff;
+	box-shadow: 0 2px 2px 0 rgba(167, 167, 167, 0.04);
+	border: solid 0.7px #ecf1f4;
 }
 
 .card-header {
@@ -714,34 +711,21 @@ select.form-control:focus {
 	font-size: 20pt;
 	font-weight: bold;
 }
-.blueslidebg {
-	padding: 5%;
-	background-color: #7db6d0;
-}
 .blueslide {
 	color: #fff !important;
 }
 .blueslide > h4, .blueslide > p {
-	color: #fff !important;
+	text-shadow: 1px 1px 5px rgba(51, 51, 51, 0.65);
 	font-family: Poppins;
 	line-height: 1.33;
-}
-.pinkslidebg {
-	padding: 5%;
-	background-color: #edb6c1;
 }
 .pinkslide {
-	color: #000 !important;
+	color: #333 !important;
 }
 .blueslide > h4, .pinkslide > p {
-	color: #000;
+	text-shadow: 1px 1px 5px rgba(224, 224, 224, 0.65);
 	font-family: Poppins;
 	line-height: 1.33;
-}
-
-.authorslide {
-	font-size: 12px;
-	margin-bottom: 10px;
 }
 /*SLIDER*/
 
