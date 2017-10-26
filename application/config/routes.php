@@ -58,4 +58,4 @@ $route['login'] = 'auth/C_Login';
 
 /*Timeline*/
 $route['home'] = 'timeline/C_timeline/beranda';
-$route['timeline'] = 'timeline/C_timeline';
+$route['timeline'] = 'timeline/C_timeline/timeline';
