@@ -176,8 +176,8 @@
 <script type="text/javascript" src="<?php echo base_url();?>public/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>public/js/moment.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>public/js/combodate.js"></script>
-<script src="<?php echo base_url();?>public./js/jquery.validate.js"></script>
-<script src="<?php echo base_url();?>public./js/additional-methods.js"></script>	
+<script src="<?php echo base_url();?>public/js/jquery.validate.js"></script>
+<script src="<?php echo base_url();?>public/js/additional-methods.js"></script>	
 
 <script type="text/javascript">
 	$(document).ready(function() {
