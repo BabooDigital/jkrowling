@@ -69,7 +69,7 @@
 										    <input type="password" class="required password error  form-control login-input" id="exampleInputPassword1" name="password" placeholder="Password">
 										  </div>
 
-										  <p class="text-right text-daftar">Belum punya akun ? <a  data-toggle="modal" data-target="#myModal" href="#" class="link-daftar">Daftar disini</a></p>
+										  <p class="text-right text-daftar">Belum punya akun ? <a  data-toggle="modal" data-target="#register-modal" href="#" class="link-daftar">Daftar disini</a></p>
 										  <div class="pull-right">
 										  <button type="submit" name="submit" class="btn btn-primary pull-right btn-login"><i class="icon-arrow-right"></i></button>	
 										</form>
@@ -84,7 +84,7 @@
 	 	</div>
 	</div>
 <!-- Modal Register -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="register-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content" style="width: 105% !important;">
       <div class="modal-body">
@@ -137,7 +137,7 @@
 
 					</div>
 					<center>
-						<p class="text-daftar" style="text-align:center;">Dengan mengklik tombol daftar, anda setuju pada <a  data-toggle="modal" data-target="#myModal" href="#" class="link-daftar"><b>Terms of Service</b></a></p>
+						<p class="text-daftar" style="text-align:center;">Dengan mengklik tombol daftar, anda setuju pada <a  data-toggle="modal" data-target="#register-modal" href="#" class="link-daftar"><b>Terms of Service</b></a></p>
 					</center>
 					<button class="btn btn-signup btn-block"><b>Daftar</b></button>
 					</div> 
@@ -154,11 +154,11 @@
 <!-- Footer -->
 <div class="container">
 	<ul style="position: absolute; bottom: 10px; left:20px;">
-  		<li class="footer-link"><a href="#" class="footer-link">Masuk</a></li>
-  		<li class="footer-link m-l-20"><a href="#" class="footer-link">Daftar</a></li>
-  		<li class="footer-link m-l-20"><a href="#" class="footer-link">Tentang Baboo</a></li>
+  		<li class="footer-link"><a href="<?php echo site_url(); ?>login" class="footer-link">Masuk</a></li>
+  		<li class="footer-link m-l-20"><a data-toggle="modal" data-target="#register-modal" href="#" class="footer-link">Daftar</a></li>
+  		<li class="footer-link m-l-20"><a href="https://www.baboo.id/about.html" target="_blank" class="footer-link">Tentang Baboo</a></li>
   		<li class="footer-link m-l-20"><a href="#" class="footer-link">Terms of Use</a></li>
-  		<li class="footer-link m-l-20"><a href="#" class="footer-link">Privacy & Policy</a></li>
+  		<li class="footer-link m-l-20"><a href="https://www.baboo.id/kebijakan.html" target="_blank" class="footer-link">Privacy &amp; Policy</a></li>
   		<li class="footer-link m-l-20"><a href="#" class="footer-link">Baboo Carrier</a></li>
   	</ul>
 </div>
@@ -189,6 +189,12 @@ $("#commentForm").validate();
 
 <script type="text/javascript">
 $(document).ready(function() {
+	var getHashDaft = window.location.hash;
+
+	if(getHashDaft != "" && getHashDaft == "#btndaftar"){
+		$('#register-modal').modal('toggle');
+	}
+
 $("#login-form").validate({
 
     errorPlacement: function(label, element) {

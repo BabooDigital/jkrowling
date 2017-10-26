@@ -17,7 +17,7 @@ if (!function_exists('CurlAPI')) {
 		$GenerateKey = json_decode($ci->curl->simple_get($API.'/Key/index'));
 		$ci->curl->http_login($uname, $pass);
 		$ci->curl->http_header($APINAME, $GenerateKey->key);
-		$ci->curl->http_header($AUTH, $AUTHVAL);
+		// $ci->curl->http_header($AUTH, $AUTHVAL);
 
 		echo $ci->curl->error_string;
 	}

@@ -154,7 +154,7 @@ class C_Login extends MX_Controller
         {
         	$status = 404;
             echo "<script type='text/javascript'>alert ('Maaf Email Dan Password Anda Salah !');</script>";
-            redirect('', 'refresh');
+            redirect('login', 'refresh');
         }
 
         echo json_encode(array(
