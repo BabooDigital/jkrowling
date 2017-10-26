@@ -103,14 +103,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="rightboo">
-			<div class="inrightboo">
-				<div class="contenttextslider">
-					<div class="sidetextslide">	
-						<p style="position: relative; text-align: right; right: 10%;"><span style="font-size: 100%;">Kamu suka nulis cerpen? atau buku?</span> <span class="textinboo">Gabung bersama Baboo dan dapatkan penghasilan dari hobimu</span> <span class="mt-10" style=" font-size: 100%;"><a href="#" style=" color: #fff;">Mulai Gabung <i class="fa fa-arrow-right ml-10"></i></a></span></p>
-					</div>
-				</div>
-			</div><img src="<?php echo base_url(); ?>public/img/assets/back-slide.jpg" style="opacity: 0.1;width: 100%;"></div>
+			<img src="<?php echo base_url();?>public/img/slider.png" style="height:300px;">
 		</div>
 	</div>
 	<div class="container babooid">

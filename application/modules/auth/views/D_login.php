@@ -60,7 +60,7 @@
 		 							</div>
 
 		 							<div class="col-lg-12">
-										<form id="login-form" action="asdsa.html" method="POST">
+										<form action="<?php echo site_url();?>timelines">
 										  <div class="form-group">
 										    <input type="email" class="form-control login-input" id="exampleInputPassword1" placeholder="Alamat Email">
 										  </div>

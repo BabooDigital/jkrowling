@@ -56,7 +56,7 @@ a:hover {
 	color: #848484;
 	border: 2px solid rgba(210, 215, 218, 0.6);
 	border-radius: 100px;
-	background: url("https://image.flaticon.com/icons/png/128/61/61088.png") no-repeat right;
+	background: url("../img/search.png") no-repeat right;
 	background-size: 18px;
 	background-position: 95% 50%;
 }
