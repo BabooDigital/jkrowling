@@ -36,7 +36,7 @@
 		 				<div class="right-side-p">
 		 						<div class="row">
 		 							<div class="col-lg-12">
-		 								<a href="<?php echo site_url(); ?>beranda" class="skip-text">Langsung Baca Buku</a>
+		 								<a href="<?php echo site_url(); ?>home" class="skip-text">Langsung Baca Buku</a>
 		 							</div>
 
 		 							<div class="col-lg-12">
@@ -44,13 +44,13 @@
 		 							</div>
 
 		 							<div class="col-lg-6 col-md-12 col-xl-6">
-		 								<button class="btn btn-block btn-sosmed">
+		 								<button class="btn btn-block btn-sosmed" id="login_fb">
 											<img src="public/img/assets/fb-icon.svg" class="btn-img-sosmed"> <span class="btn-text-sosmed">Facebook</span>
 										</button>
 		 							</div>
 
 		 							<div class="col-lg-6 col-md-12 col-xl-6">
-		 								<button class="btn btn-block btn-sosmed">	
+		 								<button class="btn btn-block btn-sosmed" id="login_google">	
 											<img src="public/img/assets/google-icon.svg" class="btn-img-sosmed"> <span class="btn-text-sosmed">Google</span>
 		 								</button>
 		 							</div>
@@ -60,18 +60,18 @@
 		 							</div>
 
 		 							<div class="col-lg-12">
-										<form action="<?php echo site_url();?>timelines">
+										<form id="login-form" action="<?php echo site_url(); ?>auth/C_login/postLoginUser" method="POST">
 										  <div class="form-group">
-										    <input type="email" class="form-control login-input" id="exampleInputPassword1" placeholder="Alamat Email">
+										    <input type="email" class="form-control login-input" id="exampleInputPassword1" name="email" placeholder="Alamat Email">
 										  </div>
 
 										  <div class="form-group">
-										    <input type="password" class="required password error  form-control login-input" id="exampleInputPassword1" placeholder="Password">
+										    <input type="password" class="required password error  form-control login-input" id="exampleInputPassword1" name="password" placeholder="Password">
 										  </div>
 
 										  <p class="text-right text-daftar">Belum punya akun ? <a  data-toggle="modal" data-target="#myModal" href="#" class="link-daftar">Daftar disini</a></p>
 										  <div class="pull-right">
-										  <button type="submit" class="btn btn-primary pull-right btn-login"><i class="icon-arrow-right"></i></button>	
+										  <button type="submit" name="submit" class="btn btn-primary pull-right btn-login"><i class="icon-arrow-right"></i></button>	
 										</form>
 		 							</div>
 
@@ -83,8 +83,6 @@
 
 	 	</div>
 	</div>
-</body>
-
 <!-- Modal Register -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -166,8 +164,6 @@
 </div>
 <!-- End Footer -->
 
-
-
 <!-- Javascript -->
 <script type="text/javascript" src="<?php echo base_url();?>public/js/jquery.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>public/js/tether.min.js"></script>
@@ -202,8 +198,8 @@ $("#login-form").validate({
     wrapper: 'span',
     rules:{ nama:"required",
             umur:{required:true,number: true},      
-            username:"required",
-            password:{required: true,minlength:5},      
+            email:"required",
+            password:{required: true,minlength:3},      
             cpassword:{required: true,equalTo: "#password"},
             email:{required:true,email:true},
             website:{required:true,url:true}
@@ -213,8 +209,8 @@ $("#login-form").validate({
             umur:{
                 required:'Umur harus di isi',
                 number  :'Hanya boleh di isi Angka'},
-            username: {
-                required:'Username harus di isi'},
+            email: {
+                required:'email harus di isi'},
             password: {
                 required :'Password harus di isi',
                 minlength:'Password minimal 5 karakter'},
@@ -231,7 +227,14 @@ $("#login-form").validate({
      success: function(label) {
         label.text('<i class=""></i>').addClass('valid');}
     });
+	$("#login_fb").on("click",function() {
+		window.location.href = '<?php echo $authUrl; ?>';
+	});
+	$("#login_google").on("click",function() {
+		window.location.href = '<?php echo $authUrlG; ?>';
+	});
 });
 </script>
 
+</body>
 </html>

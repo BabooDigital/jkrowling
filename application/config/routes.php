@@ -57,5 +57,5 @@ $route['translate_uri_dashes'] = FALSE;
 $route['login'] = 'auth/C_Login';
 
 /*Timeline*/
-$route['beranda'] = 'timeline/C_timeline/beranda';
-$route['timelines'] = 'timeline/C_timeline/timeline';
+$route['home'] = 'timeline/C_timeline/beranda';
+$route['timeline'] = 'timeline/C_timeline';
