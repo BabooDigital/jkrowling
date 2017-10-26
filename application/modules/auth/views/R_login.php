@@ -32,7 +32,7 @@
 		 				<div class="right-side-p">
 		 						<div class="row" style="margin-right:-32px; margin-left:-32px;">
 		 							<div class="col-lg-12 col-xs-12 text-right" style="margin-top:20px;">
-		 								<a href="<?php echo site_url();?>beranda" style="right: 10px; top:10px; color:grey;">Langsung Baca Buku</a>
+		 								<a href="<?php echo site_url();?>home" style="right: 10px; top:10px; color:grey;">Langsung Baca Buku</a>
 		 							</div>
 
 						      		<div class="col-lg-12 col-xl-12">
@@ -44,13 +44,13 @@
 		 							</div>
 
 		 							<div class="col-lg-6 col-6" style="padding-right:5px;">
-		 								<button class="btn btn-sosmed" style="width: 100%;">
+		 								<button class="btn btn-sosmed" id="login_fb" style="width: 100%;">
 											<img src="public/img/assets/fb-icon.svg" class="btn-img-sosmed"> <span class="btn-text-sosmed" style="font-size:13px;">Facebook</span>
 										</button>
 		 							</div>
 
 		 							<div class="col-lg-6 col-6" style="padding-left:5px;">
-		 								<button class="btn btn-sosmed" style="width: 100%;">	
+		 								<button class="btn btn-sosmed" style="width: 100%;" id="login_google">	
 											<img src="public/img/assets/google-icon.png" class="btn-img-sosmed"> <span class="btn-text-sosmed" style="font-size:13px;">Google</span>
 		 								</button>
 		 							</div>
@@ -62,11 +62,11 @@
 		 							<div class="col-lg-12">
 										<form action="<?php echo site_url();?>timelines">
 										  <div class="form-group">
-										    <input type="email" class="form-control login-input" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+										    <input type="email" class="form-control login-input" id="exampleInputEmail1" name="email" aria-describedby="emailHelp" placeholder="Enter email">
 										  </div>
 
 										  <div class="form-group">
-										    <input type="password" class="form-control login-input" id="exampleInputPassword1" placeholder="Password">
+										    <input type="password" class="form-control login-input" id="exampleInputPassword1" name="password" placeholder="Password">
 										  </div>
 										  <p class="text-right text-daftar">Belum punya akun ? <a  data-toggle="modal" data-target="#myModal" href="#" class="link-daftar">Daftar disini</a></p>
 										  <div class="pull-right">
@@ -80,8 +80,6 @@
 		 		</div>	
 	 	</div>	
 	</div>
-</body>
-
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document" style="width: 100%; height: 100%; padding: 0; margin:0;">
@@ -180,4 +178,17 @@
 <script type="text/javascript" src="<?php echo base_url();?>public/js/combodate.js"></script>
 <script src="<?php echo base_url();?>public./js/jquery.validate.js"></script>
 <script src="<?php echo base_url();?>public./js/additional-methods.js"></script>	
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#login_fb").on("click",function() {
+			window.location.href = '<?php echo $authUrl; ?>';
+		});
+		$("#login_google").on("click",function() {
+			window.location.href = '<?php echo $authUrlG; ?>';
+		});
+	});
+</script>
+
+</body>
 </html>

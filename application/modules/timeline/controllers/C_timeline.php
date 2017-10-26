@@ -4,6 +4,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class C_timeline extends MX_Controller {
 	function __construct(){
 		parent::__construct();
+		if ($this->session->userdata('isLogin') != 400) {
+			redirect('');
+		}
 	}
 
 
@@ -38,4 +41,12 @@ class C_timeline extends MX_Controller {
 		        $this->load->view('D_Timeline_out');
 		}
 	}
+	
+	public function signout() {
+		$this->facebook->destroy_session();
+
+        $this->session->unset_userdata('isLogin');
+		$this->session->sess_destroy();
+        redirect('');
+    }
 }
