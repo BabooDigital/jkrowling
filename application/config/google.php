@@ -12,7 +12,7 @@
 */
 $config['google']['client_id']        = '415399057685-7vha73jo3hddkur2fcgs302u7pq78tfb.apps.googleusercontent.com';
 $config['google']['client_secret']    = '8o76m2Q7TNcAJwZD2eqN2ND6';
-$config['google']['redirect_uri']     = 'https://dev-baboo.co.id/auth/c_login/google_login';
+$config['google']['redirect_uri']     = 'https://dev-baboo.co.id/auth/C_Login/google_login';
 $config['google']['application_name'] = 'BabooLoginApp ';
 $config['google']['api_key']          = '';
 $config['google']['scopes']           = array();

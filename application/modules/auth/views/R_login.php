@@ -60,7 +60,7 @@
 		 							</div>
 
 		 							<div class="col-lg-12">
-										<form action="<?php echo site_url();?>timelines">
+										<form action="<?php echo site_url(); ?>auth/C_Login/postloginuser">
 										  <div class="form-group">
 										    <input type="email" class="form-control login-input" id="exampleInputEmail1" name="email" aria-describedby="emailHelp" placeholder="Enter email">
 										  </div>
