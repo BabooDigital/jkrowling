@@ -1,18 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
-	<title>Timeline Baboo - Baca buku online</title><!-- CSS -->
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet">
-	<link href="<?php echo base_url();?>public/css/baboo.css" rel="stylesheet" type="text/css">
-	<link href="<?php echo base_url();?>public/css/slick.css" rel="stylesheet" type="text/css">
-	<link href="<?php echo base_url();?>public/css/slick-theme.css" rel="stylesheet" type="text/css">
-	<link href="<?php echo base_url();?>public/css/baboo-responsive.css" rel="stylesheet" type="text/css">
-	<link href="<?php echo base_url();?>public/css/custom-margin-padding.css" rel="stylesheet" type="text/css">
-	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.12/jquery.bxslider.min.css" rel="stylesheet" type="text/css">
-</head>
+
 <body>
 	<nav class="navbar navbar-expand-lg fixed-top baboonav">
 		<button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbarSupportedContent" data-toggle="collapse" type="button"><span class="fa fa-bars"></span></button>
@@ -22,17 +8,17 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav">
 					<li class="nav-item mr-20 active">
-						<a class="nav-link b-nav-link" href="#">Beranda</a>
+						<a class="nav-link b-nav-link" href="<?php echo site_url(); ?>">Beranda</a>
 					</li>
 					<li class="nav-item mr-100">
 						<a class="nav-link" href="#">Explore</a>
 					</li>
 					<li class="nav-item mr-30">
-						<a class="nav-link btn-navmasuk" href="#">Masuk</a>
+						<a class="nav-link btn-navmasuk" href="<?php echo site_url(); ?>login">Masuk</a>
 					</li>
 					<li class="nav-item">
 						<div class="mb-10">
-							<a class="nav-link btn-navdaftar" href="#"><span class="navdaftar">Daftar</span></a>
+							<a class="nav-link btn-navdaftar"  href="<?php echo site_url(); ?>login#btndaftar" id="btndaftar"><span class="navdaftar">Daftar</span></a>
 						</div>
 					</li>
 				</ul>

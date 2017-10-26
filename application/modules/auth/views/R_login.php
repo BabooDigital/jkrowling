@@ -68,7 +68,7 @@
 										  <div class="form-group">
 										    <input type="password" class="form-control login-input" id="exampleInputPassword1" name="password" placeholder="Password">
 										  </div>
-										  <p class="text-right text-daftar">Belum punya akun ? <a  data-toggle="modal" data-target="#myModal" href="#" class="link-daftar">Daftar disini</a></p>
+										  <p class="text-right text-daftar">Belum punya akun ? <a  data-toggle="modal" data-target="#register-modal" href="#" class="link-daftar">Daftar disini</a></p>
 										  <div class="pull-right">
 										  <button type="submit" class="btn btn-primary pull-right btn-login"><i class="icon-arrow-right"></i></button>	
 										</form>
@@ -81,7 +81,7 @@
 	 	</div>	
 	</div>
 <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="register-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document" style="width: 100%; height: 100%; padding: 0; margin:0;">
     <div class="modal-content" style="height:100%; border-radius:0; color:#333; overflow:auto;">
       <div class="modal-body">
@@ -157,7 +157,7 @@
 							</div>
 						</div>
 					</div>
-						<p class="text-daftar">Dengan mengklik tombol daftar, anda setuju pada <br><a  data-toggle="modal" data-target="#myModal" href="#" class="link-daftar"><b>Terms of Service</b></a> Baboo</p>
+						<p class="text-daftar">Dengan mengklik tombol daftar, anda setuju pada <br><a  data-toggle="modal" data-target="#register-modal" href="#" class="link-daftar"><b>Terms of Service</b></a> Baboo</p>
 						<button class="btn btn-signup btn-block"><b>Daftar</b></button>
 					</div> 
 				</form>

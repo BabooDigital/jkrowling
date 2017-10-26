@@ -1,19 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-	<meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
 
-	<title>Timeline Baboo - Baca buku online</title>
-
-	<!-- CSS -->
-	<link href="<?php echo base_url();?>public/css/bootstrap.min.css" rel="stylesheet">
-	<link href="<?php echo base_url();?>public/css/baboo.css" rel="stylesheet" type="text/css">
-	<link href="<?php echo base_url();?>public/css/baboo-responsive.css" rel="stylesheet" type="text/css">
-	<link href="<?php echo base_url();?>public/css/custom-margin-padding.css" rel="stylesheet" type="text/css">
-	<link href="<?php echo base_url();?>public/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-	<link href="<?php echo base_url();?>public/css/jquery.bxslider.min.css" rel="stylesheet" type="text/css">
-</head>
 <body>
 
 	<nav class="navbar navbar-expand-lg fixed-top baboonav">
@@ -29,7 +14,7 @@
 				<span class="fa fa-bars fa-border"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav" style="margin-bottom: -7px;">
+				<ul class="navbar-nav" style="margin-bottom: -25px;">
 					<li class="nav-item mr-20 active">
 						<a class="nav-link" href="#"><b>Beranda</b></a>
 					</li>
@@ -48,7 +33,13 @@
 							</a>
 							<div class="media-body">
 								<p style="font-weight: bold;"><a href="#" style="font-size: 10pt;"><b>Aditia Nugraha</b></a>
-									<span style="display: block;font-size: 7pt;">FIKSI</span></p>
+									<span style="display: block;font-size: 7pt;">FIKSI 
+										<div class="boodropdown">
+											<button class="btnsidecaret" onclick="funcDropdown()"><i class="fa fa-angle-down"></i></button>
+											<div class="dropdown-content" id="myDropdown">
+										      <a href="<?php echo site_url(); ?>logout">Keluar</a>
+										    </div>
+										</div></span></p>
 							</div>
 						</div>
 					</li>
@@ -283,16 +274,3 @@
 			</div>
 		</div>
 	</div>
-
-	<!-- JS -->
-	<script src="<?php echo base_url(); ?>public/js/jquery-3.2.1.slim.min.js"></script>
-	<script src="<?php echo base_url(); ?>public/js/umd/popper.min.js"></script>
-	<script src="<?php echo base_url(); ?>public/js/bootstrap.min.js"></script>
-	<script src="<?php echo base_url(); ?>public/js/jquery.bxslider.min.js">
-	</script> 
-	<script src="<?php echo base_url(); ?>public/js/jquery.sticky-kit.min.js">
-	</script> 
-	<script src="<?php echo base_url(); ?>public/js/baboo.js">
-	</script>
-</body>
-</html>

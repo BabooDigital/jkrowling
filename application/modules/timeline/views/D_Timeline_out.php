@@ -1,19 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
-	
-	<title>Timeline Baboo - Baca buku online</title>
 
-	<!-- CSS -->
-	<link href="<?php echo base_url();?>public/css/bootstrap.min.css" rel="stylesheet">
-	<link href="<?php echo base_url();?>public/css/baboo.css" rel="stylesheet" type="text/css">
-	<link href="<?php echo base_url();?>public/css/baboo-responsive.css" rel="stylesheet" type="text/css">
-	<link href="<?php echo base_url();?>public/css/custom-margin-padding.css" rel="stylesheet" type="text/css">
-	<link href="<?php echo base_url();?>public/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-	<link href="<?php echo base_url();?>public/css/jquery.bxslider.min.css" rel="stylesheet" type="text/css">
-</head>
 <body>
 	<nav class="navbar navbar-expand-lg fixed-top baboonav">
 		<div class="container">
@@ -24,23 +9,25 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav">
 					<li class="nav-item mr-20 active">
-						<a class="nav-link" href="#"><b>Beranda</b></a>
+						<a class="nav-link" href="<?php echo site_url(); ?>"><b>Beranda</b></a>
 					</li>
 					<li class="nav-item mr-100">
 						<a class="nav-link" href="#"><b>Explore</b></a>
 					</li>
 					<li class="nav-item mr-30">
-						<a class="nav-link btn-navmasuk" href="#">Masuk</a>
+						<a class="nav-link btn-navmasuk" href="<?php echo site_url(); ?>login">Masuk</a>
 					</li>
 					<li class="nav-item">
 						<div class="mb-10">
-							<a class="nav-link btn-navdaftar" href="#"><span class="navdaftar">Daftar</span></a>
+							<a class="nav-link btn-navdaftar" href="<?php echo site_url(); ?>login#btndaftar" id="btndaftar"><span class="navdaftar">Daftar</span></a>
 						</div>
 					</li>
 				</ul>
 			</div>
 		</div>
-	</nav><!-- slider -->
+	</nav>
+
+	<!-- slider -->
 	<div class="mt-60 hidden-sm hidden-xs">
 		<div class="slideboo">
 			<div class="leftboo"></div>
@@ -322,16 +309,3 @@
 			</div>
 		</div>
 	</div>
-
-	<!-- JS -->
-	<script src="<?php echo base_url(); ?>public/js/jquery-3.2.1.slim.min.js"></script>
-	<script src="<?php echo base_url(); ?>public/js/umd/popper.min.js"></script>
-	<script src="<?php echo base_url(); ?>public/js/bootstrap.min.js"></script>
-	<script src="<?php echo base_url(); ?>public/js/jquery.bxslider.min.js">
-	</script> 
-	<script src="<?php echo base_url(); ?>public/js/jquery.sticky-kit.min.js">
-	</script> 
-	<script src="<?php echo base_url(); ?>public/js/baboo.js">
-	</script>
-</body>
-</html>
