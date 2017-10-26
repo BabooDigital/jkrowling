@@ -61,6 +61,7 @@ class C_Login extends MX_Controller
             
             $this->curl->post($userData);
             $userID = $this->curl->execute();
+        	echo $this->curl->error_string;
             
             if (isset($userID))
             {
@@ -104,6 +105,7 @@ class C_Login extends MX_Controller
             
             $this->curl->post($userData);
             $userID = $this->curl->execute();
+        	echo $this->curl->error_string;
 
             $status = 400;
 
@@ -121,7 +123,7 @@ class C_Login extends MX_Controller
         ));
     }
 
-    public function postLoginUser()
+    public function postloginuser()
     {
         echo CurlAPI();
         $this->curl->create($this->API.'/OAuth/login');
