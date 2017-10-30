@@ -199,7 +199,7 @@ $("#login-form").validate({
     rules:{ nama:"required",
             umur:{required:true,number: true},      
             email:"required",
-            password:{required: true,minlength:3},      
+            password:{required: true,minlength:5},      
             cpassword:{required: true,equalTo: "#password"},
             email:{required:true,email:true},
             website:{required:true,url:true}
@@ -225,7 +225,8 @@ $("#login-form").validate({
                 url     :'Alamat website harus valid'}
             },
      success: function(label) {
-        label.text('<i class=""></i>').addClass('valid');}
+        // label.text('<i class=""></i>').addClass('valid');
+    }
     });
 	$("#login_fb").on("click",function() {
 		window.location.href = '<?php echo $authUrl; ?>';

@@ -13,7 +13,7 @@ class C_Login extends MX_Controller
         
         $this->load->model('user');
         
-        if ($this->session->userdata('isLogin') == 400)
+        if ($this->session->userdata('isLogin') == 200)
         {
             redirect('timeline');
         }
@@ -61,11 +61,11 @@ class C_Login extends MX_Controller
             
             $this->curl->post($userData);
             $userID = $this->curl->execute();
-        	echo $this->curl->error_string;
+        	// echo $this->curl->error_string;
             
             if (isset($userID))
             {
-                $status = 400;
+                $status = 200;
                 
                 $data['disconnectUrl'] = $this->facebook->logout_url();
                 $data['email']         = $userProfile['email'];
@@ -78,8 +78,9 @@ class C_Login extends MX_Controller
         }
         else
         {
-            $status = 202;
+            $status = 404;
             $fbuser = '';
+            redirect('', 'refresh');
         }
         echo json_encode(array(
             'status' => $status, 
@@ -105,17 +106,19 @@ class C_Login extends MX_Controller
             
             $this->curl->post($userData);
             $userID = $this->curl->execute();
-        	echo $this->curl->error_string;
+        	// echo $this->curl->error_string;
 
-            $status = 400;
+            $status = 200;
 
             $this->session->set_userdata('isLogin', $status);
             $this->session->set_userdata('userData', $userData);
 
             redirect('timeline');
         }else {
-        	$status = 202;
+        	$status = 404;
         	$data = "Not Found";
+        	
+            redirect('', 'refresh');
         } 
         echo json_encode(array(
             'status' => $status, 
@@ -137,21 +140,19 @@ class C_Login extends MX_Controller
         );
         $this->curl->post($data);
         $cek = $this->curl->execute();
-        echo $this->curl->error_string;
+        // echo $this->curl->error_string;
         
-        if (isset($cek))
+        if ($cek == TRUE)
         {
-            $status = 400;
+            $status = 200;
 
 	        $this->session->set_userdata('userData', $data);
 	        $this->session->set_userdata('isLogin', $status);
-            
             redirect("timeline");
-            echo json_encode($data);
         }
         else
         {
-        	$status = 202;
+        	$status = 404;
             echo "<script type='text/javascript'>alert ('Maaf Email Dan Password Anda Salah !');</script>";
             redirect('', 'refresh');
         }
