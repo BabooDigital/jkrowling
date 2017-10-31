@@ -29,7 +29,15 @@
 					<li class="nav-item">
 						<div class="media nav-link martopbot">
 							<a href="#">
-								<img class="d-flex mr-2 rounded-circle" src="<?php echo base_url(); ?>public/img/profile/pp_wanita2.png" width="40" alt="Generic placeholder image">
+								<?php if ($this->session->userdata('userDatafb')){
+									 $img = $this->session->userdata('userDatafb'); ?>
+									<img class="d-flex mr-2 rounded-circle" src="https://graph.facebook.com/<?php echo $img['oauth_uid']; ?>/picture" width="40" alt="Profile Pict">
+								<?php }else if ($this->session->userdata('userDatagoogle')) {
+									$img = $this->session->userdata('userDatagoogle'); ?>
+									<img class="d-flex mr-2 rounded-circle" src="https://pikmail.herokuapp.com/<?php echo $img['email']; ?>" width="40" alt="Profile Pict">
+								<?php }else{ ?>
+									<img class="d-flex mr-2 rounded-circle" src="<?php echo base_url(); ?>public/img/profile/blank-photo.png" width="40" alt="Profile Pict">
+								<?php } ?>
 							</a>
 							<div class="media-body">
 								<p style="font-weight: bold;"><a href="#" style="font-size: 10pt;"><b>Aditia Nugraha</b></a>
