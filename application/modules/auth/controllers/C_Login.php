@@ -72,7 +72,7 @@ class C_Login extends MX_Controller
                 $data['oauth_uid']     = $userProfile['id'];
                 
                 $this->session->set_userdata('isLogin', $status);
-                $this->session->set_userdata('userData', $userData);
+                $this->session->set_userdata('userDatafb', $userData);
                 redirect('timeline');
             }
         }
@@ -111,7 +111,7 @@ class C_Login extends MX_Controller
             $status = 200;
 
             $this->session->set_userdata('isLogin', $status);
-            $this->session->set_userdata('userData', $userData);
+            $this->session->set_userdata('userDatagoogle', $userData);
 
             redirect('timeline');
         }else {
