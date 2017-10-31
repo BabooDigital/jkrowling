@@ -80,7 +80,7 @@ class C_Login extends MX_Controller
         {
             $status = 404;
             $fbuser = '';
-            redirect('', 'refresh');
+        	echo "<script type='text/javascript'>alert ('Maaf ada kesalahan data !');window.location.href = '".site_url('login')."';</script>";
         }
         echo json_encode(array(
             'status' => $status, 
@@ -117,8 +117,7 @@ class C_Login extends MX_Controller
         }else {
         	$status = 404;
         	$data = "Not Found";
-        	
-            redirect('', 'refresh');
+        	echo "<script type='text/javascript'>alert ('Maaf ada kesalahan data !');window.location.href = '".site_url('login')."';</script>";
         } 
         echo json_encode(array(
             'status' => $status, 
@@ -131,8 +130,8 @@ class C_Login extends MX_Controller
         echo CurlAPI();
         $this->curl->create($this->API.'/OAuth/login');
         
-        $email = $this->input->post('email');
-        $password = $this->input->post('password');
+        $email = $this->input->post('emails');
+        $password = $this->input->post('passwords');
         
         $data = array(
             'username' => $email,
@@ -153,8 +152,51 @@ class C_Login extends MX_Controller
         else
         {
         	$status = 404;
-            echo "<script type='text/javascript'>alert ('Maaf Email Dan Password Anda Salah !');</script>";
-            redirect('login', 'refresh');
+            echo "<script type='text/javascript'>alert ('Maaf Email Dan Password Anda Salah !');window.location.href = '".site_url('login')."';</script>";
+        }
+
+        echo json_encode(array(
+            'status' => $status,
+            'data' => $data
+        ));
+    }
+
+    public function postregisteruser()
+    {
+        echo CurlAPI();
+        $this->curl->create($this->API.'/OAuth/register');
+    	
+    	$name = $this->input->post('name');
+    	$email = $this->input->post('email');
+        $pass = $this->input->post('password');
+        $tgl = $this->input->post('tgl_lahir');
+        $jk = $this->input->post('j_kelamin');
+
+        $data = array(
+        	'fullname' => $name, 
+        	'email' => $email, 
+        	'password' => $pass, 
+        	'date_of_birth' => $tgl, 
+        	'jk' => $jk, 
+        	'created' => date("Y-m-d H:i:s"), 
+        	'modify' => date("Y-m-d H:i:s") 
+        );
+
+        $this->curl->post($data);
+        $cek = $this->curl->execute();
+
+        if ($cek == TRUE)
+        {
+            $status = 200;
+
+	        $this->session->set_userdata('userData', $data);
+	        $this->session->set_userdata('isLogin', $status);
+            redirect("timeline");
+        }
+        else
+        {
+        	$status = 404;
+            echo "<script type='text/javascript'>alert ('Mohon isi semua data anda !');window.location.href = '".site_url('login')."';</script>";
         }
 
         echo json_encode(array(

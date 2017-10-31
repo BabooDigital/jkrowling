@@ -62,11 +62,11 @@
 		 							<div class="col-lg-12">
 										<form id="login-form" action="<?php echo site_url(); ?>auth/C_Login/postloginuser" method="POST">
 										  <div class="form-group">
-										    <input type="email" class="form-control login-input" id="exampleInputPassword1" name="email" placeholder="Alamat Email">
+										    <input type="email" class="form-control login-input" id="exampleInputPassword1" name="emails" placeholder="Alamat Email">
 										  </div>
 
 										  <div class="form-group">
-										    <input type="password" class="required password error  form-control login-input" id="exampleInputPassword1" name="password" placeholder="Password">
+										    <input type="password" class="required password error  form-control login-input" id="exampleInputPassword1" name="passwords" placeholder="Password">
 										  </div>
 
 										  <p class="text-right text-daftar">Belum punya akun ? <a  data-toggle="modal" data-target="#register-modal" href="#" class="link-daftar">Daftar disini</a></p>
@@ -98,29 +98,29 @@
 
 		 		<p class="text-img-modal">Selamat datang di Baboo</p>
 
-				<form>
+				<form id="form-register" action="<?php echo site_url(); ?>auth/C_Login/postregisteruser" method="POST">
 					<div class="form-group">
-						<input type="text" class="form-control login-input" placeholder="Nama Lengkap">
+						<input type="text" class="form-control login-input" placeholder="Nama Lengkap" name="name">
 					</div>
 
 					<div class="form-group">
-						<input type="email" class="form-control login-input" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Alamat Email">
+						<input type="email" class="form-control login-input" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Alamat Email" name="email">
 					</div>
 
 					<div class="form-group">
-						<input type="password" class="form-control login-input" id="exampleInputPassword1" placeholder="Kata Sandi">
+						<input type="password" class="form-control login-input" id="exampleInputPassword1" placeholder="Kata Sandi" name="password">
 					</div>
 					<p style="font-size:12px; color:#676767;">Tanggal lahir</p>
 
 					<div class="form-group">
-						<input  type="text" id="date" data-max-year="2017" data-first-item="name" data-format="DD-MM-YYYY" data-template="D MMM YYYY" data-custom-class="form-control login-input" data-smart-days="true"> 
+						<input type="text" id="date" data-max-year="2015" data-first-item="name" data-format="YYYY-MM-DD" data-template="YYYY MM DD" data-custom-class="form-control login-input" data-smart-days="true" name="tgl_lahir"> 
 					</div>
 
 					<div class="row">
 						<div class="col-lg-4 col-xl-4">
 							<div class="form-group">
 								<div class="form-check">
-								    <input class="badar-radio" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked> 
+								    <input class="badar-radio" type="radio" name="j_kelamin" id="exampleRadios1" value="male" checked> 
 								    <span class="text-modal">Laki-laki</span>
 								</div>
 							</div>
@@ -129,7 +129,7 @@
 						<div class="col-lg-6 col-xl-6">
 							<div class="form-group">
 								<div class="form-check">
-								    <input class="badar-radio" type="radio" name="exampleRadios" id="exampleRadios1" value="option1"> 
+								    <input class="badar-radio" type="radio" name="j_kelamin" id="exampleRadios1" value="female"> 
 								    <span class="text-modal" style="margin-left:15px; font-size:12px;">Perempuan</span>
 								</div>
 							</div>
@@ -139,7 +139,7 @@
 					<center>
 						<p class="text-daftar" style="text-align:center;">Dengan mengklik tombol daftar, anda setuju pada <a  data-toggle="modal" data-target="#register-modal" href="#" class="link-daftar"><b>Terms of Service</b></a></p>
 					</center>
-					<button class="btn btn-signup btn-block"><b>Daftar</b></button>
+					<button type="submit" class="btn btn-signup btn-block"><b>Daftar</b></button>
 					</div> 
 				</form>
 		 	</div>
@@ -173,74 +173,80 @@
 <script type="text/javascript" src="<?php echo base_url();?>public/js/combodate.js"></script>
 <script src="<?php echo base_url();?>public/js/jquery.validate.js"></script>
 <script src="<?php echo base_url();?>public/js/additional-methods.js"></script>
-<script type="text/javascript">
-$(function(){
-    $('#date').combodate('method');
-    firstItem: 'name'	
-});
-</script>
-
-
-<script>
-$("#commentForm").validate();
-</script>
-<!-- End Java Script -->
-
 
 <script type="text/javascript">
-$(document).ready(function() {
-	var getHashDaft = window.location.hash;
-
-	if(getHashDaft != "" && getHashDaft == "#btndaftar"){
-		$('#register-modal').modal('toggle');
-	}
-
-$("#login-form").validate({
-
-    errorPlacement: function(label, element) {
-        label.addClass('errormsg');
-        label.insertAfter(element);
-    },
-    wrapper: 'span',
-    rules:{ nama:"required",
-            umur:{required:true,number: true},      
-            email:"required",
-            password:{required: true,minlength:5},      
-            cpassword:{required: true,equalTo: "#password"},
-            email:{required:true,email:true},
-            website:{required:true,url:true}
-          },
-    messages:{ 
-            nama:{required:'Nama harus di isi'},
-            umur:{
-                required:'Umur harus di isi',
-                number  :'Hanya boleh di isi Angka'},
-            email: {
-                required:'email harus di isi'},
-            password: {
-                required :'Password harus di isi',
-                minlength:'Password minimal 5 karakter'},
-            cpassword: {
-                required:'Ulangi Password harus di isi',
-                equalTo :'Isinya harus sama dengan Password'},
-            email: {
-                required:'Email harus di isi',
-                email   :'Email harus valid'},
-            website: {
-                required:'Website harus di isi',
-                url     :'Alamat website harus valid'}
-            },
-     success: function(label) {
-        // label.text('<i class=""></i>').addClass('valid');
-    }
-    });
-	$("#login_fb").on("click",function() {
-		window.location.href = '<?php echo $authUrl; ?>';
+	$(function() {
+		$('#date').combodate('method');
+		firstItem: 'name'
 	});
-	$("#login_google").on("click",function() {
-		window.location.href = '<?php echo $authUrlG; ?>';
+	$(document).ready(function() {
+		var getHashDaft = window.location.hash;
+		if (getHashDaft != "" && getHashDaft == "#btndaftar") {
+			$('#register-modal').modal('toggle');
+		}
+		$("#login-form").validate({
+			rules: {
+				emails: {
+					required: true,
+					email: true
+				},
+				passwords: {
+					required: true,
+					minlength: 5
+				}
+			},
+			messages: {
+				emails: {
+					required: 'Email harus di isi'
+				},
+				passwords: {
+					required: 'Password harus di isi',
+					minlength: 'Password minimal 5 karakter'
+				}
+			}
+		});
+		$("#form-register").validate({
+			ignore: [],
+			rules: {
+				name: {
+					required: true
+				},
+				email: {
+					required: true,
+					email: true
+				},
+				password: {
+					required: true,
+					minlength: 5
+				},
+				tgl_lahir: {
+					required: true
+				}
+			},
+			messages: {
+				name: {
+					required: 'Nama lengkap harus di isi'
+				},
+				email: {
+					required: 'Email harus di isi',
+					email   : 'Email harus valid'
+				},
+				password: {
+					required: 'Password harus di isi',
+					minlength: 'Password minimal 5 karakter'
+				},
+				tgl_lahir: {
+					required: 'Tanggal lahir harus di isi',
+				}
+			}
+		});
+		$("#login_fb").on("click", function() {
+			window.location.href = '<?php echo $authUrl; ?>';
+		});
+		$("#login_google").on("click", function() {
+			window.location.href = '<?php echo $authUrlG; ?>';
+		});
 	});
-});
 </script>
 
 </body>
