@@ -1,17 +1,16 @@
     function funcDropdown() {
         document.getElementById("myDropdown").classList.toggle("showss");
-        console.log('sadasd');
     }
 
     // Close the dropdown if the user clicks outside of it
-    window.onclick = function(e) {
-      if (!e.target.matches('.boosidecaret')) {
-        var myDropdown = document.getElementById("myDropdown");
-          if (myDropdown.classList.contains('show')) {
-            myDropdown.classList.remove('show');
-          }
-      }
-    }
+    // window.onclick = function(e) {
+    //   if (!e.target.matches('.boosidecaret')) {
+    //     var myDropdown = document.getElementById("myDropdown");
+    //       if (myDropdown.classList.contains('show')) {
+    //         myDropdown.classList.remove('show');
+    //       }
+    //   }
+    // }
 
 // FILTER-GALERI TIMELINE OUT
 $(document).ready(function(){

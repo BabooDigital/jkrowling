@@ -60,16 +60,13 @@ class C_Login extends MX_Controller
             );
             
             $this->curl->post($userData);
-            $userID = $this->curl->execute();
+            $userID = json_decode($this->curl->execute());
+            $psn = $userID->message;
         	// echo $this->curl->error_string;
             
-            if (isset($userID))
+            if (isset($userID->code) && $userID->code == '200')
             {
-                $status = 200;
-                
-                $data['disconnectUrl'] = $this->facebook->logout_url();
-                $data['email']         = $userProfile['email'];
-                $data['oauth_uid']     = $userProfile['id'];
+                $status = $userID->code;
                 
                 $this->session->set_userdata('isLogin', $status);
                 $this->session->set_userdata('userDatafb', $userData);
@@ -78,13 +75,14 @@ class C_Login extends MX_Controller
         }
         else
         {
-            $status = 404;
+            $status = $userID->code;
             $fbuser = '';
-        	echo "<script type='text/javascript'>alert ('Maaf ada kesalahan data !');window.location.href = '".site_url('login')."';</script>";
+        	echo "<script type='text/javascript'>alert ('".$psn."');window.location.href = '".site_url('login')."';</script>";
         }
         echo json_encode(array(
             'status' => $status, 
-            'data' => $data
+            'data' => $userData,
+            'message' => $psn
         ));
     }
 
@@ -105,23 +103,26 @@ class C_Login extends MX_Controller
             $userData['email']          = $gpInfo['email'];
             
             $this->curl->post($userData);
-            $userID = $this->curl->execute();
+            $userID = json_decode($this->curl->execute());
+            $psn = $userID->message;
         	// echo $this->curl->error_string;
 
-            $status = 200;
+            $status = $userID->code;
 
             $this->session->set_userdata('isLogin', $status);
             $this->session->set_userdata('userDatagoogle', $userData);
 
             redirect('timeline');
         }else {
-        	$status = 404;
+        	$status = $userID->code;
         	$data = "Not Found";
-        	echo "<script type='text/javascript'>alert ('Maaf ada kesalahan data !');window.location.href = '".site_url('login')."';</script>";
+
+        	echo "<script type='text/javascript'>alert ('".$psn."');window.location.href = '".site_url('login')."';</script>";
         } 
         echo json_encode(array(
             'status' => $status, 
-            'data' => $userData
+            'data' => $userData,
+            'message' => $psn
         ));
     }
 
@@ -138,26 +139,29 @@ class C_Login extends MX_Controller
             'password' => $password
         );
         $this->curl->post($data);
-        $cek = $this->curl->execute();
+        $cek = json_decode($this->curl->execute());
+        $psn = $cek->message;
         // echo $this->curl->error_string;
         
-        if ($cek == TRUE)
+        if (isset($cek->code) && $cek->code == '200')
         {
-            $status = 200;
+            $status = $cek->code;
 
-	        $this->session->set_userdata('userData', $data);
-	        $this->session->set_userdata('isLogin', $status);
+            $this->session->set_userdata('userData', $data);
+            $this->session->set_userdata('isLogin', $status);
             redirect("timeline");
         }
         else
         {
-        	$status = 404;
-            echo "<script type='text/javascript'>alert ('Maaf Email Dan Password Anda Salah !');window.location.href = '".site_url('login')."';</script>";
+        	$status = $cek->code;
+
+            echo "<script type='text/javascript'>alert ('".$psn."');window.location.href = '".site_url('login')."';</script>";
         }
 
         echo json_encode(array(
             'status' => $status,
-            'data' => $data
+            'data' => $data,
+            'message' => $psn
         ));
     }
 
@@ -183,11 +187,12 @@ class C_Login extends MX_Controller
         );
 
         $this->curl->post($data);
-        $cek = $this->curl->execute();
+        $cek = json_decode($this->curl->execute());
+        $psn = $cek->message;
 
-        if ($cek == TRUE)
+        if (isset($cek->code) && $cek->code == '200')
         {
-            $status = 200;
+            $status = $cek->code;
 
 	        $this->session->set_userdata('userData', $data);
 	        $this->session->set_userdata('isLogin', $status);
@@ -195,13 +200,14 @@ class C_Login extends MX_Controller
         }
         else
         {
-        	$status = 404;
-            echo "<script type='text/javascript'>alert ('Mohon isi semua data anda !');window.location.href = '".site_url('login')."';</script>";
+        	$status = $cek->code;
+            echo "<script type='text/javascript'>alert ('".$psn."');window.location.href = '".site_url('login')."';</script>";
         }
 
         echo json_encode(array(
             'status' => $status,
-            'data' => $data
+            'data' => $data,
+            'message' => $psn
         ));
     }
 

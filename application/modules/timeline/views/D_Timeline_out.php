@@ -1,32 +1,3 @@
-
-<body>
-	<nav class="navbar navbar-expand-lg fixed-top baboonav">
-		<div class="container">
-			<a class="navbar-brand" href="#"><img alt="" src="<?php echo base_url(); ?>public/img/logo_purple.png" width="100"></a>
-			<form class="form-inline srcform">
-				<input aria-label="Search" class="form-search" placeholder="Cari di baboo" type="text">
-			</form><button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbarSupportedContent" data-toggle="collapse" type="button"><span class="fa fa-bars fa-border"></span></button>
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav">
-					<li class="nav-item mr-20 active">
-						<a class="nav-link" href="<?php echo site_url(); ?>"><b>Beranda</b></a>
-					</li>
-					<li class="nav-item mr-100">
-						<a class="nav-link" href="#"><b>Explore</b></a>
-					</li>
-					<li class="nav-item mr-30">
-						<a class="nav-link btn-navmasuk" href="<?php echo site_url(); ?>login">Masuk</a>
-					</li>
-					<li class="nav-item">
-						<div class="mb-10">
-							<a class="nav-link btn-navdaftar" href="<?php echo site_url(); ?>login#btndaftar" id="btndaftar"><span class="navdaftar">Daftar</span></a>
-						</div>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</nav>
-
 	<!-- slider -->
 	<div class="mt-60 hidden-sm hidden-xs">
 		<div class="slideboo">
@@ -90,9 +61,17 @@
 					</div>
 				</div>
 			</div>
-			<img src="<?php echo base_url();?>public/img/slider.png" style="height:300px;">
+			<div class="rightboo">
+			<div class="inrightboo">
+				<div class="contenttextslider">
+					<div class="sidetextslide">	
+						<p style="position: relative; text-align: right; right: 10%;"><span style="font-size: 100%;">Kamu suka nulis cerpen? atau buku?</span> <span class="textinboo">Gabung bersama Baboo dan dapatkan penghasilan dari hobimu</span> <span class="mt-10" style=" font-size: 100%;"><a href="#" style=" color: #fff;">Mulai Gabung <i class="fa fa-arrow-right ml-10"></i></a></span></p>
+					</div>
+				</div>
+			</div><img src="<?php echo base_url(); ?>public/img/assets/back-slide.jpg" style="opacity: 0.1;width: 100%;"></div>
 		</div>
 	</div>
+	
 	<div class="container babooid">
 		<div class="row">
 			<div class="col-md-3">
@@ -212,7 +191,7 @@
 										<img class="d-flex align-self-start mr-10" src="<?php echo base_url(); ?>public/img/book-cover/book_cover1.png" width="130" alt="Profile">
 										<div class="media-body">
 											<h5 class="card-title nametitle3">Story Of Drama</h5>
-											<p class="catbook mb-10"><a href="#" class="mr-20"><span style="border: 1px #7554bd solid;border-radius: 25px;padding: 0px 10px;color: #7554bd;">FIKSI</span></a> <span class="mr-20"><img src="<?php echo base_url(); ?>public/img/assets/icon_view.svg"> 290</span> <span><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg"> 12</span></p>
+											<p class="catbook mb-10"><a href="#" class="mr-20"><span class="btn-nofill">FIKSI</span></a> <span class="mr-20"><img src="<?php echo base_url(); ?>public/img/assets/icon_view.svg"> 290</span> <span><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg"> 12</span></p>
 											<p class="text-desc-out">
 												Aku tahu ribuan kalimat kau tulis untuk memberi tanda bahwa kamu selalu sabar menungguku, yang seolah-olah kau ingin mengatakan pada dunia bahwa kamu sangat... <a href="#" class="readmore">Lanjut</a>
 											</p>
@@ -249,7 +228,7 @@
 										<img class="d-flex align-self-start mr-10" src="<?php echo base_url(); ?>public/img/book-cover/book_cover2.png" width="130" alt="Profile">
 										<div class="media-body">
 											<h5 class="card-title nametitle3">DORAYAMON</h5>
-											<p class="catbook mb-10"><a href="#" class="mr-20"><span style="border: 1px #7554bd solid;border-radius: 25px;padding: 0px 10px;color: #7554bd;">KOMIK</span></a> <span class="mr-20"><img src="<?php echo base_url(); ?>public/img/assets/icon_view.svg"> 290</span> <span><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg"> 12</span></p>
+											<p class="catbook mb-10"><a href="#" class="mr-20"><span class="btn-nofill">KOMIK</span></a> <span class="mr-20"><img src="<?php echo base_url(); ?>public/img/assets/icon_view.svg"> 290</span> <span><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg"> 12</span></p>
 											<p class="text-desc-out">
 												Aku tahu ribuan kalimat kau tulis untuk memberi tanda bahwa kamu selalu sabar menungguku, yang seolah-olah kau ingin mengatakan pada dunia bahwa kamu sangat... <a href="#" class="readmore">Lanjut</a>
 											</p>
@@ -286,7 +265,7 @@
 										<img class="d-flex align-self-start mr-10" src="<?php echo base_url(); ?>public/img/book-cover/book_cover3.png" width="130" alt="Profile">
 										<div class="media-body">
 											<h5 class="card-title nametitle3">The Painter's Daughter</h5>
-											<p class="catbook mb-10"><a href="#" class="mr-20"><span style="border: 1px #7554bd solid;border-radius: 25px;padding: 0px 10px;color: #7554bd;">NON-FIKSI</span></a> <span class="mr-20"><img src="<?php echo base_url(); ?>public/img/assets/icon_view.svg"> 290</span> <span><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg"> 12</span></p>
+											<p class="catbook mb-10"><a href="#" class="mr-20"><span class="btn-nofill">NON-FIKSI</span></a> <span class="mr-20"><img src="<?php echo base_url(); ?>public/img/assets/icon_view.svg"> 290</span> <span><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg"> 12</span></p>
 											<p class="text-desc-out">
 												Aku tahu ribuan kalimat kau tulis untuk memberi tanda bahwa kamu selalu sabar menungguku, yang seolah-olah kau ingin mengatakan pada dunia bahwa kamu sangat... <a href="#" class="readmore">Lanjut</a>
 											</p>
