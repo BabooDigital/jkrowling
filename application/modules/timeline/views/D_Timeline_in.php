@@ -1,61 +1,3 @@
-
-<body>
-
-	<nav class="navbar navbar-expand-lg fixed-top baboonav">
-		<div class="container">
-			<a class="navbar-brand" href="#">
-				<img src="<?php echo base_url(); ?>public/img/logo_purple.png" width="100" alt="">
-			</a>
-
-			<form class="form-inline srcform">
-				<input class="form-search" type="text" placeholder="Cari di baboo" aria-label="Search">
-			</form>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="fa fa-bars fa-border"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav" style="margin-bottom: -25px;">
-					<li class="nav-item mr-20 active">
-						<a class="nav-link" href="#"><b>Beranda</b></a>
-					</li>
-					<li class="nav-item mr-30">
-						<a class="nav-link" href="#"><b>Explore</b></a>
-					</li>
-					<li class="nav-item mr-30">
-						<a class="nav-link btn-newstory" href="#">
-							<i class="fa fa-pencil-square-o"></i> Tulis Cerita
-						</a>
-					</li>
-					<li class="nav-item">
-						<div class="media nav-link martopbot">
-							<a href="#">
-								<?php if ($this->session->userdata('userDatafb')){
-									 $img = $this->session->userdata('userDatafb'); ?>
-									<img class="d-flex mr-2 rounded-circle" src="https://graph.facebook.com/<?php echo $img['oauth_uid']; ?>/picture" width="40" alt="Profile Pict">
-								<?php }else if ($this->session->userdata('userDatagoogle')) {
-									$img = $this->session->userdata('userDatagoogle'); ?>
-									<img class="d-flex mr-2 rounded-circle" src="https://pikmail.herokuapp.com/<?php echo $img['email']; ?>" width="40" alt="Profile Pict">
-								<?php }else{ ?>
-									<img class="d-flex mr-2 rounded-circle" src="<?php echo base_url(); ?>public/img/profile/blank-photo.png" width="40" alt="Profile Pict">
-								<?php } ?>
-							</a>
-							<div class="media-body">
-								<p style="font-weight: bold;"><a href="#" style="font-size: 10pt;"><b>Aditia Nugraha</b></a>
-									<span style="display: block;font-size: 7pt;">FIKSI 
-										<div class="boodropdown">
-											<button class="btnsidecaret" onclick="funcDropdown()"><i class="fa fa-angle-down"></i></button>
-											<div class="dropdown-content" id="myDropdown">
-										      <a href="<?php echo site_url(); ?>logout">Keluar</a>
-										    </div>
-										</div></span></p>
-							</div>
-						</div>
-					</li>
-				</ul>
-			</div>
-			</div>
-		</nav>
-
 	<div class="container babooidin">
 		<div class="row">
 			<!-- Left Side -->
@@ -160,8 +102,8 @@
 							<div class="media">
 								<img class="d-flex align-self-start mr-10" src="<?php echo base_url(); ?>public/img/book-cover/book_cover2.png" width="120" alt="Profile">
 								<div class="media-body">
-									<h5 class="card-title nametitle3">Story Of Drama</h5>
-									<p class="catbook"><a href="#" class="mr-20"><span style="border: 1px #7554bd solid;border-radius: 25px;padding: 0px 10px;color: #7554bd;">FIKSI</span></a> <span class="mr-20"><img src="<?php echo base_url(); ?>public/img/assets/icon_view.svg"> 290</span> <span><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg"> 12</span></p>
+									<h5 class="card-title nametitle3"><a href="<?php echo site_url(); ?>book">Story Of Drama</a></h5>
+									<p class="catbook"><a href="#" class="mr-20"><span class="btn-no-fill">FIKSI</span></a> <span class="mr-20"><img src="<?php echo base_url(); ?>public/img/assets/icon_view.svg"> 290</span> <span><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg"> 12</span></p>
 									<p class="text-desc-in">
 										Aku tahu ribuan kalimat kau tulis untuk memberi tanda bahwa kamu selalu sabar menungguku, yang seolah-olah kau ingin mengatakan pada dunia bahwa kamu sangat... <a href="#" class="readmore">Lanjut</a>
 									</p>
@@ -195,8 +137,8 @@
 							<div class="media">
 								<img class="d-flex align-self-start mr-10" src="<?php echo base_url(); ?>public/img/book-cover/book_cover1.png" width="120" alt="Profile">
 								<div class="media-body">
-									<h5 class="card-title nametitle3">Story Of Drama</h5>
-									<p class="catbook"><a href="#" class="mr-20"><span style="border: 1px #7554bd solid;border-radius: 25px;padding: 0px 10px;color: #7554bd;">FIKSI</span></a> <span class="mr-20"><img src="<?php echo base_url(); ?>public/img/assets/icon_view.svg"> 290</span> <span><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg"> 12</span></p>
+									<h5 class="card-title nametitle3"><a href="<?php echo site_url(); ?>book">Story Of Drama</a></h5>
+									<p class="catbook"><a href="#" class="mr-20"><span class="btn-no-fill">FIKSI</span></a> <span class="mr-20"><img src="<?php echo base_url(); ?>public/img/assets/icon_view.svg"> 290</span> <span><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg"> 12</span></p>
 									<p class="text-desc-in">
 										Aku tahu ribuan kalimat kau tulis untuk memberi tanda bahwa kamu selalu sabar menungguku, yang seolah-olah kau ingin mengatakan pada dunia bahwa kamu sangat... <a href="#" class="readmore">Lanjut</a>
 									</p>
@@ -238,7 +180,7 @@
 						    <li class="list-group-item">
 						    	<div class="media">
 									<div class="media-left mr-10">
-										<a href="#"><img class="media-object" src="http://placehold.it/60x80/6454bd"></a>
+										<a href="#"><img class="media-object" src="https://placehold.it/60x80/6454bd"></a>
 									</div>
 									<div class="media-body">
 										<div>
@@ -251,7 +193,7 @@
 						    <li class="list-group-item">
 						    	<div class="media">
 									<div class="media-left mr-10">
-										<a href="#"><img class="media-object" src="http://placehold.it/60x80/c53949"></a>
+										<a href="#"><img class="media-object" src="https://placehold.it/60x80/c53949"></a>
 									</div>
 									<div class="media-body">
 										<div>
@@ -264,7 +206,7 @@
 						    <li class="list-group-item">
 						    	<div class="media">
 									<div class="media-left mr-10">
-										<a href="#"><img class="media-object" src="http://placehold.it/60x80/e2a9c9"></a>
+										<a href="#"><img class="media-object" src="https://placehold.it/60x80/e2a9c9"></a>
 									</div>
 									<div class="media-body">
 										<div>
