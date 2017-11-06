@@ -1,7 +1,7 @@
 	<!-- slider -->
 	<div class="mt-60 hidden-sm hidden-xs">
 		<div class="slideboo">
-			<div class="leftboo"></div>
+			<div class="inversePair" id="b"></div>
 				<div class="slidecontrols">
 					<span id="slider-prev"></span> <span id="slider-next" style="padding-left: 40%;"></span>
 				</div>
@@ -190,8 +190,8 @@
 									<div class="media">
 										<img class="d-flex align-self-start mr-10" src="<?php echo base_url(); ?>public/img/book-cover/book_cover1.png" width="130" alt="Profile">
 										<div class="media-body">
-											<h5 class="card-title nametitle3">Story Of Drama</h5>
-											<p class="catbook mb-10"><a href="#" class="mr-20"><span class="btn-nofill">FIKSI</span></a> <span class="mr-20"><img src="<?php echo base_url(); ?>public/img/assets/icon_view.svg"> 290</span> <span><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg"> 12</span></p>
+											<h5 class="card-title nametitle3"><a href="<?php echo site_url(); ?>login">Story Of Drama</a></h5>
+											<p class="catbook mb-10"><a href="#" class="mr-20"><span class="btn-no-fill">FIKSI</span></a> <span class="mr-20"><img src="<?php echo base_url(); ?>public/img/assets/icon_view.svg"> 290</span> <span><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg"> 12</span></p>
 											<p class="text-desc-out">
 												Aku tahu ribuan kalimat kau tulis untuk memberi tanda bahwa kamu selalu sabar menungguku, yang seolah-olah kau ingin mengatakan pada dunia bahwa kamu sangat... <a href="#" class="readmore">Lanjut</a>
 											</p>
@@ -227,8 +227,8 @@
 									<div class="media">
 										<img class="d-flex align-self-start mr-10" src="<?php echo base_url(); ?>public/img/book-cover/book_cover2.png" width="130" alt="Profile">
 										<div class="media-body">
-											<h5 class="card-title nametitle3">DORAYAMON</h5>
-											<p class="catbook mb-10"><a href="#" class="mr-20"><span class="btn-nofill">KOMIK</span></a> <span class="mr-20"><img src="<?php echo base_url(); ?>public/img/assets/icon_view.svg"> 290</span> <span><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg"> 12</span></p>
+											<h5 class="card-title nametitle3"><a href="<?php echo site_url(); ?>login">DORAYAMON</a></h5>
+											<p class="catbook mb-10"><a href="#" class="mr-20"><span class="btn-no-fill">KOMIK</span></a> <span class="mr-20"><img src="<?php echo base_url(); ?>public/img/assets/icon_view.svg"> 290</span> <span><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg"> 12</span></p>
 											<p class="text-desc-out">
 												Aku tahu ribuan kalimat kau tulis untuk memberi tanda bahwa kamu selalu sabar menungguku, yang seolah-olah kau ingin mengatakan pada dunia bahwa kamu sangat... <a href="#" class="readmore">Lanjut</a>
 											</p>
@@ -264,8 +264,8 @@
 									<div class="media">
 										<img class="d-flex align-self-start mr-10" src="<?php echo base_url(); ?>public/img/book-cover/book_cover3.png" width="130" alt="Profile">
 										<div class="media-body">
-											<h5 class="card-title nametitle3">The Painter's Daughter</h5>
-											<p class="catbook mb-10"><a href="#" class="mr-20"><span class="btn-nofill">NON-FIKSI</span></a> <span class="mr-20"><img src="<?php echo base_url(); ?>public/img/assets/icon_view.svg"> 290</span> <span><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg"> 12</span></p>
+											<h5 class="card-title nametitle3"><a href="<?php echo site_url(); ?>login">The Painter's Daughter</a></h5>
+											<p class="catbook mb-10"><a href="#" class="mr-20"><span class="btn-no-fill">NON-FIKSI</span></a> <span class="mr-20"><img src="<?php echo base_url(); ?>public/img/assets/icon_view.svg"> 290</span> <span><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg"> 12</span></p>
 											<p class="text-desc-out">
 												Aku tahu ribuan kalimat kau tulis untuk memberi tanda bahwa kamu selalu sabar menungguku, yang seolah-olah kau ingin mengatakan pada dunia bahwa kamu sangat... <a href="#" class="readmore">Lanjut</a>
 											</p>

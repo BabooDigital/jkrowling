@@ -20,7 +20,7 @@
 		<div class="container">
 			<a class="navbar-brand" href="#"><img alt="Baboo Main Logo" src="<?php echo base_url(); ?>public/img/logo_purple.png" width="100"></a>
 			<form class="form-inline srcform my-2 my-lg-0">
-				<input class="form-search formsearch" placeholder="Cari di baboo" type="text">
+				<input aria-label="Search" class="search-form form-control" placeholder="Cari di baboo" type="search">
 			</form>
 
 			<?php if ($this->session->userdata('isLogin') != 200) { ?>
@@ -51,7 +51,7 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav" style="margin-bottom: -13px;">
 					<li class="nav-item mr-20 active">
-						<a class="nav-link" href="#"><b>Beranda</b></a>
+						<a class="nav-link" href="<?php echo site_url(); ?>"><b>Beranda</b></a>
 					</li>
 					<li class="nav-item mr-30">
 						<a class="nav-link" href="#"><b>Explore</b></a>
@@ -63,29 +63,29 @@
 						<div class="media nav-link martopbot">
 							<a href="#">
 								<?php if ($this->session->userdata('userDatafb')){
-							        $img = $this->session->userdata('userDatafb'); ?> 
-							        	<img alt="Profile Pict" class="d-flex mr-2 rounded-circle" src="https://graph.facebook.com/<?php echo $img['oauth_uid']; ?>/picture" width="40"> 
-							    <?php } elseif ($this->session->userdata('userDatagoogle')) {
-							        $img = $this->session->userdata('userDatagoogle'); ?>
-							            <img alt="Profile Pict" class="d-flex mr-2 rounded-circle" src="https://pikmail.herokuapp.com/<?php echo $img['email']; ?>" width="40"> 
-							    <?php } else{ ?> 
-							    		<img alt="Profile Pict" class="d-flex mr-2 rounded-circle" src="<?php echo base_url(); ?>public/img/profile/blank-photo.jpg" width="40"> 
-							    <?php } ?>
-							</a>
-							<div class="media-body">
-								<p style="font-weight: bold;"><a href="#" style="font-size: 10pt;"><b>Aditia Nugraha</b></a> <span style="display: block;font-size: 7pt;">FIKSI</span></p>
-								<div class="boodropdown">
-									<span style="display: block;font-size: 10pt;"><button class="btnsidecaret" onclick="funcDropdown()"><span style="display: block;font-size: 7pt;"><i class="fa fa-angle-down"></i></span>
-									<div class="dropdown-content" id="myDropdown">
-										<a href="<?php echo site_url(); ?>logout">Keluar</a>
-									</div></button></span>
-								</div>
-								<p></p>
-							</div>
+									$img = $this->session->userdata('userDatafb'); ?> 
+									<img alt="Profile Pict" class="d-flex mr-2 rounded-circle" src="https://graph.facebook.com/<?php echo $img['oauth_uid']; ?>/picture" width="40"> 
+									<?php } elseif ($this->session->userdata('userDatagoogle')) {
+										$img = $this->session->userdata('userDatagoogle'); ?>
+										<img alt="Profile Pict" class="d-flex mr-2 rounded-circle" src="https://pikmail.herokuapp.com/<?php echo $img['email']; ?>" width="40"> 
+										<?php } else{ ?> 
+										<img alt="Profile Pict" class="d-flex mr-2 rounded-circle" src="<?php echo base_url(); ?>public/img/profile/blank-photo.jpg" width="40"> 
+										<?php } ?>
+									</a>
+									<div class="media-body">
+										<p style="font-weight: bold;"><a href="#" style="font-size: 10pt;"><b>Aditia Nugraha</b></a> <span style="display: block;font-size: 7pt;">FIKSI</span></p>
+										<div class="boodropdown">
+											<span style="display: block;font-size: 10pt;"><button class="btnsidecaret" onclick="funcDropdown()"><span style="display: block;font-size: 7pt;"><i class="fa fa-angle-down"></i></span>
+												<div class="dropdown-content" id="myDropdown">
+													<a href="<?php echo site_url(); ?>logout">Keluar</a>
+												</div></button></span>
+											</div>
+											<p></p>
+										</div>
+									</div>
+								</li>
+							</ul>
 						</div>
-					</li>
-				</ul>
-			</div>
-			<?php } ?>
-		</div>
-	</nav>
+						<?php } ?>
+					</div>
+				</nav>
