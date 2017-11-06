@@ -13,6 +13,9 @@
 	<link href="<?php echo base_url();?>public/css/custom-margin-padding.css" rel="stylesheet" type="text/css">
 	<link href="<?php echo base_url();?>public/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 	<link href="<?php echo base_url();?>public/css/jquery.bxslider.min.css" rel="stylesheet" type="text/css">
+	<?php if (isset($css)): ?>
+    	<?php echo get_css($css) ?>
+    <?php endif ?>
 </head>
 
 <body>

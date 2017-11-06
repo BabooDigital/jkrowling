@@ -12,7 +12,9 @@ class C_home extends MX_Controller {
 	public function index()
 	{
 		$title['judul'] = "Baboo - Beyond Book & Creativity";
-
+		$data['js'][]   = "public/js/custom/author_this_week.js";
+		$data['js'][]   = "public/js/custom/popular_books.js";
+		$data['js'][]   = "public/js/custom/choice_books.js";
 		if ($this->agent->is_mobile('ipad'))
 		{
 			$this->load->view('include/head', $title);
@@ -27,7 +29,7 @@ class C_home extends MX_Controller {
 		else
 		{
 			$this->load->view('include/head', $title);
-		    $this->load->view('D_Timeline_out');
+		    $this->load->view('D_Timeline_out', $data);
 		    $this->load->view('include/foot');
 		}
 	}

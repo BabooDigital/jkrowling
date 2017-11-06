@@ -10,5 +10,8 @@
 	</script> 
 	<script src="<?php echo base_url(); ?>public/js/baboo.js">
 	</script>
+	<?php if (isset($js)): ?>
+		<?php echo get_js($js) ?>
+    <?php endif ?>
 </body>
 </html>
