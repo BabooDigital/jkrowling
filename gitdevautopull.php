@@ -6,4 +6,4 @@
  * Time: 4:52 PM
  */
 
-shell_exec("cd public_html && sudo git pull origin development");
+shell_exec("cd public_html && git pull origin development");

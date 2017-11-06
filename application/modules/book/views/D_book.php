@@ -165,7 +165,7 @@
 				<div class="media">
 					<img class="mr-3" src="<?php echo base_url(); ?>public/img/book-cover/kite-runner.png" width="150" alt="Book Cover">
 					<div class="media-body mt-10">
-						<h5 class="card-title nametitle3"><a href="<?php echo site_url(); ?>book">Story Of Drama Queen</a></h5>
+						<h5 class="card-title nametitle3"><a href="<?php echo site_url(); ?>book">Story Of Drama</a></h5>
 
 						<div class="mt-20 mb-50">
 							<div class="col-md-10">
