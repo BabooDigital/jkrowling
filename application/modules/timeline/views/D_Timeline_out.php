@@ -144,7 +144,7 @@
 									<div class="media">
 										<img class="d-flex align-self-start mr-10" src="<?php echo base_url(); ?>public/img/book-cover/book_cover2.png" width="130" alt="Profile">
 										<div class="media-body">
-											<h5 class="card-title nametitle3"><a href="<?php echo site_url(); ?>login">DORAYAMON</a></h5>
+											<h5 class="card-title nametitle3"><a href="<?php echo site_url(); ?>login">Doraemon</a></h5>
 											<p class="catbook mb-10"><a href="#" class="mr-20"><span class="btn-no-fill">KOMIK</span></a> <span class="mr-20"><img src="<?php echo base_url(); ?>public/img/assets/icon_view.svg"> 290</span> <span><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg"> 12</span></p>
 											<p class="text-desc-out">
 												Aku tahu ribuan kalimat kau tulis untuk memberi tanda bahwa kamu selalu sabar menungguku, yang seolah-olah kau ingin mengatakan pada dunia bahwa kamu sangat... <a href="#" class="readmore">Lanjut</a>
