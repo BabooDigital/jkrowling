@@ -13,7 +13,7 @@ class C_timeline extends MX_Controller {
 	public function index()
 	{
 		$title['judul'] = "Baboo - Beyond Book & Creativity";
-
+		$data['js'][]   = "public/js/custom/author_this_week.js";
 		if ($this->agent->is_mobile('ipad'))
 		{
 			$this->load->view('include/head', $title);
@@ -28,14 +28,13 @@ class C_timeline extends MX_Controller {
 		else
 		{
 			$this->load->view('include/head', $title);
-		    $this->load->view('D_Timeline_in');
+		    $this->load->view('D_Timeline_in',$data);
 		    $this->load->view('include/foot');
 		}
 	}
 	
 	public function signout() {
 		$this->facebook->destroy_session();
-
         $this->session->unset_userdata('isLogin');
 		$this->session->sess_destroy();
         redirect('');

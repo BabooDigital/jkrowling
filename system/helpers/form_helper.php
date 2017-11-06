@@ -137,6 +137,57 @@ if ( ! function_exists('form_open'))
 	}
 }
 
+// ============================== ADD FUNCTIO JS AND CSS ===============================
+// 
+if ( ! function_exists('get_js'))
+{
+	/**
+	 * Form Declaration - Multipart type
+	 *
+	 * Creates the opening portion of the form, but with "multipart/form-data".
+	 *
+	 * @param	string	the URI segments of the form destination
+	 * @param	array	a key/value pair of attributes
+	 * @param	array	a key/value pair hidden data
+	 * @return	string
+	 */
+	function get_js($x=array())
+	{
+		$CI =& get_instance();
+		$a = '';
+		for ($i=0; $i <count($x) ; $i++) { 
+			$a .= ' <script src="'.$CI->config->base_url($x[$i]).'" type="text/javascript"></script>
+			';
+
+		}
+		return $a;
+	}
+}
+if ( ! function_exists('get_css'))
+{
+	/**
+	 * Form Declaration - Multipart type
+	 *
+	 * Creates the opening portion of the form, but with "multipart/form-data".
+	 *
+	 * @param	string	the URI segments of the form destination
+	 * @param	array	a key/value pair of attributes
+	 * @param	array	a key/value pair hidden data
+	 * @return	string
+	 */
+	function get_css($x=array())
+	{
+		$CI =& get_instance();
+		$a = '';
+		for ($i=0; $i <count($x) ; $i++) { 
+			$a .= '<link rel="stylesheet" type="text/css" href="'.$CI->config->base_url($x[$i]).'">
+			';
+
+		}
+		return $a;
+	}
+}
+
 // ------------------------------------------------------------------------
 
 if ( ! function_exists('form_open_multipart'))

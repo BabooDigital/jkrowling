@@ -21,22 +21,18 @@ class C_Login extends MX_Controller
     
     public function index()
     {
+        $data['authUrl'] = $this->facebook->login_url();
+        $data['authUrlG'] = $this->google->loginURL();
         if ($this->agent->is_mobile('ipad'))
         {
-            $data['authUrl'] = $this->facebook->login_url();
-            $data['authUrlG'] = $this->google->loginURL();
             $this->load->view('D_login', $data);
         }
         if ($this->agent->is_mobile())
         {
-            $data['authUrl'] = $this->facebook->login_url();
-            $data['authUrlG'] = $this->google->loginURL();
             $this->load->view('R_login', $data);
         }
         else
         {
-            $data['authUrl'] = $this->facebook->login_url();
-            $data['authUrlG'] = $this->google->loginURL();
             $this->load->view('D_login', $data);
         }
     }
