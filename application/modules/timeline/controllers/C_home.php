@@ -11,7 +11,7 @@ class C_home extends MX_Controller {
 
 	public function index()
 	{
-		$title['judul'] = "Baboo - Beyond Book & Creativity";
+		$data['judul'] = "Baboo - Beyond Book & Creativity";
 		$data['js'][]   = "public/js/custom/author_this_week.js";
 		$data['js'][]   = "public/js/custom/popular_books.js";
 		$data['js'][]   = "public/js/custom/choice_books.js";
@@ -23,13 +23,21 @@ class C_home extends MX_Controller {
 		}
 		if ($this->agent->is_mobile())
 		{
-			$this->load->view('include/head', $title);
+			$mobile['judul'] = "Baboo - Beyond Mobile Book & Creativity";
+			$mobile['css'][]   = "public/css/jquery.bxslider.min.css";
+			
+			$mobile['js'][]   = "public/js/jquery.bxslider.min.js";
+			$mobile['js'][]   = "public/js/slick.js";
+			$mobile['js'][]   = "public/js/custom/slick_slider.js";
+
+			// $this->load->view('include/head', $mobile);
 		    $this->load->view('R_Timeline_out');
+		    $this->load->view('include/foot');
 		}
 		else
 		{
-			$this->load->view('include/head', $title);
-		    $this->load->view('D_Timeline_out', $data);
+			$this->load->view('include/head', $data);
+		    $this->load->view('D_Timeline_out');
 		    $this->load->view('include/foot');
 		}
 	}
