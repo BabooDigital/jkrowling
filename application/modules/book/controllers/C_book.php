@@ -18,9 +18,4 @@ class C_book extends MX_Controller {
 		$this->load->view('timeline/include/foot');
 	}
 
-	public function book_detail()
-	{
-		$this->load->view('D_book_det');
-	}
-
 }

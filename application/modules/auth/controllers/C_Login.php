@@ -44,21 +44,22 @@ class C_Login extends MX_Controller
         
         if ($this->facebook->is_authenticated())
         {
-            
             $userProfile = $this->facebook->request('get', '/me?fields=id,first_name,last_name,email,gender');
             
             $userData = array(
                 'oauth_provider' => 'facebook',
                 'oauth_uid' => $userProfile['id'],
                 'email' => $userProfile['email'],
+                'prof_pict' => 'https://graph.facebook.com/'.$userProfile['id'].'/picture',
                 'fullname' => $userProfile['first_name'] . " " . $userProfile['last_name'],
+                'token' => $userProfile['id'],
                 'jk' => $userProfile['gender']
             );
             
             $this->curl->post($userData);
             $userID = json_decode($this->curl->execute());
             $psn = $userID->message;
-        	// echo $this->curl->error_string;
+            // echo $this->curl->error_string;
             
             if (isset($userID->code) && $userID->code == '200')
             {
@@ -73,7 +74,7 @@ class C_Login extends MX_Controller
         {
             $status = $userID->code;
             $fbuser = '';
-        	echo "<script type='text/javascript'>alert ('".$psn."');window.location.href = '".site_url('login')."';</script>";
+            echo "<script type='text/javascript'>alert ('".$psn."');window.location.href = '".site_url('login')."';</script>";
         }
         echo json_encode(array(
             'status' => $status, 
@@ -97,11 +98,13 @@ class C_Login extends MX_Controller
             $userData['oauth_uid']      = $gpInfo['id'];
             $userData['fullname']     = $gpInfo['given_name'] . " " . $gpInfo['family_name'];
             $userData['email']          = $gpInfo['email'];
+            $userData['token']          = $gpInfo['id'];
+            $userData['prof_pict']          = 'https://pikmail.herokuapp.com/'.$gpInfo['email'];
             
             $this->curl->post($userData);
             $userID = json_decode($this->curl->execute());
             $psn = $userID->message;
-        	// echo $this->curl->error_string;
+            // echo $this->curl->error_string;
 
             $status = $userID->code;
 
@@ -110,10 +113,10 @@ class C_Login extends MX_Controller
 
             redirect('timeline');
         }else {
-        	$status = $userID->code;
-        	$data = "Not Found";
+            $status = $userID->code;
+            $data = "Not Found";
 
-        	echo "<script type='text/javascript'>alert ('".$psn."');window.location.href = '".site_url('login')."';</script>";
+            echo "<script type='text/javascript'>alert ('".$psn."');window.location.href = '".site_url('login')."';</script>";
         } 
         echo json_encode(array(
             'status' => $status, 
@@ -149,7 +152,7 @@ class C_Login extends MX_Controller
         }
         else
         {
-        	$status = $cek->code;
+            $status = $cek->code;
 
             echo "<script type='text/javascript'>alert ('".$psn."');window.location.href = '".site_url('login')."';</script>";
         }
@@ -165,21 +168,21 @@ class C_Login extends MX_Controller
     {
         echo CurlAPI();
         $this->curl->create($this->API.'/OAuth/register');
-    	
-    	$name = $this->input->post('name');
-    	$email = $this->input->post('email');
+        
+        $name = $this->input->post('name');
+        $email = $this->input->post('email');
         $pass = $this->input->post('password');
         $tgl = $this->input->post('tgl_lahir');
         $jk = $this->input->post('j_kelamin');
 
         $data = array(
-        	'fullname' => $name, 
-        	'email' => $email, 
-        	'password' => $pass, 
-        	'date_of_birth' => $tgl, 
-        	'jk' => $jk, 
-        	'created' => date("Y-m-d H:i:s"), 
-        	'modify' => date("Y-m-d H:i:s") 
+            'fullname' => $name, 
+            'email' => $email, 
+            'password' => $pass, 
+            'date_of_birth' => $tgl, 
+            'jk' => $jk, 
+            'created' => date("Y-m-d H:i:s"), 
+            'modify' => date("Y-m-d H:i:s") 
         );
 
         $this->curl->post($data);
@@ -190,13 +193,13 @@ class C_Login extends MX_Controller
         {
             $status = $cek->code;
 
-	        $this->session->set_userdata('userData', $data);
-	        $this->session->set_userdata('isLogin', $status);
+            $this->session->set_userdata('userData', $data);
+            $this->session->set_userdata('isLogin', $status);
             redirect("timeline");
         }
         else
         {
-        	$status = $cek->code;
+            $status = $cek->code;
             echo "<script type='text/javascript'>alert ('".$psn."');window.location.href = '".site_url('login')."';</script>";
         }
 
