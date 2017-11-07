@@ -11,8 +11,6 @@ class C_Login extends MX_Controller
         parent::__construct();
         $this->API = "api.dev-baboo.co.id/v1/auth";
         
-        $this->load->model('user');
-        
         if ($this->session->userdata('isLogin') == 200)
         {
             redirect('timeline');

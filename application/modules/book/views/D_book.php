@@ -1,4 +1,4 @@
-<div class="container pt-100" style="height: 1500px;">
+<div class="container pt-100">
 	<div class="row">
 		<div class="col-md-4">
 			<div class="card pb-20 stickymenu">
@@ -6,19 +6,19 @@
 					<img src="<?php echo base_url(); ?>public/img/book-cover/book_cover1.png" width="150">
 					<div class="card-body">
 						<a href="#">
-							<h3 style="font-family: proxima_nova_ltsemibold;color: #5f5f5f !important;">Story of Diana</h3>
+							<h3 class="dbooktitle">Story of Diana</h3>
 						</a>
-						<div style="width: calc(100%/4);float: left;">
-							<a href="#"><span style="font-size: 13px;"><img src="<?php echo base_url(); ?>public/img/assets/icon_view.svg" width="27"> 290</span></a>
+						<div class="dbooksociallist">
+							<a href="#"><span class=".fs-13"><img src="<?php echo base_url(); ?>public/img/assets/icon_view.svg" width="27"> 290</span></a>
 						</div>
-						<div style="width: calc(100%/4);float: left;">
-							<a href="#"><span style="font-size: 13px;"><img src="<?php echo base_url(); ?>public/img/assets/icon_comment.svg" width="14"> 45</span></a>
+						<div class="dbooksociallist">
+							<a href="#"><span class=".fs-13"><img src="<?php echo base_url(); ?>public/img/assets/icon_comment.svg" width="14"> 45</span></a>
 						</div>
-						<div style="width: calc(100%/4);float: left;">
-							<a href="#"><span style="font-size: 13px;"><img src="<?php echo base_url(); ?>public/img/assets/icon_love.svg" width="16"> 290</span></a>
+						<div class="dbooksociallist">
+							<a href="#"><span class=".fs-13"><img src="<?php echo base_url(); ?>public/img/assets/icon_love.svg" width="16"> 290</span></a>
 						</div>
-						<div style="width: calc(100%/4);float: left;">
-							<a href="#"><span style="font-size: 13px;"><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg" width="14"> 8</span></a>
+						<div class="dbooksociallist">
+							<a href="#"><span class=".fs-13"><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg" width="14"> 8</span></a>
 						</div>
 					</div>
 				</div>
@@ -41,22 +41,22 @@
 						<div class="media-body">
 							<h5 class="nametitle2">Marina Saraswati</h5>
 							<p><small><span>Jakarta, Indonesia</span></small></p>
-							<a href="#" style="position: relative;bottom: 53px;left: 150px;" class="btn-no-fill"><span class="nametitle2">Follow</span></a>
+							<a href="#" class="btn-no-fill dbookfollowbtn"><span class="nametitle2">Follow</span></a>
 						</div>
 					</div>
 					<div>
-						<h2 style="font-weight: 600;font-family: Poppins;">Story of Diana</h2>
+						<h2 class="dbooktitlebook">Story of Diana</h2>
 						<br>
-						<p style="font-size: 15px;font-family: Proxima Nova;line-height: 1.8;">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+						<p class="dbookdescbook">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
 						<br>
-						<p style="font-size: 15px;font-family: Proxima Nova;line-height: 1.8;">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+						<p class="dbookdescbook">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
 						<br>
 						<img class="img-fluid" src="<?php echo base_url(); ?>public/img/book-img/user/city.jpg">
 						<br>
 						<br>	
-						<p style="font-size: 15px;font-family: Proxima Nova;line-height: 1.8;">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+						<p class="dbookdescbook">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
 						<br>
-						<p style="font-size: 15px;font-family: Proxima Nova;line-height: 1.8;">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+						<p class="dbookdescbook">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
 					</div>
 				</div>
 			</div>
@@ -68,10 +68,10 @@
 					<a href="#" data-toggle="modal" data-target="#detail_book">
 						<div class="p-1">
 							<img src="<?php echo base_url(); ?>public/img/assets/read-mode.svg" width="45">
-							<span style="font-size: 11px;font-weight: bold;">Mode Baca</span>
+							<span class="bold11px">Mode Baca</span>
 						</div>
 					</a>
-					<div style="border-bottom: solid 0.8px #e4e8eb;height: 1px;"></div>
+					<div class="border1px"></div>
 					<div class="pt-20 pb-20">
 						<p class="mb-30"><a href="#">
 							<img src="<?php echo base_url(); ?>public/img/assets/icon_love.svg" width="40">
@@ -80,7 +80,7 @@
 							<img src="<?php echo base_url(); ?>public/img/assets/icon_comment.svg" width="37">
 						</a></p>
 					</div>
-					<div style="border-bottom: solid 0.8px #e4e8eb;height: 1px;"></div>
+					<div class="border1px"></div>
 					<div class="pt-20 pb-20 pl-5 pr-5">
 						<a href="#">
 							<p class="mb-10" style="background-color: #3a81d5;padding: 10px 5px;border-radius: 5px;">
@@ -106,7 +106,7 @@
 		</div>
 		<div class="col-md-7">
 			<ul class="navbar-nav pull-right">
-				<li class="nav-item"><span style="font-size:18px; color:grey;"><small>Page</small> <strong>02</strong></span></li>
+				<li class="nav-item"><span class="text-muted"><small>Page</small> <strong>02</strong></span></li>
 			</ul>
 			<ul class="navbar-nav">
 				<li class="nav-item">
@@ -130,7 +130,7 @@
 <!-- Modal -->
 <div class="modal fade" id="detail_book" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-lg" role="document">
-		<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position: relative;left: 150px;cursor: pointer;">
+		<button type="button" class="close closemodal" data-dismiss="modal" aria-label="Close">
 			<span aria-hidden="true" style="font-size: 20pt;color: #fff;">&times;</span>
 		</button>
 		<div class="card p-30" style="border-radius: 0;background-color: #f5f8fa !important;">
@@ -140,26 +140,26 @@
 					<div class="media-body">
 						<h5 class="nametitle2">Marina Saraswati</h5>
 						<p><small><span>Jakarta, Indonesia</span></small></p>
-						<a href="#" style="position: relative;bottom: 53px;left: 150px;" class="btn-no-fill"><span class="nametitle2">Follow</span></a>
+						<a href="#" class="btn-no-fill dbookfollowbtn"><span class="nametitle2">Follow</span></a>
 					</div>
 				</div>
 				<div>
-					<h2 style="font-weight: 600;font-family: Poppins;">Story of Diana</h2>
+					<h2 class="dbooktitlebook">Story of Diana</h2>
 					<br>
-					<p style="font-size: 15px;font-family: Proxima Nova;line-height: 1.8;">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+					<p class="dbookdescbook">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
 					<br>
-					<p style="font-size: 15px;font-family: Proxima Nova;line-height: 1.8;">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+					<p class="dbookdescbook">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
 					<br>
 					<img class="img-fluid" src="<?php echo base_url(); ?>public/img/book-img/user/city.jpg">
 					<br>
 					<br>	
-					<p style="font-size: 15px;font-family: Proxima Nova;line-height: 1.8;">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+					<p class="dbookdescbook">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
 					<br>
-					<p style="font-size: 15px;font-family: Proxima Nova;line-height: 1.8;">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+					<p class="dbookdescbook">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
 				</div>
 				<hr>
 				<div>
-					<p style="font-size: 20pt;font-weight: bold;font-family: Poppins;line-height: 1.38;">Kamu baru saja selesai membaca  batas gratis buku ini, untuk membaca bab lainnya silahkan beli buku ini lalu lanjutkan membaca.</p>
+					<p class="modallimitbook">Kamu baru saja selesai membaca  batas gratis buku ini, untuk membaca bab lainnya silahkan beli buku ini lalu lanjutkan membaca.</p>
 				</div>
 				<hr>
 				<div class="media">
@@ -169,20 +169,20 @@
 
 						<div class="mt-20 mb-50">
 							<div class="col-md-10">
-								<div style="width: calc(100%/5);float: left;">
-									<a href="#"><span style="font-size: 13px;"><img src="<?php echo base_url(); ?>public/img/assets/icon_view.svg" width="27"> 290</span></a>
+								<div class="dbooksociallistmodal">
+									<a href="#"><span class=".fs-13"><img src="<?php echo base_url(); ?>public/img/assets/icon_view.svg" width="27"> 290</span></a>
 								</div>
-								<div style="width: calc(100%/5);float: left;">
-									<a href="#"><span style="font-size: 13px;"><img src="<?php echo base_url(); ?>public/img/assets/icon_comment.svg" width="14"> 45</span></a>
+								<div class="dbooksociallistmodal">
+									<a href="#"><span class=".fs-13"><img src="<?php echo base_url(); ?>public/img/assets/icon_comment.svg" width="14"> 45</span></a>
 								</div>
-								<div style="width: calc(100%/5);float: left;">
-									<a href="#"><span style="font-size: 13px;"><img src="<?php echo base_url(); ?>public/img/assets/icon_love.svg" width="16"> 290</span></a>
+								<div class="dbooksociallistmodal">
+									<a href="#"><span class=".fs-13"><img src="<?php echo base_url(); ?>public/img/assets/icon_love.svg" width="16"> 290</span></a>
 								</div>
-								<div style="width: calc(100%/5);float: left;">
-									<a href="#"><span style="font-size: 13px;"><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg" width="14"> 8</span></a>
+								<div class="dbooksociallistmodal">
+									<a href="#"><span class=".fs-13"><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg" width="14"> 8</span></a>
 								</div>
-								<div style="width: calc(100%/5);float: left;">
-									<a href="#"><span style="font-size: 13px;"><img src="<?php echo base_url(); ?>public/img/assets/icon_have.svg" width="20"> 8</span></a>
+								<div class="dbooksociallistmodal">
+									<a href="#"><span class=".fs-13"><img src="<?php echo base_url(); ?>public/img/assets/icon_have.svg" width="20"> 8</span></a>
 								</div>
 							</div>
 						</div>
@@ -190,9 +190,7 @@
 						<div><h3><strong>Rp 45.000</strong></h3></div>
 
 						<div class="mt-40">
-							<a href="#" style="padding: 10px 40px;border-radius: 30px;background-color: #b54aca;box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.32);
-							"><span style="font-size: 15pt;color: #fff;font-family: Poppins;font-weight: 600;
-							">Beli Sekarang</span></a>
+							<a href="#" class="btnbeliskrg"><span class="txtbtnbeliskrg">Beli Sekarang</span></a>
 						</div>
 					</div>
 				</div>
@@ -297,7 +295,7 @@
 			</div>
 			<div class="col-md-10">
 				<ul class="navbar-nav pull-right">
-					<li class="nav-item"><span style="font-size:18px; color:grey;"><small>Page</small> <strong>02</strong></span></li>
+					<li class="nav-item"><span class="text-muted"><small>Page</small> <strong>02</strong></span></li>
 				</ul>
 				<ul class="navbar-nav">
 					<li class="nav-item">

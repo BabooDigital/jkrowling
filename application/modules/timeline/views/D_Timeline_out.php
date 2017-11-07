@@ -1,7 +1,7 @@
 	<!-- slider -->
 	<div class="mt-60 hidden-sm hidden-xs">
 		<div class="slideboo">
-			<div class="inversePair" id="b"></div>
+			<div class="leftboo"></div>
 				<div class="slidecontrols">
 					<span id="slider-prev"></span> <span id="slider-next" style="padding-left: 40%;"></span>
 				</div>

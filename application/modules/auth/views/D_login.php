@@ -17,7 +17,7 @@
 		<div class="row no-gutters">
 
 			<!-- Left Side Content -->
-				<div class="col-lg-8 col-md-7 col-xl-9 nopadding">
+				<div class="col-md-8 nopadding">
 		 			<div class="left-side">
 		 				<center>
 		 					<img src="<?php echo base_url();?>public/img/front-image/logo_purple.png" class="img-fluid img-left center-content floating">
@@ -29,7 +29,7 @@
 		 	<!-- End Left Side Content -->
 
 		 	<!-- Right Side Content -->
-				<div class="col-lg-4 col-md-5 col-xl-3 nopadding">
+				<div class="col-md-4 nopadding">
 		 			<div class="right-side">
 		 				<div class="right-side-p">
 		 						<div class="row">
