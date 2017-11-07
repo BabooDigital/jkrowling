@@ -21,7 +21,7 @@
 <body>
 	<nav class="navbar navbar-expand-lg fixed-top baboonav">
 		<div class="container">
-			<a class="navbar-brand" href="#"><img alt="Baboo Main Logo" src="<?php echo base_url(); ?>public/img/logo_purple.png" width="100"></a>
+			<a class="navbar-brand" href="<?php echo site_url(); ?>"><img alt="Baboo Main Logo" src="<?php echo base_url(); ?>public/img/logo_purple.png" width="100"></a>
 			<form class="form-inline srcform my-2 my-lg-0">
 				<input aria-label="Search" class="search-form form-control" placeholder="Cari di baboo" type="search">
 			</form>
@@ -76,7 +76,7 @@
 										<?php } ?>
 									</a>
 									<div class="media-body">
-										<p style="font-weight: bold;"><a href="#" style="font-size: 10pt;"><b>Aditia Nugraha</b></a> <span style="display: block;font-size: 7pt;">FIKSI</span></p>
+										<p style="font-weight: bold;"><a href="<?php echo site_url(); ?>profile" style="font-size: 10pt;"><b>Aditia Nugraha</b></a> <span style="display: block;font-size: 7pt;">FIKSI</span></p>
 										<div class="boodropdown">
 											<span style="display: block;font-size: 10pt;"><button class="btnsidecaret" onclick="funcDropdown()"><span style="display: block;font-size: 7pt;"><i class="fa fa-angle-down"></i></span>
 												<div class="dropdown-content" id="myDropdown">
