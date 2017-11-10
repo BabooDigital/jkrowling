@@ -13,29 +13,7 @@
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.12/jquery.bxslider.min.css" rel="stylesheet" type="text/css">
 
-	<style type="text/css">
-		#myWorkContent{
-		    width:100%;
-		    height:auto;
-		    background-color: #F5F8FA;
-		    overflow-x: scroll;
-		    overflow-y: hidden;
-		}
-		#myWorkContent #tes {
-		    display: inline-block;
-		    float:left;
-		    padding: 10px;
-		}
-		div#insideDiv{
-		    width:1500px;
-		}
-		::-webkit-scrollbar { 
-		    display: none; 
-		}
-		.checked{
-			color: orange;
-		}
-	</style>
+	
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg fixed-top   baboonav">
