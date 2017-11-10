@@ -15,7 +15,6 @@ class C_timeline extends MX_Controller {
 		$data['judul'] = "Baboo - Beyond Book & Creativity";
 		$data['js'][]   = "public/js/jquery.min.js";
 		$data['js'][]   = "public/js/custom/author_this_week.js";
-		$data['js'][]   = "public/js/menupage.js";
 
 		if ($this->agent->is_mobile('ipad'))
 		{
@@ -25,6 +24,7 @@ class C_timeline extends MX_Controller {
 		}
 		if ($this->agent->is_mobile())
 		{
+			$data['js'][]   = "public/js/menupage.js";
 			$this->load->view('include/head', $data);
 		    $this->load->view('R_Timeline_in', $data);
 		}
