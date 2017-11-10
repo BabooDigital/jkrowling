@@ -62,6 +62,11 @@ $route['timeline'] = 'timeline/C_timeline';
 
 // Book
 $route['book'] = 'book/C_book';
+$route['create_book'] = 'book/C_createbook';
+
+// Cover
+$route['create_cover'] = 'cover/C_cover';
 
 // Profile
 $route['profile'] = 'profile/C_profile';
+$route['awsd'] = 'book/C_createbook/awasd';

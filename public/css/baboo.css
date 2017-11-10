@@ -2,7 +2,7 @@
 @import url('../fonts/fonts.css');
 * {
 	box-sizing: border-box;
-	font-family: 'Roboto Light', sans-serif;
+	font-family: 'Poppins', sans-serif;
 }
 
 body {
@@ -21,6 +21,10 @@ a {
 a:hover {
 	text-decoration: none;
 	color: #7b0393;
+}
+
+.bor-rad0 {
+	border-radius: 0 !important;
 }
 
 .navbar {
@@ -841,6 +845,10 @@ select.form-control:focus {
 	margin-top: 6%;
 }
 
+.cleftmenu > .is_stuck {
+	margin-top: 10px !important;
+}
+
 .boodropdown {
 	position: relative;
 	bottom: 35px;
@@ -944,4 +952,135 @@ select.form-control:focus {
 	position: absolute;
 	left: 0;
 	color: #b44aca;
+}
+
+/*Upload Cover CSS STYLE*/
+.coverprev > input[type=file] {
+    cursor: pointer;
+    width: 160px;
+    height: auto;
+    overflow: hidden;
+}
+
+.coverprev > input[type=file] {
+	display: inline-block;
+	border-radius: 2px;
+	background-color: #ffffff;
+	box-shadow: 0 2px 4px 0 rgba(111, 111, 111, 0.16);
+	border: solid 1px #b5bec3;
+	padding: 90px 60px 60px 60px;
+}
+.coverprev > input[type=file]:before {
+	content: url(../img/assets/icon_plus_purple.svg);
+}
+.coverprev > input[type=file]::-webkit-file-upload-button {
+	visibility: hidden;
+}
+
+/*Tulis Buku*/
+.tulisjudul > input[type=text] {
+	background: transparent;
+	border: none;
+	font-family: Poppins;
+	font-weight: bold;
+	font-size: 32px;
+	color: #656565;
+}
+.tulisjudul > input[type=text]:focus {
+	outline: none;
+}
+
+.note-editor.note-frame .note-editing-area .note-editable {
+	background: none !important;
+}
+
+.tulisbuku > .card {
+	background: none !important;
+	border: none !important;
+	box-shadow: none !important;
+}
+.tulisbuku > .card > .note-statusbar{
+	display: none;
+}
+.tulisbuku > .card > .note-editing-area > .note-editable > p{
+	font-family: Poppins;
+}
+
+.addsubchapt {
+	cursor: pointer;padding:12px 0;border-radius: 4px;background-color: rgba(232, 237, 240, 0.5);border: dashed 2px #dde4e9;
+}
+
+/*TAB CREATE COVER*/
+.nav-pills > a:hover {
+	color: #fff !important;
+}
+.nav-pills .nav-link.active, .show>.nav-pills .nav-link {
+	background-color: #4d4c4c !important;
+	border-bottom: 2px solid #fff;	
+}
+
+.creatcovermenu > .nav-link {
+	padding: 1.5rem !important;
+}
+
+.judulbookcover > input[type=text] {
+    background: none;
+    border: none;
+    color: #cacaca;
+    font-family: Poppins;
+}
+.judulbookcover > input[type=text]::placeholder {
+    color: #cacaca;
+}
+.judulbookcover > input[type=text]:focus {
+	outline: none;
+}
+
+.btnselectstyle {
+	cursor: pointer;border: none;background-color: #474747;
+}
+.txtselectstyle {
+	font-size: 17px;font-weight: bold;color: #fff;
+}
+.btnselectstyle > .font-select1 {
+	font-family: OpenSans;
+}
+.btnselectstyle > .font-select2 {
+	font-family: BaskOldFace;
+}
+.btnselectstyle > .font-select3 {
+	font-family: AmericanTypewriter;
+}
+.btnselectstyle > .font-select4 {
+	font-family: Baghdad;
+}
+
+.uploadcoverimg > input[type=file] {
+    cursor: pointer;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+
+.uploadcoverimg > input[type=file] {
+	display: inline-block;
+    border-radius: 2px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px 0 rgba(111, 111, 111, 0.16);
+    border: dashed 2px #dddddd;
+    padding: 35px 80px 0px 50px;
+}
+.uploadcoverimg > input[type=file]:before {
+	content: url(../img/assets/btn_upload_img.png);
+}
+.uploadcoverimg > input[type=file]::-webkit-file-upload-button {
+	visibility: hidden;
+}
+
+.colorlist {
+	width: calc(100%/4);float: left;
+}
+
+.covercanvas {
+	position: relative;left: 30%;width: 35%;height: 450px;border-radius: 2px;background-color: #ffffff;box-shadow: 0 2px 7px 0 rgba(111, 111, 111, 0.16);border: solid 1px #b5bec3;
 }
