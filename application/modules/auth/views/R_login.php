@@ -62,11 +62,11 @@
 		 							<div class="col-lg-12">
 										<form action="<?php echo site_url(); ?>auth/C_Login/postloginuser">
 										  <div class="form-group">
-										    <input type="email" class="form-control login-input" id="exampleInputEmail1" name="email" aria-describedby="emailHelp" placeholder="Enter email">
+										    <input type="email" class="form-control login-input" id="exampleInputEmail1" name="emails" aria-describedby="emailHelp" placeholder="Enter email">
 										  </div>
 
 										  <div class="form-group">
-										    <input type="password" class="form-control login-input" id="exampleInputPassword1" name="password" placeholder="Password">
+										    <input type="password" class="form-control login-input" id="exampleInputPassword1" name="passwords" placeholder="Password">
 										  </div>
 										  <p class="text-right text-daftar">Belum punya akun ? <a  data-toggle="modal" data-target="#register-modal" href="#" class="link-daftar">Daftar disini</a></p>
 										  <div class="pull-right">

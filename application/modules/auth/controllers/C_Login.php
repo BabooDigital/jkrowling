@@ -107,6 +107,7 @@ class C_Login extends MX_Controller
 
     public function google_login()
     {
+        error_reporting(0);
         if(isset($_GET['code'])){
 
             $this->google->getAuthenticate();
@@ -140,7 +141,9 @@ class C_Login extends MX_Controller
 
             foreach($data as $part){
                 $middle=explode(":",$part);
-                $headers[trim($middle[0])] = trim($middle[1]);
+                if (error_reporting() == 0) {
+                    $headers[trim($middle[0])] = trim($middle[1]);
+                }
             }
             
             
@@ -169,6 +172,7 @@ class C_Login extends MX_Controller
 
     public function postloginuser()
     {
+        error_reporting(0);
         $email = $this->input->post('emails');
         $password = $this->input->post('passwords');
 
@@ -197,7 +201,9 @@ class C_Login extends MX_Controller
 
         foreach($data as $part){
             $middle=explode(":",$part);
-            $headers[trim($middle[0])] = trim($middle[1]);
+            if (error_reporting() == 0) {
+                $headers[trim($middle[0])] = trim($middle[1]);
+            }
         }
         
         
