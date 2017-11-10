@@ -15,9 +15,8 @@
 	<!-- <link href="<?php echo base_url();?>public/css/jquery.bxslider.min.css" rel="stylesheet" type="text/css"> -->
 	<script type="text/javascript" src="<?php echo base_url();?>public/js/jquery.min.js"></script>
 	<?php if (isset($css)): ?>
-    	<?php echo get_css($css) ?>
-    <?php endif ?>
-
+		<?php echo get_css($css) ?>
+	<?php endif ?>
 </head>
 
 <body>
@@ -58,39 +57,54 @@
 					<li class="nav-item mr-20 active">
 						<a class="nav-link" href="<?php echo site_url(); ?>"><b>Beranda</b></a>
 					</li>
-					<li class="nav-item mr-30">
+					<li class="nav-item mr-20">
 						<a class="nav-link" href="#"><b>Explore</b></a>
 					</li>
 					<li class="nav-item mr-30">
-						<a class="nav-link btn-newstory" href="#"><i class="fa fa-pencil-square-o"></i> Tulis Cerita</a>
+						<a class="nav-link btn-newstory" href="<?php echo site_url(); ?>create_book"><i class="fa fa-pencil-square-o"></i> Tulis Cerita</a>
 					</li>
 					<li class="nav-item">
 						<div class="media nav-link martopbot">
 							<a href="#">
 								<?php if ($this->session->userdata('userDatafb')){
 									$img = $this->session->userdata('userDatafb'); ?> 
-									<img alt="Profile Pict" class="d-flex mr-2 rounded-circle" src="https://graph.facebook.com/<?php echo $img['oauth_uid']; ?>/picture" width="40"> 
+									<img alt="<?php echo $img['fullname']; ?>" class="d-flex mr-2 rounded-circle" src="<?php echo $img['prof_pict']; ?>" width="40"> 
 									<?php } elseif ($this->session->userdata('userDatagoogle')) {
 										$img = $this->session->userdata('userDatagoogle'); ?>
-										<img alt="Profile Pict" class="d-flex mr-2 rounded-circle" src="https://pikmail.herokuapp.com/<?php echo $img['email']; ?>" width="40"> 
-										<?php } else{ ?> 
-										<img alt="Profile Pict" class="d-flex mr-2 rounded-circle" src="<?php echo base_url(); ?>public/img/profile/blank-photo.jpg" width="40"> 
-										<?php } ?>
-									</a>
-									<div class="media-body">
-										<p style="font-weight: bold;"><a href="<?php echo site_url(); ?>profile" style="font-size: 10pt;"><b>Aditia Nugraha</b></a> <span style="display: block;font-size: 7pt;">FIKSI</span></p>
-										<div class="boodropdown">
-											<span style="display: block;font-size: 10pt;"><button class="btnsidecaret" onclick="funcDropdown()"><span style="display: block;font-size: 7pt;"><i class="fa fa-angle-down"></i></span>
-												<div class="dropdown-content" id="myDropdown">
-													<a href="<?php echo site_url(); ?>logout">Keluar</a>
-												</div></button></span>
+										<img alt="<?php echo $img['fullname']; ?>" class="d-flex mr-2 rounded-circle" src="<?php echo $img['prof_pict']; ?>" width="40"> 
+										<?php } elseif ($this->session->userdata('userData')) {
+											$img = $this->session->userdata('userData'); ?>
+											<img alt="<?php echo $img['fullname']; ?>" class="d-flex mr-2 rounded-circle" src="<?php echo $img['prof_pict']; ?>" width="40"> 
+											<?php } else{ ?> 
+											<img alt="<?php echo $img['fullname']; ?>" class="d-flex mr-2 rounded-circle" src="<?php echo base_url(); ?>public/img/profile/blank-photo.jpg" width="40"> 
+											<?php } ?>
+										</a>
+										<div class="media-body">
+											<p style="font-weight: bold;"><a href="<?php echo site_url(); ?>profile" style="font-size: 10pt;"><b><?php if ($this->session->userdata('userDatafb')){
+									$name = $this->session->userdata('userDatafb');
+									echo $name['fullname']; ?> 
+									 
+									<?php } elseif ($this->session->userdata('userDatagoogle')) {
+										$name = $this->session->userdata('userDatagoogle');
+										echo $name['fullname']; ?>
+										 
+										<?php } elseif ($this->session->userdata('userData')) {
+											$name = $this->session->userdata('userData');
+											echo $name['fullname']; ?>
+											 
+											<?php } ?></b></a> <span style="display: block;font-size: 7pt;">FIKSI</span></p>
+											<div class="boodropdown">
+												<span style="display: block;font-size: 10pt;"><button class="btnsidecaret" onclick="funcDropdown()"><span style="display: block;font-size: 7pt;"><i class="fa fa-angle-down"></i></span>
+													<div class="dropdown-content" id="myDropdown">
+														<a href="<?php echo site_url(); ?>logout">Keluar</a>
+													</div></button></span>
+												</div>
+												<p></p>
 											</div>
-											<p></p>
 										</div>
-									</div>
-								</li>
-							</ul>
+									</li>
+								</ul>
+							</div>
+							<?php } ?>
 						</div>
-						<?php } ?>
-					</div>
-				</nav>
+					</nav>

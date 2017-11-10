@@ -19,7 +19,7 @@
 						<a class="nav-link" href="#"><b>Explore</b></a>
 					</li>
 					<li class="nav-item mr-30">
-						<a class="nav-link btn-newstory" href="#">
+						<a class="nav-link btn-newstory" href="<?php echo site_url(); ?>create_book">
 							<i class="fa fa-pencil-square-o"></i> Tulis Cerita
 						</a>
 					</li>

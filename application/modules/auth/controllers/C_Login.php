@@ -3,13 +3,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class C_Login extends MX_Controller
 {
-    
+
     var $API = "";
     
     function __construct()
     {
         parent::__construct();
-        $this->API = "api.dev-baboo.co.id/v1/auth";
+        $this->API = "api.dev-baboo.co.id/v1/auth/OAuth";
         
         if ($this->session->userdata('isLogin') == 200)
         {
@@ -37,9 +37,6 @@ class C_Login extends MX_Controller
     
     public function fb_login()
     {
-        echo CurlAPI();
-        $this->curl->create($this->API . '/OAuth/login_fb');
-        
         if ($this->facebook->is_authenticated())
         {
             $userProfile = $this->facebook->request('get', '/me?fields=id,first_name,last_name,email,gender');
@@ -53,39 +50,60 @@ class C_Login extends MX_Controller
                 'token' => $userProfile['id'],
                 'jk' => $userProfile['gender']
             );
-            
-            $this->curl->post($userData);
-            $userID = json_decode($this->curl->execute());
-            $psn = $userID->message;
-            // echo $this->curl->error_string;
-            
-            if (isset($userID->code) && $userID->code == '200')
-            {
-                $status = $userID->code;
-                
-                $this->session->set_userdata('isLogin', $status);
-                $this->session->set_userdata('userDatafb', $userData);
-                redirect('timeline');
+
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $this->API.'/login_fb');
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $userData);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+            curl_setopt($ch, CURLOPT_HEADER, 1);
+            $result = curl_exec($ch);
+
+            $headers=array();
+
+            $data=explode("\n",$result);
+
+
+            array_shift($data);
+
+            foreach($data as $part){
+                $middle=explode(":",$part);
+                $headers[trim($middle[0])] = trim($middle[1]);
             }
-        }
-        else
+
+
+            $resval = (array)json_decode($data[16], true);
+
+            $psn = $resval['message'];
+            $user = $resval['data'];
+            if (isset($resval['code']) && $resval['code'] == '200')
+            {
+                $status = $resval['code'];
+
+                $this->session->set_userdata('isLogin', $status);
+                $this->session->set_userdata('userDatafb', $user);
+                redirect("timeline");
+            }
+        }else
         {
-            $status = $userID->code;
+            $status = $resval['code'];
+
             $fbuser = '';
             echo "<script type='text/javascript'>alert ('".$psn."');window.location.href = '".site_url('login')."';</script>";
         }
+
         echo json_encode(array(
-            'status' => $status, 
-            'data' => $userData,
+            'status' => $status,
+            'data' => $user,
             'message' => $psn
         ));
     }
 
     public function google_login()
     {
-        echo CurlAPI();
-        $this->curl->create($this->API . '/OAuth/login_google');
-
         if(isset($_GET['code'])){
 
             $this->google->getAuthenticate();
@@ -94,79 +112,120 @@ class C_Login extends MX_Controller
 
             $userData['oauth_provider'] = 'google';
             $userData['oauth_uid']      = $gpInfo['id'];
-            $userData['fullname']     = $gpInfo['given_name'] . " " . $gpInfo['family_name'];
+            $userData['fullname']       = $gpInfo['given_name'] . " " . $gpInfo['family_name'];
             $userData['email']          = $gpInfo['email'];
             $userData['token']          = $gpInfo['id'];
-            $userData['prof_pict']          = 'https://pikmail.herokuapp.com/'.$gpInfo['email'];
-            
-            $this->curl->post($userData);
-            $userID = json_decode($this->curl->execute());
-            $psn = $userID->message;
-            // echo $this->curl->error_string;
+            $userData['prof_pict']      = $gpInfo['picture'];
 
-            $status = $userID->code;
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $this->API.'/login_google');
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $userData);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+            curl_setopt($ch, CURLOPT_HEADER, 1);
+            $result = curl_exec($ch);
+            
+            $headers=array();
+
+            $data=explode("\n",$result);
+
+
+            array_shift($data);
+
+            foreach($data as $part){
+                $middle=explode(":",$part);
+                $headers[trim($middle[0])] = trim($middle[1]);
+            }
+            
+            
+            $resval = (array)json_decode($data[16], true);
+
+            $psn = $resval['message'];
+            $status = $resval['code'];
+            $user = $resval['data'];
 
             $this->session->set_userdata('isLogin', $status);
-            $this->session->set_userdata('userDatagoogle', $userData);
+            $this->session->set_userdata('userDatagoogle', $user);
 
             redirect('timeline');
         }else {
-            $status = $userID->code;
+            $status = $resval['code'];
             $data = "Not Found";
 
             echo "<script type='text/javascript'>alert ('".$psn."');window.location.href = '".site_url('login')."';</script>";
-        } 
+        }
         echo json_encode(array(
             'status' => $status, 
-            'data' => $userData,
+            'data' => $user,
             'message' => $psn
         ));
     }
 
     public function postloginuser()
     {
-        echo CurlAPI();
-        $this->curl->create($this->API.'/OAuth/login');
-        
         $email = $this->input->post('emails');
         $password = $this->input->post('passwords');
-        
+
         $data = array(
             'username' => $email,
             'password' => $password
         );
-        $this->curl->post($data);
-        $cek = json_decode($this->curl->execute());
-        $psn = $cek->message;
-        // echo $this->curl->error_string;
-        
-        if (isset($cek->code) && $cek->code == '200')
-        {
-            $status = $cek->code;
 
-            $this->session->set_userdata('userData', $data);
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $this->API.'/login');
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+        curl_setopt($ch, CURLOPT_HEADER, 1);
+        $result = curl_exec($ch);
+        
+        $headers=array();
+
+        $data=explode("\n",$result);
+
+
+        array_shift($data);
+
+        foreach($data as $part){
+            $middle=explode(":",$part);
+            $headers[trim($middle[0])] = trim($middle[1]);
+        }
+        
+        
+        $resval = (array)json_decode($data[16], true);
+
+        $psn = $resval['message'];
+        $user = $resval['data'];
+        if (isset($resval['code']) && $resval['code'] == '200')
+        {
+            $status = $resval['code'];
+
+            $this->session->set_userdata('userData', $user);
             $this->session->set_userdata('isLogin', $status);
             redirect("timeline");
         }
         else
         {
-            $status = $cek->code;
+            $status = $resval['code'];
 
             echo "<script type='text/javascript'>alert ('".$psn."');window.location.href = '".site_url('login')."';</script>";
         }
 
         echo json_encode(array(
             'status' => $status,
-            'data' => $data,
+            'data' => $user,
             'message' => $psn
         ));
     }
 
     public function postregisteruser()
     {
-        echo CurlAPI();
-        $this->curl->create($this->API.'/OAuth/register');
-        
         $name = $this->input->post('name');
         $email = $this->input->post('email');
         $pass = $this->input->post('password');
@@ -183,27 +242,52 @@ class C_Login extends MX_Controller
             'modify' => date("Y-m-d H:i:s") 
         );
 
-        $this->curl->post($data);
-        $cek = json_decode($this->curl->execute());
-        $psn = $cek->message;
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $this->API.'/register');
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 
-        if (isset($cek->code) && $cek->code == '200')
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+        curl_setopt($ch, CURLOPT_HEADER, 1);
+        $result = curl_exec($ch);
+        
+        $headers=array();
+
+        $data=explode("\n",$result);
+
+
+        array_shift($data);
+
+        foreach($data as $part){
+            $middle=explode(":",$part);
+            $headers[trim($middle[0])] = trim($middle[1]);
+        }
+        
+        
+        $resval = (array)json_decode($data[16], true);
+
+        $psn = $resval['message'];
+        $user = $resval['data'];
+        if (isset($resval['code']) && $resval['code'] == '200')
         {
-            $status = $cek->code;
+            $status = $resval['code'];
 
-            $this->session->set_userdata('userData', $data);
+            $this->session->set_userdata('userData', $user);
             $this->session->set_userdata('isLogin', $status);
             redirect("timeline");
         }
         else
         {
-            $status = $cek->code;
+            $status = $resval['code'];
+
             echo "<script type='text/javascript'>alert ('".$psn."');window.location.href = '".site_url('login')."';</script>";
         }
 
         echo json_encode(array(
             'status' => $status,
-            'data' => $data,
+            'data' => $user,
             'message' => $psn
         ));
     }

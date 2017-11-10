@@ -137,7 +137,7 @@
 							<div class="media">
 								<img class="d-flex align-self-start mr-10" src="<?php echo base_url(); ?>public/img/book-cover/book_cover1.png" width="120" alt="Profile">
 								<div class="media-body">
-									<h5 class="card-title nametitle3"><a href="<?php echo site_url(); ?>book">Story Of Drama\</a></h5>
+									<h5 class="card-title nametitle3"><a href="<?php echo site_url(); ?>book">Story Of Drama</a></h5>
 									<p class="catbook"><a href="#" class="mr-20"><span class="btn-no-fill">FIKSI</span></a> <span class="mr-20"><img src="<?php echo base_url(); ?>public/img/assets/icon_view.svg"> 290</span> <span><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg"> 12</span></p>
 									<p class="text-desc-in">
 										Aku tahu ribuan kalimat kau tulis untuk memberi tanda bahwa kamu selalu sabar menungguku, yang seolah-olah kau ingin mengatakan pada dunia bahwa kamu sangat... <a href="#" class="readmore">Lanjut</a>
@@ -165,7 +165,7 @@
 					<div class="card card-widget mb-15">
 						<div class="card-content">
 							<p class="smalltitle">Tunggu apalagi?</p>
-							<p class="fillcontent">Tuliskan semua ceritamu dan dapatkan banyak pembaca</p><a class="btn btn-white" href="#"><i class="fa fa-pencil-square-o"></i> Tulis Cerita</a>
+							<p class="fillcontent">Tuliskan semua ceritamu dan dapatkan banyak pembaca</p><a class="btn btn-white" href="<?php echo site_url(); ?>create_book"><i class="fa fa-pencil-square-o"></i> Tulis Cerita</a>
 						</div>
 					</div>
 					<!-- Card Widget -->
