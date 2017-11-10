@@ -2,66 +2,6 @@
 <body id="pageContent">
 
 	<nav class="navbar navbar-expand-lg fixed-top baboonav" style="height:60px;">
-<<<<<<< HEAD
-		<div class="container">
-			<a class="navbar-brand" href="#">
-				<img src="<?php echo base_url(); ?>public/img/logo_purple.png" width="80" class="img-fluid" alt="">
-			</a>
-
-			<form class="form-inline srcform pull-left">
-				<input class="form-search" type="text" placeholder="Penulis, Buku atau Tulisan" aria-label="Search" style="height:30px; width: 270px; font-size: 14px; margin-left:-90px;">
-			</form>
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav" style="margin-bottom: -7px;">
-					<li class="nav-item mr-20 active">
-						<a class="nav-link" href="#"><b>Beranda</b></a>
-					</li>
-					<li class="nav-item mr-30">
-						<a class="nav-link" href="#"><b>Explore</b></a>
-					</li>
-					<li class="nav-item mr-30">
-						<a class="nav-link btn-newstory" href="<?php echo site_url(); ?>create_book">
-							<i class="fa fa-pencil-square-o"></i> Tulis Cerita
-						</a>
-					</li>
-					<li class="nav-item">
-						<div class="media nav-link martopbot">
-							<a href="#">
-								<img class="d-flex mr-2 rounded-circle" src="<?php echo base_url(); ?>public/img/profile/pp_wanita2.png" width="40" alt="Generic placeholder image">
-							</a>
-							<div class="media-body">
-								<p style="font-weight: bold;"><a href="#" style="font-size: 10pt;"><b>Aditia Nugraha</b></a>
-									<span style="display: block;font-size: 7pt;">FIKSI</span></p>
-							</div>
-						</div>
-					</li>
-				</ul>
-			</div>
-			</div>
-			<div style="height:50px; background-color: #7554bd; position: absolute; left:0; right: 0; top:60px; width: 100%; box-shadow: 0px 1px 3px 0px #222;">
-				<div class="container">
-				<div class="row" style="padding-left: 50px; padding-right: 50px;">
-					<div class="col-3" style="margin-top:10px;">
-						<center><a href="#" style="color:#fff; font-size:22px;">
-							<i class="fa fa-newspaper-o" aria-hidden="true"></i></a>
-						</center>
-					</div>
-					<div class="col-3" style="margin-top:10px;">
-						<center><a href="#" style="color:#9785bc; font-size:22px;">
-							<i class="fa fa-bell-o" aria-hidden="true"></i></a>
-						</center>
-					</div>
-					<div class="col-3" style="margin-top:10px;">
-						<center><a href="#" style="color:#9785bc; font-size:22px;">
-							<i class="fa fa-user-o" aria-hidden="true"></i></a>
-						</center>
-					</div>
-					<div class="col-3" style="margin-top:10px;">
-						<center><a href="#" style="color:#9785bc; font-size:22px;">
-							<i class="fa fa-bars" aria-hidden="true"></i></a>
-						</center>
-					</div>
-=======
 		<?php $this->load->view('navbar/R_navbar'); ?>	
 	</nav>
 		<br>
@@ -77,7 +17,6 @@
 					<div class="col-md-6">
 						<br>
 						<div class="loader" style="display: none;"></div>
->>>>>>> create function menu page js , create navbar , create timeline content , rapihin kodingan jadi lebih sedikit rapih
 					</div>
 				</div>
 			</div>

@@ -19,7 +19,7 @@ class C_timeline extends MX_Controller {
 
 		if ($this->agent->is_mobile('ipad'))
 		{
-			$this->load->view('include/head', $title);
+			$this->load->view('include/head', $data);
 		    $this->load->view('D_Timeline_in');
 		    $this->load->view('include/foot');
 		}
@@ -30,7 +30,7 @@ class C_timeline extends MX_Controller {
 		}
 		else
 		{
-			$this->load->view('include/head', $title);
+			$this->load->view('include/head', $data);
 		    $this->load->view('D_Timeline_in',$data);
 		    $this->load->view('include/foot');
 		}

@@ -1098,7 +1098,8 @@ select.form-control:focus {
 
 .covercanvas {
 	position: relative;left: 30%;width: 35%;height: 450px;border-radius: 2px;background-color: #ffffff;box-shadow: 0 2px 7px 0 rgba(111, 111, 111, 0.16);border: solid 1px #b5bec3;
-=======
+}
+
 .loader {
   border: 16px solid #f3f3f3;
   border-radius: 50%;
@@ -1117,5 +1118,4 @@ select.form-control:focus {
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
->>>>>>> create function menu page js , create navbar , create timeline content , rapihin kodingan jadi lebih sedikit rapih
 }
