@@ -60,6 +60,12 @@ $route['logout'] = 'timeline/C_timeline/signout';
 $route['home'] = 'timeline/C_home';
 $route['timeline'] = 'timeline/C_timeline';
 
+// Explore
+$route['notification'] = 'notification/C_notification';
+
+// library
+$route['library'] = 'library/C_library';
+
 // Book
 $route['book'] = 'book/C_book';
 $route['create_book'] = 'book/C_createbook';

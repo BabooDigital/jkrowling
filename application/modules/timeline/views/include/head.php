@@ -12,8 +12,8 @@
 	<link href="<?php echo base_url();?>public/css/baboo-responsive.css" rel="stylesheet" type="text/css">
 	<link href="<?php echo base_url();?>public/css/custom-margin-padding.css" rel="stylesheet" type="text/css">
 	<link href="<?php echo base_url();?>public/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-	<!-- <link href="<?php echo base_url();?>public/css/jquery.bxslider.min.css" rel="stylesheet" type="text/css"> -->
-	<script type="text/javascript" src="<?php echo base_url();?>public/js/jquery.min.js"></script>
+	<link href="<?php echo base_url();?>public/css/jquery.bxslider.min.css" rel="stylesheet" type="text/css">
+	<!-- <script type="text/javascript" src="<?php echo base_url();?>public/js/jquery.min.js"></script> -->
 	<?php if (isset($css)): ?>
 		<?php echo get_css($css) ?>
 	<?php endif ?>

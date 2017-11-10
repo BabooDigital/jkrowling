@@ -131,3 +131,27 @@
     padding-top: 6%;
   }
 }
+
+/*Horizontal scrooll view*/
+
+#myWorkContent{
+    width:100%;
+    height:auto;
+    background-color: #F5F8FA;
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+#myWorkContent #tes {
+    display: inline-block;
+    float:left;
+    padding: 10px;
+}
+div#insideDiv{
+    width:1500px;
+}
+::-webkit-scrollbar { 
+    display: none; 
+}
+.checked{
+  color: orange;
+}

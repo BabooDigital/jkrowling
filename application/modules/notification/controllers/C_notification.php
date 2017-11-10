@@ -1,31 +1,27 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class C_profile extends MX_Controller {
+class C_notification extends MX_Controller
+{
+	
 	function __construct(){
-		parent::__construct();
+		// parent::__construct();	
 		// if ($this->session->userdata('isLogin') != 200) {
 		// 	redirect('home');
 		// }
 	}
-
 	public function index()
 	{
-		$data['judul'] = "Profile Page - Baboo";
+		$data['judul'] = "Notification Page - Baboo";
+
 		$data['js'][]   = "public/js/jquery.min.js";
 		$data['js'][]   = "public/js/custom/author_this_week.js";
 		$data['js'][]   = "public/js/menupage.js";
-		if ($this->agent->mobile()) {
+		if ($this->agent->is_mobile()){
 
 			$this->load->view('timeline/include/head', $data);
-			$this->load->view('R_profile', $data);
-			
-		}else{
-			$this->load->view('timeline/include/head', $title);
-			$this->load->view('D_profile');
-			$this->load->view('timeline/include/foot');
+			$this->load->view('R_notification', $data);
 		
 		}
 	}
-
 }
