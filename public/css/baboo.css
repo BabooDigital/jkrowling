@@ -50,28 +50,18 @@ a:hover {
 }
 
 .srcform {
-	width: 30%;
+	width: 20%;
 }
 
-.search-form {
-	border-radius: 50px;
-	height: 35px;
-	font-size: 13px;
-	width: 300px !important;
-	color: #888 !important;
-	background: url("../img/search.png") no-repeat right;
-	background-size: 18px;
-	background-position: 95% 50%;
-}
-.form-search {
-	width: 90%;
-	padding: 3px 15px 3px 12px;
-	color: #848484;
-	border: 2px solid rgba(210, 215, 218, 0.6);
-	border-radius: 100px;
-	background: url("../img/search.png") no-repeat right;
-	background-size: 18px;
-	background-position: 95% 50%;
+.form-search {		
+	width: 90%;		
+	padding: 3px 15px 3px 12px;		
+	color: #848484;		
+	border: 2px solid rgba(210, 215, 218, 0.6);		
+	border-radius: 100px;		
+	background: url("../img/search.png") no-repeat right;		
+	background-size: 18px;		
+	background-position: 95% 50%;		
 }
 .form-search:focus {
 	outline: 0;
@@ -968,7 +958,6 @@ select.form-control:focus {
 	color: #b44aca;
 }
 
-<<<<<<< HEAD
 /*Upload Cover CSS STYLE*/
 .coverprev > input[type=file] {
     cursor: pointer;

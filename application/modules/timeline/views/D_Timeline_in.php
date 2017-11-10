@@ -224,3 +224,6 @@
 			</div>
 		</div>
 	</div>
+	<?php if (isset($js)): ?>
+		<?php echo get_js($js) ?>
+    <?php endif ?>

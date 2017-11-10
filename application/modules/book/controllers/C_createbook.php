@@ -23,7 +23,6 @@ class C_createbook extends MX_Controller {
 		$data['js'][] = "public/js/umd/popper.min.js";
 		$data['js'][] = "public/js/bootstrap.min.js";
 		$data['js'][] = "public/js/jquery.sticky-kit.min.js";
-		$data['js'][] = "public/js/custom/autoresizetextarea.min.js";
 		$data['js'][] = "public/js/summernote/summernote-bs4.min.js";
 		$data['js'][] = "public/js/custom/create_book.js";
 
