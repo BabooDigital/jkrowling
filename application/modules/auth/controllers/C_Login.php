@@ -54,7 +54,7 @@ class C_Login extends MX_Controller
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, $this->API.'/login_fb');
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+            // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 
             curl_setopt($ch, CURLOPT_POST, 1);
             curl_setopt($ch, CURLOPT_POSTFIELDS, $userData);
@@ -120,7 +120,7 @@ class C_Login extends MX_Controller
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, $this->API.'/login_google');
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+            // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 
             curl_setopt($ch, CURLOPT_POST, 1);
             curl_setopt($ch, CURLOPT_POSTFIELDS, $userData);
@@ -177,7 +177,7 @@ class C_Login extends MX_Controller
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $this->API.'/login');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
@@ -245,7 +245,7 @@ class C_Login extends MX_Controller
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $this->API.'/register');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
