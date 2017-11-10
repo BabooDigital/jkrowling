@@ -21,7 +21,7 @@ class C_profile extends MX_Controller {
 			$this->load->view('R_profile', $data);
 			
 		}else{
-			$this->load->view('timeline/include/head', $title);
+			$this->load->view('timeline/include/head', $data);
 			$this->load->view('D_profile');
 			$this->load->view('timeline/include/foot');
 		

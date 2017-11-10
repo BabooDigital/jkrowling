@@ -12,6 +12,10 @@ class C_home extends MX_Controller {
 	public function index()
 	{
 		$data['judul'] = "Baboo - Beyond Book & Creativity";
+		$data['js'][]   = "public/js/jquery.min.js";
+		$data['js'][]   = "public/js/jquery.bxslider.min.js";
+		$data['js'][]   = "public/js/baboo.js";
+		$data['js'][]   = "public/js/jquery.sticky-kit.min.js";
 		$data['js'][]   = "public/js/custom/author_this_week.js";
 		$data['js'][]   = "public/js/custom/popular_books.js";
 		$data['js'][]   = "public/js/custom/choice_books.js";
@@ -19,7 +23,6 @@ class C_home extends MX_Controller {
 		{
 			$this->load->view('include/head', $title);
 		    $this->load->view('D_Timeline_out');
-		    $this->load->view('include/foot');
 		}
 		if ($this->agent->is_mobile())
 		{
@@ -32,13 +35,11 @@ class C_home extends MX_Controller {
 
 			// $this->load->view('include/head', $mobile);
 		    $this->load->view('R_Timeline_out');
-		    $this->load->view('include/foot');
 		}
 		else
 		{
 			$this->load->view('include/head', $data);
 		    $this->load->view('D_Timeline_out');
-		    $this->load->view('include/foot');
 		}
 	}
 }

@@ -14,13 +14,14 @@ class C_timeline extends MX_Controller {
 	{
 		$data['judul'] = "Baboo - Beyond Book & Creativity";
 		$data['js'][]   = "public/js/jquery.min.js";
+		$data['js'][]   = "public/js/baboo.js";
+		$data['js'][]   = "public/js/jquery.sticky-kit.min.js";
 		$data['js'][]   = "public/js/custom/author_this_week.js";
 
 		if ($this->agent->is_mobile('ipad'))
 		{
 			$this->load->view('include/head', $data);
 		    $this->load->view('D_Timeline_in');
-		    $this->load->view('include/foot');
 		}
 		if ($this->agent->is_mobile())
 		{
@@ -32,7 +33,6 @@ class C_timeline extends MX_Controller {
 		{
 			$this->load->view('include/head', $data);
 		    $this->load->view('D_Timeline_in',$data);
-		    $this->load->view('include/foot');
 		}
 	}
 	
