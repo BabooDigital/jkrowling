@@ -74,10 +74,13 @@
 										<img alt="<?php echo $img['fullname']; ?>" class="d-flex mr-2 rounded-circle" src="<?php echo $img['prof_pict']; ?>" width="40"> 
 										<?php } elseif ($this->session->userdata('userData')) {
 											$img = $this->session->userdata('userData'); ?>
-											<img alt="<?php echo $img['fullname']; ?>" class="d-flex mr-2 rounded-circle" src="<?php echo $img['prof_pict']; ?>" width="40"> 
-											<?php } else{ ?> 
-											<img alt="<?php echo $img['fullname']; ?>" class="d-flex mr-2 rounded-circle" src="<?php echo base_url(); ?>public/img/profile/blank-photo.jpg" width="40"> 
+											<img alt="<?php echo $img['fullname']; ?>" class="d-flex mr-2 rounded-circle" src="<?php if ($img['prof_pict'] == NULL){
+												echo base_url('public/img/profile/blank-photo.jpg');
+											}else{
+												echo $img['prof_pict'];
+											} ?>" width="40"> 
 											<?php } ?>
+											<?php echo $img['prof_pict']; ?>
 										</a>
 										<div class="media-body">
 											<p style="font-weight: bold;"><a href="<?php echo site_url(); ?>profile" style="font-size: 10pt;"><b><?php if ($this->session->userdata('userDatafb')){

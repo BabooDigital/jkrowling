@@ -87,7 +87,7 @@ class C_Login extends MX_Controller
                 $status = $resval['code'];
 
                 $this->session->set_userdata('isLogin', $status);
-                $this->session->set_userdata('userDatafb', $userData);
+                $this->session->set_userdata('userDatafb', $user);
                 redirect("timeline");
             }
         }else
@@ -154,7 +154,7 @@ class C_Login extends MX_Controller
             $user = $resval['data'];
 
             $this->session->set_userdata('isLogin', $status);
-            $this->session->set_userdata('userDatagoogle', $userData);
+            $this->session->set_userdata('userDatagoogle', $user);
 
             redirect('timeline');
         }else {
@@ -176,7 +176,7 @@ class C_Login extends MX_Controller
         $email = $this->input->post('emails');
         $password = $this->input->post('passwords');
 
-        $data = array(
+        $userData = array(
             'username' => $email,
             'password' => $password
         );
@@ -187,7 +187,7 @@ class C_Login extends MX_Controller
         // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 
         curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $userData);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
         curl_setopt($ch, CURLOPT_HEADER, 1);
         $result = curl_exec($ch);
@@ -235,18 +235,19 @@ class C_Login extends MX_Controller
 
     public function postregisteruser()
     {
+        error_reporting(0);
         $name = $this->input->post('name');
         $email = $this->input->post('email');
         $pass = $this->input->post('password');
         $tgl = $this->input->post('tgl_lahir');
         $jk = $this->input->post('j_kelamin');
 
-        $data = array(
+        $userData = array(
             'fullname' => $name, 
             'email' => $email, 
             'password' => $pass, 
             'date_of_birth' => $tgl, 
-            'jk' => $jk, 
+            'jk' => $jk,
             'created' => date("Y-m-d H:i:s"), 
             'modify' => date("Y-m-d H:i:s") 
         );
@@ -257,7 +258,7 @@ class C_Login extends MX_Controller
         // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 
         curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $userData);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
         curl_setopt($ch, CURLOPT_HEADER, 1);
         $result = curl_exec($ch);
@@ -271,7 +272,10 @@ class C_Login extends MX_Controller
 
         foreach($data as $part){
             $middle=explode(":",$part);
-            $headers[trim($middle[0])] = trim($middle[1]);
+
+            if (error_reporting() == 0) {
+                $headers[trim($middle[0])] = trim($middle[1]);
+            }
         }
         
         
