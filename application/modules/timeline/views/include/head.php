@@ -80,7 +80,6 @@
 												echo $img['prof_pict'];
 											} ?>" width="40"> 
 											<?php } ?>
-											<?php echo $img['prof_pict']; ?>
 										</a>
 										<div class="media-body">
 											<p style="font-weight: bold;"><a href="<?php echo site_url(); ?>profile" style="font-size: 10pt;"><b><?php if ($this->session->userdata('userDatafb')){
