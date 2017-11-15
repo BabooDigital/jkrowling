@@ -61,52 +61,37 @@
 						<a class="nav-link" href="#"><b>Explore</b></a>
 					</li>
 					<li class="nav-item mr-30">
-						<a class="nav-link btn-newstory" href="<?php echo site_url(); ?>create_book"><i class="fa fa-pencil-square-o"></i> Tulis Cerita</a>
+						<a class="nav-link btn-newstory" style="cursor: pointer;" href="<?php echo site_url(); ?>create_book"><i class="fa fa-pencil-square-o"></i> Tulis Cerita</a>
 					</li>
 					<li class="nav-item">
 						<div class="media nav-link martopbot">
 							<a href="#">
-								<?php if ($this->session->userdata('userDatafb')){
-									$img = $this->session->userdata('userDatafb'); ?> 
-									<img alt="<?php echo $img['fullname']; ?>" class="d-flex mr-2 rounded-circle" src="<?php echo $img['prof_pict']; ?>" width="40"> 
-									<?php } elseif ($this->session->userdata('userDatagoogle')) {
-										$img = $this->session->userdata('userDatagoogle'); ?>
-										<img alt="<?php echo $img['fullname']; ?>" class="d-flex mr-2 rounded-circle" src="<?php echo $img['prof_pict']; ?>" width="40"> 
-										<?php } elseif ($this->session->userdata('userData')) {
-											$img = $this->session->userdata('userData'); ?>
-											<img alt="<?php echo $img['fullname']; ?>" class="d-flex mr-2 rounded-circle" src="<?php if ($img['prof_pict'] == NULL){
-												echo base_url('public/img/profile/blank-photo.jpg');
-											}else{
-												echo $img['prof_pict'];
-											} ?>" width="40"> 
-											<?php } ?>
-										</a>
-										<div class="media-body">
-											<p style="font-weight: bold;"><a href="<?php echo site_url(); ?>profile" style="font-size: 10pt;"><b><?php if ($this->session->userdata('userDatafb')){
-									$name = $this->session->userdata('userDatafb');
-									echo $name['fullname']; ?> 
-									 
-									<?php } elseif ($this->session->userdata('userDatagoogle')) {
-										$name = $this->session->userdata('userDatagoogle');
+								<?php if ($this->session->userdata('userData')) {
+									$img = $this->session->userdata('userData'); ?>
+									<img alt="<?php echo $img['fullname']; ?>" class="d-flex mr-2 rounded-circle" src="<?php if ($img['prof_pict'] == NULL){
+										echo base_url('public/img/profile/blank-photo.jpg');
+									}else{
+										echo $img['prof_pict'];
+									} ?>" width="40"> 
+									<?php } ?>
+								</a>
+								<div class="media-body">
+									<p style="font-weight: bold;"><a href="<?php echo site_url(); ?>profile" style="font-size: 10pt;"><b><?php if ($this->session->userdata('userData')){
+										$name = $this->session->userdata('userData');
 										echo $name['fullname']; ?>
-										 
-										<?php } elseif ($this->session->userdata('userData')) {
-											$name = $this->session->userdata('userData');
-											echo $name['fullname']; ?>
-											 
-											<?php } ?></b></a> <span style="display: block;font-size: 7pt;">FIKSI</span></p>
-											<div class="boodropdown">
-												<span style="display: block;font-size: 10pt;"><button class="btnsidecaret" onclick="funcDropdown()"><span style="display: block;font-size: 7pt;"><i class="fa fa-angle-down"></i></span>
-													<div class="dropdown-content" id="myDropdown">
-														<a href="<?php echo site_url(); ?>logout">Keluar</a>
-													</div></button></span>
-												</div>
-												<p></p>
+										<?php } ?></b></a> <span style="display: block;font-size: 7pt;">FIKSI</span></p>
+										<div class="boodropdown">
+											<span style="display: block;font-size: 10pt;"><button class="btnsidecaret" onclick="funcDropdown()"><span style="display: block;font-size: 7pt;"><i class="fa fa-angle-down"></i></span>
+												<div class="dropdown-content" id="myDropdown">
+													<a href="<?php echo site_url(); ?>logout">Keluar</a>
+												</div></button></span>
 											</div>
+											<p></p>
 										</div>
-									</li>
-								</ul>
-							</div>
-							<?php } ?>
+									</div>
+								</li>
+							</ul>
 						</div>
-					</nav>
+						<?php } ?>
+					</div>
+				</nav>
