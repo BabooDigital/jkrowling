@@ -69,6 +69,7 @@ $route['library'] = 'library/C_library';
 // Book
 $route['book'] = 'book/C_book';
 $route['create_book'] = 'book/C_createbook';
+$route['create_book/save'] = 'book/C_createbook/save';
 
 // Cover
 $route['create_cover'] = 'cover/C_cover';

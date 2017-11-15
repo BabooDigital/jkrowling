@@ -87,7 +87,7 @@ class C_Login extends MX_Controller
                 $status = $resval['code'];
 
                 $this->session->set_userdata('isLogin', $status);
-                $this->session->set_userdata('userDatafb', $user);
+                $this->session->set_userdata('userData', $user);
                 redirect("timeline");
             }
         }else
@@ -154,7 +154,7 @@ class C_Login extends MX_Controller
             $user = $resval['data'];
 
             $this->session->set_userdata('isLogin', $status);
-            $this->session->set_userdata('userDatagoogle', $user);
+            $this->session->set_userdata('userData', $user);
 
             redirect('timeline');
         }else {
