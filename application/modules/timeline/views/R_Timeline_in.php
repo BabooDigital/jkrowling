@@ -1,7 +1,7 @@
 
 <body id="pageContent">
 <div id="floating-btn">
-	<a href="#" class="floating-btn"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+	<a href="<?php echo site_url('create_book') ?>" class="floating-btn"><i class="fa fa-pencil" aria-hidden="true"></i></a>
 </div>
 	<nav class="navbar navbar-expand-lg fixed-top baboonav" style="height:60px;">
 		<?php $this->load->view('navbar/R_navbar'); ?>	

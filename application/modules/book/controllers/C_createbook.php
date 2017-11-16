@@ -21,17 +21,28 @@ class C_createbook extends MX_Controller {
 		$data['css'][] = "public/css/bootstrap.min.css";
 		$data['css'][] = "public/css/custom-margin-padding.css";
 		$data['css'][] = "public/css/font-awesome.min.css";
+		$data['css'][] = "public/css/baboo-responsive.css";
 		$data['css'][] = "public/css/baboo.css";
 		 	
 		$data['js'][] = "public/js/jquery.min.js";
-		$data['js'][] = "public/js/umd/popper.min.js";
-		$data['js'][] = "public/js/bootstrap.min.js";
-		$data['js'][] = "public/js/jquery.sticky-kit.min.js";
-		$data['js'][] = "public/plugins/ckeditor/ckeditor.js";
-		$data['js'][] = "public/plugins/ckfinder/ckfinder.js";
-		$data['js'][] = "public/js/custom/create_book.js";
+		$data['js'][] = "public/plugins/ckeditor_responsive/ckeditor.js";
+		$data['js'][] = "public/plugins/ckfinder_responsive/ckfinder.js";
+		$data['js'][] = "public/js/custom/create_book_r.js";
+		if ($this->agent->mobile()) {
+			$this->load->view('include/head', $data);
+			$this->load->view('R_createbook');
+		}
+		else{
+			$data['js'][] = "public/js/umd/popper.min.js";
+			$data['js'][] = "public/js/bootstrap.min.js";
+			$data['js'][] = "public/js/jquery.sticky-kit.min.js";
+			$data['js'][] = "public/plugins/ckeditor/ckeditor.js";
+			$data['js'][] = "public/plugins/ckfinder/ckfinder.js";
+			$data['js'][] = "public/js/custom/create_book.js";
 
-		$this->load->view('D_createbook', $data);
+			$data['css'][] = "public/css/baboo.css";
+			$this->load->view('D_createbook', $data);
+		}
 	}
 
 	public function createbook_id()
