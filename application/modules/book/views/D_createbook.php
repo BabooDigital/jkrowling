@@ -76,7 +76,7 @@
 								} ?>">
 							</div>
 							<div id="subchapter">
-								<a class="btn w-100 mb-10 chapterdata0 addsubchapt" id="btnaddchapt"><span class="txtaddsubchapt txtsub" id="sub_title">Tambah Sub Cerita</span></a>
+								<a class="btn w-100 mb-10 chapterdata0 addsubchapt" id="btnaddchapt">Tambah Sub Cerita</a>
 							</div>
 
 							<div class="mt-40">

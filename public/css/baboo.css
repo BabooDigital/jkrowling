@@ -1031,6 +1031,7 @@ select.form-control:focus {
 	cursor: pointer;padding:12px 0;border-radius: 4px;border: dashed 2px #dde4e9;
 }
 .addsubchapt_on {
+	color: white;
 	cursor: pointer;
     padding: 12px 0;
     border-radius: 4px;
@@ -1039,9 +1040,6 @@ select.form-control:focus {
 }
 .txtaddsubchapt {
 	font-size: 12px;color: #7b8a95;
-}
-.txtaddsubchapt_on {
-	font-size: 13px;color: #fff;
 }
 
 /*TAB CREATE COVER*/
