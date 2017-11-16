@@ -79,7 +79,7 @@ $(document).on('click','.addsubchapt', function() {
 
 	var formData = new FormData();
 	count += 1;
-	$("div[id=subchapter]").append("<a class='btn w-100 mb-10 addsubchapt "+ count +"'><span style='font-size: 12px;color: #7b8a95;'>Tambah Sub Cerita</span></a>");
+	$("div[id=subchapter]").append("<a class='btn w-100 mb-10 chapterdata"+ count +" addsubchapt'><span class='txtaddsubchapt' id='sub_title"+ count+"'>Tambah Sub Cerita</span></a>");
 
 	formData.append("title_book", $("#title_book").val());
 	formData.append("file_cover", $('input[type=file]')[0].files[0]);
@@ -96,9 +96,16 @@ $(document).on('click','.addsubchapt', function() {
 		"processData": false,
 		"data" : formData
 	})
-	.done(function() {
-		$("#success").show();
-		$("#sub_title").text($("#title_book").val());
+	.done(function(data) {
+		console.log(data);
+		console.log(data['data']['book_id']);
+		
+		$("#success").show().delay(5000).queue(function(n) {
+		  $(this).hide(); n();
+		});
+		$("#btnaddchapt").removeClass('addsubchapt').addClass('addsubchapt_on');
+		$(".txtsub").text($("#title_book").val());
+		$("#sub_title").removeClass('txtaddsubchapt').addClass('txtaddsubchapt_on');
 		$("#title_book").val("");
 		for ( instance in CKEDITOR.instances ){
 	        CKEDITOR.instances[instance].updateElement();
@@ -113,9 +120,6 @@ $(document).on('click','.addsubchapt', function() {
 	})
 	.always(function() {
 		console.log("success");
-		for (var pair of formData.entries()) {
-			console.log(pair[0]+ ', ' + pair[1]); 
-		}
 	});
 
 });

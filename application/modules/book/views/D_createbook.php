@@ -44,12 +44,11 @@
 	}
 </script>
 <body>
-
 	<form action="#" id="form_book" method="POST" enctype="multipart/form-data">
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-3 bg-white pt-10 cleftmenu">
-					<div class="stickymenu">
+					<div class="stickymenu" style="height: 100vh;">
 						<a href="javascript:void(0);" class="backbtn" style="font-size: 14px;"><i class="fa fa-long-arrow-left mr-10" aria-hidden="true"></i> Kembali</a>
 						<div class="text-center">
 							<div class="coverprev mt-20" style="margin-bottom: -60px;">
@@ -66,8 +65,18 @@
 							</div>
 							<span style="font-size: 18px;font-weight: 600;color: #141414;">Judul Buku</span>
 							<hr>
+							<div>
+								<input type="hidden" name="book_id" id="book_id" value="<?php 
+									$id = $this->session->userdata('dataBook');
+									$user = $this->session->userdata('userData');
+								if(!empty($id)){
+									echo $user['user_id']+$id['book_id'];
+								}else{
+									echo $user['user_id']."0";
+								} ?>">
+							</div>
 							<div id="subchapter">
-								<a class="btn w-100 mb-10 addsubchapt"><span style="font-size: 12px;color: #7b8a95;" id="sub_title">Tambah Sub Cerita</span></a>
+								<a class="btn w-100 mb-10 chapterdata0 addsubchapt" id="btnaddchapt"><span class="txtaddsubchapt txtsub" id="sub_title">Tambah Sub Cerita</span></a>
 							</div>
 
 							<div class="mt-40">

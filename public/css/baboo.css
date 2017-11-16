@@ -1030,20 +1030,17 @@ select.form-control:focus {
 .addsubchapt {
 	cursor: pointer;padding:12px 0;border-radius: 4px;border: dashed 2px #dde4e9;
 }
-.savebook {
-	cursor: pointer;padding:12px 0;border-radius: 4px;background-color: rgba(232, 237, 240, 0.5);border: dashed 2px #dde4e9;
-}
-.txtsavebook {
-	font-size: 13px;color: #7b8a95;
-}
-.savebook_on {
+.addsubchapt_on {
 	cursor: pointer;
     padding: 12px 0;
     border-radius: 4px;
     background-color: rgb(181, 74, 202);
     border: solid 2px #9311ac;
 }
-.txtsavebook_on {
+.txtaddsubchapt {
+	font-size: 12px;color: #7b8a95;
+}
+.txtaddsubchapt_on {
 	font-size: 13px;color: #fff;
 }
 

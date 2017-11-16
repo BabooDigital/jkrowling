@@ -82,11 +82,13 @@ class C_Login extends MX_Controller
 
             $psn = $resval['message'];
             $user = $resval['data'];
+            $auth = $headers['BABOO-AUTH-KEY'];
             if (isset($resval['code']) && $resval['code'] == '200')
             {
                 $status = $resval['code'];
 
                 $this->session->set_userdata('isLogin', $status);
+                $this->session->set_userdata('authKey', $auth);
                 $this->session->set_userdata('userData', $user);
                 redirect("timeline");
             }
@@ -152,8 +154,10 @@ class C_Login extends MX_Controller
             $psn = $resval['message'];
             $status = $resval['code'];
             $user = $resval['data'];
+            $auth = $headers['BABOO-AUTH-KEY'];
 
             $this->session->set_userdata('isLogin', $status);
+            $this->session->set_userdata('authKey', $auth);
             $this->session->set_userdata('userData', $user);
 
             redirect('timeline');
@@ -211,11 +215,13 @@ class C_Login extends MX_Controller
 
         $psn = $resval['message'];
         $user = $resval['data'];
+        $auth = $headers['BABOO-AUTH-KEY'];
         if (isset($resval['code']) && $resval['code'] == '200')
         {
             $status = $resval['code'];
 
             $this->session->set_userdata('userData', $user);
+            $this->session->set_userdata('authKey', $auth);
             $this->session->set_userdata('isLogin', $status);
             redirect("timeline");
         }
@@ -283,11 +289,13 @@ class C_Login extends MX_Controller
 
         $psn = $resval['message'];
         $user = $resval['data'];
+        $auth = $headers['BABOO-AUTH-KEY'];
         if (isset($resval['code']) && $resval['code'] == '200')
         {
             $status = $resval['code'];
 
             $this->session->set_userdata('userData', $user);
+            $this->session->set_userdata('authKey', $auth);
             $this->session->set_userdata('isLogin', $status);
             redirect("timeline");
         }
