@@ -1,5 +1,5 @@
 $(document).ready(function() {
-
+	
 	var window_width = $( window ).width();
 
 	if (window_width < 768) {
@@ -73,13 +73,13 @@ $(document).ready(function() {
 
 // Button Tambah Chapter
 
-$(document).on('click','.addsubchapt', function() {
 	var count = 0;
+$(document).on('click','.addsubchapt', function() {
 	var editorText = CKEDITOR.instances.book_paragraph.getData();
-
+	var aww = $(this);
 	var formData = new FormData();
-	count += 1;
-	$("div[id=subchapter]").append("<a class='btn w-100 mb-10 chapterdata"+ count +" addsubchapt'><span class='txtaddsubchapt' id='sub_title"+ count+"'>Tambah Sub Cerita</span></a>");
+	count ++;
+	$(this).parents('#subchapter').append("<a class='btn w-100 mb-10 addsubchapt'>Tambah Sub Cerita</a>");
 
 	formData.append("title_book", $("#title_book").val());
 	formData.append("file_cover", $('input[type=file]')[0].files[0]);
@@ -103,8 +103,9 @@ $(document).on('click','.addsubchapt', function() {
 		$("#success").show().delay(5000).queue(function(n) {
 		  $(this).hide(); n();
 		});
-		$("#btnaddchapt").removeClass('addsubchapt').addClass('addsubchapt_on');
-		$(".txtsub").text($("#title_book").val());
+		aww.removeClass("addsubchapt").addClass('editsubchapt'+count);
+		aww.addClass('addsubchapt_on');
+		aww.text($("#title_book").val());
 		$("#sub_title").removeClass('txtaddsubchapt').addClass('txtaddsubchapt_on');
 		$("#title_book").val("");
 		for ( instance in CKEDITOR.instances ){
