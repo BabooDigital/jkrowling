@@ -33,7 +33,6 @@ $(document).ready(function() {
 		filebrowserFlashUploadUrl : 'public/plugins/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash'
 	});
 	CKFinder.setupCKEditor( editor, '../' );
-
 	$('.backbtn').on('click', function() {
 		window.history.go(-1);
 	});
