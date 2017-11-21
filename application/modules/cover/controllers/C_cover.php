@@ -2,8 +2,13 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class C_cover extends MX_Controller {
+
+	var $API = "";
+
 	function __construct(){
 		parent::__construct();
+		$this->API = "api.dev-baboo.co.id/v1/book/Books";
+
 		if ($this->session->userdata('isLogin') != 200) {
 			redirect('home');
 		}
@@ -16,14 +21,84 @@ class C_cover extends MX_Controller {
 		$data['css'][] = "public/css/bootstrap.min.css";
 		$data['css'][] = "public/css/custom-margin-padding.css";
 		$data['css'][] = "public/css/font-awesome.min.css";
+		$data['css'][] = "public/css/colorpicker/bootstrap-colorpicker.min.css";
 		$data['css'][] = "public/css/baboo.css";
 
-		$data['js'][] = "public/js/jquery-3.2.1.slim.min.js";
+		$data['js'][] = "public/js/jquery.min.js";
 		$data['js'][] = "public/js/umd/popper.min.js";
 		$data['js'][] = "public/js/bootstrap.min.js";
+		$data['js'][] = "public/js/html2canvas.js";
+		$data['js'][] = "public/js/colorpicker/bootstrap-colorpicker.min.js";
 		$data['js'][] = "public/js/custom/create_cover.js";
 
 		$this->load->view('D_createcover', $data);
+	}
+
+	public function sendCover()
+	{
+		error_reporting(0);
+		$auth = $this->session->userdata('authKey');
+
+        $id = $this->input->post('user_id');
+        $img = $this->input->post('cover_url');
+
+        $coverData = array(
+            'user_id' => $id,
+            'cover_url' => array('filename' => $img )
+        );
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $this->API.'/cover');
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_SAFE_UPLOAD, false);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $coverData);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+        curl_setopt($ch, CURLOPT_HEADER, 1);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: multipart/form-data','baboo-auth-key : '.$auth));
+        $result = curl_exec($ch);
+        echo $result;
+        echo "<br>";
+        
+        $headers=array();
+
+        $data=explode("\n",$result);
+
+
+        array_shift($data);
+
+        foreach($data as $part){
+            $middle=explode(":",$part);
+
+            if (error_reporting() == 0) {
+                $headers[trim($middle[0])] = trim($middle[1]);
+            }
+        }
+        
+        echo $headers;
+        echo "<br>";
+        $resval = (array)json_decode($data[16], true);
+
+        $psn = $resval['message'];
+        $cover = $resval['data'];
+        $auth = $headers['BABOO-AUTH-KEY'];
+        if (isset($resval['code']) && $resval['code'] == '200')
+        {
+            $status = $resval['code'];
+           	$this->session->set_userdata('authKey', $auth);
+           	$this->session->set_userdata('dataCover', $cover);
+        }
+        else
+        {
+            $status = $resval['code'];
+        }
+        echo json_encode(array(
+            'code' => $status,
+            'data' => $cover,
+            'message' => $psn
+        ));
 	}
 
 }

@@ -10,6 +10,38 @@
 		<?php echo get_css($css) ?>
 	<?php endif ?>
 </head>
+<script type="text/javascript">
+	function tampilkanPreview(gambar, idpreview) {
+		// membuat objek gambar
+		var gb = gambar.files;
+
+		// loop untuk merender gambar
+		for (var i = 0; i < gb.length; i++) {
+			// bikin variabel
+			var gbPreview = gb[i];
+			var imageType = /image.*/;
+			var preview = document.getElementById(idpreview);
+			var reader = new FileReader();
+
+			if (gbPreview.type.match(imageType)) {
+				// jika tipe data sesuai
+				preview.file = gbPreview;
+				reader.onload = (function(element) {
+					return function(e) {
+						element.src = e.target.result;
+					};
+				})(preview);
+
+				// membaca data URL gambar
+				reader.readAsDataURL(gbPreview);
+			} else {
+				// jika tipe data tidak sesuai
+				alert("Type file tidak sesuai. Khusus image.");
+			}
+
+		}
+	}
+</script>
 <body>
 
 	<div class="container-fluid">
@@ -24,6 +56,8 @@
 					</div>
 				</div>
 			</div>
+			<input type="hidden" name="user_id" id="user_id" value="<?php $name = $this->session->userdata('userData');
+			echo $name['user_id']; ?>">
 			<div class="col-md-3" style="height: auto;background-color: #4d4c4c;">
 				<div class="">
 					<div class="tab-content" id="v-pills-tabContent">
@@ -31,23 +65,29 @@
 							<div class="row">
 								<div class="col-md-12">
 									<div class="mt-30 judulbookcover">
-										<input type="text" name="judul" class="w-100" placeholder="Tulis Judul Buku Disini">
+										<input type="text" id="cover_title" name="cover_title" class="w-100" placeholder="Tulis Judul Buku Disini">
 									</div>
 									<hr>
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-md-4 pl-10 pr-10 mb-15">
-									<button class="w-100 p-20 btnselectstyle"><span class="txtselectstyle">H1</span></button>
+									<button id="txt-size1" class="w-100 p-20 btnselectstyle"><span class="txtselectstyle">H1</span></button>
 								</div>
 								<div class="col-md-4 pl-10 pr-10 mb-15">
-									<button class="w-100 p-20 btnselectstyle"><span class="txtselectstyle">H2</span></button>
+									<button id="txt-size2" class="w-100 p-20 btnselectstyle"><span class="txtselectstyle">H2</span></button>
 								</div>
 								<div class="col-md-4 pl-10 pr-10 mb-15">
-									<button class="w-100 p-20 btnselectstyle"><span class="txtselectstyle">H3</span></button>
+									<button id="txt-size3" class="w-100 p-20 btnselectstyle"><span class="txtselectstyle">H3</span></button>
 								</div>
 								<div class="col-md-4 pl-10 pr-10 mb-15">
-									<button class="w-100 p-20 btnselectstyle"><span class="txtselectstyle">H4</span></button>
+									<button id="txt-size4" class="w-100 p-20 btnselectstyle"><span class="txtselectstyle">H4</span></button>
+								</div>
+								<div class="col-md-4 pl-10 pr-10 mb-15">
+									<button id="txt-size5" class="w-100 p-20 btnselectstyle"><span class="txtselectstyle">H5</span></button>
+								</div>
+								<div class="col-md-4 pl-10 pr-10 mb-15">
+									<button id="txt-size6" class="w-100 p-20 btnselectstyle"><span class="txtselectstyle">H6</span></button>
 								</div>
 							</div>
 						</div>
@@ -70,108 +110,127 @@
 						<div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
 							<div class="row mt-10">
 								<div class="col-md-4 pl-10 pr-10 mb-15">
-									<button class="w-100 pt-30 pb-30 btnselectstyle"><span class="txtselectstyle" style="position: relative;bottom: 25px;right: 10px;"><i class="fa fa-align-left fa-2x" aria-hidden="true"></i></span></button>
+									<button id="a-topleft" class="w-100 pt-30 pb-30 btnselectstyle"><i class="fa fa-align-left fa-2x text-white" aria-hidden="true"></i></span></button>
 								</div>
 								<div class="col-md-4 pl-10 pr-10 mb-15">
-									<button class="w-100 pt-30 pb-30 btnselectstyle"><span class="txtselectstyle" style="position: relative;bottom: 25px;"><i class="fa fa-align-center fa-2x" aria-hidden="true"></i></span></button>
+									<button id="a-topmid" class="w-100 pt-30 pb-30 btnselectstyle"><i class="fa fa-align-center fa-2x text-white" aria-hidden="true"></i></span></button>
 								</div>
 								<div class="col-md-4 pl-10 pr-10 mb-15">
-									<button class="w-100 pt-30 pb-30 btnselectstyle"><span class="txtselectstyle" style="position: relative;bottom: 25px;left: 10px;"><i class="fa fa-align-right fa-2x" aria-hidden="true"></i></span></button>
+									<button id="a-topright" class="w-100 pt-30 pb-30 btnselectstyle"><i class="fa fa-align-right fa-2x text-white" aria-hidden="true"></i></span></button>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4 pl-10 pr-10 mb-15">
+									<button id="a-centerleft" class="w-100 pt-30 pb-30 btnselectstyle"><i class="fa fa-align-left fa-2x text-white" aria-hidden="true"></i></span></button>
 								</div>
 								<div class="col-md-4 pl-10 pr-10 mb-15">
-									<button class="w-100 pt-30 pb-30 btnselectstyle"><span class="txtselectstyle" style="position: relative;right: 10px;"><i class="fa fa-align-left fa-2x" aria-hidden="true"></i></span></button>
+									<button id="a-centermid" class="w-100 pt-30 pb-30 btnselectstyle"><i class="fa fa-align-center fa-2x text-white" aria-hidden="true"></i></span></button>
 								</div>
 								<div class="col-md-4 pl-10 pr-10 mb-15">
-									<button class="w-100 pt-30 pb-30 btnselectstyle"><span class="txtselectstyle"><i class="fa fa-align-center fa-2x" aria-hidden="true"></i></span></button>
+									<button id="a-centerright" class="w-100 pt-30 pb-30 btnselectstyle"><i class="fa fa-align-right fa-2x text-white" aria-hidden="true"></i></span></button>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4 pl-10 pr-10 mb-15">
+									<button id="a-botleft" class="w-100 pt-30 pb-30 btnselectstyle"><i class="fa fa-align-left fa-2x text-white" aria-hidden="true"></i></span></button>
 								</div>
 								<div class="col-md-4 pl-10 pr-10 mb-15">
-									<button class="w-100 pt-30 pb-30 btnselectstyle"><span class="txtselectstyle" style="position: relative;left: 10px;"><i class="fa fa-align-right fa-2x" aria-hidden="true"></i></span></button>
+									<button id="a-botmid" class="w-100 pt-30 pb-30 btnselectstyle"><i class="fa fa-align-center fa-2x text-white" aria-hidden="true"></i></span></button>
 								</div>
 								<div class="col-md-4 pl-10 pr-10 mb-15">
-									<button class="w-100 pt-30 pb-30 btnselectstyle"><span class="txtselectstyle" style="position: relative;top: 25px;right: 10px;"><i class="fa fa-align-left fa-2x" aria-hidden="true"></i></span></button>
+									<button id="a-botright" class="w-100 pt-30 pb-30 btnselectstyle"><i class="fa fa-align-right fa-2x text-white" aria-hidden="true"></i></span></button>
 								</div>
-								<div class="col-md-4 pl-10 pr-10 mb-15">
-									<button class="w-100 pt-30 pb-30 btnselectstyle"><span class="txtselectstyle" style="position: relative;top: 25px;"><i class="fa fa-align-center fa-2x" aria-hidden="true"></i></span></button>
+							</div>
+						</div>
+						<div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+							<div class="row mt-10">
+								<div class="col-md-12 uploadcoverimg">
+									<input type="file" name="uploadcover" id="uploadcover" accept="image/*" onchange="tampilkanPreview(this,'bg-cover')">
+									<hr>
+									<span style="font-size: 14px;color: #ffffff;">Atau pilih background warna di bawah</span>
 								</div>
-								<div class="col-md-4 pl-10 pr-10 mb-15">
-									<button class="w-100 pt-30 pb-30 btnselectstyle"><span class="txtselectstyle" style="position: relative;top: 25px;left: 10px;"><i class="fa fa-align-right fa-2x" aria-hidden="true"></i></span></button>
+							</div>
+							<div class="row mt-10">
+								<div class="pr-5 pl-5 pb-5 colorlist">
+									<button class="w-100 colorbg" style="background: #ef4d48;border: none;height: 80px;"></button>
 								</div>
-							</div></div>
-							<div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-								<div class="row mt-10">
-									<div class="col-md-12 uploadcoverimg">
-										<input type="file" name="uploadcover">
-										<hr>
-										<span style="font-size: 14px;color: #ffffff;">Atau pilih background warna di bawah</span>
-									</div>
+								<div class="pr-5 pl-5 pb-5 colorlist">
+									<button class="w-100 colorbg" style="background: #4990e2;border: none;height: 80px;"></button>
 								</div>
-								<div class="row mt-10">
+								<div class="pr-5 pl-5 pb-5 colorlist">
+									<button class="w-100 colorbg" style="background: #f6a623;border: none;height: 80px;"></button>									</div>
 									<div class="pr-5 pl-5 pb-5 colorlist">
-										<button class="w-100" style="background-color: #ef4d48;border: none;height: 80px;"></button>
+										<button class="w-100 colorbg" style="background: #8b572a;border: none;height: 80px;"></button>
 									</div>
 									<div class="pr-5 pl-5 pb-5 colorlist">
-										<button class="w-100" style="background-color: #4990e2;border: none;height: 80px;"></button>
+										<button class="w-100 colorbg" style="background: #44c1c0;border: none;height: 80px;"></button>
 									</div>
 									<div class="pr-5 pl-5 pb-5 colorlist">
-										<button class="w-100" style="background-color: #f6a623;border: none;height: 80px;"></button>									</div>
-										<div class="pr-5 pl-5 pb-5 colorlist">
-											<button class="w-100" style="background-color: #8b572a;border: none;height: 80px;"></button>
-										</div>
-										<div class="pr-5 pl-5 pb-5 colorlist">
-											<button class="w-100" style="background-color: #44c1c0;border: none;height: 80px;"></button>
-										</div>
-										<div class="pr-5 pl-5 pb-5 colorlist">
-											<button class="w-100" style="background-color: #9b9b9b;border: none;height: 80px;"></button>
-										</div>
-										<div class="pr-5 pl-5 pb-5 colorlist">
-											<button class="w-100" style="background-color: #962a39;border: none;height: 80px;"></button>
-										</div>
-										<div class="pr-5 pl-5 pb-5 colorlist">
-											<button class="w-100" style="background-color: #ef4d48;border: none;height: 80px;"></button>
-										</div>
-										<div class="pr-5 pl-5 pb-5 colorlist">
-											<button class="w-100" style="background-color: #b44aca;border: none;height: 80px;"></button>
-										</div>
-										<div class="pr-5 pl-5 pb-5 colorlist">
-											<button class="w-100" style="background: linear-gradient(217deg, #b4ed50, #429321);border: none;height: 80px;"></button>
-										</div>
-										<div class="pr-5 pl-5 pb-5 colorlist">
-											<button class="w-100" style="background: linear-gradient(216deg, #f03e3e, #f76b1c);border: none;height: 80px;"></button>
-										</div>
-										<div class="pr-5 pl-5 pb-5 colorlist">
-											<button class="w-100" style="background-color: #000000;border: none;height: 80px;"></button>
-										</div>
+										<button class="w-100 colorbg" style="background: #9b9b9b;border: none;height: 80px;"></button>
+									</div>
+									<div class="pr-5 pl-5 pb-5 colorlist">
+										<button class="w-100 colorbg" style="background: #962a39;border: none;height: 80px;"></button>
+									</div>
+									<div class="pr-5 pl-5 pb-5 colorlist">
+										<button class="w-100 colorbg" style="background: #ef4d48;border: none;height: 80px;"></button>
+									</div>
+									<div class="pr-5 pl-5 pb-5 colorlist">
+										<button class="w-100 colorbg" style="background: #b44aca;border: none;height: 80px;"></button>
+									</div>
+									<div class="pr-5 pl-5 pb-5 colorlist">
+										<button class="w-100 colorbg" style="background: linear-gradient(217deg, #b4ed50, #429321);border: none;height: 80px;"></button>
+									</div>
+									<div class="pr-5 pl-5 pb-5 colorlist">
+										<button class="w-100 colorbg" style="background: linear-gradient(216deg, #f03e3e, #f76b1c);border: none;height: 80px;"></button>
+									</div>
+									<div class="pr-5 pl-5 pb-5 colorlist">
+										<button class="w-100 colorbg" style="background: #000000;border: none;height: 80px;"></button>
+									</div>
 
-										<hr>
-									</div>
+									<hr>
+								</div>
 
-									<div class="row mt-20">
-										<div class="col-md-12">
-											<button class="w-50" style="background-color: #b44aca;border: none;height: 70px;float: left;"></button>
-											<button style="background-color: #282828;border: none;height: 70px;width: 40px;float: left;"></button>
+								<div class="row mt-20">
+									<div class="col-md-12">
+											<!-- <button class="w-50" style="background-color: #b44aca;border: none;height: 70px;float: left;"></button>
+												<button style="background-color: #282828;border: none;height: 70px;width: 40px;float: left;"></button> -->
+												<input id="mycp" type="text" class="form-control" />
+												<a >Ubah</a>	
+											</div>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-					<div class="col-md-8" style="height: 100vh;background-color: #fff;">
-						<div class="row mt-20">
-							<div class="col-md-8">
-								<span style="font-size: 15px;font-weight: 600;text-align: left;">Buat Cover Buku</span>
-							</div>
-							<div class="col-md-4">
-								<a class="mr-30 backbtn" href="#" style="font-size: 15px;font-weight: bold;">Batal</a>
-								<button type="submit" class="btnbeliskrg" href="#" style="padding: 5px 30px;border: none;"><span style="font-size: 15px;color: #fff;font-weight: 600;"><i class="fa fa-check" aria-hidden="true"></i> Done</span></button>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-12">
-								<div class="mt-50" style="">
-									<div class="covercanvas">
-
-									</div>
+						<div class="col-md-8" style="height: 100vh;background-color: #fff;">
+							<div class="row mt-20">
+								<div class="col-md-8">
+									<span style="font-size: 15px;font-weight: 600;text-align: left;">Buat Cover Buku</span>
 								</div>
+								<div class="col-md-4">
+									<a class="mr-30 backbtn" href="#" style="font-size: 15px;font-weight: bold;">Batal</a>
+									<button type="submit" class="btnbeliskrg" href="#" style="padding: 5px 30px;border: none;"><span style="font-size: 15px;color: #fff;font-weight: 600;"><i class="fa fa-check" aria-hidden="true"></i> Done</span></button>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<form action="#" id="form_book" method="POST" enctype="multipart/form-data">
+										<div class="mt-50" id="yourcoverimage">
+											<img id="bg-cover" style="position: absolute;
+											left: 26%;width: 300px;height:450px;box-shadow: 0 2px 20px 0 rgba(111, 111, 111, 0.16);">
+											
+										</img>
+										<div id="coverCreation" style="padding: 2%;width: 300px;height: 450px;position: relative;left: 25%;">
+											<span id="texttitle" class="txt-h3"></span>
+										</div>
+									</div>
+									<br>
+									<br>
+									<br>
+									<input id="btn-Preview-Image" type="button" value="Preview"/>
+									<a id="btn-Convert-Html2Image" href="#">Download</a>
+									<div id="previewImage"></div>
+								</form>
 							</div>
 						</div>
 					</div>

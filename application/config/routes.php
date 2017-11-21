@@ -75,6 +75,7 @@ $route['create_book/save'] = 'book/C_createbook/save';
 
 // Cover
 $route['create_cover'] = 'cover/C_cover';
+$route['send_cover'] = 'cover/C_cover/sendCover';
 
 // Profile
 $route['profile'] = 'profile/C_profile';
