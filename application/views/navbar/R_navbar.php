@@ -47,7 +47,7 @@
 							</center>
 						</div>
 						<div class="col-2" style="margin-top:10px;">
-							<center><a href="<?php echo site_url('notification') ?>" id="tab_page" style="color:#9785bc; font-size:10px;">
+							<center><a href="notification" id="tab_page" style="color:#9785bc; font-size:10px;">
 							<img src="<?php echo base_url() ?>/public/img/icon-tab/notif.png" style="width:24px;height: 24px;"><br>Notification</a>
 							</center>
 						</div>

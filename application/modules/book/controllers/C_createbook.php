@@ -23,6 +23,7 @@ class C_createbook extends MX_Controller {
 		$data['css'][] = "public/css/font-awesome.min.css";
 		$data['css'][] = "public/css/baboo-responsive.css";
 		$data['css'][] = "public/css/baboo.css";
+		$data['css'][] = "public/plugins/holdOn/css/HoldOn.css";
 		 	
 		$data['js'][] = "public/js/jquery.min.js";
 		$data['js'][] = "public/plugins/ckeditor_responsive/ckeditor.js";
@@ -39,6 +40,15 @@ class C_createbook extends MX_Controller {
 			$data['js'][] = "public/plugins/ckeditor/ckeditor.js";
 			$data['js'][] = "public/plugins/ckfinder/ckfinder.js";
 			$data['js'][] = "public/js/custom/create_book.js";
+
+			$data['js'][] = "public/plugins/ckeditor_edit/ckeditor.js";
+			$data['js'][] = "public/plugins/ckfinder_edit/ckfinder.js";
+			$data['js'][] = "public/js/custom/edit_book.js";
+
+			$data['js'][] = "public/js/menupage.js";
+
+
+			$data['js'][] = "public/plugins/holdOn/js/HoldOn.js";
 
 			$data['css'][] = "public/css/baboo.css";
 			$this->load->view('D_createbook', $data);
@@ -71,6 +81,7 @@ class C_createbook extends MX_Controller {
         	$chapter = $this->input->post('chapter_title');  	
         }
         $cover = $this->input->post('file_cover');
+        $book_id = $this->input->post('id_books');
         $cat = $this->input->post('category');
         $user = $this->input->post('user_id');
         $parap = $this->input->post('paragraph');
@@ -83,7 +94,10 @@ class C_createbook extends MX_Controller {
             'chapter_title' => $chapter, 
             'paragraph' => $parap
         );
-
+		if (!empty($this->input->post('id_books'))) {
+        	$bookData['book_id'] = $this->input->post('id_books');
+        }
+        
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $this->API.'/newbooks');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -130,7 +144,8 @@ class C_createbook extends MX_Controller {
         echo json_encode(array(
             'code' => $status,
             'data' => $user,
-            'message' => $psn
+            'message' => $psn,
+            'book' =>$this->input->post('id_books')
         ));
 	}
 
@@ -158,5 +173,35 @@ class C_createbook extends MX_Controller {
 		echo $post;
 
 	}
+	public function mybook()
+	{
+		$data['judul'] = "Buat Sebuah Cerita - Baboo";
 
+		$data['css'][] = "public/css/bootstrap.min.css";
+		$data['css'][] = "public/css/custom-margin-padding.css";
+		$data['css'][] = "public/css/font-awesome.min.css";
+		$data['css'][] = "public/css/baboo-responsive.css";
+		$data['css'][] = "public/css/baboo.css";
+		 	
+		$data['js'][] = "public/js/jquery.min.js";
+		$data['js'][] = "public/plugins/ckeditor_responsive/ckeditor.js";
+		$data['js'][] = "public/plugins/ckfinder_responsive/ckfinder.js";
+		$data['js'][] = "public/js/custom/create_book_r.js";
+		if ($this->agent->mobile()) {
+			$this->load->view('include/head', $data);
+			$this->load->view('R_createbook');
+		}
+		else{
+			$data['js'][] = "public/js/umd/popper.min.js";
+			$data['js'][] = "public/js/bootstrap.min.js";
+			$data['js'][] = "public/js/jquery.sticky-kit.min.js";
+			$data['js'][] = "public/plugins/ckeditor_edit/ckeditor.js";
+			$data['js'][] = "public/plugins/ckfinder_edit/ckfinder.js";
+			$data['js'][] = "public/js/custom/edit_book.js";
+			$data['js'][] = "public/js/menupage.js";
+
+			$data['css'][] = "public/css/baboo.css";
+			$this->load->view('D_editbook', $data);
+		}
+	}
 }
