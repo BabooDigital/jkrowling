@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /*
  * ### CKFinder : Configuration File - Basic Instructions
  *

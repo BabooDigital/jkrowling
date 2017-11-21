@@ -60,6 +60,7 @@
 							</div>
 						</div>
 						<div class="mt-30">
+							<div id="loading" style="display: none;">loading</div>
 							<div class="alert alert-success" id="success" style="display: none;">
 							  <strong>Success!</strong> Indicates a successful or positive action.
 							</div>
@@ -76,7 +77,8 @@
 								} ?>">
 							</div>
 							<div id="subchapter">
-								<a class="btn w-100 mb-10 chapterdata0 addsubchapt" id="btnaddchapt">Tambah Sub Cerita</a>
+								<!-- <a class="btn w-100 mb-10 chapterdata0 addsubchapt" id="editchapt">Tambah Sub Cerita</a> -->
+								<input type="button" class="btn w-100 mb-10 chapterdata0 addsubchapt" value="Tambah Sub Cerita" />
 							</div>
 
 							<div class="mt-40">
@@ -94,13 +96,15 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-md-9">
+				<div class="col-md-9" id="pageContent">
 					<div class="pt-10 pb-10 pl-50 pr-50">
 						<div class="media">
 							<img alt="Name" class="d-flex mr-3 rounded-circle" src="<?php echo base_url(); ?>public/img/profile/pp_wanita2.png" width="50">
 							<div class="media-body mt-7">
 								<input type="hidden" name="user_id" id="user_id" value="<?php $name = $this->session->userdata('userData');
 										echo $name['user_id']; ?>">
+									<!-- <input type="text" name="book_id" id="books_id" value=""> -->
+									<div id="books_id"></div>
 								<h5 class="mt-0 mb-1 nametitle">Risa Sulistya</h5>
 								<small>Fiksi</small>
 							</div>
