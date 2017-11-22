@@ -58,7 +58,12 @@
 								<input type="file" id="file_cover" accept="image/*" onchange="tampilkanPreview(this,'preview')" name="file_cover" value="<?php $src = $this->session->userdata('dataCover'); if(!empty($src)){  echo $src['cover_url']; }else{ echo ""; } ?>">
 							</div>
 							<div>
-								<p style="font-size: 16px;">Atau <a href="<?php echo site_url(); ?>create_cover" style="color: #b448cc;"><b>Buat Di Sini</b></a></p>
+								<p style="font-size: 16px;">Atau <!-- 
+									<form action="<?php echo site_url(); ?>create_cover">
+									    <input type="submit" value="Buat Disini" style="color: #b448cc;"/>
+									</form> -->
+									<input type="button" style="background: transparent; color: #b448cc;border: 0;cursor: pointer;" onclick="window.location.href = '<?php echo site_url('create_cover'); ?>';" value="Buat Disini" />
+									<!-- <a href="<?php echo site_url(); ?>create_cover" style="color: #b448cc;"><b>Buat Di Sini</b></a></p> -->
 							</div>
 						</div>
 						<div class="mt-30">
