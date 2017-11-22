@@ -13,11 +13,19 @@
 
 	<div>
 		<div class="mt-30 tulisjudul">
-			<input type="text" name="title_book" id="title_book" class="w-100" placeholder="Masukan Judul buku" value="alhamdulillah">
+			<input type="text" name="title_book" id="title_book" class="w-100" placeholder="Masukan Judul buku" value="<?php echo $detail_book['data']['title_book'] ?>">
 		</div>
 
 		<div class="tulisbuku mt-10">
-			<textarea id="edit_book" name="edit_book">Alhamdulillah</textarea>
+			<textarea id="edit_book" name="edit_book">
+				<?php 
+					$data = "";
+					foreach ($detail_book['data']['content'] as $book) {
+						$data .= $book['paragraph_text'].'<p></p>';
+					}
+					echo $data;
+				?>
+			</textarea>
 		</div>
 
 	</div>

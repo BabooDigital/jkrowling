@@ -175,6 +175,11 @@ class C_createbook extends MX_Controller {
 	}
 	public function mybook()
 	{
+		error_reporting(0);
+		$auth = $this->session->userdata('authKey');
+		$id_book = $this->input->post('book_id');
+		$id_chapter = $this->input->post('chapter_id');
+
 		$data['judul'] = "Buat Sebuah Cerita - Baboo";
 
 		$data['css'][] = "public/css/bootstrap.min.css";
@@ -187,21 +192,71 @@ class C_createbook extends MX_Controller {
 		$data['js'][] = "public/plugins/ckeditor_responsive/ckeditor.js";
 		$data['js'][] = "public/plugins/ckfinder_responsive/ckfinder.js";
 		$data['js'][] = "public/js/custom/create_book_r.js";
-		if ($this->agent->mobile()) {
-			$this->load->view('include/head', $data);
-			$this->load->view('R_createbook');
-		}
-		else{
-			$data['js'][] = "public/js/umd/popper.min.js";
-			$data['js'][] = "public/js/bootstrap.min.js";
-			$data['js'][] = "public/js/jquery.sticky-kit.min.js";
-			$data['js'][] = "public/plugins/ckeditor_edit/ckeditor.js";
-			$data['js'][] = "public/plugins/ckfinder_edit/ckfinder.js";
-			$data['js'][] = "public/js/custom/edit_book.js";
-			$data['js'][] = "public/js/menupage.js";
 
-			$data['css'][] = "public/css/baboo.css";
-			$this->load->view('D_editbook', $data);
+
+        $url = $this->API.'/detailBook/book_id/'.$id_book.'/chapter_id/'.$id_chapter;
+        $ch = curl_init();
+        $options = array(
+        	  CURLOPT_URL			 => $url,
+        	  CURLOPT_RETURNTRANSFER => true,
+        	  CURLOPT_FOLLOWLOCATION => true,
+	          CURLOPT_CUSTOMREQUEST  =>"GET",    // Atur type request
+	          CURLOPT_POST           =>false,    // Atur menjadi GET
+	          CURLOPT_FOLLOWLOCATION => true,    // Follow redirect aktif
+	          CURLOPT_SSL_VERIFYPEER => 0,
+	          CURLOPT_HEADER         => 1,
+	          CURLOPT_HTTPHEADER	 => array('baboo-auth-key : '.$auth)
+
+        );
+        curl_setopt_array($ch, $options);
+        $content = curl_exec($ch);
+        curl_close($ch);
+        $headers=array();
+        
+        $data=explode("\n",$content);
+        $headers['status']=$data[0];
+
+		array_shift($data);
+
+		foreach($data as $part){
+		    $middle=explode(":",$part);
+		    $headers[trim($middle[0])] = trim($middle[1]);
 		}
+		// $headers['BABOO-AUTH-KEY']
+
+        $data['detail_book'] = json_decode($data[14], true);
+        $auth = $headers['BABOO-AUTH-KEY'];
+        if (isset($data['detail_book']['code']) && $data['detail_book']['code'] == '200')
+        {
+            $status = $data['detail_book']['code'];
+           	$this->session->set_userdata('authKey', $auth);
+           	$this->session->set_userdata('dataBook', $user);
+        }
+        else
+        {
+            $status = $data['detail_book']['code'];
+        }
+        print_r($data['detail_book']);
+        echo $data['detail_book']['data']['title_book'];
+		// echo json_decode($content, true);
+		// foreach($data as $part){
+		// 	echo $part;
+		// }
+		// if ($this->agent->mobile()) {
+		// 	$this->load->view('include/head', $data);
+		// 	$this->load->view('R_createbook');
+		// }
+		// else{
+		// 	$data['js'][] = "public/js/umd/popper.min.js";
+		// 	$data['js'][] = "public/js/bootstrap.min.js";
+		// 	$data['js'][] = "public/js/jquery.sticky-kit.min.js";
+		// 	$data['js'][] = "public/plugins/ckeditor_edit/ckeditor.js";
+		// 	$data['js'][] = "public/plugins/ckfinder_edit/ckfinder.js";
+		// 	$data['js'][] = "public/js/custom/edit_book.js";
+		// 	$data['js'][] = "public/js/menupage.js";
+
+		// 	$data['css'][] = "public/css/baboo.css";
+		// 	$this->load->view('D_editbook', $data);
+		// }
 	}
 }

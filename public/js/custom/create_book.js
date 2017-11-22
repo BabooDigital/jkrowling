@@ -84,7 +84,7 @@ $(document).ready(function() {
 			});
 			var url = base_url+'my_book/'+data['data']['book_id']+'/chapter/'+data['data']['chapter_id'];
 			url_redirect += 'create_book/'+data['data']['book_id'];
-			aww.replaceWith('<a class="btn w-100 mb-10 chapterdata0 editsubchapt'+count+' addsubchapt_on" id="editchapt" href="'+url+'">'+$("#title_book").val()+'</a>');
+			aww.replaceWith('<a class="btn w-100 mb-10 chapterdata0 editsubchapt'+count+' addsubchapt_on" book="'+data['data']['book_id']+'" chapter="'+data['data']['chapter_id']+'" id="editchapt" href="'+url+'">'+$("#title_book").val()+'</a>');
 			// aww.show();
 			// aww.removeClass("addsubchapt").addClass('editsubchapt'+count);
 			// aww.addClass('addsubchapt_on');
@@ -101,11 +101,12 @@ $(document).ready(function() {
 			$("#title_book").attr({
 				"placeholder": 'Masukan judul chapter'
 			});
-			function getContent(tab_page) {
+			function getContent(tab_page, book, chapter) {
 				$.ajax({
 					url: tab_page,
-					type: 'GET',
+					type: 'POST',
 					cache: false,
+					data: {book_id : book, chapter_id : chapter},
 					success: function(data) {
 						HoldOn.close();
 						$(".loader").hide();
@@ -120,10 +121,12 @@ $(document).ready(function() {
 		            message:"Tunggu sebentar."
 		        });
 				var tab_page = $(this).attr('href');
+				var book = $(this).attr('book');
+				var chapter = $(this).attr('chapter');
 				$(".loader").show();
 				history.pushState(null, null, tab_page);
 
-				getContent(tab_page);
+				getContent(tab_page,book,chapter);
 				event.preventDefault();		
 			});
 		})
@@ -132,84 +135,14 @@ $(document).ready(function() {
 		})
 		.always(function() {
 		});
-		function getContent(tab_page) {
-			$.ajax({
-				url: tab_page,
-				type: 'GET',
-				cache: false,
-				success: function(data) {
-					HoldOn.close();
-					$(".loader").hide();
-					$("#pageContent").html(data);
-				}
-			})
-			
-		}
-		$("a").on('click', function(event) {
-			HoldOn.open({
-	            theme:'sk-bounce',
-	            message:"Tunggu sebentar."
-	        });
-			var tab_page = $(this).attr('href');
-			$(".loader").show();
-			history.pushState(null, null, tab_page);
-
-			getContent(tab_page);
-			event.preventDefault();		
-		});
-	});
-	function getContent(tab_page) {
-		$.ajax({
-			url: tab_page,
-			type: 'GET',
-			cache: false,
-			success: function(data) {
-				HoldOn.close();
-				$(".loader").hide();
-				$("#pageContent").html(data);
-			}
-		})
 		
-	}
-	$("a").on('click', function(event) {
-		HoldOn.open({
-            theme:'sk-bounce',
-            message:"Tunggu sebentar."
-        });
-		var tab_page = $(this).attr('href');
-		$(".loader").show();
-		history.pushState(null, null, tab_page);
-
-		getContent(tab_page);
-		event.preventDefault();		
 	});
 });
-function getContent(tab_page) {
-	$.ajax({
-		url: tab_page,
-		type: 'GET',
-		cache: false,
-		success: function(data) {
-			HoldOn.close();
-			$(".loader").hide();
-			$("#pageContent").html(data);
-		}
-	})
-	
-}
-$("a").on('click', function(event) {
-	var tab_page = $(this).attr('href');
-	$(".loader").show();
-	history.pushState(null, null, tab_page);
-
-	getContent(tab_page);
-	event.preventDefault();		
-});
-window.onbeforeunload = function () {
-window.setTimeout(function () {
-    window.location = url_redirect;
-}, 0);
-window.onbeforeunload = null;
+// window.onbeforeunload = function () {
+// window.setTimeout(function () {
+//     window.location = url_redirect;
+// }, 0);
+// window.onbeforeunload = null;
                                 
-return 'test';
-}
+// return 'test';
+// }
