@@ -14,7 +14,7 @@
 	<!-- CONTENT BABOO -->
 	<div class="container babooid">
 		<div class="row">
-			<div class="col-md-3">
+			<div class="col-md-3 outleft">
 				<div class="stickymenu">
 					<!-- Penulis Minggu Ini -->
 					<div class="card mb-15" style="background-color: transparent;border: none;">

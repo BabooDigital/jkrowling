@@ -9,7 +9,7 @@
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/animate.css">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/simple-line-icons.css">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/fonts/fonts.css">
-<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/sweetalert2.css">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/sweetalert2.min.css">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/font-awesome.min.css">
 
 <body>
@@ -60,11 +60,11 @@
 		 							<div class="col-lg-12">
 										<form id="login-form" action="<?php echo site_url(); ?>auth/C_Login/postloginuser" method="POST">
 										  <div class="form-group">
-										    <input type="email" class="form-control login-input" id="exampleInputPassword1" name="emails" placeholder="Alamat Email">
+										    <input type="email" class="form-control login-input" id="exampleInputPassword1" name="emails" placeholder="Alamat Email" value="test123@babolotoh.id">
 										  </div>
 
 										  <div class="form-group">
-										    <input type="password" class="required password error  form-control login-input" id="exampleInputPassword1" name="passwords" placeholder="Password">
+										    <input type="password" class="required password error  form-control login-input" id="exampleInputPassword1" name="passwords" placeholder="Password" value="123456">
 										  </div>
 
 										  <p class="text-right text-daftar">Belum punya akun ? <a  data-toggle="modal" data-target="#register-modal" href="#" class="link-daftar">Daftar disini</a></p>

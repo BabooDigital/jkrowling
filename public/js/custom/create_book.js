@@ -2,6 +2,10 @@ var url_redirect = '';
 var base_url = window.location.origin+'/baboo-frontend/';
 
 $(document).ready(function() {
+
+	$('.backbtn').on('click', function() {
+		window.history.go(-1);
+	});
 	
 	var window_width = $( window ).width();
 

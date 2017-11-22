@@ -10,7 +10,7 @@
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/animate.css">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/simple-line-icons.css">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/fonts/fonts.css">
-<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/sweetalert2.css">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/sweetalert2.min.css">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/font-awesome.min.css">
 <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">

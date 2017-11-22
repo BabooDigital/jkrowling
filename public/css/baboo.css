@@ -856,12 +856,11 @@ select.form-control:focus {
 
 /*SLIDER*/
 
-.is_stuck {
-	margin-top: 6%;
-}
-
 .cleftmenu > .is_stuck {
 	margin-top: 10px !important;
+}
+.outleft > .is_stuck {
+	margin-top: 6% !important;
 }
 
 .boodropdown {
@@ -995,6 +994,26 @@ select.form-control:focus {
 	outline: none;
 }
 
+#yourcoverimage {
+	position: relative;left: 25%;width: 420px;height: 590px;
+}
+
+#bg-cover {
+	position: absolute;width: 420px;height: 590px;box-shadow: 0 2px 20px 0 rgba(111, 111, 111, 0.16);
+}
+
+#coverCreation {
+	position: absolute;padding: 2%;width: 420px;height: 590px;
+}
+
+.baboo-cover {
+	position: absolute;padding: 2%;width: 420px;height: 590px;
+}
+
+#done-cover {
+	padding: 5px 30px;border: none;font-size: 15px;color: #fff;font-weight: 600;
+}
+
 /*COVER TEXT SIZE*/
 .txt-h1 {
 	font-size: 2.5rem;
@@ -1027,14 +1046,31 @@ select.form-control:focus {
     line-height: 1.1;
 }
 
+/*COVER TEXT FONT FAMILY*/
+.setfont1 {
+	font-family: cursive !important;
+}
+.setfont2 {
+	font-family: Roboto !important;
+}
+.setfont3 {
+	font-family: Poppins !important;
+}
+.setfont4 {
+	font-family: Proxima Nova !important;
+}
+.setfont5 {
+	font-family: monospace !important;
+}
+
 /*COVER TEXT ALIGN*/
 .a-txtcenter{
 	position: relative;
-    top: 150px;
+    top: 42%;
 }
 .a-txtbot{
 	position: relative;
-    top: 300px;
+    top: 92%;
 }
 
 
@@ -1118,16 +1154,19 @@ select.form-control:focus {
 	font-size: 17px;font-weight: bold;color: #fff;
 }
 .btnselectstyle > .font-select1 {
-	font-family: OpenSans;
+	font-family: cursive;
 }
 .btnselectstyle > .font-select2 {
-	font-family: BaskOldFace;
+	font-family: Roboto;
 }
 .btnselectstyle > .font-select3 {
-	font-family: AmericanTypewriter;
+	font-family: Poppins;
 }
 .btnselectstyle > .font-select4 {
-	font-family: Baghdad;
+	font-family: Proxima Nova;
+}
+.btnselectstyle > .font-select5 {
+	font-family: monospace;
 }
 
 .uploadcoverimg > input[type=file] {
@@ -1153,6 +1192,9 @@ select.form-control:focus {
 }
 
 .colorlist {
+	width: calc(100%/4);float: left;
+}
+.txtcolorlist {
 	width: calc(100%/4);float: left;
 }
 
