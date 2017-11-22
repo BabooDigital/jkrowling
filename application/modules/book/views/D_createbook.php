@@ -52,8 +52,10 @@
 						<a href="javascript:void(0);" class="backbtn" style="font-size: 14px;"><i class="fa fa-long-arrow-left mr-10" aria-hidden="true"></i> Kembali</a>
 						<div class="text-center">
 							<div class="coverprev mt-20" style="margin-bottom: -60px;">
-								<p><img width="160" height="222" id="preview"></p>
-								<input type="file" id="file_cover" accept="image/*" onchange="tampilkanPreview(this,'preview')" name="file_cover">
+								<p><img width="160" height="222" id="preview" src="<?php $src = $this->session->userdata('dataCover'); if(!empty($src)){  echo $src['cover_url']; }else{
+									echo base_url()."public/img/assets/def_prev.png";
+								} ?>"></p>
+								<input type="file" id="file_cover" accept="image/*" onchange="tampilkanPreview(this,'preview')" name="file_cover" value="<?php $src = $this->session->userdata('dataCover'); if(!empty($src)){  echo $src['cover_url']; }else{ echo ""; } ?>">
 							</div>
 							<div>
 								<p style="font-size: 16px;">Atau <a href="<?php echo site_url(); ?>create_cover" style="color: #b448cc;"><b>Buat Di Sini</b></a></p>

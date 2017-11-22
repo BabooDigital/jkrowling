@@ -22,6 +22,7 @@ class C_cover extends MX_Controller {
 		$data['css'][] = "public/css/custom-margin-padding.css";
 		$data['css'][] = "public/css/font-awesome.min.css";
 		$data['css'][] = "public/css/colorpicker/bootstrap-colorpicker.min.css";
+		$data['css'][] = "public/css/sweetalert2.min.css";
 		$data['css'][] = "public/css/baboo.css";
 
 		$data['js'][] = "public/js/jquery.min.js";
@@ -29,7 +30,9 @@ class C_cover extends MX_Controller {
 		$data['js'][] = "public/js/bootstrap.min.js";
 		$data['js'][] = "public/js/html2canvas.js";
 		$data['js'][] = "public/js/colorpicker/bootstrap-colorpicker.min.js";
+		$data['js'][] = "public/js/sweetalert2.all.min.js";
 		$data['js'][] = "public/js/custom/create_cover.js";
+		$data['js'][] = "public/js/jquery.sticky-kit.min.js";
 
 		$this->load->view('D_createcover', $data);
 	}
@@ -42,9 +45,16 @@ class C_cover extends MX_Controller {
         $id = $this->input->post('user_id');
         $img = $this->input->post('cover_url');
 
+        $file_name_with_full_path = $_FILES["cover_url"]["tmp_name"];
+            if (function_exists('curl_file_create')) { // php 5.5+
+            	$cFile = curl_file_create($file_name_with_full_path, $_FILES["cover_url"]["type"],$_FILES["cover_url"]["name"]);
+            } else { //
+            	$cFile = '@' . realpath($file_name_with_full_path);
+            }
+
         $coverData = array(
             'user_id' => $id,
-            'cover_url' => array('filename' => $img )
+            'cover_url' => $cFile
         );
 
         $ch = curl_init();
@@ -59,8 +69,6 @@ class C_cover extends MX_Controller {
         curl_setopt($ch, CURLOPT_HEADER, 1);
         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: multipart/form-data','baboo-auth-key : '.$auth));
         $result = curl_exec($ch);
-        echo $result;
-        echo "<br>";
         
         $headers=array();
 
@@ -77,8 +85,6 @@ class C_cover extends MX_Controller {
             }
         }
         
-        echo $headers;
-        echo "<br>";
         $resval = (array)json_decode($data[16], true);
 
         $psn = $resval['message'];
