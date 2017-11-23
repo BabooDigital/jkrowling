@@ -1,6 +1,37 @@
 var url_redirect = '';
 var base_url = window.location.origin+'/baboo-frontend/';
 
+$(function(){
+  $.FroalaEditor.DefineIcon('imageInfo', {NAME: 'info'});
+  $.FroalaEditor.RegisterCommand('imageInfo', {
+    title: 'Info',
+    focus: false,
+    undo: false,
+    refreshAfterCallback: false,
+    callback: function () {
+      var $img = this.image.get();
+      alert($img.attr('src'));
+    }
+  });
+
+  $('#book_paragraph').froalaEditor({
+    imageEditButtons: ['imageDisplay', 'imageAlign', 'imageInfo', 'imageRemove']
+  })
+});
+function getContent(tab_page, book, chapter) {
+	$.ajax({
+		url: tab_page,
+		type: 'POST',
+		cache: false,
+		data: {book_id : book, chapter_id : chapter},
+		success: function(data) {
+			HoldOn.close();
+			$(".loader").hide();
+			$("#pageContent").html(data);
+		}
+	})
+	
+}
 $(document).ready(function() {
 
 	$('.backbtn').on('click', function() {
@@ -31,18 +62,18 @@ $(document).ready(function() {
 		$(".stickymenu").stick_in_parent();
 	}
 
-	var editor = CKEDITOR.replace( 'book_paragraph', {
-		filebrowserBrowseUrl : 'public/plugins/ckfinder/ckfinder.html',
-		filebrowserImageBrowseUrl : 'public/plugins/ckfinder/ckfinder.html?type=Images',
-		filebrowserFlashBrowseUrl : 'public/plugins/ckfinder/ckfinder.html?type=Flash',
-		filebrowserUploadUrl : 'public/plugins/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
-		filebrowserImageUploadUrl : 'public/plugins/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
-		filebrowserFlashUploadUrl : 'public/plugins/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash'
-	});
-	CKFinder.setupCKEditor( editor, '../' );
-	$('.backbtn').on('click', function() {
-		window.history.go(-1);
-	});
+	// var editor = CKEDITOR.replace( 'book_paragraph', {
+	// 	filebrowserBrowseUrl : 'public/plugins/ckfinder/ckfinder.html',
+	// 	filebrowserImageBrowseUrl : 'public/plugins/ckfinder/ckfinder.html?type=Images',
+	// 	filebrowserFlashBrowseUrl : 'public/plugins/ckfinder/ckfinder.html?type=Flash',
+	// 	filebrowserUploadUrl : 'public/plugins/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+	// 	filebrowserImageUploadUrl : 'public/plugins/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+	// 	filebrowserFlashUploadUrl : 'public/plugins/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash'
+	// });
+	// CKFinder.setupCKEditor( editor, '../' );
+	// $('.backbtn').on('click', function() {
+	// 	window.history.go(-1);
+	// });
 
 
 	var count = 0;
@@ -52,7 +83,7 @@ $(document).ready(function() {
             message:"Tunggu sebentar."
         });
 		console.log("Awali semua dengan Bismillah dan akhiri dengan Alhamdulillah");
-		var editorText = CKEDITOR.instances.book_paragraph.getData();
+		// var editorText = CKEDITOR.instances.book_paragraph.getData();
 		var aww = $(this);
 		var formData = new FormData();
 		count ++;
@@ -63,7 +94,7 @@ $(document).ready(function() {
 		formData.append("category", $("#category_id").val());
 		formData.append("user_id", $("input:hidden[name=user_id]").val());
 		formData.append("tag_book", $("#tag_book").val());
-		formData.append("paragraph", $("#book_paragraph").html(editorText).val());
+		formData.append("paragraph", $("#book_paragraph").val());
 		if ($("#id_books").val() != null) {
 			formData.append("id_books", $("#id_books").val());
 			for (var pair of formData.entries()) {
@@ -89,12 +120,7 @@ $(document).ready(function() {
 			var url = base_url+'my_book/'+data['data']['book_id']+'/chapter/'+data['data']['chapter_id'];
 			url_redirect += 'create_book/'+data['data']['book_id'];
 			aww.replaceWith('<a class="btn w-100 mb-10 chapterdata0 editsubchapt'+count+' addsubchapt_on" book="'+data['data']['book_id']+'" chapter="'+data['data']['chapter_id']+'" id="editchapt" href="'+url+'">'+$("#title_book").val()+'</a>');
-			// aww.show();
-			// aww.removeClass("addsubchapt").addClass('editsubchapt'+count);
-			// aww.addClass('addsubchapt_on');
-			// aww.attr('id', 'editchapt');
-			// aww.text($("#title_book").val());
-			// $('.editsubchapt'+count).attr('href', url);
+			
 			$("#books_id").html('<input type="text" id="id_books" name="id_books" value="'+data['data']['book_id']+'">');
 			$("#sub_title").removeClass('txtaddsubchapt').addClass('txtaddsubchapt_on');
 			// $("#title_book").val("");
@@ -105,34 +131,20 @@ $(document).ready(function() {
 			$("#title_book").attr({
 				"placeholder": 'Masukan judul chapter'
 			});
-			function getContent(tab_page, book, chapter) {
-				$.ajax({
-					url: tab_page,
-					type: 'POST',
-					cache: false,
-					data: {book_id : book, chapter_id : chapter},
-					success: function(data) {
-						HoldOn.close();
-						$(".loader").hide();
-						$("#pageContent").html(data);
-					}
-				})
-				
-			}
-			$("a").on('click', function(event) {
-				HoldOn.open({
-		            theme:'sk-bounce',
-		            message:"Tunggu sebentar."
-		        });
-				var tab_page = $(this).attr('href');
-				var book = $(this).attr('book');
-				var chapter = $(this).attr('chapter');
-				$(".loader").show();
-				history.pushState(null, null, tab_page);
+			// $("a").on('click', function(event) {
+			// 	HoldOn.open({
+		 //            theme:'sk-bounce',
+		 //            message:"Tunggu sebentar."
+		 //        });
+			// 	var tab_page = $(this).attr('href');
+			// 	var book = $(this).attr('book');
+			// 	var chapter = $(this).attr('chapter');
+			// 	$(".loader").show();
+			// 	history.pushState(null, null, tab_page);
 
-				getContent(tab_page,book,chapter);
-				event.preventDefault();		
-			});
+			// 	getContent(tab_page,book,chapter);
+			// 	event.preventDefault();		
+			// });
 		})
 		.fail(function() {
 			console.log("error");
@@ -150,3 +162,4 @@ $(document).ready(function() {
                                 
 // return 'test';
 // }
+

@@ -48,7 +48,7 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-3 bg-white pt-10 cleftmenu">
-					<div class="stickymenu" style="height: 100vh;">
+					<div class="stickymenu" style="height: auto;">
 						<a href="javascript:void(0);" class="backbtn" style="font-size: 14px;"><i class="fa fa-long-arrow-left mr-10" aria-hidden="true"></i> Kembali</a>
 						<div class="text-center">
 							<div class="coverprev mt-20" style="margin-bottom: -60px;">

@@ -26,10 +26,56 @@ class C_createbook extends MX_Controller {
 		$data['css'][] = "public/plugins/holdOn/css/HoldOn.css";
 		 	
 		$data['js'][] = "public/js/jquery.min.js";
-		$data['js'][] = "public/plugins/ckeditor_responsive/ckeditor.js";
-		$data['js'][] = "public/plugins/ckfinder_responsive/ckfinder.js";
+
+
+		$data['css'][] = "public/plugins/froala/css/froala_editor.css";
+		$data['css'][] = "public/plugins/froala/css/froala_style.css";
+		$data['css'][] = "public/plugins/froala/css/plugins/code_view.css";
+		$data['css'][] = "public/plugins/froala/css/plugins/colors.css";
+		$data['css'][] = "public/plugins/froala/css/plugins/emoticons.css";
+		$data['css'][] = "public/plugins/froala/css/plugins/image_manager.css";
+		$data['css'][] = "public/plugins/froala/css/plugins/image.css";
+		$data['css'][] = "public/plugins/froala/css/plugins/line_breaker.css";
+		$data['css'][] = "public/plugins/froala/css/plugins/table.css";
+		$data['css'][] = "public/plugins/froala/css/plugins/char_counter.css";
+		$data['css'][] = "public/plugins/froala/css/plugins/video.css";
+		$data['css'][] = "public/plugins/froala/css/plugins/fullscreen.css";
+		$data['css'][] = "public/plugins/froala/css/plugins/file.css";
+		$data['css'][] = "public/plugins/froala/css/plugins/quick_insert.css";
+
+
+		$data['js'][] = "public/plugins/froala/js/froala_editor.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/align.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/char_counter.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/code_beautifier.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/code_view.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/colors.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/draggable.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/emoticons.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/entities.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/file.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/font_size.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/font_family.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/fullscreen.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/image.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/image_manager.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/line_breaker.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/inline_style.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/link.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/lists.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/paragraph_format.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/paragraph_style.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/quick_insert.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/quote.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/table.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/save.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/url.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/video.min.js";
+
 		$data['js'][] = "public/js/custom/create_book_r.js";
+
 		if ($this->agent->mobile()) {
+
 			$this->load->view('include/head', $data);
 			$this->load->view('R_createbook');
 		}
@@ -37,12 +83,9 @@ class C_createbook extends MX_Controller {
 			$data['js'][] = "public/js/umd/popper.min.js";
 			$data['js'][] = "public/js/bootstrap.min.js";
 			$data['js'][] = "public/js/jquery.sticky-kit.min.js";
-			$data['js'][] = "public/plugins/ckeditor/ckeditor.js";
-			$data['js'][] = "public/plugins/ckfinder/ckfinder.js";
 			$data['js'][] = "public/js/custom/create_book.js";
 
-			$data['js'][] = "public/plugins/ckeditor_edit/ckeditor.js";
-			$data['js'][] = "public/plugins/ckfinder_edit/ckfinder.js";
+			
 			$data['js'][] = "public/js/custom/edit_book.js";
 
 			$data['js'][] = "public/js/menupage.js";
@@ -177,24 +220,10 @@ class C_createbook extends MX_Controller {
 	{
 		error_reporting(0);
 		$auth = $this->session->userdata('authKey');
-		$id_book = $this->input->post('book_id');
-		$id_chapter = $this->input->post('chapter_id');
+		$id_book = $this->uri->segment(2);
+		$id_chapter = $this->uri->segment(4);
 
-		$data['judul'] = "Buat Sebuah Cerita - Baboo";
-
-		$data['css'][] = "public/css/bootstrap.min.css";
-		$data['css'][] = "public/css/custom-margin-padding.css";
-		$data['css'][] = "public/css/font-awesome.min.css";
-		$data['css'][] = "public/css/baboo-responsive.css";
-		$data['css'][] = "public/css/baboo.css";
-		 	
-		$data['js'][] = "public/js/jquery.min.js";
-		$data['js'][] = "public/plugins/ckeditor_responsive/ckeditor.js";
-		$data['js'][] = "public/plugins/ckfinder_responsive/ckfinder.js";
-		$data['js'][] = "public/js/custom/create_book_r.js";
-
-
-        $url = $this->API.'/detailBook/book_id/'.$id_book.'/chapter_id/'.$id_chapter;
+        $url = $this->API.'/detailBook/book_id/'.$id_book.'/chapter/'.$id_chapter;
         $ch = curl_init();
         $options = array(
         	  CURLOPT_URL			 => $url,
@@ -236,27 +265,81 @@ class C_createbook extends MX_Controller {
         {
             $status = $data['detail_book']['code'];
         }
-        print_r($data['detail_book']);
-        echo $data['detail_book']['data']['title_book'];
-		// echo json_decode($content, true);
-		// foreach($data as $part){
-		// 	echo $part;
-		// }
-		// if ($this->agent->mobile()) {
-		// 	$this->load->view('include/head', $data);
-		// 	$this->load->view('R_createbook');
-		// }
-		// else{
-		// 	$data['js'][] = "public/js/umd/popper.min.js";
-		// 	$data['js'][] = "public/js/bootstrap.min.js";
-		// 	$data['js'][] = "public/js/jquery.sticky-kit.min.js";
-		// 	$data['js'][] = "public/plugins/ckeditor_edit/ckeditor.js";
-		// 	$data['js'][] = "public/plugins/ckfinder_edit/ckfinder.js";
-		// 	$data['js'][] = "public/js/custom/edit_book.js";
-		// 	$data['js'][] = "public/js/menupage.js";
+		$data['judul'] = "Buat Sebuah Cerita - Baboo";
 
-		// 	$data['css'][] = "public/css/baboo.css";
-		// 	$this->load->view('D_editbook', $data);
-		// }
+		$data['css'][] = "public/css/bootstrap.min.css";
+		$data['css'][] = "public/css/custom-margin-padding.css";
+		$data['css'][] = "public/css/font-awesome.min.css";
+		$data['css'][] = "public/css/baboo-responsive.css";
+		$data['css'][] = "public/css/baboo.css";
+		$data['css'][] = "public/plugins/holdOn/css/HoldOn.css";
+		 	
+		$data['js'][] = "public/js/jquery.min.js";
+
+		$data['css'][] = "public/plugins/froala/css/froala_editor.css";
+		$data['css'][] = "public/plugins/froala/css/froala_style.css";
+		$data['css'][] = "public/plugins/froala/css/plugins/code_view.css";
+		$data['css'][] = "public/plugins/froala/css/plugins/colors.css";
+		$data['css'][] = "public/plugins/froala/css/plugins/emoticons.css";
+		$data['css'][] = "public/plugins/froala/css/plugins/image_manager.css";
+		$data['css'][] = "public/plugins/froala/css/plugins/image.css";
+		$data['css'][] = "public/plugins/froala/css/plugins/line_breaker.css";
+		$data['css'][] = "public/plugins/froala/css/plugins/table.css";
+		$data['css'][] = "public/plugins/froala/css/plugins/char_counter.css";
+		$data['css'][] = "public/plugins/froala/css/plugins/video.css";
+		$data['css'][] = "public/plugins/froala/css/plugins/fullscreen.css";
+		$data['css'][] = "public/plugins/froala/css/plugins/file.css";
+		$data['css'][] = "public/plugins/froala/css/plugins/quick_insert.css";
+
+
+		$data['js'][] = "public/plugins/froala/js/froala_editor.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/align.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/char_counter.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/code_beautifier.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/code_view.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/colors.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/draggable.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/emoticons.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/entities.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/file.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/font_size.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/font_family.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/fullscreen.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/image.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/image_manager.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/line_breaker.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/inline_style.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/link.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/lists.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/paragraph_format.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/paragraph_style.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/quick_insert.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/quote.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/table.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/save.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/url.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/video.min.js";
+
+		$data['js'][] = "public/js/custom/create_book_r.js";
+		if ($this->agent->mobile()) {
+			$this->load->view('include/head', $data);
+			$this->load->view('R_createbook');
+		}
+		else{
+			$data['js'][] = "public/js/umd/popper.min.js";
+			$data['js'][] = "public/js/bootstrap.min.js";
+			$data['js'][] = "public/js/jquery.sticky-kit.min.js";
+			$data['js'][] = "public/js/custom/create_book.js";
+
+			$data['js'][] = "public/js/custom/edit_book.js";
+
+			// $data['js'][] = "public/js/menupage.js";
+
+
+			$data['js'][] = "public/plugins/holdOn/js/HoldOn.js";
+
+			$data['css'][] = "public/css/baboo.css";
+			$this->load->view('D_editbook', $data);
+		}
 	}
 }
