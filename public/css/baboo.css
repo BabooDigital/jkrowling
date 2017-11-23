@@ -995,19 +995,19 @@ select.form-control:focus {
 }
 
 #yourcoverimage {
-	position: relative;left: 25%;width: 420px;height: 590px;
+	position: relative;left: 15%;width: 595px;height: 842px;
 }
 
 #bg-cover {
-	position: absolute;width: 420px;height: 590px;box-shadow: 0 2px 20px 0 rgba(111, 111, 111, 0.16);
+	position: absolute;width: 595px;height: 842px;box-shadow: 0 2px 20px 0 rgba(111, 111, 111, 0.16);
 }
 
 #coverCreation {
-	position: absolute;padding: 2%;width: 420px;height: 590px;
+	position: absolute;padding: 2%;width: 595px;height: 842px;
 }
 
 .baboo-cover {
-	position: absolute;padding: 2%;width: 420px;height: 590px;
+	position: absolute;padding: 2%;width: 595px;height: 842px;
 }
 
 #done-cover {
