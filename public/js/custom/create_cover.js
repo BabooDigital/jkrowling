@@ -207,7 +207,7 @@
 		$("#done-cover").on('click', function() {
 			html2canvas(element, {
 				onrendered: function(canvas) {
-					$("#previewImage").append(canvas);
+					$("#previewImage").after(canvas);
 					getCanvas = canvas;
 					var dataURL = getCanvas.toDataURL("image/png");
 
@@ -225,15 +225,20 @@
 					formData.append('cover_url', file, aws + '.png');
 
 					swal({
-						title: 'Selesai membuat?',
+						title: 'Ingin menggunakan cover ini?',
 						text: "Anda tidak dapat mengubah cover lagi",
-						type: 'question',
+						type: 'warning',
 						showCancelButton: true,
 						confirmButtonColor: '#b54aca',
 						cancelButtonColor: '#d33',
-						confirmButtonText	: 'Gunakan'
-					}).then((saveCover) => {
-						if (saveCover) {
+						confirmButtonText: 'Ya, Gunakan',
+						cancelButtonText: 'Tidak, Ubah ulang'
+					}).then(function (result) {
+						if (result.value) {
+							HoldOn.open({
+								theme:'sk-bounce',
+								message:"Tunggu sebentar..."
+							});	
 							$.ajax({
 								async: true,
 								crossDomain: true,
@@ -244,15 +249,20 @@
 								dataType: 'json',
 								mimeType: "multipart/form-data",
 								data: formData,
-								success: function () {
+								success: function (data) {
+									HoldOn.close();
 									window.history.go(-1);
 								},
 								error: function () {
 									console.log('Error');
 								}
 							});
-						}
-					});
+					  // result.dismiss can be 'cancel', 'overlay',
+					  // 'close', and 'timer'
+					} else if (result.dismiss === 'cancel') {
+						
+					}
+				})
 				}
 			});
 		});

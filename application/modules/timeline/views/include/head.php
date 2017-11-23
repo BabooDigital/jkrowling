@@ -72,7 +72,7 @@
 										echo base_url('public/img/profile/blank-photo.jpg');
 									}else{
 										echo $img['prof_pict'];
-									} ?>" width="40"> 
+									} ?>" width="40" height="40"> 
 									<?php } ?>
 								</a>
 								<div class="media-body">

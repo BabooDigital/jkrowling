@@ -183,7 +183,7 @@
 									<button class="w-100 colorbg" style="background: #2ecc71;border: none;height: 80px;"></button>
 								</div>
 								<div class="pr-5 pl-5 pb-5 colorlist">
-									<button class="w-100 colorbg" style="background: #ffffff;border: none;height: 80px;"></button>
+									<button class="w-100 colorbg" style="background: #2c3e50;border: none;height: 80px;"></button>
 								</div>
 								<div class="pr-5 pl-5 pb-5 colorlist">
 									<button class="w-100 colorbg" style="background: #000000;border: none;height: 80px;"></button>
@@ -216,7 +216,7 @@
 						<div class="col-md-12">
 							<div class="mt-20">
 								<div id="yourcoverimage">
-									<img id="bg-cover">
+									<img id="bg-cover" style="background: rgb(239, 77, 72);">
 									<div id="coverCreation">
 										<span class="txt-h3" id="parenttxttitle"><span id="textcolor"><span id="texttitle"><span id="txtfontfam"></span></span></span></span>
 									</div>
