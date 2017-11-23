@@ -19,7 +19,7 @@ class C_home extends MX_Controller {
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $this->API.'/index');
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+		// curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 
 		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
 		curl_setopt($ch, CURLOPT_POST, false);

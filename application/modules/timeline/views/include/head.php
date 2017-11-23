@@ -33,10 +33,10 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav">
 					<li class="nav-item mr-20 active">
-						<a class="nav-link" href="<?php echo site_url(); ?>"><b>Beranda</b></a>
+						<a class="nav-link" href="<?php echo site_url(); ?>">Beranda</a>
 					</li>
 					<li class="nav-item mr-100">
-						<a class="nav-link" href="#"><b>Explore</b></a>
+						<a class="nav-link" href="#">Explore</a>
 					</li>
 					<li class="nav-item mr-30">
 						<a class="nav-link btn-navmasuk" href="<?php echo site_url(); ?>login">Masuk</a>
@@ -55,10 +55,10 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav" style="margin-bottom: -13px;">
 					<li class="nav-item mr-20 active">
-						<a class="nav-link" href="<?php echo site_url(); ?>"><b>Beranda</b></a>
+						<a class="nav-link" href="<?php echo site_url(); ?>">Beranda</a>
 					</li>
 					<li class="nav-item mr-20">
-						<a class="nav-link" href="#"><b>Explore</b></a>
+						<a class="nav-link" href="#">Explore</a>
 					</li>
 					<li class="nav-item mr-30">
 						<a class="nav-link btn-newstory" style="cursor: pointer;" href="<?php echo site_url(); ?>create_book"><i class="fa fa-pencil-square-o"></i> Tulis Cerita</a>
