@@ -24,53 +24,12 @@ class C_createbook extends MX_Controller {
 		$data['css'][] = "public/css/baboo-responsive.css";
 		$data['css'][] = "public/css/baboo.css";
 		$data['css'][] = "public/plugins/holdOn/css/HoldOn.css";
-		 	
+		$data['css'][] = "public/plugins/wysiwyg/src/bootstrap-wysihtml5.css";
+
+		$data['js'][] = "public/plugins/wysiwyg/lib/js/wysihtml5-0.3.0.js";
 		$data['js'][] = "public/js/jquery.min.js";
-
-
-		$data['css'][] = "public/plugins/froala/css/froala_editor.css";
-		$data['css'][] = "public/plugins/froala/css/froala_style.css";
-		$data['css'][] = "public/plugins/froala/css/plugins/code_view.css";
-		$data['css'][] = "public/plugins/froala/css/plugins/colors.css";
-		$data['css'][] = "public/plugins/froala/css/plugins/emoticons.css";
-		$data['css'][] = "public/plugins/froala/css/plugins/image_manager.css";
-		$data['css'][] = "public/plugins/froala/css/plugins/image.css";
-		$data['css'][] = "public/plugins/froala/css/plugins/line_breaker.css";
-		$data['css'][] = "public/plugins/froala/css/plugins/table.css";
-		$data['css'][] = "public/plugins/froala/css/plugins/char_counter.css";
-		$data['css'][] = "public/plugins/froala/css/plugins/video.css";
-		$data['css'][] = "public/plugins/froala/css/plugins/fullscreen.css";
-		$data['css'][] = "public/plugins/froala/css/plugins/file.css";
-		$data['css'][] = "public/plugins/froala/css/plugins/quick_insert.css";
-
-
-		$data['js'][] = "public/plugins/froala/js/froala_editor.min.js";
-		$data['js'][] = "public/plugins/froala/js/plugins/align.min.js";
-		$data['js'][] = "public/plugins/froala/js/plugins/char_counter.min.js";
-		$data['js'][] = "public/plugins/froala/js/plugins/code_beautifier.min.js";
-		$data['js'][] = "public/plugins/froala/js/plugins/code_view.min.js";
-		$data['js'][] = "public/plugins/froala/js/plugins/colors.min.js";
-		$data['js'][] = "public/plugins/froala/js/plugins/draggable.min.js";
-		$data['js'][] = "public/plugins/froala/js/plugins/emoticons.min.js";
-		$data['js'][] = "public/plugins/froala/js/plugins/entities.min.js";
-		$data['js'][] = "public/plugins/froala/js/plugins/file.min.js";
-		$data['js'][] = "public/plugins/froala/js/plugins/font_size.min.js";
-		$data['js'][] = "public/plugins/froala/js/plugins/font_family.min.js";
-		$data['js'][] = "public/plugins/froala/js/plugins/fullscreen.min.js";
-		$data['js'][] = "public/plugins/froala/js/plugins/image.min.js";
-		$data['js'][] = "public/plugins/froala/js/plugins/image_manager.min.js";
-		$data['js'][] = "public/plugins/froala/js/plugins/line_breaker.min.js";
-		$data['js'][] = "public/plugins/froala/js/plugins/inline_style.min.js";
-		$data['js'][] = "public/plugins/froala/js/plugins/link.min.js";
-		$data['js'][] = "public/plugins/froala/js/plugins/lists.min.js";
-		$data['js'][] = "public/plugins/froala/js/plugins/paragraph_format.min.js";
-		$data['js'][] = "public/plugins/froala/js/plugins/paragraph_style.min.js";
-		$data['js'][] = "public/plugins/froala/js/plugins/quick_insert.min.js";
-		$data['js'][] = "public/plugins/froala/js/plugins/quote.min.js";
-		$data['js'][] = "public/plugins/froala/js/plugins/table.min.js";
-		$data['js'][] = "public/plugins/froala/js/plugins/save.min.js";
-		$data['js'][] = "public/plugins/froala/js/plugins/url.min.js";
-		$data['js'][] = "public/plugins/froala/js/plugins/video.min.js";
+		
+		$data['js'][] = "public/plugins/wysiwyg/src/bootstrap3-wysihtml5.js";
 
 		$data['js'][] = "public/js/custom/create_book_r.js";
 
@@ -88,7 +47,7 @@ class C_createbook extends MX_Controller {
 			
 			$data['js'][] = "public/js/custom/edit_book.js";
 
-			$data['js'][] = "public/js/menupage.js";
+			// $data['js'][] = "public/js/menupage.js";
 
 
 			$data['js'][] = "public/plugins/holdOn/js/HoldOn.js";
@@ -340,6 +299,33 @@ class C_createbook extends MX_Controller {
 
 			$data['css'][] = "public/css/baboo.css";
 			$this->load->view('D_editbook', $data);
+		}
+	}
+	public function editor_upload()
+	{
+		header('Access-Control-Allow-Origin: *');
+		header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
+		header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token');
+		$_PATH_UPLOAD = base_url()."/public/file_upload/baboo-editor/";
+		$_PATH_UPLOAD_FOR_VIEW = base_url()."/public/file_upload/baboo-editor/";
+		$_IMAGES = array();
+		if($_FILES) {
+			$fileName = "uploaded-file-".time()."-".rand().".".pathinfo($_FILES["image1"]["name"], PATHINFO_EXTENSION); // The file name
+			$fileTmpLoc = $_FILES["image1"]["tmp_name"];
+			$fileType = $_FILES["image1"]["type"];
+			$fileSize = $_FILES["image1"]["size"];
+			$fileErrorMsg = $_FILES["image1"]["error"];
+			
+			if (!$fileTmpLoc) {
+				die("error");
+			}
+			if(move_uploaded_file($fileTmpLoc, $_PATH_UPLOAD."$fileName")) {
+				$_IMAGES["path"] = $_PATH_UPLOAD_FOR_VIEW.$fileName;
+				$_IMAGES["name"] = $_FILES["image1"]["name"];
+				die(json_encode($_IMAGES));
+			} else  {
+				die("failed");
+			}
 		}
 	}
 }

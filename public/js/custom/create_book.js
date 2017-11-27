@@ -2,21 +2,7 @@ var url_redirect = '';
 var base_url = window.location.origin+'/baboo-frontend/';
 
 $(function(){
-  $.FroalaEditor.DefineIcon('imageInfo', {NAME: 'info'});
-  $.FroalaEditor.RegisterCommand('imageInfo', {
-    title: 'Info',
-    focus: false,
-    undo: false,
-    refreshAfterCallback: false,
-    callback: function () {
-      var $img = this.image.get();
-      alert($img.attr('src'));
-    }
-  });
-
-  $('#book_paragraph').froalaEditor({
-    imageEditButtons: ['imageDisplay', 'imageAlign', 'imageInfo', 'imageRemove']
-  })
+  $('.textarea').wysihtml5();
 });
 function getContent(tab_page, book, chapter) {
 	$.ajax({
@@ -85,6 +71,83 @@ $(document).ready(function() {
 		console.log("Awali semua dengan Bismillah dan akhiri dengan Alhamdulillah");
 		// var editorText = CKEDITOR.instances.book_paragraph.getData();
 		var aww = $(this);
+		var formData = new FormData();
+		count ++;
+		$(this).parents('#subchapter').append('<input type="button" class="btn w-100 mb-10 chapterdata0 addsubchapt" value="Tambah Sub Cerita" />');
+
+		formData.append("title_book", $("#title_book").val());
+		formData.append("file_cover", $('input[type=file]')[0].files[0]);
+		formData.append("category", $("#category_id").val());
+		formData.append("user_id", $("input:hidden[name=user_id]").val());
+		formData.append("tag_book", $("#tag_book").val());
+		formData.append("paragraph", $("#book_paragraph").val());
+		if ($("#id_books").val() != null) {
+			formData.append("id_books", $("#id_books").val());
+			for (var pair of formData.entries()) {
+			    console.log(pair[0]+ ', ' + pair[1]); 
+			}
+		}else {
+			console.log('tidak');
+		}
+		$.ajax({
+			"url": base_url+"create_book/save",
+			"dataType": 'json',
+			"cache": false,
+			"type": "POST",
+			"contentType": false,
+			"processData": false,
+			"data" : formData
+		})
+		.done(function(data) {
+			HoldOn.close();
+			$("#success").show().delay(5000).queue(function(n) {
+				$(this).hide(); n();
+			});
+			var url = base_url+'my_book/'+data['data']['book_id']+'/chapter/'+data['data']['chapter_id'];
+			url_redirect += 'create_book/'+data['data']['book_id'];
+			aww.replaceWith('<a class="btn w-100 mb-10 chapterdata0 editsubchapt'+count+' addsubchapt_on" book="'+data['data']['book_id']+'" chapter="'+data['data']['chapter_id']+'" id="editchapt" href="'+url+'">'+$("#title_book").val()+'</a>');
+			
+			$("#books_id").html('<input type="text" id="id_books" name="id_books" value="'+data['data']['book_id']+'">');
+			$("#sub_title").removeClass('txtaddsubchapt').addClass('txtaddsubchapt_on');
+			// $("#title_book").val("");
+			for ( instance in CKEDITOR.instances ){
+				CKEDITOR.instances[instance].updateElement();
+			}
+			CKEDITOR.instances[instance].setData('');
+			$("#title_book").attr({
+				"placeholder": 'Masukan judul chapter'
+			});
+			// $("a").on('click', function(event) {
+			// 	HoldOn.open({
+		 //            theme:'sk-bounce',
+		 //            message:"Tunggu sebentar."
+		 //        });
+			// 	var tab_page = $(this).attr('href');
+			// 	var book = $(this).attr('book');
+			// 	var chapter = $(this).attr('chapter');
+			// 	$(".loader").show();
+			// 	history.pushState(null, null, tab_page);
+
+			// 	getContent(tab_page,book,chapter);
+			// 	event.preventDefault();		
+			// });
+		})
+		.fail(function() {
+			console.log("error");
+		})
+		.always(function() {
+		});
+		
+	});
+	var count = 0;
+	$(document).on('click','.saveasdraft', function() {
+		HoldOn.open({
+            theme:'sk-bounce',
+            message:"Tunggu sebentar."
+        });
+		console.log("Awali semua dengan Bismillah dan akhiri dengan Alhamdulillah");
+		// var editorText = CKEDITOR.instances.book_paragraph.getData();
+		var aww = $("#btnsavedraft");
 		var formData = new FormData();
 		count ++;
 		$(this).parents('#subchapter').append('<input type="button" class="btn w-100 mb-10 chapterdata0 addsubchapt" value="Tambah Sub Cerita" />');

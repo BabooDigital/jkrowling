@@ -84,6 +84,7 @@
 								} ?>">
 							</div>
 							<div id="subchapter">
+								<a style="display: none;" class="btn w-100 mb-10 chapterdata0 editsubchapt1 btnsavedraft" id="btnsavedraft" id="editchapt" href="#"></a>
 								<!-- <a class="btn w-100 mb-10 chapterdata0 addsubchapt" id="editchapt">Tambah Sub Cerita</a> -->
 								<input type="button" class="btn w-100 mb-10 chapterdata0 addsubchapt" value="Tambah Sub Cerita" />
 							</div>
@@ -123,14 +124,14 @@
 							</div>
 
 							<div class="tulisbuku mt-10">
-								<textarea id="book_paragraph" name="book_paragraph"></textarea>
+								<textarea id="book_paragraph" class="textarea form-control" style="height: 300PX;" name="book_paragraph"></textarea>
 							</div>
 
 						</div>
 					</div>
 
 					<div class="pull-right mb-10">
-						<a class="mr-30" href="#" style="font-size: 18px;font-weight: bold;">Simpan ke Draft</a>
+						<input type="button" class="mr-30 saveasdraft" style="font-size: 18px;font-weight: bold;background: transparent; border: 0; cursor: pointer;" value="Simpan ke Draft" />
 						<button type="submit" class="btnbeliskrg" href="#" style="padding: 10px 50px;"><span class="txtbtnbeliskrg" ">Publish</span></button>
 					</div>
 				</div>
