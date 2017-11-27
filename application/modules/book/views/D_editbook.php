@@ -88,6 +88,7 @@
 								<?php foreach ($detail_book['data']['chapters'] as $btn_chapters): ?>								
 									<a class="btn w-100 mb-10 chapterdata0 editsubchapt1 addsubchapt_on" book="425" chapter="472" id="editchapt" href="<?php $url = 'my_book/'.$detail_book['data']['book_id'].'/chapter/'.$btn_chapters['chapter_id']; echo site_url($url) ?>"><?php echo $btn_chapters['chapter_title']; ?></a>
 								<?php endforeach ?>
+								
 								<input type="button" class="btn w-100 mb-10 chapterdata0 addsubchapt" value="Tambah Sub Cerita" />
 							</div>
 
