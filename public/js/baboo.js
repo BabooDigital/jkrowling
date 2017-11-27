@@ -1,6 +1,3 @@
-    function funcDropdown() {
-        document.getElementById("myDropdown").classList.toggle("showss");
-    }
 
 // FILTER-GALERI TIMELINE OUT
 $(document).ready(function(){

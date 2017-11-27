@@ -60,6 +60,9 @@ $route['logout'] = 'timeline/C_timeline/signout';
 $route['home'] = 'timeline/C_home';
 $route['timeline'] = 'timeline/C_timeline';
 
+$route['writter'] = 'timeline/C_timeline/getWritter';
+$route['writters'] = 'timeline/C_home/getWritter';
+
 // Explore
 $route['notification'] = 'notification/C_notification';
 
@@ -78,5 +81,5 @@ $route['create_cover'] = 'cover/C_cover';
 $route['send_cover'] = 'cover/C_cover/sendCover';
 
 // Profile
-$route['profile'] = 'profile/C_profile';
+$route['profile/(:any)'] = 'profile/C_profile';
 $route['awsd'] = 'book/C_createbook/awasd';
