@@ -261,7 +261,7 @@
 				var imageProgressBar = insertImageModal.find('#imageProgressBar');
 				
 				var insertImage = function() {
-					if(insertImageModal.find("input[name=imageUploaded]").size() > 0) {
+					if(insertImageModal.find("input[name=imageUploaded]") != null) {
 						insertImageModal.find("input[name=imageUploaded]").each(function() {
 							var url = $(this).val();      
 							self.editor.currentView.element.focus();
