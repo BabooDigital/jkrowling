@@ -9,7 +9,7 @@ class C_cover extends MX_Controller {
 		parent::__construct();
 		$this->API = "api.dev-baboo.co.id/v1/book/Books";
 		
-		if ($this->session->userdata('isLogin') != 200) {
+		if ($this->session->userdata('isLogin') != 200 || $this->session->userdata('idBook_') == NULL) {
 			redirect('home');
 		}
 	}
@@ -57,7 +57,7 @@ class C_cover extends MX_Controller {
             $coverData = array(
             	'book_id' => $id,
             	'is_cover' => 'true',
-            	'cover_url' => $cFile
+            	'image_url' => $cFile
             );
 
             $ch = curl_init();

@@ -15,7 +15,7 @@
 						<a aria-controls="v-pills-home" aria-selected="true" class="nav-link bor-rad0 active" data-toggle="pill" href="#v-pills-home" id="v-pills-home-tab" role="tab"><img src="<?php echo base_url(); ?>public/img/assets/tt.svg"></a> <a aria-controls="v-pills-profile" aria-selected="false" class="nav-link bor-rad0" data-toggle="pill" href="#v-pills-profile" id="v-pills-profile-tab" role="tab"><img src="<?php echo base_url(); ?>public/img/assets/font-fam.svg"></a> <a aria-controls="v-pills-messages" aria-selected="false" class="nav-link bor-rad0" data-toggle="pill" href="#v-pills-messages" id="v-pills-messages-tab" role="tab"><img src="<?php echo base_url(); ?>public/img/assets/alignment.svg"></a> <a aria-controls="v-pills-settings" aria-selected="false" class="nav-link bor-rad0" data-toggle="pill" href="#v-pills-settings" id="v-pills-settings-tab" role="tab"><img src="<?php echo base_url(); ?>public/img/assets/bc.svg"></a>
 					</div>
 				</div>
-			</div><input name="iaiduui" type="hidden" value="<?php $name = $this->session->userdata('idBook_'); echo $name['book_id']; ?>">
+			</div><input name="iaiduui" type="hidden" value="<?php echo $this->session->userdata('idBook_'); ?>">
 			<div class="col-md-3 w-100" style="height: auto;background-color: #4d4c4c;">
 				<div class="stickymenu">
 					<div class="tab-content" id="v-pills-tabContent">

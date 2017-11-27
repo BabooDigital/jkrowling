@@ -51,10 +51,10 @@
 						<a href="javascript:void(0);" class="backbtn" style="font-size: 14px;"><i class="fa fa-long-arrow-left mr-10" aria-hidden="true"></i> Kembali</a>
 						<div class="text-center">
 							<div class="coverprev mt-20" style="margin-bottom: -60px;">
-								<p><img width="160" height="222" id="preview" src="<?php $src = $this->session->userdata('dataCover'); if(!empty($src)){  echo $src['cover_url']; }else{
+								<p><img width="160" height="222" id="preview" src="<?php $src = $this->session->userdata('dataCover'); if(!empty($src)){  echo $src['asset_url']; }else{
 									echo base_url()."public/img/assets/def_prev.png";
 								} ?>"></p>
-								<input type="file" id="file_cover" accept="image/*" onchange="tampilkanPreview(this,'preview')" name="file_cover" value="<?php $src = $this->session->userdata('dataCover'); if(!empty($src)){  echo $src['cover_url']; }else{ echo ""; } ?>">
+								<input type="file" id="file_cover" accept="image/*" onchange="tampilkanPreview(this,'preview')" name="file_cover" value="<?php $src = $this->session->userdata('dataCover'); if(!empty($src)){  echo $src['asset_url']; }else{ echo ""; } ?>">
 							</div>
 							<div>
 								<p style="font-size: 16px;">Atau <!-- 
@@ -74,13 +74,7 @@
 							<hr>
 							<div>
 								<input type="hidden" name="book_id" id="book_id" value="<?php 
-									$id = $this->session->userdata('dataBook');
-									$user = $this->session->userdata('userData');
-								if(!empty($id)){
-									echo $user['user_id']+$id['book_id'];
-								}else{
-									echo $user['user_id']."0";
-								} ?>">
+									echo $this->session->userdata('idBook_'); ?>">
 							</div>
 							<div id="subchapter">
 								<a style="display: none;" class="btn w-100 mb-10 chapterdata0 editsubchapt1 btnsavedraft" id="btnsavedraft" id="editchapt" href="#"></a>
