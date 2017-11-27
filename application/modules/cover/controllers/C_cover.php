@@ -44,7 +44,7 @@ class C_cover extends MX_Controller {
 		error_reporting(0);
 		$auth = $this->session->userdata('authKey');
 
-		$id = $this->input->post('user_id');
+		$id = $this->input->post('book_id');
 		$img = $this->input->post('cover_url');
 
 		$file_name_with_full_path = $_FILES["cover_url"]["tmp_name"];
@@ -55,12 +55,13 @@ class C_cover extends MX_Controller {
             }
 
             $coverData = array(
-            	'user_id' => $id,
+            	'book_id' => $id,
+            	'is_cover' => 'true',
             	'cover_url' => $cFile
             );
 
             $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, $this->API.'/cover');
+            curl_setopt($ch, CURLOPT_URL, $this->API.'/uploadImage');
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 

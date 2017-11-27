@@ -221,7 +221,7 @@
 					var formData = new FormData();
 
 
-					formData.append("user_id", $("input:hidden[name=iaiduui]").val());
+					formData.append("book_id", $("input:hidden[name=iaidubi]").val());
 					formData.append('cover_url', file, aws + '.png');
 
 					swal({
