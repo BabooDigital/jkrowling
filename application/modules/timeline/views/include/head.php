@@ -61,7 +61,10 @@
 						<a class="nav-link" href="#">Explore</a>
 					</li>
 					<li class="nav-item mr-30">
-						<a class="nav-link btn-newstory" style="cursor: pointer;" href="<?php echo site_url(); ?>create_book"><i class="fa fa-pencil-square-o"></i> Tulis Cerita</a>
+						<form action="<?php echo site_url(); ?>createidbook" method="POST">
+							<input type="hidden" name="iaiduui" value="<?php $name = $this->session->userdata('userData'); echo $name['user_id']; ?>">
+							<button type="submit" class="nav-link btn-newstory" style="cursor: pointer;"><i class="fa fa-pencil-square-o"></i> Tulis Cerita</button>
+						</form>
 					</li>
 					<li class="nav-item">
 						<div class="media nav-link martopbot">

@@ -59,6 +59,7 @@ $route['logout'] = 'timeline/C_timeline/signout';
 /*Timeline*/
 $route['home'] = 'timeline/C_home';
 $route['timeline'] = 'timeline/C_timeline';
+$route['createidbook'] = 'timeline/C_timeline/createbook_id';
 
 $route['writter'] = 'timeline/C_timeline/getWritter';
 $route['writters'] = 'timeline/C_home/getWritter';
