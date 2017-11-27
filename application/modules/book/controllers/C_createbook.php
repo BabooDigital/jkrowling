@@ -57,21 +57,6 @@ class C_createbook extends MX_Controller {
 		}
 	}
 
-	public function createbook_id()
-	{
-		$user = $this->input->post('id_user');
-
-		$book = array('author_id' => $user );
-		$query = $this->db->insert('book', $book);
-
-		$id = $this->db->insert_id();
-		$q = $this->db->get_where('book', array('book_id' => $id));
-		foreach ($q->result() as $row){
-			$redirect =  $row->id;
-			header('Location:create_book/' . $id);
-			}	
-	}
-
 	public function save()
 	{
 		error_reporting(0);

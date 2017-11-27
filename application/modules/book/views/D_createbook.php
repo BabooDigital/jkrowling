@@ -10,7 +10,6 @@
 		<?php echo get_css($css) ?>
 	<?php endif ?>
 </head>
-<?php   $b = $this->uri->segment(3); ?>
 <script type="text/javascript">
 		function tampilkanPreview(gambar, idpreview) {
 		// membuat objek gambar
