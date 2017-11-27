@@ -1,5 +1,5 @@
 var url_redirect = '';
-var base_url = window.location.origin+'/baboo-frontend/';
+var base_url = window.location.origin+'/jkrowling/';
 
 $(function(){
   $('.textarea').wysihtml5();
