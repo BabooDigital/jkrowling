@@ -2,7 +2,22 @@ var url_redirect = '';
 var base_url = window.location.origin+'/jkrowling/';
 
 $(function(){
-  $('.textarea').wysihtml5();
+  $.FroalaEditor.DefineIcon('imageInfo', {NAME: 'info'});
+  $.FroalaEditor.RegisterCommand('imageInfo', {
+    title: 'Info',
+    focus: false,
+    undo: false,
+    refreshAfterCallback: false,
+    callback: function () {
+      var $img = this.image.get();
+      alert($img.attr('src'));
+    }
+  });
+
+  $('#book_paragraph').froalaEditor({
+    imageEditButtons: ['imageDisplay', 'imageAlign', 'imageInfo', 'imageRemove'],
+    height: 300
+  })
 });
 function getContent(tab_page, book, chapter) {
 	$.ajax({

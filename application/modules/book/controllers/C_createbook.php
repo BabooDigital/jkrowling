@@ -29,8 +29,49 @@ class C_createbook extends MX_Controller {
 		$data['js'][] = "public/plugins/wysiwyg/lib/js/wysihtml5-0.3.0.js";
 		$data['js'][] = "public/js/jquery.min.js";
 		
-		$data['js'][] = "public/plugins/wysiwyg/src/bootstrap3-wysihtml5.js";
+		$data['css'][] = "public/plugins/froala/css/froala_editor.css";
+		$data['css'][] = "public/plugins/froala/css/froala_style.css";
+		$data['css'][] = "public/plugins/froala/css/plugins/code_view.css";
+		$data['css'][] = "public/plugins/froala/css/plugins/colors.css";
+		// $data['css'][] = "public/plugins/froala/css/plugins/emoticons.css";
+		$data['css'][] = "public/plugins/froala/css/plugins/image_manager.css";
+		$data['css'][] = "public/plugins/froala/css/plugins/image.css";
+		$data['css'][] = "public/plugins/froala/css/plugins/line_breaker.css";
+		$data['css'][] = "public/plugins/froala/css/plugins/table.css";
+		$data['css'][] = "public/plugins/froala/css/plugins/char_counter.css";
+		$data['css'][] = "public/plugins/froala/css/plugins/video.css";
+		$data['css'][] = "public/plugins/froala/css/plugins/fullscreen.css";
+		// $data['css'][] = "public/plugins/froala/css/plugins/file.css";
+		$data['css'][] = "public/plugins/froala/css/plugins/quick_insert.css";
 
+
+		$data['js'][] = "public/plugins/froala/js/froala_editor.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/align.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/char_counter.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/code_beautifier.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/code_view.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/colors.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/draggable.min.js";
+		// $data['js'][] = "public/plugins/froala/js/plugins/emoticons.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/entities.min.js";
+		// $data['js'][] = "public/plugins/froala/js/plugins/file.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/font_size.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/font_family.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/fullscreen.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/image.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/image_manager.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/line_breaker.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/inline_style.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/link.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/lists.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/paragraph_format.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/paragraph_style.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/quick_insert.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/quote.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/table.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/save.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/url.min.js";
+		$data['js'][] = "public/plugins/froala/js/plugins/video.min.js";
 		$data['js'][] = "public/js/custom/create_book_r.js";
 
 		if ($this->agent->mobile()) {
@@ -82,59 +123,59 @@ class C_createbook extends MX_Controller {
             'paragraph' => $parap
         );
 		if (!empty($this->input->post('id_books'))) {
-        	$bookData['book_id'] = $this->uri->segment(3);
+        	$bookData['book_id'] = $this->input->post('id_books');
         }
-        	print_r($bookData);
+        	// print_r($bookData);
         
-        // $ch = curl_init();
-        // curl_setopt($ch, CURLOPT_URL, $this->API.'/newbooks');
-        // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        // // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $this->API.'/newbooks');
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 
-        // curl_setopt($ch, CURLOPT_POST, 1);
-        // curl_setopt($ch, CURLOPT_POSTFIELDS, $bookData);
-        // curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-        // curl_setopt($ch, CURLOPT_HEADER, 1);
-        // curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key : '.$auth));
-        // $result = curl_exec($ch);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $bookData);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+        curl_setopt($ch, CURLOPT_HEADER, 1);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key : '.$auth));
+        $result = curl_exec($ch);
         
-        // $headers=array();
+        $headers=array();
 
-        // $data=explode("\n",$result);
+        $data=explode("\n",$result);
 
 
-        // array_shift($data);
+        array_shift($data);
 
-        // foreach($data as $part){
-        //     $middle=explode(":",$part);
+        foreach($data as $part){
+            $middle=explode(":",$part);
 
-        //     if (error_reporting() == 0) {
-        //         $headers[trim($middle[0])] = trim($middle[1]);
-        //     }
-        // }
+            if (error_reporting() == 0) {
+                $headers[trim($middle[0])] = trim($middle[1]);
+            }
+        }
         
         
-        // $resval = (array)json_decode($data[16], true);
+        $resval = (array)json_decode($data[16], true);
 
-        // $psn = $resval['message'];
-        // $user = $resval['data'];
-        // $auth = $headers['BABOO-AUTH-KEY'];
-        // if (isset($resval['code']) && $resval['code'] == '200')
-        // {
-        //     $status = $resval['code'];
-        //    	$this->session->set_userdata('authKey', $auth);
-        //    	$this->session->set_userdata('dataBook', $user);
-        // }
-        // else
-        // {
-        //     $status = $resval['code'];
-        // }
-        // echo json_encode(array(
-        //     'code' => $status,
-        //     'data' => $user,
-        //     'message' => $psn,
-        //     'book' =>$this->input->post('id_books')
-        // ));
+        $psn = $resval['message'];
+        $user = $resval['data'];
+        $auth = $headers['BABOO-AUTH-KEY'];
+        if (isset($resval['code']) && $resval['code'] == '200')
+        {
+            $status = $resval['code'];
+           	$this->session->set_userdata('authKey', $auth);
+           	$this->session->set_userdata('dataBook', $user);
+        }
+        else
+        {
+            $status = $resval['code'];
+        }
+        echo json_encode(array(
+            'code' => $status,
+            'data' => $user,
+            'message' => $psn,
+            'book' =>$this->input->post('id_books')
+        ));
 	}
 
 	public function createchapter_id()
