@@ -82,58 +82,59 @@ class C_createbook extends MX_Controller {
             'paragraph' => $parap
         );
 		if (!empty($this->input->post('id_books'))) {
-        	$bookData['book_id'] = $this->input->post('id_books');
+        	$bookData['book_id'] = $this->uri->segment(3);
         }
+        	print_r($bookData);
         
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $this->API.'/newbooks');
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        // $ch = curl_init();
+        // curl_setopt($ch, CURLOPT_URL, $this->API.'/newbooks');
+        // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        // // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $bookData);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-        curl_setopt($ch, CURLOPT_HEADER, 1);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key : '.$auth));
-        $result = curl_exec($ch);
+        // curl_setopt($ch, CURLOPT_POST, 1);
+        // curl_setopt($ch, CURLOPT_POSTFIELDS, $bookData);
+        // curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+        // curl_setopt($ch, CURLOPT_HEADER, 1);
+        // curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key : '.$auth));
+        // $result = curl_exec($ch);
         
-        $headers=array();
+        // $headers=array();
 
-        $data=explode("\n",$result);
+        // $data=explode("\n",$result);
 
 
-        array_shift($data);
+        // array_shift($data);
 
-        foreach($data as $part){
-            $middle=explode(":",$part);
+        // foreach($data as $part){
+        //     $middle=explode(":",$part);
 
-            if (error_reporting() == 0) {
-                $headers[trim($middle[0])] = trim($middle[1]);
-            }
-        }
+        //     if (error_reporting() == 0) {
+        //         $headers[trim($middle[0])] = trim($middle[1]);
+        //     }
+        // }
         
         
-        $resval = (array)json_decode($data[16], true);
+        // $resval = (array)json_decode($data[16], true);
 
-        $psn = $resval['message'];
-        $user = $resval['data'];
-        $auth = $headers['BABOO-AUTH-KEY'];
-        if (isset($resval['code']) && $resval['code'] == '200')
-        {
-            $status = $resval['code'];
-           	$this->session->set_userdata('authKey', $auth);
-           	$this->session->set_userdata('dataBook', $user);
-        }
-        else
-        {
-            $status = $resval['code'];
-        }
-        echo json_encode(array(
-            'code' => $status,
-            'data' => $user,
-            'message' => $psn,
-            'book' =>$this->input->post('id_books')
-        ));
+        // $psn = $resval['message'];
+        // $user = $resval['data'];
+        // $auth = $headers['BABOO-AUTH-KEY'];
+        // if (isset($resval['code']) && $resval['code'] == '200')
+        // {
+        //     $status = $resval['code'];
+        //    	$this->session->set_userdata('authKey', $auth);
+        //    	$this->session->set_userdata('dataBook', $user);
+        // }
+        // else
+        // {
+        //     $status = $resval['code'];
+        // }
+        // echo json_encode(array(
+        //     'code' => $status,
+        //     'data' => $user,
+        //     'message' => $psn,
+        //     'book' =>$this->input->post('id_books')
+        // ));
 	}
 
 	public function createchapter_id()
@@ -291,11 +292,11 @@ class C_createbook extends MX_Controller {
 		header('Access-Control-Allow-Origin: *');
 		header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
 		header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token');
-		$_PATH_UPLOAD = base_url()."/public/file_upload/baboo-editor/";
-		$_PATH_UPLOAD_FOR_VIEW = base_url()."/public/file_upload/baboo-editor/";
+		$_PATH_UPLOAD = "public/file_upload/baboo-editor/";
+		$_PATH_UPLOAD_FOR_VIEW = "public/file_upload/baboo-editor/";
 		$_IMAGES = array();
 		if($_FILES) {
-			$fileName = "uploaded-file-".time()."-".rand().".".pathinfo($_FILES["image1"]["name"], PATHINFO_EXTENSION); // The file name
+			$fileName = "uploaded-file-".time()."-".rand().".".pathinfo($_FILES["image1"]["name"], PATHINFO_EXTENSION);
 			$fileTmpLoc = $_FILES["image1"]["tmp_name"];
 			$fileType = $_FILES["image1"]["type"];
 			$fileSize = $_FILES["image1"]["size"];

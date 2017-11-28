@@ -81,7 +81,7 @@
                 "</div>" +
                 "<div class='modal-body'>" +
                 "<h4>Upload your image</h4>" +
-				  "<form name='photo' id='imageUploadForm' enctype='multipart/form-data' action='upload/editor_upload.php' method='post'>" +
+				  "<form name='photo' id='imageUploadForm' enctype='multipart/form-data' action='editor_upload' method='post'>" +
                 "<input type='file' id='imageBrowse' name='image1' size='30'/>" +
                 "<button type='button' class='btn btn-default' id='btnImageBrowse'>Click here to upload an image</button>" +
                 "</form>" +
@@ -269,7 +269,7 @@
 								self.editor.composer.selection.setBookmark(caretBookmark);
 								caretBookmark = null;
 							}
-							self.editor.composer.commands.exec("insertImage", url);  
+							self.editor.composer.commands.exec("insertImage", window.location.origin+'/jkrowling/'+url);  
 						});
 					} else {
 						var url = urlInput.val();
