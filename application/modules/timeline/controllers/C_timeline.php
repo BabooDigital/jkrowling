@@ -131,7 +131,7 @@ class C_timeline extends MX_Controller {
             $status = $resval['code'];
            	$this->session->set_userdata('authKey', $auth);
            	$this->session->set_userdata('idBook_', $book['book_id']);
-           	redirect('create_book');
+           	redirect('my_book/'.$book['book_id']);
         }
         else
         {

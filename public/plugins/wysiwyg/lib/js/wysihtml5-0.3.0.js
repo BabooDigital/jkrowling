@@ -5247,11 +5247,11 @@ wysihtml5.dom.replaceWithChildNodes = function(node) {
   }
   
   function _isLineBreak(node) {
-    return node.nodeName === "BR";
+    return node.nodeName === "P";
   }
   
   function _appendLineBreak(element) {
-    var lineBreak = element.ownerDocument.createElement("br");
+    var lineBreak = element.ownerDocument.createElement("p");
     element.appendChild(lineBreak);
   }
   
@@ -7088,10 +7088,10 @@ wysihtml5.Commands = Base.extend(
         previousSibling = _getPreviousSiblingThatIsNotBlank(node);
 
     if (nextSibling && !_isLineBreakOrBlockElement(nextSibling)) {
-      node.parentNode.insertBefore(doc.createElement("br"), nextSibling);
+      node.parentNode.insertBefore(doc.createElement("p"), nextSibling);
     }
     if (previousSibling && !_isLineBreakOrBlockElement(previousSibling)) {
-      node.parentNode.insertBefore(doc.createElement("br"), node);
+      node.parentNode.insertBefore(doc.createElement("p"), node);
     }
   }
 
@@ -7468,7 +7468,7 @@ wysihtml5.Commands = Base.extend(
   };
 })(wysihtml5);(function(wysihtml5) {
   var undef,
-      LINE_BREAK = "<br>" + (wysihtml5.browser.needsSpaceAfterLineBreak() ? " " : "");
+      LINE_BREAK = "<p>" + (wysihtml5.browser.needsSpaceAfterLineBreak() ? " " : "");
   
   wysihtml5.commands.insertLineBreak = {
     exec: function(composer, command) {

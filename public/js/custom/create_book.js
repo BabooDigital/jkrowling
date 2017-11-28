@@ -107,7 +107,7 @@ $(document).ready(function() {
 			url_redirect += 'create_book/'+data['data']['book_id'];
 			aww.replaceWith('<a class="btn w-100 mb-10 chapterdata0 editsubchapt'+count+' addsubchapt_on" book="'+data['data']['book_id']+'" chapter="'+data['data']['chapter_id']+'" id="editchapt" href="'+url+'">'+$("#title_book").val()+'</a>');
 			
-			$("#books_id").html('<input type="text" id="id_books" name="id_books" value="'+data['data']['book_id']+'">');
+			// $("#books_id").html('<input type="text" id="id_books" name="id_books" value="'+data['data']['book_id']+'">');
 			$("#sub_title").removeClass('txtaddsubchapt').addClass('txtaddsubchapt_on');
 			// $("#title_book").val("");
 			for ( instance in CKEDITOR.instances ){

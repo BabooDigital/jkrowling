@@ -104,6 +104,7 @@
 							<div class="media-body mt-7">
 								<input type="hidden" name="user_id" id="user_id" value="<?php $name = $this->session->userdata('userData');
 										echo $name['user_id']; ?>">
+									<input type="hidden" name="book_id" id="id_books" value="<?php echo $this->uri->segment(2); ?>">
 									<!-- <input type="text" name="book_id" id="books_id" value=""> -->
 									<div id="books_id"></div>
 								<h5 class="mt-0 mb-1 nametitle">Risa Sulistya</h5>
