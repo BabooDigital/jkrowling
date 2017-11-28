@@ -420,7 +420,9 @@ input.formsearch:focus {
 	border: solid 1px #7554bd;
 	text-align: center;
 }
-
+.btn-newstory {
+	outline: 0;
+}
 .btn-navdaftar {
 	border-radius: 31px;
 	background-color: #7554bd;
