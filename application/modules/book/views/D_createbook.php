@@ -105,6 +105,7 @@
 								<input type="hidden" name="user_id" id="user_id" value="<?php $name = $this->session->userdata('userData');
 										echo $name['user_id']; ?>">
 									<input type="hidden" name="book_id" id="id_books" value="<?php echo $this->uri->segment(2); ?>">
+									<input type="hidden" id="cover_url" accept="image/*" onchange="tampilkanPreview(this,'preview')" name="cover_url" value="<?php $src = $this->session->userdata('dataCover'); if(!empty($src)){  echo $src['asset_url']; }else{ echo ""; } ?>">
 									<!-- <input type="text" name="book_id" id="books_id" value=""> -->
 									<div id="books_id"></div>
 								<h5 class="mt-0 mb-1 nametitle">Risa Sulistya</h5>

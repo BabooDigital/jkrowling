@@ -89,9 +89,9 @@ $(document).ready(function() {
 		var formData = new FormData();
 		count ++;
 		$(this).parents('#subchapter').append('<input type="button" class="btn w-100 mb-10 chapterdata0 addsubchapt" value="Tambah Sub Cerita" />');
-
+		// console.log($('#file_cover')[0].val);
 		formData.append("title_book", $("#title_book").val());
-		formData.append("file_cover", $('input[type=file]')[0].files[0]);
+		formData.append("file_cover", $('#cover_url').val());
 		formData.append("category", $("#category_id").val());
 		formData.append("user_id", $("input:hidden[name=user_id]").val());
 		formData.append("tag_book", $("#tag_book").val());
@@ -99,7 +99,7 @@ $(document).ready(function() {
 		if ($("#id_books").val() != null) {
 			formData.append("id_books", $("#id_books").val());
 			for (var pair of formData.entries()) {
-			    console.log(pair[0]+ ', ' + pair[1]); 
+			    // console.log(pair[0]+ ', ' + pair[1]); 
 			}
 		}else {
 			console.log('tidak');
