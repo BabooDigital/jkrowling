@@ -1193,17 +1193,17 @@ body.prevent-scroll.fr-mobile {
   display: none;
   margin-left: 0px !important;
 }
-@media (min-width: 768px) {
+@media (min-width: 100px) {
   .fr-visibility-helper {
     margin-left: 1px !important;
   }
 }
-@media (min-width: 992px) {
+@media (min-width: 300px) {
   .fr-visibility-helper {
     margin-left: 2px !important;
   }
 }
-@media (min-width: 1200px) {
+@media (min-width: 500px) {
   .fr-visibility-helper {
     margin-left: 3px !important;
   }

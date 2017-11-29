@@ -341,6 +341,9 @@ input[name="title_book"]
 .form_book {
   padding: 20px 0 0 10px;
 }
+.form_cover {
+  padding: 20px;
+}
 .selectbook {
   padding: 10px;
   border-radius: 20px;
@@ -349,4 +352,67 @@ input[name="title_book"]
 
 .paddingparagraph {
   padding-top: 10px;
+  width: 95%;
 }
+
+/*nav drawer*/
+
+
+.profile-toggle {
+  text-decoration: none;
+  text-align: center;
+  width: 44px;
+  height: 44px;
+  font-size: 30px;
+  color: #000;
+  -webkit-transition: all 0.15s ease-out 0s;
+  -moz-transition: all 0.15s ease-out 0s;
+  transition: all 0.15s ease-out 0s;
+  position: absolute;
+  top: 0px;
+  right: 40px;
+  bottom: 0;
+  left: auto;
+  z-index: 9999999999999; }
+
+.close {
+  text-decoration: none;
+  text-align: center;
+  /*width: 44px;*/
+  /*height: 44px;*/
+  font-size: 100px;
+  color: #000;
+  -webkit-transition: all 0.15s ease-out 0s;
+  -moz-transition: all 0.15s ease-out 0s;
+  transition: all 0.15s ease-out 0s;
+  position: absolute;
+  top: 0px;
+  right: 40px;
+  bottom: 0;
+  left: auto;
+  z-index: 9999999999999; }
+
+.profile-toggle:hover {
+  color: #000000; }
+
+#toggle-right {
+  display: none; }
+#toggle-right:checked + .page-wrap nav.profile {
+  right: 0px; }
+#toggle-right:checked + .page-wrap .profile-toggle {
+  right: 220px; }
+
+
+nav.profile {
+  position: fixed;
+  top: 0px;
+  right: -250px;
+  bottom: 0px;
+  left: auto;
+  -webkit-transition: all 0.15s ease-out 0s;
+  -moz-transition: all 0.15s ease-out 0s;
+  transition: all 0.15s ease-out 0s;
+  height: auto;
+  width: 250px;
+  background: #FFF;
+  z-index: 2000; }
