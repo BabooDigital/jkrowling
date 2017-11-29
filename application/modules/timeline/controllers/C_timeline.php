@@ -45,7 +45,7 @@ class C_timeline extends MX_Controller {
 		}
 
 		$datas['home'] = json_decode($datas[14], true);
-		$baboo_resp = explode(":",$datas[5]);
+		$baboo_resp = explode(":",$datas[6]);
 		if(is_array($baboo_resp));
 
 		$psn = $datas['home']['message'];
