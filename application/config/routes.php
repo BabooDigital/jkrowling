@@ -59,6 +59,7 @@ $route['logout'] = 'timeline/C_timeline/signout';
 /*Timeline*/
 $route['home'] = 'timeline/C_home';
 $route['timeline'] = 'timeline/C_timeline';
+$route['message'] = 'message/C_message';
 $route['createidbook'] = 'timeline/C_timeline/createbook_id';
 
 $route['writter'] = 'timeline/C_timeline/getWritter';
@@ -66,6 +67,7 @@ $route['writters'] = 'timeline/C_home/getWritter';
 
 // Explore
 $route['notification'] = 'notification/C_notification';
+$route['more'] = 'more/C_more';
 
 // library
 $route['library'] = 'library/C_library';

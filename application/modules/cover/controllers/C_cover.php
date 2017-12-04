@@ -25,6 +25,7 @@ class C_cover extends MX_Controller {
 		$data['css'][] = "public/css/sweetalert2.min.css";
 		$data['css'][] = "public/plugins/holdOn/css/HoldOn.css";
 		$data['css'][] = "public/css/baboo.css";
+            $data['css'][] = "public/css/baboo-responsive.css";
 
 		$data['js'][] = "public/js/jquery.min.js";
 		$data['js'][] = "public/js/umd/popper.min.js";
@@ -35,8 +36,12 @@ class C_cover extends MX_Controller {
 		$data['js'][] = "public/plugins/holdOn/js/HoldOn.js";
 		$data['js'][] = "public/js/custom/create_cover.js";
 		$data['js'][] = "public/js/jquery.sticky-kit.min.js";
-
-		$this->load->view('D_createcover', $data);
+            if ($this->agent->mobile()) {
+                  $this->load->view('include/head', $data);
+                  $this->load->view('R_createcover');      
+            }else{
+                  $this->load->view('D_createcover', $data);
+            }
 	}
 
 	public function sendCover()

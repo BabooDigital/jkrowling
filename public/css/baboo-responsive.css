@@ -339,7 +339,34 @@ input[name="title_book"]
     font-size:24px;
 }
 .form_book {
-  padding: 20px 0 0 10px;
+  padding: 15px 0 0 10px;
+}
+.balance {
+  padding-bottom: 10px;
+  width: 100%;
+  padding-top: 10px;
+}
+.topup {
+  float: right;
+}
+.btn-topup {
+  background: transparent;
+  border-radius: 20px;
+  border:solid 2px #7554bd;
+  color: #7554bd;
+  width: 100px;
+}
+.lihathistory {
+  float: right;
+}
+.statuspembelian {
+  padding: 10px;
+  border-radius: 10px;
+  height: 150px;
+  background: #20a3d8;
+}
+.textpembelian {
+  color: white;
 }
 .form_cover {
   padding: 20px;
@@ -416,3 +443,52 @@ nav.profile {
   width: 250px;
   background: #FFF;
   z-index: 2000; }
+
+.search_message {
+  background: white;
+  padding: 0;
+  margin: 0;  
+}
+.search_message_form {
+  height:30px;
+  width: 100%;
+  font-size: 14px;
+  padding: 20px;
+}
+.bodymessage {
+  background: white;
+}
+.yourimage {
+  width: 90%;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+  height: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  background: white;
+}
+.margin_cover {
+  margin-top: 80px;
+  height: 1000px;
+}
+.colordiv {
+  background-color:white;
+  height:auto;
+  width:100px;
+  border-right:solid 3px #000;
+  bottom: 0;
+}
+.colordivs {
+  height:50px;
+  width:50px;
+  bottom: 0;
+}
+.fontkecil {
+  font-size: 12px;
+}
+.button_follow {
+  float: right;
+}
+.img_follow {
+  width: 40px;
+  height: 40px;
+}
