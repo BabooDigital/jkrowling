@@ -77,7 +77,10 @@
 																<img class="d-flex align-self-start mr-10 float-left" src="<?php
 																echo $s_book['cover_url']; ?>" width="120" height="170" alt="<?php
 																echo $s_book['title_book']; ?>">
-																<h5 class="card-title nametitle3"><a href="<?php echo site_url(); ?>book"><?php
+																<h5 class="card-title nametitle3"><a href="<?php echo site_url(); ?>book/<?php
+																echo $s_book['book_id']; ?>
+																-<?php echo url_title($s_book['title_book'], 'dash', true); ?>
+																"><?php
 																echo $s_book['title_book']; ?></a></h5>
 																<p class="catbook"><a href="#" class="mr-20"><span class="btn-no-fill">FIKSI</span></a> <span class="mr-20"><img src="<?php echo base_url(); ?>public/img/assets/icon_view.svg"> <?php
 																echo $s_book['view_count']; ?></span> <span><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg"> <?php

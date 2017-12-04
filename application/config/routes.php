@@ -73,7 +73,7 @@ $route['more'] = 'more/C_more';
 $route['library'] = 'library/C_library';
 
 // Book
-$route['book'] = 'book/C_book';
+$route['book/:any'] = 'book/C_book';
 $route['my_book/:num/chapter/:num'] = 'book/C_createbook/mybook';
 $route['my_book/:num'] = 'book/C_createbook';
 $route['my_book/editor_upload'] = 'book/C_createbook/editor_upload';
