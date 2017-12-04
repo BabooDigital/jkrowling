@@ -80,7 +80,7 @@ class C_home extends MX_Controller {
 			$mobile['js'][]   = "public/js/custom/slick_slider.js";
 
 			// $this->load->view('include/head', $mobile);
-			$this->load->view('R_Timeline_out');
+			$this->load->view('R_Timeline_out', $data);
 		}
 		else
 		{
