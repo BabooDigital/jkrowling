@@ -14,7 +14,7 @@ $(function(){
   $('#paragraph_book').froalaEditor({
     imageEditButtons: ['imageDisplay', 'imageAlign', 'imageInfo', 'imageRemove'],
     buttons: ['undo', 'redo' , 'sep', 'bold', 'italic', 'underline'],
-    height: 300,
+    height: 150,
     width: 500,
     initOnClick: true,
     toolbarBottom: true

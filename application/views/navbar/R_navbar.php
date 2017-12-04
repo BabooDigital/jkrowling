@@ -3,8 +3,13 @@
 				<img src="<?php echo base_url(); ?>public/img/logo_purple.png" width="80" class="img-fluid" alt="">
 			</a>
 
-			<form class="form-inline srcform pull-left">
-				<input class="form-search" type="text" placeholder="Penulis, Buku atau Tulisan" aria-label="Search" style="height:30px; width: 270px; font-size: 14px; margin-left:-90px;">
+			<form class="form-inline srcform pull-right">
+				<input class="form-search" type="text" placeholder="Penulis, Buku atau Tulisan" aria-label="Search" style="height:30px; width: 200px; font-size: 14px; margin-left:-30px;">
+			</form>
+			<form class="form-inline">
+				<a href="<?php echo site_url('message') ?>" id="tab_page" style="color:#9785bc; font-size:10px;">
+					<img src="<?php echo base_url() ?>/public/img/icon-tab/pesan.svg" style="width:24px;height: 24px;"><br>
+				</a>
 			</form>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav" style="margin-bottom: -7px;">
