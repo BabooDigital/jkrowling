@@ -233,6 +233,8 @@ class C_createbook extends MX_Controller {
 		$id_chapter = $this->uri->segment(4);
 
         $url = $this->API.'/detailBook/book_id/'.$id_book.'/chapter/'.$id_chapter;
+
+        // $curl_get = $this->curl_request->curl_get($auth,$url);
         $ch = curl_init();
         $options = array(
         	  CURLOPT_URL			 => $url,
@@ -249,6 +251,7 @@ class C_createbook extends MX_Controller {
         curl_setopt_array($ch, $options);
         $content = curl_exec($ch);
         curl_close($ch);
+
         $headers=array();
         
         $data=explode("\n",$content);
@@ -262,7 +265,6 @@ class C_createbook extends MX_Controller {
 		}
 		// $headers['BABOO-AUTH-KEY']
 
-        $data['detail_book'] = json_decode($data[14], true);
         $auth = $headers['BABOO-AUTH-KEY'];
         if (isset($data['detail_book']['code']) && $data['detail_book']['code'] == '200')
         {
@@ -274,7 +276,9 @@ class C_createbook extends MX_Controller {
         {
             $status = $data['detail_book']['code'];
         }
-		$data['judul'] = "Buat Sebuah Cerita - Baboo";
+        
+        $data['detail_book'] = json_decode($data[14], true);
+        $data['judul'] = "Buat Sebuah Cerita - Baboo";
 
 		$data['css'][] = "public/css/bootstrap.min.css";
 		$data['css'][] = "public/css/custom-margin-padding.css";
@@ -348,6 +352,7 @@ class C_createbook extends MX_Controller {
 			$data['js'][] = "public/plugins/holdOn/js/HoldOn.js";
 
 			$data['css'][] = "public/css/baboo.css";
+			print_r($data['detail_book']);
 			$this->load->view('D_editbook', $data);
 		}
 	}
