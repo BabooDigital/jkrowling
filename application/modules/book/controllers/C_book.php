@@ -32,7 +32,7 @@ class C_book extends MX_Controller {
         	  CURLOPT_FOLLOWLOCATION => true,
 	          CURLOPT_CUSTOMREQUEST  =>"GET",    // Atur type request
 	          CURLOPT_POST           =>false,    // Atur menjadi GET
-	          CURLOPT_FOLLOWLOCATION => true,    // Follow redirect aktif
+	          CURLOPT_FOLLOWLOCATION => false,    // Follow redirect aktif
 	          CURLOPT_SSL_VERIFYPEER => 0,
 	          CURLOPT_HEADER         => 1,
 	          CURLOPT_HTTPHEADER	 => array('baboo-auth-key : '.$auth)

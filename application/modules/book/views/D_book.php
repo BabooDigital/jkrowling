@@ -1,6 +1,6 @@
 <div class="container pt-100">
 	<div class="row">
-		<div class="col-md-4">
+		<div class="col-md-4 dtlbok">
 			<?php if (!empty($detailBook)) { ?>
 			<div class="card pb-20 stickymenu">
 				<div class="text-center pr-30 pl-30 pt-20">

@@ -880,7 +880,13 @@ input.formsearch:focus {
 		margin-top: 10px !important;
 	}
 	.outleft > .is_stuck {
-		margin-top: 6% !important;
+		margin-top: 5% !important;
+	}
+	.tmlin > .is_stuck {
+		margin-top: 70px !important;
+	}
+	.dtlbok > .is_stuck {
+		margin-top: 80px !important;
 	}
 
 	.boodropdown {
