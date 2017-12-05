@@ -1,7 +1,7 @@
 	<div class="container babooidin">
 		<div class="row">
 			<!-- Left Side -->
-			<div class="col-md-3">
+			<div class="col-md-3 tmlin">
 				<div class="stickymenu">
 					<!-- Penulis Minggu Ini -->
 					<div class="card mb-15">
@@ -108,7 +108,7 @@
 									</div>
 
 									<!-- Right Side -->
-									<div class="col-md-3">
+									<div class="col-md-3 tmlin">
 										<div class="stickymenu">
 											<!-- Card Widget -->
 											<div class="card card-widget mb-15">
