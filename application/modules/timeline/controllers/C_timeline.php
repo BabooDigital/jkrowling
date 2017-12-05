@@ -25,8 +25,7 @@ class C_timeline extends MX_Controller {
 			CURLOPT_URL			 => $url,
 			CURLOPT_RETURNTRANSFER => true,
 			CURLOPT_CUSTOMREQUEST  =>"GET",    
-			CURLOPT_POST           =>false,    
-			CURLOPT_FOLLOWLOCATION => true,    
+			CURLOPT_POST           =>false,  
 			CURLOPT_SSL_VERIFYPEER => 0,
 			CURLOPT_HEADER         => 1,
 			CURLOPT_HTTPHEADER	 => array('baboo-auth-key : '.$auth)

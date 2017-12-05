@@ -125,10 +125,7 @@ $(document).ready(function() {
 			// $("#books_id").html('<input type="text" id="id_books" name="id_books" value="'+data['data']['book_id']+'">');
 			$("#sub_title").removeClass('txtaddsubchapt').addClass('txtaddsubchapt_on');
 			// $("#title_book").val("");
-			for ( instance in CKEDITOR.instances ){
-				CKEDITOR.instances[instance].updateElement();
-			}
-			CKEDITOR.instances[instance].setData('');
+			$('#book_paragraph').froalaEditor('undo.reset');
 			$("#title_book").attr({
 				"placeholder": 'Masukan judul chapter'
 			});
@@ -202,10 +199,7 @@ $(document).ready(function() {
 			$("#books_id").html('<input type="text" id="id_books" name="id_books" value="'+data['data']['book_id']+'">');
 			$("#sub_title").removeClass('txtaddsubchapt').addClass('txtaddsubchapt_on');
 			// $("#title_book").val("");
-			for ( instance in CKEDITOR.instances ){
-				CKEDITOR.instances[instance].updateElement();
-			}
-			CKEDITOR.instances[instance].setData('');
+			$('#book_paragraph').froalaEditor('undo.reset');
 			$("#title_book").attr({
 				"placeholder": 'Masukan judul chapter'
 			});

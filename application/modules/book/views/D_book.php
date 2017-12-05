@@ -26,9 +26,8 @@
 				<div class="pr-20 pl-20 subchapter">
 					<ul class="list-group list-group-flush">
 						<li class="list-group-item"><small>Bagian Cerita</small></li>
-						<li class="list-group-item"><a href="#">Story of Diana</a></li>
 						<?php foreach ($detailBook['data']['chapters'] as $listChapt) { ?>
-							<li class="list-group-item"><a href="#" id="<?php echo $listChapt['chapter_id'] ?>"><?php echo $listChapt['chapter_title'] ?></a></li>
+						<li class="list-group-item"><a href="#" id="<?php echo $listChapt['chapter_id'] ?>"><?php echo $listChapt['chapter_title'] ?></a></li>
 						<?php } ?>
 					</ul>
 				</div>
@@ -58,7 +57,7 @@
 							<br>
 							<?php 
 							foreach ($detail_book['data']['content'] as $book) {
-								$data .= $book['paragraph_text'].'<p></p>';
+								$data .= $book['paragraph_text'];
 							}
 							echo $data;
 							?>
@@ -127,8 +126,8 @@
 			</div>
 		</div>
 
-		<div class="progress navprogress">
-			<div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+		<div class="progress navprogress" id="progress">
+			<div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
 		</div>
 	</nav>
 
@@ -149,18 +148,14 @@
 						</div>
 					</div>
 					<div>
-						<h2 class="dbooktitlebook">Story of Diana</h2>
+						<h2 class="dbooktitlebook"><?php echo $detailBook['data']['title_book']; ?></h2>
 						<br>
-						<p class="dbookdescbook">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-						<br>
-						<p class="dbookdescbook">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-						<br>
-						<img class="img-fluid" src="<?php echo base_url(); ?>public/img/book-img/user/city.jpg">
-						<br>
-						<br>	
-						<p class="dbookdescbook">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-						<br>
-						<p class="dbookdescbook">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+						<?php 
+						foreach ($detail_book['data']['content'] as $book) {
+							$data .= $book['paragraph_text'];
+						}
+						echo $data;
+						?>
 					</div>
 					<hr>
 					<div>
@@ -233,8 +228,8 @@
 											</div>
 										</div>
 										<div class="col-md-6">
-											<div class="progress ratingprogress">
-												<div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+											<div class="progress ratingprogress" id="progress">
+												<div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
 											</div>
 										</div>
 										<div class="col-md-1">
