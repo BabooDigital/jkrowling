@@ -4,6 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class C_home extends MX_Controller {
 
 	var $API = "";
+	private $perPage = 5;
 
 	function __construct(){
 		parent::__construct();
@@ -46,6 +47,8 @@ class C_home extends MX_Controller {
 		$datas['baboo'] = json_decode($datas[5], true);
 		$psn = $datas['home']['message'];
 		$data = $datas['home']['data'];
+		
+		$count = count($data);
 		$auth = $datas['baboo']['BABOO-AUTH-KEY'];
 		if (isset($datas['home']['code']) && $datas['home']['code'] == '200')
 		{
@@ -65,6 +68,7 @@ class C_home extends MX_Controller {
 		$data['js'][]   = "public/js/custom/D_Timeline_out.js";
 		$data['js'][]   = "public/js/custom/popular_books.js";
 		$data['js'][]   = "public/js/custom/choice_books.js";
+
 		if ($this->agent->is_mobile('ipad'))
 		{
 			$this->load->view('include/head', $data);
