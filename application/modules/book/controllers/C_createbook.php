@@ -151,7 +151,7 @@ class C_createbook extends MX_Controller {
         	// print_r($bookData);
         
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $this->API.'/newbooks');
+        curl_setopt($ch, CURLOPT_URL, $this->API.'/saveBook');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 

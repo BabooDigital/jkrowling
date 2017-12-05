@@ -18,7 +18,12 @@ class C_home extends MX_Controller {
 	{
 		$auths = $this->session->userdata('authKey');
 		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, $this->API.'/index');
+		if (!empty($this->input->get("page"))) {
+			$id = '/'.$this->input->get("page");
+		}else{
+			$id = "";
+		}
+		curl_setopt($ch, CURLOPT_URL, $this->API.'/index'.$id);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		// curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 
@@ -62,6 +67,7 @@ class C_home extends MX_Controller {
 		$data['home'] = json_decode($datas[14], true);
 		$data['judul'] = "Baboo - Beyond Book & Creativity";
 		$data['js'][]   = "public/js/jquery.min.js";
+		$data['js'][]   = "public/plugins/infinite_scroll/jquery.jscroll.js";
 		$data['js'][]   = "public/js/jquery.bxslider.min.js";
 		$data['js'][]   = "public/js/baboo.js";
 		$data['js'][]   = "public/js/jquery.sticky-kit.min.js";
@@ -82,9 +88,15 @@ class C_home extends MX_Controller {
 			$mobile['js'][]   = "public/js/jquery.bxslider.min.js";
 			$mobile['js'][]   = "public/js/slick.js";
 			$mobile['js'][]   = "public/js/custom/slick_slider.js";
+			if (!empty($this->input->get("page"))) {
+				$result = $this->load->view('data/R_Timeline_out', $data);
+				echo json_encode($result);
+			}else{
 
+				$this->load->view('R_Timeline_out', $data);
+			}
 			// $this->load->view('include/head', $mobile);
-			$this->load->view('R_Timeline_out', $data);
+			// $this->load->view('R_Timeline_out', $data);
 		}
 		else
 		{

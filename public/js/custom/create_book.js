@@ -105,7 +105,7 @@ $(document).ready(function() {
 			console.log('tidak');
 		}
 		$.ajax({
-			"url": base_url+"create_book/save",
+			"url": "create_book/save",
 			"dataType": 'json',
 			"cache": false,
 			"type": "POST",
@@ -118,7 +118,7 @@ $(document).ready(function() {
 			$("#success").show().delay(5000).queue(function(n) {
 				$(this).hide(); n();
 			});
-			var url = base_url+'my_book/'+data['data']['book_id']+'/chapter/'+data['data']['chapter_id'];
+			var url = 'my_book/'+data['data']['book_id']+'/chapter/'+data['data']['chapter_id'];
 			url_redirect += 'create_book/'+data['data']['book_id'];
 			aww.replaceWith('<a class="btn w-100 mb-10 chapterdata0 editsubchapt'+count+' addsubchapt_on" book="'+data['data']['book_id']+'" chapter="'+data['data']['chapter_id']+'" id="editchapt" href="'+url+'">'+$("#title_book").val()+'</a>');
 			
@@ -179,7 +179,7 @@ $(document).ready(function() {
 			console.log('tidak');
 		}
 		$.ajax({
-			"url": base_url+"create_book/save",
+			"url": "create_book/save",
 			"dataType": 'json',
 			"cache": false,
 			"type": "POST",
@@ -192,7 +192,7 @@ $(document).ready(function() {
 			$("#success").show().delay(5000).queue(function(n) {
 				$(this).hide(); n();
 			});
-			var url = base_url+'my_book/'+data['data']['book_id']+'/chapter/'+data['data']['chapter_id'];
+			var url = 'my_book/'+data['data']['book_id']+'/chapter/'+data['data']['chapter_id'];
 			url_redirect += 'create_book/'+data['data']['book_id'];
 			aww.replaceWith('<a class="btn w-100 mb-10 chapterdata0 editsubchapt'+count+' addsubchapt_on" book="'+data['data']['book_id']+'" chapter="'+data['data']['chapter_id']+'" id="editchapt" href="'+url+'">'+$("#title_book").val()+'</a>');
 			
