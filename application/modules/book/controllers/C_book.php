@@ -29,7 +29,6 @@ class C_book extends MX_Controller {
         $options = array(
         	  CURLOPT_URL			 => $url,
         	  CURLOPT_RETURNTRANSFER => true,
-        	  CURLOPT_FOLLOWLOCATION => true,
 	          CURLOPT_CUSTOMREQUEST  =>"GET",    // Atur type request
 	          CURLOPT_POST           =>false,    // Atur menjadi GET
 	          CURLOPT_FOLLOWLOCATION => false,    // Follow redirect aktif

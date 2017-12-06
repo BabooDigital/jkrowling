@@ -16,7 +16,7 @@ $(function(){
 
   $('#book_paragraph').froalaEditor({
     imageEditButtons: ['imageDisplay', 'imageAlign', 'imageInfo', 'imageRemove'],
-    height: 300
+    height: 400
   })
 });
 function getContent(tab_page, book, chapter) {
@@ -91,13 +91,13 @@ $(document).ready(function() {
 		$(this).parents('#subchapter').append('<input type="button" class="btn w-100 mb-10 chapterdata0 addsubchapt" value="Tambah Sub Cerita" />');
 		// console.log($('#file_cover')[0].val);
 		formData.append("title_book", $("#title_book").val());
-		formData.append("file_cover", $('#cover_url').val());
-		formData.append("category", $("#category_id").val());
+		formData.append("cover_name", $('#cover_url').val());
+		formData.append("category_id", $("#category_id").val());
 		formData.append("user_id", $("input:hidden[name=user_id]").val());
 		formData.append("tag_book", $("#tag_book").val());
-		formData.append("paragraph", $("#book_paragraph").val());
-		if ($("#id_books").val() != null) {
-			formData.append("id_books", $("#id_books").val());
+		formData.append("book_paragraph", $("#book_paragraph").val());
+		if ($("#book_id").val() != null) {
+			formData.append("book_id", $("#book_id").val());
 			for (var pair of formData.entries()) {
 			    // console.log(pair[0]+ ', ' + pair[1]); 
 			}
@@ -118,13 +118,13 @@ $(document).ready(function() {
 			$("#success").show().delay(5000).queue(function(n) {
 				$(this).hide(); n();
 			});
-			var url = 'my_book/'+data['data']['book_id']+'/chapter/'+data['data']['chapter_id'];
+			var url = data['data']['book_id']+'/chapter/'+data['data']['chapter_id'];
 			url_redirect += 'create_book/'+data['data']['book_id'];
 			aww.replaceWith('<a class="btn w-100 mb-10 chapterdata0 editsubchapt'+count+' addsubchapt_on" book="'+data['data']['book_id']+'" chapter="'+data['data']['chapter_id']+'" id="editchapt" href="'+url+'">'+$("#title_book").val()+'</a>');
 			
-			// $("#books_id").html('<input type="text" id="id_books" name="id_books" value="'+data['data']['book_id']+'">');
+			// $("#books_id").html('<input type="text" id="book_id" name="book_id" value="'+data['data']['book_id']+'">');
 			$("#sub_title").removeClass('txtaddsubchapt').addClass('txtaddsubchapt_on');
-			// $("#title_book").val("");
+			$("#title_book").val("");
 			$('#book_paragraph').froalaEditor('undo.reset');
 			$("#title_book").attr({
 				"placeholder": 'Masukan judul chapter'
@@ -165,13 +165,13 @@ $(document).ready(function() {
 		$(this).parents('#subchapter').append('<input type="button" class="btn w-100 mb-10 chapterdata0 addsubchapt" value="Tambah Sub Cerita" />');
 
 		formData.append("title_book", $("#title_book").val());
-		formData.append("file_cover", $('input[type=file]')[0].files[0]);
-		formData.append("category", $("#category_id").val());
+		formData.append("cover_name", $('#cover_name')[0].files[0]);
+		formData.append("category_id", $("#category_id").val());
 		formData.append("user_id", $("input:hidden[name=user_id]").val());
 		formData.append("tag_book", $("#tag_book").val());
-		formData.append("paragraph", $("#book_paragraph").val());
-		if ($("#id_books").val() != null) {
-			formData.append("id_books", $("#id_books").val());
+		formData.append("book_paragraph", $("#book_paragraph").val());
+		if ($("#book_id").val() != null) {
+			formData.append("book_id", $("#book_id").val());
 			for (var pair of formData.entries()) {
 			    console.log(pair[0]+ ', ' + pair[1]); 
 			}
@@ -192,13 +192,13 @@ $(document).ready(function() {
 			$("#success").show().delay(5000).queue(function(n) {
 				$(this).hide(); n();
 			});
-			var url = 'my_book/'+data['data']['book_id']+'/chapter/'+data['data']['chapter_id'];
+			var url = data['data']['book_id']+'/chapter/'+data['data']['chapter_id'];
 			url_redirect += 'create_book/'+data['data']['book_id'];
 			aww.replaceWith('<a class="btn w-100 mb-10 chapterdata0 editsubchapt'+count+' addsubchapt_on" book="'+data['data']['book_id']+'" chapter="'+data['data']['chapter_id']+'" id="editchapt" href="'+url+'">'+$("#title_book").val()+'</a>');
 			
-			$("#books_id").html('<input type="text" id="id_books" name="id_books" value="'+data['data']['book_id']+'">');
+			$("#books_id").html('<input type="hidden" id="book_id" name="book_id" value="'+data['data']['book_id']+'">');
 			$("#sub_title").removeClass('txtaddsubchapt').addClass('txtaddsubchapt_on');
-			// $("#title_book").val("");
+			$("#title_book").val("");
 			$('#book_paragraph').froalaEditor('undo.reset');
 			$("#title_book").attr({
 				"placeholder": 'Masukan judul chapter'
