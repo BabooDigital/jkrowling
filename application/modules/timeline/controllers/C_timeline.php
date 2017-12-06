@@ -156,46 +156,48 @@ class C_timeline extends MX_Controller {
 
 	public function getWritter()
 	{
-		$auths = $this->session->userdata('authKey');
+		error_reporting(0);
+		$auth = $this->session->userdata('authKey');
+		$url = $this->API.'/bestWriter';
 		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, $this->API.'/bestWriter');
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		// curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+		$options = array(
+			CURLOPT_URL			 => $url,
+			CURLOPT_RETURNTRANSFER => true,
+	          CURLOPT_CUSTOMREQUEST  =>"GET",    // Atur type request
+	          CURLOPT_POST           =>false,    // Atur menjadi GET
+	          CURLOPT_FOLLOWLOCATION => false,    // Follow redirect aktif
+	          CURLOPT_SSL_VERIFYPEER => 0,
+	          CURLOPT_HEADER         => 1,
+	          CURLOPT_HTTPHEADER	 => array('baboo-auth-key : '.$auth)
 
-		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
-		curl_setopt($ch, CURLOPT_POST, false);
-		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-		curl_setopt($ch, CURLOPT_HEADER, 1);
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key : '.$auths));
-		$result = curl_exec($ch);
+	      );
+		curl_setopt_array($ch, $options);
+		$content = curl_exec($ch);
+		curl_close($ch);
 		$headers=array();
 
-		$datas=explode("\n",$result);
+		$data=explode("\n",$content);
+		$headers['status']=$data[0];
 
-		array_shift($datas);
+		array_shift($data);
 
-		foreach($datas as $part){
+		foreach($data as $part){
 			$middle=explode(":",$part);
-
-			if (error_reporting() == 0) {
-				$headers[trim($middle[0])] = trim($middle[1]);
-			}
+			$headers[trim($middle[0])] = trim($middle[1]);
 		}
-		$datas['home'] = json_decode($datas[14], true);
-		$datas['baboo'] = json_decode($datas[5], true);
-		$psn = $datas['home']['message'];
-		$data = $datas['home']['data'];
-		$auth = $datas['baboo']['BABOO-AUTH-KEY'];
-		if (isset($datas['home']['code']) && $datas['home']['code'] == '200')
+
+		$data['home'] = json_decode($data[14], true);
+		$auth = $headers['BABOO-AUTH-KEY'];
+		if (isset($data['home']['code']) && $data['home']['code'] == '200')
 		{
-			$status = $datas['home']['code'];
+			$status = $data['home']['code'];
 			$this->session->set_userdata('authKey', $auth);
 		}
 		else
 		{
-			$status = $datas['home']['code'];
+			$status = $data['home']['code'];
 		}
-		echo json_encode($datas[14], true);
+		echo json_encode($data[14], true);
 	}
 	
 	public function signout() {

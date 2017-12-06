@@ -1,4 +1,4 @@
-<div class="container pt-100">
+<div class="container pt-100 mb-80">
 	<div class="row">
 		<div class="col-md-4 dtlbok">
 			<?php if (!empty($detailBook)) { ?>
@@ -110,7 +110,7 @@
 			</div>
 			<div class="col-md-7">
 				<ul class="navbar-nav pull-right">
-					<li class="nav-item"><span class="text-muted"><small>Page</small> <strong>02</strong></span></li>
+					<li class="nav-item"><span class="text-muted"><small>Page</small> <strong>01</strong></span></li>
 				</ul>
 				<ul class="navbar-nav">
 					<li class="nav-item">
@@ -151,6 +151,7 @@
 						<h2 class="dbooktitlebook"><?php echo $detailBook['data']['title_book']; ?></h2>
 						<br>
 						<?php 
+						$data = "";
 						foreach ($detail_book['data']['content'] as $book) {
 							$data .= $book['paragraph_text'];
 						}
@@ -295,7 +296,7 @@
 				</div>
 				<div class="col-md-10">
 					<ul class="navbar-nav pull-right">
-						<li class="nav-item"><span class="text-muted"><small>Page</small> <strong>02</strong></span></li>
+						<li class="nav-item"><span class="text-muted"><small>Page</small> <strong>01</strong></span></li>
 					</ul>
 					<ul class="navbar-nav">
 						<li class="nav-item">

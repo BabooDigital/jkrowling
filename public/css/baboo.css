@@ -2,6 +2,11 @@
 * {
 	box-sizing: border-box;
 	font-family: 'Source Sans Pro', sans-serif;
+	outline: none;
+}
+
+button {
+	outline: none !important;
 }
 
 body {
@@ -1247,3 +1252,14 @@ input.formsearch:focus {
 		0% { transform: rotate(0deg); }
 		100% { transform: rotate(360deg); }
 	}
+
+/*FROALA*/
+.fr-box.fr-basic.fr-top .fr-wrapper {
+	box-shadow: none !important;
+}
+.fr-box.fr-basic .fr-wrapper {
+	background: transparent !important;
+}
+.fr-toolbar {
+	background: transparent !important;
+}

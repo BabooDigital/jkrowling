@@ -43,7 +43,7 @@
 	}
 </script>
 <body>
-	<form action="#" id="form_book" method="POST" enctype="multipart/form-data">
+	<form action="<?php echo site_url(); ?>my_book/create_book/publish" id="form_book" method="POST" enctype="multipart/form-data">
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-3 bg-white pt-10 cleftmenu">
@@ -54,6 +54,7 @@
 								<p><img width="160" height="222" id="preview" src="<?php $src = $this->session->userdata('dataCover'); if(!empty($src)){  echo $src['asset_url']; }else{
 									echo base_url()."public/img/assets/def_prev.png";
 								} ?>"></p>
+								<input type="hidden" name="cover_name" id="cover_name" accept="image/*"  value="<?php $src = $this->session->userdata('dataCover'); if(!empty($src)){  echo $src['asset_url']; }else{ echo ""; } ?>">
 								<input type="file" id="file_cover" accept="image/*" onchange="tampilkanPreview(this,'preview')" name="file_cover" value="<?php $src = $this->session->userdata('dataCover'); if(!empty($src)){  echo $src['asset_url']; }else{ echo ""; } ?>">
 							</div>
 							<div>
@@ -72,10 +73,6 @@
 							</div>
 							<span style="font-size: 18px;font-weight: 600;color: #141414;">Judul Buku</span>
 							<hr>
-							<div>
-								<input type="hidden" name="book_id" id="book_id" value="<?php 
-									echo $this->session->userdata('idBook_'); ?>">
-							</div>
 							<div id="subchapter">
 								<a style="display: none;" class="btn w-100 mb-10 chapterdata0 editsubchapt1 btnsavedraft" id="btnsavedraft" id="editchapt" href="#"></a>
 								<!-- <a class="btn w-100 mb-10 chapterdata0 addsubchapt" id="editchapt">Tambah Sub Cerita</a> -->
@@ -84,14 +81,14 @@
 
 							<div class="mt-40">
 								<div class="form-group">
-									<select class="form-control" id="category_id" name="cat_book">
+									<select class="form-control" id="category_id" name="category_id">
 										<option>Kategori</option>
 										<option value="1">2</option>
 										<option value="2">3</option>
 									</select>
 								</div>
 								<div class="form-group">
-									<input type="text" name="tag" id="tag_book" class="form-control" placeholder="Tambah Tag Buku">
+									<input type="text" name="tag_book" id="tag_book" class="form-control" placeholder="Tambah Tag Buku">
 								</div>
 							</div>
 						</div>
@@ -104,9 +101,8 @@
 							<div class="media-body mt-7">
 								<input type="hidden" name="user_id" id="user_id" value="<?php $name = $this->session->userdata('userData');
 										echo $name['user_id']; ?>">
-									<input type="hidden" name="book_id" id="id_books" value="<?php echo $this->uri->segment(2); ?>">
+									<input type="hidden" name="book_id" id="book_id" value="<?php echo $this->uri->segment(2); ?>">
 									<input type="hidden" id="cover_url" accept="image/*" onchange="tampilkanPreview(this,'preview')" name="cover_url" value="<?php $src = $this->session->userdata('dataCover'); if(!empty($src)){  echo $src['asset_url']; }else{ echo ""; } ?>">
-									<!-- <input type="text" name="book_id" id="books_id" value=""> -->
 									<div id="books_id"></div>
 								<h5 class="mt-0 mb-1 nametitle">Risa Sulistya</h5>
 								<small>Fiksi</small>
