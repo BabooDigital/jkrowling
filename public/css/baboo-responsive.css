@@ -466,6 +466,31 @@ nav.profile {
   margin-right: auto;
   background: white;
 }
+.detailbook {
+  width: 100%;
+  height: auto;
+  margin-top: 10px; 
+  margin-left: auto;
+  font-size: 14px;
+  margin-right: auto;
+}
+.commentbook {
+  width: 100%;
+  height: 10000px;
+  margin-top: 10px; 
+  margin-left: auto;
+  font-size: 14px;
+  margin-right: auto; 
+}
+.frmcomment {
+  width: 90%;
+  height: 30px;
+  border:solid 1px #7554bd;
+  color: #7554bd;
+  outline: 0;
+  padding: 10px;
+  border-radius: 10px;
+}
 .margin_cover {
   margin-top: 80px;
   height: 1000px;

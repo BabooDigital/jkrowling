@@ -72,8 +72,13 @@ class C_book extends MX_Controller {
 		$data['js'][] = "public/js/jquery.sticky-kit.min.js";
 		$data['js'][] = "public/js/custom/detail_book.js";
 		
-		$this->load->view('timeline/include/head', $data);
-		$this->load->view('D_book', $data);
+		if ($this->agent->mobile()) {
+			$this->load->view('timeline/include/head', $data);
+			$this->load->view('R_book', $data);
+		}else{
+			$this->load->view('timeline/include/head', $data);
+			$this->load->view('D_book', $data);
+		}
 		// $this->load->view('timeline/include/foot');
 	}
 

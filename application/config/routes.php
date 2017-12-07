@@ -60,6 +60,7 @@ $route['logout'] = 'timeline/C_timeline/signout';
 $route['home'] = 'timeline/C_home';
 $route['home/:num'] = 'timeline/C_home';
 $route['timeline'] = 'timeline/C_timeline';
+$route['timeline/:any'] = 'timeline/C_timeline';
 $route['message'] = 'message/C_message';
 $route['createidbook'] = 'timeline/C_timeline/createbook_id';
 
