@@ -72,8 +72,6 @@ class C_home extends MX_Controller {
 		$data['js'][]   = "public/js/baboo.js";
 		$data['js'][]   = "public/js/jquery.sticky-kit.min.js";
 		$data['js'][]   = "public/js/custom/D_Timeline_out.js";
-		$data['js'][]   = "public/js/custom/popular_books.js";
-		$data['js'][]   = "public/js/custom/choice_books.js";
 
 		if ($this->agent->is_mobile('ipad'))
 		{
