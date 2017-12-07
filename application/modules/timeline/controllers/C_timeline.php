@@ -18,24 +18,33 @@ class C_timeline extends MX_Controller {
 	{
 		error_reporting(0);
 		$auth = $this->session->userdata('authKey');
-		$sess = $this->session->userdata('userData');
-		$id = $sess['user_id'];
-		// $id = $this->input->post('iaiduui');
-		$bookData = array(
-			'user_id' => $id
-		);
+		$userdata = $this->session->userdata('userData');
+
 
 		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, $this->API.'/index');
+		if (!empty($this->input->get("page"))) {
+			$id = '/'.$this->input->get("page");
+		}else{
+			$id = "";
+		}
+		$url = $this->API.'/index'.$id;
+		$uid = array(
+			'user_id' => $userdata['user_id']
+		);
+		// print_r($uid);
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $url);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 
 		curl_setopt($ch, CURLOPT_POST, 1);
-		curl_setopt($ch, CURLOPT_POSTFIELDS, $bookData);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $uid);
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 		curl_setopt($ch, CURLOPT_HEADER, 1);
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key : '.$auth));
 		$result = curl_exec($ch);
+
+
 		$headers=array();
 
 		$data=explode("\n",$result);
@@ -51,27 +60,22 @@ class C_timeline extends MX_Controller {
 			}
 		}
 
-		$resval = (array)json_decode($data[16], true);
+    $resval = (array)json_decode($data[16], true);
 
 		$psn = $resval['message'];
 		$book = $resval['data'];
 		$auth = $headers['BABOO-AUTH-KEY'];
-		if (isset($resval['code']) && $resval['code'] == '200')
-		{
-			$status = $resval['code'];
-			$this->session->set_userdata('authKey', $auth);
-		}
-		else
-		{
-			$status = $resval['code'];
-		}
+		
+		$this->session->set_userdata('authKey', $auth);
+		$status = $resval['code'];
 		
 		$datas['home'] = $book;
-		$datas['judul'] = "Baboo - Beyond Book & Creativity";
+
+   		$datas['judul'] = "Baboo - Beyond Book & Creativity";
 		$datas['js'][]   = "public/js/jquery.min.js";
 		$datas['js'][]   = "public/js/jquery.sticky-kit.min.js";
 		$datas['js'][]   = "public/js/custom/D_timeline_in.js";
-		
+
 		if ($this->agent->is_mobile('ipad'))
 		{
 			$this->load->view('include/head', $datas);
@@ -80,8 +84,14 @@ class C_timeline extends MX_Controller {
 		if ($this->agent->is_mobile())
 		{
 			$data['js'][]   = "public/js/menupage.js";
-			$this->load->view('include/head', $datas);
-			$this->load->view('R_Timeline_in', $datas);
+			if (!empty($this->input->get("page"))) {
+				$result = $this->load->view('data/R_Timeline_in', $datas);
+				echo json_encode($result);
+			}else{
+				$this->load->view('include/head', $datas);
+				$this->load->view('R_Timeline_in', $datas);
+			}
+			// $this->load->view('R_Timeline_in', $datas);
 		}
 		else
 		{
