@@ -53,7 +53,7 @@
 							<div class="col-md-6">
 								<!-- Status -->
 								<?php if (!empty($home)) {
-									foreach ($home['data'] as $s_book) {  ?>
+									foreach ($home as $s_book) {  ?>
 									<div class="card mb-15" style="padding: 0 10px;">
 										<div class="card-body p-0 p-20">
 											<div class="row mb-30">

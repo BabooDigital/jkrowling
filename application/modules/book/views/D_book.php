@@ -38,7 +38,7 @@
 		</div>
 
 		<div class="col-md-7">
-			<div class="card pt-10 pl-20 pr-20">
+			<div class="card pt-10 pl-20 pr-20 book-content">
 				<div class="card-body">
 					<div class="media">
 						<img class="d-flex align-self-start mr-20 rounded-circle" width="50" height="50" src="

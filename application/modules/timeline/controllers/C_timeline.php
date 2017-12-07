@@ -7,7 +7,7 @@ class C_timeline extends MX_Controller {
 
 	function __construct(){
 		parent::__construct();
-		$this->API = "api.dev-baboo.co.id/v1/timeline/Home";
+		$this->API = "api.dev-baboo.co.id/v1/timeline/Timelines";
 		if ($this->session->userdata('isLogin') != 200) {
 			redirect('home');
 		}
@@ -17,64 +17,60 @@ class C_timeline extends MX_Controller {
 	public function index()
 	{
 		error_reporting(0);
-		$auths = $this->session->userdata('authKey');
-		$ch = curl_init();
-		$url = $this->API.'/index';
-		$ch = curl_init();
-		$options = array(
-			CURLOPT_URL			 => $url,
-			CURLOPT_RETURNTRANSFER => true,
-			CURLOPT_CUSTOMREQUEST  =>"GET",    
-			CURLOPT_POST           =>false,  
-			CURLOPT_SSL_VERIFYPEER => 0,
-			CURLOPT_HEADER         => 1,
-			CURLOPT_HTTPHEADER	 => array('baboo-auth-key : '.$auth)
-
+		$auth = $this->session->userdata('authKey');
+		$sess = $this->session->userdata('userData');
+		$id = $sess['user_id'];
+		// $id = $this->input->post('iaiduui');
+		$bookData = array(
+			'user_id' => $id
 		);
-		curl_setopt_array($ch, $options);
-		$content = curl_exec($ch);
-		curl_close($ch);
+
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $this->API.'/index');
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+
+		curl_setopt($ch, CURLOPT_POST, 1);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $bookData);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+		curl_setopt($ch, CURLOPT_HEADER, 1);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key : '.$auth));
+		$result = curl_exec($ch);
 		$headers=array();
 
-		$data=explode("\n",$content);
-		$headers['status']=$data[0];
+		$data=explode("\n",$result);
+
 
 		array_shift($data);
 
 		foreach($data as $part){
 			$middle=explode(":",$part);
-			$headers[trim($middle[0])] = trim($middle[1]);
-		}
-		
-		$auth = $headers['BABOO-AUTH-KEY'];
-		
-		$psn = $data['home']['message'];
-		$datas = $data['home']['data'];
 
-		
-		$datas['home'] = json_decode($data[14], true);
-		$datas['judul'] = "Baboo - Beyond Book & Creativity";
-		$datas['js'][]   = "public/js/jquery.min.js";
-		$datas['js'][]   = "public/js/jquery.sticky-kit.min.js";
-		$datas['js'][]   = "public/js/custom/D_timeline_in.js";
-		
-		if (isset($datas['home']['code']) && $datas['home']['code'] == '200')
+			if (error_reporting() == 0) {
+				$headers[trim($middle[0])] = trim($middle[1]);
+			}
+		}
+
+		$resval = (array)json_decode($data[16], true);
+
+		$psn = $resval['message'];
+		$book = $resval['data'];
+		$auth = $headers['BABOO-AUTH-KEY'];
+		if (isset($resval['code']) && $resval['code'] == '200')
 		{
-			$status = $datas['home']['code'];
+			$status = $resval['code'];
 			$this->session->set_userdata('authKey', $auth);
 		}
 		else
 		{
-			$status = $datas['home']['code'];
+			$status = $resval['code'];
 		}
-
-		if(!empty(auth)){
-			$blah = $headers;
-			$blah["session_baboo_key"] =  $this->session->userdata('authKey');
-		}
-		else{ 
-			print_r(array(""=>$baboo_resp));
-		}
+		
+		$datas['home'] = $book;
+		$datas['judul'] = "Baboo - Beyond Book & Creativity";
+		$datas['js'][]   = "public/js/jquery.min.js";
+		$datas['js'][]   = "public/js/jquery.sticky-kit.min.js";
+		$datas['js'][]   = "public/js/custom/D_timeline_in.js";
 		
 		if ($this->agent->is_mobile('ipad'))
 		{
@@ -158,7 +154,7 @@ class C_timeline extends MX_Controller {
 	{
 		error_reporting(0);
 		$auth = $this->session->userdata('authKey');
-		$url = $this->API.'/bestWriter';
+		$url = 'api.dev-baboo.co.id/v1/timeline/Home/bestWriter';
 		$ch = curl_init();
 		$options = array(
 			CURLOPT_URL			 => $url,

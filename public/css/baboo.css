@@ -1263,3 +1263,10 @@ input.formsearch:focus {
 .fr-toolbar {
 	background: transparent !important;
 }
+
+/*DETAIL BOOK*/
+.book-content {
+	background: transparent !important;
+	border: none !important;
+	box-shadow: none !important;
+}
