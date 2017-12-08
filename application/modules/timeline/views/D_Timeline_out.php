@@ -84,11 +84,11 @@
 								<div class="card-body p-0 p-20">
 									<div class="row mb-30">
 										<div class="media w-100">
-											<img alt="Generic placeholder image" class="d-flex align-self-start mr-20 rounded-circle" src="<?php if($s_book['author_avatar'] == NULL){
+											<a href="<?php echo site_url('profile/'.$s_book['author_id'].''); ?>"><img alt="<?php
+													echo $s_book['author_name']; ?>" class="d-flex align-self-start mr-20 rounded-circle" src="<?php if($s_book['author_avatar'] == NULL){
 												echo base_url('public/img/profile/blank-photo.jpg');
 											}else{
-												echo $s_book['author_avatar']; } ?>" width="60" height="60">
-
+												echo $s_book['author_avatar']; } ?>" width="60" height="60"></a>
 												<div class="media-body mt-5">
 													<h5 class="card-title nametitle2"><a href="<?php echo site_url('profile/'.$s_book['author_id'].''); ?>"><?php
 													echo $s_book['author_name']; ?></a></h5>
@@ -99,9 +99,11 @@
 										<div class="row">
 											<div class="media w-100">
 												<div class="media-body">
-												<img alt="<?php
+												<a href="<?php echo site_url(); ?>login">
+													<img alt="<?php
 													echo $s_book['title_book']; ?>" class="d-flex align-self-start mr-10 float-left" src="<?php
 												echo $s_book['cover_url']; ?>" width="120" height="170">
+												</a>
 													<h5 class="card-title nametitle3"><a href="<?php echo site_url(); ?>login"><?php
 													echo $s_book['title_book']; ?></a></h5>
 													<p class="catbook mb-10"><a class="mr-20" href="#"><span class="btn-no-fill">FIKSI</span></a> <span class="mr-20"><img src="<?php echo base_url(); ?>public/img/assets/icon_view.svg"> <?php
