@@ -35,7 +35,7 @@
 					<div class="col-md-6" id="post-data">
 						<!-- Status -->
 							<?php 
-								$this->load->view('data/R_timeline_in', $home);
+								$this->load->view('data/R_Timeline_in', $home);
 							?>
 						</div>
 					</div>
