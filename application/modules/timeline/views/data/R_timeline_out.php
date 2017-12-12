@@ -19,28 +19,24 @@ foreach ($home['data'] as $s_book) { ?>
 			</div>
 		</div>
 	</div>
-	<div class="row" style="padding: 0px 10px 0px 10px;">
-		<div style="float:left;width:40%;height: auto;">
+	<a href="<?php echo site_url(); ?>book/<?php echo $s_book['book_id']; ?> - <?php echo url_title($s_book['title_book'], 'dash', true); ?>"> 
+	<div class="row">
+		<div class="media w-100">
+			<div class="media-body">
 			<img alt="<?php
-			echo $s_book['title_book']; ?>" src="<?php
-			echo $s_book['cover_url']; ?>" style="box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5); height:100%;width: 100%;margin-left: -5px;">
-		</div>
-		<div style="float: left;width:60%;height: auto;">
-			<div style="padding: 10px;">
-				<b style="font-size: 16px;"><?php
-				echo $s_book['title_book']; ?></b>
-				<div style="padding-top: 10px;"></div><span style="font-size:12px;border: 1px #7554bd solid;border-radius: 25px;padding: 3px 10px;color: #7554bd;">FIKSI</span>
-				<span class="mr-10"><img src="<?php echo base_url(); ?>public/img/assets/icon_view.svg"> <?php
+				echo $s_book['title_book']; ?>" class="d-flex align-self-start mr-10 float-left" src="<?php
+			echo $s_book['cover_url']; ?>" width="120" height="170">
+				<h5 class="card-title nametitle3"><a href="<?php echo site_url(); ?>login"><?php
+				echo $s_book['title_book']; ?></a></h5>
+				<p class="catbook mb-10"><a class="mr-20" href="#"><span class="btn-no-fill">FIKSI</span></a> <span class="mr-20"><img src="<?php echo base_url(); ?>public/img/assets/icon_view.svg"> <?php
 				echo $s_book['view_count']; ?></span> <span><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg"> <?php
 				echo $s_book['share_count']; ?></span></p>
-				<div style="padding-top: 10px;"></div>
-				<div id="content">
-					<p style="font-size:16px; font-family: Roboto;"><?php
-					echo substr($s_book['desc'],0,200); ?> ...</p>
-				</div>
-			</div>	
-		</div>	
+				<p class="text-desc-out"><?php
+				echo $s_book['desc']; ?><a class="readmore" href="#"> Lanjut</a></p>
+			</div>
+		</div>
 	</div>
+	</a>
 </div>
 <div class="card-footer text-muted" style="font-size: 0.8em;font-weight: bold;">
 	<div class="pull-right">
