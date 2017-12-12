@@ -82,7 +82,6 @@ class C_cover extends MX_Controller {
 
             $data=explode("\n",$result);
 
-
             array_shift($data);
 
             foreach($data as $part){

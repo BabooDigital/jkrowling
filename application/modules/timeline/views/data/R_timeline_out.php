@@ -10,7 +10,7 @@ foreach ($home['data'] as $s_book) { ?>
 	<img class="d-flex align-self-start mr-20 rounded-circle" src="<?php if($s_book['author_avatar'] == NULL){
 		echo base_url('public/img/profile/blank-photo.jpg');
 	}else{
-		echo $s_book['author_avatar']; } ?>" width="48" alt="Generic placeholder image">
+		echo $s_book['author_avatar']; } ?>" width="70" height="70" alt="Generic placeholder image">
 		<div class="media-body mt-5">
 			<h5 class="card-title nametitle2"><a href="<?php echo site_url('profile/'.$s_book['author_id'].''); ?>"><?php
 			echo $s_book['author_name']; ?></a></h5>
@@ -60,7 +60,7 @@ foreach ($home['data'] as $s_book) { ?>
 			<img class="d-flex align-self-start mr-20 rounded-circle" src="<?php if($s_book['author_avatar'] == NULL){
 				echo base_url('public/img/profile/blank-photo.jpg');
 			}else{
-				echo $s_book['author_avatar']; } ?>" width="48" alt="Generic placeholder image">
+				echo $s_book['author_avatar']; } ?>" width="70" height="70" alt="Generic placeholder image">
 				<div class="media-body mt-5">
 					<h5 class="card-title nametitle2"><a href="<?php echo site_url('profile/'.$s_book['author_id'].''); ?>"><?php
 					echo $s_book['author_name']; ?></a></h5>
@@ -99,9 +99,12 @@ foreach ($home['data'] as $s_book) { ?>
 		</div>
 	</div>
 <?php endif ?>
-
+<?php 
+	if ($s_book['populars']) {
+		echo "<label>Buku Populer</label>";
+	} 
+?>
 <?php foreach ($s_book['populars'] as $populars): ?>
-	<label>Buku Populer</label>
 
 	<div id="myWorkContent">
 		<div id="insideDiv">

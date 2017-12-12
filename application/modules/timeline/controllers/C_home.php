@@ -88,7 +88,6 @@ class C_home extends MX_Controller {
 			$mobile['js'][]   = "public/js/custom/slick_slider.js";
 			if (!empty($this->input->get("page"))) {
 				$result = $this->load->view('data/R_Timeline_out', $data);
-				echo json_encode($result);
 			}else{
 
 				$this->load->view('R_Timeline_out', $data);

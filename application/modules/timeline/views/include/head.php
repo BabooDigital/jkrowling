@@ -16,6 +16,9 @@
 	<?php if (isset($css)): ?>
 		<?php echo get_css($css) ?>
 	<?php endif ?>
+	<script type="text/javascript">
+		var base_url = "<?php echo base_url('') ?>";
+	</script>
 </head>
 
 <body>

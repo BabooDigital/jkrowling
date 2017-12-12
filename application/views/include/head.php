@@ -17,6 +17,7 @@
 	<?php if (isset($css)): ?>
 		<?php echo get_css($css) ?>
 	<?php endif ?>
+
 </head>
 
 <body>

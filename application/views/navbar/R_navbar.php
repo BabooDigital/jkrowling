@@ -38,32 +38,27 @@
 					</ul>
 				</div>
 			</div>
-			<div style="height:60px; background-color: #FFF; position: absolute; left:0; right: 0; top:60px; width: 120%; ">
+			<div style="height:70px; background-color: #FFF; position: absolute; left:0; right: 0; top:60px; width: 150%; box-shadow: 0 2px 2px -2px gray;">
 				<div class="container">
 					<div class="row" style="">
 						<div class="col-2" style="margin-top:10px;">
 							<center><a href="<?php echo site_url('timeline') ?>" id="tab_page" style="color:#9785bc; font-size:10px;">
-								<img src="<?php echo base_url() ?>/public/img/icon-tab/explore.png" style="width:24px;height: 24px;"><br>Explore</a>
+								<img src="<?php echo base_url() ?>/public/img/icon-tab/feed_icon.svg" style="width:24px;height: 24px;"><br>Explore</a>
 							</center>
 						</div>
 						<div class="col-2" style="margin-top:10px;">
 							<center><a href="<?php echo site_url('library') ?>" id="tab_page" style="color:#9785bc; font-size:10px;">
-							<img src="<?php echo base_url() ?>/public/img/icon-tab/library.png" style="width:24px;height: 24px;"><br>Library</a>
+							<img src="<?php echo base_url() ?>/public/img/icon-tab/library_icon_active.svg" style="width:24px;height: 24px;"><br>Library</a>
 							</center>
 						</div>
 						<div class="col-2" style="margin-top:10px;">
 							<center><a href="notification" id="tab_page" style="color:#9785bc; font-size:10px;">
-							<img src="<?php echo base_url() ?>/public/img/icon-tab/notif.png" style="width:24px;height: 24px;"><br>Notification</a>
+							<img src="<?php echo base_url() ?>/public/img/icon-tab/notif_icon_active.svg" style="width:24px;height: 24px;"><br>Notification</a>
 							</center>
 						</div>
 						<div class="col-2" style="margin-top:10px;">
 							<center><a href="<?php echo site_url('profile') ?>" id="tab_page" style="color:#9785bc; font-size:10px;">
-							<img src="<?php echo base_url() ?>/public/img/icon-tab/profile.png" style="width:24px;height: 24px;"><br>Profile</a>
-							</center>
-						</div>
-						<div class="col-1" style="margin-top:10px;margin-left: 1%;">
-							<center><a href="<?php echo site_url('more') ?>" id="tab_page" style="color:#9785bc; font-size:10px;">
-								<img src="<?php echo base_url() ?>/public/img/icon-tab/more.png" style="width:24px;height: 24px;"><br>More </a>
+							<img src="<?php echo base_url() ?>/public/img/icon-tab/profil_icon_active.svg" style="width:24px;height: 24px;"><br>Profile</a>
 							</center>
 						</div>
 					</div>

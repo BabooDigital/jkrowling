@@ -17,6 +17,7 @@ class C_profile extends MX_Controller {
 		$data['js'][]   = "public/js/menupage.js";
 		if ($this->agent->mobile()) {
 
+			$data['css'][]   = "public/css/baboo-responsive.css";
 			$this->load->view('timeline/include/head', $data);
 			$this->load->view('R_profile', $data);
 			

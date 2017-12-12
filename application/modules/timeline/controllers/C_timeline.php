@@ -86,7 +86,6 @@ class C_timeline extends MX_Controller {
 			$data['js'][]   = "public/js/menupage.js";
 			if (!empty($this->input->get("page"))) {
 				$result = $this->load->view('data/R_Timeline_in', $datas);
-				echo json_encode($result);
 			}else{
 				$this->load->view('include/head', $datas);
 				$this->load->view('R_Timeline_in', $datas);
