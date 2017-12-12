@@ -168,6 +168,7 @@
 				            }
 				            $('.loader').hide();
 				            $("#post-data").append(data);
+				            // console.log(data);
 				        })
 				        .fail(function(jqXHR, ajaxOptions, thrownError)
 				        {

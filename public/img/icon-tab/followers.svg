@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+    <g fill="#FFF" fill-rule="evenodd" stroke="#484848" transform="translate(3 3.5)">
+        <g transform="translate(3.708 .37)">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M.527 10.885v-.902c0-2.862 2-4.666 4.465-4.666 2.466 0 4.466 1.976 4.466 4.666v1.187H4.992l-4.465-.285z"/>
+            <circle cx="5.027" cy="3.115" r="2.582" transform="matrix(-1 0 0 1 10.054 0)"/>
+        </g>
+        <path stroke-linecap="round" stroke-linejoin="round" d="M10.056 12.305v-.973c0-3.087-2.155-5.032-4.815-5.032C2.582 6.3.426 8.432.426 11.332v1.28h4.815"/>
+        <circle cx="5.279" cy="4.037" r="2.784"/>
+    </g>
+</svg>

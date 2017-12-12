@@ -115,7 +115,60 @@ class C_createbook extends MX_Controller {
 			$this->load->view('D_createbook', $data);
 		}
 	}
+	public function img_book()
+	{
+		$auth = $this->session->userdata('authKey');
+		$id_book = $this->session->userdata('idBook_');
+		
+		$file_name_with_full_path = $_FILES["file"]["tmp_name"];
+        if (function_exists('curl_file_create')) { // php 5.5+
+        	$cFile = curl_file_create($file_name_with_full_path, $_FILES["file"]["type"],$_FILES["file"]["name"]);
+        } else { //
+        	$cFile = '@' . realpath($file_name_with_full_path);
+        }
 
+		$url = $this->API.'/uploadImage';
+        $data = array(
+        	'is_cover'	=> 'false',
+        	'image_url' => $cFile,
+        	'book_id'	=> $id_book
+        );
+        // print_r($data);
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $this->API.'/uploadImage');
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_SAFE_UPLOAD, false);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+        curl_setopt($ch, CURLOPT_HEADER, 1);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: multipart/form-data','baboo-auth-key : '.$auth));
+        $result = curl_exec($ch);
+
+        $headers=array();
+
+        $data=explode("\n",$result);
+        
+        array_shift($data);
+
+        foreach($data as $part){
+        	$middle=explode(":",$part);
+        	error_reporting(0);
+        	$headers[trim($middle[0])] = trim($middle[1]);
+        }
+        // print_r($headers);
+        $resval = (array)json_decode($data[16], true);
+
+        $psn = $resval['message'];
+        $data_img = $resval['data']['asset_url'];
+        $auth = $headers['BABOO-AUTH-KEY'];
+        $this->session->set_userdata('authKey', $auth);
+		// print_r($result);
+		echo json_encode(array("link"=>$data_img,"name"=>$data_img));
+
+	}
 	public function save()
 	{
 		error_reporting(0);

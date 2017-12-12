@@ -22,6 +22,31 @@
 	</div>
 </div>
 <div>	
+<div>	
+	<div class="container bodymessage">
+	<div class="paddingbook search_message">
+		<div class="">
+			<br>
+			<a href="<?php echo site_url('') ?>">
+				<div class="statuspembelian">
+					<div class="textpembelian">
+						<span class="">Pembelian</span>
+						<span class="" style="float: right;">Pembelian</span>
+					</div>
+					<br>
+					<div class="textpembelian">
+						<span class="" style="font-size: 20px;font-weight: bold;">Dont Make Me think</span>
+						<span class="" style="float: right;">More</span>
+						<br>
+						<span class="fontkecil">Menunggu proses pembayaran</span>
+					</div>
+				</div>
+			</a>
+			<div class="loader" style="display: none;"></div>
+		</div>
+	</div>
+	<br>
+</div>
 <div class="container babooid" align="center">
 <div class="row">
 	<div class="col-md-9">
