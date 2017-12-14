@@ -4,7 +4,7 @@
 			<div class="col-md-3 tmlin">
 				<div class="stickymenu">
 					<!-- Penulis Minggu Ini -->
-					<div class="card mb-15">
+					<div class="side-card mb-15">
 						<div class="card-header">
 							Penulis minggu ini
 						</div>
@@ -16,7 +16,7 @@
 					<!-- Penulis Minggu Ini -->
 
 					<!-- Trending -->
-					<div class="card mb-15">
+					<div class="side-card mb-15">
 						<div class="card-header">
 							Trending
 						</div>
@@ -73,7 +73,7 @@
 									<!-- Card Widget -->
 
 									<!-- Buku Populer -->
-									<div class="card mb-15">
+									<div class="side-card mb-15">
 										<div class="card-header">
 											Buku Populer
 										</div>

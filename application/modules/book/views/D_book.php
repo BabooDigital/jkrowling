@@ -76,6 +76,7 @@
 							<div class="p-1">
 								<img src="<?php echo base_url(); ?>public/img/assets/read-mode.svg" width="45">
 								<span class="bold11px">Mode Baca</span>
+
 							</div>
 						</a>
 						<div class="border1px"></div>

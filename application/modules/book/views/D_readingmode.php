@@ -20,7 +20,9 @@
 									<p><small><span>Jakarta, Indonesia</span></small></p><a class="btn-no-fill dbookfollowbtn" href="#"><span class="nametitle2">Follow</span></a>
 								</div>
 							</div>
-							<div>
+							<div id="post-data">
+								<!-- <?php 
+									$this->load->view('data/D_readingmode', $detail_book); ?> -->
 								<h2 class="dbooktitlebook"><?php echo $detailBook['data']['title_book']; ?></h2><br>
 								<?php 
 								$data = "";
@@ -30,6 +32,7 @@
 								echo $data;
 								?>
 							</div>
+							<!-- <div class="loader" style="display: none;margin-left: auto;margin-right: auto;"></div> -->
 							<hr>
 							<div>
 								<p class="modallimitbook">Kamu baru saja selesai membaca batas gratis buku ini, untuk membaca bab lainnya silahkan beli buku ini lalu lanjutkan membaca.</p>

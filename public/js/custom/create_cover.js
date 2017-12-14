@@ -251,7 +251,13 @@
 								data: formData,
 								success: function (data) {
 									HoldOn.close();
-									window.history.go(-1);
+									window.location.href = document.referrer;
+									if(IE){ //IE, bool var, has to be defined
+										var newlocation = document.createElement('a');
+										newlocation.href = URLtoCall;
+										document.body.appendChild(newlocation);
+										newlocation.click();
+									}
 								},
 								error: function () {
 									console.log('Error');

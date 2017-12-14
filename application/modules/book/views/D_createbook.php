@@ -51,11 +51,11 @@
 						<a href="javascript:void(0);" class="backbtn" style="font-size: 14px;"><i class="fa fa-long-arrow-left mr-10" aria-hidden="true"></i> Kembali</a>
 						<div class="text-center">
 							<div class="coverprev mt-20" style="margin-bottom: -60px;">
-								<p><img width="160" height="222" id="preview" src="<?php $src = $this->session->userdata('dataCover'); if(!empty($src)){  echo $src['asset_url']; }else{
+								<p><img width="160" height="222" id="preview" src="<?php $src = $this->session->userdata('dataCover'); if(($src != NULL)){  echo $src['asset_url']; }else{
 									echo base_url()."public/img/assets/def_prev.png";
 								} ?>"></p>
-								<input type="hidden" name="cover_name" id="cover_name" accept="image/*"  value="<?php $src = $this->session->userdata('dataCover'); if(!empty($src)){  echo $src['asset_url']; }else{ echo ""; } ?>">
-								<input type="file" id="file_cover" accept="image/*" onchange="tampilkanPreview(this,'preview')" name="file_cover" value="<?php $src = $this->session->userdata('dataCover'); if(!empty($src)){  echo $src['asset_url']; }else{ echo ""; } ?>">
+								<input type="hidden" name="cover_name" id="cover_name" accept="image/*"  value="<?php $src = $this->session->userdata('dataCover'); if($src != NULL){  echo $src['asset_url']; }else{ echo ""; } ?>">
+								<input type="file" id="file_cover" accept="image/*" onchange="tampilkanPreview(this,'preview')" name="file_cover" value="<?php $src = $this->session->userdata('dataCover'); if($src != NULL){  echo $src['asset_url']; }else{ echo " "; } ?>">
 							</div>
 							<div>
 								<p style="font-size: 16px;">Atau <!-- 
@@ -69,7 +69,7 @@
 						<div class="mt-30">
 							<div id="loading" style="display: none;">loading</div>
 							<div class="alert alert-success" id="success" style="display: none;">
-							  <strong>Success!</strong> Indicates a successful or positive action.
+							  <strong>Success!</strong> Subchapter telah ditambahkan.
 							</div>
 							<span style="font-size: 18px;font-weight: 600;color: #141414;">Judul Buku</span>
 							<hr>
@@ -97,14 +97,14 @@
 				<div class="col-md-9" id="pageContent">
 					<div class="pt-10 pb-10 pl-50 pr-50">
 						<div class="media">
-							<img alt="Name" class="d-flex mr-3 rounded-circle" src="<?php echo base_url(); ?>public/img/profile/pp_wanita2.png" width="50">
+							<img alt="Name" class="d-flex mr-3 rounded-circle" src="<?php $uri = $this->session->userdata('userData'); echo $uri['prof_pict'] ?>" width="50" height="50">
 							<div class="media-body mt-7">
 								<input type="hidden" name="user_id" id="user_id" value="<?php $name = $this->session->userdata('userData');
 										echo $name['user_id']; ?>">
 									<input type="hidden" name="book_id" id="book_id" value="<?php echo $this->uri->segment(2); ?>">
-									<input type="hidden" id="cover_url" accept="image/*" onchange="tampilkanPreview(this,'preview')" name="cover_url" value="<?php $src = $this->session->userdata('dataCover'); if(!empty($src)){  echo $src['asset_url']; }else{ echo ""; } ?>">
+									<input type="hidden" id="cover_url" accept="image/*" onchange="tampilkanPreview(this,'preview')" name="cover_url" value="<?php $src = $this->session->userdata('dataCover'); if($src != NULL){  echo $src['asset_url']; }else{ echo " "; } ?>">
 									<div id="books_id"></div>
-								<h5 class="mt-0 mb-1 nametitle">Risa Sulistya</h5>
+								<h5 class="mt-0 mb-1 nametitle"><?php $uri = $this->session->userdata('userData'); echo $uri['fullname'] ?></h5>
 								<small>Fiksi</small>
 							</div>
 						</div>

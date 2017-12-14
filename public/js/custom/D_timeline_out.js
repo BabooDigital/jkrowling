@@ -19,4 +19,37 @@ $(document).ready(function(){
       .always(function() {
         console.log("complete");
       });
+
+      var page = 1;
+      $(window).scroll(function() {
+        if($(window).scrollTop() + $(window).height() > $(document).height() - 200) {
+          page++;
+          loadMoreData(page);
+        }
+      });
+
+      function loadMoreData(page){
+        $.ajax(
+        {
+          url: '?page=' + page,
+          type: "get",
+          beforeSend: function()
+          {
+            $('.loader').show();
+          }
+        })
+        .done(function(data)
+        {
+          if(data == " "){
+            $('.loader').html("No more records found");
+            return;
+          }
+          $('.loader').hide();
+          $("#post-data").append(data);
+        })
+        .fail(function(jqXHR, ajaxOptions, thrownError)
+        {
+          alert('server not responding...');
+        });
+      }
 });
