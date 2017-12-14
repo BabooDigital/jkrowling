@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
 	
-	<title><?php echo $judul; ?></title>
+	<title><?php echo $title; ?></title>
 
 	<!-- CSS -->
 	<link href="<?php echo base_url();?>public/css/bootstrap.min.css" rel="stylesheet">
@@ -69,7 +69,8 @@
 						</form>
 					</li>
 					<li class="nav-item">
-						<div class="media nav-link martopbot">
+						<div class="media" style="    margin-top: 11px;
+    margin-bottom: -13px;">
 							<a href="#">
 								<?php if ($this->session->userdata('userData')) {
 									$img = $this->session->userdata('userData'); ?>

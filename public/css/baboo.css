@@ -32,7 +32,7 @@ a:hover {
 }
 
 .navbar {
-	padding: 0.2rem 1rem !important;
+	padding: 0rem 0rem !important;
 }
 
 .navbar-collapse {
@@ -924,7 +924,7 @@ input.formsearch:focus {
 
 	.dropdown-content {
 		top: 45px;
-		right: 95px;
+		right: 10px;
 		display: none;
 		position: absolute;
 		background-color: #fff;
