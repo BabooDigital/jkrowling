@@ -397,6 +397,7 @@ class C_createbook extends MX_Controller {
         {
         	$status = $resval['code'];
         }
+        	redirect('timeline','refresh');
     }
 
     public function createchapter_id()

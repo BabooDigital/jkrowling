@@ -65,7 +65,7 @@ class C_home extends MX_Controller {
 			$status = $datas['home']['code'];
 		}
 		$data['home'] = json_decode($datas[14], true);
-		$data['judul'] = "Baboo - Beyond Book & Creativity";
+		$data['title'] = "Baboo - Beyond Book & Creativity";
 		$data['js'][]   = "public/js/jquery.min.js";
 		$data['js'][]   = "public/plugins/infinite_scroll/jquery.jscroll.js";
 		$data['js'][]   = "public/js/jquery.bxslider.min.js";

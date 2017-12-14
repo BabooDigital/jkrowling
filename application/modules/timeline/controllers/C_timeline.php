@@ -71,7 +71,7 @@ class C_timeline extends MX_Controller {
 		
 		$datas['home'] = $book;
 
-   		$datas['judul'] = "Baboo - Beyond Book & Creativity";
+   		$datas['title'] = "Baboo - Beyond Book & Creativity";
 		$datas['js'][]   = "public/js/jquery.min.js";
 		$datas['js'][]   = "public/js/jquery.sticky-kit.min.js";
 		$datas['js'][]   = "public/js/custom/D_timeline_in.js";
@@ -95,9 +95,9 @@ class C_timeline extends MX_Controller {
 		else
 		{
 			if (!empty($this->input->get("page"))) {
-				$result = $this->load->view('data/D_Timeline_in', $datas);
+				$result = $this->load->view('data/D_timeline_in', $datas);
 			}else{
-				$this->load->view('include/head');
+				$this->load->view('include/head',$datas);
 				$this->load->view('D_Timeline_in', $datas);
 			}
 		}
