@@ -97,8 +97,13 @@ class C_home extends MX_Controller {
 		}
 		else
 		{
-			$this->load->view('include/head', $data);
-			$this->load->view('D_Timeline_out');
+			if (!empty($this->input->get("page"))) {
+				$result = $this->load->view('data/D_Timeline_out', $data);
+			}else{
+
+				$this->load->view('include/head', $data);
+				$this->load->view('D_Timeline_out', $data);
+			}
 		}
 	}
 

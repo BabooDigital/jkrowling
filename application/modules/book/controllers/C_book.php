@@ -133,10 +133,12 @@ class C_book extends MX_Controller {
 		}
 		// $this->load->view('timeline/include/foot');
 	}
+
 	public function chapter()
 	{
 		error_reporting(0);
 		$auth = $this->session->userdata('authKey');
+
 		$id_book = $this->input->post("id_book");
 		$idb = explode('-', $id_book, 2);
 		if (is_array($idb));
@@ -213,6 +215,12 @@ class C_book extends MX_Controller {
 		// $id_chapter = $this->uri->segment(4);
 
         // $url = $this->API.'/detailBook/'.$id_book.'/chapter/'.$id_chapter;
+  //       if (!empty($this->input->get("page"))) {
+		// 	$id = '/'.$this->input->get("page");
+		// }else{
+		// 	$id = "";
+		// }
+		// $url = 'api.dev-baboo.co.id/v1/timeline/Timelines/index'.$id;
         $url = $this->API.'/detailBook/'.$idb[0];
         $ch = curl_init();
         $options = array(
@@ -266,6 +274,11 @@ class C_book extends MX_Controller {
 		$data['js'][] = "public/js/bootstrap.min.js";
 		$data['js'][] = "public/js/custom/reading_mode.js";
 		$this->load->view('D_readingmode', $data);
+		// if (!empty($this->input->get("page"))) {
+		// 	$result = $this->load->view('data/D_readingmode', $datas);
+		// }else{
+		// 	$this->load->view('D_readingmode', $datas);
+		// }
 	}
 
 }

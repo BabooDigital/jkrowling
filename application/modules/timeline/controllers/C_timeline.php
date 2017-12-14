@@ -94,8 +94,12 @@ class C_timeline extends MX_Controller {
 		}
 		else
 		{
-			$this->load->view('include/head', $datas);
-			$this->load->view('D_Timeline_in',$datas);
+			if (!empty($this->input->get("page"))) {
+				$result = $this->load->view('data/D_Timeline_in', $datas);
+			}else{
+				$this->load->view('include/head');
+				$this->load->view('D_Timeline_in', $datas);
+			}
 		}
 	}
 

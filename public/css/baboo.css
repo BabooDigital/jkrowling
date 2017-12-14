@@ -36,7 +36,7 @@ a:hover {
 }
 
 .navbar-collapse {
-	flex-basis: 45%;
+	flex-basis: 60%;
 }
 
 .fixed-top {
@@ -72,7 +72,7 @@ a:hover {
 	border-radius: 50px;
 	height: 35px;
 	font-size: 13px;
-	width: 300px !important;
+	width: 250px !important;
 	color: #888 !important;
 	background: url("../img/search.png") no-repeat right;
 	background-size: 18px;
@@ -440,10 +440,11 @@ input.formsearch:focus {
 
 .navdaftar {
 	padding: 30px;
-	font-family: 'Source Sans Pro', sans-serif;
-	font-size: 12px;
-	text-align: center;
-	color: #ffffff;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 15px;
+    font-weight: 900;
+    text-align: center;
+    color: #ffffff;
 }
 
 .btn-navmasuk {
@@ -498,7 +499,8 @@ input.formsearch:focus {
 
 .cardsize {
 	width: 100%;
-	height: 375px;
+	/*height: 400px;*/
+	height: auto;
 }
 
 /*@media screen and (min-width: 1200px) {
@@ -519,6 +521,20 @@ input.formsearch:focus {
 	background-color: #ffffff;
 	box-shadow: 0 2px 2px 0 rgba(167, 167, 167, 0.04);
 	border: solid 1px #e8ebec;
+}
+
+.side-card {
+	border-radius: 5px;
+	background-color: #fafcfd;
+	box-shadow: 0 2px 2px 0 rgba(167, 167, 167, 0.04);
+	border: solid 1px #e8ebec;
+}
+
+.side-card> .subchapter >.list-group>.list-group-item {
+	background-color: #fafcfd !important;
+}
+.side-card> .card-body >.list-group>.list-group-item {
+	background-color: #fafcfd !important;
 }
 
 .card-header {
@@ -1261,12 +1277,13 @@ input.formsearch:focus {
 	background: transparent !important;
 }
 .fr-toolbar {
-	background: transparent !important;
+	background: #f5f8fa !important;
 }
 
 /*DETAIL BOOK*/
-.book-content {
-	background: transparent !important;
-	border: none !important;
-	box-shadow: none !important;
+
+
+/*TAB ICON MENU*/
+.fs-13px {
+	font-size: 13px !important;
 }
