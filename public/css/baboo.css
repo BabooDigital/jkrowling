@@ -913,7 +913,7 @@ input.formsearch:focus {
 	.boodropdown {
 		position: relative;
 		bottom: 35px;
-		left: 90px;
+		left: 60px;
 	}
 
 	.btnsidecaret {
@@ -1284,6 +1284,6 @@ input.formsearch:focus {
 
 
 /*TAB ICON MENU*/
-.fs-13px {
-	font-size: 13px !important;
+.fs-12px {
+	font-size: 12px !important;
 }
