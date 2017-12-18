@@ -83,4 +83,8 @@
         $(".stickymenu").stick_in_parent();
       }
 
+      $("#loveboo").on('click', function() {
+        console.log('woy');
+      });
+
     });

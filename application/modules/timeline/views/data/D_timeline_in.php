@@ -4,16 +4,16 @@
 		<div class="card-body p-0 p-20">
 			<div class="row mb-30">
 				<div class="media">
-					<img class="d-flex align-self-start mr-20 rounded-circle" src="<?php if($s_book['author_avatar'] == NULL){
+					<a href="#"><img class="d-flex align-self-start mr-20 rounded-circle" src="<?php if($s_book['author_avatar'] == NULL){
 						echo base_url('public/img/profile/blank-photo.jpg');
 					}else{
 						echo $s_book['author_avatar']; } ?>" width="60" height="60" alt="<?php
-						echo $s_book['author_name']; ?>">
+						echo $s_book['author_name']; ?>"></a>
 						<div class="media-body mt-5">
-							<h5 class="card-title nametitle2"><?php
-							echo $s_book['author_name']; ?></h5>
+							<a href="#"><h5 class="card-title nametitle2"><?php
+							echo $s_book['author_name']; ?></h5></a>
 							<p><small><span>Jakarta, Indonesia</span>
-								<span class="ml-10">1 hours ago</span></small></p>
+								<span class="ml-10"><?php echo $s_book['publish_date'] ?></span></small></p>
 							</div>
 						</div>
 					</div>
@@ -37,7 +37,10 @@
 							echo $s_book['view_count']; ?></span> <span><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg"> <?php
 							echo $s_book['share_count']; ?></span></p>
 							<p class="text-desc-in"><?php
-							echo $s_book['desc']; ?> <a href="#" class="readmore">Lanjut</a>
+							echo $s_book['desc']; ?> <a href="<?php echo site_url(); ?>book/<?php
+							echo $s_book['book_id']; ?>
+							-<?php echo url_title($s_book['title_book'], 'dash', true); ?>
+							" class="readmore">Lanjut</a>
 						</p>
 					</div>
 				</div>
@@ -45,11 +48,11 @@
 		</div>
 		<div class="card-footer text-muted" style="font-size: 0.8em;font-weight: bold;">
 			<div class="pull-right">
-				<a href="#"><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg" class="mr-10" width="18"> Bagikan</a>
+				<a href="#" class="fs-14px"><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg" class="mr-10" width="23"> Bagikan</a>
 			</div>
 			<div>
-				<a href="#" class="mr-30"><img src="<?php echo base_url(); ?>public/img/assets/icon_love.svg" class="mr-10" width="27"> Suka</a>
-				<a href="#"><img src="<?php echo base_url(); ?>public/img/assets/icon_comment.svg" class="mr-10" width="25"> Komentar</a>
+				<a href="javascript:void(0);" id="loveboo" class="mr-30 fs-14px"><img src="<?php if($s_book['is_like'] == 'false'){ echo base_url('public/img/assets/icon_love.svg'); }else{ echo base_url('public/img/assets/love_active.svg'); } ?>" class="mr-10" width="27"> Suka</a>
+				<a href="#" id="commentboo" class="fs-14px"><img src="<?php echo base_url(); ?>public/img/assets/icon_comment.svg" class="mr-10" width="25"> Komentar</a>
 			</div>
 		</div>
 	</div>

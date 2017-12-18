@@ -38,10 +38,10 @@
 				</div>
 				<div class="card-footer text-muted" style="font-size: 0.8em;font-weight: bold;">
 					<div class="pull-right">
-						<a href="#"><img class="mr-10" src="<?php echo base_url(); ?>public/img/assets/icon_share.svg" width="18"> Bagikan</a>
+						<a href="#"><img class="mr-10 fs-14px" src="<?php echo base_url(); ?>public/img/assets/icon_share.svg" width="27"> Bagikan</a>
 					</div>
 					<div>
-						<a class="mr-30" href="#"><img class="mr-10" src="<?php echo base_url(); ?>public/img/assets/icon_love.svg" width="27"> Suka</a> <a href="#"><img class="mr-10" src="<?php echo base_url(); ?>public/img/assets/icon_comment.svg" width="25"> Komentar</a>
+						<a class="mr-30 fs-14px" href="#"><img class="mr-10" src="<?php echo base_url(); ?>public/img/assets/icon_love.svg" width="27"> Suka</a> <a href="#"><img class="mr-10 fs-14px" src="<?php echo base_url(); ?>public/img/assets/icon_comment.svg" width="25"> Komentar</a>
 					</div>
 				</div>
 			</div>

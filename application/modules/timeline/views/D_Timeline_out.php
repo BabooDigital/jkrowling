@@ -1,4 +1,4 @@
-<div class="mt-60 hidden-sm hidden-xs">
+<div class="mt-50 hidden-sm hidden-xs">
 	<div class="slideboo">
 		<div class="leftboo"></div>
 		<div class="slidecontrols">

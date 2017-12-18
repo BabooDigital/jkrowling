@@ -79,6 +79,7 @@ $route['img_book'] = 'book/C_createbook/img_book';
 $route['book/:any'] = 'book/C_book';
 $route['book/:any/:any'] = 'book/C_book';
 $route['getmenuchapter'] = 'book/C_book/chapter';
+$route['book/:any/read'] = 'book/C_book/readingMode';
 $route['my_book/:num/chapter/:num'] = 'book/C_createbook/mybook';
 $route['my_book/:num'] = 'book/C_createbook';
 $route['my_book/editor_upload'] = 'book/C_createbook/editor_upload';
@@ -86,7 +87,6 @@ $route['create_book'] = 'book/C_createbook';
 $route['my_book/create_book/save'] = 'book/C_createbook/save';
 $route['my_book/create_book/publish'] = 'book/C_createbook/publishBook';
 
-$route['book/:any/read'] = 'book/C_book/readingmode';
 $route['getdetailchapter'] = 'book/C_book/chapter';
 
 // Cover

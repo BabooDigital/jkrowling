@@ -20,6 +20,11 @@
 		var base_url = "<?php echo base_url('') ?>";
 	</script>
 </head>
+<style>
+	.nav-link {
+		padding: 0px 0.3rem !important;
+	}
+</style>
 
 <body>
 	<nav class="navbar navbar-expand-lg fixed-top baboonav">
@@ -39,7 +44,8 @@
 							<a class="nav-link btn-navmasuk" href="<?php echo site_url(); ?>login">Masuk</a>
 						</li>
 						<li class="nav-item">
-								<a class="nav-link btn-navdaftar" href="<?php echo site_url(); ?>login#btndaftar" id="btndaftar"><span class="navdaftar">Daftar</span></a>
+							<div class=" nav-link">
+								<a class="btn-navdaftar" href="<?php echo site_url(); ?>login#btndaftar" id="btndaftar"><span class="navdaftar">Daftar</span></a></div>
 						</li>
 					</ul>
 				</div>
@@ -49,28 +55,27 @@
 
 			<button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbarSupportedContent" data-toggle="collapse" type="button"><span class="fa fa-bars fa-border"></span></button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav text-center">
-					<li class="nav-item active">
+				<ul class="navbar-nav text-center" style="margin-bottom: -8px;">
+					<li class="nav-item active mt-5">
 						<a class="nav-link" href="<?php echo site_url(); ?>"><img src="<?php echo site_url(); ?>public/img/icon-tab/feed_iconn.svg" width="23"><p class="fs-12px"><b>Explore</b></p></a>
 					</li>
-					<li class="nav-item">
+					<li class="nav-item mt-5">
 						<a class="nav-link" href="#"><img src="<?php echo site_url(); ?>public/img/icon-tab/library_icon.svg" width="25"><p class="fs-12px"><b>Library</b></p></a>
 					</li>
-					<li class="nav-item">
+					<li class="nav-item mt-5">
 						<a class="nav-link" href="#"><img src="<?php echo site_url(); ?>public/img/icon-tab/notif_icon.svg" width="25"><p class="fs-12px"><b>Notification</b></p></a>
 					</li>
-					<li class="nav-item">
+					<li class="nav-item mt-5">
 						<a class="nav-link" href="#"><img src="<?php echo site_url(); ?>public/img/icon-tab/pesan.svg" width="25"><p class="fs-12px"><b>Pesan</b></p></a>
 					</li>
 					<li class="nav-item ml-100 mr-30">
-						<form action="<?php echo site_url(); ?>createidbook" method="POST" class="mt-15">
+						<form action="<?php echo site_url(); ?>createidbook" method="POST" class="mt-10">
 							<input type="hidden" name="iaiduui" value="<?php $name = $this->session->userdata('userData'); echo $name['user_id']; ?>">
-							<button type="submit" class="nav-link btn-newstory" style="cursor: pointer;"><i class="fa fa-pencil-square-o"></i> Tulis Cerita</button>
+							<button type="submit" class="nav-link btn-newstory" style="cursor: pointer;height: 33px;"><span><i class="fa fa-pencil-square-o"></i> Tulis Cerita</span></button>
 						</form>
 					</li>
 					<li class="nav-item">
-						<div class="media" style="    margin-top: 11px;
-    margin-bottom: -13px;">
+						<div class="media" style="margin-top: 6px;margin-bottom: -8px;">
 							<a href="#">
 								<?php if ($this->session->userdata('userData')) {
 									$img = $this->session->userdata('userData'); ?>
