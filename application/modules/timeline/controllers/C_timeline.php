@@ -13,7 +13,7 @@ class C_timeline extends MX_Controller {
 		}
 	}
 
-
+	
 	public function index()
 	{
 		error_reporting(0);

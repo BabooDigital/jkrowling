@@ -32,7 +32,7 @@ a:hover {
 }
 
 .navbar {
-	padding: 0rem 0rem !important;
+	padding: 0.2rem 1rem !important;
 }
 
 .navbar-collapse {
@@ -924,7 +924,7 @@ input.formsearch:focus {
 
 	.dropdown-content {
 		top: 45px;
-		right: 10px;
+		right: 95px;
 		display: none;
 		position: absolute;
 		background-color: #fff;
@@ -1281,9 +1281,68 @@ input.formsearch:focus {
 }
 
 /*DETAIL BOOK*/
+.book-content {
+	background: transparent !important;
+	border: none !important;
+	box-shadow: none !important;
+}
 
+/*PROFILE*/
+.profile-left {
+	  width: 250px;
+	  height: 635.1px;
+	  border-radius: 5px;
+	  background-color: #ffffff;
+	  border: solid 0.7px #efefef;
+}
+.profile-avatar {
+	margin: auto;
+	margin-top: 30px;
+}
+.quote {
+	padding: 10px;
+	font-size: 12px;
+	color: gray;
+}
+.profile_message_des {
+	width: 90%;
+}
+.btn-message-des {
+  float: right;
+  font-size: 12px;
+  width: 45%;
+  color: #7554bd;
+  outline: 0;
+  border-radius: 10px;
+  background: transparent;
+  border: solid 1px #7554bd;
+}
+.btn-profile-des {
+  float: left;
+  width: 45%;
+  font-size: 12px;
+  color: #7554bd;
+  outline: 0;
+  border-radius: 10px;
+  background: transparent;
+  border: solid 1px #7554bd;
+}
+
+.profile_balance_des {
+  width: 90%;
+}
+.penghargaan {
+	width: 90%;
+	float: left;
+	padding: 10px;
+	text-align: left;
+	color: gray;
+}
 
 /*TAB ICON MENU*/
+.fs-13px {
+	font-size: 13px !important;
+}
 .fs-12px {
 	font-size: 12px !important;
 }

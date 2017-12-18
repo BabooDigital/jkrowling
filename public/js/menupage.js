@@ -21,3 +21,7 @@ $(document).ready(function() {
 		event.preventDefault();		
 	});
 });
+
+function funcDropdown() {
+  document.getElementById("myDropdown").classList.toggle("showss");
+}

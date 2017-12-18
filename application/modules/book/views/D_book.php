@@ -4,34 +4,32 @@
 			<?php if (!empty($detailBook)) { ?>
 			<div class="card pb-20 stickymenu">
 				<div class="text-center pr-30 pl-30 pt-20">
-					<img src="<?php echo $detailBook['data']['cover_url']; ?>" width="150">
+					<img src="<?php echo $detailBook['data']['book_info']['cover_url']; ?>" width="150">
 					<div class="card-body">
 						<a href="#">
-							<h3 class="dbooktitle"><?php echo $detailBook['data']['title_book']; ?></h3>
+							<h3 class="dbooktitle"><?php echo $detailBook['data']['book_info']['title_book']; ?></h3>
 						</a>
 						<div class="dbooksociallist">
-							<a href="#"><span class=".fs-13"><img src="<?php echo base_url(); ?>public/img/assets/icon_view.svg" width="27"> <?php echo $detailBook['data']['view_count']; ?></span></a>
+							<a href="#"><span class=".fs-13"><img src="<?php echo base_url(); ?>public/img/assets/icon_view.svg" width="27"> <?php echo $detailBook['data']['book_info']['view_count']; ?></span></a>
 						</div>
 						<div class="dbooksociallist">
-							<a href="#"><span class=".fs-13"><img src="<?php echo base_url(); ?>public/img/assets/icon_comment.svg" width="14"> <?php echo $detailBook['data']['book_comment_count']; ?></span></a>
+							<a href="#"><span class=".fs-13"><img src="<?php echo base_url(); ?>public/img/assets/icon_comment.svg" width="14"> <?php echo $detailBook['data']['book_info']['book_comment_count']; ?></span></a>
 						</div>
 						<div class="dbooksociallist">
-							<a href="#"><span class=".fs-13"><img src="<?php echo base_url(); ?>public/img/assets/icon_love.svg" width="16"> <?php echo $detailBook['data']['like_count']; ?></span></a>
+							<a href="#"><span class=".fs-13"><img src="<?php echo base_url(); ?>public/img/assets/icon_love.svg" width="16"> <?php echo $detailBook['data']['book_info']['like_count']; ?></span></a>
 						</div>
 						<div class="dbooksociallist">
-							<a href="#"><span class=".fs-13"><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg" width="14"> <?php echo $detailBook['data']['share_count']; ?></span></a>
+							<a href="#"><span class=".fs-13"><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg" width="14"> <?php echo $detailBook['data']['book_info']['share_count']; ?></span></a>
 						</div>
 					</div>
 				</div>
 				<div class="pr-20 pl-20 subchapter">
 					<ul class="list-group list-group-flush">
 						<li class="list-group-item"><small>Bagian Cerita</small></li>
-						<?php foreach ($detailBook['data']['chapters'] as $listChapt) { ?>
-						<!-- <a href="<?php echo site_url(); ?>book/<?php echo $this->uri->segment('2'); ?>/ch/<?php
-							echo $listChapt['chapter_id']; ?>" id="<?php echo $listChapt['chapter_id'] ?>"><?php echo $listChapt['chapter_title'] ?></a> -->
-
-						<li class="list-group-item"><a href="#" class="id_chapter" id="<?php echo $listChapt['chapter_id'] ?>" b_id="<?php echo $this->uri->segment('2'); ?>" ><?php echo $listChapt['chapter_title'] ?></a></li>
-						<?php } ?>
+						<center>
+							<div class="loader" id="loader_chapter"></div>
+						</center>
+						<span id="list_chapter"></span>
 					</ul>
 				</div>
 			</div>
@@ -58,7 +56,9 @@
 						<div id="appentoContent">
 							<h2 class="dbooktitlebook"><?php echo $detailBook['data']['title_book']; ?></h2>
 							<br>
-							<?php $this->load->view('data/D_book'); ?>
+							<div id="post-data">
+								<?php $this->load->view('data/D_book'); ?>
+							</div>
 						</div>
 						<div id="appendContent">
 							
@@ -66,7 +66,7 @@
 					</div>
 				</div>
 				<center>
-					<div class="loader" style="display: none;"></div>
+					<div class="loader" id="loader_scroll" style="display: none;"></div>
 				</center>
 			</div>
 			<div class="col-md-1">
@@ -136,13 +136,16 @@
 	</nav>
 
 	<!-- Modal -->
-	
+	<script type="text/javascript">
+		var segment = '<?php echo $this->uri->segment(2); ?>';
+		var count_data = '<?php echo $detailChapter; ?>';
+	</script>
 	<?php if (isset($js)): ?>
 		<?php echo get_js($js) ?>
 	<?php endif ?>
 
 	<script type="text/javascript">
-	var page = 1;
+	var page = 0;
 	$(window).scroll(function() {
 	    if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
 	        page++;
@@ -157,40 +160,23 @@
 	            type: "get",
 	            beforeSend: function()
 	            {
-	                $('.loader').show();
+	                $('#loader_scroll').show();
 	            }
 	        })
 	        .done(function(data)
 	        {
 	            if(data == " "){
-	                $('.loader').html("No more records found");
+	                $('#loader_scroll').html("No more records found");
 	                return;
 	            }
-	            $('.loader').hide();
+	            $('#loader_scroll').hide();
 	            $("#post-data").append(data);
 	        })
 	        .fail(function(jqXHR, ajaxOptions, thrownError)
 	        {
-	              alert('server not responding...');
+	              console.log('server not responding...');
 	        });
 	}
 	</script>
-	<!-- <script>
-	$(window).scroll(function(){
-	    if ($(window).scrollTop() == $(document).height() - $(window).height()){
-	        $('.loader').show();
-
-	        var post_id = $('.Posted:last').attr('id');
-	        $.post("add_more_posts.php", {post_id: post_id} , function(data){
-	            if(data){
-	                $('#loading-img').fadeOut();
-	                $('#AddPosts').append(data);
-	            }else{
-	                // $('#AddPosts').append('Finished Loading!');
-	            }
-	        });
-	    }
-	});
-	</script> -->
 </body>
 </html>
