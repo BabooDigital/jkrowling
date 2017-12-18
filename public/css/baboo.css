@@ -266,13 +266,13 @@ input.formsearch:focus {
 }
 
 .text-desc-in {
-	font-size: 11pt !important;
+	font-size: 12pt !important;
 	font-family: 'Noto Serif', serif;
 	line-height: 1.7;
 }
 
 .text-desc-out {
-	font-size: 10pt !important;
+	font-size: 11pt !important;
 	font-family: 'Noto Serif', serif;
 	line-height: 1.5;
 }
@@ -419,7 +419,6 @@ input.formsearch:focus {
 	font-size: 11pt;
 	font-weight: bold;
 	border-radius: 30px;
-	padding: 4px 13px;
 	background-color: #faf7ff;
 	box-shadow: 0 1px 2px 0 rgba(227, 214, 255, 0.7);
 	border: solid 1px #7554bd;
@@ -429,6 +428,7 @@ input.formsearch:focus {
 	outline: 0;
 }
 .btn-navdaftar {
+	padding: 10px;
 	border-radius: 31px;
 	background-color: #7554bd;
 	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.32);
@@ -499,8 +499,7 @@ input.formsearch:focus {
 
 .cardsize {
 	width: 100%;
-	/*height: 400px;*/
-	height: auto;
+	height: 480px;
 }
 
 /*@media screen and (min-width: 1200px) {
@@ -923,8 +922,8 @@ input.formsearch:focus {
 	}
 
 	.dropdown-content {
-		top: 45px;
-		right: 95px;
+		top: 40px;
+		right: 10px;
 		display: none;
 		position: absolute;
 		background-color: #fff;
@@ -1345,4 +1344,17 @@ input.formsearch:focus {
 }
 .fs-12px {
 	font-size: 12px !important;
+}
+.fs-14px {
+	font-size: 14px !important;
+}
+
+/*KOMENTAR*/
+.commentform {
+    color: #5d5d5d;
+    border-radius: 35px;
+    width: 100%;
+    height: 50px;
+    padding: 10px;
+    resize: none;
 }
