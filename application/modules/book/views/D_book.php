@@ -115,7 +115,7 @@
 			<div class="col-md-1">
 				<div class="card stickymenu">
 					<div class="text-center">
-						<a href="#" data-toggle="modal" data-target="#detail_book">
+						<a href="<?php echo "" ?>">
 							<div class="p-1">
 								<img src="<?php echo base_url(); ?>public/img/assets/read-mode.svg" width="45">
 								<span class="bold11px">Mode Baca</span>
@@ -236,8 +236,10 @@
 	var page = 0;
 	$(window).scroll(function() {
 	    if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
-	        page++;
-	        loadMoreData(page);
+	        if (page <= count_data) {
+	        	page++;
+		        loadMoreData(page);
+	        }
 	    }
 	});
 

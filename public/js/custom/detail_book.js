@@ -113,7 +113,7 @@ function getmenuChapter() {
       var data_chapter = "";
       $("#loader_chapter").hide();
       $.each(data, function(index, val) {
-        data_chapter += '<li class="list-group-item" id="list_chapters"><a href="#" class="id_chapter">'+val['chapter_title']+'</a></li>';
+        data_chapter += '<li class="list-group-item" id="list_chapters"><a href="#'+val['chapter_id']+'" class="id_chapter" onclick="ScrollToBottom()">'+val['chapter_title']+'</a></li>';
       });
       $("#list_chapter").html(data_chapter);
   })
@@ -126,4 +126,7 @@ function getmenuChapter() {
     console.log("complete");
   });
   
+}
+function ScrollToBottom() {
+  window.scrollTo(0,document.querySelector("#post-data").scrollHeight);
 }
