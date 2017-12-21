@@ -83,11 +83,11 @@
 										echo base_url('public/img/profile/blank-photo.jpg');
 									}else{
 										echo $img['prof_pict'];
-									} ?>" width="40" height="40"> 
+									} ?>" id="profpict" width="40" height="40"> 
 									<?php } ?>
 								</a>
 								<div class="media-body">
-									<p style="font-weight: bold;"><a href="<?php echo site_url(); ?>profile" style="font-size: 11pt;"><b><?php if ($this->session->userdata('userData')){
+									<p style="font-weight: bold;"><a href="<?php echo site_url(); ?>profile" style="font-size: 11pt;"><b id="profname"><?php if ($this->session->userdata('userData')){
 										$name = $this->session->userdata('userData'); $n = $name['fullname']; $m = explode(' ', $n); echo $m[0]; ?>
 										<?php } ?></b></a> <span style="display: block;font-size: 8pt;">Online</span></p>
 										<div class="boodropdown">

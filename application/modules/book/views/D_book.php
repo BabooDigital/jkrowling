@@ -33,12 +33,25 @@
 	background: none;
 	font-size: 2rem;
 	line-height: 1;
-	color: #000;
-	text-shadow: 0 1px 0 #fff;
 	opacity: .5;
 	border: none;
 	position: absolute;
 	right: 35px;
+}
+
+.thumbnail {
+    position: relative;
+    display: inline-block;
+}
+
+.caption {
+    position: absolute;
+    top: 44%;
+    left: 50%;
+    transform: translate( -50%, -50% );
+    text-align: center;
+    font-weight: bold;
+    color: #7554bd;
 }
 </style>
 <div class="container pt-100 mb-80">
@@ -54,16 +67,16 @@
 							<h3 class="dbooktitle"><?php echo $detailBook['data']['book_info']['title_book']; ?></h3>
 						</a>
 						<div class="dbooksociallist">
-							<a href="#"><span class=".fs-13"><img src="<?php echo base_url(); ?>public/img/assets/icon_view.svg" width="27"> <?php echo $detailBook['data']['book_info']['view_count']; ?></span></a>
+							<a href="#"><span class=".fs-13"><img src="<?php echo base_url(); ?>public/img/assets/icon_view.svg" width="27"> <span id="viewcount"><?php echo $detailBook['data']['book_info']['view_count']; ?></span></span></a>
 						</div>
 						<div class="dbooksociallist">
-							<a href="#"><span class=".fs-13"><img src="<?php echo base_url(); ?>public/img/assets/icon_comment.svg" width="14"> <?php echo $detailBook['data']['book_info']['book_comment_count']; ?></span></a>
+							<a href="#"><span class=".fs-13"><img src="<?php echo base_url(); ?>public/img/assets/icon_comment.svg" width="14"> <span id="commentcount"><?php echo $detailBook['data']['book_info']['book_comment_count']; ?></span></span></a>
 						</div>
 						<div class="dbooksociallist">
-							<a href="#"><span class=".fs-13"><img src="<?php echo base_url(); ?>public/img/assets/icon_love.svg" width="16"> <?php echo $detailBook['data']['book_info']['like_count']; ?></span></a>
+							<a href="#"><span class=".fs-13"><img src="<?php echo base_url(); ?>public/img/assets/icon_love.svg" width="16"> <span id="likecount"><?php echo $detailBook['data']['book_info']['like_count']; ?></span></span></a>
 						</div>
 						<div class="dbooksociallist">
-							<a href="#"><span class=".fs-13"><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg" width="14"> <?php echo $detailBook['data']['book_info']['share_count']; ?></span></a>
+							<a href="#"><span class=".fs-13"><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg" width="14"> <span id="sharecount"><?php echo $detailBook['data']['book_info']['share_count']; ?></span></span></a>
 						</div>
 					</div>
 				</div>
@@ -133,7 +146,7 @@
 								</a>
 							</p>
 							<p><button type="button" data-toggle="modal" data-target="#commentModal" style="cursor: pointer;background: none;border: none;">
-								<img src="<?php echo base_url(); ?>public/img/assets/icon_comment.svg" width="40">
+								<div class="thumbnail"><img src="<?php echo base_url(); ?>public/img/assets/icon_comment.svg" width="40"><div class="caption"><span id="commentcount"><?php echo $detailBook['data']['book_info']['book_comment_count']; ?></span></div></div>
 							</button></p>
 						</div>
 						<div class="border1px"></div>
@@ -172,7 +185,7 @@
 					</li>
 					<li class="nav-item ml-20">
 						<button type="button" data-toggle="modal" data-target="#commentModal" style="cursor: pointer;background: none;border: none;">
-								<img src="<?php echo base_url(); ?>public/img/assets/icon_comment.svg" width="25">
+								<div class="thumbnail"><img src="<?php echo base_url(); ?>public/img/assets/icon_comment.svg" width="25"><div class="caption fs-12px"><span id="commentcount"><?php echo $detailBook['data']['book_info']['book_comment_count']; ?></span></div></div>
 							</button>
 					</li>
 				</ul>
@@ -196,22 +209,21 @@
 					<h4 class="modal-title" id="commentLabel">Komentar</h4>
 				</div>
 
-				<div class="modal-body">
+				<div class="modal-body mb-50" style="overflow-x: auto;">
 					<div>
 						<div id="bookcomment_list">
 							
 						</div>
 					</div>
 
-					<nav class="navbar navbar-expand-lg navbar-light fixed-bottom box-shadow-navbar">
+					<nav class="navbar navbar-expand-lg navbar-light fixed-bottom box-shadow-navbar bg-white">
 						<div class="container pb-10 pt-10">
 							<div class="col-md-9">
-								<!-- <input type="text" class="commentform" name="sendComment" placeholder="Tulis Komentar Kamu"> -->
 								<textarea id="comments" class="commentform" placeholder="Tulis Komentar kamu..."></textarea>
 							</div>
 							<div class="col-md-3">
 								<div>
-									<button>Kirim</button>	
+									<button class="btn post-comment">Kirim</button>	
 								</div>
 							</div>
 						</div>
