@@ -175,7 +175,6 @@ input.formsearch:focus {
 	font-size: 15px;
 	font-weight: 600;
 	padding: 1rem 0 !important;
-	font-family: Proxima Nova;
 }
 
 .fs-13 {
@@ -364,7 +363,6 @@ input.formsearch:focus {
 .Rnametitle3 {
 	font-size: 16px;
 	font-weight: bold;
-	font-family: Proxima Nova;
 	line-height: 1;
 }
 
@@ -538,7 +536,6 @@ input.formsearch:focus {
 
 .card-header {
 	background-color: transparent;
-	font-family: 'Proxima Nova'
 }
 
 .card-widget {
@@ -663,13 +660,11 @@ input.formsearch:focus {
 	}
 
 	.register-link {
-		font-family: 'Proxima Nova', Georgia, sans-serif;
 		font-size: 14px;
 		color: #555;
 	}
 
 	.register-link2 {
-		font-family: 'Proxima Nova', Georgia, sans-serif;
 		font-size: 14px;
 		color: gray;
 	}
@@ -687,7 +682,6 @@ input.formsearch:focus {
 	}
 
 	.register-link3 {
-		font-family: 'Proxima Nova', Georgia, sans-serif;
 		font-size: 12px;
 		color: #555;
 	}
@@ -707,20 +701,17 @@ input.formsearch:focus {
 		font-size: 14px;
 		"
 		color: #555;
-		font-family: 'Proxima Nova', Georgia, sans-serif;
 	}
 
 	.text-label-login2 {
 		font-size: 14px;
 		"
 		color: #555;
-		font-family: 'Proxima Nova', Georgia, sans-serif;
 	}
 
 	.login-input {
 		font-size: 13px;
 		color: #eee;
-		font-family: 'Proxima Nova', Georgia, sans-serif;
 		height: 40px;
 		border: 1px solid #ddd;
 	}
@@ -748,7 +739,6 @@ input.formsearch:focus {
 
 	.welcome-message {
 		font-size: 20px;
-		font-family: 'Proxima Nova', Georgia, sans-serif;
 		color: grey;
 	}
 
@@ -783,7 +773,6 @@ input.formsearch:focus {
 	.btn-daftar {
 		background-color: #7554bd;
 		color: #fff;
-		font-family: 'Proxima Nova', Georgia, sans-serif;
 		font-size: 14px;
 		border-radius: 50px;
 		margin-bottom: 25px;
@@ -1292,7 +1281,6 @@ input.formsearch:focus {
 	  height: 635.1px;
 	  border-radius: 5px;
 	  background-color: #ffffff;
-	  border: solid 0.7px #efefef;
 }
 .profile-avatar {
 	margin: auto;
@@ -1300,7 +1288,7 @@ input.formsearch:focus {
 }
 .quote {
 	padding: 10px;
-	font-size: 12px;
+	font-size: 13px;
 	color: gray;
 }
 .profile_message_des {

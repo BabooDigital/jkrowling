@@ -67,6 +67,9 @@ $route['createidbook'] = 'timeline/C_timeline/createbook_id';
 $route['writter'] = 'timeline/C_timeline/getWritter';
 $route['writters'] = 'timeline/C_home/getWritter';
 
+// Like
+$route['like'] = 'timeline/C_timeline/postLike';
+
 // Explore
 $route['notification'] = 'notification/C_notification';
 $route['more'] = 'more/C_more';
@@ -96,6 +99,8 @@ $route['send_cover'] = 'cover/C_cover/sendCover';
 // Profile
 $route['profile/(:any)'] = 'profile/C_profile';
 $route['profile'] = 'profile/C_profile';
+$route['getpublishbook'] = 'profile/C_profile/getPublishBook';
+$route['getdraftbook'] = 'profile/C_profile/getDraftBook';
 $route['awsd'] = 'book/C_createbook/awasd';
 
 

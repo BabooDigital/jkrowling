@@ -20,6 +20,7 @@
 					<div class="row">
 						<div class="media w-100">
 							<div class="media-body">
+								<input type="hidden" name="iaidubi" id="iaidubi" value="<?php echo $s_book['book_id']; ?>">
 								<a href="<?php echo site_url(); ?>book/<?php
 								echo $s_book['book_id']; ?>
 								-<?php echo url_title($s_book['title_book'], 'dash', true); ?>
@@ -51,7 +52,7 @@
 				<a href="#" class="fs-14px"><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg" class="mr-10" width="23"> Bagikan</a>
 			</div>
 			<div>
-				<a href="javascript:void(0);" id="loveboo" class="mr-30 fs-14px"><img src="<?php if($s_book['is_like'] == 'false'){ echo base_url('public/img/assets/icon_love.svg'); }else{ echo base_url('public/img/assets/love_active.svg'); } ?>" class="mr-10" width="27"> Suka</a>
+				<a href="javascript:void(0);" id="loveboo<?php echo $s_book['book_id']; ?>" class="mr-30 fs-14px <?php if($s_book['is_like'] == 'false'){ echo 'like'; }else{ echo 'unlike'; } ?>"><img src="<?php if($s_book['is_like'] == 'false'){ echo base_url('public/img/assets/icon_love.svg'); }else{ echo base_url('public/img/assets/love_active.svg'); } ?>" class="mr-10 loveicon" width="27"> Suka</a>
 				<a href="#" id="commentboo" class="fs-14px"><img src="<?php echo base_url(); ?>public/img/assets/icon_comment.svg" class="mr-10" width="25"> Komentar</a>
 			</div>
 		</div>

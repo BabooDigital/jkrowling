@@ -45,19 +45,19 @@
 									<div class="mt-20 mb-50">
 										<div class="col-md-10">
 											<div class="dbooksociallistmodal">
-												<a href="#"><span class=".fs-13"><img src="<?php echo base_url(); ?>public/img/assets/icon_view.svg" width="27"> 290</span></a>
+												<a href="#"><span class="fs-13"><img src="<?php echo base_url(); ?>public/img/assets/icon_view.svg" width="27"> 290</span></a>
 											</div>
 											<div class="dbooksociallistmodal">
-												<a href="#"><span class=".fs-13"><img src="<?php echo base_url(); ?>public/img/assets/icon_comment.svg" width="14"> 45</span></a>
+												<a href="#"><span class="fs-13"><img src="<?php echo base_url(); ?>public/img/assets/icon_comment.svg" width="14"> 45</span></a>
 											</div>
 											<div class="dbooksociallistmodal">
-												<a href="#"><span class=".fs-13"><img src="<?php echo base_url(); ?>public/img/assets/icon_love.svg" width="16"> 290</span></a>
+												<a href="#"><span class="fs-13"><img src="<?php echo base_url(); ?>public/img/assets/icon_love.svg" width="16"> 290</span></a>
 											</div>
 											<div class="dbooksociallistmodal">
-												<a href="#"><span class=".fs-13"><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg" width="14"> 8</span></a>
+												<a href="#"><span class="fs-13"><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg" width="14"> 8</span></a>
 											</div>
 											<div class="dbooksociallistmodal">
-												<a href="#"><span class=".fs-13"><img src="<?php echo base_url(); ?>public/img/assets/icon_have.svg" width="20"> 8</span></a>
+												<a href="#"><span class="fs-13"><img src="<?php echo base_url(); ?>public/img/assets/icon_have.svg" width="20"> 8</span></a>
 											</div>
 										</div>
 									</div>
