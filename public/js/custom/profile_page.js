@@ -50,7 +50,6 @@ $(document).ready(function() {
 	});
 
 	// DRAFT BOOK
-	// PUBLISH BOOK
 	$.ajax({
 		url: base_url + 'getdraftbook',
 		type: 'POST',
