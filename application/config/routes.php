@@ -80,7 +80,7 @@ $route['library'] = 'library/C_library';
 // Book
 $route['img_book'] = 'book/C_createbook/img_book';
 $route['book/:any'] = 'book/C_book';
-$route['book/:any/:any'] = 'book/C_book';
+// $route['book/:any/:any'] = 'book/C_book';
 $route['getmenuchapter'] = 'book/C_book/chapter';
 $route['book/:any/read'] = 'book/C_book/readingMode';
 $route['my_book/:num/chapter/:num'] = 'book/C_createbook/mybook';
@@ -103,4 +103,4 @@ $route['getpublishbook'] = 'profile/C_profile/getPublishBook';
 $route['getdraftbook'] = 'profile/C_profile/getDraftBook';
 $route['awsd'] = 'book/C_createbook/awasd';
 
-
+$route['awsd'] = 'book/C_createbook/awasd';

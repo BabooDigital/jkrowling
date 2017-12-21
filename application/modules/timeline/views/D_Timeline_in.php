@@ -54,8 +54,8 @@
 								<?php 
 								$this->load->view('data/D_timeline_in', $home);
 								?>
+							<!-- <span class="loader" style="display: none;margin-left: auto;margin-right: auto;"></span> -->
 							</div>
-							<div class="loader" style="display: none;margin-left: auto;margin-right: auto;"></div>
 
 							<!-- Right Side -->
 							<div class="col-md-3 tmlin">

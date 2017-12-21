@@ -16,21 +16,14 @@
 							<div class="media">
 								<img alt="Generic placeholder image" class="d-flex align-self-start mr-20 rounded-circle" src="<?php echo base_url(); ?>public/img/profile/pp_anak2.png" width="50">
 								<div class="media-body">
-									<h5 class="nametitle2">Marina Saraswati</h5>
+									<h5 class="nametitle2"><?php echo $detailBook['data']['author']['author_name']; ?></h5>
 									<p><small><span>Jakarta, Indonesia</span></small></p><a class="btn-no-fill dbookfollowbtn" href="#"><span class="nametitle2">Follow</span></a>
 								</div>
 							</div>
 							<div id="post-data">
 								<!-- <?php 
 									$this->load->view('data/D_readingmode', $detail_book); ?> -->
-								<h2 class="dbooktitlebook"><?php echo $detailBook['data']['title_book']; ?></h2><br>
-								<?php 
-								$data = "";
-								foreach ($detail_book['data']['content'] as $book) {
-									$data .= $book['paragraph_text'];
-								}
-								echo $data;
-								?>
+									<?php $this->load->view('data/D_readingmode'); ?>
 							</div>
 							<!-- <div class="loader" style="display: none;margin-left: auto;margin-right: auto;"></div> -->
 							<hr>

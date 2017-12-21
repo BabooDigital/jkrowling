@@ -58,7 +58,4 @@
 		</div>
 	</div>
 	<?php } }else {
-		echo '<div class="alert alert-info">
-			  	<strong>Info!</strong> Belum ada yang anda follow :).
-			  </div>';
 	} ?>
