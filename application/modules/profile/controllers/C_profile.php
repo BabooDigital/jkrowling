@@ -74,11 +74,11 @@ class C_profile extends MX_Controller {
 		if ($this->agent->mobile()) {
 
 			$data['css'][] = "public/css/baboo-responsive.css";
-			$this->load->view('timeline/include/head', $data);
+			$this->load->view('timeline/include/header', $data);
 			$this->load->view('R_profile', $data);
 			
 		}else{
-			$this->load->view('timeline/include/head', $data);
+			$this->load->view('timeline/include/header', $data);
 			$this->load->view('D_profile');
 			// $this->load->view('timeline/include/foot');
 
@@ -187,6 +187,59 @@ class C_profile extends MX_Controller {
 		$status = $resval['code'];
 
 		echo json_encode($userdetail);	
+	}
+
+	public function getLatestRead()
+	{
+		error_reporting(0);
+		$url = 'api.dev-baboo.co.id/v1/book/Books/latestRead';
+		$auth = $this->session->userdata('authKey');
+		$userdata = $this->input->post('user_id');
+
+		$sendData = array(
+			'user_id' => $userdata
+		);
+
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+
+		curl_setopt($ch, CURLOPT_POST, 1);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $sendData);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+		curl_setopt($ch, CURLOPT_HEADER, 1);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key : '.$auth));
+		$result = curl_exec($ch);
+
+
+		$headers=array();
+
+		$data=explode("\n",$result);
+
+
+		array_shift($data);
+		$middle = array();
+		$moddle = array();
+		foreach($data as $part){
+			$middle=explode(":",$part);
+			$moddle=explode("{",$part);
+
+			if (error_reporting() == 0) {
+				$headers[trim($middle[0])] = trim($middle[1]);
+			}
+		}
+		$getdata = end($data);
+		$resval =  json_decode($getdata, TRUE);
+
+		$psn = $resval['message'];
+		$userdetail = $resval['data'];
+		$auth = $headers['BABOO-AUTH-KEY'];
+		
+		$this->session->set_userdata('authKey', $auth);
+		$status = $resval['code'];
+
+		echo json_encode($userdetail);
 	}
 
 }
