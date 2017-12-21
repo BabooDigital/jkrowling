@@ -101,6 +101,7 @@ $route['profile/(:any)'] = 'profile/C_profile';
 $route['profile'] = 'profile/C_profile';
 $route['getpublishbook'] = 'profile/C_profile/getPublishBook';
 $route['getdraftbook'] = 'profile/C_profile/getDraftBook';
+$route['getlatestread'] = 'profile/C_profile/getLatestRead';
 $route['awsd'] = 'book/C_createbook/awasd';
 
 $route['awsd'] = 'book/C_createbook/awasd';
