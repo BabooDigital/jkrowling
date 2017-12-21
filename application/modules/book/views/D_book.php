@@ -14,7 +14,7 @@
 }
 .modal-backdrop
 {
-    opacity:0.5 !important;
+	opacity:0.5 !important;
 }
 
 /* ----- MODAL STYLE ----- */
@@ -49,6 +49,7 @@
 				<div class="text-center pr-30 pl-30 pt-20">
 					<img src="<?php echo $detailBook['data']['book_info']['cover_url']; ?>" width="150">
 					<div class="card-body">
+						<input type="hidden" name="iaidubi" id="iaidubi" value="<?php echo $detailBook['data']['book_info']['book_id']; ?>">
 						<a href="#">
 							<h3 class="dbooktitle"><?php echo $detailBook['data']['book_info']['title_book']; ?></h3>
 						</a>
@@ -93,7 +94,7 @@
 							<div class="media-body">
 								<h5 class="nametitle2"><?php echo $detailBook['data']['author']['author_name']; ?></h5>
 								<p><small><span>Jakarta, Indonesia</span></small></p>
-								<a href="#" class="btn-no-fill dbookfollowbtn"><span class="nametitle2">Follow</span></a>
+								<a href="#" class="btn-no-fill dbookfollowbtn ml-20"><span class="nametitle2">Follow</span></a>
 							</div>
 						</div>
 						<div id="appentoContent">
@@ -126,10 +127,12 @@
 						</a>
 						<div class="border1px"></div>
 						<div class="pt-20 pb-20">
-							<p class="mb-30"><a href="#">
-								<img src="<?php echo base_url(); ?>public/img/assets/icon_love.svg" width="40">
-							</a></p>
-							<p><button type="button" data-toggle="modal" data-target="#myModal2" style="cursor: pointer;background: none;border: none;">
+							<p class="mb-30">
+								<a data-id="<?php echo $detailBook['data']['book_info']['book_id']; ?>" href="javascript:void(0);" id="loveboo" class="fs-14px <?php if($detailBook['data']['book_info']['is_like'] == 'false'){ echo 'like'; }else{ echo 'unlike'; } ?>">
+									<img src="<?php if($detailBook['data']['book_info']['is_like'] == 'false'){ echo base_url('public/img/assets/icon_love.svg'); }else{ echo base_url('public/img/assets/love_active.svg'); } ?>" class="loveicon" width="40">
+								</a>
+							</p>
+							<p><button type="button" data-toggle="modal" data-target="#commentModal" style="cursor: pointer;background: none;border: none;">
 								<img src="<?php echo base_url(); ?>public/img/assets/icon_comment.svg" width="40">
 							</button></p>
 						</div>
@@ -163,10 +166,14 @@
 				</ul>
 				<ul class="navbar-nav">
 					<li class="nav-item">
-						<a href="#"><img src="<?php echo base_url(); ?>public/img/assets/icon_love.svg" width="30"></a>
+						<a data-id="<?php echo $detailBook['data']['book_info']['book_id']; ?>" href="javascript:void(0);" id="loveboo" class="fs-14px <?php if($detailBook['data']['book_info']['is_like'] == 'false'){ echo 'like'; }else{ echo 'unlike'; } ?>">
+									<img src="<?php if($detailBook['data']['book_info']['is_like'] == 'false'){ echo base_url('public/img/assets/icon_love.svg'); }else{ echo base_url('public/img/assets/love_active.svg'); } ?>" class="loveicon" width="30">
+								</a>
 					</li>
 					<li class="nav-item ml-20">
-						<a href="#"><img src="<?php echo base_url(); ?>public/img/assets/icon_comment.svg" width="25"></a>
+						<button type="button" data-toggle="modal" data-target="#commentModal" style="cursor: pointer;background: none;border: none;">
+								<img src="<?php echo base_url(); ?>public/img/assets/icon_comment.svg" width="25">
+							</button>
 					</li>
 				</ul>
 			</div>
@@ -180,30 +187,20 @@
 		</div>
 	</nav>
 	<!-- Modal -->
-	<div class="modal right fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
+	<div class="modal right fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="commentLabel">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 
 				<div class="modal-header bg-white">
 					<button type="button" class="closes" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<h4 class="modal-title" id="myModalLabel2">Komentar</h4>
+					<h4 class="modal-title" id="commentLabel">Komentar</h4>
 				</div>
 
 				<div class="modal-body">
 					<div>
-						<div class="media">
-							<img class="d-flex align-self-start mr-20 rounded-circle" width="50" height="50" src="
-							<?php echo base_url('public/img/profile/blank-photo.jpg'); ?>">
-							<div class="media-body">
-								<h5 class="nametitle2 mb-5">Ambo Sayaka</h5>
-								<small><span>Jakarta, Indonesia</span></small>
-							</div>
+						<div id="bookcomment_list">
+							
 						</div>
-						<div class="mt-10">
-							<p class="fs-14px">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-							<a href="#"><b>Balas</b></a>
-						</div>
-						<hr>
 					</div>
 
 					<nav class="navbar navbar-expand-lg navbar-light fixed-bottom box-shadow-navbar">
@@ -235,40 +232,40 @@
 	<?php endif ?>
 
 	<script type="text/javascript">
-	var page = 0;
-	$(window).scroll(function() {
-	    if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
-	        if (page <= count_data) {
-	        	page++;
-		        loadMoreData(page);
-	        }
-	    }
-	});
+		var page = 0;
+		$(window).scroll(function() {
+			if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
+				if (page <= count_data) {
+					page++;
+					loadMoreData(page);
+				}
+			}
+		});
 
-	function loadMoreData(page){
-	  $.ajax(
-	        {
-	            url: '?chapter=' + page,
-	            type: "get",
-	            beforeSend: function()
-	            {
-	                $('#loader_scroll').show();
-	            }
-	        })
-	        .done(function(data)
-	        {
-	            if(data == " "){
-	                $('#loader_scroll').html("No more records found");
-	                return;
-	            }
-	            $('#loader_scroll').hide();
-	            $("#post-data").append(data);
-	        })
-	        .fail(function(jqXHR, ajaxOptions, thrownError)
-	        {
-	              console.log('server not responding...');
-	        });
-	}
+		function loadMoreData(page){
+			$.ajax(
+			{
+				url: '?chapter=' + page,
+				type: "get",
+				beforeSend: function()
+				{
+					$('#loader_scroll').show();
+				}
+			})
+			.done(function(data)
+			{
+				if(data == " "){
+					$('#loader_scroll').html("No more records found");
+					return;
+				}
+				$('#loader_scroll').hide();
+				$("#post-data").append(data);
+			})
+			.fail(function(jqXHR, ajaxOptions, thrownError)
+			{
+				console.log('server not responding...');
+			});
+		}
 	</script>
 </body>
 </html>

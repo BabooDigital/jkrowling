@@ -60,7 +60,6 @@
         console.log("error");
       })
       .always(function() {
-        console.log("complete");
       });
 
 
@@ -89,15 +88,15 @@
         $(".stickymenu").stick_in_parent();
       }
 
+// LIKE BUTTON
       $(document).on('click', '.like', function() {
 
         var aww = $(this);
         var formData = new FormData();
-        var id_book = $("#iaidubi").val();
-
+       
+        aww.children('.loveicon').attr("src","public/img/assets/love_active.svg");
         formData.append("user_id", $("#iaiduui").val());
-        formData.append("book_id", $("#iaidubi").val());
-
+        formData.append("book_id", aww.attr("data-id"));
         $.ajax({
           url: base_url + 'like',
           type: 'POST',
@@ -106,16 +105,12 @@
           contentType: false,
           processData: false,
           data: formData,
-          // beforeSend: function()
-          // {
-          //   $('.loader').show();
+          // beforeSend: function() {
           // }
         })
         .done(function() {
-          $("#loveboo"+id_book).attr('class', 'mr-30 fs-14px unlike');
-          $(".loveicon").attr({
-            src: 'public/img/assets/love_active.svg'
-          });
+          aww.removeClass('like');
+          aww.addClass('unlike');
           // $('.loader').hide();
         })
         .fail(function() {
@@ -126,15 +121,15 @@
         
       });
 
+// UNLIKE BUTTON
       $(document).on('click', '.unlike', function() {
 
         var aww = $(this);
         var formData = new FormData();
-        var id_book = $("#iaidubi").val();
-
+       
+        aww.children('.loveicon').attr("src","public/img/assets/icon_love.svg");
         formData.append("user_id", $("#iaiduui").val());
-        formData.append("book_id", $("#iaidubi").val());
-
+        formData.append("book_id", aww.attr("data-id"));
         $.ajax({
           url: base_url + 'like',
           type: 'POST',
@@ -143,16 +138,12 @@
           contentType: false,
           processData: false,
           data: formData,
-          // beforeSend: function()
-          // {
-          //   $('.loader').show();
+          // beforeSend: function() {
           // }
         })
         .done(function() {
-          $("#loveboo"+id_book).attr('class', 'mr-30 fs-14px like');
-          $(".loveicon").attr({
-            src: 'public/img/assets/icon_love.svg'
-          });
+          aww.removeClass('unlike');
+          aww.addClass('like');
           // $('.loader').hide();
         })
         .fail(function() {

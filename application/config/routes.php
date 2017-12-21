@@ -92,6 +92,8 @@ $route['my_book/create_book/publish'] = 'book/C_createbook/publishBook';
 
 $route['getdetailchapter'] = 'book/C_book/chapter';
 
+$route['getcommentbook'] = 'book/C_book/getCommentBook';
+
 // Cover
 $route['create_cover'] = 'cover/C_cover';
 $route['send_cover'] = 'cover/C_cover/sendCover';
