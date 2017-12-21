@@ -23,15 +23,15 @@ class C_timeline extends MX_Controller {
 
 		$ch = curl_init();
 		if (!empty($this->input->get("page"))) {
-			$id = '/'.$this->input->get("page");
+			$id = $this->input->get("page");
 		}else{
 			$id = "";
 		}
-		$url = $this->API.'/index'.$id;
+		$url = $this->API.'/index';
 		$uid = array(
-			'user_id' => $userdata['user_id']
+			'user_id' => $userdata['user_id'],
+			'count' => $id
 		);
-		// print_r($uid);
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $url);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);

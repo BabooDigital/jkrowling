@@ -115,7 +115,7 @@
 							</div>
 
 							<div class="tulisbuku mt-10">
-								<textarea id="book_paragraph" class="form-control" style="height: 1000px;" name="book_paragraph"></textarea>
+								<textarea id="book_paragraph" class="form-control book_paragraph" style="height: 1000px;" name="book_paragraph"></textarea>
 							</div>
 
 						</div>

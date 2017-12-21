@@ -115,7 +115,7 @@ $(document).ready(function() {
 
 				$("#sub_title").removeClass('txtaddsubchapt').addClass('txtaddsubchapt_on');
 				$("#title_book").val("");
-				$('#book_paragraph').froalaEditor('undo.reset');
+				$('.book_paragraph').froalaEditor('undo.reset');
 				$("#title_book").attr({
 					"placeholder": 'Masukan judul chapter'
 				});

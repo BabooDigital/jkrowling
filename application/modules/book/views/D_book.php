@@ -115,7 +115,9 @@
 			<div class="col-md-1">
 				<div class="card stickymenu">
 					<div class="text-center">
-						<a href="<?php echo "" ?>">
+						<?php echo $detailBook['data']['title_book']; ?>
+						<a href="<?php echo site_url(); ?>book/<?php
+								echo $detailBook['data']['book_info']['book_id']; ?>-<?php echo url_title($detailBook['data']['book_info']['title_book'], 'dash', true); ?>/read">
 							<div class="p-1">
 								<img src="<?php echo base_url(); ?>public/img/assets/read-mode.svg" width="45">
 								<span class="bold11px">Mode Baca</span>

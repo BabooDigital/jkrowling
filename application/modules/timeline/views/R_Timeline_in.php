@@ -7,9 +7,7 @@
 		<button type="submit" class="floating-btn"><i class="fa fa-pencil" aria-hidden="true"></i></button>
 	</form>
 </div>
-	<nav class="navbar navbar-expand-lg fixed-top baboonav" style="height:60px;">
 		<?php $this->load->view('navbar/R_navbar'); ?>	
-	</nav>
 		<br>
 		<br>
 		<br>
@@ -79,7 +77,7 @@ function loadMoreData(page){
         })
         .fail(function(jqXHR, ajaxOptions, thrownError)
         {
-              alert('server not responding...');
+              console.log('server not responding...');
         });
 }
 </script>

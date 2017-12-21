@@ -42,7 +42,12 @@ a:hover {
 .fixed-top {
 	z-index: 1009;
 }
-
+.fixed-top {
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+}
 .baboonav {
 	background-color: #fff;
 	box-shadow: 0px 0px 5px 1px rgba(74, 74, 74, 0.15);

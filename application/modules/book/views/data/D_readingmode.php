@@ -1,8 +1,17 @@
-<!-- <h2 class="dbooktitlebook"><?php echo $detailBook['data']['title_book']; ?></h2><br>
-								<?php 
-								$data = "";
-								foreach ($detail_book['data']['content'] as $book) {
-									$data .= $book['paragraph_text'];
-								}
-								echo $data;
-								?> -->
+<br>
+<br>
+<br>
+<h4 class="dbooktitlebook"> <?php
+	if ($id_chapter == null || $id_chapter == '' || $id_chapter == 0) {
+		echo "Judul Buku";
+	}else{
+		echo "Chapter ".$id_chapter;
+	}
+
+?> : <?php print_r($detail_book['data']['chapter']['chapter_title']); ?></h4>
+<?php 
+foreach ($detail_book['data']['chapter']['paragraphs'] as $book) {
+	$data .= $book['paragraph_text'];
+}
+	echo $data;
+?>
