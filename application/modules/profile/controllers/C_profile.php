@@ -2,22 +2,78 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class C_profile extends MX_Controller {
+
+	var $API = "";
+
 	function __construct(){
 		parent::__construct();
-		// if ($this->session->userdata('isLogin') != 200) {
-		// 	redirect('home');
-		// }
+		$this->API = "api.dev-baboo.co.id/v1/auth/OAuth";
+
+		if ($this->session->userdata('isLogin') != 200) {
+			redirect('home');
+		}
 	}
 
 	public function index()
 	{
-		$data['judul'] = "Profile Page - Baboo";
-		$data['js'][]   = "public/js/jquery.min.js";
-		$data['js'][]   = "public/js/custom/author_this_week.js";
-		$data['js'][]   = "public/js/menupage.js";
+		error_reporting(0);
+		$url = $this->API.'/profile';
+		$auth = $this->session->userdata('authKey');
+		$userdata = $this->session->userdata('userData');
+
+		$sendData = array(
+			'user_id' => $userdata['user_id']
+		);
+
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+
+		curl_setopt($ch, CURLOPT_POST, 1);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $sendData);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+		curl_setopt($ch, CURLOPT_HEADER, 1);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key : '.$auth));
+		$result = curl_exec($ch);
+
+
+		$headers=array();
+
+		$data=explode("\n",$result);
+
+
+		array_shift($data);
+		$middle = array();
+		$moddle = array();
+		foreach($data as $part){
+			$middle=explode(":",$part);
+			$moddle=explode("{",$part);
+
+			if (error_reporting() == 0) {
+				$headers[trim($middle[0])] = trim($middle[1]);
+			}
+		}
+		$getdata = end($data);
+		$resval =  json_decode($getdata, TRUE);
+
+		$psn = $resval['message'];
+		$userdetail = $resval['data'];
+		$auth = $headers['BABOO-AUTH-KEY'];
+		
+		$this->session->set_userdata('authKey', $auth);
+		$status = $resval['code'];
+		$data['userdata'] = $userdetail;
+
+		$data['title'] = "Profile Page - Baboo";
+		$data['js'][] = "public/js/jquery.min.js";
+		$data['js'][] = "public/js/umd/popper.min.js";
+		$data['js'][] = "public/js/bootstrap.min.js";
+		$data['js'][] = "public/js/jquery.sticky-kit.min.js";
+		$data['js'][] = "public/js/custom/profile_page.js";
 		if ($this->agent->mobile()) {
 
-			$data['css'][]   = "public/css/baboo-responsive.css";
+			$data['css'][] = "public/css/baboo-responsive.css";
 			$this->load->view('timeline/include/head', $data);
 			$this->load->view('R_profile', $data);
 			
@@ -25,8 +81,112 @@ class C_profile extends MX_Controller {
 			$this->load->view('timeline/include/head', $data);
 			$this->load->view('D_profile');
 			// $this->load->view('timeline/include/foot');
-		
+
 		}
+	}
+
+	public function getPublishBook() {
+		error_reporting(0);
+		$url = 'api.dev-baboo.co.id/v1/timeline/Timelines/publish';
+		$auth = $this->session->userdata('authKey');
+		$userdata = $this->input->post('user_id');
+
+		$sendData = array(
+			'user_id' => $userdata
+		);
+
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+
+		curl_setopt($ch, CURLOPT_POST, 1);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $sendData);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+		curl_setopt($ch, CURLOPT_HEADER, 1);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key : '.$auth));
+		$result = curl_exec($ch);
+
+
+		$headers=array();
+
+		$data=explode("\n",$result);
+
+
+		array_shift($data);
+		$middle = array();
+		$moddle = array();
+		foreach($data as $part){
+			$middle=explode(":",$part);
+			$moddle=explode("{",$part);
+
+			if (error_reporting() == 0) {
+				$headers[trim($middle[0])] = trim($middle[1]);
+			}
+		}
+		$getdata = end($data);
+		$resval =  json_decode($getdata, TRUE);
+
+		$psn = $resval['message'];
+		$userdetail = $resval['data'];
+		$auth = $headers['BABOO-AUTH-KEY'];
+		
+		$this->session->set_userdata('authKey', $auth);
+		$status = $resval['code'];
+
+		echo json_encode($userdetail);	
+	}
+
+	public function getDraftBook() {
+		error_reporting(0);
+		$url = 'api.dev-baboo.co.id/v1/timeline/Timelines/draft';
+		$auth = $this->session->userdata('authKey');
+		$userdata = $this->input->post('user_id');
+
+		$sendData = array(
+			'user_id' => $userdata
+		);
+
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+
+		curl_setopt($ch, CURLOPT_POST, 1);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $sendData);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+		curl_setopt($ch, CURLOPT_HEADER, 1);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key : '.$auth));
+		$result = curl_exec($ch);
+
+
+		$headers=array();
+
+		$data=explode("\n",$result);
+
+
+		array_shift($data);
+		$middle = array();
+		$moddle = array();
+		foreach($data as $part){
+			$middle=explode(":",$part);
+			$moddle=explode("{",$part);
+
+			if (error_reporting() == 0) {
+				$headers[trim($middle[0])] = trim($middle[1]);
+			}
+		}
+		$getdata = end($data);
+		$resval =  json_decode($getdata, TRUE);
+
+		$psn = $resval['message'];
+		$userdetail = $resval['data'];
+		$auth = $headers['BABOO-AUTH-KEY'];
+		
+		$this->session->set_userdata('authKey', $auth);
+		$status = $resval['code'];
+
+		echo json_encode($userdetail);	
 	}
 
 }

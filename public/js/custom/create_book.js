@@ -72,7 +72,7 @@ $(document).ready(function() {
 			theme: 'sk-bounce',
 			message: "Tunggu sebentar."
 		});
-		console.log("Awali semua dengan Bismillah dan akhiri dengan Alhamdulillah");
+		// console.log("Awali semua dengan Bismillah dan akhiri dengan Alhamdulillah");
 		// var editorText = CKEDITOR.instances.book_paragraph.getData();
 		var aww = $(this);
 		var formData = new FormData();

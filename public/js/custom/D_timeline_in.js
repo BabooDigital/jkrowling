@@ -37,7 +37,7 @@
       }
       
       $.ajax({
-        url: 'writter',
+        url: base_url + 'writter',
         type: 'GET',
         dataType: 'json',
       })
@@ -45,9 +45,15 @@
         var json = $.parseJSON(data);
         var datas = "";
         $.each(json.data, function(i, item) {
-           // console.log(item.author_name);
-           datas += "<li class='media baboocontent'><img alt='aa' class='d-flex mr-3 rounded-circle' src='"+item.avatar+"' width='50' height='50'><div class='media-body mt-7'><h5 class='mt-0 mb-1 nametitle'>"+item.author_name+"</h5><small>Fiksi</small><div class='pull-right baboocolor'><a href='#' class='addbutton'><img src='public/img/assets/icon_plus_purple.svg' width='20' class='mt-img'></a></div></div></li>";
-         });
+          var avatar;
+          if (item.avatar != "") {
+            avatar = item.avatar;
+          }else if (item.avatar == ""){
+            avatar = 'public/img/profile/blank-photo.jpg';
+          }
+          datas += "<li class='media baboocontent'><img alt='"+item.author_name+"' class='d-flex mr-3 rounded-circle' src='"+ avatar +"' width='50' height='50'><div class='media-body mt-7'><h5 class='mt-0 mb-1 nametitle'>"+item.author_name+"</h5><small>Fiksi</small><div class='pull-right baboocolor'><a href='#' class='addbutton'><img src='public/img/assets/icon_plus_purple.svg' width='20' class='mt-img'></a></div></div></li>";
+          
+        });
         $("#author_this_week").html(datas);
       })
       .fail(function() {
@@ -83,8 +89,78 @@
         $(".stickymenu").stick_in_parent();
       }
 
-      $("#loveboo").on('click', function() {
-        console.log('woy');
+      $(document).on('click', '.like', function() {
+
+        var aww = $(this);
+        var formData = new FormData();
+        var id_book = $("#iaidubi").val();
+
+        formData.append("user_id", $("#iaiduui").val());
+        formData.append("book_id", $("#iaidubi").val());
+
+        $.ajax({
+          url: base_url + 'like',
+          type: 'POST',
+          dataType: 'JSON',
+          cache: false,
+          contentType: false,
+          processData: false,
+          data: formData,
+          // beforeSend: function()
+          // {
+          //   $('.loader').show();
+          // }
+        })
+        .done(function() {
+          $("#loveboo"+id_book).attr('class', 'mr-30 fs-14px unlike');
+          $(".loveicon").attr({
+            src: 'public/img/assets/love_active.svg'
+          });
+          // $('.loader').hide();
+        })
+        .fail(function() {
+          console.log("error");
+        })
+        .always(function() {
+        });
+        
+      });
+
+      $(document).on('click', '.unlike', function() {
+
+        var aww = $(this);
+        var formData = new FormData();
+        var id_book = $("#iaidubi").val();
+
+        formData.append("user_id", $("#iaiduui").val());
+        formData.append("book_id", $("#iaidubi").val());
+
+        $.ajax({
+          url: base_url + 'like',
+          type: 'POST',
+          dataType: 'JSON',
+          cache: false,
+          contentType: false,
+          processData: false,
+          data: formData,
+          // beforeSend: function()
+          // {
+          //   $('.loader').show();
+          // }
+        })
+        .done(function() {
+          $("#loveboo"+id_book).attr('class', 'mr-30 fs-14px like');
+          $(".loveicon").attr({
+            src: 'public/img/assets/icon_love.svg'
+          });
+          // $('.loader').hide();
+        })
+        .fail(function() {
+          console.log("error");
+        })
+        .always(function() {
+        });
+        
       });
 
     });

@@ -1,196 +1,165 @@
-	<div class="container babooidin">
-		<div class="row">
-			<!-- Left Side -->
-			<div class="col-md-3 tmlin">
-				<div class="stickymenu">
-					<!-- Penulis Minggu Ini -->
-					<!-- Penulis Minggu Ini -->
-
-					<!-- Trending -->
-					<div class="card mb-15">
-						
+<style type="text/css">
+	button {
+		cursor: pointer;
+	}
+	.nav-tabs {
+		border: none;
+	}
+	.arrowdraft {
+		padding: 10px;
+		border: 2px #da0707 solid;
+	}
+	.nav-pills .nav-link.active, .show>.nav-pills .nav-link {
+		background-color: #7554bd !important;
+		border-radius: 40px;
+		padding: 5px 40px !important;
+	}
+	.btn-edprof {
+		background: none;
+	    width: 45%;
+	    border-radius: 40px;
+	    border: solid 1px #797979;
+	}
+</style>
+<div class="container babooidin">	
+	<div class="row">
+		<!-- Left Side -->
+		<div class="col-md-3">
+			<div class="">
+				<div class="card mb-15">
+					<div class="text-center pr-10 pl-10 pt-20">
 						<div class="card-body p-0">
-										<div class="profile-left">
-											<center>
-												<div class="profile-avatar">
-													<img class="d-flex align-self-start rounded-circle" src="<?php if(@$s_book['author_avatar'] == NULL){
-																echo base_url('public/img/profile/blank-photo.jpg');
-															}else{
-																echo $s_book['author_avatar']; } ?>" width="70" height="70" alt="Generic placeholder image">
-
-
-														<p class="label_name"><h4><b>Rizaldi</b></h4></p>
-														<p class="profile_location">Jakarta , Indonesia</p>
-														<div class="quote">
-															<p>We Are Avalaible For Freelance Work. mail on (Rizaldi354313@gmail.com)</p>
-														</div>
-														<div class="profile_message_des">
-															<button class="btn-profile-des"><img src="<?php echo base_url('') ?>public/img/icon-tab/add_follow.svg">Edit Profile</button>
-															<button class="btn-message-des"><img src="<?php echo base_url('') ?>public/img/icon-tab/message.svg">Pesan Masuk</button>
-														</div>
-														<br><br>
-														<div class="profile_balance_des">
-															<button class="btn-details-balance">Topup</button>
-															<span class="label_balance"><img src="<?php echo base_url('') ?>public/img/icon-tab/group_14.svg"><b> Balance</b></span>
-															<br>
-															<p class="profile_nominal"><b>Rp 200.000</b></p>
-														</div>
-														<br><br>
-														<div class="penghargaan">
-															<label><b>Penghargaan</b></label>
-														</div>
-														<div class="penghargaan">
-															<label><b>Statistik</b></label>
-														</div>
-														
-												</div>
-											</center>
-										</div>
-									</div>
-								</div>
-								<!-- Trending -->
+							<input type="hidden" id="iaiduui" name="iaiduui" value="<?php $name = $this->session->userdata('userData'); echo $name['user_id']; ?>">
+							<img alt="<?php echo $userdata['name']; ?>" class="rounded-circle p-5" height="100" src="<?php if($userdata['avatar'] == NULL){ echo base_url('public/img/profile/blank-photo.jpg'); }else{ echo $userdata['avatar']; } ?>" style="border: .5px #7554bd solid;" width="100">
+							<p class="mt-10"><b><?php echo $userdata['name']; ?></b></p>
+							<p>Jakarta, Indonesia</p>
+							<div class="quote">
+								<p>Kita memang gila, tak pernah berfikir. Bila dirasakan, pasti banyak kurang.</p>
+								<p>( <?php echo $userdata['email']; ?> )</p>
 							</div>
-						</div>
-
-							<!-- Mid Side -->
-							<div class="col-md-6" id="post-data">
-								<div class="card mb-15" style="padding: 0 00px;">
-								<div class="card-body p-0 p-20">
-									<div class="row mb-10" style="padding: 0px 10px 0px 10px;">
-										<div class="media">
-											<img class="d-flex align-self-start mr-20 rounded-circle" src="<?php echo base_url(); ?>public/img/profile/pp_wanita2.png" width="48" alt="Generic placeholder image">
-											<div class="media-body mt-5">
-												<h5 class="card-title nametitle2">Marina Saraswati</h5>
-												<p class="text-muted" style="margin-top:-10px;"><small><span>Jakarta, Indonesia</span>
-													<span class="ml-10">1 hours ago</span></small></p>
-											</div>
-										</div>
-									</div>
-									<div class="row" style="padding: 0px 10px 0px 10px;">
-										<div style="float:left;width:40%;height: auto;">
-						    				<img src="https://spark.adobe.com/images/landing/examples/how-to-book-cover.jpg" style="box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5); height:100%;width: 100%;margin-left: -5px;">
-						    			</div>
-						    			 <div style="float: left;width:60%;height: auto;">
-						                    <div style="padding: 10px;">
-						                    	<b style="font-size: 16px;">Kite Runner - Powerfull Hunting</b>
-								    			<div style="padding-top: 10px;"></div><span style="font-size:12px;border: 1px #7554bd solid;border-radius: 25px;padding: 3px 10px;color: #7554bd;">FIKSI</span>
-								    			<span class="mr-10"><img src="<?php echo base_url(); ?>public/img/assets/icon_view.svg"> 290</span> <span><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg"> 12</span></p>
-								    			<div style="padding-top: 10px;"></div>
-												<div id="content">
-													<p style="font-size:16px; font-family: Roboto;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's.</p>
-												</div>
-						                    </div>	
-						                 </div>	
-									</div>
-								</div>
-								<div class="card-footer text-muted" style="font-size: 0.8em;font-weight: bold;">
-									<div class="pull-right">
-										<span>Draft</span>
-									</div>
-									<div>
-									</div>
-								</div>
-								<div class="card-body p-0 p-20">
-									<div class="row mb-10" style="padding: 0px 10px 0px 10px;">
-										<div class="media">
-											<img class="d-flex align-self-start mr-20 rounded-circle" src="<?php echo base_url(); ?>public/img/profile/pp_wanita2.png" width="48" alt="Generic placeholder image">
-											<div class="media-body mt-5">
-												<h5 class="card-title nametitle2">Marina Saraswati</h5>
-												<p class="text-muted" style="margin-top:-10px;"><small><span>Jakarta, Indonesia</span>
-													<span class="ml-10">1 hours ago</span></small></p>
-											</div>
-										</div>
-									</div>
-									<div class="row" style="padding: 0px 10px 0px 10px;">
-										<div style="float:left;width:40%;height: auto;">
-						    				<img src="https://spark.adobe.com/images/landing/examples/how-to-book-cover.jpg" style="box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5); height:100%;width: 100%;margin-left: -5px;">
-						    			</div>
-						    			 <div style="float: left;width:60%;height: auto;">
-						                    <div style="padding: 10px;">
-						                    	<b style="font-size: 16px;">Kite Runner - Powerfull Hunting</b>
-								    			<div style="padding-top: 10px;"></div><span style="font-size:12px;border: 1px #7554bd solid;border-radius: 25px;padding: 3px 10px;color: #7554bd;">FIKSI</span>
-								    			<span class="mr-10"><img src="<?php echo base_url(); ?>public/img/assets/icon_view.svg"> 290</span> <span><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg"> 12</span></p>
-								    			<div style="padding-top: 10px;"></div>
-												<div id="content">
-													<p style="font-size:16px; font-family: Roboto;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's.</p>
-												</div>
-						                    </div>	
-						                 </div>	
-									</div>
-								</div>
-								<div class="card-footer text-muted" style="font-size: 0.8em;font-weight: bold;">
-									<div class="pull-right">
-										<span>Draft</span>
-									</div>
-									<div>
-									</div>
-								</div>
+							<div class="mb-20">
+								<button class="btn-edprof p-5 fs-12px mr-10">Edit Profile</button> <button class="btn-edprof p-5 fs-12px">Pesan Masuk</button>
 							</div>
+							<hr>
+							<div>
+								<button class="btn-details-balance">Topup</button> <span class="label_balance"><b>Balance</b></span><br>
+								<br>
+								<p class="profile_nominal"><b>Rp <?php echo $userdata['balance']; ?></b></p>
+							</div><br>
+							<br>
+							<hr>
+							<!-- <div class="penghargaan">
+                                        <label><b>Penghargaan</b></label>
+                                    </div> -->
+							<div class="penghargaan">
+								<label><b>Statistik</b></label>
 							</div>
-							<div class="loader" style="display: none;margin-left: auto;margin-right: auto;"></div>
-
-							<!-- Right Side -->
-							<div class="col-md-3 tmlin">
-								<div class="stickymenu">
-									<!-- Card Widget -->
-									<div class="card card-widget mb-15">
-									</div>
-									<!-- Card Widget -->
-
-									<!-- Buku Populer -->
-									<div class="card mb-15">
-										<div class="card-header">
-											Terakhir Dibaca
-										</div>
-										<div class="card-body p-0">
-											<ul class="list-group list-group-flush">
-												<li class="list-group-item">
-													<div class="media">
-														<div class="media-left mr-10">
-															<a href="#"><img class="media-object" src="https://placehold.it/60x80/6454bd"></a>
-														</div>
-														<div class="media-body">
-															<div>
-																<h4 class="media-heading bold mt-10"><a href="#">Big Magic: Creative Living Beyon Fear</a></h4>
-																<p style="font-size: 10pt;">by <a href="#">Aditia Nugraha</a></p>
-															</div>
-														</div>
-													</div>
-												</li>
-												<li class="list-group-item">
-													<div class="media">
-														<div class="media-left mr-10">
-															<a href="#"><img class="media-object" src="https://placehold.it/60x80/c53949"></a>
-														</div>
-														<div class="media-body">
-															<div>
-																<h4 class="media-heading bold mt-10"><a href="#">The Painter's Daughter</a></h4>
-																<p style="font-size: 10pt;">by <a href="#">Juli Kasi</a></p>
-															</div>
-														</div>
-													</div>
-												</li>
-												<li class="list-group-item">
-													<div class="media">
-														<div class="media-left mr-10">
-															<a href="#"><img class="media-object" src="https://placehold.it/60x80/e2a9c9"></a>
-														</div>
-														<div class="media-body">
-															<div>
-																<h4 class="media-heading bold mt-10"><a href="#">The Painter's Daughter</a></h4>
-																<p style="font-size: 10pt;">by <a href="#">Juli Kasi</a></p>
-															</div>
-														</div>
-													</div>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<!-- Buku Populer -->
-								</div>
+							<div class="dbooksociallist">
+								<a href="#"><img src="<?php echo base_url(); ?>public/img/assets/icon_books.svg" width="27">
+								<p class="mt-5"><?php echo $userdata['book_made']; ?></p></a>
+							</div>
+							<div class="dbooksociallist">
+								<a href="#"><img src="<?php echo base_url(); ?>public/img/assets/icon_follower.svg" width="27">
+								<p class="mt-5"><?php echo $userdata['followers']; ?></p></a>
+							</div>
+							<div class="dbooksociallist">
+								<a href="#"><img src="<?php echo base_url(); ?>public/img/assets/icon_liker.svg" width="27">
+								<p class="mt-5"><?php echo $userdata['ppl_like']; ?></p></a>
+							</div>
+							<div class="dbooksociallist">
+								<a href="#"><img src="<?php echo base_url(); ?>public/img/assets/icon_soldbook.svg" width="27">
+								<p class="mt-5"><?php echo $userdata['book_sold']; ?></p></a>
+							</div><br>
+							<div class="mt-100 mb-20" style="background: #fcfbff;padding: 15px;">
+								<p><small>Buku Terjual</small></p>
+								<p style="font-size: 25px;color: #7a5abf;font-weight: 700;">Rp. 25.500.000</p>
 							</div>
 						</div>
 					</div>
-					<?php if (isset($js)): ?>
-						<?php echo get_js($js) ?>
-					<?php endif ?>
+				</div><!-- Trending -->
+			</div>
+		</div><!-- Mid Side -->
+		<div class="col-md-6" id="post-data">
+			<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+			  <li class="nav-item mr-50">
+			    <a class="nav-link mt-5 active" id="pills-publish-tab" data-toggle="pill" href="#pills-publish" role="tab" aria-controls="pills-publish" aria-selected="true">Publish</a>
+			  </li>
+			  <li class="nav-item">
+			    <a class="nav-link mt-5" id="pills-draft-tab" data-toggle="pill" href="#pills-draft" role="tab" aria-controls="pills-draft" aria-selected="false">Draft</a>
+			  </li>
+			</ul>
+			<div class="tab-content" id="pills-tabContent">
+				<div class="tab-pane fade show active" id="pills-publish" role="tabpanel" aria-labelledby="pills-publish-tab">
+					<div id="publishdata">
+						
+					</div>
+				</div>
+				<div class="loader" style="display: none;margin-left: auto;margin-right: auto;"></div>
+			<div class="tab-pane fade" id="pills-draft" role="tabpanel" aria-labelledby="pills-draft-tab">
+				<div id="draftdata">
+					
+				</div>
+			</div>
+			</div>
+		</div><!-- Right Side -->
+		<div class="col-md-3 tmlin">
+			<div class="stickymenu">
+				<!-- Buku Populer -->
+				<div class="card mb-15">
+					<div class="card-header">
+						Terakhir Dibaca
+					</div>
+					<div class="card-body p-0">
+						<ul class="list-group list-group-flush">
+							<li class="list-group-item">
+								<div class="media">
+									<div class="media-left mr-10">
+										<a href="#"><img class="media-object" src="https://placehold.it/60x80/6454bd"></a>
+									</div>
+									<div class="media-body">
+										<div>
+											<h4 class="media-heading bold mt-10"><a href="#">Big Magic: Creative Living Beyon Fear</a></h4>
+											<p style="font-size: 10pt;">by <a href="#">Aditia Nugraha</a></p>
+										</div>
+									</div>
+								</div>
+							</li>
+							<li class="list-group-item">
+								<div class="media">
+									<div class="media-left mr-10">
+										<a href="#"><img class="media-object" src="https://placehold.it/60x80/c53949"></a>
+									</div>
+									<div class="media-body">
+										<div>
+											<h4 class="media-heading bold mt-10"><a href="#">The Painter's Daughter</a></h4>
+											<p style="font-size: 10pt;">by <a href="#">Juli Kasi</a></p>
+										</div>
+									</div>
+								</div>
+							</li>
+							<li class="list-group-item">
+								<div class="media">
+									<div class="media-left mr-10">
+										<a href="#"><img class="media-object" src="https://placehold.it/60x80/e2a9c9"></a>
+									</div>
+									<div class="media-body">
+										<div>
+											<h4 class="media-heading bold mt-10"><a href="#">The Painter's Daughter</a></h4>
+											<p style="font-size: 10pt;">by <a href="#">Juli Kasi</a></p>
+										</div>
+									</div>
+								</div>
+							</li>
+						</ul>
+						<div class="text-center p-20">
+							<a href="#" style="border-radius: 4px;border: 1px #dedede solid;display:  block;" class="p-10">Lihat Semua</a>
+						</div>
+					</div>
+				</div><!-- Buku Populer -->
+			</div>
+		</div>
+	</div>
+</div>
+<?php if (isset($js)): ?><?php echo get_js($js) ?><?php endif ?>
+</body>
+</html>

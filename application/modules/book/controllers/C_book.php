@@ -300,10 +300,10 @@ class C_book extends MX_Controller {
 		$data['js'][] = "public/js/bootstrap.min.js";
 		$data['js'][] = "public/js/custom/reading_mode.js";
 		$this->load->view('D_readingmode', $data);
-		// if (!empty($this->input->get("page"))) {
-		// 	$result = $this->load->view('data/D_readingmode', $datas);
-		// }else{
-		// 	$this->load->view('D_readingmode', $datas);
-		// }
+		if (!empty($this->input->get("page"))) {
+			$result = $this->load->view('data/D_readingmode', $datas);
+		}else{
+			$this->load->view('D_readingmode', $datas);
+		}
 	}
 }
