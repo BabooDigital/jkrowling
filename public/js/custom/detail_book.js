@@ -18,15 +18,64 @@ $(document).ready(function() {
     $(".stickymenu").stick_in_parent();
   }
 
+  // POST COMMENT
+  $(document).on('click', '.post-comment', function() {
+    var boo = $(this);
+    var formData = new FormData();
+    var comm = $('#comments').val();
+    var ava = $('#profpict').attr('src');
+    var name = $('#profname').text();
+    var commcount = +$('#commentcount').text() + 1;
+
+    var datas = "";
+    datas += "<div class='commentviewnull'><div class='media'> <img class='d-flex align-self-start mr-20 rounded-circle' width='50' height='50' src='"+ ava +"'> <div class='media-body'> <h5 class='nametitle2 mb-5'>"+ name +"</h5> <small><span>Jakarta, Indonesia</span></small> </div> </div> <div class='mt-10'> <p class='fs-14px' id='nullcomment'>"+ comm +"</p> </div> <a href='#'><b>Balas</b></a> <hr></div>";
+    $('#bookcomment_list').append(datas);
+
+    formData.append('user_id', $('#iaiduui').val());
+    formData.append('book_id', $('#iaidubi').val());
+    formData.append('comments', $('#comments').val());
+
+    $.ajax({
+      url: base_url + 'commentbook',
+      type: 'POST',
+      dataType: 'JSON',
+      cache: false,
+      contentType: false,
+      processData: false,
+      data: formData,
+      // beforeSend: function()
+      // {
+      //   $('.loader').show();
+      // }
+    })
+    .done(function(data) {
+      $("span[id='commentcount']").text(commcount);
+      if (data == null) {
+        $('.commentviewnull').hide();
+        // $("span[id='commentcount']").text(commcount);
+        console.log('Koneksi Bermasalah');
+      }
+      $('#comments').val('');
+    })
+    .fail(function() {
+      console.log("error");
+    })
+    .always(function() {
+    });
+    
+
+  });
+
   // LIKE BUTTON
   $(document).on('click', '.like', function() {
 
-    var aww = $(this);
+    var boo = $(this);
     var formData = new FormData();
+    var likecount = +$('#likecount').text() + 1;
 
-    aww.children('.loveicon').attr("src","../public/img/assets/love_active.svg");
+    $('.loveicon').attr("src","../public/img/assets/love_active.svg");
     formData.append("user_id", $("#iaiduui").val());
-    formData.append("book_id", aww.attr("data-id"));
+    formData.append("book_id", boo.attr("data-id"));
     $.ajax({
       url: base_url + 'like',
       type: 'POST',
@@ -39,10 +88,11 @@ $(document).ready(function() {
           // }
         })
     .done(function() {
-      aww.removeClass('like');
-      aww.addClass('unlike');
-          // $('.loader').hide();
-        })
+      boo.removeClass('like');
+      boo.addClass('unlike');
+      // $('.loader').hide();
+      $('#likecount').text(likecount);
+    })
     .fail(function() {
       console.log("error");
     })
@@ -54,12 +104,13 @@ $(document).ready(function() {
 // UNLIKE BUTTON
 $(document).on('click', '.unlike', function() {
 
-  var aww = $(this);
+  var boo = $(this);
   var formData = new FormData();
+  var likecount = +$('#likecount').text() - 1;
 
-  aww.children('.loveicon').attr("src","../public/img/assets/icon_love.svg");
+  $('.loveicon').attr("src","../public/img/assets/icon_love.svg");
   formData.append("user_id", $("#iaiduui").val());
-  formData.append("book_id", aww.attr("data-id"));
+  formData.append("book_id", boo.attr("data-id"));
   $.ajax({
     url: base_url + 'like',
     type: 'POST',
@@ -72,10 +123,11 @@ $(document).on('click', '.unlike', function() {
           // }
         })
   .done(function() {
-    aww.removeClass('unlike');
-    aww.addClass('like');
+    boo.removeClass('unlike');
+    boo.addClass('like');
           // $('.loader').hide();
-        })
+    $('#likecount').text(likecount);
+  })
   .fail(function() {
     console.log("error");
   })
@@ -163,7 +215,6 @@ function getChapter() {
     }).fail(function() {
       console.log("error");
     }).always(function() {
-      console.log("complete");
     });
   });
 }
@@ -191,7 +242,6 @@ function getmenuChapter() {
   })
   .always(function() {
     $("#loader_chapter").hide();
-    console.log("complete");
   });
   
 }
@@ -216,7 +266,7 @@ function getCommentBook() {
       }else if (item.comment_user_avatar == ""){
         avatar = 'public/img/profile/blank-photo.jpg';
       }
-      datas += "<div class='media'> <img class='d-flex align-self-start mr-20 rounded-circle' width='50' height='50' src='"+ avatar +"'> <div class='media-body'> <h5 class='nametitle2 mb-5'>"+ item.comment_user_name +"</h5> <small><span>Jakarta, Indonesia</span></small> </div> </div> <div class='mt-10'> <p class='fs-14px' id='"+ item.comment_id +"'>"+ item.comment_text +"</p> </div> <a href='#'><b>Balas</b></a> <hr>";
+      datas += "<div class='commentview'><div class='media'> <img class='d-flex align-self-start mr-20 rounded-circle' width='50' height='50' src='"+ avatar +"'> <div class='media-body'> <h5 class='nametitle2 mb-5'>"+ item.comment_user_name +"</h5> <small><span>Jakarta, Indonesia</span></small> </div> </div> <div class='mt-10'> <p class='fs-14px' id='"+ item.comment_id +"'>"+ item.comment_text +"</p> </div> <a href='#'><b>Balas</b></a> <hr></div>";
     });
     $('.loader').hide();
     $("#bookcomment_list").html(datas);
@@ -225,7 +275,6 @@ function getCommentBook() {
     console.log("error");
   })
   .always(function() {
-    console.log("complete");
   });
   
 }

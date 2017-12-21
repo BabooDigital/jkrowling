@@ -80,7 +80,7 @@ class C_home extends MX_Controller {
 		}
 		if ($this->agent->is_mobile())
 		{
-			$mobile['judul'] = "Baboo - Beyond Mobile Book & Creativity";
+			$mobile['title'] = "Baboo - Beyond Mobile Book & Creativity";
 			$mobile['css'][]   = "public/css/jquery.bxslider.min.css";
 			
 			$mobile['js'][]   = "public/js/jquery.bxslider.min.js";

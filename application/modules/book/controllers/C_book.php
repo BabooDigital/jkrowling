@@ -149,7 +149,7 @@ class C_book extends MX_Controller {
 	        }
         }
         
-		$data['judul'] = $data['detail_book']['data']['book_info']['title_book']." - Baboo";
+		$data['title'] = $data['detail_book']['data']['book_info']['title_book']." - Baboo";
 
 		$data['detailBook'] = json_decode($data[16], true);
 		$data['detailChapter'] = count($data_before_chapter['chapter']) - 1;
@@ -365,7 +365,7 @@ class C_book extends MX_Controller {
 	        }
         }
         
-		$data['judul'] = $data['detail_book']['data']['book_info']['title_book']." - Baboo";
+		$data['title'] = $data['detail_book']['data']['book_info']['title_book']." - Baboo";
 
 		$data['detailBook'] = json_decode($data[16], true);
 		$data['detailChapter'] = count($data_before_chapter['chapter']) - 1;
@@ -396,6 +396,62 @@ class C_book extends MX_Controller {
 				$this->load->view('D_readingmode', $data);
 			}
 		}
+	}
+
+	public function postCommentBook() {
+		error_reporting(0);
+		$url = 'api.dev-baboo.co.id/v1/book/Books/addComment';
+		$auth = $this->session->userdata('authKey');
+		$book_id = $this->input->post('book_id');
+		$user_id = $this->input->post('user_id');
+		$comment = $this->input->post('comments');
+
+		$sendData = array(
+			'book_id' => $book_id,
+			'user_id' => $user_id['user_id'],
+			'comments' => $comment
+		);
+
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+
+		curl_setopt($ch, CURLOPT_POST, 1);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $sendData);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+		curl_setopt($ch, CURLOPT_HEADER, 1);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key : '.$auth));
+		$result = curl_exec($ch);
+
+
+		$headers=array();
+
+		$data=explode("\n",$result);
+
+
+		array_shift($data);
+		$middle = array();
+		$moddle = array();
+		foreach($data as $part){
+			$middle=explode(":",$part);
+			$moddle=explode("{",$part);
+
+			if (error_reporting() == 0) {
+				$headers[trim($middle[0])] = trim($middle[1]);
+			}
+		}
+		$getdata = end($data);
+		$resval =  json_decode($getdata, TRUE);
+
+		$psn = $resval['message'];
+		$userdetail = $resval['data'];
+		$auth = $headers['BABOO-AUTH-KEY'];
+		
+		$this->session->set_userdata('authKey', $auth);
+		$status = $resval['code'];
+
+		echo json_encode($userdetail);
 	}
 
 	public function getCommentBook() {
