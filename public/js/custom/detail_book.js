@@ -232,9 +232,58 @@ function getmenuChapter() {
     var data_chapter = "";
     $("#loader_chapter").hide();
     $.each(data, function(index, val) {
-      data_chapter += '<li class="list-group-item" id="list_chapters"><a href="#'+val['chapter_id']+'" class="id_chapter" onclick="ScrollToBottom()">'+val['chapter_title']+'</a></li>';
+
+      if(val['chapter_free'] != "false"){
+        data_chapter += '<li class="list-group-item ';
+        if (index == 0) {
+          data_chapter += 'chapter_active ';
+        }
+        data_chapter += '" id="list_chapters"><a href="#'+val['chapter_id']+'" class="id_chapter';
+        data_chapter += '" onclick="ScrollToBottom('+index+')">'+val['chapter_title']+'</a></li>'; 
+      }else{
+        data_chapter += '<li class="list-group-item ';
+        // if (index == 0) {
+        data_chapter += 'chapter_disabled ';
+        // }
+        data_chapter += '" id="list_chapters" style="cursor: not-allowed;"><span class="id_chapter';
+        data_chapter += '" >'+val['chapter_title']+'</span></li>';
+      }
     });
     $("#list_chapter").html(data_chapter);
+    $('.id_chapter').on('click', function(event) {
+      var $this = $(this);
+      $this.parent().siblings().removeClass('chapter_active').end().addClass('chapter_active');
+      event.preventDefault();
+
+      if (
+          location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') 
+          && 
+          location.hostname == this.hostname
+        ) {
+          // Figure out element to scroll to
+          var target = $(this.hash);
+          target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+          // Does a scroll target exist?
+          if (target.length) {
+            // Only prevent default if animation is actually gonna happen
+            event.preventDefault();
+            $('html, body').animate({
+              scrollBottom: target.offset().bottom
+            }, 1000, function() {
+              // Callback after animation
+              // Must change focus!
+              var $target = $(target);
+              $target.focus();
+              if ($target.is(":focus")) { // Checking if the target was focused
+                return false;
+              } else {
+                $target.attr('tabindex','-1'); // Adding tabindex for elements not focusable
+                $target.focus(); // Set focus again
+              };
+            });
+          }
+        }
+    });
   })
   .fail(function() {
     $("#loader_chapter").hide();
@@ -278,6 +327,44 @@ function getCommentBook() {
   });
   
 }
-function ScrollToBottom() {
-  window.scrollTo(0,document.querySelector("#post-data").scrollHeight);
+function getCommentBook() {
+  var id = $('#iaidubi').val();
+  $.ajax({
+    url: base_url + 'getcommentbook',
+    type: 'POST',
+    dataType: 'json',
+    data: {book_id: id},
+    beforeSend: function()
+    {
+      $('.loader').show();
+    }
+  })
+  .done(function(data) {
+    var datas = "";
+    $.each(data, function(i, item) {
+      var avatar;
+      if (item.comment_user_avatar != "") {
+        avatar = item.comment_user_avatar;
+      }else if (item.comment_user_avatar == ""){
+        avatar = 'public/img/profile/blank-photo.jpg';
+      }
+      datas += "<div class='media'> <img class='d-flex align-self-start mr-20 rounded-circle' width='50' height='50' src='"+ avatar +"'> <div class='media-body'> <h5 class='nametitle2 mb-5'>"+ item.comment_user_name +"</h5> <small><span>Jakarta, Indonesia</span></small> </div> </div> <div class='mt-10'> <p class='fs-14px' id='"+ item.comment_id +"'>"+ item.comment_text +"</p> </div> <a href='#'><b>Balas</b></a> <hr>";
+    });
+    $('.loader').hide();
+    $("#bookcomment_list").html(datas);
+  })
+  .fail(function() {
+    console.log("error");
+  })
+  .always(function() {
+    console.log("complete");
+  });
+  
+}
+function ScrollToBottom(count) {
+  // console.log(count);
+  var i;
+  for(i = 0; i <= count; i++){
+    window.scrollTo(0,document.querySelector("#post-data").scrollHeight);
+  }
 }
