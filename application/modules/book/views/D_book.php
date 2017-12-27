@@ -58,7 +58,7 @@
 	<div class="row">
 		<div class="col-md-4 dtlbok">
 			<?php if (!empty($detailBook)) { ?>
-			<div class="card pb-20 stickymenu">
+			<div class="card pb-20">
 				<div class="text-center pr-30 pl-30 pt-20">
 					<img src="<?php echo $detailBook['data']['book_info']['cover_url']; ?>" width="150">
 					<div class="card-body">
@@ -84,10 +84,15 @@
 					<ul class="list-group list-group-flush">
 						<li class="list-group-item"><small>Bagian Cerita</small></li>
 						<center>
-							<div class="loader" id="loader_chapter"></div>
+							<!-- <div class="loader" id="loader_chapter"></div> -->
 						</center>
 						<span id="list_chapter"></span>
-					</ul>
+						<!-- <?php foreach ($menuChapter['data'] as $key => $value): ?>
+							<li class="list-group-item" id="list_chapters"><a href="#" class="id_chapter <?php if($key == 0){ echo 'chapter_active'; } else{ echo ''; } ?>" onclick="ScrollToBottom()"><?php echo $value['chapter_title']; ?></a></li>
+						<?php endforeach ?> -->
+						<!-- <li class="list-group-item" id="list_chapters"><a href="#" class="id_chapter ">asd</a></li>
+						<li class="list-group-item" id="list_chapters"><a href="#" class="id_chapter">asdjakl</a></li>
+					 --></ul>
 				</div>
 			</div>
 			<?php  }else {
@@ -244,16 +249,15 @@
 	<?php endif ?>
 
 	<script type="text/javascript">
-		var page = 0;
-		$(window).scroll(function() {
-			if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
-				if (page <= count_data) {
-					page++;
-					loadMoreData(page);
-				}
-			}
-		});
-
+	var page = 0;
+	$(window).scroll(function() {
+	    if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
+	        if (page < count_data) {
+	        	page++;
+		        loadMoreData(page);
+	        }
+	    }
+	});
 		function loadMoreData(page){
 			$.ajax(
 			{

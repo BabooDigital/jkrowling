@@ -152,13 +152,20 @@ class C_book extends MX_Controller {
 		$data['title'] = $data['detail_book']['data']['book_info']['title_book']." - Baboo";
 
 		$data['detailBook'] = json_decode($data[16], true);
-		$data['detailChapter'] = count($data_before_chapter['chapter']) - 1;
+		$data['menuChapter'] = json_decode($data_before_chapter[14], true);
+		if ($data_before_chapter['chapter']['data'][3]['chapter_free'] != "false") {
+			$data['detailChapter'] = count($data_before_chapter['chapter']);
+		}else{
+			$data['detailChapter'] = 2;
+		}
 		$data['js'][] = "public/js/jquery.min.js";
 		$data['js'][] = "public/js/umd/popper.min.js";
 		$data['js'][] = "public/js/bootstrap.min.js";
 		$data['js'][] = "public/js/jquery.sticky-kit.min.js";
 		$data['js'][] = "public/js/custom/detail_book.js";
 		$data['id_chapter'] = $this->input->get("chapter");
+
+		$data['id_chapter_asli'] = $data['detailBook']['data']['chapter']['chapter_id'];
 		if ($this->agent->mobile()) {
 			$this->load->view('include/head', $data);
 			$this->load->view('R_book', $data);
@@ -168,7 +175,6 @@ class C_book extends MX_Controller {
 		        	// print_r("kosong chapter");
 		        }else{
 					$result = $this->load->view('data/D_book', $data);
-
 		        }
 			}else{	
 				$this->load->view('include/head', $data);

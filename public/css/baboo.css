@@ -1351,3 +1351,18 @@ input.formsearch:focus {
     padding: 10px;
     resize: none;
 }
+.chapter_active {
+	background: #7554bd;
+	/*color: white;*/
+	/*color: #7554bd;*/
+}
+
+.chapter_active a {
+	color: white;
+}
+.chapter_disabled {
+	background: #333;
+}
+.chapter_disabled span {
+	color: white;
+}
