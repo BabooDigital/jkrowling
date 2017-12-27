@@ -107,7 +107,7 @@
 							<div class="media-body">
 								<h5 class="nametitle2"><?php echo $detailBook['data']['author']['author_name']; ?></h5>
 								<p><small><span>Jakarta, Indonesia</span></small></p>
-								<a href="#" class="btn-no-fill dbookfollowbtn ml-20"><span class="nametitle2">Follow</span></a>
+								<a href="#" data-follow="<?php echo $detailBook['data']['book_info']['book_id']; ?>" class="btn-no-fill dbookfollowbtn ml-20 <?php if ($detailBook['data']['author']['is_follow'] == false) { echo "follow-u"; }else{ echo "unfollow-u"; } ?>"><span class="nametitle2 txtfollow"><?php if ($detailBook['data']['author']['is_follow'] == false) { echo "Follow"; }else{ echo "Unfollow"; } ?></span></a>
 							</div>
 						</div>
 						<div id="appentoContent">

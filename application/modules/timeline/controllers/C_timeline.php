@@ -279,4 +279,55 @@ class C_timeline extends MX_Controller {
 		$this->session->set_userdata('authKey', $auth);
 		echo json_encode(array('code' => $status, 'message' => $pesan));	
 	}
+
+	public function postFollowUser()
+	{
+		error_reporting(0);
+		$url = $this->API.'/follow';
+		$auth = $this->session->userdata('authKey');
+		$fuserid = $this->input->post('fuser_id');
+		$userid = $this->input->post('user_id');
+
+		$sendData = array(
+			'user_follow' => $fuserid,
+			'user_id' => $userid
+		);
+
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+
+		curl_setopt($ch, CURLOPT_POST, 1);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $sendData);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+		curl_setopt($ch, CURLOPT_HEADER, 1);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key : '.$auth));
+		$result = curl_exec($ch);
+
+		$headers=array();
+
+		$data=explode("\n",$result);
+
+
+		array_shift($data);
+		$middle = array();
+		$moddle = array();
+		foreach($data as $part){
+			$middle=explode(":",$part);
+			$moddle=explode("{",$part);
+
+			if (error_reporting() == 0) {
+				$headers[trim($middle[0])] = trim($middle[1]);
+			}
+		}
+		$getdata = end($data);
+		$resval =  json_decode($getdata, TRUE);
+		$status = $resval['code'];
+		$pesan = $resval['message'];
+		$auth = $headers['BABOO-AUTH-KEY'];
+		
+		$this->session->set_userdata('authKey', $auth);
+		echo json_encode(array('code' => $status, 'message' => $pesan));	
+	}
 }

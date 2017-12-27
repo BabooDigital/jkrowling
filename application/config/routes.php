@@ -67,6 +67,9 @@ $route['createidbook'] = 'timeline/C_timeline/createbook_id';
 $route['writter'] = 'timeline/C_timeline/getWritter';
 $route['writters'] = 'timeline/C_home/getWritter';
 
+// Follow
+$route['follows'] = 'timeline/C_timeline/postFollowUser';
+
 // Like
 $route['like'] = 'timeline/C_timeline/postLike';
 
