@@ -539,55 +539,13 @@ function getCommentBook() {
     });
 
 }
-<<<<<<< HEAD
-function loadMoreDataaax(page){
-      $.ajax(
-      {
-        url: '?chapter=' + page,
-        type: "get",
-        beforeSend: function()
-        {
-          $('#loader_scroll').show();
-        }
-      })
-      .done(function(datay)
-      {
-        if(datay == " "){
-          $('#loader_scroll').html("No more records found");
-          return;
-        }
-        $('#loader_scroll').hide();
-        $("#post-data").append(datay);
-      })
-      .fail(function(jqXHR, ajaxOptions, thrownError)
-      {
-        console.log('server not responding...');
-      });
-}
-function ScrollToBottom(count) {
-  // console.log(count);
-  var i;
-  var heightpost = document.querySelector("#post-data").scrollHeight;
-  // var heightpost = document.querySelector(".book-content").scrollHeight;
-  var combine = 0;
-  for(i = 0; i < count; i++){
-    if(i < count){
-      // window.scrollTo(combine, heightpost);
-      combine = combine + heightpost; 
-    }
-    // loadMoreDataaax(i);     
-    $('html, body').animate({scrollTop:combine}, 'slow');
-    
-=======
 
 function ScrollToBottom(count) {
   // console.log(count);
   var i;
   for (i = 0; i <= count; i++) {
-    window.scrollTo(0, document.querySelector("#post-data").scrollHeight);
->>>>>>> Share Socmed By FB & Tweeter
+    window.scrollTo(0, document.querySelector("#post-data").scrollHeight);
   }
-
 }
 
 function convertToSlug(Text) {

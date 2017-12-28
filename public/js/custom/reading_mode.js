@@ -55,8 +55,10 @@ $(document).ready(function() {
       var page = 0;
       $(window).scroll(function() {
         if($(window).scrollTop() + $(window).height() > $(document).height() - 200) {
-          page++;
-          loadMoreData(page);
+          if (page < count_data) {
+            page++;
+            loadMoreData(page);
+          }
         }
       });
 

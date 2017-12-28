@@ -350,7 +350,7 @@ class C_createbook extends MX_Controller {
         if (!empty($this->input->post('id_books'))) {
         	$bookData['book_id'] = $this->input->post('id_books');
         }
-        print_r($bookData) ;
+        // print_r($bookData) ;
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $this->API.'/saveBook');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
