@@ -154,7 +154,7 @@ class C_book extends MX_Controller {
 		$data['detailBook'] = json_decode($data[16], true);
 		$data['menuChapter'] = json_decode($data_before_chapter[14], true);
 		if ($data_before_chapter['chapter']['data'][3]['chapter_free'] != "false") {
-			$data['detailChapter'] = count($data_before_chapter['chapter']);
+			$data['detailChapter'] = count($data_before_chapter['chapter']['data']);
 		}else{
 			$data['detailChapter'] = 2;
 		}
@@ -179,6 +179,8 @@ class C_book extends MX_Controller {
 			}else{	
 				$this->load->view('include/head', $data);
 				$this->load->view('D_book', $data);
+				// count($data_before_chapter['chapter']);
+				// print_r($data['detailChapter']);
 			}
 		}
 	}
@@ -374,9 +376,14 @@ class C_book extends MX_Controller {
 		$data['title'] = $data['detail_book']['data']['book_info']['title_book']." - Baboo";
 
 		$data['detailBook'] = json_decode($data[16], true);
-		$data['detailChapter'] = count($data_before_chapter['chapter']) - 1;
 		
-
+		if ($data_before_chapter['chapter']['data'][3]['chapter_free'] != "false") {
+			$data['detailChapter'] = count($data_before_chapter['chapter']);
+		}else{
+			$data['detailChapter'] = 2;
+		}
+		
+		$data['menuChapter'] = json_decode($data_before_chapter[14], true);
 		$data['id_chapter'] = $this->input->get("chapter");
 		$data['css'][] = "public/css/bootstrap.min.css";
 		$data['css'][] = "public/css/custom-margin-padding.css";

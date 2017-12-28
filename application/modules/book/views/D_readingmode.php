@@ -25,9 +25,10 @@
 									$this->load->view('data/D_readingmode', $detail_book); ?> -->
 									<?php $this->load->view('data/D_readingmode'); ?>
 							</div>
-							<!-- <div class="loader" style="display: none;margin-left: auto;margin-right: auto;"></div> -->
+							<div class="loader" style="display: none;margin-left: auto;margin-right: auto;"></div>
 							<hr>
-							<div>
+							<?php if ($menuChapter['data'][3]['chapter_free'] == "false"): ?>
+								<div>
 								<p class="modallimitbook">Kamu baru saja selesai membaca batas gratis buku ini, untuk membaca bab lainnya silahkan beli buku ini lalu lanjutkan membaca.</p>
 							</div>
 							<hr>
@@ -62,7 +63,8 @@
 									</div>
 								</div>
 							</div>
-							<div class="mt-10">
+							<?php endif ?>
+							<!-- <div class="mt-10">
 								<div class="bg-white p-10">
 									<p>Nilai Produk</p>
 									<hr>
@@ -151,7 +153,7 @@
 										</div>
 									</div>
 								</div>
-							</div>
+							</div> -->
 						</div>
 					</div>
 					<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-bottom box-shadow-navbar">
@@ -175,7 +177,11 @@
 						<div class="progress navprogress">
 							<div aria-valuemax="100" aria-valuemin="0" aria-valuenow="25" class="progress-bar" role="progressbar" style="width: 25%;"></div>
 						</div>
-					</nav><?php if (isset($js)): ?><?php echo get_js($js) ?><?php endif ?>
+					</nav>
+					<script type="text/javascript">
+						var count_data = '<?php echo $detailChapter; ?>';
+					</script>
+					<?php if (isset($js)): ?><?php echo get_js($js) ?><?php endif ?>
 				</div>
 			</div>
 			<div class="col-md-2 bg-dark">

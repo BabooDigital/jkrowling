@@ -251,7 +251,7 @@
 	<script type="text/javascript">
 	var page = 0;
 	$(window).scroll(function() {
-	    if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
+	    if($(window).scrollTop() + $(window).height() > $(document).height() - 1000) {
 	        if (page < count_data) {
 	        	page++;
 		        loadMoreData(page);
