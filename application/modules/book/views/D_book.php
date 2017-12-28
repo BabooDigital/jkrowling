@@ -156,12 +156,12 @@
 						</div>
 						<div class="border1px"></div>
 						<div class="pt-20 pb-20 pl-5 pr-5">
-							<a href="#">
+							<a href="javascript:void(0);" class="share-fb">
 								<p class="mb-10" style="background-color: #3a81d5;padding: 10px 5px;border-radius: 5px;">
 									<img src="<?php echo base_url(); ?>public/img/assets/icon_fb_white.svg" width="30">
 								</p>
 							</a>
-							<a href="#">
+							<a href="javascript:void(0);" class="share-tweet">
 								<p class="mb-10" style="background-color: #55abf7;padding: 10px 5px;border-radius: 5px;">
 									<img src="<?php echo base_url(); ?>public/img/assets/icon_fb_white.svg" width="30">
 								</p>
