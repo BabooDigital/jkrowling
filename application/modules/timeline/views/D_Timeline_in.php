@@ -1,3 +1,4 @@
+	<?php $this->load->view('navbar/D_navbar'); ?>	
 	<div class="container babooidin">
 		<div class="row">
 			<!-- Left Side -->
