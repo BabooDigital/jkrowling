@@ -70,6 +70,9 @@ $route['writters'] = 'timeline/C_home/getWritter';
 // Follow
 $route['follows'] = 'timeline/C_timeline/postFollowUser';
 
+// Share Book Social Media
+$route['shares'] = 'timeline/C_timeline/postShareSocmed';
+
 // Like
 $route['like'] = 'timeline/C_timeline/postLike';
 

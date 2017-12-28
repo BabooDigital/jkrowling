@@ -32,12 +32,14 @@
 							<h5 class="card-title nametitle3"><a href="<?php echo site_url(); ?>book/<?php
 							echo $s_book['book_id']; ?>
 							-<?php echo url_title($s_book['title_book'], 'dash', true); ?>
-							"><?php
+							" id="book-link<?php
+							echo $s_book['book_id']; ?>"><?php
 							echo $s_book['title_book']; ?></a></h5>
 							<p class="catbook"><a href="#" class="mr-20"><span class="btn-no-fill">FIKSI</span></a> <span class="mr-20"><img src="<?php echo base_url(); ?>public/img/assets/icon_view.svg"> <?php
 							echo $s_book['view_count']; ?></span> <span><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg"> <?php
 							echo $s_book['share_count']; ?></span></p>
-							<p class="text-desc-in"><?php
+							<p class="text-desc-in desc<?php
+							echo $s_book['book_id']; ?>"><?php
 							echo $s_book['desc']; ?> <a href="<?php echo site_url(); ?>book/<?php
 							echo $s_book['book_id']; ?>
 							-<?php echo url_title($s_book['title_book'], 'dash', true); ?>
@@ -49,7 +51,7 @@
 		</div>
 		<div class="card-footer text-muted" style="font-size: 0.8em;font-weight: bold;">
 			<div class="pull-right">
-				<a href="#" class="fs-14px"><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg" class="mr-10" width="23"> Bagikan</a>
+			<a href="javascript:void(0);" data-share="<?php echo $s_book['book_id']; ?>" class="fs-14px share-btn"><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg" class="mr-10" width="23"> Bagikan</a>
 			</div>
 			<div>
 				<a data-id="<?php echo $s_book['book_id']; ?>" href="javascript:void(0);" id="loveboo<?php echo $s_book['book_id']; ?>" class="mr-30 fs-14px <?php if($s_book['is_like'] == 'false'){ echo 'like'; }else{ echo 'unlike'; } ?>"><img src="<?php if($s_book['is_like'] == 'false'){ echo base_url('public/img/assets/icon_love.svg'); }else{ echo base_url('public/img/assets/love_active.svg'); } ?>" class="mr-10 loveicon" width="27"> <span class="<?php if($s_book['is_like'] == 'false'){ echo 'txtlike'; }else{ echo 'txtunlike'; } ?>"><?php if($s_book['is_like'] == 'false'){ echo 'Suka'; }else{ echo 'Batal Suka'; } ?></span></a>
