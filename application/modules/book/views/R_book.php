@@ -68,7 +68,7 @@
 <div class="container">
 	<div class="row form_book">
 		<div class="input-group paddingbook">
-			<span class="paddingparagraph"><h3><?php echo $detailBook['data']['title_book']; ?></h3></span>
+			<span class="paddingparagraph"><h3><?php echo $detailBook['data']['book_info']['title_book']; ?></h3></span>
 			<div class="loader" style="display: none;"></div>
 		</div>
 		<div class="media">
@@ -86,7 +86,7 @@
 				</div>
 				<div class="detailbook">
 					<?php 
-					foreach ($detail_book['data']['content'] as $book) {
+					foreach ($detail_book['data']['chapter']['paragraphs'] as $book) {
 						$data .= $book['paragraph_text'];
 					}
 					echo $data;

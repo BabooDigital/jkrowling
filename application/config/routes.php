@@ -82,6 +82,8 @@ $route['more'] = 'more/C_more';
 
 // library
 $route['library'] = 'library/C_library';
+$route['bookmark'] = 'library/C_library/bookmark';
+$route['lastread'] = 'library/C_library/lastRead';
 
 // Book
 $route['img_book'] = 'book/C_createbook/img_book';
@@ -114,3 +116,4 @@ $route['getlatestread'] = 'profile/C_profile/getLatestRead';
 $route['awsd'] = 'book/C_createbook/awasd';
 
 $route['awsd'] = 'book/C_createbook/awasd';
+

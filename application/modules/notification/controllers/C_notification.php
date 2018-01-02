@@ -19,7 +19,7 @@ class C_notification extends MX_Controller
 		$data['js'][]   = "public/js/menupage.js";
 		if ($this->agent->is_mobile()){
 
-			$this->load->view('timeline/include/head', $data);
+			$this->load->view('include/head', $data);
 			$this->load->view('R_notification', $data);
 		
 		}
