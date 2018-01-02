@@ -544,7 +544,7 @@ function ScrollToBottom(count) {
   // console.log(count);
   var i;
   for (i = 0; i <= count; i++) {
-    window.scrollTo(0, document.querySelector("#post-data").scrollHeight);
+    window.scrollTo(0, document.querySelector("#post-data").scrollHeight);
   }
 }
 

@@ -1,3 +1,4 @@
+	<?php $this->load->view('navbar/D_navbar'); ?>	
 <div class="mt-50 hidden-sm hidden-xs">
 	<div class="slideboo">
 		<div class="leftboo"></div>

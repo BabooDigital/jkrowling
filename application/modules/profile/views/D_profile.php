@@ -1,3 +1,4 @@
+	<?php $this->load->view('navbar/D_navbar'); ?>	
 <style type="text/css">
 	button {
 		cursor: pointer;
