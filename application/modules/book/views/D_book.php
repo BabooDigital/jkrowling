@@ -1,58 +1,67 @@
-<style type="text/css">
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) return;
+		js = d.createElement(s); js.id = id;
+		js.src = 'https://connect.facebook.net/id_ID/sdk.js#xfbml=1&version=v2.11&appId=124081454991891';
+		fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
+	<?php $this->load->view('navbar/D_navbar'); ?>	
+	<style type="text/css">
 
-/*Right*/
-.modal.right.fade .modal-dialog {
-	right: -435px;
-	-webkit-transition: opacity 0.3s linear, right 0.3s ease-out;
-	-moz-transition: opacity 0.3s linear, right 0.3s ease-out;
-	-o-transition: opacity 0.3s linear, right 0.3s ease-out;
-	transition: opacity 0.3s linear, right 0.3s ease-out;
-}
+	/*Right*/
+	.modal.right.fade .modal-dialog {
+		right: -435px;
+		-webkit-transition: opacity 0.3s linear, right 0.3s ease-out;
+		-moz-transition: opacity 0.3s linear, right 0.3s ease-out;
+		-o-transition: opacity 0.3s linear, right 0.3s ease-out;
+		transition: opacity 0.3s linear, right 0.3s ease-out;
+	}
 
-.modal.right.fade.in .modal-dialog {
-	right: 0;
-}
-.modal-backdrop
-{
-	opacity:0.5 !important;
-}
+	.modal.right.fade.in .modal-dialog {
+		right: 0;
+	}
+	.modal-backdrop
+	{
+		opacity:0.5 !important;
+	}
 
-/* ----- MODAL STYLE ----- */
-.modal-content {
-	border-radius: 0;
-	border: none;
-	height: 100vh;
-}
+	/* ----- MODAL STYLE ----- */
+	.modal-content {
+		border-radius: 0;
+		border: none;
+		height: 100vh;
+	}
 
-.modal-header {
-	border-bottom-color: #EEEEEE;
-	background-color: #FAFAFA;
-}
+	.modal-header {
+		border-bottom-color: #EEEEEE;
+		background-color: #FAFAFA;
+	}
 
-.closes {
-	background: none;
-	font-size: 2rem;
-	line-height: 1;
-	opacity: .5;
-	border: none;
-	position: absolute;
-	right: 35px;
-}
+	.closes {
+		background: none;
+		font-size: 2rem;
+		line-height: 1;
+		opacity: .5;
+		border: none;
+		position: absolute;
+		right: 35px;
+	}
 
-.thumbnail {
-    position: relative;
-    display: inline-block;
-}
+	.thumbnail {
+		position: relative;
+		display: inline-block;
+	}
 
-.caption {
-    position: absolute;
-    top: 44%;
-    left: 50%;
-    transform: translate( -50%, -50% );
-    text-align: center;
-    font-weight: bold;
-    color: #7554bd;
-}
+	.caption {
+		position: absolute;
+		top: 44%;
+		left: 50%;
+		transform: translate( -50%, -50% );
+		text-align: center;
+		font-weight: bold;
+		color: #7554bd;
+	}
 </style>
 <div class="container pt-100 mb-80">
 	<div class="row">
@@ -92,7 +101,7 @@
 						<?php endforeach ?> -->
 						<!-- <li class="list-group-item" id="list_chapters"><a href="#" class="id_chapter ">asd</a></li>
 						<li class="list-group-item" id="list_chapters"><a href="#" class="id_chapter">asdjakl</a></li>
-					 --></ul>
+					--></ul>
 				</div>
 			</div>
 			<?php  }else {
@@ -136,152 +145,152 @@
 					<div class="text-center">
 						<?php echo $detailBook['data']['title_book']; ?>
 						<a href="<?php echo site_url(); ?>book/<?php
-								echo $detailBook['data']['book_info']['book_id']; ?>-<?php echo url_title($detailBook['data']['book_info']['title_book'], 'dash', true); ?>/read">
-							<div class="p-1">
-								<img src="<?php echo base_url(); ?>public/img/assets/read-mode.svg" width="45">
-								<span class="bold11px">Mode Baca</span>
+						echo $detailBook['data']['book_info']['book_id']; ?>-<?php echo url_title($detailBook['data']['book_info']['title_book'], 'dash', true); ?>/read">
+						<div class="p-1">
+							<img src="<?php echo base_url(); ?>public/img/assets/read-mode.svg" width="45">
+							<span class="bold11px">Mode Baca</span>
 
-							</div>
-						</a>
-						<div class="border1px"></div>
-						<div class="pt-20 pb-20">
-							<p class="mb-30">
-								<a data-id="<?php echo $detailBook['data']['book_info']['book_id']; ?>" href="javascript:void(0);" id="loveboo" class="fs-14px <?php if($detailBook['data']['book_info']['is_like'] == 'false'){ echo 'like'; }else{ echo 'unlike'; } ?>">
-									<img src="<?php if($detailBook['data']['book_info']['is_like'] == 'false'){ echo base_url('public/img/assets/icon_love.svg'); }else{ echo base_url('public/img/assets/love_active.svg'); } ?>" class="loveicon" width="40">
-								</a>
+						</div>
+					</a>
+					<div class="border1px"></div>
+					<div class="pt-20 pb-20">
+						<p class="mb-30">
+							<a data-id="<?php echo $detailBook['data']['book_info']['book_id']; ?>" href="javascript:void(0);" id="loveboo" class="fs-14px <?php if($detailBook['data']['book_info']['is_like'] == 'false'){ echo 'like'; }else{ echo 'unlike'; } ?>">
+								<img src="<?php if($detailBook['data']['book_info']['is_like'] == 'false'){ echo base_url('public/img/assets/icon_love.svg'); }else{ echo base_url('public/img/assets/love_active.svg'); } ?>" class="loveicon" width="40">
+							</a>
+						</p>
+						<p><button type="button" data-toggle="modal" data-target="#commentModal" style="cursor: pointer;background: none;border: none;">
+							<div class="thumbnail"><img src="<?php echo base_url(); ?>public/img/assets/icon_comment.svg" width="40"><div class="caption"><span id="commentcount"><?php echo $detailBook['data']['book_info']['book_comment_count']; ?></span></div></div>
+						</button></p>
+					</div>
+					<div class="border1px"></div>
+					<div class="pt-20 pb-20 pl-5 pr-5">
+						<a href="javascript:void(0);" class="share-fb">
+							<p class="mb-10" style="background-color: #3a81d5;padding: 10px 5px;border-radius: 5px;">
+								<img src="<?php echo base_url(); ?>public/img/assets/icon_fb_white.svg" width="30">
 							</p>
-							<p><button type="button" data-toggle="modal" data-target="#commentModal" style="cursor: pointer;background: none;border: none;">
-								<div class="thumbnail"><img src="<?php echo base_url(); ?>public/img/assets/icon_comment.svg" width="40"><div class="caption"><span id="commentcount"><?php echo $detailBook['data']['book_info']['book_comment_count']; ?></span></div></div>
-							</button></p>
-						</div>
-						<div class="border1px"></div>
-						<div class="pt-20 pb-20 pl-5 pr-5">
-							<a href="javascript:void(0);" class="share-fb">
-								<p class="mb-10" style="background-color: #3a81d5;padding: 10px 5px;border-radius: 5px;">
-									<img src="<?php echo base_url(); ?>public/img/assets/icon_fb_white.svg" width="30">
-								</p>
-							</a>
-							<a href="javascript:void(0);" class="share-tweet">
-								<p class="mb-10" style="background-color: #55abf7;padding: 10px 5px;border-radius: 5px;">
-									<img src="<?php echo base_url(); ?>public/img/assets/icon_fb_white.svg" width="30">
-								</p>
-							</a>
-						</div>
+						</a>
+						<a href="javascript:void(0);" class="share-tweet">
+							<p class="mb-10" style="background-color: #55abf7;padding: 10px 5px;border-radius: 5px;">
+								<img src="<?php echo base_url(); ?>public/img/assets/icon_fb_white.svg" width="30">
+							</p>
+						</a>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+</div>
 
-	<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-bottom box-shadow-navbar">
-		<div class="container pt-5 pb-5">
-			<div class="col-md-4">
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-bottom box-shadow-navbar">
+	<div class="container pt-5 pb-5">
+		<div class="col-md-4">
 
-			</div>
-			<div class="col-md-7">
-				<ul class="navbar-nav pull-right">
-					<li class="nav-item"><span class="text-muted"><small>Page</small> <strong>01</strong></span></li>
-				</ul>
-				<ul class="navbar-nav">
-					<li class="nav-item">
-						<a data-id="<?php echo $detailBook['data']['book_info']['book_id']; ?>" href="javascript:void(0);" id="loveboo" class="fs-14px <?php if($detailBook['data']['book_info']['is_like'] == 'false'){ echo 'like'; }else{ echo 'unlike'; } ?>">
-									<img src="<?php if($detailBook['data']['book_info']['is_like'] == 'false'){ echo base_url('public/img/assets/icon_love.svg'); }else{ echo base_url('public/img/assets/love_active.svg'); } ?>" class="loveicon" width="30">
-								</a>
-					</li>
-					<li class="nav-item ml-20">
-						<button type="button" data-toggle="modal" data-target="#commentModal" style="cursor: pointer;background: none;border: none;">
-								<div class="thumbnail"><img src="<?php echo base_url(); ?>public/img/assets/icon_comment.svg" width="25"><div class="caption fs-12px"><span id="commentcount"><?php echo $detailBook['data']['book_info']['book_comment_count']; ?></span></div></div>
-							</button>
-					</li>
-				</ul>
-			</div>
-			<div class="col-md-1">
-
-			</div>
 		</div>
-
-		<div class="progress navprogress" id="progress">
-			<div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+		<div class="col-md-7">
+			<ul class="navbar-nav pull-right">
+				<li class="nav-item"><span class="text-muted"><small>Page</small> <strong>01</strong></span></li>
+			</ul>
+			<ul class="navbar-nav">
+				<li class="nav-item">
+					<a data-id="<?php echo $detailBook['data']['book_info']['book_id']; ?>" href="javascript:void(0);" id="loveboo" class="fs-14px <?php if($detailBook['data']['book_info']['is_like'] == 'false'){ echo 'like'; }else{ echo 'unlike'; } ?>">
+						<img src="<?php if($detailBook['data']['book_info']['is_like'] == 'false'){ echo base_url('public/img/assets/icon_love.svg'); }else{ echo base_url('public/img/assets/love_active.svg'); } ?>" class="loveicon" width="30">
+					</a>
+				</li>
+				<li class="nav-item ml-20">
+					<button type="button" data-toggle="modal" data-target="#commentModal" style="cursor: pointer;background: none;border: none;">
+						<div class="thumbnail"><img src="<?php echo base_url(); ?>public/img/assets/icon_comment.svg" width="25"><div class="caption fs-12px"><span id="commentcount"><?php echo $detailBook['data']['book_info']['book_comment_count']; ?></span></div></div>
+					</button>
+				</li>
+			</ul>
 		</div>
-	</nav>
-	<!-- Modal -->
-	<div class="modal right fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="commentLabel">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
+		<div class="col-md-1">
 
-				<div class="modal-header bg-white">
-					<button type="button" class="closes" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<h4 class="modal-title" id="commentLabel">Komentar</h4>
+		</div>
+	</div>
+
+	<div class="progress navprogress" id="progress">
+		<div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+	</div>
+</nav>
+<!-- Modal -->
+<div class="modal right fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="commentLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+
+			<div class="modal-header bg-white">
+				<button type="button" class="closes" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="commentLabel">Komentar</h4>
+			</div>
+
+			<div class="modal-body mb-50" style="overflow-x: auto;">
+				<div>
+					<div id="bookcomment_list">
+						
+					</div>
 				</div>
 
-				<div class="modal-body mb-50" style="overflow-x: auto;">
-					<div>
-						<div id="bookcomment_list">
-							
+				<nav class="navbar navbar-expand-lg navbar-light fixed-bottom box-shadow-navbar bg-white">
+					<div class="container pb-10 pt-10">
+						<div class="col-md-9">
+							<textarea id="comments" class="commentform" placeholder="Tulis Komentar kamu..."></textarea>
+						</div>
+						<div class="col-md-3">
+							<div>
+								<button class="btn post-comment">Kirim</button>	
+							</div>
 						</div>
 					</div>
+				</nav>
+			</div>
 
-					<nav class="navbar navbar-expand-lg navbar-light fixed-bottom box-shadow-navbar bg-white">
-						<div class="container pb-10 pt-10">
-							<div class="col-md-9">
-								<textarea id="comments" class="commentform" placeholder="Tulis Komentar kamu..."></textarea>
-							</div>
-							<div class="col-md-3">
-								<div>
-									<button class="btn post-comment">Kirim</button>	
-								</div>
-							</div>
-						</div>
-					</nav>
-				</div>
+		</div><!-- modal-content -->
+	</div><!-- modal-dialog -->
+</div><!-- modal -->
 
-			</div><!-- modal-content -->
-		</div><!-- modal-dialog -->
-	</div><!-- modal -->
+<!-- Modal -->
+<script type="text/javascript">
+	var segment = '<?php echo $this->uri->segment(2); ?>';
+	var count_data = '<?php echo $detailChapter; ?>';
+</script>
+<?php if (isset($js)): ?>
+	<?php echo get_js($js) ?>
+<?php endif ?>
 
-	<!-- Modal -->
-	<script type="text/javascript">
-		var segment = '<?php echo $this->uri->segment(2); ?>';
-		var count_data = '<?php echo $detailChapter; ?>';
-	</script>
-	<?php if (isset($js)): ?>
-		<?php echo get_js($js) ?>
-	<?php endif ?>
-
-	<script type="text/javascript">
+<script type="text/javascript">
 	var page = 0;
 	$(window).scroll(function() {
-	    if($(window).scrollTop() + $(window).height() > $(document).height() - 1000) {
-	        if (page < count_data) {
-	        	page++;
-		        loadMoreData(page);
-	        }
-	    }
-	});
-		function loadMoreData(page){
-			$.ajax(
-			{
-				url: '?chapter=' + page,
-				type: "get",
-				beforeSend: function()
-				{
-					$('#loader_scroll').show();
-				}
-			})
-			.done(function(data)
-			{
-				if(data == " "){
-					$('#loader_scroll').html("No more records found");
-					return;
-				}
-				$('#loader_scroll').hide();
-				$("#post-data").append(data);
-			})
-			.fail(function(jqXHR, ajaxOptions, thrownError)
-			{
-				console.log('server not responding...');
-			});
+		if($(window).scrollTop() + $(window).height() > $(document).height() - 1000) {
+			if (page < count_data) {
+				page++;
+				loadMoreData(page);
+			}
 		}
-	</script>
+	});
+	function loadMoreData(page){
+		$.ajax(
+		{
+			url: '?chapter=' + page,
+			type: "get",
+			beforeSend: function()
+			{
+				$('#loader_scroll').show();
+			}
+		})
+		.done(function(data)
+		{
+			if(data == " "){
+				$('#loader_scroll').html("No more records found");
+				return;
+			}
+			$('#loader_scroll').hide();
+			$("#post-data").append(data);
+		})
+		.fail(function(jqXHR, ajaxOptions, thrownError)
+		{
+			console.log('server not responding...');
+		});
+	}
+</script>
 </body>
 </html>

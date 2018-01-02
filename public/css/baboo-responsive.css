@@ -230,7 +230,7 @@ div#insideDivTerakhirDilihat{
 
 .main-md {
   width: 100%;
-  padding: 20px;
+  /*padding: 20px;*/
   margin: 0;
   background: #fff;
 }
@@ -520,7 +520,6 @@ nav.profile {
 }
 .profile {
   width: 100%;
-  box-shadow: 2px 2px 2px 2px gray;
   background: white;
   height: auto;
 }
@@ -533,10 +532,10 @@ nav.profile {
 .profile_avatar {
   width: 100%;
   margin: auto;
-  color: grey;
 }
 .label_name {
   font-weight: 900;
+  font-size: 18pt;
   font-family: 'Source Sans Pro', sans-serif;
 }
 .profile_location {
@@ -559,22 +558,22 @@ nav.profile {
 .btn-message {
   float: right;
   width: 45%;
-  color: #7554bd;
+  color: #757575;
   outline: 0;
-  padding: 10px;
-  border-radius: 10px;
+  padding: 3px;
+  border-radius: 40px;
   background: transparent;
-  border: solid 1px #7554bd;
+  border: solid 1px #757575;
 }
 .btn-profile {
   float: left;
   width: 45%;
-  color: #7554bd;
+  color: #757575;
   outline: 0;
-  padding: 10px;
-  border-radius: 10px;
+  padding: 3px;
+  border-radius: 40px;
   background: transparent;
-  border: solid 1px #7554bd;
+  border: solid 1px #757575;
 }
 .profile_message {
   width: 100%;
@@ -588,7 +587,7 @@ nav.profile {
   width: 30%;
   color: #7554bd;
   outline: 0;
-  border-radius: 10px;
+  border-radius: 40px;
   background: transparent;
   border: solid 1px #7554bd;
 }

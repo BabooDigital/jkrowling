@@ -74,11 +74,11 @@ class C_profile extends MX_Controller {
 		if ($this->agent->mobile()) {
 
 			$data['css'][] = "public/css/baboo-responsive.css";
-			$this->load->view('timeline/include/header', $data);
+			$this->load->view('include/head', $data);
 			$this->load->view('R_profile', $data);
 			
 		}else{
-			$this->load->view('timeline/include/header', $data);
+			$this->load->view('include/head', $data);
 			$this->load->view('D_profile');
 			// $this->load->view('timeline/include/foot');
 
