@@ -18,14 +18,14 @@ foreach ($home as $s_book) { ?>
 			</div>
 		</div>
 	</div>
-	<a href="<?php echo site_url(); ?>book/<?php echo $s_book['book_id']; ?> - <?php echo url_title($s_book['title_book'], 'dash', true); ?>"> 
+	<a href="<?php echo site_url(); ?>book/<?php echo $s_book['book_id']; ?>-<?php echo url_title($s_book['title_book'], 'dash', true); ?>"> 
 	<div class="row">
 		<div class="media w-100">
 			<div class="media-body">
 			<img alt="<?php
 				echo $s_book['title_book']; ?>" class="d-flex align-self-start mr-10 float-left" src="<?php
 			echo $s_book['cover_url']; ?>" width="120" height="170">
-				<h5 class="card-title nametitle3"><a href="<?php echo site_url(); ?>login"><?php
+				<h5 class="card-title nametitle3"><a href="<?php echo site_url(); ?>book/<?php echo $s_book['book_id']; ?>-<?php echo url_title($s_book['title_book'], 'dash', true); ?>"><?php
 				echo $s_book['title_book']; ?></a></h5>
 				<p class="catbook mb-10"><a class="mr-20" href="#"><span class="btn-no-fill">FIKSI</span></a> <span class="mr-20"><img src="<?php echo base_url(); ?>public/img/assets/icon_view.svg"> <?php
 				echo $s_book['view_count']; ?></span> <span><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg"> <?php
@@ -75,8 +75,8 @@ foreach ($home as $s_book) { ?>
 					echo $s_book['title_book']; ?>" src="<?php
 					echo $s_book['image_url']; ?>" style="position: absolute;height: 150px;margin-left: auto;margin-right: auto;left: 0;right: 0;">
 				</div>
-				<h5 style="padding-top:50px; font-weight: 500;"><b><?php
-				echo $s_book['title_book']; ?></b></h5>
+				<h5 style="padding-top:50px; font-weight: 500;"><b><a href="<?php echo site_url(); ?>book/<?php echo $s_book['book_id']; ?>-<?php echo url_title($s_book['title_book'], 'dash', true); ?>"><?php
+				echo $s_book['title_book']; ?></a></b></h5>
 				<div style="margin-top:10px;">
 					<a href="#" class="mr-10">
 						<span style="font-size:12px;border: 1px #7554bd solid;border-radius: 25px;padding: 3px 10px;color: #7554bd;">FIKSI</span>

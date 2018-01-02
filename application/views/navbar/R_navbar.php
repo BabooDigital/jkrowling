@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg fixed-top-message baboonav" style="height:60px;">
+<nav class="navbar navbar-expand-lg fixed-top baboonav" style="height:60px;">
 <div class="container">
 <a class="navbar-brand" href="#">
 	<img src="<?php echo base_url(); ?>public/img/logo_purple.png" width="80" class="img-fluid" alt="">
