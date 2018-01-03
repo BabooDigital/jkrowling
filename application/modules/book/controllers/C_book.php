@@ -162,11 +162,11 @@ class C_book extends MX_Controller {
 		$data['js'][] = "public/js/umd/popper.min.js";
 		$data['js'][] = "public/js/bootstrap.min.js";
 		$data['js'][] = "public/js/jquery.sticky-kit.min.js";
-		$data['js'][] = "public/js/custom/detail_book.js";
 		$data['id_chapter'] = $this->input->get("chapter");
 
 		$data['id_chapter_asli'] = $data['detailBook']['data']['chapter']['chapter_id'];
 		if ($this->agent->mobile()) {
+			$data['js'][] = "public/js/custom/mobile/r_detail_book.js";
 			$this->load->view('include/head', $data);
 			$this->load->view('R_book', $data);
 		}else{
@@ -174,9 +174,11 @@ class C_book extends MX_Controller {
 				if ($data_before_chapter['chapter']['data'][$this->input->get("chapter")] == null || $data_before_chapter['chapter']['data'][$this->input->get("chapter")] == '') {
 		        	// print_r("kosong chapter");
 		        }else{
+					$data['js'][] = "public/js/custom/detail_book.js";
 					$result = $this->load->view('data/D_book', $data);
 		        }
 			}else{	
+				$data['js'][] = "public/js/custom/detail_book.js";
 				$this->load->view('include/head', $data);
 				$this->load->view('D_book', $data);
 				// count($data_before_chapter['chapter']);

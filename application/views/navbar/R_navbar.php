@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-<nav class="navbar navbar-expand-lg fixed-top baboonav" style="height:60px;">
-=======
 <nav class="navbar navbar-expand-lg fixed-top-message " style="position: fixed;width: 100%;background-color: #f9fbfc;z-index: 1300;">
->>>>>>> Profile page new design + data API
 <div class="container">
 <a class="navbar-brand" href="#">
 	<img src="<?php echo base_url(); ?>public/img/logo_purple.png" width="80" class="img-fluid" alt="">

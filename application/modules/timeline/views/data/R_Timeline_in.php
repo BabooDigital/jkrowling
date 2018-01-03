@@ -38,14 +38,14 @@ foreach ($home as $s_book) { ?>
 	</a>
 </div>
 <div class="card-footer text-muted" style="font-size: 0.8em;font-weight: bold;">
-	<div class="pull-right">
-		<a href="#"><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg" width="18"></a>
-	</div>
-	<div>
-		<a href="#" class="mr-20"><img src="<?php echo base_url(); ?>public/img/assets/icon_love.svg" class="mr-5" width="27"></a>
-		<a href="#"><img src="<?php echo base_url(); ?>public/img/assets/icon_comment.svg" class="mr-10" width="25"></a>
-	</div>
-</div>
+			<div class="pull-right">
+			<a href="javascript:void(0);" data-share="<?php echo $s_book['book_id']; ?>" class="fs-14px share-btn"><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg" class="mr-10" width="23"> </a>
+			</div>
+			<div>
+				<a data-id="<?php echo $s_book['book_id']; ?>" href="javascript:void(0);" id="loveboo<?php echo $s_book['book_id']; ?>" class="mr-30 fs-14px <?php if($s_book['is_like'] == 'false'){ echo 'like'; }else{ echo 'unlike'; } ?>"><img src="<?php if($s_book['is_like'] == 'false'){ echo base_url('public/img/assets/icon_love.svg'); }else{ echo base_url('public/img/assets/love_active.svg'); } ?>" class="mr-10 loveicon" width="27"> <span class="<?php if($s_book['is_like'] == 'false'){ echo 'txtlike'; }else{ echo 'txtunlike'; } ?>"><?php if($s_book['is_like'] == 'false'){ echo 'Suka'; }else{ echo 'Batal Suka'; } ?></span></a>
+				<a href="#" id="commentboo" class="fs-14px"><img src="<?php echo base_url(); ?>public/img/assets/icon_comment.svg" class="mr-10" width="25"> </a>
+			</div>
+		</div>
 </div>
 <?php else: ?>
 <a href="">

@@ -474,6 +474,7 @@ function getmenuChapter() {
 
 }
 
+
 function getCommentBook() {
   var id = $('#iaidubi').val();
   $.ajax({
@@ -503,40 +504,6 @@ function getCommentBook() {
       console.log("error");
     })
     .always(function() {});
-
-}
-
-function getCommentBook() {
-  var id = $('#iaidubi').val();
-  $.ajax({
-      url: base_url + 'getcommentbook',
-      type: 'POST',
-      dataType: 'json',
-      data: { book_id: id },
-      beforeSend: function() {
-        $('.loader').show();
-      }
-    })
-    .done(function(data) {
-      var datas = "";
-      $.each(data, function(i, item) {
-        var avatar;
-        if (item.comment_user_avatar != "") {
-          avatar = item.comment_user_avatar;
-        } else if (item.comment_user_avatar == "") {
-          avatar = 'public/img/profile/blank-photo.jpg';
-        }
-        datas += "<div class='media'> <img class='d-flex align-self-start mr-20 rounded-circle' width='50' height='50' src='" + avatar + "'> <div class='media-body'> <h5 class='nametitle2 mb-5'>" + item.comment_user_name + "</h5> <small><span>Jakarta, Indonesia</span></small> </div> </div> <div class='mt-10'> <p class='fs-14px' id='" + item.comment_id + "'>" + item.comment_text + "</p> </div> <a href='#'><b>Balas</b></a> <hr>";
-      });
-      $('.loader').hide();
-      $("#bookcomment_list").html(datas);
-    })
-    .fail(function() {
-      console.log("error");
-    })
-    .always(function() {
-      // console.log("complete");
-    });
 
 }
 
