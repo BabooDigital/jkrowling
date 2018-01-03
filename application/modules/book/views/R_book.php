@@ -37,8 +37,7 @@
 				<span style="font-size: 18px;font-weight: 600;color: #141414;">Judul Buku</span>
 				<hr>
 				<div>
-					<input type="hidden" name="book_id" id="book_id" value="<?php 
-					echo $this->session->userdata('idBook_'); ?>">
+					<input type="hidden" name="book_id" id="book_id" value="<?php echo $detailBook['data']['book_info']['book_id']; ?>">
 				</div>
 				<div id="subchapter">
 					<a style="display: none;" class="btn w-100 mb-10 chapterdata0 editsubchapt1 btnsavedraft" id="btnsavedraft" id="editchapt" href="#"></a>
@@ -93,69 +92,45 @@
 					?>
 				</div>
 				<hr>
-				<div class="commentbook">
+				<div class="commentbook mb-60">
+					<p><h4> Komentar <span style="color: #797979;">(2)</span></h4></p>
 					<div class="media">
-						<img class="d-flex align-self-start mr-20 rounded-circle" src="<?php if($detailBook['data']['author']['avatar'] == NULL){
+						<img class="d-flex align-self-start mr-20 rounded-circle" id="profpict" src="<?php $dat = $this->session->userdata('userData'); 
+						if($dat['prof_pict'] == NULL){
 							echo base_url('public/img/profile/blank-photo.jpg');
 						}else{
-							echo $detailBook['data']['author']['avatar']; } ?>" width="48" alt="Generic placeholder image">
+							echo $dat['prof_pict']; } ?>" width="48" height="48" alt="<?php $dat = $this->session->userdata('userData'); echo $dat['fullname']; ?>">
 							<div class="media-body mt-5">
 								<div>
-									<span><h5 class="card-title nametitle2"><a href=""><?php
-									echo $detailBook['data']['author']['author_name']; ?></a></h5></span>
 									<span>
-										<input placeholder="Comment" type="text" name="comment" class="frmcomment">
-									</span>
-									<span>
-										<button type="submit"><img src=""></button>
+										<input id="comments" placeholder="Tulis sesuatu.." type="text"  class="frmcomment commentform" style="width: 70%;height: 45px;">
+										<button class="btn Rpost-comment">Kirim</button>
 									</span>
 								</div>
 							</div>
 						</div>
-						<hr>
-						<div class="card mb-15" style="padding: 0 00px;">
-							<div class="card-body p-0 p-20">
-								<div class="row mb-10" style="padding: 0px 10px 0px 10px;">
-									<div class="media">
-										<img class="d-flex align-self-start mr-20 rounded-circle" src="<?php if($detailbook['author_avatar'] == NULL){
-											echo base_url('public/img/profile/blank-photo.jpg');
-										}else{
-											echo $detailbook['author_avatar']; } ?>" width="48" alt="Generic placeholder image">
-											<div class="media-body mt-5">
-												<h5 class="card-title nametitle2"><a href="<?php echo site_url('profile/'.$detailbook['author_id'].''); ?>">Rijal</a></h5>
-												<p class="text-muted" style="margin-top:-10px;"><small><span>15 Menit yang lalu</span>
-													<span class="ml-10"><?php echo $detailbook['publish_date']; ?></span></small></p>
-												</div>
-											</div>
-										</div>
-										<a href="<?php echo site_url(); ?>book/<?php
-										echo $detailbook['book_id']; ?>
-										-<?php echo url_title($detailbook['title_book'], 'dash', true); ?>"> 
-										<div class="row" style="padding: 0px 10px 0px 10px;">
-											<div>
-												<div>
-													<p style="font-size:16px; font-family: Roboto;">Aku yang lemah tanpamu Aku yang rentan karena Cinta yang t'lah hilang darimu...</p>
-												</div>
-											</div>	
-										</div>	
-									</div>
-								</a>
-							</div>
+						<br>
+						<br>
+						<div id="Rbookcomment_list">
+							
 						</div>
 					</div>
-					<footer class="navbar navbar-expand-lg fixed-bottom baboonav" style="height:60px;">
-						<div class="container">
-							
-							<span class="mr-10"><img src="<?php echo base_url(); ?>public/img/assets/icon_view.svg"> 100</span> 
-							<span><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg">1200</span></p>
-							<span><img src="<?php echo base_url(); ?>public/img/assets/icon_comment.svg">540</span></p>
-							<span><img src="<?php echo base_url(); ?>public/img/assets/icon_love.svg">540</span></p>
-						</div>
-					</footer>
-					<?php if (isset($js)): ?>
-						<?php echo get_js($js) ?>
-					<?php endif ?>
-					<script type="text/javascript"></script>
-					<script type="<?php echo base_url('') ?>/public/plugins/froala/js/plugins/image.min.js"></script>
-				</body>
-				</html>
+				</div>
+			</div>
+		</div>
+		<footer class="navbar navbar-expand-lg fixed-bottom baboonav" style="height:60px;">
+			<div class="container">
+
+				<span class="mr-10"><img src="<?php echo base_url(); ?>public/img/assets/icon_view.svg"> 100</span> 
+				<span><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg">1200</span></p>
+				<span><img src="<?php echo base_url(); ?>public/img/assets/icon_comment.svg">540</span></p>
+				<span><img src="<?php echo base_url(); ?>public/img/assets/icon_love.svg">540</span></p>
+			</div>
+		</footer>
+		<?php if (isset($js)): ?>
+			<?php echo get_js($js) ?>
+		<?php endif ?>
+		<script type="text/javascript"></script>
+		<script type="<?php echo base_url('') ?>/public/plugins/froala/js/plugins/image.min.js"></script>
+	</body>
+	</html>

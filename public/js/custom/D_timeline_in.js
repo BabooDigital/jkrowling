@@ -83,6 +83,87 @@ $(document).ready(function() {
     $(".stickymenu").stick_in_parent();
   }
 
+  // LIKE BUTTON DESKTOP
+  $(document).on('click', '.like', function() {
+    var aww = $(this);
+    var formData = new FormData();
+    var txt = aww.children('.txtlike');
+
+    aww.children('.loveicon').attr("src", "public/img/assets/love_active.svg");
+    formData.append("user_id", $("#iaiduui").val());
+    formData.append("book_id", aww.attr("data-id"));
+    $.ajax({
+        url: base_url + 'like',
+        type: 'POST',
+        dataType: 'JSON',
+        cache: false,
+        contentType: false,
+        processData: false,
+        data: formData,
+        // beforeSend: function() {
+        // }
+      })
+      .done(function(data) {
+        // $('.loader').hide();
+        if (data.code == null) {
+          aww.children('.loveicon').attr("src", "public/img/assets/icon_love.svg");
+        } else {
+          aww.removeClass('like');
+          aww.addClass('unlike');
+          txt.removeClass('txtlike');
+          txt.addClass('txtunlike');
+          aww.children('.txtunlike').text('Batal Suka');
+          aww.children('.loveicon').attr("src", "public/img/assets/love_active.svg");
+        }
+      })
+      .fail(function() {
+        console.log("Failure");
+      })
+      .always(function() {});
+
+  });
+
+  // UNLIKE BUTTON DESKTOP
+  $(document).on('click', '.unlike', function() {
+
+    var aww = $(this);
+    var formData = new FormData();
+    var txt = aww.children('.txtunlike');
+
+    aww.children('.loveicon').attr("src", "public/img/assets/icon_love.svg");
+    formData.append("user_id", $("#iaiduui").val());
+    formData.append("book_id", aww.attr("data-id"));
+    $.ajax({
+        url: base_url + 'like',
+        type: 'POST',
+        dataType: 'JSON',
+        cache: false,
+        contentType: false,
+        processData: false,
+        data: formData,
+        // beforeSend: function() {
+        // }
+      })
+      .done(function(data) {
+        // $('.loader').hide();
+        if (data.code == null) {
+          aww.children('.loveicon').attr("src", "public/img/assets/love_active.svg");
+        } else {
+          aww.removeClass('unlike');
+          aww.addClass('like');
+          txt.removeClass('txtunlike');
+          txt.addClass('txtlike');
+          aww.children('.txtlike').text('Suka');
+          aww.children('.loveicon').attr("src", "public/img/assets/icon_love.svg");
+        }
+      })
+      .fail(function() {
+        console.log("Failure");
+      })
+      .always(function() {});
+
+  });
+
   // LIKE BUTTON
   $(document).on('click', '.like', function() {
     var aww = $(this);
