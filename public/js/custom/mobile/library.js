@@ -47,7 +47,6 @@ function getLastRead() {
         $.each(data, function(index, val) {
             $('#slug').text(slug(val.title_book));
             html += '<div class="terakhir_dilihat_sub1"> <img src="'+val.cover_url+'" class="terakhir_dilihat_img"> <div class="terakhir_dilihat_sub2"> <div id="title_book"> <b class="font_title_terakhir_dilihat"><a href="" id="slug">'+val.title_book+'</a></b> </div> <div id="author_book"> <p class="terakhir_dilihat_by">By : '+val.author_name+'</p> </div> </div> </div>'; });
-
         $(".terakhir_dilihat").html(html);
     })
     .fail(function() {

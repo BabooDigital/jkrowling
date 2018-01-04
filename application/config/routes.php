@@ -93,6 +93,12 @@ $route['getmenuchapter'] = 'book/C_book/chapter';
 $route['book/:any/read'] = 'book/C_book/readingMode';
 $route['my_book/:num/chapter/:num'] = 'book/C_createbook/mybook';
 $route['my_book/:num'] = 'book/C_createbook';
+$route['chapter'] = 'book/C_createbook/chapter';
+$route['savechapter'] = 'book/C_createbook/saveChapter';
+$route['listchapter/:num'] = 'book/C_createbook/listChapter';
+$route['cover'] = 'book/C_createbook/cover';
+
+
 $route['my_book/editor_upload'] = 'book/C_createbook/editor_upload';
 $route['create_book'] = 'book/C_createbook';
 $route['my_book/create_book/save'] = 'book/C_createbook/save';
