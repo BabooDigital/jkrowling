@@ -159,8 +159,16 @@ div#insideDivTerakhirDilihat{
 .checked{
   color: orange;
 }
-
-
+.uploadcover {
+  height: 1000px;
+}
+.float-left {
+  float: left;
+  text-align: left;
+}
+.float-right {
+  float: right;
+}
 .floating-btn {
   background: #7554bd;
   display: block;
@@ -313,7 +321,8 @@ input:checked + .label-md {
   height: 50px;
   background: transparent;
   border: 0;
-  width: 100%;
+  width: 70%;
+  text-align: center;
   outline: 0;
 }
 .paddingbook {
@@ -494,7 +503,7 @@ nav.profile {
 }
 .margin_cover {
   margin-top: 80px;
-  height: 1000px;
+  height: 700px;
 }
 .colordiv {
   background-color:white;
@@ -566,6 +575,19 @@ nav.profile {
   background: transparent;
   border: solid 1px #7554bd;
 }
+.btn-publish {
+  width: 100%;
+  margin: auto;
+  color: #7554bd;
+  outline: 0;
+  padding: 10px;
+  border-radius: 10px;
+  background: transparent;
+  border: solid 1px #7554bd;
+}
+.form-publish {
+  width: 100%;
+}
 .btn-profile {
   float: left;
   width: 45%;
@@ -599,4 +621,84 @@ nav.profile {
 .profile_nominal {
   float: left;
   font-size: 25px;
+}
+.form_book_title {
+  margin-left: -30px;
+  margin-top: 70px;
+  margin-right: auto;
+  padding: 15px 0 0 10px;
+}
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+.switch input {display:none;}
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #7554bd;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+.select-kurs {
+  width: 30%;
+  float: left;
+  margin-top: 15px;
+}
+.input-range {
+  height: 50px;
+  padding: 10px;
+  width: 100%;
+  margin-top: 10px;
+  border-bottom:solid 1px #000;
+  border-left: 1px transparent;
+  border-right : 1px transparent;
+  border-top: 1px transparent;
+}
+.rangebook {
+  display: none;
+}
+.group-full {
+  width: 100%;
 }
