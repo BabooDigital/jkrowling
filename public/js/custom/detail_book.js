@@ -414,7 +414,7 @@ function getmenuChapter() {
       $.each(data, function(index, val) {
 
         if (val['chapter_free'] != "false") {
-          data_chapter += '<li class="list-group-item ';
+          data_chapter += '<li class="id_chapter list-group-item ';
           if (index == 0) {
             data_chapter += 'chapter_active ';
           }

@@ -76,6 +76,9 @@ $route['shares'] = 'timeline/C_timeline/postShareSocmed';
 // Like
 $route['like'] = 'timeline/C_timeline/postLike';
 
+// Bookmark
+$route['bookmark'] = 'timeline/C_timeline/postBookmark';
+
 // Explore
 $route['notification'] = 'notification/C_notification';
 $route['more'] = 'more/C_more';
@@ -88,7 +91,7 @@ $route['lastread'] = 'library/C_library/lastRead';
 // Book
 $route['img_book'] = 'book/C_createbook/img_book';
 $route['book/:any'] = 'book/C_book';
-// $route['book/:any/:any'] = 'book/C_book';
+$route['book/:any/:num'] = 'book/C_book/getChapterResponsive';
 $route['getmenuchapter'] = 'book/C_book/chapter';
 $route['book/:any/read'] = 'book/C_book/readingMode';
 $route['my_book/:num/chapter/:num'] = 'book/C_createbook/mybook';
