@@ -1365,3 +1365,10 @@ input.formsearch:focus {
 .chapter_disabled span {
 	color: white;
 }
+
+.bornone {
+	border: none !important;
+}
+.borbot {
+	border-bottom: .5px #a5a5a5 solid !important;
+}

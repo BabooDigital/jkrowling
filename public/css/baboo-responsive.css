@@ -364,7 +364,8 @@ input[name="title_book"]
   border-radius: 20px;
   border:solid 2px #7554bd;
   color: #7554bd;
-  width: 100px;
+  width: 90px;
+  text-align: center;
 }
 .lihathistory {
   float: right;
