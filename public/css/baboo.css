@@ -1044,6 +1044,9 @@ input.formsearch:focus {
 #coverCreation {
 	position: absolute;padding: 2%;width: 595px;height: 842px;
 }
+#coverCreationmr {
+	position: absolute;padding: 2%;
+}
 
 .baboo-cover {
 	position: absolute;padding: 2%;width: 595px;height: 842px;

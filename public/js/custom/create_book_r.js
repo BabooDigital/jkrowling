@@ -37,7 +37,7 @@ function chapterBook() {
     $("#chapter_title").val($(this).val());
   });
   $('.paragraph').on('froalaEditor.keyup', function (e, editor, keyupEvent) {
-    $("#paragraph").val($(".paragraph").val());
+    $("#paragraph").val($(this).val());
   });
 }
 function tampilkanPreview(gambar, idpreview) {

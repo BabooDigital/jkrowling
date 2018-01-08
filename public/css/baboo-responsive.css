@@ -477,6 +477,15 @@ nav.profile {
   margin-right: auto;
   background: white;
 }
+#bg-cover-mr {
+  width: 90%;
+  position: absolute;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+  height: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  background: white;
+}
 .detailbook {
   width: 100%;
   height: auto;
@@ -701,4 +710,44 @@ input:checked + .slider:before {
 }
 .group-full {
   width: 100%;
+}
+.coverCreationmr {
+  position: absolute;padding: 2%;
+  display: none;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.font {
+  width: 100%;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+  height: 70px;
+  padding-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  background: white;
+}
+.input-cover {
+  width: 150px;
+  background: transparent;
+  border: solid 1px transparent;
+}
+.txt {
+  margin-left: auto;
+  margin-right: auto;
+}
+.select-text {
+  background: transparent;
+  border: solid 1px transparent; 
+}
+.font-text {
+  font-size: 15px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.btn-color {
+  width: 20px;
+  height: 20px;
+  background: red;
 }
