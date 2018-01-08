@@ -1375,3 +1375,25 @@ input.formsearch:focus {
 .borbot {
 	border-bottom: .5px #a5a5a5 solid !important;
 }
+
+.comment-marker {
+	position: absolute;
+	right: 0;
+	opacity: .5;
+	padding: 0 3px 3px 3px;
+}
+.comment-marker .num-comment {
+	position: absolute;
+	font-size: 10px;
+	font-weight: 700;
+	color: #333;
+	left: 50%;
+	top: 15px;
+	transform: translate(-50%);
+}
+
+.btncompar {
+	background: none;
+	border: none;
+	cursor: pointer;
+}

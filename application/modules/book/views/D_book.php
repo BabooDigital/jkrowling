@@ -6,7 +6,9 @@
 		js.src = 'https://connect.facebook.net/id_ID/sdk.js#xfbml=1&version=v2.11&appId=124081454991891';
 		fjs.parentNode.insertBefore(js, fjs);
 	}(document, 'script', 'facebook-jssdk'));</script>
+
 	<?php $this->load->view('navbar/D_navbar'); ?>	
+	
 	<style type="text/css">
 
 	/*Right*/
@@ -95,13 +97,10 @@
 						<center>
 							<!-- <div class="loader" id="loader_chapter"></div> -->
 						</center>
-						<span id="list_chapter"></span>
-						<!-- <?php foreach ($menuChapter['data'] as $key => $value): ?>
-							<li class="list-group-item" id="list_chapters"><a href="#" class="id_chapter <?php if($key == 0){ echo 'chapter_active'; } else{ echo ''; } ?>" onclick="ScrollToBottom()"><?php echo $value['chapter_title']; ?></a></li>
-						<?php endforeach ?> -->
-						<!-- <li class="list-group-item" id="list_chapters"><a href="#" class="id_chapter ">asd</a></li>
-						<li class="list-group-item" id="list_chapters"><a href="#" class="id_chapter">asdjakl</a></li>
-					--></ul>
+						<div id="list_chapter">
+							
+						</div>
+					</ul>
 				</div>
 			</div>
 			<?php  }else {
@@ -249,6 +248,35 @@
 </div><!-- modal -->
 
 <!-- Modal -->
+<div class="modal right fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+
+			<div class="modal-header">
+				<button type="button" class="closes" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="myModalLabel2"><b>Komentar Paragraf</b></h4>
+			</div>
+
+			<div class="modal-body">
+				<div>
+					<p style="padding: 10px 7px;background: #eceff2;"><span class="fs-14px mr-5">&#8220;</span><span class="fs-14px append_txt"> Paragraph </span><span class="fs-14px ml-5">&#8222;</span></p>
+				</div>
+				<br>
+				<div id="paragraphcomment_list">
+
+				</div>
+				<nav class="navbar navbar-light bg-light fixed-bottom">
+					<span class="w-100 mb-20">
+						<input id="pcomments" placeholder="Tulis sesuatu.." type="text"  class="frmcomment commentform" style="width: 80%;height: 45px;">
+						<button class="btn post-comment-parap">Kirim</button>
+					</span>
+				</nav>
+			</div>
+
+		</div><!-- modal-content -->
+	</div><!-- modal-dialog -->
+</div><!-- modal -->
+
 <script type="text/javascript">
 	var segment = '<?php echo $this->uri->segment(2); ?>';
 	var count_data = '<?php echo $detailChapter; ?>';

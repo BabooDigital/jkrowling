@@ -10,7 +10,8 @@
 <div id="parentparaph">
 	<?php 
 foreach ($detail_book['data']['chapter']['paragraphs'] as $book) {
-	$data .= $book['paragraph_text'];
+	$text = strip_tags($book['paragraph_text']);
+	$data .= "<div class='mb-20 textp' data-id-p='".$book['paragraph_id']."' data-text='".$text."'>".$book['paragraph_text']."<button type='button' data-p-id='".$book['paragraph_id']."' data-toggle='modal' id='comm_p' data-target='#myModal2' class='btncompar comment-marker on-inline-comments-modal' for='toggle-right'><span class='num-comment'>".$book['comment_count']."</span><span  aria-hidden='true' style='font-size:28px;'><img src='".base_url('public/img/assets/icon_comment.svg')."'></span></button></div>";
 }
 	echo $data;
 ?>

@@ -18,6 +18,12 @@ $(document).ready(function() {
     $(".stickymenu").stick_in_parent();
   }
 
+  $(document).on('click', '#comm_p', function() {
+    
+    var text = $(".textp").attr('data-text');
+    $(".append_txt").text(text);
+  });
+
   // POST COMMENT
   $(document).on('click', '.post-comment', function() {
     var boo = $(this);
@@ -61,8 +67,48 @@ $(document).ready(function() {
         console.log("error");
       })
       .always(function() {});
+  });
 
+  // POST COMMENT PARAGRAPH
+  $(document).on('click', '.post-comment-parap', function() {
+    var boo = $(this);
+    var formData = new FormData();
+    var comm = $('#pcomments').val();
+    var ava = $('#profpict').attr('src');
+    var name = $('#profpict').attr('alt');
 
+    var datas = "";
+    datas += "<div class='pcommentviewnull'><div class='media'> <img class='d-flex align-self-start mr-20 rounded-circle' src='" + ava + "' width='48' height='48' alt='" + name + "'> <div class='media-body mt-5'> <p><h5 class='card-title nametitle3'><a href='#'>" + name + "</a><small><span class='text-muted ml-10 timepost'>Just now</span></small></h5> <div class='text-muted' style='margin-top:-10px;'></div></p> <p style='font-size:16px; font-family: Roboto;'>" + comm + "</p> <div> <a href='#' class='fs-14px'>Reply</a> <div class='pull-right'><a href='#'><img base_url+spublic/img/assets/icon_love.svg'> </a></div> </div> </div> </div><hr></div>";
+    $('#paragraphcomment_list').append(datas);
+
+    formData.append('user_id', $('#iaiduui').val());
+    formData.append('paragraph_id', boo.attr("data-p-id"));
+    formData.append('comments', $('#pcomments').val());
+
+    $.ajax({
+      url: base_url + 'commentbook',
+      type: 'POST',
+      dataType: 'JSON',
+      cache: false,
+      contentType: false,
+      processData: false,
+      data: formData,
+        // beforeSend: function()
+        // {
+        //   $('.loader').show();
+        // }
+      })
+    .done(function(data) {
+      if (data == null) {
+        $('.pcommentviewnull').hide();
+          console.log('Koneksi Bermasalah');
+        }
+        $('#pcomments').val('');
+      })
+    .fail(function() {
+      console.log("error");
+    })
+    .always(function() {});
   });
 
   // LIKE BUTTON
@@ -246,25 +292,6 @@ $(document).ready(function() {
       });
   });
 
-  // Called by the Twitter, many times during it's
-  // life-cycle. We only want to know when the user
-  // has tweeted, so the following filters are required.
-  // var callback = function(e) {
-  //   if (e && e.data) {
-  //     var data;
-  //     try {
-  //       data = JSON.parse(e.data);
-  //     } catch (e) {
-  //       // Don't care.
-  //     }
-  //     if (data && data.params && data.params.indexOf('tweet') > -1) {
-
-  //     }
-  //   }
-  // };
-
-  // window.addEventListener ? window.addEventListener("message", callback, !1) : window.attachEvent("onmessage", callback)
-
   // SHARE FACEBOOK
   $(document).on('click', '.share-fb', function() {
 
@@ -312,6 +339,47 @@ $(document).ready(function() {
           // console.log("Batal Share");
         }
       });
+  });
+
+
+
+  // GET COMMENT PARAGRAPH
+  $(document).on('click', '.btncompar', function() {
+
+    var boo = $(this);
+    var formData = new FormData();
+
+    formData.append("paragraph_id", boo.attr("data-p-id"));
+    $.ajax({
+        url: base_url + 'getcommentbook',
+        type: 'POST',
+        dataType: 'JSON',
+        cache: false,
+        contentType: false,
+        processData: false,
+        data: formData,
+        // beforeSend: function() {
+        // }
+      })
+      .done(function(data) {
+        var datas = "";
+    $.each(data, function(i, item) {
+      var avatar;
+      if (item.comment_user_avatar != "") {
+        avatar = item.comment_user_avatar;
+      } else if (item.comment_user_avatar == "") {
+        avatar = 'public/img/profile/blank-photo.jpg';
+      }
+      datas += "<div class='media'> <img class='d-flex align-self-start mr-20 rounded-circle' src='"+ avatar +"' width='48' height='48' alt='"+ item.comment_user_name +"'> <div class='media-body mt-5'> <p><h5 class='card-title nametitle3'><a href='#'>"+ item.comment_user_name +"</a><small><span class='text-muted ml-10'>"+ item.comment_date +"</span></small></h5> <div class='text-muted' style='margin-top:-10px;'></div></p> <p style='font-size:16px; font-family: Roboto;' id='" + item.comment_id + "'>" + item.comment_text + "</p> <div> <a href='#' class='fs-14px'>Reply</a> <div class='pull-right'><a href='#'><img base_url+spublic/img/assets/icon_love.svg'> </a></div> </div> </div> </div><hr>";
+    });
+    $("#paragraphcomment_list").html(datas);
+    $(".post-comment-parap").attr("data-p-id",boo.attr("data-p-id"));
+      })
+      .fail(function() {
+        console.log("error");
+      })
+      .always(function() {});
+
   });
 
   progressScroll();

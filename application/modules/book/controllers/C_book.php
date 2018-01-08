@@ -591,7 +591,7 @@ class C_book extends MX_Controller {
 		$resval =  json_decode($getdata, TRUE);
 
 		$psn = $resval['message'];
-		$userdetail = $resval['data']['comments'];
+		$userdetail = $resval['data'];
 		$auth = $headers['BABOO-AUTH-KEY'];
 		
 		$this->session->set_userdata('authKey', $auth);
