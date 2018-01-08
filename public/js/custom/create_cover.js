@@ -32,6 +32,7 @@
 	//[CLOSE] Preview Image Upload Function
 
 	$(document).ready(function() {
+
 		//[OPEN] BACK BUTTON
 		$('.backbtn').on('click', function() {
 			window.history.go(-1);
@@ -142,9 +143,7 @@
 		//[CLOSE] CANVAS COVER TEXT ALIGN SETTING
 
 		//[OPEN] CALL COLORPICKER
-		$(function() {
-			$('#mycp').colorpicker();
-		});
+		
 		//[CLOSE] CALL COLORPICKER
 
 		//[OPEN] CHANGE COLOR BGROUND & FONT
@@ -167,6 +166,14 @@
 			});
 
 		});
+		$('.colorbgmr').click(function() {
+			var x = $(this).css('backgroundColor');
+			hexc(x);
+			$('.yourimage').css({
+				background: color
+			});
+
+		});
 
 		function hexc(colorval) {
 			var parts = colorval.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
@@ -181,10 +188,7 @@
 		//[CLOSE] CHANGE COLOR BGROUND & FONT
 
 		//[OPEN] FUNCTION TYPING ON CANVAS
-		var inputBox = document.getElementById('cover_title');
-		inputBox.onkeyup = function() {
-			document.getElementById('txtfontfam').innerHTML = inputBox.value;
-		}
+		
 		//[CLOSE] FUNCTION TYPING ON CANVAS
 
 		//[OPEN] GET DATE MONTH YEAR NOW FOR COVER NAME
@@ -273,4 +277,57 @@
 			});
 		});
 		//[CLOSE] CANVAS FUNCTION AND AJAX TO SAVE
+	});
+
+	function showHide(value) {
+		if (value == 'gallery') {
+			$(".gallery").show();
+			$(".txt").hide();
+		}else if(value == 'txt') {
+			$(".gallery").hide();
+			$(".txt").show();
+			$(".txt").css('display', '');
+			$(".draggable").draggable({
+			    start: function (event, ui) {
+			        $(this).data('preventBehaviour', true);
+			    }
+			});
+			$(".draggable").find(":input").on('mousedown', function (e) {
+			    var mdown = new MouseEvent("mousedown", {
+			        screenX: e.screenX,
+			        screenY: e.screenY,
+			        clientX: e.clientX,
+			        clientY: e.clientY,
+			        view: window
+			    });
+			    $(this).closest('.draggable')[0].dispatchEvent(mdown);
+			}).on('click', function (e) {
+			    var $draggable = $(this).closest('.draggable');
+			    if ($draggable.data("preventBehaviour")) {
+			        e.preventDefault();
+			        $draggable.data("preventBehaviour", false)
+			    }
+			});
+		}
+	}
+	function appendToCover() {
+		$(".coverCreationmr").show();
+		$("#title_book").focus();
+		$(".tab_txt").hide();
+		$(".tab_txt_menu").show();
+	}
+	$(document).ready(function() {
+		$(".draggable").draggable();
+		$("#font-size").change(function() {
+			var font_size = $(this).val();
+			$("#title_book").css('font-size',font_size);
+		});
+		$("#bold-text").click(function() {
+			var font_size = $(this).val();
+			$("#title_book").css('font-weight','bold');
+		});
+		$("#italic-text").click(function() {
+			var font_size = $(this).val();
+			$("#title_book").css('font-style','italic');
+		});
 	});

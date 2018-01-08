@@ -1,4 +1,10 @@
-
+<style type="text/css">
+	#draggable {
+	    width: 100px;
+	    height: 100px;
+	    background: transparent;
+	  }
+</style>
 <body id="pageContent">
 <input type="checkbox" id="toggle-right">
 <div class="page-wrap">
@@ -66,15 +72,24 @@
 <div class="container margin_cover">
 	<div class="row">
 		<!-- <div class="input-group paddingparagraph"> -->
-			<div class="yourimage" style=""></div>
-		<!-- </div> -->
+			<div class="yourimage" style="">
+				<div class="coverCreationmr">
+					<div class="draggable" id="draggable">
+						<input class="input-cover" id="title_book" type="text" name="">
+					</div>
+				</div>
+			</div>
+		<div class="font" align="center">
+			<button onclick="showHide('gallery')" class="btn-transparant"><img src="<?php echo base_url('') ?>/public/img/icon-tab/tt.png" width="30"></button>
+			<button onclick="showHide('txt')" class="btn-transparant"><img src="<?php echo base_url('') ?>/public/img/icon-tab/tt.png" width="30"></button>
+		</div>
 	</div>
 </div>
 
 <footer class="navbar navbar-expand-lg fixed-bottom baboonav" style="height:70px;">
 <div class="container">
 	<div class="container babooid">
-		<div class="row">
+		<div class="row gallery">
 				<div id="myWorkContent">
 				    <div id="insideDiv">
 				    	<a id="tes" href="assets/work/1.jpg">
@@ -84,27 +99,68 @@
 				    			</center>
 				    		</div>
 				    	</a>
-				    	<a id="tes" href="assets/work/1.jpg">
-				    		<div class="col-md-3 colordivs" style="background: yellow;">
-				    		
+				    		<div id="tes" class=" colordivs" >
+				    			<button class="colorbgmr" style="background: #ef4d48; padding: 5px;width: 50px;height: 50px;"></button>
 				    		</div>
-				    	</a>
-				    	<a id="tes" href="assets/work/1.jpg">
-				    		<div class="col-md-3 colordivs" style="background: red;">
-				    		
+				    		<div id="tes" class=" colordivs" >
+				    			<button class="colorbgmr" style="background: #4990e2; padding: 5px;width: 50px;height: 50px;"></button>
 				    		</div>
-				    	</a>
-				    	<a id="tes" href="assets/work/1.jpg">
-				    		<div class="col-md-3 colordivs" style="background: green;">
-				    		
+				    		<div id="tes" class=" colordivs" >
+				    			<button class="colorbgmr" style="background: #f6a623; padding: 5px;width: 50px;height: 50px;"></button>
 				    		</div>
-				    	</a>
-				    	<a id="tes" href="assets/work/1.jpg">
-				    		<div class="col-md-3 colordivs" style="background: blue;">
-				    		
+				    		<div id="tes" class=" colordivs" >
+				    			<button class="colorbgmr" style="background: #8b572a; padding: 5px;width: 50px;height: 50px;"></button>
 				    		</div>
-				    	</a>
-					    
+				    		<div id="tes" class=" colordivs" >
+				    			<button class="colorbgmr" style="background: #44c1c0; padding: 5px;width: 50px;height: 50px;"></button>
+				    		</div>
+				    		<div id="tes" class=" colordivs" >
+				    			<button class="colorbgmr" style="background: #9b9b9b; padding: 5px;width: 50px;height: 50px;"></button>
+				    		</div>
+				    		<div id="tes" class=" colordivs" >
+				    			<button class="colorbgmr" style="background: #962a39; padding: 5px;width: 50px;height: 50px;"></button>
+				    		</div>
+				    		<div id="tes" class=" colordivs" >
+				    			<button class="colorbgmr" style="background: #ef4d48; padding: 5px;width: 50px;height: 50px;"></button>
+				    		</div>
+				    		<div id="tes" class=" colordivs" >
+				    			<button class="colorbgmr" style="background: #b44aca; padding: 5px;width: 50px;height: 50px;"></button>
+				    		</div>
+				    		<div id="tes" class=" colordivs" >
+				    			<button class="colorbgmr" style="background: #2ecc71; padding: 5px;width: 50px;height: 50px;"></button>
+				    		</div>
+				    		<div id="tes" class=" colordivs" >
+				    			<button class="colorbgmr" style="background: #2c3e50; padding: 5px;width: 50px;height: 50px;"></button>
+				    		</div>
+				    		<div id="tes" class=" colordivs" >
+				    			<button class="colorbgmr" style="background: #000000; padding: 5px;width: 50px;height: 50px;"></button>
+				    		</div>
+				    </div>
+			</div>
+		</div>
+		<div class="row txt" style="display: none;">
+				<div id="myWorkContent">
+				    <div id="insideDiv" class="tab_txt_menu" style="display: none;">
+				    	<select class="select-text" id="font-size">
+				    		<option value="18px">18px</option>
+				    		<option value="30px">30px</option>
+				    		<option value="40px">40px</option>
+				    	</select>
+				    	<select class="select-text" id="font-style">
+				    		<option>Source Sans</option>
+				    		<option>Ahahahah</option>
+				    		<option>22px</option>
+				    	</select>
+				    	<button class="font-text btn-transparant" id="bold-text"><b>B</b></button>
+				    	<button class="font-text btn-transparant" id="italic-text"><i>I</i></button>
+				    	<span class="font-text"></span>
+				    	<button class="btn-color"></button>
+				    	<select name="select" class="btn-transparant">
+						</select>
+				    	<!-- <button onclick="appendToCover()" class="btn-transparant"><img src="<?php echo base_url('') ?>/public/img/icon-tab/tt.png" width="30"></button> -->
+				    </div>
+				    <div id="insideDiv" class="tab_txt">
+				    	<button onclick="appendToCover()" class="btn-transparant"><img src="<?php echo base_url('') ?>/public/img/icon-tab/tt.png" width="30"></button>
 				    </div>
 			</div>
 		</div>

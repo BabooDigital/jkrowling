@@ -27,19 +27,23 @@ class C_cover extends MX_Controller {
 		$data['css'][] = "public/css/baboo.css";
             $data['css'][] = "public/css/baboo-responsive.css";
 
-		$data['js'][] = "public/js/jquery.min.js";
+            $data['js'][] = "public/js/jquery-1.12.4.js";
+            $data['js'][] = "public/js/jquery-ui.js";
+            $data['js'][] = "public/js/jquery.ui.touch-punch.js";
 		$data['js'][] = "public/js/umd/popper.min.js";
 		$data['js'][] = "public/js/bootstrap.min.js";
 		$data['js'][] = "public/js/html2canvas.js";
 		$data['js'][] = "public/js/colorpicker/bootstrap-colorpicker.min.js";
 		$data['js'][] = "public/js/sweetalert2.all.min.js";
 		$data['js'][] = "public/plugins/holdOn/js/HoldOn.js";
-		$data['js'][] = "public/js/custom/create_cover.js";
+            $data['js'][] = "public/js/custom/create_cover.js";
+		$data['js'][] = "public/js/custom/drag_drop.js";
 		$data['js'][] = "public/js/jquery.sticky-kit.min.js";
             if ($this->agent->mobile()) {
                   $this->load->view('include/head', $data);
                   $this->load->view('R_createcover');      
             }else{
+                  $data['js'][] = "public/js/custom/cover_d.js";
                   $this->load->view('D_createcover', $data);
             }
 	}

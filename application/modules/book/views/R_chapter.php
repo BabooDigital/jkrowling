@@ -11,7 +11,7 @@
 		<input type="hidden" name="book_id" id="book_id" value="<?php echo $book_id; ?>">
 		<input type="hidden" name="chapter_title" id="chapter_title">
 		<!-- <input type="text" name="paragraph" id="paragraph"> -->
-		<textarea style="visibility: hidden;display: none;" name="paragraph" id="paragraph"></textarea>
+		<textarea style="display: none;" name="paragraph" id="paragraph"></textarea>
 		<button class="btn-transparant" type="submit"><span>Publish</span> &nbsp;&nbsp;<img src="<?php echo base_url() ?>public/img/icon-nav/publish.png" width="30" height="30"></button>
 	</form>
 	<nav class="profile">
