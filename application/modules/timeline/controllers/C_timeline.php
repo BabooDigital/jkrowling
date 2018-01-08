@@ -272,6 +272,7 @@ class C_timeline extends MX_Controller {
 		}
 		$getdata = end($data);
 		$resval =  json_decode($getdata, TRUE);
+		print_r($resval);
 		$status = $resval['code'];
 		$pesan = $resval['message'];
 		$auth = $headers['BABOO-AUTH-KEY'];

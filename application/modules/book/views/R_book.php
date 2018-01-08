@@ -1,25 +1,4 @@
 <style type="text/css">
-.comment-marker {
-	position: absolute;
-	/*bottom: -10px;*/
-	right: 5px;
-	opacity: .5;
-	padding: 0 3px 3px 3px;
-}
-.comment-marker .num-comment {
-	position: absolute;
-	font-size: 12px;
-	font-weight: 700;
-	color: #fff;
-	left: 50%;
-	top: -5px;
-	transform: translate(-50%);
-}
-
-.btncompar {
-	background: none;
-	border: none;
-}
 
 /*Right*/
 .modal.right.fade .modal-dialog {
@@ -115,7 +94,7 @@
 					<div class="media mb-20">
 						<img class="d-flex align-self-start mr-20 rounded-circle" src="<?php if($detailBook['data']['author']['avatar'] == NULL){ echo base_url('public/img/profile/blank-photo.jpg'); }else{ echo $detailBook['data']['author']['avatar']; } ?>" width="55" height="55" alt="<?php echo $detailBook['data']['author']['author_name']; ?>">
 						<div class="media-body mt-5">
-							<div style="display: flex;"><h5 class="nametitle2 mr-20"><a href="" ><?php echo $detailBook['data']['author']['author_name']; ?></a></h5><a data-follow="<?php echo $detailBook['data']['book_info']['book_id']; ?>" class="btn-topup <?php if ($detailBook['data']['author']['is_follow'] == false) { echo "follow-u"; }else{ echo "unfollow-u"; } ?>"><span class="nametitle2 txtfollow" style="font-size: 12px;"><?php if ($detailBook['data']['author']['is_follow'] == false) { echo "Follow"; }else{ echo "Unfollow"; } ?></span></a></div>
+							<div style="display: flex;"><h5 class="nametitle2 mr-20"><a href="" ><?php echo $detailBook['data']['author']['author_name']; ?></a></h5><a data-follow="<?php echo $detailBook['data']['author']['author_id']; ?>" class="btn-topup <?php if ($detailBook['data']['author']['is_follow'] == false) { echo "follow-u"; }else{ echo "unfollow-u"; } ?>"><span class="nametitle2 txtfollow" style="font-size: 12px;"><?php if ($detailBook['data']['author']['is_follow'] == false) { echo "Follow"; }else{ echo "Unfollow"; } ?></span></a></div>
 							<p style="margin-top: -5px;"><span class="text-muted"><small>Jakarta, Indonesia</small></span>
 							</p>
 						</div>
@@ -128,14 +107,14 @@
 					<?php 
 					foreach ($detailBook['data']['chapter']['paragraphs'] as $book) {
 						$text = strip_tags($book['paragraph_text']);
-						$data .= "<div class='mb-15 textp' data-id-p='".$book['paragraph_id']."' data-text='".$text."'>".$book['paragraph_text']."<button type='button' data-p-id='".$book['paragraph_id']."' data-toggle='modal' id='comm_p' data-target='#myModal2' class='btncompar comment-marker on-inline-comments-modal' for='toggle-right'><span class='num-comment'>1</span><span  aria-hidden='true' style='font-size:28px;'><img src='".base_url('public/img/assets/icon_love.svg')."'></span></button></div>";
+						$data .= "<div class='mb-20 textp' data-id-p='".$book['paragraph_id']."' data-text='".$text."'>".$book['paragraph_text']."<button type='button' data-p-id='".$book['paragraph_id']."' data-toggle='modal' id='comm_p' data-target='#myModal2' class='btncompar comment-marker on-inline-comments-modal' for='toggle-right'><span class='num-comment'>".$book['comment_count']."</span><span  aria-hidden='true' style='font-size:28px;'><img src='".base_url('public/img/assets/icon_comment.svg')."'></span></button></div>";
 					}
 					echo $data;
 					?>
 				</div>
-				<hr>
+				<hr class="mt-10 mb-10">
 				<div class="commentbook mb-60">
-					<p><h4> Komentar <span style="color: #797979;">(2)</span></h4></p>
+					<p><h4> Komentar <span style="color: #797979;">(<?php echo $detailBook['data']['book_info']['book_comment_count']; ?>)</span></h4></p>
 					<div class="media">
 						<img class="d-flex align-self-start mr-20 rounded-circle" id="profpict" src="<?php $dat = $this->session->userdata('userData'); 
 						if($dat['prof_pict'] == NULL){
@@ -203,13 +182,6 @@
 	<?php if (isset($js)): ?>
 		<?php echo get_js($js) ?>
 	<?php endif ?>
-	<script type="text/javascript">
-		$(document).on('click', '#comm_p', function() {
-			
-			var text = $(".textp").attr('data-text');
-		$(".append_txt").text(text);
-		});
-	</script>
 	<script type="text/javascript">
 		var segment = '<?php echo $this->uri->segment(2); ?>';
 		var active = '<?php echo $this->uri->segment(3); ?>';

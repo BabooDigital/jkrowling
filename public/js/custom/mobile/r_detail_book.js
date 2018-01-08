@@ -1,5 +1,11 @@
 $(document).ready(function() {
 
+    $(document).on('click', '#comm_p', function() {
+      
+      var text = $(".textp").attr('data-text');
+      $(".append_txt").text(text);
+    });
+
   // POST COMMENT
   $(document).on('click', '.Rpost-comment', function() {
     var boo = $(this);
@@ -309,7 +315,7 @@ $(document).ready(function() {
       datas += "<div class='media'> <img class='d-flex align-self-start mr-20 rounded-circle' src='"+ avatar +"' width='48' height='48' alt='"+ item.comment_user_name +"'> <div class='media-body mt-5'> <p><h5 class='card-title nametitle3'><a href='#'>"+ item.comment_user_name +"</a><small><span class='text-muted ml-10'>"+ item.comment_date +"</span></small></h5> <div class='text-muted' style='margin-top:-10px;'></div></p> <p style='font-size:16px; font-family: Roboto;' id='" + item.comment_id + "'>" + item.comment_text + "</p> <div> <a href='#' class='fs-14px'>Reply</a> <div class='pull-right'><a href='#'><img base_url+spublic/img/assets/icon_love.svg'> </a></div> </div> </div> </div><hr>";
     });
     $("#Rparagraphcomment_list").html(datas);
-    $(".Rpost-comment").attr("data-p-id",boo.attr("data-p-id"));
+    $(".Rpost-comment-parap").attr("data-p-id",boo.attr("data-p-id"));
       })
       .fail(function() {
         console.log("error");
@@ -414,6 +420,7 @@ function getRMenuChapter() {
 
 function getRCommentBook() {
   var id = $('#iaidubi').val();
+
   $.ajax({
     url: base_url + 'getcommentbook',
     type: 'POST',
@@ -432,7 +439,7 @@ function getRCommentBook() {
       } else if (item.comment_user_avatar == "") {
         avatar = 'public/img/profile/blank-photo.jpg';
       }
-      datas += "<div class='media'> <img class='d-flex align-self-start mr-20 rounded-circle' src='"+ avatar +"' width='48' height='48' alt='"+ item.comment_user_name +"'> <div class='media-body mt-5'> <p><h5 class='card-title nametitle3'><a href='#'>"+ item.comment_user_name +"</a><small><span class='text-muted ml-10'>"+ item.comment_date +"</span></small></h5> <div class='text-muted' style='margin-top:-10px;'></div></p> <p style='font-size:16px; font-family: Roboto;' id='" + item.comment_id + "'>" + item.comment_text + "</p> <div> <a href='#' class='fs-14px'>Reply</a> <div class='pull-right'><a href='#'><img base_url+spublic/img/assets/icon_love.svg'> </a></div> </div> </div> </div><hr>";
+      datas += "<div class='media' id='" + item.comment_id + "'> <img class='d-flex align-self-start mr-20 rounded-circle' src='"+ avatar +"' width='48' height='48' alt='"+ item.comment_user_name +"'> <div class='media-body mt-5'> <p><h5 class='card-title nametitle3'><a href='#'>"+ item.comment_user_name +"</a><small><span class='text-muted ml-10'>"+ item.comment_date +"</span></small></h5> <div class='text-muted' style='margin-top:-10px;'></div></p> <p style='font-size:16px; font-family: Roboto;' id='" + item.comment_id + "'>" + item.comment_text + "</p> <div> <a href='#' class='fs-14px'>Reply</a> <div class='pull-right'><a href='#'><img base_url+spublic/img/assets/icon_love.svg'> </a></div> </div> </div> </div><hr>";
     });
     $('.loader').hide();
     $("#Rbookcomment_list").html(datas);
