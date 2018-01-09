@@ -79,15 +79,19 @@
 					</div>
 				</div>
 			</div>
-			<div class="font" align="center">
-				<button onclick="showHide('gallery')" class="btn-transparant"><img src="<?php echo base_url('') ?>/public/img/icon-tab/gallery.svg" width="30"></button>
-				<button onclick="showHide('txt')" class="btn-transparant"><img src="<?php echo base_url('') ?>/public/img/icon-tab/tt.png" width="30"></button>
-			</div>
 		</div>
 	</div>
 
-	<footer class="navbar navbar-expand-lg fixed-bottom baboonav" style="height:70px;" id="not-color">
-		<div class="container">
+	<footer class="navbar navbar-expand-lg fixed-bottom baboonav" id="not-color">
+		<div class="container" style="border-bottom: solid .5px #d2d2d2;">
+			<div class="container mt-20 mb-20">
+				<div class="tabmenucreate text-center" align="center">
+					<button onclick="showHide('gallery')" class="btn-transparant"><img src="<?php echo base_url('') ?>/public/img/icon-tab/gallery.svg" width="30"></button>
+					<button onclick="showHide('txt')" class="btn-transparant"><img src="<?php echo base_url('') ?>/public/img/icon-tab/tt.png" width="30"></button>
+				</div>
+			</div>
+		</div>
+		<div class="container mt-10">
 			<div class="container babooid">
 				<div class="row gallery">
 					<div id="myWorkContent">
@@ -140,7 +144,7 @@
 				</div>
 				<div class="row txt" style="display: none;">
 					<div id="myWorkContent">
-						<div id="insideDiv" class="tab_txt_menu" style="display: none;">
+						<div id="insideDiv" class="tab_txt_menu mt-15 mb-30" style="display: none;">
 							<select class="select-text" id="font-size">
 								<option value="10px">10px</option>
 								<option value="12px">12px</option>
@@ -165,8 +169,8 @@
 							</select>
 							<!-- <button onclick="appendToCover()" class="btn-transparant"><img src="<?php echo base_url('') ?>/public/img/icon-tab/tt.png" width="30"></button> -->
 						</div>
-						<div id="insideDiv" class="tab_txt">
-							<button onclick="appendToCover()" class="btn-transparant"><img src="<?php echo base_url('') ?>/public/img/icon-tab/text.svg" width="30"></button>
+						<div id="insideDiv" class="tab_txt p-15 text-center" style="width: 100% !important;">
+							<button onclick="appendToCover()" class="btn-transparant"><img src="<?php echo base_url('') ?>/public/img/icon-tab/text.svg" width="40"></button>
 						</div>
 					</div>
 				</div>
@@ -208,7 +212,7 @@
 					<button class="colorfontmr" style="border:none;border-radius: 5px;background: #50e3c2; padding: 5px;width: 60px;height: 60px;"></button>
 				</div>
 				<div id="tes" class="colordivs mr-5 mb-10" >
-					<button class="colorfontmr" style="border:none;border-radius: 5px;background: #a25d5d; padding: 5px;width: 60px;height: 60px;"></button>
+					<button class="colorfontmr" style="border:none;border-radius: 5px;background: #xa25d5d; padding: 5px;width: 60px;height: 60px;"></button>
 				</div>
 				<div id="tes" class="colordivs mr-5 mb-10" >
 					<button class="colorfontmr" style="border:none;border-radius: 5px;background: #4a4a4a; padding: 5px;width: 60px;height: 60px;"></button>
