@@ -37,8 +37,8 @@
 				<span style="font-size: 18px;font-weight: 600;color: #141414;">Judul Buku</span>
 				<hr>
 				<div>
-					<input type="hidden" name="book_id" id="book_id" value="<?php 
-					echo $this->session->userdata('idBook_'); ?>">
+					<input type="text" name="book_id" id="book_id" value="<?php 
+					echo $this->uri->segment(2); ?>">
 				</div>
 				<div id="subchapter">
 					<a style="display: none;" class="btn w-100 mb-10 chapterdata0 editsubchapt1 btnsavedraft" id="btnsavedraft" id="editchapt" href="#"></a>
@@ -70,6 +70,7 @@
 				<p><img width="160" height="222" id="previews" src="<?php $src = $this->session->userdata('dataCover'); if(!empty($src)){  echo $src['asset_url']; }else{
 					echo base_url()."public/img/assets/def_prev.png";
 				} ?>"></p>
+				<input type="hidden" name="cover_name" id="cover_name" accept="image/*"  value="<?php $src = $this->session->userdata('dataCover'); if($src != NULL){  echo $src['asset_url']; }else{ echo ""; } ?>">
 				<input type="file" id="file_cover" accept="image/*" onchange="tampilkanPreview(this,'previews')" name="file_cover" value="<?php $src = $this->session->userdata('dataCover'); if(!empty($src)){  echo $src['asset_url']; }else{ echo ""; } ?>">
 			</div>
 			<div class="min_padding">
@@ -80,10 +81,10 @@
 			</div>
 			<div class="mt-40">
 				<div class="form-group">
-					<select class="form-control" id="category_id" name="cat_book">
-						<option>Kategori</option>
-						<option value="1">2</option>
-						<option value="2">3</option>
+					<select class="form-control" id="category_ids" name="cat_book">
+						<option value="0">Kategori</option>
+						<option value="1">1</option>
+						<option value="2">2</option>
 					</select>
 				</div>
 			</div>
@@ -112,7 +113,7 @@
 	</div>
 	<footer class="navbar navbar-expand-lg fixed-bottom baboonav" style="height:60px;">
 	<div class="container">
-		<button class="btn-publish" type="submit">Publish</button> 
+		<button class="btn-publish" id="publish_book">Publish</button> 
 	</div>
 	</footer>
 		<?php if (isset($js)): ?>

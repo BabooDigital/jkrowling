@@ -271,9 +271,9 @@ class C_createbook extends MX_Controller {
 		{
 			$status = $resval['code'];
 		}
-		if ($resval['code'] == 200) {
+		// if ($resval['code'] == 200) {
 			echo json_encode($resval);
-		}
+		// }
 	 } 
 	 public function listchapter()
 	 {
@@ -719,7 +719,60 @@ class C_createbook extends MX_Controller {
         }
         	redirect('timeline','refresh');
     }
+    public function publishBookMr()
+    {
+    	$auth = $this->session->userdata('authKey');
+		$id_user = $this->session->userdata('userData')['user_id'];
 
+		$book_id = $this->input->post('book_id');
+		$file_cover = $this->input->post('file_cover');
+		$category = $this->input->post('category');
+		$bookData = array(
+			'book_id' => $book_id,
+			'file_cover' => $file_cover,
+			'category' => $category
+		);
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $this->API.'/savePublish');
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+
+		curl_setopt($ch, CURLOPT_POST, 1);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $bookData);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+		curl_setopt($ch, CURLOPT_HEADER, 1);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key : '.$auth));
+		$result = curl_exec($ch);
+
+		$headers=array();
+
+		$data=explode("\n",$result);
+
+
+		array_shift($data);
+
+		foreach($data as $part){
+			$middle=explode(":",$part);
+        	error_reporting(0);
+			$headers[trim($middle[0])] = trim($middle[1]);
+		}
+		$resval = (array)json_decode(end($data));
+		$book_id = (array)$resval['data'];
+		$auth = $headers['BABOO-AUTH-KEY'];
+		if (isset($resval['code']) && $resval['code'] == '200')
+		{
+			$status = $resval['code'];
+			$this->session->set_userdata('authKey', $auth);
+			$this->session->set_userdata('dataBook', $user);
+		}
+		else
+		{
+			$status = $resval['code'];
+		}
+		if ($resval['code'] == 200) {
+			echo json_encode($resval);
+		}
+    }
     public function createchapter_id()
     {
     	$book = $this->input->post('id_book');

@@ -5,7 +5,34 @@ $(function(){
   isFree();
   backLink();
   publishChapter();
+  publishBook();
 });
+function publishBook() {
+    $("#publish_book").click(function() {
+      var formData = new FormData();
+      formData.append("book_id", $("#book_id").val());
+      formData.append("file_cover", $("#cover_name").val());
+      formData.append("category", $("#category_ids").val());
+
+      $.ajax({
+        "url": base_url+'publishbook',
+        "dataType": 'json',
+        "cache": false,
+        "type": "POST",
+        "contentType": false,
+        "processData": false,
+        "data":formData,
+      })
+      .done(function(data) {
+        if (data.code == 200) {
+          window.location = base_url+'timeline';
+        }
+      })
+      .fail(function() {
+        console.log("error");
+      });
+    });
+}
 function publishChapter() {
     $("#publish_chapter").click(function() {
       var title = $("#chapter_title_out").val();
@@ -116,7 +143,7 @@ function backLink() {
 
       var formData = new FormData();
       var book_id = $("#book_id").val();
-      var chapter_title = $("#chapter_title").val();
+      var chapter_title = $("#chapter_title_out").val();
       var paragraph_book = $("#paragraph_book").val();
       var url = base_url+'savechapter';
         var confirmText = "Are you sure ?";
