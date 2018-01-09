@@ -100,6 +100,7 @@ $route['chapter'] = 'book/C_createbook/chapter';
 $route['savechapter'] = 'book/C_createbook/saveChapter';
 $route['listchapter/:num'] = 'book/C_createbook/listChapter';
 $route['cover'] = 'book/C_createbook/cover';
+$route['cover/:num'] = 'book/C_createbook/cover_v';
 
 
 $route['my_book/editor_upload'] = 'book/C_createbook/editor_upload';

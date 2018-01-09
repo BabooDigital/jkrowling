@@ -4,7 +4,36 @@ $(function(){
   chapterBook();
   isFree();
   backLink();
+  publishChapter();
 });
+function publishChapter() {
+    $("#publish_chapter").click(function() {
+      var title = $("#chapter_title_out").val();
+      var paragraph = $("#paragraph_book").val();
+      var book_id = $("#book_id").val();
+
+      var formData = new FormData();
+
+      formData.append("book_id", book_id);
+      formData.append("chapter_title", title);
+      formData.append("paragraph", paragraph);
+
+      $.ajax({
+        url: base_url+'cover',
+        type: 'POST',
+        dataType: 'json',
+        data: {book_id: book_id, chapter_title: title, paragraph: paragraph}
+      })
+      .done(function(data) {
+        if (data.code == 200) {
+          window.location = base_url+'cover/'+data.data['book_id'];
+        }
+      })
+      .fail(function() {
+        console.log("error");
+      })
+    });
+}
 function froalaEditor() {
   $.FroalaEditor.DefineIcon('imageInfo', {NAME: 'info'});
   $.FroalaEditor.RegisterCommand('imageInfo', {

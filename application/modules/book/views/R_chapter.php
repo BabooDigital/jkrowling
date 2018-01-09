@@ -7,13 +7,13 @@
 	<!-- <form class="navbar-brande"> -->
 		<button class="backlink" style="background: transparent;border: 1px solid transparent;"><i class="fa fa-arrow-left"></i> &nbsp; <span>Kembali</span></button>
 	<!-- </form> -->
-	<form class="form-inline" method="post" action="<?php echo site_url('cover') ?>">
+	<!-- <form class="form-inline" method="post" action="<?php echo site_url('cover') ?>"> -->
 		<input type="hidden" name="book_id" id="book_id" value="<?php echo $book_id; ?>">
-		<input type="hidden" name="chapter_title" id="chapter_title">
+		<!-- <input type="hidden" name="chapter_title" id="chapter_title"> -->
 		<!-- <input type="text" name="paragraph" id="paragraph"> -->
-		<textarea style="display: none;" name="paragraph" id="paragraph"></textarea>
-		<button class="btn-transparant" type="submit"><span>Publish</span> &nbsp;&nbsp;<img src="<?php echo base_url() ?>public/img/icon-nav/publish.png" width="30" height="30"></button>
-	</form>
+		<!-- <textarea style="display: none;" name="paragraph" id="paragraph"></textarea> -->
+		<button class="btn-transparant" id="publish_chapter"><span>Publish</span> &nbsp;&nbsp;<img src="<?php echo base_url() ?>public/img/icon-nav/publish.png" width="30" height="30"></button>
+	<!-- </form> -->
 	<nav class="profile">
 		<label class="btn-transparant" for="toggle-right" class="close">&nbsp;&nbsp;&times;</label> 
 		<div class="text-center">

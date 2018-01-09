@@ -329,59 +329,9 @@ class C_createbook extends MX_Controller {
 			$this->load->view('R_list_chapter');
 		}
 	 }
-	public function cover()
+	public function cover_v()
 	{
-		$auth = $this->session->userdata('authKey');
-		$id_user = $this->session->userdata('userData')['user_id'];
-
-		$book_id = $this->input->post('book_id');
-		$chapter_title = $this->input->post('chapter_title');
-		$paragraph = $this->input->post('paragraph');
-
-		$chapterData = array(
-			'book_id' => $book_id,
-			'chapter_title' => $chapter_title,
-			'paragraph' => $paragraph
-		);
-		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, $this->API.'/saveChapter');
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-
-		curl_setopt($ch, CURLOPT_POST, 1);
-		curl_setopt($ch, CURLOPT_POSTFIELDS, $chapterData);
-		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-		curl_setopt($ch, CURLOPT_HEADER, 1);
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key : '.$auth));
-		$result = curl_exec($ch);
-
-		$headers=array();
-
-		$data=explode("\n",$result);
-
-
-		array_shift($data);
-
-		foreach($data as $part){
-			$middle=explode(":",$part);
-        	error_reporting(0);
-			$headers[trim($middle[0])] = trim($middle[1]);
-		}
-		$resval = (array)json_decode(end($data));
-		$book_id = (array)$resval['data'];
-		$auth = $headers['BABOO-AUTH-KEY'];
-		if (isset($resval['code']) && $resval['code'] == '200')
-		{
-			$status = $resval['code'];
-			$this->session->set_userdata('authKey', $auth);
-			$this->session->set_userdata('dataBook', $user);
-		}
-		else
-		{
-			$status = $resval['code'];
-		}
-		if ($resval['code'] == 200) {
-			$data['judul'] = "Buat Sebuah Cerita - Baboo";
+		$data['judul'] = "Buat Sebuah Cerita - Baboo";
 
 			$data['css'][] = "public/css/bootstrap.min.css";
 			$data['css'][] = "public/css/custom-margin-padding.css";
@@ -427,11 +377,62 @@ class C_createbook extends MX_Controller {
 			$data['js'][] = "public/plugins/froala/js/plugins/url.min.js";
 			$data['js'][] = "public/plugins/froala/js/plugins/video.min.js";
 
-			$data['book_id'] = $book_id['book_id'];
+			$data['book_id'] = $this->uri->segment(2);
 			$this->load->view('include/head', $data);
 			$this->load->view('R_cover');
-		}else{
-			print_r($data);
+	}
+	public function cover()
+	{
+		$auth = $this->session->userdata('authKey');
+		$id_user = $this->session->userdata('userData')['user_id'];
+
+		$book_id = $this->input->post('book_id');
+		$chapter_title = $this->input->post('chapter_title');
+		$paragraph = $this->input->post('paragraph');
+		$chapterData = array(
+			'book_id' => $book_id,
+			'chapter_title' => $chapter_title,
+			'paragraph' => $paragraph
+		);
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $this->API.'/saveChapter');
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+
+		curl_setopt($ch, CURLOPT_POST, 1);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $chapterData);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+		curl_setopt($ch, CURLOPT_HEADER, 1);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key : '.$auth));
+		$result = curl_exec($ch);
+
+		$headers=array();
+
+		$data=explode("\n",$result);
+
+
+		array_shift($data);
+
+		foreach($data as $part){
+			$middle=explode(":",$part);
+        	error_reporting(0);
+			$headers[trim($middle[0])] = trim($middle[1]);
+		}
+		$resval = (array)json_decode(end($data));
+		$book_id = (array)$resval['data'];
+		$auth = $headers['BABOO-AUTH-KEY'];
+		if (isset($resval['code']) && $resval['code'] == '200')
+		{
+			$status = $resval['code'];
+			$this->session->set_userdata('authKey', $auth);
+			$this->session->set_userdata('dataBook', $user);
+		}
+		else
+		{
+			$status = $resval['code'];
+		}
+		if ($resval['code'] == 200) {
+			echo json_encode($resval);
 		}
 	}
 	public function img_book()
