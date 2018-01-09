@@ -18,9 +18,9 @@ $(document).ready(function() {
     $(".stickymenu").stick_in_parent();
   }
 
-  $(document).on('click', '#comm_p', function() {
+  $(document).on('click', '.btncompar', function() {
     
-    var text = $(".textp").attr('data-text');
+    var text = $(this).parents(".textp").attr('data-text');
     $(".append_txt").text(text);
   });
 
@@ -340,8 +340,6 @@ $(document).ready(function() {
         }
       });
   });
-
-
 
   // GET COMMENT PARAGRAPH
   $(document).on('click', '.btncompar', function() {
