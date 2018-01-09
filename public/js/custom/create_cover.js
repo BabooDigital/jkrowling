@@ -1,3 +1,16 @@
+	//[OPEN] GET DATE MONTH YEAR NOW FOR COVER NAME
+	var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Dec'];
+	var date = new Date();
+	var yy = date.getYear();
+	var mon = date.getMonth();
+	var day = date.getDate();
+	var min = date.getMinutes();
+	var sec = date.getSeconds();
+	var msec = date.getMilliseconds();
+	var year = (yy < 1000) ? yy + 1900 : yy;
+	var aws = msec + "_" + sec + "_" + min + "_" + day + "_" + months[mon] + "_" + year;
+		//[CLOSE] GET DATE MONTH YEAR NOW FOR COVER NAME
+
 	//[OPEN] Preview Image Upload Function
 	function tampilkanPreview(gambar, idpreview) {
 		// membuat objek gambar
@@ -198,18 +211,7 @@
 		
 		//[CLOSE] FUNCTION TYPING ON CANVAS
 
-		//[OPEN] GET DATE MONTH YEAR NOW FOR COVER NAME
-		var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Dec'];
-		var date = new Date();
-		var yy = date.getYear();
-		var mon = date.getMonth();
-		var day = date.getDate();
-		var min = date.getMinutes();
-		var sec = date.getSeconds();
-		var msec = date.getMilliseconds();
-		var year = (yy < 1000) ? yy + 1900 : yy;
-		var aws = msec + "_" + sec + "_" + min + "_" + day + "_" + months[mon] + "_" + year;
-		//[CLOSE] GET DATE MONTH YEAR NOW FOR COVER NAME
+		
 
 		//[OPEN] CANVAS FUNCTION AND AJAX TO SAVE
 		var element = $("#yourcoverimage"); // global variable
@@ -344,5 +346,51 @@
 		$(".btn-color").click(function() {
 			$("#not-color").hide();
 			$("#color-show").show();
+		});
+		$("#cover_finish").click(function() {
+			var element = $(".yourimage");
+			html2canvas(element, {
+				onrendered: function(canvas) {
+					$("#previewImage").after(canvas);
+					getCanvas = canvas;
+					var dataURL = getCanvas.toDataURL("image/png");
+
+					var blobBin = atob(dataURL.split(',')[1]);
+					var array = [];
+					for (var i = 0; i < blobBin.length; i++) {
+						array.push(blobBin.charCodeAt(i));
+					}
+					var file = new Blob([new Uint8Array(array)], { type: 'image/png' });
+
+					var formData = new FormData();
+
+
+					formData.append("book_id", $("input:hidden[name=iaiduui]").val());
+					formData.append('cover_url', file, aws + '.png');
+					$.ajax({
+						async: true,
+						crossDomain: true,
+						url: 'send_cover',
+						method: 'post',
+						processData: false,
+						contentType: false,
+						dataType: 'json',
+						mimeType: "multipart/form-data",
+						data: formData,
+						success: function (data) {
+							window.history.go(-1);
+							if(IE){ //IE, bool var, has to be defined
+								var newlocation = document.createElement('a');
+								newlocation.href = URLtoCall;
+								document.body.appendChild(newlocation);
+								newlocation.click();
+							}
+						},
+						error: function () {
+							console.log('Error');
+						}
+					})
+				}
+			});
 		});
 	});

@@ -13,10 +13,10 @@
 				<form class="navbar-brande">
 					<i class="fa fa-arrow-left"></i> &nbsp; <span>Kembali</span> 
 				</form>
-				<form class="form-inline">
-					<button class="btn-transparant"><span>Selesai</span> &nbsp;&nbsp;<img src="<?php echo base_url() ?>public/img/icon-nav/publish.png" width="30" height="30"></button> 
+				<!-- <form class="form-inline"> -->
+					<button class="btn-transparant" id="cover_finish"><span>Selesai</span> &nbsp;&nbsp;<img src="<?php echo base_url() ?>public/img/icon-nav/publish.png" width="30" height="30"></button> 
 					<!-- <label for="toggle-right" class="profile-toggle"><b>+</b></label> -->
-				</form>
+				<!-- </form> -->
 				<nav class="profile">
 					<label class="btn-transparant" for="toggle-right" class="close">&nbsp;&nbsp;&times;</label> 
 					<div class="text-center">
@@ -70,7 +70,7 @@
 </nav>
 </div>
 <div class="container margin_cover">
-	<div class="row">
+	<!-- <div class="row"> -->
 		<!-- <div class="input-group paddingparagraph"> -->
 			<div class="yourimage" style="">
 				<div class="coverCreationmr">

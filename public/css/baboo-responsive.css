@@ -322,6 +322,7 @@ input:checked + .label-md {
   background: transparent;
   border: 0;
   width: 70%;
+  font-size: 30px;
   text-align: center;
   outline: 0;
 }
@@ -470,9 +471,9 @@ nav.profile {
   background: white;
 }
 .yourimage {
-  width: 90%;
+  width: 100%;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
-  height: 400px;
+  height: 700px;
   margin-left: auto;
   margin-right: auto;
   background: white;
