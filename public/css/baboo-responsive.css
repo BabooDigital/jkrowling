@@ -751,3 +751,33 @@ input:checked + .slider:before {
   height: 20px;
   background: red;
 }
+.setfont1 {
+  font-family: cursive !important;
+  width: 150px;
+  background: transparent;
+  border: solid 1px transparent;
+}
+.setfont2 {
+  font-family: Roboto !important;
+  width: 150px;
+  background: transparent;
+  border: solid 1px transparent;
+}
+.setfont3 {
+  font-family: 'Source Sans Pro', sans-serif !important;
+  width: 150px;
+  background: transparent;
+  border: solid 1px transparent;
+}
+.setfont4 {
+  font-family: Proxima Nova !important;
+  width: 150px;
+  background: transparent;
+  border: solid 1px transparent;
+}
+.setfont5 {
+  font-family: monospace !important;
+  width: 150px;
+  background: transparent;
+  border: solid 1px transparent;
+}

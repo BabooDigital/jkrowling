@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="39" height="40" viewBox="0 0 39 40">
+    <defs>
+        <rect id="a" width="39" height="39" y=".5" rx="19.5"/>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <g>
+            <use fill="#FFF" xlink:href="#a"/>
+            <rect width="38.5" height="38.5" x=".25" y=".75" stroke="#727272" stroke-width=".5" rx="19.25"/>
+        </g>
+        <text fill="#555" font-family="Athelas-Regular, Athelas" font-size="27" transform="translate(7.5 4.5)">
+            <tspan x=".709" y="24.118">T</tspan>
+        </text>
+        <g stroke="#555" stroke-width=".6" transform="translate(16.891 16.363)">
+            <circle cx="6.745" cy="6.901" r="6.658" fill="#FFF"/>
+            <g stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6.869 4.175v5.452M4.142 6.901h5.453"/>
+            </g>
+        </g>
+    </g>
+</svg>

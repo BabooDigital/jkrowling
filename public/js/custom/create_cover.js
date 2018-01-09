@@ -172,7 +172,14 @@
 			$('.yourimage').css({
 				background: color
 			});
-
+		});
+		$('.colorfontmr').click(function() {
+			var x = $(this).css('backgroundColor');
+			hexc(x);
+			$('#title_book').css({
+				color: color
+			});
+			// console.log(x);
 		});
 
 		function hexc(colorval) {
@@ -329,5 +336,13 @@
 		$("#italic-text").click(function() {
 			var font_size = $(this).val();
 			$("#title_book").css('font-style','italic');
+		});
+		$("#font-style").change(function() {
+			var font_style = $(this).val();
+			$("#title_book").removeClass().toggleClass(font_style);
+		});
+		$(".btn-color").click(function() {
+			$("#not-color").hide();
+			$("#color-show").show();
 		});
 	});
