@@ -1,8 +1,8 @@
 $(document).ready(function() {
 
-    $(document).on('click', '#comm_p', function() {
+    $(document).on('click', '.btncompar', function() {
       
-      var text = $(".textp").attr('data-text');
+      var text = $(this).parents(".textp").attr('data-text');
       $(".append_txt").text(text);
     });
 

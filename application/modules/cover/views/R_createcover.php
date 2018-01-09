@@ -172,22 +172,58 @@
 				</div>
 			</div>
 		</footer>
-		<footer class="navbar navbar-expand-lg fixed-bottom baboonav" style="height:200px;display: none;" id="color-show">
-			<div style="padding: 0; margin:0;margin-top: -150px;" class="col-md-3">
-				<div id="tes" class=" colordivs" >
-					<button class="colorfontmr" style="background: #ef4d48; padding: 5px;width: 50px;height: 50px;"></button>
+		<nav class="navbar navbar-expand-lg fixed-bottom baboonav" style="display: none;" id="color-show">
+			<div class="container mt-10 mb-10">
+				<a href="#" style="position: relative;left: 73%;font-weight: bold;">Simpan <span class="ml-15">></span></a>
+			</div>
+			<div style="" class="container mt-15 mb-15">
+				<div id="tes" class="colordivs mr-5 mb-10" >
+					<button class="colorfontmr" style="border:none;border-radius: 5px;background: #000000; padding: 5px;width: 60px;height: 60px;"></button>
 				</div>
-				<div id="tes" class=" colordivs" >
-					<button class="colorfontmr" style="background: #4990e2; padding: 5px;width: 50px;height: 50px;"></button>
+				<div id="tes" class="colordivs mr-5 mb-10" >
+					<button class="colorfontmr" style="border:none;border-radius: 5px;background: #f5f8fa; padding: 5px;width: 60px;height: 60px;"></button>
 				</div>
-				<div id="tes" class=" colordivs" >
-					<button class="colorfontmr" style="background: #f6a623; padding: 5px;width: 50px;height: 50px;"></button>
+				<div id="tes" class="colordivs mr-5 mb-10" >
+					<button class="colorfontmr" style="border:none;border-radius: 5px;background: #f8e71c; padding: 5px;width: 60px;height: 60px;"></button>
 				</div>
-				<div id="tes" class=" colordivs" >
-					<button class="colorfontmr" style="background: #8b572a; padding: 5px;width: 50px;height: 50px;"></button>
+				<div id="tes" class="colordivs mr-5 mb-10" >
+					<button class="colorfontmr" style="border:none;border-radius: 5px;background: #8b572a; padding: 5px;width: 60px;height: 60px;"></button>
+				</div>
+				<div id="tes" class="colordivs mr-5 mb-10" >
+					<button class="colorfontmr" style="border:none;border-radius: 5px;background: #7ed321; padding: 5px;width: 60px;height: 60px;"></button>
+				</div>
+				<div id="tes" class="colordivs mr-5 mb-10" >
+					<button class="colorfontmr" style="border:none;border-radius: 5px;background: #ef4d48; padding: 5px;width: 60px;height: 60px;"></button>
+				</div>
+				<div id="tes" class="colordivs mr-5 mb-10" >
+					<button class="colorfontmr" style="border:none;border-radius: 5px;background: #f5a623; padding: 5px;width: 60px;height: 60px;"></button>
+				</div>
+				<div id="tes" class="colordivs mr-5 mb-10" >
+					<button class="colorfontmr" style="border:none;border-radius: 5px;background: #9013fe; padding: 5px;width: 60px;height: 60px;"></button>
+				</div>
+				<div id="tes" class="colordivs mr-5 mb-10" >
+					<button class="colorfontmr" style="border:none;border-radius: 5px;background: #4a90e2; padding: 5px;width: 60px;height: 60px;"></button>
+				</div>
+				<div id="tes" class="colordivs mr-5 mb-10" >
+					<button class="colorfontmr" style="border:none;border-radius: 5px;background: #50e3c2; padding: 5px;width: 60px;height: 60px;"></button>
+				</div>
+				<div id="tes" class="colordivs mr-5 mb-10" >
+					<button class="colorfontmr" style="border:none;border-radius: 5px;background: #a25d5d; padding: 5px;width: 60px;height: 60px;"></button>
+				</div>
+				<div id="tes" class="colordivs mr-5 mb-10" >
+					<button class="colorfontmr" style="border:none;border-radius: 5px;background: #4a4a4a; padding: 5px;width: 60px;height: 60px;"></button>
+				</div>
+				<div id="tes" class="colordivs mr-5 mb-10" >
+					<button class="colorfontmr" style="border:none;border-radius: 5px;background: #9b9b9b; padding: 5px;width: 60px;height: 60px;"></button>
+				</div>
+				<div id="tes" class="colordivs mr-5 mb-10" >
+					<button class="colorfontmr" style="border:none;border-radius: 5px;background: #44c1c0; padding: 5px;width: 60px;height: 60px;"></button>
+				</div>
+				<div id="tes" class="colordivs mr-5 mb-10" >
+					<button class="colorfontmr" style="border:none;border-radius: 5px;background: #00adef; padding: 5px;width: 60px;height: 60px;"></button>
 				</div>
 			</div>
-		</footer>
+		</nav>
 		<?php if (isset($js)): ?>
 			<?php echo get_js($js) ?>
 		<?php endif ?>
