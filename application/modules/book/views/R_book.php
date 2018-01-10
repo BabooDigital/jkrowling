@@ -64,17 +64,17 @@
 						<label class="btn-transparant" for="toggle-right" class="close">&nbsp;&nbsp;&times;</label> 
 						<div class="text-center">
 							<div class="mt-20">
-								<p><img width="160" height="222" src="<?php echo $detailBook['data']['book_info']['cover_url']; ?>"></p>
+								<p><img width="160" height="222" src="<?php echo $detail_book['data']['book_info']['cover_url']; ?>"></p>
 							</div>
 						</div>
 						<div class="mt-20 pl-20 pr-20">
-							<h3 style="font-weight: bold;color: #141414;"><?php echo $detailBook['data']['book_info']['title_book']; ?></h3>
+							<h3 style="font-weight: bold;color: #141414;"><?php echo $detail_book['data']['book_info']['title_book']; ?></h3>
 						</div>
 						<hr>
 
 						<div class="mt-10">
 							<!-- <div class="list-group" id="list-tab" role="tablist">
-						      <a class="list-group-item list-group-item-action active" id="<?php echo $detailBook['data']['chapter']['chapter_id']; ?>" data-toggle="list" href="#list-home" role="tab" aria-controls="home"><?php echo $detailBook['data']['chapter']['chapter_title']; ?></a>
+						      <a class="list-group-item list-group-item-action active" id="<?php echo $detail_book['data']['chapter']['chapter_id']; ?>" data-toggle="list" href="#list-home" role="tab" aria-controls="home"><?php echo $detail_book['data']['chapter']['chapter_title']; ?></a>
 						  </div> -->
 						  <div class="list-group" id="list_Rchapter">
 
@@ -89,23 +89,23 @@
 				<div class="row form_book">
 					<div class="loader" style="display: none;"></div>
 					<div class="input-group paddingbook mb-15">
-						<h2 class="paddingparagraph"><strong><?php echo $detailBook['data']['book_info']['title_book']; ?></strong></h2>
+						<h2 class="paddingparagraph"><strong><?php echo $detail_book['data']['book_info']['title_book']; ?></strong></h2>
 					</div>
 					<div class="media mb-20">
-						<img class="d-flex align-self-start mr-20 rounded-circle" src="<?php if($detailBook['data']['author']['avatar'] == NULL){ echo base_url('public/img/profile/blank-photo.jpg'); }else{ echo $detailBook['data']['author']['avatar']; } ?>" width="55" height="55" alt="<?php echo $detailBook['data']['author']['author_name']; ?>">
+						<img class="d-flex align-self-start mr-20 rounded-circle" src="<?php if($detail_book['data']['author']['avatar'] == NULL){ echo base_url('public/img/profile/blank-photo.jpg'); }else{ echo $detail_book['data']['author']['avatar']; } ?>" width="55" height="55" alt="<?php echo $detail_book['data']['author']['author_name']; ?>">
 						<div class="media-body mt-5">
-							<div style="display: flex;"><h5 class="nametitle2 mr-20"><a href="" ><?php echo $detailBook['data']['author']['author_name']; ?></a></h5><a data-follow="<?php echo $detailBook['data']['author']['author_id']; ?>" class="btn-topup <?php if ($detailBook['data']['author']['is_follow'] == false) { echo "follow-u"; }else{ echo "unfollow-u"; } ?>"><span class="nametitle2 txtfollow" style="font-size: 12px;"><?php if ($detailBook['data']['author']['is_follow'] == false) { echo "Follow"; }else{ echo "Unfollow"; } ?></span></a></div>
+							<div style="display: flex;"><h5 class="nametitle2 mr-20"><a href="" ><?php echo $detail_book['data']['author']['author_name']; ?></a></h5><a data-follow="<?php echo $detail_book['data']['author']['author_id']; ?>" class="btn-topup <?php if ($detail_book['data']['author']['is_follow'] == false) { echo "follow-u"; }else{ echo "unfollow-u"; } ?>"><span class="nametitle2 txtfollow" style="font-size: 12px;"><?php if ($detail_book['data']['author']['is_follow'] == false) { echo "Follow"; }else{ echo "Unfollow"; } ?></span></a></div>
 							<p style="margin-top: -5px;"><span class="text-muted"><small>Jakarta, Indonesia</small></span>
 							</p>
 						</div>
-						<input type="hidden" name="iaidubi" id="iaidubi" value="<?php echo $detailBook['data']['book_info']['book_id']; ?>">
+						<input type="hidden" name="iaidubi" id="iaidubi" value="<?php echo $detail_book['data']['book_info']['book_id']; ?>">
 						<input type="hidden" name="iaiduui" id="iaiduui" value="<?php $dat = $this->session->userdata('userData'); echo $dat['user_id']; ?>">
 
 					</div>
 				</div>
 				<div class="detailbook">
 					<?php 
-					foreach ($detailBook['data']['chapter']['paragraphs'] as $book) {
+					foreach ($detail_book['data']['chapter']['paragraphs'] as $book) {
 						$text = strip_tags($book['paragraph_text']);
 						$count = $book['comment_count'];
 						if ($count == 0) { $view_count = '+'; }else{ $view_count = $count;}
@@ -116,7 +116,7 @@
 				</div>
 				<hr class="mt-10 mb-10">
 				<div class="commentbook mb-60">
-					<p><h4> Komentar <span style="color: #797979;">(<?php echo $detailBook['data']['book_info']['book_comment_count']; ?>)</span></h4></p>
+					<p><h4> Komentar <span style="color: #797979;">(<?php echo $detail_book['data']['book_info']['book_comment_count']; ?>)</span></h4></p>
 					<div class="media">
 						<img class="d-flex align-self-start mr-20 rounded-circle" id="profpict" src="<?php $dat = $this->session->userdata('userData'); 
 						if($dat['prof_pict'] == NULL){
@@ -143,11 +143,11 @@
 		</div>
 		<nav class="navbar navbar-expand-lg fixed-bottom baboonav" style="height:60px;">
 			<div class="container-fluid">
-				<div><a href="javascript:void(0);" id="loveboo" class="<?php if($detailBook['data']['book_info']['is_like'] == 'false'){ echo 'like'; }else{ echo 'unlike'; } ?>" data-id="<?php echo $detailBook['data']['book_info']['book_id']; ?>"><img src="<?php if($detailBook['data']['book_info']['is_like'] == 'false'){ echo base_url('public/img/assets/icon_love.svg'); }else{ echo base_url('public/img/assets/love_active.svg'); } ?>" class="mr-5 loveicon" width="24"> <span id="likecount"><?php echo $detailBook['data']['book_info']['like_count']; ?></span></a></div>
-				<div><a href="#comments"><img src="<?php echo base_url(); ?>public/img/assets/icon_comment.svg" class="mr-5" width="22"> <?php echo $detailBook['data']['book_info']['book_comment_count']; ?></a></div>
-				<div><a href="javascript:void(0);" class="share-fb"><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg" class="mr-5" width="23"> <?php echo $detailBook['data']['book_info']['share_count']; ?></a></div>
-				<div><a href="#"><img src="<?php echo base_url(); ?>public/img/assets/icon_view.svg" class="mr-5" width="35"> <?php echo $detailBook['data']['book_info']['view_count']; ?></a></div> 
-				<div><a href="javascript:void(0);" id="bookmarkboo" class="<?php if($detailBook['data']['book_info']['is_bookmark'] == 'false'){ echo 'bookmark'; }else{ echo 'unbookmark'; } ?>" data-id="<?php echo $detailBook['data']['book_info']['book_id']; ?>"><img src="<?php if($detailBook['data']['book_info']['is_bookmark'] == 'false'){ echo base_url('public/img/assets/icon_bookmark.svg'); }else{ echo base_url('public/img/assets/icon_bookmark_active.svg'); } ?>" class="mr-5 bookmarkicon" width="27"></a></div> 
+				<div><a href="javascript:void(0);" id="loveboo" class="<?php if($detail_book['data']['book_info']['is_like'] == 'false'){ echo 'like'; }else{ echo 'unlike'; } ?>" data-id="<?php echo $detail_book['data']['book_info']['book_id']; ?>"><img src="<?php if($detail_book['data']['book_info']['is_like'] == 'false'){ echo base_url('public/img/assets/icon_love.svg'); }else{ echo base_url('public/img/assets/love_active.svg'); } ?>" class="mr-5 loveicon" width="24"> <span id="likecount"><?php echo $detail_book['data']['book_info']['like_count']; ?></span></a></div>
+				<div><a href="#comments"><img src="<?php echo base_url(); ?>public/img/assets/icon_comment.svg" class="mr-5" width="22"> <?php echo $detail_book['data']['book_info']['book_comment_count']; ?></a></div>
+				<div><a href="javascript:void(0);" class="share-fb"><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg" class="mr-5" width="23"> <?php echo $detail_book['data']['book_info']['share_count']; ?></a></div>
+				<div><a href="#"><img src="<?php echo base_url(); ?>public/img/assets/icon_view.svg" class="mr-5" width="35"> <?php echo $detail_book['data']['book_info']['view_count']; ?></a></div> 
+				<div><a href="javascript:void(0);" id="bookmarkboo" class="<?php if($detail_book['data']['book_info']['is_bookmark'] == 'false'){ echo 'bookmark'; }else{ echo 'unbookmark'; } ?>" data-id="<?php echo $detail_book['data']['book_info']['book_id']; ?>"><img src="<?php if($detail_book['data']['book_info']['is_bookmark'] == 'false'){ echo base_url('public/img/assets/icon_bookmark.svg'); }else{ echo base_url('public/img/assets/icon_bookmark_active.svg'); } ?>" class="mr-5 bookmarkicon" width="27"></a></div> 
 			</div>
 		</nav>
 
