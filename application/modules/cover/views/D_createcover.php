@@ -221,9 +221,7 @@
 										<span class="txt-h3" id="parenttxttitle"><span id="textcolor"><span id="texttitle"><span id="txtfontfam"></span></span></span></span>
 									</div>
 									<div class="baboo-cover"></div>
-									<div class="draggable">
-										test
-									</div>
+									
 								</div><br>
 							</div>
 						</div>
