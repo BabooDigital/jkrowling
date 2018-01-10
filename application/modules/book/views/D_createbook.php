@@ -26,7 +26,7 @@
 									echo base_url()."public/img/assets/def_prev.png";
 								} ?>"></p>
 								<input type="hidden" name="cover_name" id="cover_name" accept="image/*"  value="<?php $src = $this->session->userdata('dataCover'); if($src != NULL){  echo $src['asset_url']; }else{ echo ""; } ?>">
-								<input type="file" id="file_cover" accept="image/*" onchange="tampilkanPreview(this,'preview')" name="file_cover" value="<?php $src = $this->session->userdata('dataCover'); if($src != NULL){  echo $src['asset_url']; }else{ echo " "; } ?>">
+								<input type="file" id="file_cover" accept="image/*" onchange="tampilkanPreview(this,'preview')" name="file_cover" value="<?php $src = $this->session->userdata('dataCover'); if($src != NULL){  echo $src['asset_url']; }else{ echo ""; } ?>">
 							</div>
 							<div>
 								<p style="font-size: 16px;">Atau <!-- 
@@ -68,7 +68,10 @@
 				<div class="col-md-9" id="pageContent">
 					<div class="pt-10 pb-10 pl-50 pr-50">
 						<div class="media">
-							<img alt="Name" class="d-flex mr-3 rounded-circle" src="<?php $uri = $this->session->userdata('userData'); echo $uri['prof_pict'] ?>" width="50" height="50">
+							<img alt="Name" class="d-flex mr-3 rounded-circle" src="<?php $uri = $this->session->userdata('userData'); if($uri['prof_pict'] == NULL){
+									echo base_url('public/img/profile/blank-photo.jpg');
+								}else{
+									echo $uri['prof_pict']; } ?>" width="50" height="50">
 							<div class="media-body mt-7">
 								<input type="hidden" name="user_id" id="user_id" value="<?php $name = $this->session->userdata('userData');
 										echo $name['user_id']; ?>">
