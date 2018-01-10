@@ -15,6 +15,18 @@
 <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 
+	<?php
+		error_reporting(0);
+		$actual_link = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+		$parts = parse_url($actual_link);
+		parse_str($parts['query'], $query);
+		if (!empty($query['b'])) {
+			$this->session->set_userdata('bookRef', $query['b']);
+		}else{	
+			
+		}
+	?>
+	
 <body>
 	<div class="container-fluid">
 		<div class="row no-gutters">

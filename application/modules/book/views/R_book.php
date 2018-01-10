@@ -64,11 +64,11 @@
 						<label class="btn-transparant" for="toggle-right" class="close">&nbsp;&nbsp;&times;</label> 
 						<div class="text-center">
 							<div class="mt-20">
-								<p><img width="160" height="222" src="<?php echo $detail_book['data']['book_info']['cover_url']; ?>"></p>
+								<p><img class="cover_image" width="160" height="222" src="<?php echo $detail_book['data']['book_info']['cover_url']; ?>"></p>
 							</div>
 						</div>
 						<div class="mt-20 pl-20 pr-20">
-							<h3 style="font-weight: bold;color: #141414;"><?php echo $detail_book['data']['book_info']['title_book']; ?></h3>
+							<h3 class="title_book" style="font-weight: bold;color: #141414;"><?php echo $detail_book['data']['book_info']['title_book']; ?></h3>
 						</div>
 						<hr>
 
@@ -94,7 +94,7 @@
 					<div class="media mb-20">
 						<img class="d-flex align-self-start mr-20 rounded-circle" src="<?php if($detail_book['data']['author']['avatar'] == NULL){ echo base_url('public/img/profile/blank-photo.jpg'); }else{ echo $detail_book['data']['author']['avatar']; } ?>" width="55" height="55" alt="<?php echo $detail_book['data']['author']['author_name']; ?>">
 						<div class="media-body mt-5">
-							<div style="display: flex;"><h5 class="nametitle2 mr-20"><a href="" ><?php echo $detail_book['data']['author']['author_name']; ?></a></h5><a data-follow="<?php echo $detail_book['data']['author']['author_id']; ?>" class="btn-topup <?php if ($detail_book['data']['author']['is_follow'] == false) { echo "follow-u"; }else{ echo "unfollow-u"; } ?>"><span class="nametitle2 txtfollow" style="font-size: 12px;"><?php if ($detail_book['data']['author']['is_follow'] == false) { echo "Follow"; }else{ echo "Unfollow"; } ?></span></a></div>
+							<div style="display: flex;"><h5 class="nametitle2 mr-20"><a href="#" class="author_name"><?php echo $detail_book['data']['author']['author_name']; ?></a></h5><a data-follow="<?php echo $detail_book['data']['author']['author_id']; ?>" class="btn-topup <?php if ($detail_book['data']['author']['is_follow'] == false) { echo "follow-u"; }else{ echo "unfollow-u"; } ?>"><span class="nametitle2 txtfollow" style="font-size: 12px;"><?php if ($detail_book['data']['author']['is_follow'] == false) { echo "Follow"; }else{ echo "Unfollow"; } ?></span></a></div>
 							<p style="margin-top: -5px;"><span class="text-muted"><small>Jakarta, Indonesia</small></span>
 							</p>
 						</div>
