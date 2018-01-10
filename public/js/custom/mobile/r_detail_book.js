@@ -330,13 +330,23 @@ $(document).ready(function() {
     var aww = $(this);
     var formData = new FormData();
     var bid = $('#iaidubi').val();
-    var blink = $('.dbooktitle').text();
+    var blink = $('.title_book').text();
     var share = +$('#sharecount').text() + 1;
+    var desc = $('.textp').attr('data-text')+'.. - Baca buku lebih lengkap disini.. | Baboo - Beyond Book & Creativity';
+    var img = $('.cover_image').attr('src');
+    var auname = $('.author_name').text();
 
     FB.ui({
-        method: 'share',
-        display: 'popup',
-        href: 'https://dev-baboo.co.id/book/' + bid + '-' + convertToSlug(blink),
+        method: 'share_open_graph',
+        action_type: 'og.shares',
+        action_properties: JSON.stringify({
+            object: {
+                'og:url': base_url + 'book/' + segment + '/preview',
+                'og:title': blink + ' ~ By : ' + auname + ' | Baboo - Beyond Book & Creativity',
+                'og:description': desc,
+                'og:image': img
+            }
+        })
       },
       // callback
       function(response) {

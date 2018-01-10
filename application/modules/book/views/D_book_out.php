@@ -16,7 +16,7 @@
 	<meta name="Keywords" content="baboo">
 
 	<!-- Facebook -->
-	<meta property="og:url"                content="Baboo.co.id" />
+	<?php $u1= $this->uri->segment(2); echo "<meta property='og:url'                content='".base_url('book/'.$u1.'/preview')."' />"; ?>
 	<meta property="og:type"               content="website" />
 	<meta property="og:title"              content="<?php echo $title; ?> | Baboo - Beyond Book &amp; Creativity" />
 	<?php 
