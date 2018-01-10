@@ -10,7 +10,9 @@ class C_book extends MX_Controller {
 		$this->API = "api.dev-baboo.co.id/v1/book/Books";
 
 		if ($this->session->userdata('isLogin') != 200) {
-			redirect('home');
+			$id = $this->uri->segment(2);
+			$i = explode("-", $id);
+			redirect('login?b='.$i[0]);
 		}
 	}
 
@@ -95,7 +97,7 @@ class C_book extends MX_Controller {
 			$headers[trim($middle[0])] = trim($middle[1]);
 		}
 
-		$data['detail_book'] = json_decode($data[16], true);
+		$data['detail_book'] = json_decode(end($data), true);
 		$auth = $headers['BABOO-AUTH-KEY'];
 		
 		$this->session->set_userdata('authKey', $auth);
@@ -135,7 +137,7 @@ class C_book extends MX_Controller {
 				$headers[trim($middle[0])] = trim($middle[1]);
 			}
 
-			$data['detail_book'] = json_decode($data[16], true);
+			$data['detail_book'] = json_decode(end($data), true);
 			$auth = $headers['BABOO-AUTH-KEY'];
 			if (isset($data['detail_book']['code']) && $data['detail_book']['code'] == '200')
 			{
@@ -150,7 +152,7 @@ class C_book extends MX_Controller {
 		
 		$data['title'] = $data['detail_book']['data']['book_info']['title_book']." - Baboo";
 
-		$data['detailBook'] = json_decode($data[16], true);
+		$data['detailBook'] = json_decode(end($data), true);
 		$data['menuChapter'] = json_decode($data_before_chapter[14], true);
 		if ($data_before_chapter['chapter']['data'][3]['chapter_free'] != "false") {
 			$data['detailChapter'] = count($data_before_chapter['chapter']['data']);
@@ -383,7 +385,7 @@ class C_book extends MX_Controller {
 			$headers[trim($middle[0])] = trim($middle[1]);
 		}
 
-		$data['detail_book'] = json_decode($data[16], true);
+		$data['detail_book'] = json_decode(end($data), true);
 		$auth = $headers['BABOO-AUTH-KEY'];
 		
 		$this->session->set_userdata('authKey', $auth);
@@ -425,7 +427,7 @@ class C_book extends MX_Controller {
 				$headers[trim($middle[0])] = trim($middle[1]);
 			}
 
-			$data['detail_book'] = json_decode($data[16], true);
+			$data['detail_book'] = json_decode(end($data), true);
 			$auth = $headers['BABOO-AUTH-KEY'];
 			if (isset($data['detail_book']['code']) && $data['detail_book']['code'] == '200')
 			{
@@ -440,7 +442,7 @@ class C_book extends MX_Controller {
 		
 		$data['title'] = $data['detail_book']['data']['book_info']['title_book']." - Baboo";
 
-		$data['detailBook'] = json_decode($data[16], true);
+		$data['detailBook'] = json_decode(end($data), true);
 		
 		if ($data_before_chapter['chapter']['data'][3]['chapter_free'] != "false") {
 			$data['detailChapter'] = count($data_before_chapter['chapter']);

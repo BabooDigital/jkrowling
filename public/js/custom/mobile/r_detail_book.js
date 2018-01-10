@@ -336,7 +336,7 @@ $(document).ready(function() {
     FB.ui({
         method: 'share',
         display: 'popup',
-        href: base_url + 'book/' + bid + '-' + convertToSlug(blink),
+        href: 'https://dev-baboo.co.id/book/' + bid + '-' + convertToSlug(blink),
       },
       // callback
       function(response) {

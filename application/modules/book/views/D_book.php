@@ -68,26 +68,26 @@
 <div class="container pt-100 mb-80">
 	<div class="row">
 		<div class="col-md-4 dtlbok">
-			<?php if (!empty($detailBook)) { ?>
+			<?php if (!empty($detail_book)) { ?>
 			<div class="card pb-20">
 				<div class="text-center pr-30 pl-30 pt-20">
-					<img src="<?php echo $detailBook['data']['book_info']['cover_url']; ?>" width="150">
+					<img class="cover_image" src="<?php echo $detail_book['data']['book_info']['cover_url']; ?>" width="150" height="200">
 					<div class="card-body">
-						<input type="hidden" name="iaidubi" id="iaidubi" value="<?php echo $detailBook['data']['book_info']['book_id']; ?>">
+						<input type="hidden" name="iaidubi" id="iaidubi" value="<?php echo $detail_book['data']['book_info']['book_id']; ?>">
 						<a href="#">
-							<h3 class="dbooktitle"><?php echo $detailBook['data']['book_info']['title_book']; ?></h3>
+							<h3 class="dbooktitle"><?php echo $detail_book['data']['book_info']['title_book']; ?></h3>
 						</a>
 						<div class="dbooksociallist">
-							<a href="#"><span class=".fs-13"><img src="<?php echo base_url(); ?>public/img/assets/icon_view.svg" width="27"> <span id="viewcount"><?php echo $detailBook['data']['book_info']['view_count']; ?></span></span></a>
+							<a href="#"><span class=".fs-13"><img src="<?php echo base_url(); ?>public/img/assets/icon_view.svg" width="27"> <span id="viewcount"><?php echo $detail_book['data']['book_info']['view_count']; ?></span></span></a>
 						</div>
 						<div class="dbooksociallist">
-							<a href="#"><span class=".fs-13"><img src="<?php echo base_url(); ?>public/img/assets/icon_comment.svg" width="14"> <span id="commentcount"><?php echo $detailBook['data']['book_info']['book_comment_count']; ?></span></span></a>
+							<a href="#"><span class=".fs-13"><img src="<?php echo base_url(); ?>public/img/assets/icon_comment.svg" width="14"> <span id="commentcount"><?php echo $detail_book['data']['book_info']['book_comment_count']; ?></span></span></a>
 						</div>
 						<div class="dbooksociallist">
-							<a href="#"><span class=".fs-13"><img src="<?php echo base_url(); ?>public/img/assets/icon_love.svg" width="16"> <span id="likecount"><?php echo $detailBook['data']['book_info']['like_count']; ?></span></span></a>
+							<a href="#"><span class=".fs-13"><img src="<?php echo base_url(); ?>public/img/assets/icon_love.svg" width="16"> <span id="likecount"><?php echo $detail_book['data']['book_info']['like_count']; ?></span></span></a>
 						</div>
 						<div class="dbooksociallist">
-							<a href="#"><span class=".fs-13"><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg" width="14"> <span id="sharecount"><?php echo $detailBook['data']['book_info']['share_count']; ?></span></span></a>
+							<a href="#"><span class=".fs-13"><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg" width="14"> <span id="sharecount"><?php echo $detail_book['data']['book_info']['share_count']; ?></span></span></a>
 						</div>
 					</div>
 				</div>
@@ -113,18 +113,18 @@
 				<div class="card-body">
 					<div class="media">
 						<img class="d-flex align-self-start mr-20 rounded-circle" width="50" height="50" src="
-						<?php if($detailBook['data']['author']['avatar'] == NULL){
+						<?php if($detail_book['data']['author']['avatar'] == NULL){
 							echo base_url('public/img/profile/blank-photo.jpg');
 						}else{
-							echo $detailBook['data']['author']['avatar']; } ?>" alt="<?php echo $detailBook['data']['author']['author_name']; ?>">
+							echo $detail_book['data']['author']['avatar']; } ?>" alt="<?php echo $detail_book['data']['author']['author_name']; ?>">
 							<div class="media-body">
-								<h5 class="nametitle2"><?php echo $detailBook['data']['author']['author_name']; ?></h5>
+								<h5 class="nametitle2 author_name"><?php echo $detail_book['data']['author']['author_name']; ?></h5>
 								<p><small><span>Jakarta, Indonesia</span></small></p>
-								<a href="#" data-follow="<?php echo $detailBook['data']['book_info']['book_id']; ?>" class="btn-no-fill dbookfollowbtn ml-20 <?php if ($detailBook['data']['author']['is_follow'] == false) { echo "follow-u"; }else{ echo "unfollow-u"; } ?>"><span class="nametitle2 txtfollow"><?php if ($detailBook['data']['author']['is_follow'] == false) { echo "Follow"; }else{ echo "Unfollow"; } ?></span></a>
+								<a href="#" data-follow="<?php echo $detail_book['data']['book_info']['book_id']; ?>" class="btn-no-fill dbookfollowbtn ml-20 <?php if ($detail_book['data']['author']['is_follow'] == false) { echo "follow-u"; }else{ echo "unfollow-u"; } ?>"><span class="nametitle2 txtfollow"><?php if ($detail_book['data']['author']['is_follow'] == false) { echo "Follow"; }else{ echo "Unfollow"; } ?></span></a>
 							</div>
 						</div>
 						<div id="appentoContent">
-							<h2 class="dbooktitlebook"><?php echo $detailBook['data']['title_book']; ?></h2>
+							<h2 class="dbooktitlebook"><?php echo $detail_book['data']['title_book']; ?></h2>
 							<br>
 							<div id="post-data">
 								<?php $this->load->view('data/D_book'); ?>
@@ -142,9 +142,9 @@
 			<div class="col-md-1">
 				<div class="card stickymenu">
 					<div class="text-center">
-						<?php echo $detailBook['data']['title_book']; ?>
+						<?php echo $detail_book['data']['title_book']; ?>
 						<a href="<?php echo site_url(); ?>book/<?php
-						echo $detailBook['data']['book_info']['book_id']; ?>-<?php echo url_title($detailBook['data']['book_info']['title_book'], 'dash', true); ?>/read">
+						echo $detail_book['data']['book_info']['book_id']; ?>-<?php echo url_title($detail_book['data']['book_info']['title_book'], 'dash', true); ?>/read">
 						<div class="p-1">
 							<img src="<?php echo base_url(); ?>public/img/assets/read-mode.svg" width="45">
 							<span class="bold11px">Mode Baca</span>
@@ -154,12 +154,12 @@
 					<div class="border1px"></div>
 					<div class="pt-20 pb-20">
 						<p class="mb-30">
-							<a data-id="<?php echo $detailBook['data']['book_info']['book_id']; ?>" href="javascript:void(0);" id="loveboo" class="fs-14px <?php if($detailBook['data']['book_info']['is_like'] == 'false'){ echo 'like'; }else{ echo 'unlike'; } ?>">
-								<img src="<?php if($detailBook['data']['book_info']['is_like'] == 'false'){ echo base_url('public/img/assets/icon_love.svg'); }else{ echo base_url('public/img/assets/love_active.svg'); } ?>" class="loveicon" width="40">
+							<a data-id="<?php echo $detail_book['data']['book_info']['book_id']; ?>" href="javascript:void(0);" id="loveboo" class="fs-14px <?php if($detail_book['data']['book_info']['is_like'] == 'false'){ echo 'like'; }else{ echo 'unlike'; } ?>">
+								<img src="<?php if($detail_book['data']['book_info']['is_like'] == 'false'){ echo base_url('public/img/assets/icon_love.svg'); }else{ echo base_url('public/img/assets/love_active.svg'); } ?>" class="loveicon" width="40">
 							</a>
 						</p>
 						<p><button type="button" data-toggle="modal" data-target="#commentModal" style="cursor: pointer;background: none;border: none;">
-							<div class="thumbnail"><img src="<?php echo base_url(); ?>public/img/assets/icon_comment.svg" width="40"><div class="caption"><span id="commentcount"><?php echo $detailBook['data']['book_info']['book_comment_count']; ?></span></div></div>
+							<div class="thumbnail"><img src="<?php echo base_url(); ?>public/img/assets/icon_comment.svg" width="40"><div class="caption"><span id="commentcount"><?php echo $detail_book['data']['book_info']['book_comment_count']; ?></span></div></div>
 						</button></p>
 					</div>
 					<div class="border1px"></div>
@@ -192,13 +192,13 @@
 			</ul>
 			<ul class="navbar-nav">
 				<li class="nav-item">
-					<a data-id="<?php echo $detailBook['data']['book_info']['book_id']; ?>" href="javascript:void(0);" id="loveboo" class="fs-14px <?php if($detailBook['data']['book_info']['is_like'] == 'false'){ echo 'like'; }else{ echo 'unlike'; } ?>">
-						<img src="<?php if($detailBook['data']['book_info']['is_like'] == 'false'){ echo base_url('public/img/assets/icon_love.svg'); }else{ echo base_url('public/img/assets/love_active.svg'); } ?>" class="loveicon" width="30">
+					<a data-id="<?php echo $detail_book['data']['book_info']['book_id']; ?>" href="javascript:void(0);" id="loveboo" class="fs-14px <?php if($detail_book['data']['book_info']['is_like'] == 'false'){ echo 'like'; }else{ echo 'unlike'; } ?>">
+						<img src="<?php if($detail_book['data']['book_info']['is_like'] == 'false'){ echo base_url('public/img/assets/icon_love.svg'); }else{ echo base_url('public/img/assets/love_active.svg'); } ?>" class="loveicon" width="30">
 					</a>
 				</li>
 				<li class="nav-item ml-20">
 					<button type="button" data-toggle="modal" data-target="#commentModal" style="cursor: pointer;background: none;border: none;">
-						<div class="thumbnail"><img src="<?php echo base_url(); ?>public/img/assets/icon_comment.svg" width="25"><div class="caption fs-12px"><span id="commentcount"><?php echo $detailBook['data']['book_info']['book_comment_count']; ?></span></div></div>
+						<div class="thumbnail"><img src="<?php echo base_url(); ?>public/img/assets/icon_comment.svg" width="25"><div class="caption fs-12px"><span id="commentcount"><?php echo $detail_book['data']['book_info']['book_comment_count']; ?></span></div></div>
 					</button>
 				</li>
 			</ul>
