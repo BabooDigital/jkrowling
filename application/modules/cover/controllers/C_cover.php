@@ -96,7 +96,7 @@ class C_cover extends MX_Controller {
             	}
             }
 
-            $resval = (array)json_decode($data[16], true);
+            $resval = (array)json_decode(end($data), true);
 
             $psn = $resval['message'];
             $cover = $resval['data'];
@@ -116,6 +116,7 @@ class C_cover extends MX_Controller {
             	'data' => $cover,
             	'message' => $psn
             ));
+            // print_r($data);
         }
 
     }
