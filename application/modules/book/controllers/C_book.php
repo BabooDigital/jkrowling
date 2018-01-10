@@ -71,7 +71,6 @@ class C_book extends MX_Controller {
 		}
 
 		// END GET CHAPTER
-		
 		$ch = curl_init();
 		$url = $this->API.'/detailBook/';
 		curl_setopt($ch, CURLOPT_URL, $url);
