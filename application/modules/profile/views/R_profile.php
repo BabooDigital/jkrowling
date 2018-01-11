@@ -16,11 +16,11 @@
 				<div class="profile">
 					<div class="profile_padding">
 						<div class="btn-setting">
-							<a href="#"><img src="<?php echo base_url('') ?>public/img/icon-tab/group_15.svg"></a>
+							<a href="<?php echo site_url(); ?>account/setting"><img src="<?php echo base_url('') ?>public/img/icon-tab/group_15.svg"></a>
 						</div>
 						<br>
 						<div class="profile_avatar">
-							<img alt="<?php echo $userdata['name']; ?>" class="rounded-circle ml-20" height="70" src="<?php if($userdata['avatar'] == NULL){ echo base_url('public/img/profile/blank-photo.jpg'); }else{ echo $userdata['avatar']; } ?>" style="border: .5px #7554bd solid;padding: 3px;" width="70">
+							<img alt="<?php echo $userdata['name']; ?>" class="rounded-circle ml-20" height="70" src="<?php if($userdata['prof_pict'] == NULL){ echo base_url('public/img/profile/blank-photo.jpg'); }else{ echo $userdata['prof_pict']; } ?>" style="border: .5px #7554bd solid;padding: 3px;" width="70">
 							<br>
 							<p class="label_name"><?php echo $userdata['name']; ?></p>
 							<p class="profile_location">Jakarta , Indonesia</p>
@@ -43,9 +43,9 @@
 								</div>
 								<hr>
 								<div class="profile_message">
-									<button class="btn-profile"><img
+									<a href="<?php echo site_url(); ?>account/edit" class="btn-profile"><img
 										src="<?php echo base_url('') ?>public/img/icon-tab/add_follow.svg">Edit Profile
-									</button>
+									</a>
 									<button class="btn-message"><img
 										src="<?php echo base_url('') ?>public/img/icon-tab/message.svg">Pesan Masuk
 									</button>

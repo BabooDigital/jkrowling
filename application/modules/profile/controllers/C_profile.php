@@ -242,4 +242,19 @@ class C_profile extends MX_Controller {
 		echo json_encode($userdetail);
 	}
 
+	public function settingProfile()
+	{
+		$data['title'] = 'Pengaturan | Baboo - Beyond Book &amp; Creativity';
+		$data['css'][] = "public/css/bootstrap.min.css";
+		$data['css'][] = "public/css/custom-margin-padding.css";
+		$data['css'][] = "public/css/font-awesome.min.css";
+		$data['css'][] = "public/css/baboo-responsive.css";
+
+		$data['js'][] = "public/js/jquery.min.js";
+		$data['js'][] = "public/js/tether.min.js";
+		$data['js'][] = "public/js/umd/popper.min.js";
+		$data['js'][] = "public/js/bootstrap.min.js";
+		$this->load->view('R_setting_profile', $data);
+	}
+
 }

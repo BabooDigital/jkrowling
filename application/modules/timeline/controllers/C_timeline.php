@@ -60,7 +60,7 @@ class C_timeline extends MX_Controller {
 			}
 		}
 
-    $resval = (array)json_decode($data[16], true);
+    $resval = (array)json_decode(end($data), true);
 
 		$psn = $resval['message'];
 		$book = $resval['data'];

@@ -791,3 +791,38 @@ input:checked + .slider:before {
 .tabmenucreate{
 
 }
+
+.clear-btn {
+  background: none;
+  border: none;
+}
+
+
+  .bg-borr {
+    background: #f5f8fa;
+  }
+  .parent-title {
+    font-size: 60pt;
+    font-weight: bold;
+  }
+  .label-fs {
+    font-size: 35pt;
+    color: #8e8e8e;
+  }
+  .frmProf {
+    font-size: 40pt;
+    font-weight: bold;
+    color: #000000;
+    outline: none;
+    height: 80px;
+    background: none;
+    border: none;
+    border-bottom: 1px #333 solid;
+  }
+  .btnupdate-prof {
+    border-radius: 100px;
+    background: #7554bd;
+    padding: 4% 40%;
+    font-size: 40pt;
+    color: #fff;
+  }

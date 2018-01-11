@@ -73,7 +73,7 @@ class C_Library extends MX_Controller
         $auth = $headers['BABOO-AUTH-KEY'];
         
         $this->session->set_userdata('authKey', $auth);
-        $resval = (array)json_decode($data[16], true);
+        $resval = (array)json_decode(end($data), true);
         $bookmark = $resval['data'];
         
         echo json_encode($bookmark, TRUE); 
@@ -126,7 +126,7 @@ class C_Library extends MX_Controller
         $auth = $headers['BABOO-AUTH-KEY'];
         
         $this->session->set_userdata('authKey', $auth);
-        $resval = (array)json_decode($data[16], true);
+        $resval = (array)json_decode(end($data), true);
         $lastRead = $resval['data'];
         
         $output = array_slice($lastRead, 0, 2);
