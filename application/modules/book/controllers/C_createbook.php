@@ -16,7 +16,7 @@ class C_createbook extends MX_Controller {
 
 	public function index()
 	{
-		$data['judul'] = "Buat Sebuah Cerita - Baboo";
+		$data['title'] = "Buat Sebuah Cerita - Baboo";
 
 		$data['css'][] = "public/css/bootstrap.min.css";
 		$data['css'][] = "public/css/custom-margin-padding.css";
@@ -167,7 +167,7 @@ class C_createbook extends MX_Controller {
 			}
 		}
 		
-		$data['judul'] = "Buat Sebuah Cerita - Baboo";
+		$data['title'] = "Buat Sebuah Cerita - Baboo";
 
 		$data['css'][] = "public/css/bootstrap.min.css";
 		$data['css'][] = "public/css/custom-margin-padding.css";
@@ -331,7 +331,7 @@ class C_createbook extends MX_Controller {
 	 }
 	public function cover_v()
 	{
-		$data['judul'] = "Buat Sebuah Cerita - Baboo";
+		$data['title'] = "Buat Sebuah Cerita - Baboo";
 
 			$data['css'][] = "public/css/bootstrap.min.css";
 			$data['css'][] = "public/css/custom-margin-padding.css";
@@ -841,7 +841,7 @@ class C_createbook extends MX_Controller {
     	}
 
     	$data['detail_book'] = json_decode(end($data), true);
-    	$data['judul'] = "Buat Sebuah Cerita - Baboo";
+    	$data['title'] = "Buat Sebuah Cerita - Baboo";
 
     	$data['css'][] = "public/css/bootstrap.min.css";
     	$data['css'][] = "public/css/custom-margin-padding.css";

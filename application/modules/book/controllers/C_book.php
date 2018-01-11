@@ -292,7 +292,7 @@ class C_book extends MX_Controller {
 			$headers[trim($middle[0])] = trim($middle[1]);
 		}
 
-		$data_before_chapter['chapter'] = json_decode($data_before_chapter[14], true);
+		$data_before_chapter['chapter'] = json_decode(end($data_before_chapter), true);
 		$auth = $headers['BABOO-AUTH-KEY'];
 		if (isset($data_before_chapter['chapter']['code']) && $data_before_chapter['chapter']['code'] == '200')
 		{

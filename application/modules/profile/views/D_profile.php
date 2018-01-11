@@ -31,7 +31,7 @@
 					<div class="text-center pr-10 pl-10 pt-20">
 						<div class="card-body p-0">
 							<input type="hidden" id="iaiduui" name="iaiduui" value="<?php $name = $this->session->userdata('userData'); echo $name['user_id']; ?>">
-							<img alt="<?php echo $userdata['name']; ?>" class="rounded-circle p-5" height="100" src="<?php if($userdata['avatar'] == NULL){ echo base_url('public/img/profile/blank-photo.jpg'); }else{ echo $userdata['avatar']; } ?>" style="border: .5px #7554bd solid;" width="100">
+							<img alt="<?php echo $userdata['name']; ?>" class="rounded-circle p-5" height="100" src="<?php if($userdata['prof_pict'] == NULL){ echo base_url('public/img/profile/blank-photo.jpg'); }else{ echo $userdata['prof_pict']; } ?>" style="border: .5px #7554bd solid;" width="100">
 							<p class="mt-10"><b><?php echo $userdata['name']; ?></b></p>
 							<p>Jakarta, Indonesia</p>
 							<div class="quote">

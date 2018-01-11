@@ -123,6 +123,9 @@ $route['send_cover'] = 'cover/C_cover/sendCover';
 // Profile
 $route['profile/(:any)'] = 'profile/C_profile';
 $route['profile'] = 'profile/C_profile';
+$route['account/edit'] = 'profile/C_edit_profile';
+$route['account/edit_profile'] = 'profile/C_edit_profile/postEditProfile';
+$route['account/setting'] = 'profile/C_profile/settingProfile';
 $route['getpublishbook'] = 'profile/C_profile/getPublishBook';
 $route['getdraftbook'] = 'profile/C_profile/getDraftBook';
 $route['getlatestread'] = 'profile/C_profile/getLatestRead';

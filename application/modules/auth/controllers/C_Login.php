@@ -78,7 +78,7 @@ class C_Login extends MX_Controller
             }
 
 
-            $resval = (array)json_decode($data[16], true);
+            $resval = (array)json_decode(end($data), true);
 
             $psn = $resval['message'];
             $user = $resval['data'];
@@ -149,7 +149,7 @@ class C_Login extends MX_Controller
             }
             
             
-            $resval = (array)json_decode($data[16], true);
+            $resval = (array)json_decode(end($data), true);
 
             $psn = $resval['message'];
             $status = $resval['code'];
@@ -211,7 +211,7 @@ class C_Login extends MX_Controller
         }
         
         
-        $resval = (array)json_decode($data[16], true);
+        $resval = (array)json_decode(end($data), true);
 
         $psn = $resval['message'];
         $user = $resval['data'];
@@ -291,7 +291,7 @@ class C_Login extends MX_Controller
         }
         
         
-        $resval = (array)json_decode($data[16], true);
+        $resval = (array)json_decode(end($data), true);
 
         $psn = $resval['message'];
         $user = $resval['data'];

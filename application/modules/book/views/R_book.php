@@ -54,7 +54,8 @@
 		<nav class="navbar navbar-expand-lg fixed-top mb-20" style="height:60px;background: #f5f8fa;">
 			<div class="container">
 				<form class="navbar-brande">
-					<i class="fa fa-arrow-left"></i> &nbsp; <span>Kembali</span> 
+					<button type="button" class="clear-btn" onclick="history.go(-1)"><i class="fa fa-arrow-left"></i> &nbsp; <span>Kembali</span> </button>
+					
 				</form>
 				<!-- <form class="form-inline"> -->
 					<label class="btn-transparant" for="toggle-right" class="profile-toggle">&nbsp;&nbsp;&nbsp;&nbsp;<img src="<?php echo base_url('') ?>/public/img/icon-tab/more_icon.svg"></label> 
