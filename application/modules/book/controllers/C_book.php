@@ -62,7 +62,7 @@ class C_book extends MX_Controller {
 			$headers[trim($middle[0])] = trim($middle[1]);
 		}
 
-		$data_before_chapter['chapter'] = json_decode($data_before_chapter[14], true);
+		$data_before_chapter['chapter'] = json_decode(end($data_before_chapter), true);
 		$auth = $headers['BABOO-AUTH-KEY'];
 		if (isset($data_before_chapter['chapter']['code']) && $data_before_chapter['chapter']['code'] == '200')
 		{
@@ -155,7 +155,7 @@ class C_book extends MX_Controller {
 		$data['title'] = $data['detail_book']['data']['book_info']['title_book']." - Baboo";
 
 		$data['detailBook'] = json_decode(end($data), true);
-		$data['menuChapter'] = json_decode($data_before_chapter[14], true);
+		$data['menuChapter'] = json_decode(end($data_before_chapter), true);
 		if ($data_before_chapter['chapter']['data'][3]['chapter_free'] != "false") {
 			$data['detailChapter'] = count($data_before_chapter['chapter']['data']);
 		}else{
@@ -251,7 +251,7 @@ class C_book extends MX_Controller {
 		$data['js'][] = "public/js/custom/mobile/r_detail_book.js";
 
 		$this->load->view('include/head', $data);
-		$this->load->view('R_book', $data);
+		$this->load->view('R_book');
 	}
 
 	public function chapter()
@@ -349,7 +349,7 @@ class C_book extends MX_Controller {
 			$headers[trim($middle[0])] = trim($middle[1]);
 		}
 
-		$data_before_chapter['chapter'] = json_decode($data_before_chapter[14], true);
+		$data_before_chapter['chapter'] = json_decode(end($data_before_chapter), true);
 		$auth = $headers['BABOO-AUTH-KEY'];
 		if (isset($data_before_chapter['chapter']['code']) && $data_before_chapter['chapter']['code'] == '200')
 		{
@@ -452,7 +452,7 @@ class C_book extends MX_Controller {
 			$data['detailChapter'] = 2;
 		}
 		
-		$data['menuChapter'] = json_decode($data_before_chapter[14], true);
+		$data['menuChapter'] = json_decode(end($data_before_chapter), true);
 		$data['id_chapter'] = $this->input->get("chapter");
 		$data['css'][] = "public/css/bootstrap.min.css";
 		$data['css'][] = "public/css/custom-margin-padding.css";
