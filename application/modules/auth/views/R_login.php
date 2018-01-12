@@ -12,8 +12,6 @@
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/fonts/fonts.css">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/sweetalert2.min.css">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/font-awesome.min.css">
-<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
-<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 
 	<?php
 		error_reporting(0);
@@ -108,42 +106,22 @@
       	</div>
       	<div class="row">
 		 	<div class="col-lg-12 col-xl-12">
-				<form>
+				<form id="form-register" action="<?php echo site_url(); ?>auth/C_Login/postregisteruser" method="POST">
 					<div class="form-group">
-						<input type="text" class="form-control login-input" placeholder="Nama Lengkap">
+						<input type="text" class="form-control login-input" placeholder="Nama Lengkap" name="name">
 					</div>
 
 					<div class="form-group">
-						<input type="email" class="form-control login-input" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+						<input type="email" class="form-control login-input" id="emailRegis" aria-describedby="emailHelp" placeholder="Alamat Email" name="email">
 					</div>
 
 					<div class="form-group">
-						<input type="password" class="form-control login-input" id="exampleInputPassword1" placeholder="Password">
+						<input type="password" class="form-control login-input" id="passRegis" placeholder="Kata Sandi" name="password">
 					</div>
 					<p style="font-size:12px; color:#676767;">Tanggal lahir</p>
 
-					<div class="row">
-						<div class="col-lg-4 col-xl-4 col-md-4 col-sm-4 col-4">
-							<div class="form-group">
-								<select class="form-control login-input">
-									<option>Tgl</option>
-								</select>
-							</div>
-						</div>
-						<div class="col-lg-4 col-xl-4 col-md-4 col-sm-4 col-4">
-							<div class="form-group">
-								<select class="form-control login-input">
-									<option>Bln</option>
-								</select>
-							</div>
-						</div>
-						<div class="col-lg-4 col-xl-4 col-md-4 col-sm-4 col-4">
-							<div class="form-group">
-								<select class="form-control login-input">
-									<option>Thn</option>
-								</select>
-							</div>
-						</div>
+					<div class="form-group">
+						<input type="text" id="date" data-max-year="2015" data-first-item="name" data-format="YYYY-MM-DD" data-template="YYYY MM DD" data-custom-class="form-control login-input" data-smart-days="true" name="tgl_lahir"> 
 					</div>
 
 					<div class="row" style="margin-top:10px;">
@@ -169,8 +147,10 @@
 							</div>
 						</div>
 					</div>
-						<p class="text-daftar">Dengan mengklik tombol daftar, anda setuju pada <br><a  data-toggle="modal" data-target="#register-modal" href="#" class="link-daftar"><b>Terms of Service</b></a> Baboo</p>
-						<button class="btn btn-signup btn-block"><b>Daftar</b></button>
+					<center>
+						<p class="text-daftar" style="text-align:center;">Dengan mengklik tombol daftar, anda setuju pada <a  data-toggle="modal" data-target="#register-modal" href="#" class="link-daftar"><b>Terms of Service</b></a></p>
+					</center>
+					<button type="submit" class="btn btn-signup btn-block"><b>Daftar</b></button>
 					</div> 
 				</form>
 		 	</div>
@@ -192,6 +172,9 @@
 <script src="<?php echo base_url();?>public/js/additional-methods.js"></script>	
 
 <script type="text/javascript">
+	$(function() {
+		$('#date').combodate('method');
+	});
 	$(document).ready(function() {
 		$("#login_fb").on("click",function() {
 			window.location.href = '<?php echo $authUrl; ?>';

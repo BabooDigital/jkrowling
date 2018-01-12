@@ -94,4 +94,61 @@ class C_edit_profile extends MX_Controller {
 		$status = $resval['code'];
 	}
 
+	public function completeProfile()
+	{
+		$data['title'] = 'Lengkapi Profile | Baboo';
+		$data['css'][] = "public/css/bootstrap.min.css";
+		$data['css'][] = "public/css/custom-margin-padding.css";
+		$data['css'][] = "public/css/font-awesome.min.css";
+		$data['css'][] = "public/css/baboo-responsive.css";
+
+		$data['js'][] = "public/js/jquery.min.js";
+		$data['js'][] = "public/js/tether.min.js";
+		$data['js'][] = "public/js/umd/popper.min.js";
+		$data['js'][] = "public/js/bootstrap.min.js";
+		$data['js'][] = "public/js/moment.js";
+		$data['js'][] = "public/js/combodate.js";
+		$data['js'][] = "public/js/custom/mobile/r_profile_page.js";
+		
+		$this->load->view('R_fill_profile', $data);
+	}
+
+	public function selectCategory()
+	{
+		$data['title'] = 'Pilih Kategori | Baboo';
+		$data['css'][] = "public/css/bootstrap.min.css";
+		$data['css'][] = "public/css/custom-margin-padding.css";
+		$data['css'][] = "public/css/font-awesome.min.css";
+		$data['css'][] = "public/css/baboo-responsive.css";
+
+		$data['js'][] = "public/js/jquery.min.js";
+		$data['js'][] = "public/js/tether.min.js";
+		$data['js'][] = "public/js/umd/popper.min.js";
+		$data['js'][] = "public/js/bootstrap.min.js";
+		$data['js'][] = "public/js/moment.js";
+		$data['js'][] = "public/js/combodate.js";
+		$data['js'][] = "public/js/custom/mobile/r_profile_page.js";
+
+		$this->load->view('R_select_category', $data);
+	}
+
+	public function firstFollowUser()
+	{
+		$data['title'] = 'Ikuti Pengguna | Baboo';
+		$data['css'][] = "public/css/bootstrap.min.css";
+		$data['css'][] = "public/css/custom-margin-padding.css";
+		$data['css'][] = "public/css/font-awesome.min.css";
+		$data['css'][] = "public/css/baboo-responsive.css";
+
+		$data['js'][] = "public/js/jquery.min.js";
+		$data['js'][] = "public/js/tether.min.js";
+		$data['js'][] = "public/js/umd/popper.min.js";
+		$data['js'][] = "public/js/bootstrap.min.js";
+		$data['js'][] = "public/js/moment.js";
+		$data['js'][] = "public/js/combodate.js";
+		$data['js'][] = "public/js/custom/mobile/r_profile_page.js";
+
+		$this->load->view('R_first_follow', $data);
+	}
+
 }

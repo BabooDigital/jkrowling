@@ -153,5 +153,7 @@ foreach ($home as $s_book) { ?>
 </div>
 
 <?php }else{
-	echo "tak ada";
+	echo "<div class='container mt-50'> <div class='row'> <div class='mx-auto' style='width: 60%;'> <div class=''> <img src='".base_url('public/img/first_login.png')."' width='230'> </div> <div class='text-center'> <h4><b>Tentukan konten yang kamu suka!</b></h4> <p style='font-size: 12pt;'>Jangan buang-buang waktu dengan hal yg tidak kamu suka, yuk atur konten yg kamu suka.</p> <br> <a href='".site_url('selectcategory')."' class='btn btn-navdaftar'><span class='navdaftar'>Atur Sekarang</span></a> </div> </div> </div> </div> ";
 } ?>
+
+</div>

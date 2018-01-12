@@ -170,7 +170,7 @@ div#insideDivTerakhirDilihat{
   float: right;
 }
 .floating-btn {
-  background: #7554bd;
+  background: none;
   display: block;
   width: 50px;
   height: 50px;
@@ -187,6 +187,7 @@ div#insideDivTerakhirDilihat{
   right: 30px;
   bottom:30px;
   z-index: 999;
+  border: none;
 }
 .floating-btn:hover{background: white}
 
@@ -318,11 +319,12 @@ input:checked + .label-md {
   border: 0;
 }
 .title_book_form {
-  height: 50px;
+  height: 100px;
   background: transparent;
   border: 0;
   width: 70%;
-  font-size: 30px;
+  font-size: 35pt;
+  font-weight: bold;
   text-align: center;
   outline: 0;
 }
@@ -822,7 +824,7 @@ input:checked + .slider:before {
   .btnupdate-prof {
     border-radius: 100px;
     background: #7554bd;
-    padding: 4% 40%;
+    padding: 4% 36%;
     font-size: 40pt;
     color: #fff;
   }

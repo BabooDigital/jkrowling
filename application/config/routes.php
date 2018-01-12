@@ -96,6 +96,7 @@ $route['getmenuchapter'] = 'book/C_book/chapter';
 $route['book/:any/read'] = 'book/C_book/readingMode';
 $route['my_book/:num/chapter/:num'] = 'book/C_createbook/mybook';
 $route['my_book/:num'] = 'book/C_createbook';
+$route['create_mybook'] = 'book/C_createbook';
 $route['chapter'] = 'book/C_createbook/chapter';
 $route['savechapter'] = 'book/C_createbook/saveChapter';
 $route['listchapter/:num'] = 'book/C_createbook/listChapter';
@@ -136,3 +137,6 @@ $route['awsd'] = 'book/C_createbook/awasd';
 
 $route['awsd'] = 'book/C_createbook/awasd';
 
+$route['firstlogin'] = 'profile/C_edit_profile/completeProfile';
+$route['selectcategory'] = 'profile/C_edit_profile/selectCategory';
+$route['first_follow'] = 'profile/C_edit_profile/firstFollowUser';
