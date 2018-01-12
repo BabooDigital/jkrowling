@@ -44,7 +44,7 @@ class C_createbook extends MX_Controller {
 		// $data['css'][] = "public/plugins/froala/css/plugins/file.css";
 		$data['css'][] = "public/plugins/froala/css/plugins/quick_insert.css";
 
-
+		$data['js'][] = "public/js/jquery.validate.js";
 		$data['js'][] = "public/plugins/froala/js/froala_editor.min.js";
 		$data['js'][] = "public/js/custom/create_book_r.js";
 
@@ -968,7 +968,7 @@ class C_createbook extends MX_Controller {
     	$data['title'] = "Buat Sebuah Cerita - Baboo";
 		$data['detail_chapter'] = json_decode(end($data_before_chapter), true);
     	// print_r($data['detail_book']);
-    	
+
     	$data['css'][] = "public/css/bootstrap.min.css";
     	$data['css'][] = "public/css/custom-margin-padding.css";
     	$data['css'][] = "public/css/font-awesome.min.css";

@@ -602,4 +602,49 @@ class C_book extends MX_Controller {
 
 		echo json_encode($userdetail);
 	}
+	public function getCategory()
+	{
+		error_reporting(0);
+		$auth = $this->session->userdata('authKey');
+		$url = $this->API.'/allCategory';
+		$ch = curl_init();
+		$options = array(
+			CURLOPT_URL			 => $url,
+			CURLOPT_RETURNTRANSFER => true,
+	          CURLOPT_CUSTOMREQUEST  =>"GET",    // Atur type request
+	          CURLOPT_POST           =>false,    // Atur menjadi GET
+	          CURLOPT_FOLLOWLOCATION => false,    // Follow redirect aktif
+	          CURLOPT_SSL_VERIFYPEER => 0,
+	          CURLOPT_HEADER         => 1,
+	          CURLOPT_HTTPHEADER	 => array('baboo-auth-key : '.$auth)
+
+	      );
+		curl_setopt_array($ch, $options);
+		$content = curl_exec($ch);
+		curl_close($ch);
+		$headers=array();
+		
+		$data=explode("\n",$content);
+		$headers['status']=$data[0];
+
+		array_shift($data);
+
+		foreach($data as $part){
+			$middle=explode(":",$part);
+			$headers[trim($middle[0])] = trim($middle[1]);
+		}
+
+		$data['category'] = json_decode(end($data), true);
+		$auth = $headers['BABOO-AUTH-KEY'];
+		if (isset($data['category']['code']) && $data['category']['code'] == '200')
+		{
+			$status = $data['category']['code'];
+			$this->session->set_userdata('authKey', $auth);
+		}
+		else
+		{
+			$status = $data['category']['code'];
+		}
+		echo json_encode($data['category']['data']);
+	}
 }
