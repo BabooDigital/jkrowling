@@ -5,7 +5,10 @@
 		<nav class="navbar navbar-expand-lg fixed-top baboonav" style="height:60px;">
 			<div class="container">
 				<form class="navbar-brande">
-					<i class="fa fa-arrow-left"></i> &nbsp; <span>Kembali</span> 
+					<a href="<?php echo site_url(); ?>listchapter/<?php 
+					echo $this->uri->segment(2); ?>">
+						<i class="fa fa-arrow-left"></i> &nbsp; <span>Kembali</span> 
+					</a>
 				</form>
 				<form class="form-inline">
 					<button class="btn-transparant"><span>Selesai</span> &nbsp;&nbsp;<img src="<?php echo base_url() ?>public/img/icon-nav/publish.png" width="30" height="30"></button> 

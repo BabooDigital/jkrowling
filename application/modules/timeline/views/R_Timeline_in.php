@@ -1,11 +1,11 @@
 
-<body id="pageContent">
+<body id="pageContent" class="bg-white">
 <div id="floating-btn">
-	<form action="<?php echo site_url(); ?>createidbook" method="POST">
-		<input type="hidden" name="iaiduui" value="<?php $name = $this->session->userdata('userData'); echo $name['user_id']; ?>">
+	<!-- <form action="<?php echo site_url(); ?>createidbook" method="POST">
+		<input type="hidden" name="iaiduui" value="<?php $name = $this->session->userdata('userData'); echo $name['user_id']; ?>"> -->
 		<!-- <a href="<?php echo site_url('create_book') ?>" class="floating-btn"><i class="fa fa-pencil" aria-hidden="true"></i></a> -->
-		<button type="submit" class="floating-btn"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-	</form>
+		<a href="<?php echo site_url(); ?>create_mybook" class="floating-btn"><img src="<?php echo base_url(); ?>public/img/assets/icon_tulis.svg"></a>
+	<!-- </form> -->
 </div>
 		<?php $this->load->view('navbar/R_navbar'); ?>	
 		<br>

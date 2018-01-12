@@ -149,7 +149,7 @@ class C_createbook extends MX_Controller {
 
 			foreach($data as $part){
 				$middle=explode(":",$part);
-	        	error_reporting(0);
+				error_reporting(0);
 				$headers[trim($middle[0])] = trim($middle[1]);
 			}
 			$resval = (array)json_decode(end($data));
@@ -846,6 +846,7 @@ class C_createbook extends MX_Controller {
 			$status = $resval['code'];
 			$this->session->set_userdata('authKey', $auth);
 			$this->session->set_userdata('dataBook', $user);
+			$this->session->unset_userdata('dataCover');
 		}
 		else
 		{

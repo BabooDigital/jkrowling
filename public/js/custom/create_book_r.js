@@ -77,7 +77,9 @@ function froalaEditor() {
   $('#paragraph_book').froalaEditor({
     imageEditButtons: ['imageDisplay', 'imageAlign', 'imageInfo', 'imageRemove'],
     buttons: ['undo', 'redo' , 'sep', 'bold', 'italic', 'underline'],
-    height: 150,
+    placeholderText: 'Tulis cerita di sini..',
+    heightMin: 150,
+    heightMax: 300,
     width: 500,
     initOnClick: true,
     toolbarBottom: true

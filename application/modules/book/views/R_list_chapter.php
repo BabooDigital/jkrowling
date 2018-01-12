@@ -5,7 +5,7 @@
 		<nav class="navbar navbar-expand-lg fixed-top baboonav" style="height:60px;">
 			<div class="container">
 				<!-- <form class="navbar-brande"> -->
-					<button class="backlink" style="background: transparent;border: 1px solid transparent;"><i class="fa fa-arrow-left"></i> &nbsp; <span>Kembali</span></button>
+					<a href="<?php echo site_url(); ?>timeline" class="backlink" style="background: transparent;border: 1px solid transparent;"><i class="fa fa-arrow-left"></i> &nbsp; <span>Kembali</span></a>
 					<!-- </form> -->
 					<form class="form-inline" method="post" action="<?php echo site_url('cover') ?>">
 						<input type="hidden" name="book_id" id="book_id" value="<?php echo $book_id; ?>">
@@ -71,7 +71,7 @@
 <br>
 <div class="container">
 	<div class="row">
-
+<h2><?php echo $ ?></h2>
 		<div class="list-group group-full">
 			<?php foreach ($list_chapter as $chapter_list): ?>
 				<?php $array = (array)$chapter_list; ?>

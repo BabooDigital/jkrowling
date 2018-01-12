@@ -20,11 +20,12 @@
 						</div>
 						<br>
 						<div class="profile_avatar">
-							<img alt="<?php echo $userdata['name']; ?>" class="rounded-circle ml-20" height="70" src="<?php if($userdata['prof_pict'] == NULL){ echo base_url('public/img/profile/blank-photo.jpg'); }else{ echo $userdata['prof_pict']; } ?>" style="border: .5px #7554bd solid;padding: 3px;" width="70">
+							<img alt="<?php echo $userdata['fullname']; ?>" class="rounded-circle ml-20" height="70" src="<?php if($userdata['prof_pict'] == NULL){ echo base_url('public/img/profile/blank-photo.jpg'); }else{ echo $userdata['prof_pict']; } ?>" style="border: .5px #7554bd solid;padding: 3px;" width="70">
 							<br>
-							<p class="label_name"><?php echo $userdata['name']; ?></p>
+							<p class="label_name"><?php echo $userdata['fullname']; ?></p>
 							<p class="profile_location">Jakarta , Indonesia</p>
-							<p class="fs-14px quote">We Are Avalaible For Freelance Work. mail on (Rizaldi354313@gmail.com)</p>
+							<p class="fs-14px quote">We Are Avalaible For Freelance Work. mail on</p>
+							<span class="fs-14px quote">( <?php echo $userdata['email']; ?> )</span>
 							<hr>
 							<div class="info">
 								<img src="<?php echo base_url('') ?>public/img/icon-tab/book.svg"><b class="label_info">

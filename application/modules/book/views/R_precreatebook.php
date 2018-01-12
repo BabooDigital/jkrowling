@@ -5,7 +5,7 @@
 <nav class="navbar navbar-expand-lg fixed-top baboonav" style="height:60px;">
 <div class="container">
 	<form class="navbar-brande">
-		<i class="fa fa-arrow-left"></i> &nbsp; <span>Kembali</span> 
+		<button type="button" class="clear-btn" onclick="history.go(-1)"><i class="fa fa-arrow-left"></i> &nbsp; <span>Kembali</span> </button>
 	</form>
 	<form class="form-inline" action="<?php echo site_url('chapter') ?>" method="post">
 		<input type="hidden" name="title_book" id="title_book">
@@ -36,10 +36,6 @@
 			</div>
 			<span style="font-size: 18px;font-weight: 600;color: #141414;">Judul Buku</span>
 			<hr>
-			<div>
-				<input type="hidden" name="book_id" id="book_id" value="<?php 
-					echo $this->session->userdata('idBook_'); ?>">
-			</div>
 			<div id="subchapter">
 				<a style="display: none;" class="btn w-100 mb-10 chapterdata0 editsubchapt1 btnsavedraft" id="btnsavedraft" id="editchapt" href="#"></a>
 				<!-- <a class="btn w-100 mb-10 chapterdata0 addsubchapt" id="editchapt">Tambah Sub Cerita</a> -->
@@ -66,7 +62,7 @@
 <br>
 <br>
 <div class="form_book_title" align="center">
-	<p><h4><b>Tuliskan Judul Buku Disini</b></h4></p>
+	<p><h4>Tuliskan Judul Buku Disini</h4></p>
 	<br>
 	<input type="text" name="title_book_out" id="title_book_out" class="title_book_form" align="center" placeholder="Judul Buku">
 </div>
