@@ -25,8 +25,7 @@
 								-<?php echo url_title($s_book['title_book'], 'dash', true); ?>
 								">
 									<img alt="<?php
-									echo $s_book['title_book']; ?>" class="d-flex align-self-start mr-10 float-left" src="<?php
-									echo $s_book['cover_url']; ?>" width="120" height="170">
+									echo $s_book['title_book']; ?>" class="d-flex align-self-start mr-10 float-left" src="<?php echo ($s_book['cover_url'] != null) ? $s_book['cover_url'] : base_url('public/img/icon-tab/empty-set.png'); ?>" width="120" height="170">
 								</a>
 								<h5 class="card-title nametitle3"><a href="<?php echo site_url(); ?>book/<?php
 								echo $s_book['book_id']; ?>
