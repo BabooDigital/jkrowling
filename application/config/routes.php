@@ -109,6 +109,7 @@ $route['my_book/editor_upload'] = 'book/C_createbook/editor_upload';
 $route['create_book'] = 'book/C_createbook';
 $route['my_book/create_book/save'] = 'book/C_createbook/save';
 $route['my_book/create_book/publish'] = 'book/C_createbook/publishBook';
+$route['getCategory'] = 'book/C_book/getCategory';
 $route['updatechapter'] = 'book/C_createbook/updateChapter';
 
 $route['publishbook'] = 'book/C_createbook/publishBookMr';

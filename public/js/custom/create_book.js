@@ -65,7 +65,7 @@ function getContent(tab_page, book, chapter) {
 
 }
 $(document).ready(function() {
-
+	getCategory();
 	$('.backbtn').on('click', function() {
 		window.history.go(-1);
 	});
@@ -152,7 +152,6 @@ $(document).ready(function() {
 				console.log("error");
 			})
 			.always(function() {});
-
 	});
 	var count = 0;
 	$(document).on('click', '.saveasdraft', function() {
@@ -215,3 +214,24 @@ $(document).ready(function() {
 
 	});
 });
+function getCategory() {
+	$.ajax({
+		url: base_url+'getCategory',
+		type: 'POST',
+		dataType: 'json'
+	})
+	.done(function(data) {
+		var category = "<option value=''>Pilih Category Buku</option>"; 
+		$.each(data, function(index, val) {
+			category += "<option value='"+val.category_id+"'>"+val.category_name+"</option>";
+		});
+		$("#category_id").html(category);
+	})
+	.fail(function() {
+		console.log("error");
+	})
+	.always(function() {
+		console.log("complete");
+	});
+	
+}

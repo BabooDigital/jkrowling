@@ -52,10 +52,8 @@
 
 							<div class="mt-40">
 								<div class="form-group">
-									<select class="form-control" id="category_id" name="category_id">
-										<option>Kategori</option>
-										<option value="1">2</option>
-										<option value="2">3</option>
+									<select class="form-control" id="category_id" name="category_id" required>
+										<option value="">Kategori</option>
 									</select>
 								</div>
 								<div class="form-group">
