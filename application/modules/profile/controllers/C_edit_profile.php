@@ -134,6 +134,36 @@ class C_edit_profile extends MX_Controller {
 
 	public function firstFollowUser()
 	{
+		error_reporting(0);
+
+		$url = 'https://next.json-generator.com/api/json/get/N1xTeOSNN';
+		$ch = curl_init();
+		$options = array(
+			CURLOPT_URL			 => $url,
+			CURLOPT_RETURNTRANSFER => true,
+	          CURLOPT_CUSTOMREQUEST  =>"GET",    // Atur type request
+	          CURLOPT_POST           =>false,    // Atur menjadi GET
+	          CURLOPT_FOLLOWLOCATION => false,    // Follow redirect aktif
+	          CURLOPT_SSL_VERIFYPEER => 0,
+	          CURLOPT_HEADER         => 1
+
+	      );
+		curl_setopt_array($ch, $options);
+		$content = curl_exec($ch);
+		curl_close($ch);
+		$headers=array();
+		$data=explode("\n",$content);
+		$headers['status']=$data[0];
+
+		array_shift($data);
+
+		foreach($data as $part){
+			$middle=explode(":",$part);
+			$headers[trim($middle[0])] = trim($middle[1]);
+		}
+
+		$data['userFollow'] = json_decode(end($data), true);
+
 		$data['title'] = 'Ikuti Pengguna | Baboo';
 		$data['css'][] = "public/css/bootstrap.min.css";
 		$data['css'][] = "public/css/custom-margin-padding.css";
@@ -146,7 +176,7 @@ class C_edit_profile extends MX_Controller {
 		$data['js'][] = "public/js/bootstrap.min.js";
 		$data['js'][] = "public/js/moment.js";
 		$data['js'][] = "public/js/combodate.js";
-		$data['js'][] = "public/js/custom/mobile/r_profile_page.js";
+		$data['js'][] = "public/js/custom/mobile/r_first_follow.js";
 
 		$this->load->view('R_first_follow', $data);
 	}
