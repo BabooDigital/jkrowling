@@ -5,6 +5,33 @@
 
 	<?php if (isset($css)): ?> <?php echo get_css($css) ?> <?php endif ?>
 </head>
+<style type="text/css">
+#imageUpload
+{
+	display: none;
+}
+
+#profileImage
+{
+	cursor: pointer;
+}
+
+#profile-container {
+	width: 300px;
+	height: 300px;
+	overflow: hidden;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	-ms-border-radius: 50%;
+	-o-border-radius: 50%;
+	border-radius: 50%;
+}
+
+#profile-container img {
+	width: 300px;
+	height: 300px;
+}
+</style>
 <body class="bg-borr">
 	<div class="wrapper">
 		<nav class="navbar navbar-light bg-borr pl-40 pr-40 pt-30 pb-30">
@@ -22,7 +49,13 @@
 				</div>
 				<div class="row mb-100">
 					<div class="w-100 text-center">
-						<img src="http://placehold.it/300x300" class="rounded-circle">
+						<!-- <img src="http://placehold.it/300x300" class="rounded-circle"> -->
+						<div id="profile-container" class="mx-auto">
+							<image id="profileImage" src="<?php base_url(); ?>public/img/profile/blank-photo.jpg" />
+						</div>
+						<input id="imageUpload" type="file" 
+						name="profile_photo" placeholder="Photo" required="" capture>
+						<img src="<?php base_url(); ?>public/img/assets/icon_plus_purple.svg" width="70" style="position: relative;bottom: 80px;left: 80px;">
 					</div>
 				</div>
 				<div class="row mb-20">
@@ -48,5 +81,21 @@
 	</div>
 
 <?php if (isset($js)): ?><?php echo get_js($js) ?><?php endif ?>
+<script>
+	$("#profileImage").click(function(e) {
+		$("#imageUpload").click();
+	});
+
+	function fasterPreview( uploader ) {
+		if ( uploader.files && uploader.files[0] ){
+			$('#profileImage').attr('src', 
+				window.URL.createObjectURL(uploader.files[0]) );
+		}
+	}
+
+	$("#imageUpload").change(function(){
+		fasterPreview( this );
+	});
+</script>
 </body>
 </html>
