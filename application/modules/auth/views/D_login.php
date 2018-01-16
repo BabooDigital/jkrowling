@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Login Baboo - Baca buku online</title>
-</head>
-<!-- CSS -->
+
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/page/login.css">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/animate.css">
@@ -12,6 +10,10 @@
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/sweetalert2.min.css">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/font-awesome.min.css">
 
+	<title>Login Baboo - Baca buku online</title>
+	<?php echo $script_captcha; ?>
+</head>
+<!-- CSS -->
 	<?php
 		error_reporting(0);
 		$actual_link = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
@@ -55,13 +57,13 @@
 
 		 							<div class="col-lg-6 col-md-12 col-xl-6">
 		 								<button class="btn btn-block btn-sosmed" id="login_fb">
-											<img src="public/img/assets/fb-icon.svg" class="btn-img-sosmed"> <span class="btn-text-sosmed">Facebook</span>
+											<img src="<?php echo base_url();?>public/img/assets/fb-icon.svg" class="btn-img-sosmed"> <span class="btn-text-sosmed">Facebook</span>
 										</button>
 		 							</div>
 
 		 							<div class="col-lg-6 col-md-12 col-xl-6">
 		 								<button class="btn btn-block btn-sosmed" id="login_google">	
-											<img src="public/img/assets/google-icon.svg" class="btn-img-sosmed"> <span class="btn-text-sosmed">Google</span>
+											<img src="<?php echo base_url();?>public/img/assets/google-icon.svg" class="btn-img-sosmed"> <span class="btn-text-sosmed">Google</span>
 		 								</button>
 		 							</div>
 
@@ -78,7 +80,9 @@
 										  <div class="form-group">
 										    <input type="password" class="required password error  form-control login-input" id="exampleInputPassword1" name="passwords" placeholder="Password" value="123456">
 										  </div>
-
+										  <div class="form-group">
+										  	<?php echo $captcha; ?>
+								          </div>
 										  <p class="text-right text-daftar">Belum punya akun ? <a  data-toggle="modal" data-target="#register-modal" href="#" class="link-daftar">Daftar disini</a></p>
 										  <div class="pull-right">
 										  <button type="submit" name="submit" class="btn btn-primary pull-right btn-login"><i class="icon-arrow-right"></i></button>	
@@ -118,7 +122,10 @@
 					</div>
 
 					<div class="form-group">
-						<input type="password" class="form-control login-input" id="exampleInputPassword1" placeholder="Kata Sandi" name="password">
+						<input type="password" class="form-control login-input" id="password" placeholder="Kata Sandi" name="password">
+					</div>
+					<div class="form-group">
+						<input type="password" class="form-control login-input" id="retype_password" placeholder="Retype Password" name="retype_password">
 					</div>
 					<p style="font-size:12px; color:#676767;">Tanggal lahir</p>
 
@@ -144,7 +151,13 @@
 								</div>
 							</div>
 						</div>
-
+						<div class="col-lg-6 col-xl-6">
+							<div class="form-group">
+								<div class="form-check">
+								    <?php echo $captcha; ?>
+								</div>
+							</div>
+						</div>
 					</div>
 					<center>
 						<p class="text-daftar" style="text-align:center;">Dengan mengklik tombol daftar, anda setuju pada <a  data-toggle="modal" data-target="#register-modal" href="#" class="link-daftar"><b>Terms of Service</b></a></p>
@@ -153,7 +166,6 @@
 					</div> 
 				</form>
 		 	</div>
-
       	</div>
       </div>
     </div>
@@ -229,6 +241,9 @@
 					required: true,
 					minlength: 5
 				},
+				retype_password: {
+			      equalTo: "#password"
+			    },
 				tgl_lahir: {
 					required: true
 				}
@@ -244,6 +259,9 @@
 				password: {
 					required: 'Password harus di isi',
 					minlength: 'Password minimal 5 karakter'
+				},
+				retype_password: {
+					equalTo: 'Retype Password Tidak sama',
 				},
 				tgl_lahir: {
 					required: 'Tanggal lahir harus di isi',

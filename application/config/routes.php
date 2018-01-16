@@ -66,6 +66,7 @@ $route['createidbook'] = 'timeline/C_timeline/createbook_id';
 
 $route['writter'] = 'timeline/C_timeline/getWritter';
 $route['writters'] = 'timeline/C_home/getWritter';
+$route['slide'] = 'timeline/C_home/getSlide';
 
 // Follow
 $route['follows'] = 'timeline/C_timeline/postFollowUser';
@@ -90,9 +91,12 @@ $route['lastread'] = 'library/C_library/lastRead';
 
 // Book
 $route['img_book'] = 'book/C_createbook/img_book';
+$route['video_book'] = 'book/C_createbook/video_book';
+
 $route['book/:any'] = 'book/C_book';
 $route['book/:any/:num'] = 'book/C_book/getChapterResponsive';
 $route['getmenuchapter'] = 'book/C_book/chapter';
+$route['getChapter'] = 'book/C_createbook/getChapter';
 $route['book/:any/read'] = 'book/C_book/readingMode';
 $route['my_book/:num/chapter/:num'] = 'book/C_createbook/mybook';
 $route['my_book/:num'] = 'book/C_createbook';

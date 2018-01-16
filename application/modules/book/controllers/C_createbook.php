@@ -489,6 +489,57 @@ class C_createbook extends MX_Controller {
 		echo json_encode(array("link"=>$data_img,"name"=>$data_img));
 
 	}
+	public function video_book()
+	{
+		$auth = $this->session->userdata('authKey');
+		$id_book = $this->session->userdata('idBook_');
+		
+		$file_name_with_full_path = $_FILES["file"]["tmp_name"];
+        if (function_exists('curl_file_create')) { // php 5.5+
+        	$cFile = curl_file_create($file_name_with_full_path, $_FILES["file"]["type"],$_FILES["file"]["name"]);
+        } else { //
+        	$cFile = '@' . realpath($file_name_with_full_path);
+        }
+
+		$url = $this->API.'/uploadVideo';
+        $data = array(
+        	'video_url' => $cFile,
+        	'book_id'	=> $id_book
+        );
+        // print_r($data);
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $this->API.'/uploadVideo');
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_SAFE_UPLOAD, false);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+        curl_setopt($ch, CURLOPT_HEADER, 1);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: multipart/form-data','baboo-auth-key : '.$auth));
+        $result = curl_exec($ch);
+
+        $headers=array();
+
+        $data=explode("\n",$result);
+        
+        array_shift($data);
+
+        foreach($data as $part){
+        	$middle=explode(":",$part);
+        	error_reporting(0);
+        	$headers[trim($middle[0])] = trim($middle[1]);
+        }
+        // print_r($headers);
+        $resval = (array)json_decode(end($data), true);
+
+        $psn = $resval['message'];
+        $data_video = $resval['data']['asset_url'];
+        $auth = $headers['BABOO-AUTH-KEY'];
+        $this->session->set_userdata('authKey', $auth);
+		echo json_encode(array("link"=>$data_video,"name"=>$data_video));
+	}
 	public function save()
 	{
 		error_reporting(0);
@@ -569,6 +620,7 @@ class C_createbook extends MX_Controller {
 		{
 			$status = $resval['code'];
 		}
+		// print_r($data);
 		echo json_encode(array(
 			'code' => $status,
 			'data' => $user,
@@ -800,6 +852,7 @@ class C_createbook extends MX_Controller {
         {
         	$status = $resval['code'];
         }
+        // print_r($data);
     }
     public function publishBookMr()
     {
@@ -1069,5 +1122,55 @@ class C_createbook extends MX_Controller {
     			die("failed");
     		}
     	}
+    }
+    public function getChapter()
+    {
+    	error_reporting(0);
+		$auth = $this->session->userdata('authKey');
+		$user = $this->session->userdata('userData')['user_id'];
+		$id_book = $this->input->post('book_id');
+		// print_r($data_book);
+
+		// START GET CHAPTER
+		$url = $this->API.'/allChapters/book_id/'.$id_book;
+		$ch = curl_init();
+		$options = array(
+			CURLOPT_URL			 => $url,
+			CURLOPT_RETURNTRANSFER => true,
+	          CURLOPT_CUSTOMREQUEST  =>"GET",    // Atur type request
+	          CURLOPT_POST           =>false,    // Atur menjadi GET
+	          CURLOPT_FOLLOWLOCATION => false,    // Follow redirect aktif
+	          CURLOPT_SSL_VERIFYPEER => 0,
+	          CURLOPT_HEADER         => 1,
+	          CURLOPT_HTTPHEADER	 => array('baboo-auth-key : '.$auth)
+
+	      );
+		curl_setopt_array($ch, $options);
+		$content = curl_exec($ch);
+		curl_close($ch);
+		$headers=array();
+		
+		$data_before_chapter=explode("\n",$content);
+		$headers['status']=$data_before_chapter[0];
+
+		array_shift($data_before_chapter);
+
+		foreach($data_before_chapter as $part){
+			$middle=explode(":",$part);
+			$headers[trim($middle[0])] = trim($middle[1]);
+		}
+
+		$data_before_chapter['chapter'] = json_decode(end($data_before_chapter), true);
+		$auth = $headers['BABOO-AUTH-KEY'];
+		if (isset($data_before_chapter['chapter']['code']) && $data_before_chapter['chapter']['code'] == '200')
+		{
+			$status = $data_before_chapter['chapter']['code'];
+			$this->session->set_userdata('authKey', $auth);
+		}
+		else
+		{
+			$status = $data_before_chapter['chapter']['code'];
+		}
+		echo json_encode($data_before_chapter['chapter']['data']);
     }
 }

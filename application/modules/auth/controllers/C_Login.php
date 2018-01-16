@@ -15,12 +15,18 @@ class C_Login extends MX_Controller
         {
             redirect('timeline');
         }
+
+        $this->load->library(array('form_validation', 'Recaptcha'));
     }
     
     public function index()
     {
         $data['authUrl'] = $this->facebook->login_url();
         $data['authUrlG'] = $this->google->loginURL();
+
+        $data['captcha'] = $this->recaptcha->getWidget();
+        $data['script_captcha'] = $this->recaptcha->getScriptTag();
+
         if ($this->agent->is_mobile('ipad'))
         {
             $this->load->view('D_login', $data);
@@ -185,64 +191,74 @@ class C_Login extends MX_Controller
             'password' => $password
         );
 
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $this->API.'/login');
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        $this->form_validation->set_rules('emails', ' ', 'trim|required');
+        $this->form_validation->set_rules('passwords', ' ', 'trim|required');
+        $this->form_validation->set_error_delimiters('<div class="text-danger">', '</div>');
 
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $userData);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-        curl_setopt($ch, CURLOPT_HEADER, 1);
-        $result = curl_exec($ch);
-        
-        $headers=array();
+        $recaptcha = $this->input->post('g-recaptcha-response');
+        $response = $this->recaptcha->verifyResponse($recaptcha);
+        if ($this->form_validation->run() == FALSE || !isset($response['success']) || $response['success'] <> true) {
+            $this->index();
+        }else{
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $this->API.'/login');
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 
-        $data=explode("\n",$result);
-
-
-        array_shift($data);
-
-        foreach($data as $part){
-            $middle=explode(":",$part);
-            if (error_reporting() == 0) {
-                $headers[trim($middle[0])] = trim($middle[1]);
-            }
-        }
-        
-        
-        $resval = (array)json_decode(end($data), true);
-
-        $psn = $resval['message'];
-        $user = $resval['data'];
-        $auth = $headers['BABOO-AUTH-KEY'];
-        if (isset($resval['code']) && $resval['code'] == '200')
-        {
-            $status = $resval['code'];
-
-            $this->session->set_userdata('userData', $user);
-            $this->session->set_userdata('authKey', $auth);
-            $this->session->set_userdata('isLogin', $status);
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $userData);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+            curl_setopt($ch, CURLOPT_HEADER, 1);
+            $result = curl_exec($ch);
             
-            $bsession = $this->session->userdata('bookRef');
-            if (!empty($bsession)) {
-                redirect('book/'.$bsession);
-            }else{
-                redirect('timeline');
+            $headers=array();
+
+            $data=explode("\n",$result);
+
+
+            array_shift($data);
+
+            foreach($data as $part){
+                $middle=explode(":",$part);
+                if (error_reporting() == 0) {
+                    $headers[trim($middle[0])] = trim($middle[1]);
+                }
             }
-        }
-        else
-        {
-            $status = $resval['code'];
+            
+            
+            $resval = (array)json_decode(end($data), true);
 
-            echo "<script type='text/javascript'>alert ('".$psn."');window.location.href = '".site_url('login')."';</script>";
-        }
+            $psn = $resval['message'];
+            $user = $resval['data'];
+            $auth = $headers['BABOO-AUTH-KEY'];
+            if (isset($resval['code']) && $resval['code'] == '200')
+            {
+                $status = $resval['code'];
 
-        echo json_encode(array(
-            'status' => $status,
-            'data' => $user,
-            'message' => $psn
-        ));
+                $this->session->set_userdata('userData', $user);
+                $this->session->set_userdata('authKey', $auth);
+                $this->session->set_userdata('isLogin', $status);
+                
+                $bsession = $this->session->userdata('bookRef');
+                if (!empty($bsession)) {
+                    redirect('book/'.$bsession);
+                }else{
+                    redirect('timeline');
+                }
+            }
+            else
+            {
+                $status = $resval['code'];
+
+                echo "<script type='text/javascript'>alert ('".$psn."');window.location.href = '".site_url('login')."';</script>";
+            }
+
+            echo json_encode(array(
+                'status' => $status,
+                'data' => $user,
+                'message' => $psn
+            ));
+        }
     }
 
     public function postregisteruser()
@@ -264,59 +280,66 @@ class C_Login extends MX_Controller
             'modify' => date("Y-m-d H:i:s") 
         );
 
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $this->API.'/register');
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        $recaptcha = $this->input->post('g-recaptcha-response');
+        $response = $this->recaptcha->verifyResponse($recaptcha);
+        if (!isset($response['success']) || $response['success'] <> true) {
+            $this->index();
+        }else{
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $this->API.'/register');
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $userData);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-        curl_setopt($ch, CURLOPT_HEADER, 1);
-        $result = curl_exec($ch);
-        
-        $headers=array();
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $userData);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+            curl_setopt($ch, CURLOPT_HEADER, 1);
+            $result = curl_exec($ch);
+            
+            $headers=array();
 
-        $data=explode("\n",$result);
+            $data=explode("\n",$result);
 
 
-        array_shift($data);
+            array_shift($data);
 
-        foreach($data as $part){
-            $middle=explode(":",$part);
+            foreach($data as $part){
+                $middle=explode(":",$part);
 
-            if (error_reporting() == 0) {
-                $headers[trim($middle[0])] = trim($middle[1]);
+                if (error_reporting() == 0) {
+                    $headers[trim($middle[0])] = trim($middle[1]);
+                }
             }
+            
+            
+            $resval = (array)json_decode(end($data), true);
+
+            $psn = $resval['message'];
+            $user = $resval['data'];
+            $auth = $headers['BABOO-AUTH-KEY'];
+            if (isset($resval['code']) && $resval['code'] == '200')
+            {
+                $status = $resval['code'];
+
+                $this->session->set_userdata('userData', $user);
+                $this->session->set_userdata('authKey', $auth);
+                $this->session->set_userdata('isLogin', $status);
+                redirect("timeline");
+                // redirect('firstlogin');
+            }
+            else
+            {
+                $status = $resval['code'];
+
+                echo "<script type='text/javascript'>alert ('".$psn."');window.location.href = '".site_url('login')."';</script>";
+            }
+
+            echo json_encode(array(
+                'status' => $status,
+                'data' => $user,
+                'message' => $psn
+            ));
         }
-        
-        
-        $resval = (array)json_decode(end($data), true);
-
-        $psn = $resval['message'];
-        $user = $resval['data'];
-        $auth = $headers['BABOO-AUTH-KEY'];
-        if (isset($resval['code']) && $resval['code'] == '200')
-        {
-            $status = $resval['code'];
-
-            $this->session->set_userdata('userData', $user);
-            $this->session->set_userdata('authKey', $auth);
-            $this->session->set_userdata('isLogin', $status);
-            redirect("firstlogin");
-        }
-        else
-        {
-            $status = $resval['code'];
-
-            echo "<script type='text/javascript'>alert ('".$psn."');window.location.href = '".site_url('login')."';</script>";
-        }
-
-        echo json_encode(array(
-            'status' => $status,
-            'data' => $user,
-            'message' => $psn
-        ));
     }
 
 }
