@@ -12,6 +12,7 @@
 </head>
 <?php   $b = $this->uri->segment(3); ?>
 <script type="text/javascript">
+		var base_url = '<?php echo base_url() ?>';
 		function tampilkanPreview(gambar, idpreview) {
 		// membuat objek gambar
 		var gb = gambar.files;
@@ -94,10 +95,8 @@
 
 							<div class="mt-40">
 								<div class="form-group">
-									<select class="form-control" id="category_id" name="category_id">
+									<select class="form-control" id="category_id" name="category_id" required>
 										<option>Kategori</option>
-										<option value="1">2</option>
-										<option value="2">3</option>
 									</select>
 								</div>
 								<div class="form-group">

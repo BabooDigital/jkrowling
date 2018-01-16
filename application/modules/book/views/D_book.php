@@ -71,7 +71,7 @@
 			<?php if (!empty($detail_book)) { ?>
 			<div class="card pb-20">
 				<div class="text-center pr-30 pl-30 pt-20">
-					<img class="cover_image" src="<?php echo ($detail_book['data']['book_info']['cover_url'] != 'Kosong') ? $detail_book['data']['book_info']['cover_url'] : base_url('public/img/profile/blank-photo.jpg'); ?>" width="150" height="200">
+					<img class="cover_image" src="<?php echo ($detail_book['data']['book_info']['cover_url'] != 'Kosong') ? ($detail_book['data']['book_info']['cover_url'] != null ? $detail_book['data']['book_info']['cover_url'] : base_url('public/img/profile/blank-photo.jpg')) : base_url('public/img/profile/blank-photo.jpg'); ?>" width="150" height="200">
 					<div class="card-body">
 						<input type="hidden" name="iaidubi" id="iaidubi" value="<?php echo $detail_book['data']['book_info']['book_id']; ?>">
 						<a href="#">

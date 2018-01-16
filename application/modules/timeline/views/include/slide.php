@@ -1,5 +1,36 @@
-<div class="slider6" style="left: 11% !important;">
-	<div class="slide">
+<div class="slider6" id="slide_show" style="left: 11% !important;">
+		<?php foreach ($slide['data'] as $key => $slide_show): ?>
+		<div class="slide">
+			<div class="<?php echo ($key%2==0) ? 'pinkslidebg' : 'blueslidebg'; ?>">
+				<div class="media">
+				<img alt="<?php
+						echo $slide_show['title_book']; ?>" class="d-flex mr-3" src="<?php echo ($slide_show['popular_cover_url'] != null) ? $slide_show['popular_cover_url'] : base_url('public/img/icon-tab/empty-set.png'); ?>" width="160">
+					<!-- <img class="d-flex mr-3" src="<?php echo base_url(); ?>public/img/book-cover/kite-runner.png" width="160"> -->
+					<div class="media-body mt-10 blueslide" style="padding: 5% 0;">
+						<h4 class="mt-0"><b><?php echo $slide_show['popular_book_title']; ?></b></h4>
+						<p class="authorslide"><?php echo $slide_show['popular_book_title']; ?></p>
+						<p><?php echo $slide_show['popular_book_title']; ?></p>
+						<div class="mt-20"><a href="#" class="btnbooread"><span style="">Baca Buku</span></a></div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<?php endforeach ?>
+	<!-- <div class="pinkslide">
+		<div class="pinkslidebg">
+			<div class="media">
+				<img class="d-flex mr-3" src="<?php echo base_url(); ?>public/img/book-cover/kite-runner.png" width="160">
+				<div class="media-body mt-10 pinkslide" style="padding: 5% 0;">
+					<h4 class="mt-0"><b>Kite Runner</b></h4>
+					<p class="authorslide">by Khaled Hosseini</p>
+					<p>Aku tahu ribuan kalimat kau tulis untuk memberi tanda bahwa kamu selalu sabar menungguku, yang...</p>
+					<div class="mt-20"><a href="#" class="btnbooread"><span style="">Baca Buku</span></a></div>
+				</div>
+			</div>
+		</div>
+	</div> -->
+	<!-- <div class="slide">
 		<div class="blueslidebg">
 			<div class="media">
 				<img class="d-flex mr-3" src="<?php echo base_url(); ?>public/img/book-cover/kite-runner.png" width="160">
@@ -12,32 +43,6 @@
 			</div>
 		</div>
 	</div>
-	<div class="pinkslide">
-		<div class="pinkslidebg">
-			<div class="media">
-				<img class="d-flex mr-3" src="<?php echo base_url(); ?>public/img/book-cover/kite-runner.png" width="160">
-				<div class="media-body mt-10 pinkslide" style="padding: 5% 0;">
-					<h4 class="mt-0"><b>Kite Runner</b></h4>
-					<p class="authorslide">by Khaled Hosseini</p>
-					<p>Aku tahu ribuan kalimat kau tulis untuk memberi tanda bahwa kamu selalu sabar menungguku, yang...</p>
-					<div class="mt-20"><a href="#" class="btnbooread"><span style="">Baca Buku</span></a></div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="slide">
-		<div class="blueslidebg">
-			<div class="media">
-				<img class="d-flex mr-3" src="<?php echo base_url(); ?>public/img/book-cover/kite-runner.png" width="160">
-				<div class="media-body mt-10 blueslide" style="padding: 5% 0;">
-					<h4 class="mt-0"><b>Kite Runner</b></h4>
-					<p class="authorslide">by Khaled Hosseini</p>
-					<p>Aku tahu ribuan kalimat kau tulis untuk memberi tanda bahwa kamu selalu sabar menungguku, yang...</p>
-					<div class="mt-20"><a href="#" class="btnbooread"><span style="">Baca Buku</span></a></div>
-				</div>
-			</div>
-		</div>
-	</div>
 	<div class="slide">
 		<div class="pinkslidebg">
 			<div class="media">
@@ -50,7 +55,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 </div>
 <div class="rightboo">
 	<div class="inrightboo">

@@ -1,5 +1,4 @@
 var url_redirect = '';
-var base_url = window.location.origin + '/jkrowling/';
 
 $(function() {
 	$.FroalaEditor.DefineIcon('imageInfo', { NAME: 'info' });
@@ -66,6 +65,7 @@ function getContent(tab_page, book, chapter) {
 }
 $(document).ready(function() {
 	getCategory();
+	getChapter();
 	$('.backbtn').on('click', function() {
 		window.history.go(-1);
 	});
@@ -137,16 +137,17 @@ $(document).ready(function() {
 					$(this).hide();
 					n();
 				});
-				var url = data['data']['book_id'] + '/chapter/' + data['data']['chapter_id'];
-				url_redirect += 'create_book/' + data['data']['book_id'];
-				aww.replaceWith('<a class="btn w-100 mb-10 chapterdata0 editsubchapt' + count + ' addsubchapt_on" book="' + data['data']['book_id'] + '" chapter="' + data['data']['chapter_id'] + '" id="editchapt" href="' + url + '">' + $("#title_book").val() + '</a>');
+				location.reload();
+				// var url = data['data']['book_id'] + '/chapter/' + data['data']['chapter_id'];
+				// url_redirect += 'create_book/' + data['data']['book_id'];
+				// aww.replaceWith('<a class="btn w-100 mb-10 chapterdata0 editsubchapt' + count + ' addsubchapt_on" book="' + data['data']['book_id'] + '" chapter="' + data['data']['chapter_id'] + '" id="editchapt" href="' + url + '">' + $("#title_book").val() + '</a>');
 
-				$("#sub_title").removeClass('txtaddsubchapt').addClass('txtaddsubchapt_on');
-				$("#title_book").val("");
-				$('.book_paragraph').froalaEditor('undo.reset');
-				$("#title_book").attr({
-					"placeholder": 'Masukan judul chapter'
-				});
+				// $("#sub_title").removeClass('txtaddsubchapt').addClass('txtaddsubchapt_on');
+				// $("#title_book").val("");
+				// $('.book_paragraph').froalaEditor('undo.reset');
+				// $("#title_book").attr({
+				// 	"placeholder": 'Masukan judul chapter'
+				// });
 			})
 			.fail(function() {
 				console.log("error");
@@ -167,6 +168,7 @@ $(document).ready(function() {
 		$(this).parents('#subchapter').append('<input type="button" class="btn w-100 mb-10 chapterdata0 addsubchapt" value="Tambah Sub Cerita" />');
 
 		formData.append("title_book", $("#title_book").val());
+		formData.append("chapter_title", $("#title_book").val());
 		formData.append("cover_name", $('#cover_name').val());
 		formData.append("category_id", $("#category_id").val());
 		formData.append("user_id", $("input:hidden[name=user_id]").val());
@@ -195,17 +197,18 @@ $(document).ready(function() {
 					$(this).hide();
 					n();
 				});
-				var url = data['data']['book_id'] + '/chapter/' + data['data']['chapter_id'];
-				url_redirect += 'create_book/' + data['data']['book_id'];
-				aww.replaceWith('<a class="btn w-100 mb-10 chapterdata0 editsubchapt' + count + ' addsubchapt_on" book="' + data['data']['book_id'] + '" chapter="' + data['data']['chapter_id'] + '" id="editchapt" href="' + url + '">' + $("#title_book").val() + '</a>');
+				location.reload();
+				// var url = data['data']['book_id'] + '/chapter/' + data['data']['chapter_id'];
+				// url_redirect += 'create_book/' + data['data']['book_id'];
+				// aww.replaceWith('<a class="btn w-100 mb-10 chapterdata0 editsubchapt' + count + ' addsubchapt_on" book="' + data['data']['book_id'] + '" chapter="' + data['data']['chapter_id'] + '" id="editchapt" href="' + url + '">' + $("#title_book").val() + '</a>');
 				
-				$("#books_id").html('<input type="hidden" id="book_id" name="book_id" value="' + data['data']['book_id'] + '">');
-				$("#sub_title").removeClass('txtaddsubchapt').addClass('txtaddsubchapt_on');
-				$("#title_book").val("");
-				$('.book_paragraph').froalaEditor('undo.reset');
-				$("#title_book").attr({
-					"placeholder": 'Masukan judul chapter'
-				});
+				// $("#books_id").html('<input type="hidden" id="book_id" name="book_id" value="' + data['data']['book_id'] + '">');
+				// $("#sub_title").removeClass('txtaddsubchapt').addClass('txtaddsubchapt_on');
+				// $("#title_book").val("");
+				// $('.book_paragraph').froalaEditor('undo.reset');
+				// $("#title_book").attr({
+				// 	"placeholder": 'Masukan judul chapter'
+				// });
 			})
 			.fail(function() {
 				console.log("error");
@@ -226,6 +229,28 @@ function getCategory() {
 			category += "<option value='"+val.category_id+"'>"+val.category_name+"</option>";
 		});
 		$("#category_id").html(category);
+	})
+	.fail(function() {
+		console.log("error");
+	})
+	.always(function() {
+		console.log("complete");
+	});
+	
+}
+function getChapter() {
+	$.ajax({
+		url: base_url+'getChapter',
+		data: {book_id: uri_segment},
+		type: 'POST',
+		dataType: 'json'
+	})
+	.done(function(data) {
+		var chapter = ""; 
+		$.each(data, function(index, val) {
+			chapter += '<a class="btn w-100 mb-10 chapterdata0 editsubchapt1 addsubchapt_on" book="2016" chapter="1326" id="editchapt" href="'+val.chapter_id+'">'+val.chapter_title+'</a>';
+		});
+		$("#btn_chapter").html(chapter);
 	})
 	.fail(function() {
 		console.log("error");

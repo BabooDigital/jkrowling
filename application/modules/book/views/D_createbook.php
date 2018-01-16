@@ -11,7 +11,8 @@
 	<?php endif ?>
 </head>
 <script type="text/javascript">
-		
+		var base_url = '<?php echo base_url() ?>';
+		var uri_segment = '<?php echo $this->uri->segment(2) ?>';
 </script>
 <body>
 	<form action="<?php echo site_url(); ?>my_book/create_book/publish" id="form_book" method="POST" enctype="multipart/form-data">
@@ -47,6 +48,9 @@
 							<div id="subchapter">
 								<a style="display: none;" class="btn w-100 mb-10 chapterdata0 editsubchapt1 btnsavedraft" id="btnsavedraft" id="editchapt" href="#"></a>
 								<!-- <a class="btn w-100 mb-10 chapterdata0 addsubchapt" id="editchapt">Tambah Sub Cerita</a> -->
+								<div id="btn_chapter" align="center">
+									<div class="loader"></div>
+								</div>
 								<input type="button" class="btn w-100 mb-10 chapterdata0 addsubchapt" value="Tambah Sub Cerita" />
 							</div>
 
