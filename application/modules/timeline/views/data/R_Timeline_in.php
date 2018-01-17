@@ -109,7 +109,7 @@ foreach ($home as $s_book) { ?>
 
 <?php 
 	if ($s_book['populars']) {
-		echo "<label>Buku Populer</label>";
+		echo "<label class='ml-10'>Buku Populer</label>";
 	} 
 ?>
 <?php foreach ($s_book['populars'] as $populars): ?>

@@ -2,7 +2,7 @@
 	foreach ($home['data'] as $s_book) { ?>
 	<div class="col-md-6 mb-10 all fiksi" style="margin-right: -15px;">
 		<div class="card cardsize" style="padding: 0 10px;">
-			<div class="card-body p-0 p-20">
+			<div class="card-body p-0 p-20" style="overflow: hidden;">
 				<div class="row mb-30">
 					<div class="media w-100">
 						<a href="<?php echo site_url('profile/'.$s_book['author_id'].''); ?>"><img alt="<?php
