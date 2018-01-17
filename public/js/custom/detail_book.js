@@ -498,8 +498,8 @@ function getmenuChapter() {
           if (index == 0) {
             data_chapter += 'chapter_active ';
           }
-          data_chapter += '" id="list_chapters"><a href="#' + val['chapter_id'] + '" class="id_chapter';
-          data_chapter += '" onclick="ScrollToBottom(' + index + ')">' + val['chapter_title'] + '</a></li>';
+          data_chapter += '" id="list_chapters"><a href="'+base_url+'book/'+ segment+'/chapter/'+val['chapter_id']+'" class="id_chapter';
+          data_chapter += '" >' + val['chapter_title'] + '</a></li>';
         } else {
           data_chapter += '<li class="list-group-item ';
           // if (index == 0) {
@@ -511,37 +511,18 @@ function getmenuChapter() {
       });
       $("#list_chapter").html(data_chapter);
       $('.id_chapter').on('click', function(event) {
+        var options = {
+             theme:"sk-cube-grid",
+             message:'Tunggu Sebentar ',
+             backgroundColor:"white",
+             textColor:"#7554bd" 
+        };
+        HoldOn.open(options);
+        var page = $(this).attr('href');
         var $this = $(this);
         $this.parent().siblings().removeClass('chapter_active').end().addClass('chapter_active');
+        getContent(page);
         event.preventDefault();
-
-        if (
-          location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') &&
-          location.hostname == this.hostname
-        ) {
-          // Figure out element to scroll to
-          var target = $(this.hash);
-          target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-          // Does a scroll target exist?
-          if (target.length) {
-            // Only prevent default if animation is actually gonna happen
-            event.preventDefault();
-            $('html, body').animate({
-              scrollBottom: target.offset().bottom
-            }, 1000, function() {
-              // Callback after animation
-              // Must change focus!
-              var $target = $(target);
-              $target.focus();
-              if ($target.is(":focus")) { // Checking if the target was focused
-                return false;
-              } else {
-                $target.attr('tabindex', '-1'); // Adding tabindex for elements not focusable
-                $target.focus(); // Set focus again
-              };
-            });
-          }
-        }
       });
     })
     .fail(function() {
@@ -553,7 +534,31 @@ function getmenuChapter() {
     });
 
 }
-
+function strip_tags(str) {
+    str = str.toString();
+    return str.replace(/<\/?[^>]+>/gi, '');
+}
+function getContent(tab_page) {
+  $.ajax({
+    url: tab_page,
+    type: 'GET',
+    cache: false,
+    dataType:'json',
+    success: function(data) {
+      HoldOn.close();
+      var content = '';
+      $(".loader").hide();
+      $(".chapter").html(data['chapter']['chapter_title']);
+      $.each(data['chapter']['paragraphs'], function(index, val) {
+        var text = strip_tags(val['paragraph_text']);
+        var count = val['comment_count'];
+        if (count == 0) { var view_count = '+'; }else{ var view_count = count;}
+        content += "<div class='mb-20 textp' data-id-p='"+val['paragraph_id']+"' data-text='"+text+"'>"+val['paragraph_text']+"<button type='button' data-p-id='"+val['paragraph_id']+"' data-toggle='modal' id='comm_p' data-target='#myModal2' class='btncompar comment-marker on-inline-comments-modal' for='toggle-right'><span class='num-comment'>"+view_count+"</span><span  aria-hidden='true' style='font-size:28px;'><img src='"+base_url+"public/img/assets/icon_comment.svg'></span></button></div>";
+      });
+      $("#parentparaph").html(content);
+    }
+  })
+}
 
 function getCommentBook() {
   var id = $('#iaidubi').val();

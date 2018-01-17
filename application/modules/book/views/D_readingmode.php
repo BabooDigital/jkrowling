@@ -7,17 +7,22 @@
 </head>
 <body>
 	<div class="container-fluid mb-40">
-		<div class="row">
+		<div class="row" style="height: 700px">
 			<div class="col-md-2 bg-dark"></div>
 			<div class="col-md-8 bg-white">
 				<div id="readingModeContent">
 					<div class="card p-30" style="border-radius: 0;border: none;">
 						<div class="card-body">
 							<div class="media">
-								<img alt="Generic placeholder image" class="d-flex align-self-start mr-20 rounded-circle" src="<?php echo base_url(); ?>public/img/profile/pp_anak2.png" width="50">
+							<img class="d-flex align-self-start mr-20 rounded-circle" width="50" height="50" src="
+							<?php if($detail_book['data']['author']['avatar'] == NULL){
+								echo base_url('public/img/profile/blank-photo.jpg');
+							}else{
+								echo $detail_book['data']['author']['avatar']; } ?>" alt="<?php echo $detail_book['data']['author']['author_name']; ?>">
 								<div class="media-body">
-									<h5 class="nametitle2"><?php echo $detailBook['data']['author']['author_name']; ?></h5>
-									<p><small><span>Jakarta, Indonesia</span></small></p><a class="btn-no-fill dbookfollowbtn" href="#"><span class="nametitle2">Follow</span></a>
+									<h5 class="nametitle2 author_name"><?php echo $detail_book['data']['author']['author_name']; ?></h5>
+									<p><small><span>Jakarta, Indonesia</span></small></p>
+									<a href="#" data-follow="<?php echo $detail_book['data']['book_info']['book_id']; ?>" class="btn-no-fill dbookfollowbtn ml-20 <?php if ($detail_book['data']['author']['is_follow'] == false) { echo "follow-u"; }else{ echo "unfollow-u"; } ?>"><span class="nametitle2 txtfollow"><?php if ($detail_book['data']['author']['is_follow'] == false) { echo "Follow"; }else{ echo "Unfollow"; } ?></span></a>
 								</div>
 							</div>
 							<div id="post-data">
@@ -25,9 +30,9 @@
 									$this->load->view('data/D_readingmode', $detail_book); ?> -->
 									<?php $this->load->view('data/D_readingmode'); ?>
 							</div>
-							<div class="loader" style="display: none;margin-left: auto;margin-right: auto;"></div>
-							<hr>
-							<?php if ($menuChapter['data'][3]['chapter_free'] == "false"): ?>
+							<div id="read" style="display: none;">
+								<div class="loader" style="display: none;margin-left: auto;margin-right: auto;"></div>
+							<?php if ($detail_book['data']['book_info']['is_free'] == "false"): ?>
 								<div>
 								<p class="modallimitbook">Kamu baru saja selesai membaca batas gratis buku ini, untuk membaca bab lainnya silahkan beli buku ini lalu lanjutkan membaca.</p>
 							</div>
@@ -64,96 +69,19 @@
 								</div>
 							</div>
 							<?php endif ?>
-							<!-- <div class="mt-10">
+							<div class="mt-10">
 								<div class="bg-white p-10">
-									<p>Nilai Produk</p>
-									<hr>
+									<p></p>
 									<div class="row">
 										<div class="col-md-3">
-											<div class="border border-top-0 border-left-0 border-bottom-0">
-												<h1 style="font-size: 5.5rem;"><strong>4.4</strong></h1>
-											</div>
-										</div>
-										<div class="col-md-9">
-											<div class="row" style="position: relative;right: 25px;">
-												<div class="col-md-5">
-													<div class="rating">
-														<span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-													</div>
-												</div>
-												<div class="col-md-6">
-													<div class="progress ratingprogress">
-														<div aria-valuemax="100" aria-valuemin="0" aria-valuenow="25" class="progress-bar" role="progressbar" style="width: 25%;"></div>
-													</div>
-												</div>
-												<div class="col-md-1">
-													<span style="position: relative;top: -7px;"><b>5</b></span>
-												</div>
-											</div>
-											<div class="row" style="position: relative;right: 25px;">
-												<div class="col-md-5">
-													<div class="rating">
-														<span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-													</div>
-												</div>
-												<div class="col-md-6">
-													<div class="progress ratingprogress" id="progress">
-														<div aria-valuemax="100" aria-valuemin="0" aria-valuenow="0" class="progress-bar" role="progressbar"></div>
-													</div>
-												</div>
-												<div class="col-md-1">
-													<span style="position: relative;top: -7px;"><b>5</b></span>
-												</div>
-											</div>
-											<div class="row" style="position: relative;right: 25px;">
-												<div class="col-md-5">
-													<div class="rating">
-														<span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-													</div>
-												</div>
-												<div class="col-md-6">
-													<div class="progress ratingprogress">
-														<div aria-valuemax="100" aria-valuemin="0" aria-valuenow="25" class="progress-bar" role="progressbar" style="width: 25%;"></div>
-													</div>
-												</div>
-												<div class="col-md-1">
-													<span style="position: relative;top: -7px;"><b>5</b></span>
-												</div>
-											</div>
-											<div class="row" style="position: relative;right: 25px;">
-												<div class="col-md-5">
-													<div class="rating">
-														<span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-													</div>
-												</div>
-												<div class="col-md-6">
-													<div class="progress ratingprogress">
-														<div aria-valuemax="100" aria-valuemin="0" aria-valuenow="25" class="progress-bar" role="progressbar" style="width: 25%;"></div>
-													</div>
-												</div>
-												<div class="col-md-1">
-													<span style="position: relative;top: -7px;"><b>5</b></span>
-												</div>
-											</div>
-											<div class="row" style="position: relative;right: 25px;">
-												<div class="col-md-5">
-													<div class="rating">
-														<span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-													</div>
-												</div>
-												<div class="col-md-6">
-													<div class="progress ratingprogress">
-														<div aria-valuemax="100" aria-valuemin="0" aria-valuenow="25" class="progress-bar" role="progressbar" style="width: 25%;"></div>
-													</div>
-												</div>
-												<div class="col-md-1">
-													<span style="position: relative;top: -7px;"><b>5</b></span>
-												</div>
-											</div>
+											<!-- <div class="border border-top-0 border-left-0 border-bottom-0"> -->
+												<!-- <h1 style="font-size: 5.5rem;"><strong></strong></h1> -->
+											<!-- </div> -->
 										</div>
 									</div>
 								</div>
-							</div> -->
+							</div>
+							</div>
 						</div>
 					</div>
 					<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-bottom box-shadow-navbar">

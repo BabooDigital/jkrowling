@@ -285,7 +285,7 @@
 	<?php echo get_js($js) ?>
 <?php endif ?>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 	var page = 0;
 	$(window).scroll(function() {
 		if($(window).scrollTop() + $(window).height() > $(document).height() - 1000) {
@@ -319,6 +319,6 @@
 			console.log('server not responding...');
 		});
 	}
-</script>
+</script> -->
 </body>
 </html>
