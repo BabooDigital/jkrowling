@@ -6,11 +6,12 @@ $(function(){
   backLink();
   publishChapter();
   publishBook();
+  getCategory();
 });
 function publishBook() {
     $("#publish_book").click(function() {
       var formData = new FormData();
-      formData.append("book_id", $("#book_id").val());
+      formData.append("book_id", $("#uri").val());
       formData.append("file_cover", $("#cover_name").val());
       formData.append("category", $("#category_ids").val());
 
@@ -148,23 +149,60 @@ function backLink() {
       var chapter_title = $("#chapter_title_out").val();
       var paragraph_book = $("#paragraph_book").val();
       var url = base_url+'savechapter';
-        var confirmText = "Are you sure ?";
-        if(confirm(confirmText)) {
-            $.ajax({
+      swal({
+        title: 'Simpan cerita?',
+        text: "Simpan cerita kamu dan menuju daftar cerita yang kamu buat.",
+        showCancelButton: true,
+        confirmButtonColor: '#644cb6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Simpan',
+        cancelButtonText: 'Batal'
+      }).then((result) => {
+        if (result.value) {
+          $.ajax({
                 type:"POST",
                 url:url,
                 data: { 'book_id' : book_id, 'chapter_title' : chapter_title, 'paragraph_book' : paragraph_book},
                 dataType: 'json',
+                beforeSend: function () {
+                  swal({
+                    title: 'Menyimpan Cerita',
+                    timer: 60000,
+                    onOpen: () => {
+                      swal.showLoading()
+                    }
+                  });
+                },
                 success:function (data) {
                   if (data.code == 200) {
-                    // console.log(data.data['book_id']);
                     window.location = base_url+'listchapter/'+data.data['book_id'];
                   }
                 },
             });
         }
-        return false;
+      });
     });
+}
+
+function getCategory() {
+  $.ajax({
+    url: base_url+'getCategory',
+    type: 'POST',
+    dataType: 'json'
+  })
+  .done(function(data) {
+    var category = "<option value=''>Pilih Category Buku</option>"; 
+    $.each(data, function(index, val) {
+      category += "<option value='"+val.category_id+"'>"+val.category_name+"</option>";
+    });
+    $("#category_ids").html(category);
+  })
+  .fail(function() {
+    console.log("error");
+  })
+  .always(function() {
+  });
+  
 }
 
 // function back(url) {

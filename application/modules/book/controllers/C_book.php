@@ -287,7 +287,7 @@ class C_book extends MX_Controller {
 
 		$sendData = array(
 			'book_id' => $bookid,
-			'chapter' => $idch,
+			'chapter_id' => $idch,
 		);
 
 		$ch = curl_init();
@@ -320,21 +320,19 @@ class C_book extends MX_Controller {
 		}
 		$getdata = end($data);
 		$resval =  json_decode($getdata, TRUE);
-		$status = $resval['code'];
-		$pesan = $resval['message'];
-		$data = $resval['data'];
+
 		$auth = $headers['BABOO-AUTH-KEY'];
 		
 		$this->session->set_userdata('authKey', $auth);
 
-		$data['detailBook'] = $resval;
+		$data['detail_book'] = $resval;
 		$data['title'] = $resval['data']['chapter']['chapter_title'] ." | ". $resval['data']['book_info']['title_book']." - Baboo";
 		$data['js'][] = "public/js/jquery.min.js";
 		$data['js'][] = "public/js/umd/popper.min.js";
 		$data['js'][] = "public/js/bootstrap.min.js";
 		$data['js'][] = "public/js/jquery.sticky-kit.min.js";
 		$data['js'][] = "public/js/custom/mobile/r_detail_book.js";
-
+		
 		$this->load->view('include/head', $data);
 		$this->load->view('R_book');
 	}

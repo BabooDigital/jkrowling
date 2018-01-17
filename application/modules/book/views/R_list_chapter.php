@@ -7,7 +7,7 @@
 				<!-- <form class="navbar-brande"> -->
 					<a href="<?php echo site_url(); ?>timeline" class="backlink" style="background: transparent;border: 1px solid transparent;"><i class="fa fa-arrow-left"></i> &nbsp; <span>Kembali</span></a>
 					<!-- </form> -->
-					<form class="form-inline" method="post" action="<?php echo site_url('cover') ?>">
+					<form class="form-inline" method="post" action="<?php echo site_url('cover/'.$this->uri->segment(2).'') ?>">
 						<input type="hidden" name="book_id" id="book_id" value="<?php echo $book_id; ?>">
 						<input type="hidden" name="chapter_title" id="chapter_title">
 						<!-- <input type="text" name="paragraph" id="paragraph"> -->
@@ -69,30 +69,31 @@
 <br>
 <br>
 <br>
-<div class="container">
-	<div class="row">
-<h2><?php echo $ ?></h2>
+<div class="container mb-80">
+	<div class="row p-10">
+		<h2><b><?php echo $title_book; ?></b></h2>
+		<hr>
 		<div class="list-group group-full">
 			<?php foreach ($list_chapter as $chapter_list): ?>
 				<?php $array = (array)$chapter_list; ?>
-				<a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+				<a href="#" class="list-group-item list-group-item-action flex-column align-items-start bg-transparent">
 					<div class="d-flex w-100 justify-content-between">
 						<h5 class="mb-1"><b><?php echo $array['chapter_title']; ?></b></h5>
 					</div>
-					<small class="text-muted"><?php echo $array['desc']; ?>.</small>
+					<small><?php echo $array['desc']; ?>.</small>
 				</a>
 			<?php endforeach ?>
 		</div>
 	</div>
 </div>
-<footer class="navbar navbar-expand-lg fixed-bottom baboonav" style="height:60px;">
+<nav class="navbar navbar-expand-lg fixed-bottom baboonav" style="height:60px;">
 	<div class="container">
 		<form style="width: 100%;" method="post" action="<?php echo site_url('chapter') ?>">
 			<input type="hidden" name="book_id" value="<?php echo $book_id; ?>">
 			<button class="btn-publish" type="submit">Tambah Cerita Baru</button> 
 		</form>
 	</div>
-</footer>
+</nav>
 <?php if (isset($js)): ?>
 	<?php echo get_js($js) ?>
 <?php endif ?>

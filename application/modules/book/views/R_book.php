@@ -62,7 +62,8 @@
 					<!-- <label for="toggle-right" class="profile-toggle"><b>+</b></label> -->
 					<!-- </form> -->
 					<nav class="profile">
-						<label class="btn-transparant" for="toggle-right" class="close">&nbsp;&nbsp;&times;</label> 
+						<div>
+							<label class="btn-transparant" for="toggle-right" class="close">&nbsp;&nbsp;&times;</label> 
 						<div class="text-center">
 							<div class="mt-20">
 								<p><img class="cover_image" width="160" height="222" src="<?php echo $detail_book['data']['book_info']['cover_url']; ?>"></p>
@@ -80,6 +81,7 @@
 						  <div class="list-group" id="list_Rchapter">
 
 						  </div>
+						</div>
 						</div>
 					</nav>
 				</div>

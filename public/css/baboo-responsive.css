@@ -327,7 +327,7 @@ input:checked + .label-md {
   height: 100px;
   background: transparent;
   border: 0;
-  width: 70%;
+  width: 100%;
   font-size: 35pt;
   font-weight: bold;
   text-align: center;
