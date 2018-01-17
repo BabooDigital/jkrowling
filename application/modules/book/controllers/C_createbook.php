@@ -158,7 +158,9 @@ class C_createbook extends MX_Controller {
 			if (isset($resval['code']) && $resval['code'] == '200')
 			{
 				$status = $resval['code'];
+				$this->session->set_userdata('title_book', $title_book);
 				$this->session->set_userdata('authKey', $auth);
+				$this->session->set_userdata('idBook_', $book_id);
 				$this->session->set_userdata('dataBook', $user);
 			}
 			else
@@ -174,6 +176,7 @@ class C_createbook extends MX_Controller {
 		$data['css'][] = "public/css/font-awesome.min.css";
 		$data['css'][] = "public/css/baboo-responsive.css";
 		$data['css'][] = "public/css/baboo.css";
+		$data['css'][] = "public/css/sweetalert2.min.css";
 		$data['css'][] = "public/plugins/holdOn/css/HoldOn.css";
 		$data['css'][] = "public/plugins/wysiwyg/src/bootstrap-wysihtml5.css";
 
@@ -195,6 +198,7 @@ class C_createbook extends MX_Controller {
 
 
 		$data['js'][] = "public/plugins/froala/js/froala_editor.min.js";
+		$data['js'][] = "public/js/sweetalert2.all.min.js";
 		$data['js'][] = "public/js/custom/create_book_r.js";
 
 		$data['js'][] = "public/plugins/froala/js/plugins/align.min.js";
@@ -275,7 +279,7 @@ class C_createbook extends MX_Controller {
 			echo json_encode($resval);
 		// }
 	 } 
-	 public function listchapter()
+	 public function listChapter()
 	 {
 		$auth = $this->session->userdata('authKey');
 		$id_user = $this->session->userdata('userData')['user_id'];
@@ -323,8 +327,10 @@ class C_createbook extends MX_Controller {
         }
 
 		if ($resval['code'] == 200) {
+			$data['title'] = 'Daftar chapter buku mu | Baboo Beyond Book &amp; Creativity';
 			$data['list_chapter'] = $data_resval;
 			$data['book_id'] = $book_id;
+			$data['title_book'] = $this->session->userdata('title_book');
 			$this->load->view('include/head', $data);
 			$this->load->view('R_list_chapter');
 		}
