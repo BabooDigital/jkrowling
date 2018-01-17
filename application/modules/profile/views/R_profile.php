@@ -1,6 +1,9 @@
 <body id="pageContent">
 
 	<?php $this->load->view('navbar/R_navbar'); ?>
+	<div id="floating-btn">
+	<a href="<?php echo site_url(); ?>create_mybook" class="floating-btn"><img src="<?php echo base_url(); ?>public/img/assets/icon_tulis.svg"></a>
+</div>
 	<br>
 	<br>
 	<br>

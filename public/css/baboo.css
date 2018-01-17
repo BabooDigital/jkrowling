@@ -565,7 +565,7 @@ input.formsearch:focus {
 }
 
 .bukupilihan {
-	padding: 7px 17px;
+	padding: 5px 20px;
 	background-color: #7554bd;
 	border-radius: 25px;
 	font-size: 10pt;
@@ -859,7 +859,7 @@ input.formsearch:focus {
 	}
 
 	.blueslidebg {
-		padding: 5%;
+		padding: 25px;
 		background-color: #7db6d0;
 	}
 
@@ -874,7 +874,7 @@ input.formsearch:focus {
 	}
 
 	.pinkslidebg {
-		padding: 5%;
+		padding: 25px;
 		background-color: #edb6c1;
 	}
 
@@ -886,6 +886,14 @@ input.formsearch:focus {
 		color: #000;
 		font-family: 'Source Sans Pro', sans-serif;
 		line-height: 1.33;
+	}
+
+	.rpinkslidebg {
+		background: #edb6c1;
+	}
+
+	.rblueslidebg {
+		background: #7db6d0;
 	}
 
 	/*SLIDER*/

@@ -1,14 +1,13 @@
-
-<body id="pageContent" class="bg-white">
+<style type="text/css">
+	.card {
+		border-radius: 0 !important;
+	}
+</style>
+<body id="pageContent">
 <div id="floating-btn">
-	<!-- <form action="<?php echo site_url(); ?>createidbook" method="POST">
-		<input type="hidden" name="iaiduui" value="<?php $name = $this->session->userdata('userData'); echo $name['user_id']; ?>"> -->
-		<!-- <a href="<?php echo site_url('create_book') ?>" class="floating-btn"><i class="fa fa-pencil" aria-hidden="true"></i></a> -->
-		<a href="<?php echo site_url(); ?>create_mybook" class="floating-btn"><img src="<?php echo base_url(); ?>public/img/assets/icon_tulis.svg"></a>
-	<!-- </form> -->
+	<a href="<?php echo site_url(); ?>create_mybook" class="floating-btn"><img src="<?php echo base_url(); ?>public/img/assets/icon_tulis.svg"></a>
 </div>
 		<?php $this->load->view('navbar/R_navbar'); ?>	
-		<br>
 		<br>
 		<br>
 		<br>
@@ -20,7 +19,7 @@
 				<div class="row">
 					<div class="col-md-6">
 						<br>
-						<div class="loader" style="display: none;"></div>
+						<div class="loader mx-auto" style="display: none;"></div>
 					</div>
 				</div>
 			</div>

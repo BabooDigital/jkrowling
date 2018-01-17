@@ -1,4 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Noto+Serif:400,700|Source+Sans+Pro:400,600,700,900');
+
+a:hover {
+  text-decoration: none;
+}
+
 @media screen and (max-width: 350px) {
   .navbar-brand {
       margin: auto !important;
@@ -826,5 +831,10 @@ input:checked + .slider:before {
     background: #7554bd;
     padding: 4% 36%;
     font-size: 40pt;
+    color: #fff;
+  }
+
+  .btnupdate-prof:hover {
+    background: #59399e;
     color: #fff;
   }

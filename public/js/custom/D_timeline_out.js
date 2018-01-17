@@ -1,6 +1,5 @@
 $(document).ready(function(){
   getWritters();
-  getSlide();
 });
 function getWritters() {
   $.ajax({
@@ -9,16 +8,15 @@ function getWritters() {
     dataType: 'json',
   })
   .done(function(data) {
-    var json = $.parseJSON(data);
     var datas = "";
-    $.each(json.data, function(i, item) {
+    $.each(data, function(i, item) {
       var avatar;
       if (item.avatar != "") {
         avatar = item.avatar;
       }else if (item.avatar == ""){
         avatar = 'public/img/profile/blank-photo.jpg';
       }
-      datas += "<li class='media baboocontent'><img alt='"+item.author_name+"' class='d-flex mr-3 rounded-circle' src='"+ avatar +"' width='50' height='50'><div class='media-body mt-7'><h5 class='mt-0 mb-1 nametitle'>"+item.author_name+"</h5><small>Fiksi</small><div class='pull-right baboocolor'><a href='#' class='addbutton'><img src='public/img/assets/icon_plus_purple.svg' width='20' class='mt-img'></a></div></div></li>";
+      datas += "<a href='"+base_url+"profile/"+item.author_id+"'><li class='media baboocontent'><img alt='"+item.author_name+"' class='d-flex mr-3 rounded-circle' src='"+ avatar +"' width='50' height='50'><div class='media-body mt-7'><h5 class='mt-0 mb-1 nametitle'>"+item.author_name+"</h5><small>Fiksi</small><div class='pull-right baboocolor'><a href='#' class='addbutton'><img src='public/img/assets/icon_plus_purple.svg' width='20' class='mt-img'></a></div></div></li></a>";
       
     });
     $("#author_this_week").html(datas);
@@ -61,23 +59,4 @@ function getWritters() {
       console.log('server not responding...');
     });
   }
-}
-function getSlide() {
-  $.ajax({
-    url: 'slide',
-    type: 'GET',
-    dataType: 'json',
-  })
-  .done(function(data) {
-    var datas = "";
-    $.each(data, function(i, item) {
-      datas += '<div class="slide"> <div class="blueslidebg"> <div class="media"> <img class="d-flex mr-3" src="'+base_url+'public/img/book-cover/kite-runner.png" width="160"> <div class="media-body mt-10 blueslide" style="padding: 5% 0;"> <h4 class="mt-0"><b>Kite Runner</b></h4> <p class="authorslide">by Khaled Hosseini</p> <p>Aku tahu ribuan kalimat kau tulis untuk memberi tanda bahwa kamu selalu sabar menungguku, yang...</p> <div class="mt-20"><a href="#" class="btnbooread"><span style="">Baca Buku</span></a></div> </div> </div> </div> </div> '; 
-    });
-    $("#slide_show").html(datas);
-  })
-  .fail(function() {
-    console.log("error");
-  })
-  .always(function() {
-  });
 }

@@ -15,11 +15,19 @@
 
 	
 </head>
+<style type="text/css">
+	.card {
+		border-radius: 0 !important;
+	}
+	body {
+		background: #ebf0f4 !important;
+	}
+</style>
 <body>
 	<nav class="navbar navbar-expand-lg fixed-top   baboonav">
 		<button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbarSupportedContent" data-toggle="collapse" type="button"><span class="fa fa-bars"></span></button>
-		<a class="navbar-brand" href="#"><img alt="" src="<?php echo base_url(); ?>public/img/logo_purple.png" width="100"></a>
-		<a href="<?php echo site_url();?>login" class="btn bukupilihan" style="background-color:#f6e8ff; border:solid 1px #7554bd; color:#7554bd; ">Masuk</a>
+		<a class="navbar-brand" href="#"><img alt="Baboo - Beyond Book &amp; Creativity" src="<?php echo base_url(); ?>public/img/new_logo.svg" width="100"></a>
+		<a href="<?php echo site_url();?>login" class="btn bukupilihan" style="background-color:#f7f3ff; border:solid 1px #7554bd; color:#7554bd; ">Masuk</a>
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav">
@@ -40,57 +48,10 @@
 			</ul>
 		</div>
 	</nav><!-- slider -->
-	<div class="mt-60">
+	<div class="mt-50">
 		
 		<div class="your-class">
-			<div style="background-color: #edb6c1;">
-				<div style="padding:5%;">
-					<div class="media">
-						<img class="d-flex mr-3" src="https://spark.adobe.com/images/landing/examples/how-to-book-cover.jpg" style="box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5); height:150px;">
-						<div class="media-body mt-10 pinkslide" style="padding: 5% 0;">
-							<h6 class="mt-0"><b>Kite Runner</b></h6>
-							<p style="font-size:10px;">by Khaled Hosseini</p>
-							<p style="font-size:8px;">Aku tahu ribuan kalimat kau tulis untuk memberi tanda bahwa kamu selalu sabar menungguku, yang...</p>
-						</div>
-					</div>								
-				</div>
-			</div>
-			<div style="background-color: #7db6d0;">
-				<div style="padding:5%;">
-					<div class="media">
-						<img class="d-flex mr-3" src="https://spark.adobe.com/images/landing/examples/how-to-book-cover.jpg" style="box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5); height:150px;">
-						<div class="media-body mt-10 blueslide" style="padding: 5% 0;">
-							<h6 class="mt-0"><b>Kite Runner</b></h6>
-							<p style="font-size:10px;">by Khaled Hosseini</p>
-							<p style="font-size:8px;">Aku tahu ribuan kalimat kau tulis untuk memberi tanda bahwa kamu selalu sabar menungguku, yang...</p>
-						</div>
-					</div>								
-				</div>
-			</div>
-			<div style="background-color: #edb6c1;">
-				<div style="padding:5%;">
-					<div class="media">
-						<img class="d-flex mr-3" src="https://spark.adobe.com/images/landing/examples/how-to-book-cover.jpg" style="box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5); height:150px;">
-						<div class="media-body mt-10 pinkslide" style="padding: 5% 0;">
-							<h6 class="mt-0"><b>Kite Runner</b></h6>
-							<p style="font-size:10px;">by Khaled Hosseini</p>
-							<p style="font-size:8px;">Aku tahu ribuan kalimat kau tulis untuk memberi tanda bahwa kamu selalu sabar menungguku, yang...</p>
-						</div>
-					</div>								
-				</div>
-			</div>
-			<div style="background-color: #7db6d0;">
-				<div style="padding:5%;">
-					<div class="media">
-						<img class="d-flex mr-3" src="https://spark.adobe.com/images/landing/examples/how-to-book-cover.jpg" style="box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5); height:150px;">
-						<div class="media-body mt-10 blueslide" style="padding: 5% 0;">
-							<h6 class="mt-0"><b>Kite Runner</b></h6>
-							<p style="font-size:10px;">by Khaled Hosseini</p>
-							<p style="font-size:8px;">Aku tahu ribuan kalimat kau tulis untuk memberi tanda bahwa kamu selalu sabar menungguku, yang...</p>
-						</div>
-					</div>								
-				</div>
-			</div>
+			<?php $this->load->view('include/R_slide'); ?>
 		</div>
 
 	</div>
@@ -99,7 +60,7 @@
 		<div class="container">
 			<div class="row" style="margin:0;">
 				<div class="col-3 aktip" style="padding-left:0px; padding-right:0px; padding-top: 5px;">
-					<center><a style="font-size:12px; color:#fff; font-family: 'Poppins';" class="btnfilter" data-filter="all">Semua</a></center>
+					<center><a style="font-size:12px; color:#fff; font-family: 'Poppins';" class="btnfilter" data-filter="all">Buku Pilihan</a></center>
 				</div>
 				<div class="col-3" style="padding-left:0px; padding-right:0px; padding-top: 5px;;">
 					<center><a style="font-size:12px; color:#fff; font-family: 'Poppins';" class="btnfilter" data-filter="fiksi">Fiksi</a></center>
