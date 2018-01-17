@@ -10,7 +10,7 @@ class C_profile extends MX_Controller {
 		$this->API = "api.dev-baboo.co.id/v1/auth/OAuth";
 
 		if ($this->session->userdata('isLogin') != 200) {
-			redirect('home');
+			redirect('login');
 		}
 	}
 
@@ -70,14 +70,17 @@ class C_profile extends MX_Controller {
 		$data['js'][] = "public/js/umd/popper.min.js";
 		$data['js'][] = "public/js/bootstrap.min.js";
 		$data['js'][] = "public/js/jquery.sticky-kit.min.js";
-		$data['js'][] = "public/js/custom/profile_page.js";
 		if ($this->agent->mobile()) {
 
 			$data['css'][] = "public/css/baboo-responsive.css";
+			$data['js'][] = "public/js/custom/mobile/r_profile_page.js";
+			
 			$this->load->view('include/head', $data);
 			$this->load->view('R_profile', $data);
 			
 		}else{
+			$data['js'][] = "public/js/custom/profile_page.js";
+
 			$this->load->view('include/head', $data);
 			$this->load->view('D_profile');
 			// $this->load->view('timeline/include/foot');

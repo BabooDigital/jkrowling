@@ -12,7 +12,7 @@
  	color: #333;
  }
  .btn-secondary.active, .btn-secondary:active, .show>.btn-secondary.dropdown-toggle {
- 	background-color: #edb6c1;
+ 	background-color: #7554bd;
  	border: none;
  	color: #fff;
  }
@@ -55,7 +55,7 @@
 										<label class="btn btn-secondary">
 											<div class="itemcontent">
 												<input type="checkbox" name="var_id[]" autocomplete="off" value="">
-												<img src="http://placehold.it/200x200">
+												<img src="<?php echo base_url(); ?>public/img/assets/icon_fiksi.svg" width="200" height="200">
 												<h1>Fiksi</h1>
 											</div>
 										</label>
@@ -68,7 +68,7 @@
 										<label class="btn btn-secondary">
 											<div class="itemcontent">
 												<input type="checkbox" name="var_id[]" autocomplete="off" value="">
-												<img src="http://placehold.it/200x200">
+												<img src="<?php echo base_url(); ?>public/img/assets/icon_nonfiksi.svg" width="200" height="200">
 												<h1>Non-Fiksi</h1>
 											</div>
 										</label>
@@ -81,7 +81,7 @@
 										<label class="btn btn-secondary">
 											<div class="itemcontent">
 												<input type="checkbox" name="var_id[]" autocomplete="off" value="">
-												<img src="http://placehold.it/200x200">
+												<img src="<?php echo base_url(); ?>public/img/assets/icon_komik.svg" width="200" height="200">
 												<h1>Komik</h1>
 											</div>
 										</label>

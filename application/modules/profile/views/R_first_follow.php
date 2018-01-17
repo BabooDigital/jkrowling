@@ -78,7 +78,7 @@
 
 		<nav class="navbar navbar-light bg-borr fixed-bottom p-70">
 			<div class="w-100">
-				<a href="<?php echo site_url(); ?>first_follow" class="mx-auto btnupdate-prof">Lanjutkan</a>
+				<a href="<?php echo site_url(); ?>timeline" class="mx-auto btnupdate-prof">Lanjutkan</a>
 			</div>
 		</nav>
 	</div>

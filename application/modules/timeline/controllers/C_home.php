@@ -17,7 +17,8 @@ class C_home extends MX_Controller {
 	public function index()
 	{
 		error_reporting(0);
-		$auths = $this->session->userdata('authKey');
+
+		// Data Timeline
 		$ch = curl_init();
 		if (!empty($this->input->get("page"))) {
 			$id = '/'.$this->input->get("page");
@@ -26,32 +27,29 @@ class C_home extends MX_Controller {
 		}
 		curl_setopt($ch, CURLOPT_URL, $this->API.'/index'.$id);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		// curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-
 		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
 		curl_setopt($ch, CURLOPT_POST, false);
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 		curl_setopt($ch, CURLOPT_HEADER, 1);
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key : '.$auths));
 		$result = curl_exec($ch);
 
 		$headers=array();
-
-		$datas=explode("\n",$result);
-
-		array_shift($datas);
-
-		foreach($datas as $part){
+		
+		$timeline=explode("\n",$result);
+		
+		array_shift($timeline);
+		
+		foreach($timeline as $part){
 			$middle=explode(":",$part);
-
 			if (error_reporting() == 0) {
 				$headers[trim($middle[0])] = trim($middle[1]);
 			}
 		}
+
+		// DATA SLIDER
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $this->API.'/bestBook');
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		// curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 
 		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
 		curl_setopt($ch, CURLOPT_POST, false);
@@ -59,36 +57,38 @@ class C_home extends MX_Controller {
 		curl_setopt($ch, CURLOPT_HEADER, 1);
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key : '.$auths));
 		$result = curl_exec($ch);
+		
 		$headers=array();
-
-		$datas=explode("\n",$result);
-
-		array_shift($datas);
-
-		foreach($datas as $part){
+		
+		$slider=explode("\n",$result);
+		
+		array_shift($slider);
+		
+		foreach($slider as $part){
 			$middle=explode(":",$part);
-
 			if (error_reporting() == 0) {
 				$headers[trim($middle[0])] = trim($middle[1]);
 			}
 		}
-		// $datas['home'] = json_decode($datas[14], true);
-		// $datas['baboo'] = json_decode($datas[5], true);
-		$resval = (array)json_decode(end($datas), true);
-		$psn = $datas['home']['message'];
-		$data = $datas['home']['data'];
-		$auth = $datas['baboo']['BABOO-AUTH-KEY'];
-		if (isset($datas['home']['code']) && $datas['home']['code'] == '200')
+
+		$resval1 = (array)json_decode(end($timeline), true);
+		$resval2 = (array)json_decode(end($slider), true);
+
+		$psn = $timeline['home']['message'];
+		$data = $timeline['home']['data'];
+		$auth = $timeline['baboo']['BABOO-AUTH-KEY'];
+		if (isset($timeline['home']['code']) && $timeline['home']['code'] == '200')
 		{
-			$status = $datas['home']['code'];
+			$status = $timeline['home']['code'];
 			$this->session->set_userdata('authKey', $auth);
 		}
 		else
 		{
-			$status = $datas['home']['code'];
+			$status = $timeline['home']['code'];
 		}
-		$data['home'] = json_decode(end($datas), true);
-		$data['slide'] = $resval;
+
+		$data['home'] = json_decode(end($timeline), true);
+		$data['slide'] = $resval2;
 		$data['title'] = "Baboo - Beyond Book & Creativity";
 		$data['js'][]   = "public/js/jquery.min.js";
 		$data['js'][]   = "public/plugins/infinite_scroll/jquery.jscroll.js";
@@ -96,7 +96,6 @@ class C_home extends MX_Controller {
 		$data['js'][]   = "public/js/baboo.js";
 		$data['js'][]   = "public/js/jquery.sticky-kit.min.js";
 		$data['js'][]   = "public/js/custom/D_timeline_out.js";
-
 		if ($this->agent->is_mobile('ipad'))
 		{
 			$this->load->view('include/head', $data);
@@ -113,108 +112,44 @@ class C_home extends MX_Controller {
 			if (!empty($this->input->get("page"))) {
 				$result = $this->load->view('data/R_Timeline_out', $data);
 			}else{
-
 				$this->load->view('R_Timeline_out', $data);
 			}
-			// $this->load->view('include/head', $mobile);
-			// $this->load->view('R_Timeline_out', $data);
+
 		}
 		else
 		{
 			if (!empty($this->input->get("page"))) {
 				$result = $this->load->view('data/D_Timeline_out', $data);
 			}else{
-
 				$this->load->view('include/head', $data);
 				$this->load->view('D_Timeline_out', $data);
 			}
 		}
-
-		// if ($i%2==0) {
-		// 	echo "genap";
-		// }if ($i%2!=0) {
-		// 	echo "ganjil";
-		// }
-		// print_r($data['slide']);
 	}
 
 	public function getWritter()
 	{
-		$auths = $this->session->userdata('authKey');
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $this->API.'/bestWriter');
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		// curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-
 		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
 		curl_setopt($ch, CURLOPT_POST, false);
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 		curl_setopt($ch, CURLOPT_HEADER, 1);
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key : '.$auths));
+		
 		$result = curl_exec($ch);
 		$headers=array();
-
 		$datas=explode("\n",$result);
-
 		array_shift($datas);
-
 		foreach($datas as $part){
 			$middle=explode(":",$part);
-
 			if (error_reporting() == 0) {
 				$headers[trim($middle[0])] = trim($middle[1]);
 			}
 		}
-		$datas['home'] = json_decode(end($datas), true);
-		// $datas['baboo'] = json_decode($datas[5], true);
-		$psn = $datas['home']['message'];
-		$data = $datas['home']['data'];
-		echo $datas;
-	}
-	public function getSlide()
-	{
-		error_reporting(0);
-		$auths = $this->session->userdata('authKey');
-		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, $this->API.'/bestBook');
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		// curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-
-		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
-		curl_setopt($ch, CURLOPT_POST, false);
-		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-		curl_setopt($ch, CURLOPT_HEADER, 1);
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key : '.$auths));
-		$result = curl_exec($ch);
-		$headers=array();
-
-		$datas=explode("\n",$result);
-
-		array_shift($datas);
-
-		foreach($datas as $part){
-			$middle=explode(":",$part);
-
-			if (error_reporting() == 0) {
-				$headers[trim($middle[0])] = trim($middle[1]);
-			}
-		}
-		// $datas['home'] = json_decode($datas[14], true);
-		// $datas['baboo'] = json_decode($datas[5], true);
-		$resval = (array)json_decode(end($datas), true);
-		$psn = $datas['home']['message'];
-		$data = $datas['home']['data'];
-		$auth = $datas['baboo']['BABOO-AUTH-KEY'];
-		if (isset($datas['home']['code']) && $datas['home']['code'] == '200')
-		{
-			$status = $datas['home']['code'];
-			$this->session->set_userdata('authKey', $auth);
-		}
-		else
-		{
-			$status = $datas['home']['code'];
-		}
-		// print_r(end($datas));
-		// echo json_encode($resval['data'], true);
+		$data = json_decode(end($datas), true);
+		
+		echo json_encode($data['data'], true);
 	}
 }

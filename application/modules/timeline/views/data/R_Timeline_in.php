@@ -4,12 +4,12 @@ foreach ($home as $s_book) { ?>
 <?php if ($s_book['image_url'] == "" || $s_book['image_url'] == null): ?>
 <div class="card mb-15" style="padding: 0 00px;">
 <div class="card-body p-0 p-20">
-<div class="row mb-10" style="padding: 0px 10px 0px 10px;">
+<div class="row mb-20" style="padding: 0px 10px 0px 10px;">
 <div class="media">
 	<img class="d-flex align-self-start mr-20 rounded-circle" src="<?php if($s_book['author_avatar'] == NULL){
 		echo base_url('public/img/profile/blank-photo.jpg');
 	}else{
-		echo $s_book['author_avatar']; } ?>" width="70" height="70" alt="Generic placeholder image">
+		echo $s_book['author_avatar']; } ?>" width="50" height="50" alt="Generic placeholder image">
 		<div class="media-body mt-5">
 			<h5 class="card-title nametitle2"><a href="<?php echo site_url('profile/'.$s_book['author_id'].''); ?>"><?php
 			echo $s_book['author_name']; ?></a></h5>
@@ -19,7 +19,7 @@ foreach ($home as $s_book) { ?>
 		</div>
 	</div>
 	<a href="<?php echo site_url(); ?>book/<?php echo $s_book['book_id']; ?>-<?php echo url_title($s_book['title_book'], 'dash', true); ?>"> 
-	<div class="row">
+	<div class="row p-10">
 		<div class="media w-100">
 			<div class="media-body">
 			<img alt="<?php
@@ -56,7 +56,7 @@ foreach ($home as $s_book) { ?>
 			<img class="d-flex align-self-start mr-20 rounded-circle" src="<?php if($s_book['author_avatar'] == NULL){
 				echo base_url('public/img/profile/blank-photo.jpg');
 			}else{
-				echo $s_book['author_avatar']; } ?>" width="70" height="70" alt="Generic placeholder image">
+				echo $s_book['author_avatar']; } ?>" width="50" height="50" alt="Generic placeholder image">
 				<div class="media-body mt-5">
 					<h5 class="card-title nametitle2"><a href="<?php echo site_url('profile/'.$s_book['author_id'].''); ?>"><?php
 					echo $s_book['author_name']; ?></a></h5>
