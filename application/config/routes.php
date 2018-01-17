@@ -95,6 +95,7 @@ $route['video_book'] = 'book/C_createbook/video_book';
 
 $route['book/:any'] = 'book/C_book';
 $route['book/:any/:num'] = 'book/C_book/getChapterResponsive';
+$route['book/:any/chapter/:num'] = 'book/C_book/chapterBook';
 $route['getmenuchapter'] = 'book/C_book/chapter';
 $route['getChapter'] = 'book/C_createbook/getChapter';
 $route['book/:any/read'] = 'book/C_book/readingMode';

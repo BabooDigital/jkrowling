@@ -58,6 +58,8 @@ $(document).ready(function() {
           if (page < count_data) {
             page++;
             loadMoreData(page);
+          }else{
+            $("#read").show();
           }
         }
       });

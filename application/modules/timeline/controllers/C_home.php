@@ -169,7 +169,7 @@ class C_home extends MX_Controller {
 		// $datas['baboo'] = json_decode($datas[5], true);
 		$psn = $datas['home']['message'];
 		$data = $datas['home']['data'];
-		echo $datas['home'];
+		echo $datas;
 	}
 	public function getSlide()
 	{

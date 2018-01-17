@@ -98,7 +98,7 @@ $(document).ready(function() {
 	$(document).on('click', '.addsubchapt', function() {
 		HoldOn.open({
 			theme: 'sk-bounce',
-			message: "Tunggu sebentar."
+			message: "Loading."
 		});
 		// console.log("Awali semua dengan Bismillah dan akhiri dengan Alhamdulillah");
 		// var editorText = CKEDITOR.instances.book_paragraph.getData();
