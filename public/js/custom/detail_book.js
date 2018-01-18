@@ -499,18 +499,19 @@ function getmenuChapter() {
             data_chapter += 'chapter_active ';
           }
           data_chapter += '" id="list_chapters"><a href="'+base_url+'book/'+ segment+'/chapter/'+val['chapter_id']+'" class="id_chapter';
-          data_chapter += '" >' + val['chapter_title'] + '</a></li>';
+          data_chapter += '" id="'+index+'">' + val['chapter_title'] + '</a></li>';
         } else {
           data_chapter += '<li class="list-group-item ';
           // if (index == 0) {
           data_chapter += 'chapter_disabled ';
           // }
           data_chapter += '" id="list_chapters" style="cursor: not-allowed;"><span class="id_chapter';
-          data_chapter += '" >' + val['chapter_title'] + '</span></li>';
+          data_chapter += '" id="'+index+'">' + val['chapter_title'] + '</span></li>';
         }
       });
       $("#list_chapter").html(data_chapter);
       $('.id_chapter').on('click', function(event) {
+        var page_id = $(this).attr('id');
         var options = {
              theme:"sk-cube-grid",
              message:'Tunggu Sebentar ',
@@ -521,7 +522,7 @@ function getmenuChapter() {
         var page = $(this).attr('href');
         var $this = $(this);
         $this.parent().siblings().removeClass('chapter_active').end().addClass('chapter_active');
-        getContent(page);
+        getContent(page, page_id);
         event.preventDefault();
       });
     })
@@ -538,7 +539,7 @@ function strip_tags(str) {
     str = str.toString();
     return str.replace(/<\/?[^>]+>/gi, '');
 }
-function getContent(tab_page) {
+function getContent(tab_page, page_id) {
   $.ajax({
     url: tab_page,
     type: 'GET',
@@ -546,6 +547,13 @@ function getContent(tab_page) {
     dataType:'json',
     success: function(data) {
       HoldOn.close();
+      var id_page = '';
+      if (page_id == 0) {
+        id_page += '<small>Page</small> <strong>Description</strong>';
+      }else{
+        id_page += '<small>Page</small> <strong>'+page_id+'</strong>';
+      }
+      $("#id_page").html(id_page);
       var content = '';
       $(".loader").hide();
       $(".chapter").html(data['chapter']['chapter_title']);

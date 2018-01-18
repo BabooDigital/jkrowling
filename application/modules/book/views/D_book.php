@@ -188,7 +188,7 @@
 		</div>
 		<div class="col-md-7">
 			<ul class="navbar-nav pull-right">
-				<li class="nav-item"><span class="text-muted"><small>Page</small> <strong>01</strong></span></li>
+				<li class="nav-item"><span class="text-muted" id="id_page"><small>Page</small> <strong>Description</strong></span></li>
 			</ul>
 			<ul class="navbar-nav">
 				<li class="nav-item">

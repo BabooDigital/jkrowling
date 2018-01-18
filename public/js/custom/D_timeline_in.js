@@ -39,17 +39,17 @@ $(document).ready(function() {
     })
     .done(function(data) {
       var json = $.parseJSON(data);
-      var datas = "";
-      $.each(json.data, function(i, item) {
-        var avatar;
-        if (item.avatar != "") {
-          avatar = item.avatar;
-        } else if (item.avatar == "") {
-          avatar = 'public/img/profile/blank-photo.jpg';
-        }
-        datas += "<li class='media baboocontent'><img alt='" + item.author_name + "' class='d-flex mr-3 rounded-circle' src='" + avatar + "' width='50' height='50'><div class='media-body mt-7'><h5 class='mt-0 mb-1 nametitle'>" + item.author_name + "</h5><small>Fiksi</small><div class='pull-right baboocolor'><a href='#' class='addbutton'><img src='public/img/assets/icon_plus_purple.svg' width='20' class='mt-img'></a></div></div></li>";
-
-      });
+    var datas = "";
+    $.each(json.data, function(i, item) {
+      var avatar;
+      if (item.avatar != "") {
+        avatar = item.avatar;
+      }else if (item.avatar == ""){
+        avatar = 'public/img/profile/blank-photo.jpg';
+      }
+      datas += "<li class='media baboocontent'><img alt='"+item.author_name+"' class='d-flex mr-3 rounded-circle' src='"+ avatar +"' width='50' height='50'><div class='media-body mt-7'><h5 class='mt-0 mb-1 nametitle'>"+item.author_name+"</h5><small>Fiksi</small><div class='pull-right baboocolor'><a href='#' class='addbutton'><img src='public/img/assets/icon_plus_purple.svg' width='20' class='mt-img'></a></div></div></li>";
+      
+    });
       $("#author_this_week").html(datas);
     })
     .fail(function() {
@@ -57,7 +57,32 @@ $(document).ready(function() {
     })
     .always(function() {});
 
-
+  $.ajax({
+    url: base_url+'bestBook',
+    type: 'GET',
+    dataType: 'json',
+  })
+  .done(function(data) {
+    var best_book = '';
+    $.each(data, function(index, val) {
+      var cover;
+      if (val.popular_cover_url == null || val.popular_cover_url == '' || val.popular_cover_url == 'Kosong') {
+        cover = base_url+'public/img/icon-tab/empty-set.png';
+      }else{
+        cover = val.popular_cover_url;
+      }
+      best_book += '<li class="list-group-item"> <div class="media"> <div class="media-left mr-10"> <a href="#"><img class="media-object" src="'+cover+'" width="60" height="80"></a> </div> <div class="media-body"> <div> <h4 class="media-heading bold mt-10"><a href="#">'+val.popular_book_title+'</a></h4> <p style="font-size: 10pt;">by <a href="#">'+val.popular_author_name+'</a></p> </div> </div> </div> </li>'; 
+        console.log(val);
+    });
+    $("#best_book").html(best_book);
+  })
+  .fail(function() {
+    console.log("error");
+  })
+  .always(function() {
+    console.log("complete");
+  });
+  
 
   var window_width = $(window).width();
 

@@ -7,7 +7,7 @@
 </head>
 <body>
 	<div class="container-fluid mb-40">
-		<div class="row" style="height: 700px">
+		<div class="row">
 			<div class="col-md-2 bg-dark"></div>
 			<div class="col-md-8 bg-white">
 				<div id="readingModeContent">
@@ -26,49 +26,10 @@
 								</div>
 							</div>
 							<div id="post-data">
-								<!-- <?php 
-									$this->load->view('data/D_readingmode', $detail_book); ?> -->
 									<?php $this->load->view('data/D_readingmode'); ?>
 							</div>
-							<div id="read" style="display: none;">
-								<div class="loader" style="display: none;margin-left: auto;margin-right: auto;"></div>
-							<?php if ($detail_book['data']['book_info']['is_free'] == "false"): ?>
-								<div>
-								<p class="modallimitbook">Kamu baru saja selesai membaca batas gratis buku ini, untuk membaca bab lainnya silahkan beli buku ini lalu lanjutkan membaca.</p>
-							</div>
-							<hr>
-							<div class="media">
-								<img alt="Book Cover" class="mr-3" src="<?php echo base_url(); ?>public/img/book-cover/kite-runner.png" width="150">
-								<div class="media-body mt-10">
-									<h5 class="card-title nametitle3"><a href="<?php echo site_url(); ?>book">Story Of Drama</a></h5>
-									<div class="mt-20 mb-50">
-										<div class="col-md-10">
-											<div class="dbooksociallistmodal">
-												<a href="#"><span class="fs-13"><img src="<?php echo base_url(); ?>public/img/assets/icon_view.svg" width="27"> 290</span></a>
-											</div>
-											<div class="dbooksociallistmodal">
-												<a href="#"><span class="fs-13"><img src="<?php echo base_url(); ?>public/img/assets/icon_comment.svg" width="14"> 45</span></a>
-											</div>
-											<div class="dbooksociallistmodal">
-												<a href="#"><span class="fs-13"><img src="<?php echo base_url(); ?>public/img/assets/icon_love.svg" width="16"> 290</span></a>
-											</div>
-											<div class="dbooksociallistmodal">
-												<a href="#"><span class="fs-13"><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg" width="14"> 8</span></a>
-											</div>
-											<div class="dbooksociallistmodal">
-												<a href="#"><span class="fs-13"><img src="<?php echo base_url(); ?>public/img/assets/icon_have.svg" width="20"> 8</span></a>
-											</div>
-										</div>
-									</div>
-									<div>
-										<h3><strong>Rp 45.000</strong></h3>
-									</div>
-									<div class="mt-40">
-										<a class="btnbeliskrg" href="#"><span class="txtbtnbeliskrg">Beli Sekarang</span></a>
-									</div>
-								</div>
-							</div>
-							<?php endif ?>
+							<div class="loader" style="display: none;margin-left: auto;margin-right: auto;"></div>
+							
 							<div class="mt-10">
 								<div class="bg-white p-10">
 									<p></p>
@@ -89,7 +50,7 @@
 							<div class="col-md-2"></div>
 							<div class="col-md-8">
 								<ul class="navbar-nav pull-right">
-									<li class="nav-item"><span class="text-muted"><small>Page</small> <strong>01</strong></span></li>
+									<li class="nav-item"><span class="text-muted"><strong id="chapter_number">Description</strong></span></li>
 								</ul>
 								<ul class="navbar-nav">
 									<li class="nav-item">
@@ -107,7 +68,7 @@
 						</div>
 					</nav>
 					<script type="text/javascript">
-						var count_data = '<?php echo $detailChapter; ?>';
+						var count_data = '<?php echo $detailChapter; ?>' + 1;
 					</script>
 					<?php if (isset($js)): ?><?php echo get_js($js) ?><?php endif ?>
 				</div>

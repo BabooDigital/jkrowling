@@ -195,7 +195,7 @@ class C_timeline extends MX_Controller {
 			$headers[trim($middle[0])] = trim($middle[1]);
 		}
 
-		$data['home'] = json_decode($data[14], true);
+		// $data['home'] = json_decode(end($data), true);
 		$auth = $headers['BABOO-AUTH-KEY'];
 		if (isset($data['home']['code']) && $data['home']['code'] == '200')
 		{
@@ -207,7 +207,56 @@ class C_timeline extends MX_Controller {
 			$status = $data['home']['code'];
 			$this->session->set_userdata('authKey', $auth);
 		}
-		echo json_encode($data[14], true);
+		// print_r(end($data));
+		echo json_encode(end($data), true);
+	}
+	public function getBestBook()
+	{
+		error_reporting(0);
+		$auth = $this->session->userdata('authKey');
+		$url = 'api.dev-baboo.co.id/v1/timeline/Timelines/bestBook';
+		$ch = curl_init();
+		$options = array(
+			CURLOPT_URL			 => $url,
+			CURLOPT_RETURNTRANSFER => true,
+	          CURLOPT_CUSTOMREQUEST  =>"GET",    // Atur type request
+	          CURLOPT_POST           =>false,    // Atur menjadi GET
+	          CURLOPT_FOLLOWLOCATION => false,    // Follow redirect aktif
+	          CURLOPT_SSL_VERIFYPEER => 0,
+	          CURLOPT_HEADER         => 1,
+	          CURLOPT_HTTPHEADER	 => array('baboo-auth-key : '.$auth)
+
+	      );
+		curl_setopt_array($ch, $options);
+		$content = curl_exec($ch);
+		curl_close($ch);
+		$headers=array();
+
+		$data=explode("\n",$content);
+		$headers['status']=$data[0];
+
+		array_shift($data);
+
+		foreach($data as $part){
+			$middle=explode(":",$part);
+			$headers[trim($middle[0])] = trim($middle[1]);
+		}
+
+		$data['home'] = json_decode(end($data), true);
+		$data_best = $data['home']['data'];
+		$auth = $headers['BABOO-AUTH-KEY'];
+		if (isset($data['home']['code']) && $data['home']['code'] == '200')
+		{
+			$status = $data['home']['code'];
+			$this->session->set_userdata('authKey', $auth);
+		}
+		else
+		{
+			$status = $data['home']['code'];
+			$this->session->set_userdata('authKey', $auth);
+		}
+		// print_r(end($data));
+		echo json_encode($data_best, true);
 	}
 	
 	public function signout() {

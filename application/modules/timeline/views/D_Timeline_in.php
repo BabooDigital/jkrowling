@@ -11,6 +11,7 @@
 						</div>
 						<div class="card-body p-0">
 							<ul class="list-group list-group-flush" id="author_this_week">
+								<div class="loader" align="center" style="margin-left: auto;margin-right: auto;"></div>
 							</ul>
 						</div>
 					</div>
@@ -55,7 +56,7 @@
 								<?php 
 								$this->load->view('data/D_timeline_in', $home);
 								?>
-							<!-- <span class="loader" style="display: none;margin-left: auto;margin-right: auto;"></span> -->
+								<!-- <span class="loader" style="display: none;margin-left: auto;margin-right: auto;"></span> -->
 							</div>
 
 							<!-- Right Side -->
@@ -79,46 +80,8 @@
 											Buku Populer
 										</div>
 										<div class="card-body p-0">
-											<ul class="list-group list-group-flush">
-												<li class="list-group-item">
-													<div class="media">
-														<div class="media-left mr-10">
-															<a href="#"><img class="media-object" src="https://placehold.it/60x80/6454bd"></a>
-														</div>
-														<div class="media-body">
-															<div>
-																<h4 class="media-heading bold mt-10"><a href="#">Big Magic: Creative Living Beyon Fear</a></h4>
-																<p style="font-size: 10pt;">by <a href="#">Aditia Nugraha</a></p>
-															</div>
-														</div>
-													</div>
-												</li>
-												<li class="list-group-item">
-													<div class="media">
-														<div class="media-left mr-10">
-															<a href="#"><img class="media-object" src="https://placehold.it/60x80/c53949"></a>
-														</div>
-														<div class="media-body">
-															<div>
-																<h4 class="media-heading bold mt-10"><a href="#">The Painter's Daughter</a></h4>
-																<p style="font-size: 10pt;">by <a href="#">Juli Kasi</a></p>
-															</div>
-														</div>
-													</div>
-												</li>
-												<li class="list-group-item">
-													<div class="media">
-														<div class="media-left mr-10">
-															<a href="#"><img class="media-object" src="https://placehold.it/60x80/e2a9c9"></a>
-														</div>
-														<div class="media-body">
-															<div>
-																<h4 class="media-heading bold mt-10"><a href="#">The Painter's Daughter</a></h4>
-																<p style="font-size: 10pt;">by <a href="#">Juli Kasi</a></p>
-															</div>
-														</div>
-													</div>
-												</li>
+											<ul class="list-group list-group-flush" id="best_book">
+												<div class="loader" align="center" style="margin-left: auto;margin-right: auto;"></div>
 											</ul>
 										</div>
 									</div>
