@@ -248,7 +248,7 @@ function getChapter() {
 	.done(function(data) {
 		var chapter = ""; 
 		$.each(data, function(index, val) {
-			chapter += '<a class="btn w-100 mb-10 chapterdata0 editsubchapt1 addsubchapt_on" book="2016" chapter="1326" id="editchapt" href="'+val.chapter_id+'">'+val.chapter_title+'</a>';
+			chapter += '<a class="btn w-100 mb-10 chapterdata0 editsubchapt1 addsubchapt_on" book="2016" chapter="1326" id="editchapt" href="'+uri_segment+'/chapter/'+val.chapter_id+'">'+val.chapter_title+'</a>';
 		});
 		$("#btn_chapter").html(chapter);
 	})

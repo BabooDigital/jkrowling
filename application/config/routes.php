@@ -65,6 +65,7 @@ $route['message'] = 'message/C_message';
 $route['createidbook'] = 'timeline/C_timeline/createbook_id';
 
 $route['writter'] = 'timeline/C_timeline/getWritter';
+$route['bestBook'] = 'timeline/C_timeline/getBestBook';
 $route['writters'] = 'timeline/C_home/getWritter';
 $route['slide'] = 'timeline/C_home/getSlide';
 

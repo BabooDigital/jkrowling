@@ -52,40 +52,57 @@ $(document).ready(function() {
   //   });
   // }
 
-      var page = 0;
-      $(window).scroll(function() {
-        if($(window).scrollTop() + $(window).height() > $(document).height() - 200) {
-          if (page < count_data) {
-            page++;
-            loadMoreData(page);
-          }else{
-            $("#read").show();
-          }
-        }
-      });
-
-      function loadMoreData(page){
-        $.ajax(
-        {
-          url: '?chapter=' + page,
-          type: "get",
-          beforeSend: function()
-          {
-            $('.loader').show();
-          }
-        })
-        .done(function(data)
-        {
-          if(data == " "){
-            $('.loader').html("No more records found");
-            return;
-          }
-          $('.loader').hide();
-          $("#post-data").append(data);
-        })
-        .fail(function(jqXHR, ajaxOptions, thrownError)
-        {
-          console.log('server not responding...');
-        });
+  var page = 0;
+  var previousScroll = 0;
+  $(window).scroll(function() {
+    if($(window).scrollTop() + $(window).height() > $(document).height() - 1) {
+      if (page < count_data) {
+        page++;
+        loadMoreData(page);
+      }else{
+        // $("#read").show();
       }
+    }
+    var currentScroll = $(this).scrollTop();
+    if (currentScroll > previousScroll){
+     console.log("down");
+   } else {
+      console.log("up");
+      // var id_page = '';
+      // var page_id = $("#chapter_number").text() - 1;
+      // if (page_id == 0) {
+      //   id_page += '<small>Page</small> <strong>Description</strong>';
+      // }else{
+      //   id_page += page_id;
+      // }
+      //   $("#chapter_number").text(id_page);
+      }
+      previousScroll = currentScroll;
+  });
+
+  function loadMoreData(page){
+    $.ajax(
+    {
+      url: '?chapter=' + page,
+      type: "get",
+      beforeSend: function()
+      {
+        $('.loader').show();
+      }
+    })
+    .done(function(data)
+    {
+      if(data == " "){
+        $('.loader').html("No more records found");
+        return;
+      }
+      $('.loader').hide();
+      $("#post-data").append(data);
+      $("#chapter_number").text(page);
+    })
+    .fail(function(jqXHR, ajaxOptions, thrownError)
+    {
+      console.log('server not responding...');
+    });
+  }
 });
