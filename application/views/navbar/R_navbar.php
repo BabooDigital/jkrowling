@@ -16,25 +16,25 @@
 </nav>
 
 <nav class="navbar navbar-expand-lg fixed-top" style="height:auto;box-shadow: none;">
-<div style="background-color: #f9fbfc; position: absolute; left:0; right: 0; top:48px; width: 150%;">
+<div style="background-color: #f9fbfc; position: absolute; left:0; right: 0; top:47px; width: 150%;">
 	<div class="container">
 		<div class="row" style="">
-			<div class="col-2 mt-5 mb-2">
+			<div class="col-2 mt-5 mb-1">
 				<center><a href="<?php echo site_url('timeline') ?>" id="tab_page" style="color:#9785bc; font-size:10pt;font-weight: 600;">
 					<img src="<?php echo base_url() ?>/public/img/icon-tab/feed_icon.svg" width="25" height="25"><br>Explore</a>
 				</center>
 			</div>
-			<div class="col-2 mt-5 mb-2">
+			<div class="col-2 mt-5 mb-1">
 				<center><a href="<?php echo site_url('library') ?>" id="tab_page" style="color:#9785bc; font-size:10pt;font-weight: 600;">
 				<img src="<?php echo base_url() ?>/public/img/icon-tab/library_icon_active.svg" width="25" height="25"><br>Library</a>
 				</center>
 			</div>
-			<div class="col-2 mt-5 mb-2">
+			<div class="col-2 mt-5 mb-1">
 				<center><a href="notification" id="tab_page" style="color:#9785bc; font-size:10pt;font-weight: 600;">
 				<img src="<?php echo base_url() ?>/public/img/icon-tab/notif_icon_active.svg" width="25" height="25"><br>Activity</a>
 				</center>
 			</div>
-			<div class="col-2 mt-5 mb-2">
+			<div class="col-2 mt-5 mb-1">
 				<center><a href="<?php echo site_url('profile') ?>" id="tab_page" style="color:#9785bc; font-size:10pt;font-weight: 600;">
 				<img src="<?php echo base_url() ?>/public/img/icon-tab/profil_icon_active.svg" width="25" height="25"><br>My Profile</a>
 				</center>

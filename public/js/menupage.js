@@ -5,6 +5,7 @@ $(document).ready(function() {
 			type: 'GET',
 			cache: false,
 			success: function(data) {
+				console.log(data);
 				$(".loader").hide();
 				$("#pageContent").html(data);
 			}

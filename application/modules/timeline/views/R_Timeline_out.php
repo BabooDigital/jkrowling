@@ -16,12 +16,12 @@
 	
 </head>
 <style type="text/css">
-	.card {
-		border-radius: 0 !important;
-	}
-	body {
-		background: #ebf0f4 !important;
-	}
+.card {
+	border-radius: 0 !important;
+}
+body {
+	background: #ebf0f4 !important;
+}
 </style>
 <body>
 	<nav class="navbar navbar-expand-lg fixed-top   baboonav">
@@ -81,10 +81,10 @@
 				<div class="row">
 					<div class="col-md-6" id="post-data">
 						<?php 
-							$this->load->view('data/R_timeline_out', $home);
+						$this->load->view('data/R_timeline_out', $home);
 						?>
 					</div>
-						<div class="loader" style="display: none;margin-left: auto;margin-right: auto;"></div>
+					<div class="loader" style="display: none;margin-left: auto;margin-right: auto;"></div>
 				</div>
 			</div>
 			<!-- JS -->
@@ -105,36 +105,36 @@
 			<script type="text/javascript">
 				var page = 1;
 				$(window).scroll(function() {
-				    if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
-				        page++;
-				        loadMoreData(page);
-				    }
+					if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
+						page++;
+						loadMoreData(page);
+					}
 				});
 
 				function loadMoreData(page){
-				  $.ajax(
-				        {
-				            url: '?page=' + page,
-				            type: "get",
-				            beforeSend: function()
-				            {
-				                $('.loader').show();
-				            }
-				        })
-				        .done(function(data)
-				        {
-				            if(data == " "){
-				                $('.loader').html("No more records found");
-				                return;
-				            }
-				            $('.loader').hide();
-				            $("#post-data").append(data);
+					$.ajax(
+					{
+						url: '?page=' + page,
+						type: "get",
+						beforeSend: function()
+						{
+							$('.loader').show();
+						}
+					})
+					.done(function(data)
+					{
+						if(data == " "){
+							$('.loader').html("No more records found");
+							return;
+						}
+						$('.loader').hide();
+						$("#post-data").append(data);
 				            // console.log(data);
 				        })
-				        .fail(function(jqXHR, ajaxOptions, thrownError)
-				        {
-				              console.log('server not responding...');
-				        });
+					.fail(function(jqXHR, ajaxOptions, thrownError)
+					{
+						console.log('server not responding...');
+					});
 				}
 			</script>
 			<script type="text/javascript">

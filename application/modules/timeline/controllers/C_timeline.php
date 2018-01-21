@@ -74,10 +74,10 @@ class C_timeline extends MX_Controller {
    		$datas['title'] = "Baboo - Beyond Book & Creativity";
 		$datas['js'][]   = "public/js/jquery.min.js";
 		$datas['js'][]   = "public/js/jquery.sticky-kit.min.js";
-		$datas['js'][]   = "public/js/custom/D_timeline_in.js";
 
 		if ($this->agent->is_mobile('ipad'))
 		{
+			$datas['js'][]   = "public/js/custom/D_timeline_in.js";
 			$this->load->view('include/head', $datas);
 			$this->load->view('D_Timeline_in');
 		}
