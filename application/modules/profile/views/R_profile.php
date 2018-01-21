@@ -13,7 +13,7 @@
 		<div class="container babooid" align="center">
 			<div class="row">
 				<br>
-				<div class="loader" style="display: none;">
+				<div class="loader mx-auto" style="display: none;">
 					<input type="hidden" id="iaiduui" name="iaiduui" value="<?php $name = $this->session->userdata('userData'); echo $name['user_id']; ?>">
 				</div>
 				<div class="profile">
@@ -84,12 +84,14 @@
 							<input class="input-md" id="tab3" type="radio" name="tabs">
 							<section class="section-md" id="content1" style="background: #ebf0f4;">
 								<div id="r_publishdata">
+									<div class="loaderpubl mx-auto" style="display: none;"></div>
 
 								</div>
 							</section>
 							<section class="section-md" id="content2" style="background: #ebf0f4;">
 								<div id="r_draftdata">
-
+									<div class="loaderdraft mx-auto" style="display: none;"></div>
+								
 								</div>
 							</section>
 						</main>

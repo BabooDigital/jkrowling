@@ -65,7 +65,7 @@
 									</div>
 								</div>
 								<div class="row" style="padding: 0px 10px 0px 10px;">
-									<div class="media">
+									<div class="row">
 										<img alt="<?php
 										echo $s_book['title_book']; ?>" src="<?php
 										echo $s_book['image_url']; ?>" style="position: relative; width: 100%;height: 150px; filter: alpha(opacity=50); opacity: 0.5;">
@@ -73,13 +73,14 @@
 										echo $s_book['title_book']; ?>" src="<?php
 										echo $s_book['image_url']; ?>" style="position: absolute;height: 150px;margin-left: auto;margin-right: auto;left: 0;right: 0;">
 									</div>
-									<h5 style="padding-top:50px; font-weight: 500;"><b><?php
-									echo $s_book['title_book']; ?></b></h5>
-									<div style="margin-top:10px;">
-										<a href="#" class="mr-10"><span style="font-size:12px;border: 1px #7554bd solid;border-radius: 25px;padding: 3px 10px;color: #7554bd;">FIKSI</span></a> <span class="mr-10"><img src="<?php echo base_url(); ?>public/img/assets/icon_view.svg">  <?php echo $s_book['view_count']; ?></span> <span><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg"> <?php
+									<div class="row p-10" style="margin-top:10px;">
+									<h5 class="card-title nametitle3 w-100"><a href="<?php echo site_url(); ?>login"><?php
+										echo $s_book['title_book']; ?></a></h5>
+										<p class="catbook mt-10 w-100"><a class="mr-20" href="#"><span class="btn-no-fill">FIKSI</span></a> <span class="mr-20"><img src="<?php echo base_url(); ?>public/img/assets/icon_view.svg"> <?php
+										echo $s_book['view_count']; ?></span> <span><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg"> <?php
 										echo $s_book['share_count']; ?></span></p>
-										<p style="font-size:16px; font-family: Roboto; margin-top:20px;	"><?php
-										echo substr($s_book['desc'],0,200); ?> ...
+										<p class="mt-5" style="font-size:16px; font-family: Roboto;"><?php
+										echo substr($s_book['desc'],0,200); ?> ...</p>
 									</div>
 								</div>
 							</div>

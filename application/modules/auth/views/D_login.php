@@ -153,7 +153,10 @@
 												</div>
 											</div>
 										</div>
-										<div class="col-lg-6 col-xl-6">
+									</div>
+
+									<div class="row">
+										<div class="col-12">
 											<div class="form-group">
 												<div class="form-check">
 													<?php echo $captcha; ?>

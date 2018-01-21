@@ -43,7 +43,7 @@
 
 			<div class="col-lg-4 col-xl-3 nopadding">
 				<div class="right-side">
-					<div class="right-side-p">
+					<div class="right-side-p" style="margin-bottom: 30px;">
 						<div class="row" style="margin-right:-32px; margin-left:-32px;">
 							<div class="col-lg-12 col-xs-12 text-right" style="margin-top:20px;">
 								<a href="<?php echo site_url();?>home" style="right: 10px; top:10px; color:grey;">Langsung Baca Buku</a>
@@ -134,7 +134,7 @@
 										</div>
 
 										<div class="row" style="margin-top:10px;">
-											<div class="col-lg-4 col-xl-4 col-md-4 col-sm-4 col-5">
+											<div class="col-6">
 												<div class="form-group">
 													<div class="form-check">
 														<label class="form-check-label">
@@ -145,7 +145,7 @@
 												</div>
 											</div>
 
-											<div class="col-lg-4 col-xl-4 col-md-4 col-sm-4 col-4">
+											<div class="col-6">
 												<div class="form-group">
 													<div class="form-check">
 														<label class="form-check-label">
@@ -154,6 +154,12 @@
 														</label>
 													</div>
 												</div>
+											</div>
+										</div>
+
+										<div class="form-group">
+											<div class="form-check">
+												<?php echo $captcha; ?>
 											</div>
 										</div>
 										<center>

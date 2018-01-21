@@ -90,14 +90,14 @@
 			<br>
 			<div class="container">
 				<div class="row form_book">
-					<div class="loader" style="display: none;"></div>
+					<div class="loader mx-auto" style="display: none;"></div>
 					<div class="input-group paddingbook mb-15">
 						<h2 class="paddingparagraph"><strong><?php echo $detail_book['data']['book_info']['title_book']; ?></strong></h2>
 					</div>
 					<div class="media mb-20">
 						<img class="d-flex align-self-start mr-20 rounded-circle" src="<?php if($detail_book['data']['author']['avatar'] == NULL){ echo base_url('public/img/profile/blank-photo.jpg'); }else{ echo $detail_book['data']['author']['avatar']; } ?>" width="55" height="55" alt="<?php echo $detail_book['data']['author']['author_name']; ?>">
 						<div class="media-body mt-5">
-							<div style="display: flex;"><h5 class="nametitle2 mr-20"><a href="#" class="author_name"><?php echo $detail_book['data']['author']['author_name']; ?></a></h5><a data-follow="<?php echo $detail_book['data']['author']['author_id']; ?>" class="btn-topup <?php if ($detail_book['data']['author']['is_follow'] == false) { echo "follow-u"; }else{ echo "unfollow-u"; } ?>"><span class="nametitle2 txtfollow" style="font-size: 12px;"><?php if ($detail_book['data']['author']['is_follow'] == false) { echo "Follow"; }else{ echo "Unfollow"; } ?></span></a></div>
+							<div><h5 class="nametitle2 mr-40" style="display: -webkit-inline-box;"><a href="#" class="author_name"><?php echo $detail_book['data']['author']['author_name']; ?></a></h5><?php $dat = $this->session->userdata('userData'); if ($detail_book['data']['author']['author_id'] == $dat['user_id']){ ?> <div></div> <?php }else{ ?> <a data-follow="<?php echo $detail_book['data']['author']['author_id']; ?>" class="btn-topup <?php if ($detail_book['data']['author']['is_follow'] == false) { echo "follow-u"; }else{ echo "unfollow-u"; } ?>"><span class="nametitle2 txtfollow" style="font-size: 10px;padding: 0px 15px;"><?php if ($detail_book['data']['author']['is_follow'] == false) { echo "Follow"; }else{ echo "Unfollow"; } ?></span></a></div> <?php } ?>
 							<p style="margin-top: -5px;"><span class="text-muted"><small>Jakarta, Indonesia</small></span>
 							</p>
 						</div>
