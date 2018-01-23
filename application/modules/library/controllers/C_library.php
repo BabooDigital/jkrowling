@@ -9,13 +9,13 @@ class C_Library extends MX_Controller
         parent::__construct();
         $this->API = "api.dev-baboo.co.id/v1/timeline/Timelines";
         if ($this->session->userdata('isLogin') != 200) {
-        	redirect('home');
+        	redirect('login');
         }
     }
 
     public function index()
     {
-        $data['judul'] = "Library Page - Baboo";
+        $data['title'] = "Library Page | Baboo - Beyond Book & Creativity";
 
         $data['js'][] = "public/js/jquery.min.js";
         $data['js'][] = "public/js/custom/mobile/library.js";

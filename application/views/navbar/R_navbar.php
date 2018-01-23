@@ -20,23 +20,24 @@
 	<div class="container">
 		<div class="row" style="">
 			<div class="col-2 mt-5 mb-1">
-				<center><a href="<?php echo site_url('timeline') ?>" id="tab_page" style="color:#9785bc; font-size:10pt;font-weight: 600;">
-					<img src="<?php echo base_url() ?>/public/img/icon-tab/feed_icon.svg" width="25" height="25"><br>Explore</a>
+				<center><a href="<?php echo site_url('timeline'); ?>" dat-title="Timeline Feed" id="tab_page" class="menu-page <?php if ($this->uri->segment('1') == 'timeline') { echo 'boo-menu-active'; }else { echo 'boo-menu'; } ?>">
+					<img src="<?php if ($this->uri->segment('1') == 'timeline') { echo base_url('public/img/icon-tab/feed_icon_active.svg'); }else { echo base_url('public/img/icon-tab/feed_icon.svg'); } ?>" width="25" height="25"><br>Explore</a>
+					
 				</center>
 			</div>
 			<div class="col-2 mt-5 mb-1">
-				<center><a href="<?php echo site_url('library') ?>" id="tab_page" style="color:#9785bc; font-size:10pt;font-weight: 600;">
-				<img src="<?php echo base_url() ?>/public/img/icon-tab/library_icon_active.svg" width="25" height="25"><br>Library</a>
+				<center><a href="<?php echo site_url('library'); ?>" dat-title="Your Library" id="tab_page" class="menu-page <?php if ($this->uri->segment('1') == 'library') { echo 'boo-menu-active'; }else { echo 'boo-menu'; } ?>">
+				<img src="<?php if ($this->uri->segment('1') == 'library') { echo base_url('public/img/icon-tab/library_icon_active.svg'); }else { echo base_url('public/img/icon-tab/library_icon.svg'); } ?>" width="25" height="25"><br>Library</a>
 				</center>
 			</div>
 			<div class="col-2 mt-5 mb-1">
-				<center><a href="notification" id="tab_page" style="color:#9785bc; font-size:10pt;font-weight: 600;">
-				<img src="<?php echo base_url() ?>/public/img/icon-tab/notif_icon_active.svg" width="25" height="25"><br>Activity</a>
+				<center><a href="<?php echo site_url('notification'); ?>" id="tab_page" dat-title="Your Activity" class="menu-page <?php if ($this->uri->segment('1') == 'notification') { echo 'boo-menu-active'; }else { echo 'boo-menu'; } ?>">
+				<img src="<?php if ($this->uri->segment('1') == 'notification') { echo base_url('public/img/icon-tab/notif_icon_active.svg'); }else { echo base_url('public/img/icon-tab/notif_icon.svg'); } ?>" width="25" height="25"><br>Activity</a>
 				</center>
 			</div>
 			<div class="col-2 mt-5 mb-1">
-				<center><a href="<?php echo site_url('profile') ?>" id="tab_page" style="color:#9785bc; font-size:10pt;font-weight: 600;">
-				<img src="<?php echo base_url() ?>/public/img/icon-tab/profil_icon_active.svg" width="25" height="25"><br>My Profile</a>
+				<center><a href="<?php echo site_url('profile'); ?>" dat-title="Your Profile" id="tab_page" class="menu-page <?php if ($this->uri->segment('1') == 'profile') { echo 'boo-menu-active'; }else { echo 'boo-menu'; } ?>">
+				<img src="<?php if ($this->uri->segment('1') == 'profile') { echo base_url('public/img/icon-tab/profil_icon_active.svg'); }else { echo base_url('public/img/icon-tab/profil_icon.svg'); } ?>" width="25" height="25"><br>My Profile</a>
 				</center>
 			</div>
 		</div>
