@@ -1,6 +1,6 @@
 
 <body id="pageContent">
-
+	<div class="lds-css ng-scope" style="display: none;"><div style="width:100%;height:100%" class="lds-eclipse"><img src="<?php echo base_url('public/img/splash_.png'); ?>" width="90" class="img-loading"><div></div><div></div><div></div><div></div><div></div></div></div>
 	<?php $this->load->view('navbar/R_navbar'); ?>	
 	<div id="floating-btn">
 		<a href="<?php echo site_url(); ?>create_mybook" class="floating-btn"><img src="<?php echo base_url(); ?>public/img/assets/icon_tulis.svg"></a>
@@ -9,14 +9,6 @@
 	<br>
 	<br>
 	<br>
-	<div class="container babooid mx-auto">
-		<div class="row">
-			<div class="col-md-6">
-				<br>
-				<div class="loader mx-auto mb-10" style="display: none;"></div>
-			</div>
-		</div>
-	</div>
 	<div class="container bodymessage" >
 		<div class="paddingbook search_message">
 			<div class="">

@@ -83,14 +83,14 @@ class C_timeline extends MX_Controller {
 		}
 		if ($this->agent->is_mobile())
 		{
-			$data['js'][]   = "public/js/menupage.js";
 			if (!empty($this->input->get("page"))) {
 				$result = $this->load->view('data/R_Timeline_in', $datas);
 			}else{
+				$datas['js'][]   = "public/js/menupage.js";
+
 				$this->load->view('include/head', $datas);
 				$this->load->view('R_Timeline_in', $datas);
 			}
-			// $this->load->view('R_Timeline_in', $datas);
 		}
 		else
 		{

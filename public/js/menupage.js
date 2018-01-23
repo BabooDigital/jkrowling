@@ -5,20 +5,21 @@ $(document).ready(function() {
 			type: 'GET',
 			cache: false,
 			success: function(data) {
-				console.log(data);
-				$(".loader").hide();
+				$(".lds-css").hide();
 				$("#pageContent").html(data);
 			}
 		})
 		
 	}
 
-	$("a").on('click', function(event) {
+	$(".menu-page").on('click', function(event) {
 		var tab_page = $(this).attr('href');
-		$(".loader").show();
+		var title = $(this).attr('dat-title');
+		$(".lds-css").show();
 		history.pushState(null, null, tab_page);
 
 		getContent(tab_page);
+		document.title = title+' | Baboo - Beyond Book & Creativity';
 		event.preventDefault();		
 	});
 });
