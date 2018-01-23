@@ -10,7 +10,7 @@
 	<br>
 	<br>
 	<div>
-		<div class="container babooid" align="center">
+		<div class="babooid" align="center">
 			<div class="row">
 				<input type="hidden" id="iaiduui" name="iaiduui" value="<?php $name = $this->session->userdata('userData'); echo $name['user_id']; ?>">
 			</div>

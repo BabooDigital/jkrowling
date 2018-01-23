@@ -141,6 +141,7 @@ $route['getdraftbook'] = 'profile/C_profile/getDraftBook';
 $route['getlatestread'] = 'profile/C_profile/getLatestRead';
 $route['awsd'] = 'book/C_createbook/awasd';
 
+$route['upload_pict'] = 'profile/C_edit_profile/postUploadProfPict';
 $route['awsd'] = 'book/C_createbook/awasd';
 
 $route['firstlogin'] = 'profile/C_edit_profile/completeProfile';

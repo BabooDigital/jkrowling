@@ -26,5 +26,3 @@
 		padding: 0px 0.3rem !important;
 	}
 </style>
-
-<body>
