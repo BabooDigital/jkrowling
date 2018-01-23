@@ -4,7 +4,6 @@
 	<title><?php echo $title; ?></title>
 
 	<?php if (isset($css)): ?> <?php echo get_css($css) ?> <?php endif ?>
-</head>
 <style type="text/css">
 #imageUpload
 {
@@ -32,6 +31,10 @@
 	height: 300px;
 }
 </style>
+</head>
+<script>
+	var base_url = '<?php echo base_url(''); ?>';
+</script>
 <body class="bg-borr">
 	<div class="wrapper">
 		<nav class="navbar navbar-light bg-borr pl-40 pr-40 pt-30 pb-30">
@@ -48,8 +51,8 @@
 					</div>
 				</div>
 				<div class="row mb-100">
+					<input type="hidden" id="dat-id" value="<?php echo $this->session->userdata('userData')['user_id']; ?>">
 					<div class="w-100 text-center">
-						<!-- <img src="http://placehold.it/300x300" class="rounded-circle"> -->
 						<div id="profile-container" class="mx-auto">
 							<image id="profileImage" src="<?php base_url(); ?>public/img/profile/blank-photo.jpg" />
 						</div>
@@ -81,21 +84,5 @@
 	</div>
 
 <?php if (isset($js)): ?><?php echo get_js($js) ?><?php endif ?>
-<script>
-	$("#profileImage").click(function(e) {
-		$("#imageUpload").click();
-	});
-
-	function fasterPreview( uploader ) {
-		if ( uploader.files && uploader.files[0] ){
-			$('#profileImage').attr('src', 
-				window.URL.createObjectURL(uploader.files[0]) );
-		}
-	}
-
-	$("#imageUpload").change(function(){
-		fasterPreview( this );
-	});
-</script>
 </body>
 </html>
