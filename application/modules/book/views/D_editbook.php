@@ -14,35 +14,30 @@
 <script type="text/javascript">
 		var base_url = '<?php echo base_url() ?>';
 		function tampilkanPreview(gambar, idpreview) {
-		// membuat objek gambar
 		var gb = gambar.files;
-
-		// loop untuk merender gambar
 		for (var i = 0; i < gb.length; i++) {
-			// bikin variabel
 			var gbPreview = gb[i];
 			var imageType = /image.*/;
 			var preview = document.getElementById(idpreview);
 			var reader = new FileReader();
 
 			if (gbPreview.type.match(imageType)) {
-				// jika tipe data sesuai
 				preview.file = gbPreview;
 				reader.onload = (function(element) {
 					return function(e) {
 						element.src = e.target.result;
 					};
 				})(preview);
-
-				// membaca data URL gambar
 				reader.readAsDataURL(gbPreview);
 			} else {
-				// jika tipe data tidak sesuai
 				alert("Type file tidak sesuai. Khusus image.");
 			}
 
 		}
 	}
+
+		var base_url = '<?php echo base_url() ?>';
+		var uri_segment = '<?php echo $this->uri->segment(2) ?>';
 </script>
 <body>
 	<form action="<?php echo site_url(); ?>my_book/create_book/publish" id="form_book" method="POST" enctype="multipart/form-data">
@@ -88,7 +83,7 @@
 							<div id="subchapter">
 								<!-- <a class="btn w-100 mb-10 chapterdata0 addsubchapt" id="editchapt">Tambah Sub Cerita</a> -->
 								<?php foreach ($detail_chapter['data'] as $btn_chapters): ?>								
-									<a class="btn w-100 mb-10 chapterdata0 editsubchapt1 addsubchapt_on" book="425" chapter="472" id="editchapt" href="<?php $url = 'my_book/'.$detail_book['data']['book_info']['book_id'].'/chapter/'.$btn_chapters['chapter_id']; echo site_url($url) ?>"><?php echo $btn_chapters['chapter_title']; ?></a>
+									<a class="btn w-100 mb-10 chapterdata0 editsubchapt1 addsubchapt_on" book="425" chapter="472" id="editchapt" href="<?php $url = 'my_book/'.$detail_book['data']['book_info']['book_id'].'/chapter/'.$btn_chapters['chapter_id']; echo site_url($url) ?>" onclick="showLoading()"><?php echo $btn_chapters['chapter_title']; ?></a>
 								<?php endforeach ?>
 								<input type="button" class="btn w-100 mb-10 chapterdata0 addsubchapt" value="Tambah Sub Cerita" />
 							</div>
@@ -143,7 +138,7 @@
 					</div>
 					<div class="pull-right mb-10">
 						<input type="button" class="mr-30" id="updateChapter" style="font-size: 18px;font-weight: bold;background: transparent; border: 0; cursor: pointer;" value="Update Chapter" />
-						<button type="submit" class="btnbeliskrg" href="#" style="padding: 10px 50px;"><span class="txtbtnbeliskrg" ">Publish</span></button>
+						<button type="submit" onclick="showLoading()" class="btnbeliskrg" href="#" style="padding: 10px 50px;"><span class="txtbtnbeliskrg" ">Publish</span></button>
 					</div>
 				</div>
 			</div>

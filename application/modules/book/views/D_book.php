@@ -143,7 +143,7 @@
 				<div class="card stickymenu">
 					<div class="text-center">
 						<?php echo $detail_book['data']['title_book']; ?>
-						<a href="<?php echo site_url(); ?>book/<?php
+						<a onclick="showLoading()" href="<?php echo site_url(); ?>book/<?php
 						echo $detail_book['data']['book_info']['book_id']; ?>-<?php echo url_title($detail_book['data']['book_info']['title_book'], 'dash', true); ?>/read">
 						<div class="p-1">
 							<img src="<?php echo base_url(); ?>public/img/assets/read-mode.svg" width="45">

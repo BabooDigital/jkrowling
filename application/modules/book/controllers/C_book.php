@@ -530,7 +530,7 @@ class C_book extends MX_Controller {
 		if ($data_before_chapter['chapter']['data'][3]['chapter_free'] != "false") {
 			$data['detailChapter'] = count($data_before_chapter['chapter']['data']);
 		}else{
-			$data['detailChapter'] = 2;
+			$data['detailChapter'] = 2 + 1;
 		}
 		
 		$data['id_chapter'] = $this->input->get("chapter");
@@ -539,10 +539,13 @@ class C_book extends MX_Controller {
 		$data['css'][] = "public/css/custom-margin-padding.css";
 		$data['css'][] = "public/css/font-awesome.min.css";
 		$data['css'][] = "public/css/baboo.css";
+		$data['css'][] = "public/plugins/holdOn/css/HoldOn.css";
 		
 		$data['js'][] = "public/js/jquery.min.js";
 		$data['js'][] = "public/js/umd/popper.min.js";
 		$data['js'][] = "public/js/bootstrap.min.js";
+		$data['js'][] = "public/plugins/holdOn/js/HoldOn.js";
+
 		$data['js'][] = "public/js/custom/reading_mode.js";
 		if ($this->agent->mobile()) {
 			$this->load->view('include/head', $data);

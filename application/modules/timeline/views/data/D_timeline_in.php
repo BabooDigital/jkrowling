@@ -29,7 +29,7 @@
 								echo $s_book['title_book']; ?>">
 							</a>
 							
-							<h5 class="card-title nametitle3"><a href="<?php echo site_url(); ?>book/<?php
+							<h5 class="card-title nametitle3"><a onclick="showLoading()" href="<?php echo site_url(); ?>book/<?php
 							echo $s_book['book_id']; ?>
 							-<?php echo url_title($s_book['title_book'], 'dash', true); ?>
 							" id="book-link<?php
@@ -40,7 +40,7 @@
 							echo $s_book['share_count']; ?></span></p>
 							<p class="text-desc-in desc<?php
 							echo $s_book['book_id']; ?>"><?php
-							echo $s_book['desc']; ?> <a href="<?php echo site_url(); ?>book/<?php
+							echo $s_book['desc']; ?> <a onclick="showLoading()" href="<?php echo site_url(); ?>book/<?php
 							echo $s_book['book_id']; ?>
 							-<?php echo url_title($s_book['title_book'], 'dash', true); ?>
 							" class="readmore">Lanjut</a>

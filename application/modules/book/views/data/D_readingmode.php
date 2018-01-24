@@ -1,5 +1,5 @@
-	
-<div id="post#<?php echo $id_chapter; ?>">
+
+<div id="post-<?php echo (int)$id_chapter; ?>" class="mauboleh">
 <?php if ($detail_book['data']['chapter']['chapter_free'] == 'true'): ?>
 	<br>
 	<br>
