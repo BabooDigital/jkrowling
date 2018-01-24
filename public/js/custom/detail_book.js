@@ -535,6 +535,15 @@ function getmenuChapter() {
     });
 
 }
+function showLoading() {
+  var options = {
+       theme:"sk-cube-grid",
+       message:'Tunggu Sebentar ',
+       backgroundColor:"white",
+       textColor:"#7554bd" 
+  };
+  HoldOn.open(options);
+}
 function strip_tags(str) {
     str = str.toString();
     return str.replace(/<\/?[^>]+>/gi, '');

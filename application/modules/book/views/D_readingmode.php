@@ -4,6 +4,10 @@
 	<meta charset="utf-8">
 	<meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
 	<title><?php echo $judul; ?></title><?php if (isset($css)): ?><?php echo get_css($css) ?><?php endif ?>
+
+	<script type="text/javascript">
+		var base_url = '<?php echo base_url() ?>';
+	</script>
 </head>
 <body>
 	<div class="container-fluid mb-40">
@@ -45,9 +49,11 @@
 							</div>
 						</div>
 					</div>
-					<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-bottom box-shadow-navbar">
+					<nav id="cobamenu" class="navbar navbar-expand-lg navbar-light bg-white fixed-bottom box-shadow-navbar">
+						<input type="hidden" value="post-0" />	
 						<div class="container-fluid pt-5 pb-5">
-							<div class="col-md-2"></div>
+							<div id="buatappend" class="col-md-2">
+							</div>
 							<div class="col-md-8">
 								<ul class="navbar-nav pull-right">
 									<li class="nav-item"><span class="text-muted"><strong id="chapter_number">Description</strong></span></li>
@@ -68,14 +74,14 @@
 						</div>
 					</nav>
 					<script type="text/javascript">
-						var count_data = '<?php echo $detailChapter; ?>' + 1;
+						var count_data = '<?php echo $detailChapter; ?>';
 					</script>
 					<?php if (isset($js)): ?><?php echo get_js($js) ?><?php endif ?>
 				</div>
 			</div>
 			<div class="col-md-2 bg-dark">
 				<div style="position: fixed;">
-					<a href="javascript:void(0);" class="backbtn" style="font-size: 14pt;color: #fff;">&#88;</a>
+					<a onclick="showLoading()" href="javascript:void(0);" class="backbtn" style="font-size: 14pt;color: #fff;">&#88;</a>
 				</div>
 			</div>
 		</div>

@@ -72,8 +72,13 @@ class C_timeline extends MX_Controller {
 		$datas['home'] = $book;
 
    		$datas['title'] = "Baboo - Beyond Book & Creativity";
+		
+    	$datas['css'][] = "public/plugins/holdOn/css/HoldOn.css";
+
 		$datas['js'][]   = "public/js/jquery.min.js";
 		$datas['js'][]   = "public/js/jquery.sticky-kit.min.js";
+		$datas['js'][] = "public/plugins/holdOn/js/HoldOn.js";
+		$datas['js'][]   = "public/js/custom/D_timeline_in.js";
 
 		if ($this->agent->is_mobile('ipad'))
 		{
@@ -83,6 +88,8 @@ class C_timeline extends MX_Controller {
 		}
 		if ($this->agent->is_mobile())
 		{
+			$data['js'][]   = "public/js/menupage.js";
+
 			if (!empty($this->input->get("page"))) {
 				$result = $this->load->view('data/R_Timeline_in', $datas);
 			}else{

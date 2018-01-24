@@ -94,6 +94,16 @@ $(document).ready(function() {
 		$(".stickymenu").stick_in_parent();
 	}
 
+	
+	function showSpinner() {
+		var options = {
+             theme:"sk-cube-grid",
+             message:'Tunggu Sebentar ',
+             backgroundColor:"white",
+             textColor:"#7554bd" 
+        };
+        HoldOn.open(options);
+	}
 	var count = 0;
 	$(document).on('click', '.addsubchapt', function() {
 		HoldOn.open({
@@ -238,6 +248,15 @@ function getCategory() {
 	});
 	
 }
+function showLoading() {
+	var options = {
+         theme:"sk-cube-grid",
+         message:'Tunggu Sebentar ',
+         backgroundColor:"white",
+         textColor:"#7554bd" 
+    };
+    HoldOn.open(options);
+}
 function getChapter() {
 	$.ajax({
 		url: base_url+'getChapter',
@@ -248,7 +267,7 @@ function getChapter() {
 	.done(function(data) {
 		var chapter = ""; 
 		$.each(data, function(index, val) {
-			chapter += '<a class="btn w-100 mb-10 chapterdata0 editsubchapt1 addsubchapt_on" book="2016" chapter="1326" id="editchapt" href="'+uri_segment+'/chapter/'+val.chapter_id+'">'+val.chapter_title+'</a>';
+			chapter += '<a class="btn w-100 mb-10 chapterdata0 editsubchapt1 addsubchapt_on withanimation" book="2016" chapter="1326" id="editchapt" href="'+uri_segment+'/chapter/'+val.chapter_id+'" onclick="showLoading()">'+val.chapter_title+'</a>';
 		});
 		$("#btn_chapter").html(chapter);
 	})
@@ -260,3 +279,14 @@ function getChapter() {
 	});
 	
 }
+$(function () {
+	$(".withanimation").click(function(event) {
+		event.preventDefault();
+		var url=$(this).attr("href");
+
+        setTimeout(function() {
+            setTimeout(function() {showSpinner();},30);
+            window.location=url;
+        },0);
+	});
+});

@@ -58,16 +58,27 @@ $(document).ready(function() {
     if($(window).scrollTop() + $(window).height() > $(document).height() - 1) {
       if (page < count_data) {
         page++;
+        console.log(count_data);
         loadMoreData(page);
       }else{
         // $("#read").show();
       }
     }
-    var currentScroll = $(this).scrollTop();
-    if (currentScroll > previousScroll){
-     console.log("down");
-   } else {
-      console.log("up");
+    var fixedScroll = $("#cobamenu").scrollTop();
+    var scrollPos = $(document).scrollTop();
+    $('#cobamenu input[type="hidden"]').each(function () {
+        var currLink = $(this);
+        var refElement = $("#"+currLink.val());
+        if (refElement.position().top <= scrollPos && refElement.position().top + refElement.height() > scrollPos) {
+            var numbers = currLink.val().split("-");
+            var number = parseInt(numbers[1])+1;
+            $('#chapter_number').html(number);
+        }
+    });
+   //  if (currentScroll > previousScroll){
+   //   console.log("down "+fixedScroll);
+   // } else {
+   //    console.log("up "+fixedScroll);
       // var id_page = '';
       // var page_id = $("#chapter_number").text() - 1;
       // if (page_id == 0) {
@@ -76,8 +87,8 @@ $(document).ready(function() {
       //   id_page += page_id;
       // }
       //   $("#chapter_number").text(id_page);
-      }
-      previousScroll = currentScroll;
+      // }
+      // previousScroll = currentScroll;
   });
 
   function loadMoreData(page){
@@ -99,6 +110,7 @@ $(document).ready(function() {
       $('.loader').hide();
       $("#post-data").append(data);
       $("#chapter_number").text(page);
+      $("nav#cobamenu").append("<input type='hidden' value='post-"+page+"' />");
     })
     .fail(function(jqXHR, ajaxOptions, thrownError)
     {
@@ -106,3 +118,12 @@ $(document).ready(function() {
     });
   }
 });
+function showLoading() {
+  var options = {
+         theme:"sk-cube-grid",
+         message:'Tunggu Sebentar ',
+         backgroundColor:"white",
+         textColor:"#7554bd" 
+    };
+    HoldOn.open(options);
+}

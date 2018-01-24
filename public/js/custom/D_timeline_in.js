@@ -1,7 +1,15 @@
 function funcDropdown() {
   document.getElementById("myDropdown").classList.toggle("showss");
 }
-
+function showLoading() {
+  var options = {
+         theme:"sk-cube-grid",
+         message:'Tunggu Sebentar ',
+         backgroundColor:"white",
+         textColor:"#7554bd" 
+    };
+    HoldOn.open(options);
+}
 $(document).ready(function() {
   var page = 1;
   $(window).scroll(function() {
