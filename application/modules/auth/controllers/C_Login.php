@@ -244,6 +244,7 @@ class C_Login extends MX_Controller
                     redirect('book/'.$bsession);
                 }else{
                     redirect('timeline');
+                    // print_r("a");
                 }
             }
             else

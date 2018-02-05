@@ -3,6 +3,10 @@ function funcDropdown() {
 }
 
 $(document).ready(function() {
+  var getHashDaft = window.location.hash;
+  if (getHashDaft != "" && getHashDaft == "#comment") {
+    $('#commentModal').modal('toggle');
+  }
   var window_width = $(window).width();
   if (window_width < 768) {
     $(".stickymenu").trigger("sticky_kit:detach");

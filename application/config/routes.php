@@ -125,7 +125,9 @@ $route['getdetailchapter'] = 'book/C_book/chapter';
 
 $route['getcommentbook'] = 'book/C_book/getCommentBook';
 $route['commentbook'] = 'book/C_book/postCommentBook';
-
+$route['notification'] = 'notification/C_notification/getNotification';
+$route['example'] = 'notification/C_notification/example';
+$route['example/trigger_event'] = 'notification/C_notification/trigger_event';
 // Cover
 $route['create_cover'] = 'cover/C_cover';
 $route['send_cover'] = 'cover/C_cover/sendCover';

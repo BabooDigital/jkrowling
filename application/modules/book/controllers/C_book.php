@@ -34,24 +34,19 @@ class C_book extends MX_Controller {
 		// print_r($data_book);
 
 		// START GET CHAPTER
-		$url = $this->API.'/allChapters/book_id/'.$idb[0];
+		$url = $this->API.'/allChapters/';
 		$ch = curl_init();
-		$options = array(
-			CURLOPT_URL			 => $url,
-			CURLOPT_RETURNTRANSFER => true,
-	          CURLOPT_CUSTOMREQUEST  =>"GET",    // Atur type request
-	          CURLOPT_POST           =>false,    // Atur menjadi GET
-	          CURLOPT_FOLLOWLOCATION => false,    // Follow redirect aktif
-	          CURLOPT_SSL_VERIFYPEER => 0,
-	          CURLOPT_HEADER         => 1,
-	          CURLOPT_HTTPHEADER	 => array('baboo-auth-key : '.$auth)
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 
-	      );
-		curl_setopt_array($ch, $options);
+		curl_setopt($ch, CURLOPT_POST, 1);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $data_book);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+		curl_setopt($ch, CURLOPT_HEADER, 1);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key : '.$auth));
 		$content = curl_exec($ch);
-		curl_close($ch);
 		$headers=array();
-		
 		$data_before_chapter=explode("\n",$content);
 		$headers['status']=$data_before_chapter[0];
 
@@ -107,7 +102,7 @@ class C_book extends MX_Controller {
 
 		if (!$this->input->get("chapter")) {
 		}else{
-			$chapter_id = $data_before_chapter['chapter']['data'][$this->input->get("chapter")]['chapter_id'];
+			$chapter_id = $data_before_chapter['chapter']['data']['chapter'][$this->input->get("chapter")]['chapter_id'];
 
 			$url = $this->API.'/detailBook/';
 			$data_book = array(
@@ -156,8 +151,8 @@ class C_book extends MX_Controller {
 
 		$data['detailBook'] = json_decode(end($data), true);
 		$data['menuChapter'] = json_decode(end($data_before_chapter), true);
-		if ($data_before_chapter['chapter']['data'][3]['chapter_free'] != "false") {
-			$data['detailChapter'] = count($data_before_chapter['chapter']['data']);
+		if ($data_before_chapter['chapter']['data']['chapter'][3]['chapter_free'] != "false") {
+			$data['detailChapter'] = count($data_before_chapter['chapter']['data']['chapter']);
 		}else{
 			$data['detailChapter'] = 2;
 		}
@@ -179,18 +174,18 @@ class C_book extends MX_Controller {
 			$this->load->view('R_book', $data);
 		}else{
 			if ($this->input->get("chapter")) {
-				if ($data_before_chapter['chapter']['data'][$this->input->get("chapter")] == null || $data_before_chapter['chapter']['data'][$this->input->get("chapter")] == '') {
+				if ($data_before_chapter['chapter']['data']['chapter'][$this->input->get("chapter")] == null || $data_before_chapter['chapter']['data']['chapter'][$this->input->get("chapter")] == '') {
 		        	// print_r("kosong chapter");
 				}else{
 					$data['js'][] = "public/js/custom/detail_book.js";
 					$result = $this->load->view('data/D_book', $data);
 				}
-			}else{	
+			}else{
+			// print_r($content);	
 				$data['js'][] = "public/js/custom/detail_book.js";
 				$this->load->view('include/head', $data);
 				$this->load->view('D_book', $data);
-				// count($data_before_chapter['chapter']);
-				// print_r($data['detailChapter']);
+				count($data_before_chapter['chapter']);
 			}
 		}
 	}
@@ -260,7 +255,7 @@ class C_book extends MX_Controller {
 		// 	$this->load->view('R_book', $data);
 		// }else{
 		// 	if ($this->input->get("chapter")) {
-		// 		if ($data_before_chapter['chapter']['data'][$this->input->get("chapter")] == null || $data_before_chapter['chapter']['data'][$this->input->get("chapter")] == '') {
+		// 		if ($data_before_chapter['chapter']['data']['chapter'][$this->input->get("chapter")] == null || $data_before_chapter['chapter']['data']['chapter'][$this->input->get("chapter")] == '') {
 		//         	// print_r("kosong chapter");
 		// 		}else{
 		// 			$data['js'][] = "public/js/custom/detail_book.js";
@@ -341,6 +336,8 @@ class C_book extends MX_Controller {
 	{
 
 		error_reporting(0);
+		
+		$user = $this->session->userdata('userData')['user_id'];
 		$auth = $this->session->userdata('authKey');
 
 		$id_book = $this->input->post("id_book");
@@ -348,20 +345,24 @@ class C_book extends MX_Controller {
 		if (is_array($idb));
 		$id_chapter = $this->input->post("id_chapter");
 
-		$url = $this->API.'/allChapters/book_id/'.$idb[0];
-		$ch = curl_init();
-		$options = array(
-			CURLOPT_URL			 => $url,
-			CURLOPT_RETURNTRANSFER => true,
-	          CURLOPT_CUSTOMREQUEST  =>"GET",    // Atur type request
-	          CURLOPT_POST           =>false,    // Atur menjadi GET
-	          CURLOPT_FOLLOWLOCATION => false,    // Follow redirect aktif
-	          CURLOPT_SSL_VERIFYPEER => 0,
-	          CURLOPT_HEADER         => 1,
-	          CURLOPT_HTTPHEADER	 => array('baboo-auth-key : '.$auth)
+		$data_book = array(
+			'book_id' => $idb[0],
+			'user_id' => $user
+		);
+		// print_r($data_book);
 
-	      );
-		curl_setopt_array($ch, $options);
+		// START GET CHAPTER
+		$url = $this->API.'/allChapters/';
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+
+		curl_setopt($ch, CURLOPT_POST, 1);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $data_book);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+		curl_setopt($ch, CURLOPT_HEADER, 1);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key : '.$auth));
 		$content = curl_exec($ch);
 		curl_close($ch);
 		$headers=array();
@@ -386,7 +387,8 @@ class C_book extends MX_Controller {
 		{
 			$status = $data_before_chapter['chapter']['code'];
 		}
-		echo json_encode($data_before_chapter['chapter']['data']);
+		// print_r($data_before_chapter['chapter']['data']['chapter']['chapter']);
+		echo json_encode($data_before_chapter['chapter']['data']['chapter']);
 	}
 
 	public function readingMode()
@@ -403,22 +405,20 @@ class C_book extends MX_Controller {
 			'user_id' => $user
 		);
 		// print_r($data_book);
+		// print_r($data_book);
 
 		// START GET CHAPTER
-		$url = $this->API.'/allChapters/book_id/'.$idb[0];
+		$url = $this->API.'/allChapters/';
 		$ch = curl_init();
-		$options = array(
-			CURLOPT_URL			 => $url,
-			CURLOPT_RETURNTRANSFER => true,
-	          CURLOPT_CUSTOMREQUEST  =>"GET",    // Atur type request
-	          CURLOPT_POST           =>false,    // Atur menjadi GET
-	          CURLOPT_FOLLOWLOCATION => false,    // Follow redirect aktif
-	          CURLOPT_SSL_VERIFYPEER => 0,
-	          CURLOPT_HEADER         => 1,
-	          CURLOPT_HTTPHEADER	 => array('baboo-auth-key : '.$auth)
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 
-	      );
-		curl_setopt_array($ch, $options);
+		curl_setopt($ch, CURLOPT_POST, 1);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $data_book);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+		curl_setopt($ch, CURLOPT_HEADER, 1);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key : '.$auth));
 		$content = curl_exec($ch);
 		curl_close($ch);
 		$headers=array();
@@ -478,7 +478,7 @@ class C_book extends MX_Controller {
 
 		if (!$this->input->get("chapter")) {
 		}else{
-			$chapter_id = $data_before_chapter['chapter']['data'][$this->input->get("chapter")]['chapter_id'];
+			$chapter_id = $data_before_chapter['chapter']['data']['chapter'][$this->input->get("chapter")]['chapter_id'];
 
 			$url = $this->API.'/detailBook/';
 			$data_book = array(
@@ -527,14 +527,14 @@ class C_book extends MX_Controller {
 
 		$data['detailBook'] = json_decode(end($data), true);
 		$data['menuChapter'] = $data_before_chapter['chapter'];
-		if ($data_before_chapter['chapter']['data'][3]['chapter_free'] != "false") {
-			$data['detailChapter'] = count($data_before_chapter['chapter']['data']);
+		if ($data_before_chapter['chapter']['data']['chapter'][3]['chapter_free'] != "false") {
+			$data['detailChapter'] = count($data_before_chapter['chapter']['data']['chapter']);
 		}else{
 			$data['detailChapter'] = 2 + 1;
 		}
 		
 		$data['id_chapter'] = $this->input->get("chapter");
-		$data['chapter_free'] = $data_before_chapter['chapter']['data'][3]['chapter_free'];
+		$data['chapter_free'] = $data_before_chapter['chapter']['data']['chapter'][3]['chapter_free'];
 		$data['css'][] = "public/css/bootstrap.min.css";
 		$data['css'][] = "public/css/custom-margin-padding.css";
 		$data['css'][] = "public/css/font-awesome.min.css";
@@ -552,7 +552,7 @@ class C_book extends MX_Controller {
 			$this->load->view('R_book', $data);
 		}else{
 			if ($this->input->get("chapter")) {
-				if ($data_before_chapter['chapter']['data'][$this->input->get("chapter")] == null || $data_before_chapter['chapter']['data'][$this->input->get("chapter")] == '') {
+				if ($data_before_chapter['chapter']['data']['chapter'][$this->input->get("chapter")] == null || $data_before_chapter['chapter']['data']['chapter'][$this->input->get("chapter")] == '') {
 		        	// print_r("kosong chapter");
 				}else{
 					$result = $this->load->view('data/D_readingmode', $data);
