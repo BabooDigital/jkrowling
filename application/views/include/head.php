@@ -20,9 +20,10 @@
 	<script type="text/javascript">
 		var base_url = "<?php echo base_url(''); ?>";
 	</script>
+	<script src="https://js.pusher.com/4.2/pusher.min.js"></script>
 </head>
 <style>
-	.nav-link {
-		padding: 0px 0.3rem !important;
-	}
+.nav-link {
+	padding: 0px 0.3rem !important;
+}
 </style>

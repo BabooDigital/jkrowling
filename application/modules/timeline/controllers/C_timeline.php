@@ -106,6 +106,7 @@ class C_timeline extends MX_Controller {
 			}else{
 				$this->load->view('include/head',$datas);
 				$this->load->view('D_Timeline_in', $datas);
+				// print_r($this->session->userdata());
 			}
 		}
 	}

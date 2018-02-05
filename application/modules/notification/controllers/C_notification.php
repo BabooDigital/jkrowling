@@ -20,7 +20,53 @@ class C_notification extends MX_Controller
 
 			$this->load->view('include/head', $data);
 			$this->load->view('R_notification', $data);
-		
+
 		}
+	}
+	public function getNotification()
+	{
+		$auth = $this->session->userdata('authKey');
+		$id_user = $this->session->userdata('userData')['user_id'];
+
+		$chapterData = array(
+			'user_id' => $id_user
+		);
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, 'api.dev-baboo.co.id/v1/timeline/Timelines/notification');
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	        // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+
+		curl_setopt($ch, CURLOPT_POST, 1);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $chapterData);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+		curl_setopt($ch, CURLOPT_HEADER, 1);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key : '.$auth));
+		$result = curl_exec($ch);
+
+		$headers=array();
+
+		$data=explode("\n",$result);
+
+
+		array_shift($data);
+
+		foreach($data as $part){
+			$middle=explode(":",$part);
+			error_reporting(0);
+			$headers[trim($middle[0])] = trim($middle[1]);
+		}
+		$resval = (array)json_decode(end($data));
+		$notif = (array)$resval['data'];
+		$auth = $headers['BABOO-AUTH-KEY'];
+		if (isset($resval['code']) && $resval['code'] == '200')
+		{
+			$status = $resval['code'];
+			$this->session->set_userdata('authKey', $auth);
+		}
+		else
+		{
+			$status = $resval['code'];
+		}
+		echo json_encode($notif);
 	}
 }
