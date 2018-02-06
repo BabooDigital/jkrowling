@@ -79,6 +79,7 @@ class C_timeline extends MX_Controller {
 		$datas['js'][]   = "public/js/jquery.sticky-kit.min.js";
 		$datas['js'][] = "public/plugins/holdOn/js/HoldOn.js";
 		$datas['js'][]   = "public/js/custom/D_timeline_in.js";
+		$datas['js'][]   = "public/js/custom/notification.js";
 
 		if ($this->agent->is_mobile('ipad'))
 		{
@@ -100,6 +101,7 @@ class C_timeline extends MX_Controller {
 			}
 		}
 		else
+			$datas['js'][]   = "public/js/custom/D_timeline_in.js";
 		{
 			if (!empty($this->input->get("page"))) {
 				$result = $this->load->view('data/D_timeline_in', $datas);

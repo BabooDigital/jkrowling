@@ -41,7 +41,7 @@
 							<h5>Notifications</h5>
 							<div class="loader" id="loader_notif" style="margin-left: auto;margin-right: auto;"></div>
 							<div class="list-group" id="notification">
-								<!-- <a href="asd" class="list-group-item list-group-item-action flex-column align-items-start">
+								<a href="asd" class="list-group-item list-group-item-action flex-column align-items-start">
 									<div class="row mb-10" style="padding: 0px 10px 0px 10px;text-align: left;">
 										<div class="media" style="width: 100%;">
 											<img class="d-flex align-self-start mr-20 rounded-circle" src="<?php echo base_url(); ?>public/img/profile/pp_wanita2.png" width="48" alt="Generic placeholder image">
@@ -71,7 +71,7 @@
 											<h5 style="padding-top:20px; font-weight: 500;"><b>Story of Diana</b></h5>
 										</div>
 									</a>
- -->								</div>
+								</div>
 
 								<div class="seeAll"><a href="#">See All</a></div>
 							</div>

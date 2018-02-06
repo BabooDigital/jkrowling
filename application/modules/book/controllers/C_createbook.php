@@ -16,6 +16,7 @@ class C_createbook extends MX_Controller {
 
 	public function index()
 	{
+		$data['judul'] = "Buat Sebuah Cerita - Baboo";
 		$data['title'] = "Buat Sebuah Cerita - Baboo";
 
 		$data['css'][] = "public/css/bootstrap.min.css";
@@ -1185,7 +1186,7 @@ class C_createbook extends MX_Controller {
 		{
 			$status = $data_before_chapter['chapter']['code'];
 		}
-		echo json_encode($data_before_chapter['chapter']['data']);
-		// print_r($content);
+		echo json_encode($data_before_chapter['chapter']['data']['chapter']);
+		// print_r($data_before_chapter['chapter']['data']['chapter']);
     }
 }

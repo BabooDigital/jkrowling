@@ -164,6 +164,7 @@ class C_book extends MX_Controller {
 		$data['js'][] = "public/js/bootstrap.min.js";
 		$data['js'][] = "public/js/jquery.sticky-kit.min.js";		
 		$data['js'][] = "public/plugins/holdOn/js/HoldOn.js";
+		$data['js'][]   = "public/js/custom/notification.js";
 		
 		$data['id_chapter'] = $this->input->get("chapter");
 
