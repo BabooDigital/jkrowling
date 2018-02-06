@@ -16,7 +16,7 @@
 			<div class="col-md-8 bg-white">
 				<div id="readingModeContent">
 					<div class="card p-30" style="border-radius: 0;border: none;">
-						<div class="card-body">
+						<div class="card-body" style="padding-bottom:200px;">
 							<div class="media">
 							<img class="d-flex align-self-start mr-20 rounded-circle" width="50" height="50" src="
 							<?php if($detail_book['data']['author']['avatar'] == NULL){
@@ -39,9 +39,6 @@
 									<p></p>
 									<div class="row">
 										<div class="col-md-3">
-											<!-- <div class="border border-top-0 border-left-0 border-bottom-0"> -->
-												<!-- <h1 style="font-size: 5.5rem;"><strong></strong></h1> -->
-											<!-- </div> -->
 										</div>
 									</div>
 								</div>
@@ -70,7 +67,7 @@
 							<div class="col-md-2"></div>
 						</div>
 						<div class="progress navprogress">
-							<div aria-valuemax="100" aria-valuemin="0" aria-valuenow="25" class="progress-bar" role="progressbar" style="width: 25%;"></div>
+							<!-- <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="25" class="progress-bar" role="progressbar" style="width: 80%;"></div> -->
 						</div>
 					</nav>
 					<script type="text/javascript">
