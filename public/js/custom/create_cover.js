@@ -174,7 +174,7 @@
 		$('.colorbg').click(function() {
 			var x = $(this).css('backgroundColor');
 			hexc(x);
-			$('#bg-cover').removeAttr('src').css({
+			$('#bg-cover').css({
 				background: color
 			});
 

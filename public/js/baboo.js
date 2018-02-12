@@ -20,7 +20,20 @@ $(document).ready(function(){
         nextText: '<i class="fa fa-chevron-right fa-2x contslider"></i>',
         prevText: '<i class="fa fa-chevron-left fa-2x contslider"></i>',
       }); 
-      
+    $('.slider_login').bxSlider({
+        // moveSlides: 2,
+        // maxSlides: 2,
+        pager: false,
+        /* Controls must be true */
+        controls: true,
+
+        /* Class selectors from step 1 */
+        nextSelector: '#slider-next',
+        prevSelector: '#slider-prev',
+
+        nextText: '<i class="fa fa-chevron-right fa-2x contslider"></i>',
+        prevText: '<i class="fa fa-chevron-left fa-2x contslider"></i>',
+      });       
 
     // clicking button with class "category-button"
     $(".btnfilter").click(function(){

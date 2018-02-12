@@ -16,7 +16,7 @@
 </nav>
 
 <nav class="navbar navbar-expand-lg fixed-top" style="height:auto;box-shadow: none;">
-<div style="background-color: #f9fbfc; position: absolute; left:0; right: 0; top:47px; width: 150%;">
+<div style="background-color: #f9fbfc; position: absolute; left:0; right: 0; top:60px; width: 150%;">
 	<div class="container">
 		<div class="row" style="">
 			<div class="col-2 mt-5 mb-1">

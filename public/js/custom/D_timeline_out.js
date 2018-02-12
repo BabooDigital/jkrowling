@@ -11,9 +11,12 @@ function getWritters() {
     var datas = "";
     $.each(data, function(i, item) {
       var avatar;
-      if (item.avatar != "") {
+      if (item.avatar != null) {
         avatar = item.avatar;
-      }else if (item.avatar == ""){
+      }if(item.avatar == ""){
+        avatar = 'public/img/profile/blank-photo.jpg';
+      }
+      else if(item.avatar == null){
         avatar = 'public/img/profile/blank-photo.jpg';
       }
       datas += "<a href='"+base_url+"profile/"+item.author_id+"'><li class='media baboocontent'><img alt='"+item.author_name+"' class='d-flex mr-3 rounded-circle' src='"+ avatar +"' width='50' height='50'><div class='media-body mt-7'><h5 class='mt-0 mb-1 nametitle'>"+item.author_name+"</h5><small>Fiksi</small><div class='pull-right baboocolor'><a href='#' class='addbutton'><img src='public/img/assets/icon_plus_purple.svg' width='20' class='mt-img'></a></div></div></li></a>";

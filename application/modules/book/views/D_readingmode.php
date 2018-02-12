@@ -57,10 +57,16 @@
 								</ul>
 								<ul class="navbar-nav">
 									<li class="nav-item">
-										<a href="#"><img src="<?php echo base_url(); ?>public/img/assets/icon_love.svg" width="30"></a>
+										<a data-id="<?php echo $detail_book['data']['book_info']['book_id']; ?>" href="javascript:void(0);" id="loveboo" class="fs-14px <?php if($detail_book['data']['book_info']['is_like'] == 'false'){ echo 'like'; }else{ echo 'unlike'; } ?>">
+											<img src="<?php if($detail_book['data']['book_info']['is_like'] == 'false'){ echo base_url('public/img/assets/icon_love.svg'); }else{ echo base_url('public/img/assets/love_active.svg'); } ?>" class="loveicon" width="30">
+										</a>
 									</li>
 									<li class="nav-item ml-20">
-										<a href="#"><img src="<?php echo base_url(); ?>public/img/assets/icon_comment.svg" width="25"></a>
+										<?php 
+											$url = base_url(uri_string());
+											$replace = str_replace("/read", "#comment", $url);
+										?>
+										<a href="<?php echo $replace; ?>"><img src="<?php echo base_url(); ?>public/img/assets/icon_comment.svg" width="25"></a>
 									</li>
 								</ul>
 							</div>

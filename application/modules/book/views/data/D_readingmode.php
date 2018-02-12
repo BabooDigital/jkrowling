@@ -1,5 +1,5 @@
 
-<div id="post-<?php echo (int)$id_chapter; ?>" class="mauboleh">
+<div id="post-<?php echo (int)$id_chapter; ?>" class="mauboleh" style="line-height:30px;">
 <?php if ($detail_book['data']['chapter']['chapter_free'] == 'true'): ?>
 	<br>
 	<br>
@@ -7,10 +7,12 @@
 	<h4 class="dbooktitlebook" > <?php
 		if ($id_chapter == null || $id_chapter == '' || $id_chapter == 0) {
 			echo "Judul Buku";
+			$data = $detail_book['data']['book_info']['title_book'];
 		}else{
 			echo "Chapter ".$id_chapter;
+			$data = $detail_book['data']['book_info']['title_book'];
 		}
-	?> : <?php print_r($detail_book['data']['chapter']['chapter_title']); ?></h4>
+	?> : <?php echo $data; ?></h4>
 	<?php 
 	foreach ($detail_book['data']['chapter']['paragraphs'] as $book) {
 		$data .= $book['paragraph_text'];

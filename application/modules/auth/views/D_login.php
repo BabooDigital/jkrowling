@@ -12,18 +12,24 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/sweetalert2.min.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/font-awesome.min.css">
 
+
+	<link href="http://localhost/jkrowling/public/css/bootstrap.min.css" rel="stylesheet">
+	<link href="http://localhost/jkrowling/public/css/baboo.css" rel="stylesheet" type="text/css">
+	<link href="http://localhost/jkrowling/public/css/baboo-responsive.css" rel="stylesheet" type="text/css">
+	<link href="http://localhost/jkrowling/public/css/custom-margin-padding.css" rel="stylesheet" type="text/css">
+	<link href="http://localhost/jkrowling/public/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 	<?php echo $script_captcha; ?>
 
 </head>
 <!-- CSS -->
 <?php
-	error_reporting(0);
-	$actual_link = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-	$parts = parse_url($actual_link);
-	parse_str($parts['query'], $query);
-	if (!empty($query['b'])) {
-		$this->session->set_userdata('bookRef', $query['b']);
-	}else{	
+error_reporting(0);
+$actual_link = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+$parts = parse_url($actual_link);
+parse_str($parts['query'], $query);
+if (!empty($query['b'])) {
+	$this->session->set_userdata('bookRef', $query['b']);
+}else{	
 
 }
 ?>
@@ -33,13 +39,39 @@
 		<div class="row no-gutters">
 
 			<!-- Left Side Content -->
-			<div class="col-md-8 nopadding">
-				<div class="left-side">
+			<div class="col-md-8" >
+				<div class="left-side" style="padding: 10px;">
+					<img src="<?php echo base_url();?>public/img/front-image/logo_purple.png" class="floating" width="150" height="70">
+					<br>
+					<p class="text-img floating">Selamat Datang di Baboo</p>
 					<center>
-						<img src="<?php echo base_url();?>public/img/front-image/logo_purple.png" class="img-fluid img-left center-content floating">
-						<p class="text-img floating">Baca buku online Indonesia</p>
+						<div class="slideboo" style="width: 100%;">
+							<!-- <div class="leftboo"></div> -->
+							<div class="slidecontrols">
+								<span id="slider-prev"></span> <span id="slider-next" style="padding-left: 40%;"></span>
+							</div>
+							<!-- SLIDE BABOO -->
+							<div style="width: 100%;height: auto;position: relative;">
+								<div class="slider_login">
+									<div class="contentpadding">
+										<img src="<?php echo base_url('public/img/slide/child.png') ?>" width="200" heigth="200">
+										<div class="" style="padding: 5% 0;color:black;">
+											<p class="nulis">Nulis dan Baca Buku Jadi Lebih Asik</p>
+											<p class="bisa">Sekarang kamu bisa nulis dan baca buku dengan smartphone kesayangan kamu</p>
+										</div>
+									</div>
+								  	<div class="contentpadding">
+										<img src="<?php echo base_url('public/img/slide/child.png') ?>" width="200" heigth="200">
+										<div class="" style="padding: 5% 0;color:black;">
+											<p class="nulis">Nulis dan Baca Buku Jadi Lebih Asik</p>
+											<p class="bisa">Sekarang kamu bisa nulis dan baca buku dengan smartphone kesayangan kamu</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- END SLIDE BABOO -->
+						</div>
 					</center>
-
 				</div>
 			</div>
 			<!-- End Left Side Content -->
@@ -200,6 +232,12 @@
 	<script type="text/javascript" src="<?php echo base_url();?>public/js/combodate.js"></script>
 	<script src="<?php echo base_url();?>public/js/jquery.validate.js"></script>
 	<script src="<?php echo base_url();?>public/js/additional-methods.js"></script>
+	
+	<script src="http://localhost/jkrowling/public/js/jquery.bxslider.min.js" type="text/javascript"></script>
+	<script src="http://localhost/jkrowling/public/js/baboo.js" type="text/javascript"></script>
+	<script src="http://localhost/jkrowling/public/js/jquery.sticky-kit.min.js" type="text/javascript"></script>
+	<script src="http://localhost/jkrowling/public/js/custom/D_timeline_out.js" type="text/javascript"></script>
+
 
 	<script type="text/javascript">
 		$(function() {

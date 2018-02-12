@@ -629,17 +629,22 @@ class C_book extends MX_Controller {
 		$status = $resval['code'];
 
 		echo json_encode($userdetail);
+		// print_r($data);
 	}
 
 	public function getCommentBook() {
 		error_reporting(0);
 		$url = 'api.dev-baboo.co.id/v1/timeline/Timelines/getComment';
+
+
 		$auth = $this->session->userdata('authKey');
 		$book_id = $this->input->post('book_id');
+		$idb = explode('-', $book_id, 2);
+		if (is_array($idb));
 		$parap_id = $this->input->post('paragraph_id');
 		if (!empty($book_id)) {
 			$sendData = array(
-				'book_id' => $book_id
+				'book_id' => $idb[0]
 			);	
 		}else{
 			$sendData = array(
@@ -680,13 +685,15 @@ class C_book extends MX_Controller {
 		$resval =  json_decode($getdata, TRUE);
 
 		$psn = $resval['message'];
-		$userdetail = $resval['data'];
+		$userdetail = $resval['data']['comments'];
 		$auth = $headers['BABOO-AUTH-KEY'];
 		
 		$this->session->set_userdata('authKey', $auth);
 		$status = $resval['code'];
 
 		echo json_encode($userdetail);
+
+		// echo $result;
 	}
 	public function getCategory()
 	{

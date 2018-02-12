@@ -84,6 +84,7 @@ $route['bookmark'] = 'timeline/C_timeline/postBookmark';
 // Explore
 $route['notification'] = 'notification/C_notification';
 $route['more'] = 'more/C_more';
+$route['updatentf'] = 'notification/C_notification/updateNtf';
 
 // library
 $route['library'] = 'library/C_library';

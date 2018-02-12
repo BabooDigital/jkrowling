@@ -49,11 +49,27 @@ class C_book_out extends MX_Controller {
 
 		$resval = (array)json_decode(end($data), true);
 
+		$book['css'][] = "public/plugins/holdOn/css/HoldOn.css"
+		;
+		$datas['js'][]   = "public/js/custom/D_timeline_in.js";
+
+		$book['js'][] = "public/js/jquery.min.js";
+		$book['js'][] = "public/js/umd/popper.min.js";
+		$book['js'][] = "public/js/bootstrap.min.js";
+		$book['js'][] = "public/js/jquery.sticky-kit.min.js";		
+		$book['js'][] = "public/plugins/holdOn/js/HoldOn.js";
+		$book['js'][]   = "public/js/custom/notification.js";
+
+		$book['js'][] = "public/js/custom/detail_book.js";
+
 		$book['detailBook'] = $resval['data'];
 		$book['title'] = $resval['data']['book_info']['title_book'];
 		$book['cover'] = $resval['data']['book_info']['cover_url'];
 		$book['desc'] = $resval['data']['chapter']['paragraphs'];
 		$book['bid'] = $resval['data']['book_info']['book_id'];
+		$book['author'] = $resval['data']['author']['author_name'];
+		$book['avatar'] = $resval['data']['author']['avatar'];
+
 		$this->load->view('D_book_out', $book);
 	}
 }

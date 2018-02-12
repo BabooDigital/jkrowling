@@ -519,6 +519,14 @@ nav.profile {
   padding: 10px;
   border-radius: 10px;
 }
+.btnbooreadmr {
+  border: 1px rgba(128, 128, 128, 0.28) solid;
+  border-radius: 23px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.14);
+  padding: 8px 10px;
+  font-size: 10px;
+}
 .margin_cover {
   margin-top: 80px;
   height: 700px;

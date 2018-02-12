@@ -76,6 +76,7 @@ class C_timeline extends MX_Controller {
     	$datas['css'][] = "public/plugins/holdOn/css/HoldOn.css";
 
 		$datas['js'][]   = "public/js/jquery.min.js";
+		$datas['js'][]   = "public/js/bootstrap.min.js";
 		$datas['js'][]   = "public/js/jquery.sticky-kit.min.js";
 		$datas['js'][] = "public/plugins/holdOn/js/HoldOn.js";
 		$datas['js'][]   = "public/js/custom/D_timeline_in.js";

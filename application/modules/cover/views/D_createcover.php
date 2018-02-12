@@ -216,7 +216,7 @@
 						<div class="col-md-12">
 							<div class="mt-20">
 								<div id="yourcoverimage">
-									<img id="bg-cover" style="background: rgb(239, 77, 72);">
+									<div id="bg-cover" style="background: rgb(239, 77, 72);"></div>
 									<div id="coverCreation">
 										<span class="txt-h3" id="parenttxttitle"><span id="textcolor"><span id="texttitle"><span id="txtfontfam"></span></span></span></span>
 									</div>

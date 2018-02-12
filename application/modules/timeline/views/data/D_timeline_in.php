@@ -1,8 +1,8 @@
 <?php if (!empty($home)) {
 	foreach ($home as $s_book) {  ?>
-	<div class="card mb-15" style="padding: 0 10px;">
+	<div class="card mb-15" style="padding: 0 10px 10px;">
 		<div class="card-body p-0 p-20">
-			<div class="row mb-30">
+			<div class="row mb-30 " style="padding-bottom:20px;border-bottom:solid 1px #DDD;">
 				<div class="media">
 					<a href="#"><img class="d-flex align-self-start mr-20 rounded-circle" src="<?php if($s_book['author_avatar'] == NULL){
 						echo base_url('public/img/profile/blank-photo.jpg');
@@ -25,8 +25,10 @@
 								echo $s_book['book_id']; ?>
 								-<?php echo url_title($s_book['title_book'], 'dash', true); ?>
 								">
-								<img class="d-flex align-self-start mr-10 float-left" src="<?php echo ($s_book['cover_url'] != 'Kosong') ? ($s_book['cover_url'] != null ? $s_book['cover_url'] : base_url('public/img/icon-tab/empty-set.png')) : base_url('public/img/icon-tab/empty-set.png'); ?>" width="120" height="170" alt="<?php
-								echo $s_book['title_book']; ?>">
+								<?php if ($s_book['cover_url'] != null): ?>
+									<img class="effect-img d-flex align-self-start mr-10 float-left" src="<?php echo ($s_book['cover_url'] != 'Kosong') ? ($s_book['cover_url'] != null ? $s_book['cover_url'] : base_url('public/img/icon-tab/empty-set.png')) : base_url('public/img/icon-tab/empty-set.png'); ?>" width="120" height="170" alt="<?php
+									echo $s_book['title_book']; ?>">
+								<?php endif ?>
 							</a>
 							
 							<h5 class="card-title nametitle3"><a onclick="showLoading()" href="<?php echo site_url(); ?>book/<?php
@@ -49,13 +51,25 @@
 				</div>
 			</div>
 		</div>
-		<div class="card-footer text-muted" style="font-size: 0.8em;font-weight: bold;">
+			<div class="card-footer text-muted" style="font-size: 0.8em;font-weight: bold;border-radius: 15px;">
 			<div class="pull-right">
-			<a href="javascript:void(0);" data-share="<?php echo $s_book['book_id']; ?>" class="fs-14px share-btn"><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg" class="mr-10" width="23"> Bagikan</a>
+					<div class="dropdown">
+						<button data-share="<?php echo $s_book['book_id']; ?>" class="fs-14px share-btn dropdown-toggle"><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg" class="mr-10" width="23" data-toggle="dropdown"> Bagikan
+							<span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu">
+							<li><a href="#">HTML</a></li>
+							<li><a href="#">CSS</a></li>
+							<li><a href="#">JavaScript</a></li>
+						</ul>
+					</div>
 			</div>
 			<div>
 				<a data-id="<?php echo $s_book['book_id']; ?>" href="javascript:void(0);" id="loveboo<?php echo $s_book['book_id']; ?>" class="mr-30 fs-14px <?php if($s_book['is_like'] == 'false'){ echo 'like'; }else{ echo 'unlike'; } ?>"><img src="<?php if($s_book['is_like'] == 'false'){ echo base_url('public/img/assets/icon_love.svg'); }else{ echo base_url('public/img/assets/love_active.svg'); } ?>" class="mr-10 loveicon" width="27"> <span class="<?php if($s_book['is_like'] == 'false'){ echo 'txtlike'; }else{ echo 'txtunlike'; } ?>"><?php if($s_book['is_like'] == 'false'){ echo 'Suka'; }else{ echo 'Batal Suka'; } ?></span></a>
-				<a href="#" id="commentboo" class="fs-14px"><img src="<?php echo base_url(); ?>public/img/assets/icon_comment.svg" class="mr-10" width="25"> Komentar</a>
+				<a onclick="showLoading()" href="<?php echo site_url(); ?>book/<?php
+							echo $s_book['book_id']; ?>
+							-<?php echo url_title($s_book['title_book'], 'dash', true); ?>#comment
+				" id="commentboo" class="fs-14px"><img src="<?php echo base_url(); ?>public/img/assets/icon_comment.svg" class="mr-10" width="25"> Komentar</a>
 			</div>
 		</div>
 	</div>
