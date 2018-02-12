@@ -23,9 +23,9 @@ body {
 }
 </style>
 <body>
-	<nav class="navbar navbar-expand-lg fixed-top   baboonav">
+	<nav class="navbar navbar-expand-lg fixed-top baboonav">
 		<button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbarSupportedContent" data-toggle="collapse" type="button"><span class="fa fa-bars"></span></button>
-		<a class="navbar-brand" href="#"><img alt="Baboo - Beyond Book &amp; Creativity" src="<?php echo base_url(); ?>public/img/new_logo.svg" width="100"></a>
+		<a class="" href="#"><img alt="Baboo - Beyond Book &amp; Creativity" src="<?php echo base_url(); ?>public/img/new_logo.svg" width="100"></a>
 		<a href="<?php echo site_url();?>login" class="btn bukupilihan" style="background-color:#f7f3ff; border:solid 1px #7554bd; color:#7554bd; ">Masuk</a>
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">

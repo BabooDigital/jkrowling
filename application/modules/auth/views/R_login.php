@@ -74,7 +74,7 @@
 							</div>
 
 							<div class="col-lg-12">
-								<form action="<?php echo site_url(); ?>auth/C_Login/postloginuser" method="post" novalidate="novalidate">
+								<form id="login-form" action="<?php echo site_url(); ?>auth/C_Login/postloginuser" method="post" novalidate="novalidate">
 									<div class="form-group">
 										<input type="email" class="form-control login-input" id="exampleInputEmail1" name="emails" aria-describedby="emailHelp" placeholder="Enter email">
 									</div>
@@ -130,7 +130,7 @@
 										<p style="font-size:12px; color:#676767;">Tanggal lahir</p>
 
 										<div class="form-group">
-											<input type="text" id="date" data-max-year="2015" data-first-item="name" data-format="YYYY-MM-DD" data-template="YYYY MM DD" data-custom-class="form-control login-input" data-smart-days="true" name="tgl_lahir"> 
+											<input type="text" id="date" data-max-year="2015" data-first-item="name" data-format="YYYY-MM-DD" data-template="DD MM YYYY" data-custom-class="form-control login-input" data-smart-days="true" name="tgl_lahir"> 
 										</div>
 
 										<div class="row" style="margin-top:10px;">
@@ -154,12 +154,6 @@
 														</label>
 													</div>
 												</div>
-											</div>
-										</div>
-
-										<div class="form-group">
-											<div class="form-check">
-												<?php echo $captcha; ?>
 											</div>
 										</div>
 										<center>
@@ -189,6 +183,68 @@
 		<script type="text/javascript">
 			$(function() {
 				$('#date').combodate('method');
+			});
+			$("#login-form").validate({
+				rules: {
+					emails: {
+						required: true,
+						email: true
+					},
+					passwords: {
+						required: true,
+						minlength: 5
+					}
+				},
+				messages: {
+					emails: {
+						required: 'Email harus di isi'
+					},
+					passwords: {
+						required: 'Password harus di isi',
+						minlength: 'Password minimal 5 karakter'
+					}
+				}
+			});
+			$("#form-register").validate({
+				ignore: [],
+				rules: {
+					name: {
+						required: true
+					},
+					email: {
+						required: true,
+						email: true
+					},
+					password: {
+						required: true,
+						minlength: 5
+					},
+					retype_password: {
+						equalTo: "#password"
+					},
+					tgl_lahir: {
+						required: true
+					}
+				},
+				messages: {
+					name: {
+						required: 'Nama lengkap harus di isi'
+					},
+					email: {
+						required: 'Email harus di isi',
+						email   : 'Email harus valid'
+					},
+					password: {
+						required: 'Password harus di isi',
+						minlength: 'Password minimal 5 karakter'
+					},
+					retype_password: {
+						equalTo: 'Retype Password Tidak sama',
+					},
+					tgl_lahir: {
+						required: 'Tanggal lahir harus di isi',
+					}
+				}
 			});
 			$(document).ready(function() {
 				$("#login_fb").on("click",function() {

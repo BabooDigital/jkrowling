@@ -67,7 +67,7 @@
 </style>
 <div class="container pt-100 mb-80">
 	<div class="row">
-		<div class="col-md-4 dtlbok">
+		<div class="col-md-4 dtlbok" style="padding: 0 40px;">
 			<?php if (!empty($detail_book)) { ?>
 			<div class="card pb-20">
 				<div class="text-center pr-30 pl-30 pt-20">
@@ -158,7 +158,7 @@
 								<img src="<?php if($detail_book['data']['book_info']['is_like'] == 'false'){ echo base_url('public/img/assets/icon_love.svg'); }else{ echo base_url('public/img/assets/love_active.svg'); } ?>" class="loveicon" width="40">
 							</a>
 						</p>
-						<p><button type="button" data-toggle="modal" data-target="#commentModal" style="cursor: pointer;background: none;border: none;">
+						<p><button data-b-id="<?php echo $detail_book['data']['book_info']['book_id']; ?>" onclick="getCommentBook()" type="button" data-toggle="modal" data-target="#commentModal" style="cursor: pointer;background: none;border: none;">
 							<div class="thumbnail"><img src="<?php echo base_url(); ?>public/img/assets/icon_comment.svg" width="40"><div class="caption"><span id="commentcount"><?php echo $detail_book['data']['book_info']['book_comment_count']; ?></span></div></div>
 						</button></p>
 					</div>
@@ -171,7 +171,7 @@
 						</a>
 						<a href="javascript:void(0);" class="share-tweet">
 							<p class="mb-10" style="background-color: #55abf7;padding: 10px 5px;border-radius: 5px;">
-								<img src="<?php echo base_url(); ?>public/img/assets/icon_fb_white.svg" width="30">
+								<img src="<?php echo base_url(); ?>public/img/assets/logo_twitter.svg" width="30">
 							</p>
 						</a>
 					</div>
@@ -197,7 +197,7 @@
 					</a>
 				</li>
 				<li class="nav-item ml-20">
-					<button type="button" data-toggle="modal" data-target="#commentModal" style="cursor: pointer;background: none;border: none;">
+					<button data-b-id="<?php echo $detail_book['data']['book_info']['book_id']; ?>" onclick="getCommentBook()" type="button" data-toggle="modal" data-target="#commentModal" style="cursor: pointer;background: none;border: none;">
 						<div class="thumbnail"><img src="<?php echo base_url(); ?>public/img/assets/icon_comment.svg" width="25"><div class="caption fs-12px"><span id="commentcount"><?php echo $detail_book['data']['book_info']['book_comment_count']; ?></span></div></div>
 					</button>
 				</li>
@@ -232,7 +232,7 @@
 				<nav class="navbar navbar-expand-lg navbar-light fixed-bottom box-shadow-navbar bg-white">
 					<div class="container pb-10 pt-10">
 						<div class="col-md-9">
-							<textarea id="comments" class="commentform" placeholder="Tulis Komentar kamu..."></textarea>
+							<textarea style="outline:0;" id="comments" class="commentform" placeholder="Tulis Komentar kamu..."></textarea>
 						</div>
 						<div class="col-md-3">
 							<div>

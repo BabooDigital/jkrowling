@@ -525,14 +525,16 @@ input.formsearch:focus {
 }*/
 
 .card {
-	border-radius: 5px;
+	border-radius: 10px;
 	background-color: #ffffff;
 	box-shadow: 0 2px 2px 0 rgba(167, 167, 167, 0.04);
 	border: solid 1px #e8ebec;
 }
-
+.hr {
+	border-bottom:solid 2px #DDD: 
+}
 .side-card {
-	border-radius: 5px;
+	border-radius: 10px;
 	background-color: #fafcfd;
 	box-shadow: 0 2px 2px 0 rgba(167, 167, 167, 0.04);
 	border: solid 1px #e8ebec;
@@ -560,9 +562,13 @@ input.formsearch:focus {
 }
 
 .card-footer {
-	background: transparent !important;
+    background: #DDDD;
+    border-radius: 20px;
 }
-
+.effect-img {
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	border-radius: 10px;
+}
 .padding-0 {
 	padding-right: 0;
 	padding-left: 0;
@@ -579,10 +585,14 @@ input.formsearch:focus {
 	font-family: 'Source Sans Pro', sans-serif;
 }
 
+.padding {
+	padding: 20px;
+}
 .left-side {
 	border: 0px;
 	border-radius: 0px;
 	background-color: #F5F8FA;
+	padding: 10px;
 }
 
 .right-side {
@@ -802,9 +812,40 @@ input.formsearch:focus {
 	select.form-control:focus {
 		border-color: #7554bd;
 	}
-
+	.share-btn {
+		font-size: 0.8em;font-weight: bold;background: transparent;border: 0;
+	}
 	/*SLIDER*/
-
+	.nulis {
+	  width: 300px;
+	  height: 24px;
+	  font-family: 'Source Sans Pro', sans-serif;
+	  font-size: 18px;
+	  font-weight: bold;
+	  font-style: normal;
+	  font-stretch: normal;
+	  line-height: 1.33;
+	  letter-spacing: normal;
+	  text-align: center;
+	  color: #272727;
+	}
+	.contentpadding {
+		padding-left: 50px;
+		padding-top: 50px;
+	}
+	.bisa {
+	  width: 247.7px;
+	  height: 43px;
+	  font-family: 'Source Sans Pro', sans-serif;
+	  font-size: 14px;
+	  font-weight: normal;
+	  font-style: normal;
+	  font-stretch: normal;
+	  line-height: 1.29;
+	  letter-spacing: normal;
+	  text-align: center;
+	  color: #272727;
+	}
 	.slideboo {
 		display: flex;
 		position: relative;

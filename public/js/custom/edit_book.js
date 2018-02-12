@@ -25,7 +25,8 @@ $(function(){
   });
 
   $('#book_paragraph').froalaEditor({
-    imageEditButtons: ['imageDisplay', 'imageAlign', 'imageInfo', 'imageRemove']
+    imageEditButtons: ['imageDisplay', 'imageAlign', 'imageInfo', 'imageRemove'],
+    pastePlain: true
   })
   $("#updateChapter").click(function() {
     HoldOn.open({

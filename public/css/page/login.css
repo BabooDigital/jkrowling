@@ -6,10 +6,14 @@ body{
 	height: 100vh; margin:0; padding: 0;
 }
 
+.padding {
+	padding: 20px;
+}
 .left-side{
 	background-color:#fff;
 	background : url(../../img/wallpaper/wp.png);
 	height:100vh;
+	padding: 10px;
 }
 
 .img-left{
@@ -23,7 +27,7 @@ body{
 }
 	
 .center-content{
-	margin-top: 200px;
+	margin-top: 100px;
 }
 
 .footer-link{
@@ -129,7 +133,6 @@ button.btn-primary:active:focus{
 	font-size:22px;
 	font-weight: 600;
 	font-family: 'Proxima Nova', Georgia, sans-serif;
-	margin-top:-20px;
 }
 
 .text-img-modal{

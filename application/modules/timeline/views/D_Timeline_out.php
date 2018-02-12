@@ -5,14 +5,11 @@
 		<div class="slidecontrols">
 			<span id="slider-prev"></span> <span id="slider-next" style="padding-left: 40%;"></span>
 		</div>
-		<!-- SLIDE BABOO -->
 		<div style="width: 100%;height: auto;position: relative;">
 			<?php $this->load->view('include/slide'); ?>
 		</div>
-		<!-- END SLIDE BABOO -->
 	</div>
 
-	<!-- CONTENT BABOO -->
 	<div class="container babooid">
 		<div class="row">
 			<div class="col-md-3 outleft">

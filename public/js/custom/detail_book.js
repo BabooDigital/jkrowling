@@ -37,44 +37,48 @@ $(document).ready(function() {
     var boo = $(this);
     var formData = new FormData();
     var comm = $('#comments').val();
-    var ava = $('#profpict').attr('src');
-    var name = $('#profname').text();
-    var commcount = +$('#commentcount').text() + 1;
+    if (comm == null || comm == "") {
+      alert('Anda harus masukan karakter');
+    }else{
+      var ava = $('#profpict').attr('src');
+      var name = $('#profname').text();
+      var commcount = +$('#commentcount').text() + 1;
 
-    var datas = "";
-    datas += "<div class='commentviewnull'><div class='media'> <img class='d-flex align-self-start mr-20 rounded-circle' width='50' height='50' src='" + ava + "'> <div class='media-body'> <h5 class='nametitle2 mb-5'>" + name + "</h5> <small><span>Jakarta, Indonesia</span></small> </div> </div> <div class='mt-10'> <p class='fs-14px' id='nullcomment'>" + comm + "</p> </div> <a href='#'><b>Balas</b></a> <hr></div>";
-    $('#bookcomment_list').append(datas);
+      var datas = "";
+      datas += "<div class='commentviewnull'><div class='media'> <img class='d-flex align-self-start mr-20 rounded-circle' width='50' height='50' src='" + ava + "'> <div class='media-body'> <h5 class='nametitle2 mb-5'>" + name + "</h5> <small><span>Jakarta, Indonesia</span></small> </div> </div> <div class='mt-10'> <p class='fs-14px' id='nullcomment'>" + comm + "</p> </div> <a href='#'><b>Balas</b></a> <hr></div>";
+      $('#bookcomment_list').append(datas);
 
-    formData.append('user_id', $('#iaiduui').val());
-    formData.append('book_id', $('#iaidubi').val());
-    formData.append('comments', $('#comments').val());
+      formData.append('user_id', $('#iaiduui').val());
+      formData.append('book_id', $('#iaidubi').val());
+      formData.append('comments', $('#comments').val());
 
-    $.ajax({
-        url: base_url + 'commentbook',
-        type: 'POST',
-        dataType: 'JSON',
-        cache: false,
-        contentType: false,
-        processData: false,
-        data: formData,
-        // beforeSend: function()
-        // {
-        //   $('.loader').show();
-        // }
-      })
-      .done(function(data) {
-        $("span[id='commentcount']").text(commcount);
-        if (data == null) {
-          $('.commentviewnull').hide();
-          // $("span[id='commentcount']").text(commcount);
-          console.log('Koneksi Bermasalah');
-        }
-        $('#comments').val('');
-      })
-      .fail(function() {
-        console.log("error");
-      })
-      .always(function() {});
+      $.ajax({
+          url: base_url + 'commentbook',
+          type: 'POST',
+          dataType: 'JSON',
+          cache: false,
+          contentType: false,
+          processData: false,
+          data: formData,
+          // beforeSend: function()
+          // {
+          //   $('.loader').show();
+          // }
+        })
+        .done(function(data) {
+          $("span[id='commentcount']").text(commcount);
+          if (data == null) {
+            $('.commentviewnull').hide();
+            // $("span[id='commentcount']").text(commcount);
+            console.log('Koneksi Bermasalah');
+          }
+          $('#comments').val('');
+        })
+        .fail(function() {
+          console.log("error");
+        })
+        .always(function() {});
+      }
   });
 
   // POST COMMENT PARAGRAPH
@@ -390,6 +394,7 @@ $(document).ready(function() {
     });
     $("#paragraphcomment_list").html(datas);
     $(".post-comment-parap").attr("data-p-id",boo.attr("data-p-id"));
+        // console.log(data);
       })
       .fail(function() {
         console.log("error");
@@ -401,7 +406,11 @@ $(document).ready(function() {
   progressScroll();
   getChapter();
   getmenuChapter();
-  getCommentBook();
+  var url_slug = document.URL;
+  var n = url_slug.indexOf("#comment");
+  if (n != -1) {
+    getCommentBook();
+  }
 });
 
 function progressScroll() {
@@ -582,12 +591,12 @@ function getContent(tab_page, page_id) {
 }
 
 function getCommentBook() {
-  var id = $('#iaidubi').val();
+  // var id = $('#iaidubi').val();
   $.ajax({
       url: base_url + 'getcommentbook',
       type: 'POST',
       dataType: 'json',
-      data: { book_id: id },
+      data: { book_id: segment },
       beforeSend: function() {
         $('.loader').show();
       }
@@ -596,10 +605,11 @@ function getCommentBook() {
       var datas = "";
       $.each(data, function(i, item) {
         var avatar;
+        console.log(item.comment_user_avatar);
         if (item.comment_user_avatar != "") {
           avatar = item.comment_user_avatar;
         } else if (item.comment_user_avatar == "") {
-          avatar = 'public/img/profile/blank-photo.jpg';
+          avatar = base_url+'public/img/profile/blank-photo.jpg';
         }
         datas += "<div class='commentview'><div class='media'> <img class='d-flex align-self-start mr-20 rounded-circle' width='50' height='50' src='" + avatar + "'> <div class='media-body'> <h5 class='nametitle2 mb-5'>" + item.comment_user_name + "</h5> <small><span>Jakarta, Indonesia</span></small> </div> </div> <div class='mt-10'> <p class='fs-14px' id='" + item.comment_id + "'>" + item.comment_text + "</p> </div> <a href='#'><b>Balas</b></a> <hr></div>";
       });
@@ -610,7 +620,6 @@ function getCommentBook() {
       console.log("error");
     })
     .always(function() {});
-
 }
 
 function ScrollToBottom(count) {
