@@ -11,6 +11,63 @@ function showLoading() {
  HoldOn.open(options);
 }
 $(document).ready(function() {
+    $(document).on('click', '.share-fb', function() {
+
+    var aww = $(this);
+    var formData = new FormData();
+    var bid = $('#iaidubi').val();
+    var blink = $('.dbooktitle').text();
+    var share = +$('#sharecount').text() + 1;
+    var desc = $('.textp').attr('data-text')+'.. - Baca buku lebih lengkap disini.. | Baboo - Beyond Book & Creativity';
+    var img = $('.cover_image').attr('src');
+    var auname = $('.author_name').text();
+    var segment = $('.segment').attr('href');
+    FB.ui({
+        method: 'share_open_graph',
+        action_type: 'og.shares',
+        action_properties: JSON.stringify({
+            object: {
+                'og:url': base_url + 'book/' + segment + '/preview',
+                'og:title': blink + ' ~ By : ' + auname + ' | Baboo - Beyond Book & Creativity',
+                'og:description': desc,
+                'og:image': img
+            }
+        })
+      },
+      // callback
+      function(response) {
+        if (response && !response.error_message) {
+
+          formData.append("user_id", $("#iaiduui").val());
+          formData.append("book_id", $('#iaidubi').val());
+
+          $.ajax({
+              url: base_url + 'shares',
+              type: 'POST',
+              dataType: 'JSON',
+              cache: false,
+              contentType: false,
+              processData: false,
+              data: formData,
+              // beforeSend: function() {
+              // }
+            })
+            .done(function(data) {
+              // $('.loader').hide();
+              // console.log("ke share");
+              $('#sharecount').text(share);
+            })
+            .fail(function() {
+              console.log("Failure");
+            })
+            .always(function() {
+
+            });
+        } else {
+          // console.log("Batal Share");
+        }
+      });
+  });
   var page = 1;
   $(window).scroll(function() {
     if ($(window).scrollTop() + $(window).height() > $(document).height() - 200) {
@@ -289,4 +346,20 @@ function convertToSlug(Text) {
     .toLowerCase()
     .replace(/[^\w ]+/g, '')
     .replace(/ +/g, '-');
+}
+function shareBtn() {
+    document.getElementById("dropdownShare").classList.toggle("show");
+}
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
 }
