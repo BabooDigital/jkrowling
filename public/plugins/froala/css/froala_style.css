@@ -340,6 +340,13 @@ a.fr-view.fr-green {
 /**
  * Link style.
  */
+.fr-view {
+  font-family: cursive;
+  line-height: 40px;
+  font-size: 18px;
+  color: #444444;
+}
+
 img.fr-view {
   position: relative;
   max-width: 100%;

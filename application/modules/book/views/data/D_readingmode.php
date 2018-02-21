@@ -15,7 +15,7 @@
 	?> : <?php echo $data; ?></h4>
 	<?php 
 	foreach ($detail_book['data']['chapter']['paragraphs'] as $book) {
-		$data .= $book['paragraph_text'];
+		$data .= "<div id='detailStyle'>".$book['paragraph_text']."</div>";
 	}
 		echo $data;
 	?>

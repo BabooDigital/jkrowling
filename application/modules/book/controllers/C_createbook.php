@@ -450,7 +450,7 @@ class C_createbook extends MX_Controller {
 		$file_name_with_full_path = $_FILES["file"]["tmp_name"];
         if (function_exists('curl_file_create')) { // php 5.5+
         	$cFile = curl_file_create($file_name_with_full_path, $_FILES["file"]["type"],$_FILES["file"]["name"]);
-        } else { //
+        } else { //`
         	$cFile = '@' . realpath($file_name_with_full_path);
         }
 
@@ -627,7 +627,7 @@ class C_createbook extends MX_Controller {
 		{
 			$status = $resval['code'];
 		}
-		// print_r($data);
+		// print_r($bookData);
 		echo json_encode(array(
 			'code' => $status,
 			'data' => $user,
@@ -944,6 +944,9 @@ class C_createbook extends MX_Controller {
     {
     	error_reporting(0);
     	$auth = $this->session->userdata('authKey');
+    	
+		$id_user = $this->session->userdata('userData')['user_id'];
+
     	$id_book = $this->uri->segment(2);
     	$id_chapter = $this->uri->segment(4);
     	$bookData = array(
@@ -951,8 +954,8 @@ class C_createbook extends MX_Controller {
     		"chapter" => $id_chapter);
 
     	$data_book = array(
-			'book_id' => $idb[0],
-			'user_id' => $user
+			'book_id' => $id_book,
+			'user_id' => $id_user
 		);
 		// print_r($data_book);
 
@@ -1105,6 +1108,7 @@ class C_createbook extends MX_Controller {
     		$data['css'][] = "public/css/baboo.css";
     		$this->load->view('D_editbook', $data);
     	}
+    	// print_r($data['detail_chapter']);
     	// print_r($data);
     }
     public function editor_upload()

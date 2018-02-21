@@ -82,36 +82,41 @@ class C_timeline extends MX_Controller {
 		$datas['js'][]   = "public/js/custom/D_timeline_in.js";
 		$datas['js'][]   = "public/js/custom/notification.js";
 
-		if ($this->agent->is_mobile('ipad'))
-		{
-			$datas['js'][]   = "public/js/custom/D_timeline_in.js";
-			$this->load->view('include/head', $datas);
-			$this->load->view('D_Timeline_in');
-		}
-		if ($this->agent->is_mobile())
-		{
-			$data['js'][]   = "public/js/menupage.js";
-
-			if (!empty($this->input->get("page"))) {
-				$result = $this->load->view('data/R_Timeline_in', $datas);
-			}else{
-				$datas['js'][]   = "public/js/menupage.js";
-
+		if ($resval['code'] == 403){
+			redirect('login','refresh');
+		}else{
+			if ($this->agent->is_mobile('ipad'))
+			{
+				$datas['js'][]   = "public/js/custom/D_timeline_in.js";
 				$this->load->view('include/head', $datas);
-				$this->load->view('R_Timeline_in', $datas);
+				$this->load->view('D_Timeline_in');
+			}
+			if ($this->agent->is_mobile())
+			{
+				$data['js'][]   = "public/js/menupage.js";
+
+				if (!empty($this->input->get("page"))) {
+					$result = $this->load->view('data/R_Timeline_in', $datas);
+				}else{
+					$datas['js'][]   = "public/js/menupage.js";
+
+					$this->load->view('include/head', $datas);
+					$this->load->view('R_Timeline_in', $datas);
+				}
+			}
+			else
+			{
+				$datas['js'][]   = "public/js/custom/D_timeline_in.js";
+				if (!empty($this->input->get("page"))) {
+					$result = $this->load->view('data/D_timeline_in', $datas);
+				}else{
+					$this->load->view('include/head',$datas);
+					$this->load->view('D_Timeline_in', $datas);
+					// print_r($this->session->userdata());
+				}
 			}
 		}
-		else
-			$datas['js'][]   = "public/js/custom/D_timeline_in.js";
-		{
-			if (!empty($this->input->get("page"))) {
-				$result = $this->load->view('data/D_timeline_in', $datas);
-			}else{
-				$this->load->view('include/head',$datas);
-				$this->load->view('D_Timeline_in', $datas);
-				// print_r($this->session->userdata());
-			}
-		}
+		// print_r($data);
 	}
 
 	public function createbook_id()
@@ -206,20 +211,15 @@ class C_timeline extends MX_Controller {
 			$headers[trim($middle[0])] = trim($middle[1]);
 		}
 
-		// $data['home'] = json_decode(end($data), true);
-		$auth = $headers['BABOO-AUTH-KEY'];
-		if (isset($data['home']['code']) && $data['home']['code'] == '200')
-		{
-			$status = $data['home']['code'];
-			$this->session->set_userdata('authKey', $auth);
+		$datas['home'] = json_decode(end($data), true);
+		if ($datas['home']['code'] == 403){
+			$this->session->unset_userdata('userData');
+			$this->session->unset_userdata('authKey');
+			$this->session->sess_destroy();
+			redirect('login','refresh');
+		}else{
+			echo json_encode(end($data), true);				 
 		}
-		else
-		{
-			$status = $data['home']['code'];
-			$this->session->set_userdata('authKey', $auth);
-		}
-		// print_r(end($data));
-		echo json_encode(end($data), true);
 	}
 	public function getBestBook()
 	{
@@ -267,7 +267,14 @@ class C_timeline extends MX_Controller {
 			$this->session->set_userdata('authKey', $auth);
 		}
 		// print_r(end($data));
-		echo json_encode($data_best, true);
+		if ($datas['home']['code'] == 403){
+			$this->session->unset_userdata('userData');
+			$this->session->unset_userdata('authKey');
+			$this->session->sess_destroy();
+			redirect('login','refresh');
+		}else{
+			echo json_encode($data_best, true);
+		}
 	}
 	
 	public function signout() {
@@ -332,13 +339,20 @@ class C_timeline extends MX_Controller {
 		}
 		$getdata = end($data);
 		$resval =  json_decode($getdata, TRUE);
-		print_r($resval);
+		// print_r($resval);
 		$status = $resval['code'];
 		$pesan = $resval['message'];
 		$auth = $headers['BABOO-AUTH-KEY'];
 		
 		$this->session->set_userdata('authKey', $auth);
-		echo json_encode(array('code' => $status, 'message' => $pesan));	
+		if ($status == 403){
+			$this->session->unset_userdata('userData');
+			$this->session->unset_userdata('authKey');
+			$this->session->sess_destroy();
+			redirect('login','refresh');
+		}else{
+			echo json_encode(array('code' => $status, 'message' => $pesan));	
+		}
 	}
 
 	public function postLike()
@@ -389,7 +403,14 @@ class C_timeline extends MX_Controller {
 		$auth = $headers['BABOO-AUTH-KEY'];
 		
 		$this->session->set_userdata('authKey', $auth);
-		echo json_encode(array('code' => $status, 'message' => $pesan));	
+		if ($status == 403){
+			$this->session->unset_userdata('userData');
+			$this->session->unset_userdata('authKey');
+			$this->session->sess_destroy();
+			redirect('login','refresh');
+		}else{
+			echo json_encode(array('code' => $status, 'message' => $pesan));	
+		}
 	}
 
 	public function postFollowUser()
@@ -440,7 +461,14 @@ class C_timeline extends MX_Controller {
 		$auth = $headers['BABOO-AUTH-KEY'];
 		
 		$this->session->set_userdata('authKey', $auth);
-		echo json_encode(array('code' => $status, 'message' => $pesan));	
+		if ($status == 403){
+			$this->session->unset_userdata('userData');
+			$this->session->unset_userdata('authKey');
+			$this->session->sess_destroy();
+			redirect('login','refresh');
+		}else{
+			echo json_encode(array('code' => $status, 'message' => $pesan));	
+		}
 	}
 
 	public function postShareSocmed()
@@ -491,6 +519,13 @@ class C_timeline extends MX_Controller {
 		$auth = $headers['BABOO-AUTH-KEY'];
 		
 		$this->session->set_userdata('authKey', $auth);
-		echo json_encode(array('code' => $status, 'message' => $pesan));	
+		if ($status == 403){
+			$this->session->unset_userdata('userData');
+			$this->session->unset_userdata('authKey');
+			$this->session->sess_destroy();
+			redirect('login','refresh');
+		}else{
+			echo json_encode(array('code' => $status, 'message' => $pesan));	
+		}
 	}
 }

@@ -31,7 +31,7 @@
 						<a class="nav-link" href="<?php echo site_url(); ?>"><img src="<?php echo site_url(); ?>public/img/icon-tab/feed_icon.svg" width="23"><p class="fs-12px"><b>Explore</b></p></a>
 					</li>
 					<li class="nav-item mt-5">
-						<a class="nav-link" href="#"><img src="<?php echo site_url(); ?>public/img/icon-tab/library_icon.svg" width="25"><p class="fs-12px"><b>Library</b></p></a>
+						<a class="nav-link" href="<?php echo site_url('library') ?>"><img src="<?php echo site_url(); ?>public/img/icon-tab/library_icon.svg" width="25"><p class="fs-12px"><b>Library</b></p></a>
 					</li>
 					<li class="nav-item mt-5 noti_Container">
 						<div id="noti_Counter"></div>

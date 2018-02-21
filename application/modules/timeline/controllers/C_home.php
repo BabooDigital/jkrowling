@@ -80,7 +80,6 @@ class C_home extends MX_Controller {
 		if (isset($timeline['home']['code']) && $timeline['home']['code'] == '200')
 		{
 			$status = $timeline['home']['code'];
-			$this->session->set_userdata('authKey', $auth);
 		}
 		else
 		{
@@ -123,6 +122,7 @@ class C_home extends MX_Controller {
 			}else{
 				$this->load->view('include/head', $data);
 				$this->load->view('D_Timeline_out', $data);
+				// print_r($resval1)
 			}
 		}
 	}

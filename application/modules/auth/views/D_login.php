@@ -114,9 +114,6 @@ if (!empty($query['b'])) {
 									<div class="form-group">
 										<input type="password" class="required password error  form-control login-input" id="yourPassword" name="passwords" placeholder="Password" value="123456">
 									</div>
-									<div class="form-group">
-										<?php echo $captcha; ?>
-									</div>
 									<p class="text-right text-daftar">Belum punya akun ? <a  data-toggle="modal" data-target="#register-modal" href="#" class="link-daftar">Daftar disini</a></p>
 									<div class="pull-right">
 										<button type="submit" name="submit" class="btn btn-primary pull-right btn-login"><i class="icon-arrow-right"></i></button>	
