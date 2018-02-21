@@ -13,8 +13,6 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/sweetalert2.min.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/font-awesome.min.css">
 
-	<?php echo $script_captcha; ?>
-
 </head>
 
 <?php
@@ -81,10 +79,6 @@
 
 									<div class="form-group">
 										<input type="password" class="form-control login-input" id="exampleInputPassword1" name="passwords" placeholder="Password">
-									</div>
-
-									<div class="form-group">
-										<?php echo $captcha; ?>
 									</div>
 
 									<p class="text-right text-daftar">Belum punya akun ? <a  data-toggle="modal" data-target="#register-modal" href="#" class="link-daftar">Daftar disini</a></p>

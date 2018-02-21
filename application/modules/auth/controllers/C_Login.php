@@ -197,7 +197,7 @@ class C_Login extends MX_Controller
 
         $recaptcha = $this->input->post('g-recaptcha-response');
         $response = $this->recaptcha->verifyResponse($recaptcha);
-        if ($this->form_validation->run() == FALSE || !isset($response['success']) || $response['success'] <> true) {
+        if ($this->form_validation->run() == FALSE) {
             $this->index();
         }else{
             $ch = curl_init();

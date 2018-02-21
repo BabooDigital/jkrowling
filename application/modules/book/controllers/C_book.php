@@ -242,7 +242,14 @@ class C_book extends MX_Controller {
 		{
 			$status = $data['detail_book']['code'];
 		}
-		echo json_encode($data['detail_book']['data']);
+		if ($datas['detail_book']['code'] == 403){
+			$this->session->unset_userdata('userData');
+			$this->session->unset_userdata('authKey');
+			$this->session->sess_destroy();
+			redirect('login','refresh');
+		}else{
+			echo json_encode($data['detail_book']['data']);
+		}
 		// $data['js'][] = "public/js/jquery.min.js";
 		// $data['js'][] = "public/js/umd/popper.min.js";
 		// $data['js'][] = "public/js/bootstrap.min.js";
@@ -328,9 +335,15 @@ class C_book extends MX_Controller {
 		$data['js'][] = "public/js/bootstrap.min.js";
 		$data['js'][] = "public/js/jquery.sticky-kit.min.js";
 		$data['js'][] = "public/js/custom/mobile/r_detail_book.js";
-		
-		$this->load->view('include/head', $data);
-		$this->load->view('R_book');
+		if ($datas['home']['code'] == 403){
+			$this->session->unset_userdata('userData');
+			$this->session->unset_userdata('authKey');
+			$this->session->sess_destroy();
+			redirect('login','refresh');
+		}else{
+			$this->load->view('include/head', $data);
+			$this->load->view('R_book');
+		}
 	}
 
 	public function chapter()
@@ -389,7 +402,14 @@ class C_book extends MX_Controller {
 			$status = $data_before_chapter['chapter']['code'];
 		}
 		// print_r($data_before_chapter['chapter']['data']['chapter']['chapter']);
-		echo json_encode($data_before_chapter['chapter']['data']['chapter']);
+		if ($data_before_chapter['chapter']['code'] == 403){
+			$this->session->unset_userdata('userData');
+			$this->session->unset_userdata('authKey');
+			$this->session->sess_destroy();
+			redirect('login','refresh');
+		}else{
+			echo json_encode($data_before_chapter['chapter']['data']['chapter']);
+		}
 	}
 
 	public function readingMode()
@@ -476,91 +496,98 @@ class C_book extends MX_Controller {
 		
 		$this->session->set_userdata('authKey', $auth);
 
-
-		if (!$this->input->get("chapter")) {
+		if ($data['detail_book']['code'] == 403){
+			$this->session->unset_userdata('userData');
+			$this->session->unset_userdata('authKey');
+			$this->session->sess_destroy();
+			redirect('login','refresh');
 		}else{
-			$chapter_id = $data_before_chapter['chapter']['data']['chapter'][$this->input->get("chapter")]['chapter_id'];
 
-			$url = $this->API.'/detailBook/';
-			$data_book = array(
-				'book_id' => $idb[0],
-				'user_id' => $user,
-				'chapter' => $chapter_id
-			);
+			if (!$this->input->get("chapter")) {
+			}else{
+				$chapter_id = $data_before_chapter['chapter']['data']['chapter'][$this->input->get("chapter")]['chapter_id'];
 
-			$ch = curl_init();
-			$url = $this->API.'/detailBook/';
-			curl_setopt($ch, CURLOPT_URL, $url);
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	        // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+				$url = $this->API.'/detailBook/';
+				$data_book = array(
+					'book_id' => $idb[0],
+					'user_id' => $user,
+					'chapter' => $chapter_id
+				);
 
-			curl_setopt($ch, CURLOPT_POST, 1);
-			curl_setopt($ch, CURLOPT_POSTFIELDS, $data_book);
-			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-			curl_setopt($ch, CURLOPT_HEADER, 1);
-			curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key : '.$auth));
-			$content = curl_exec($ch);
-			$headers=array();
-			$data=explode("\n",$content);
-			$headers['status']=$data[0];
-	        // print_r($data);
-			array_shift($data);
+				$ch = curl_init();
+				$url = $this->API.'/detailBook/';
+				curl_setopt($ch, CURLOPT_URL, $url);
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		        // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 
-			foreach($data as $part){
-				$middle=explode(":",$part);
-				$headers[trim($middle[0])] = trim($middle[1]);
-			}
+				curl_setopt($ch, CURLOPT_POST, 1);
+				curl_setopt($ch, CURLOPT_POSTFIELDS, $data_book);
+				curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+				curl_setopt($ch, CURLOPT_HEADER, 1);
+				curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key : '.$auth));
+				$content = curl_exec($ch);
+				$headers=array();
+				$data=explode("\n",$content);
+				$headers['status']=$data[0];
+		        // print_r($data);
+				array_shift($data);
 
-			$data['detail_book'] = json_decode(end($data), true);
-			$auth = $headers['BABOO-AUTH-KEY'];
-			if (isset($data['detail_book']['code']) && $data['detail_book']['code'] == '200')
-			{
-				$status = $data['detail_book']['code'];
-				$this->session->set_userdata('authKey', $auth);
-			}
-			else
-			{
-				$status = $data['detail_book']['code'];
-			}
-		}
-		
-		$data['title'] = $data['detail_book']['data']['book_info']['title_book']." - Baboo";
-
-		$data['detailBook'] = json_decode(end($data), true);
-		$data['menuChapter'] = $data_before_chapter['chapter'];
-		if ($data_before_chapter['chapter']['data']['chapter'][3]['chapter_free'] != "false") {
-			$data['detailChapter'] = count($data_before_chapter['chapter']['data']['chapter']);
-		}else{
-			$data['detailChapter'] = 2 + 1;
-		}
-		
-		$data['id_chapter'] = $this->input->get("chapter");
-		$data['chapter_free'] = $data_before_chapter['chapter']['data']['chapter'][3]['chapter_free'];
-		$data['css'][] = "public/css/bootstrap.min.css";
-		$data['css'][] = "public/css/custom-margin-padding.css";
-		$data['css'][] = "public/css/font-awesome.min.css";
-		$data['css'][] = "public/css/baboo.css";
-		$data['css'][] = "public/plugins/holdOn/css/HoldOn.css";
-		
-		$data['js'][] = "public/js/jquery.min.js";
-		$data['js'][] = "public/js/umd/popper.min.js";
-		$data['js'][] = "public/js/bootstrap.min.js";
-		$data['js'][] = "public/plugins/holdOn/js/HoldOn.js";
-
-		$data['js'][] = "public/js/custom/reading_mode.js";
-		if ($this->agent->mobile()) {
-			$this->load->view('include/head', $data);
-			$this->load->view('R_book', $data);
-		}else{
-			if ($this->input->get("chapter")) {
-				if ($data_before_chapter['chapter']['data']['chapter'][$this->input->get("chapter")] == null || $data_before_chapter['chapter']['data']['chapter'][$this->input->get("chapter")] == '') {
-		        	// print_r("kosong chapter");
-				}else{
-					$result = $this->load->view('data/D_readingmode', $data);
-
+				foreach($data as $part){
+					$middle=explode(":",$part);
+					$headers[trim($middle[0])] = trim($middle[1]);
 				}
-			}else{	
-				$this->load->view('D_readingmode', $data);
+
+				$data['detail_book'] = json_decode(end($data), true);
+				$auth = $headers['BABOO-AUTH-KEY'];
+				if (isset($data['detail_book']['code']) && $data['detail_book']['code'] == '200')
+				{
+					$status = $data['detail_book']['code'];
+					$this->session->set_userdata('authKey', $auth);
+				}
+				else
+				{
+					$status = $data['detail_book']['code'];
+				}
+			}
+			
+			$data['title'] = $data['detail_book']['data']['book_info']['title_book']." - Baboo";
+
+			$data['detailBook'] = json_decode(end($data), true);
+			$data['menuChapter'] = $data_before_chapter['chapter'];
+			if ($data_before_chapter['chapter']['data']['chapter'][3]['chapter_free'] != "false") {
+				$data['detailChapter'] = count($data_before_chapter['chapter']['data']['chapter']);
+			}else{
+				$data['detailChapter'] = 2 + 1;
+			}
+			
+			$data['id_chapter'] = $this->input->get("chapter");
+			$data['chapter_free'] = $data_before_chapter['chapter']['data']['chapter'][3]['chapter_free'];
+			$data['css'][] = "public/css/bootstrap.min.css";
+			$data['css'][] = "public/css/custom-margin-padding.css";
+			$data['css'][] = "public/css/font-awesome.min.css";
+			$data['css'][] = "public/css/baboo.css";
+			$data['css'][] = "public/plugins/holdOn/css/HoldOn.css";
+			
+			$data['js'][] = "public/js/jquery.min.js";
+			$data['js'][] = "public/js/umd/popper.min.js";
+			$data['js'][] = "public/js/bootstrap.min.js";
+			$data['js'][] = "public/plugins/holdOn/js/HoldOn.js";
+
+			$data['js'][] = "public/js/custom/reading_mode.js";
+			if ($this->agent->mobile()) {
+				$this->load->view('include/head', $data);
+				$this->load->view('R_book', $data);
+			}else{
+				if ($this->input->get("chapter")) {
+					if ($data_before_chapter['chapter']['data']['chapter'][$this->input->get("chapter")] == null || $data_before_chapter['chapter']['data']['chapter'][$this->input->get("chapter")] == '') {
+			        	// print_r("kosong chapter");
+					}else{
+						$result = $this->load->view('data/D_readingmode', $data);
+
+					}
+				}else{	
+					$this->load->view('D_readingmode', $data);
+				}
 			}
 		}
 		// print_r($data['menuChapter']);
@@ -627,8 +654,14 @@ class C_book extends MX_Controller {
 		
 		$this->session->set_userdata('authKey', $auth);
 		$status = $resval['code'];
-
-		echo json_encode($userdetail);
+		if ($status == 403){
+			$this->session->unset_userdata('userData');
+			$this->session->unset_userdata('authKey');
+			$this->session->sess_destroy();
+			redirect('login','refresh');
+		}else{
+			echo json_encode($userdetail);
+		}
 		// print_r($data);
 	}
 
@@ -690,9 +723,14 @@ class C_book extends MX_Controller {
 		
 		$this->session->set_userdata('authKey', $auth);
 		$status = $resval['code'];
-
-		echo json_encode($userdetail);
-
+		if ($status == 403){
+			$this->session->unset_userdata('userData');
+			$this->session->unset_userdata('authKey');
+			$this->session->sess_destroy();
+			redirect('login','refresh');
+		}else{
+			echo json_encode($userdetail);
+		}
 		// echo $result;
 	}
 	public function getCategory()
@@ -738,6 +776,13 @@ class C_book extends MX_Controller {
 		{
 			$status = $data['category']['code'];
 		}
-		echo json_encode($data['category']['data']);
+		if ($status == 403){
+			$this->session->unset_userdata('userData');
+			$this->session->unset_userdata('authKey');
+			$this->session->sess_destroy();
+			redirect('login','refresh');
+		}else{
+			echo json_encode($data['category']['data']);
+		}
 	}
 }

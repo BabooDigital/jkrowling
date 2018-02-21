@@ -118,7 +118,7 @@ $(document).ready(function() {
 		$(this).parents('#subchapter').append('<input type="button" class="btn w-100 mb-10 chapterdata0 addsubchapt" value="Tambah Sub Cerita" />');
 		// console.log($('#file_cover')[0].val);
 		formData.append("title_book", $("#title_book").val());
-		formData.append("chapter_title", $("#title_book").val());
+		formData.append("chapter_title", $("#title_chapter").val());
 		formData.append("cover_name", $('#cover_name').val());
 		formData.append("category_id", $("#category_id").val());
 		formData.append("user_id", $("#user_id").val());
@@ -147,7 +147,12 @@ $(document).ready(function() {
 					$(this).hide();
 					n();
 				});
-				location.reload();
+
+				// console.log(formData);
+				for (var pair of formData.entries()) {
+				    console.log(pair[0]+ ', ' + pair[1]); 
+				}
+				// location.reload();
 				// var url = data['data']['book_id'] + '/chapter/' + data['data']['chapter_id'];
 				// url_redirect += 'create_book/' + data['data']['book_id'];
 				// aww.replaceWith('<a class="btn w-100 mb-10 chapterdata0 editsubchapt' + count + ' addsubchapt_on" book="' + data['data']['book_id'] + '" chapter="' + data['data']['chapter_id'] + '" id="editchapt" href="' + url + '">' + $("#title_book").val() + '</a>');

@@ -46,10 +46,12 @@ $(document).ready(function() {
     dataType: 'json',
   })
   .done(function(data) {
+    $(".loader").hide();
     var json = $.parseJSON(data);
     var datas = "";
     $.each(json.data, function(i, item) {
       var avatar;
+      console.log(item);
       if (item.avatar != null) {
         avatar = item.avatar;
       }if(item.avatar == ""){

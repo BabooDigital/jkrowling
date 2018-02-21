@@ -70,10 +70,7 @@
 											<div class="media">
 												<img alt="<?php
 												echo $s_book['title_book']; ?>" src="<?php
-												echo $s_book['image_url']; ?>" class="w-100" height="150" style="position: relative; -webkit-filter: blur(5px);">
-												<img alt="<?php
-												echo $s_book['title_book']; ?>" src="<?php
-												echo $s_book['image_url']; ?>" class="mx-auto" height="150" style="position: absolute;left: 0;right: 0;">
+												echo $s_book['image_url']; ?>" class="w-100" height="200" style="">
 											</div>
 											<h5 style="padding-top:50px; font-weight: 500;"><b><a href="<?php echo site_url(); ?>book/<?php echo $s_book['book_id']; ?>-<?php echo url_title($s_book['title_book'], 'dash', true); ?>"><?php
 											echo $s_book['title_book']; ?></a></b></h5>

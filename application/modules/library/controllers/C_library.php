@@ -7,7 +7,7 @@ class C_Library extends MX_Controller
     function __construct()
     {
         parent::__construct();
-        $this->API = "api.dev-baboo.co.id/v1/timeline/Timelines";
+        $this->API = "api.dev-baboo.co.id/v1/timeline/Home";
         if ($this->session->userdata('isLogin') != 200) {
         	redirect('login');
         }
@@ -16,24 +16,53 @@ class C_Library extends MX_Controller
     public function index()
     {
         $data['title'] = "Library Page | Baboo - Beyond Book & Creativity";
-
-        $data['js'][] = "public/js/jquery.min.js";
+        $mobile['css'][]   = "public/css/jquery.bxslider.min.css";
         $data['js'][] = "public/js/custom/mobile/library.js";
-        $data['js'][] = "public/js/menupage.js";
+        $data['js'][]   = "public/js/custom/notification.js";
+        // DATA SLIDER
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $this->API.'/bestBook');
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
+        curl_setopt($ch, CURLOPT_POST, false);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+        curl_setopt($ch, CURLOPT_HEADER, 1);
+        $result = curl_exec($ch);
+        
+        $headers=array();
+        
+        $slider=explode("\n",$result);
+        
+        array_shift($slider);
+        
+        foreach($slider as $part){
+            $middle=explode(":",$part);
+            if (error_reporting() == 0) {
+                $headers[trim($middle[0])] = trim($middle[1]);
+            }
+        }
+
+        $resval2 = (array)json_decode(end($slider), true);
+
+        $data['slide'] = $resval2;
         if ($this->agent->is_mobile()) {
 
             $this->load->view('include/head', $data);
             $this->load->view('R_library', $data);
 
+        }else{
+            $this->load->view('include/head', $data);
+            $this->load->view('D_library', $data);
+            // print_r($resval2);            
         }
     }
     public function bookmark()
     {
         error_reporting(0);
-        $url = $this->API.'/listBookmark';
+        $url = 'api.dev-baboo.co.id/v1/timeline/Timelines/listBookmark';
         $auth = $this->session->userdata('authKey');
         $userid = $this->input->post('user');
-
         $sendData = array(
             'user_id' => $userid
         );
@@ -72,12 +101,11 @@ class C_Library extends MX_Controller
         $pesan = $resval['message'];
         $auth = $headers['BABOO-AUTH-KEY'];
         
-        $this->session->set_userdata('authKey', $auth);
         $resval = (array)json_decode(end($data), true);
         $bookmark = $resval['data'];
         
         echo json_encode($bookmark, TRUE); 
-        // print_r($data);
+        // print_r($result);
         // echo json_encode(array('code' => $status, 'message' => $pesan));    
     }
     public function lastRead()
@@ -125,7 +153,6 @@ class C_Library extends MX_Controller
         $pesan = $resval['message'];
         $auth = $headers['BABOO-AUTH-KEY'];
         
-        $this->session->set_userdata('authKey', $auth);
         $resval = (array)json_decode(end($data), true);
         $lastRead = $resval['data'];
         

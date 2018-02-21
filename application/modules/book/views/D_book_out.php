@@ -121,7 +121,7 @@
 		<div class="col-md-4 dtlbok" style="padding: 0 40px;">
 			<div class="card pb-20">
 				<div class="text-center pr-30 pl-30 pt-20">
-					<img class="cover_image" src="<?php echo $cover; ?>" width="150" height="200">
+					<img class="cover_image" src="<?php echo ($cover != null) ? $cover : base_url('public/img/profile/blank-photo.jpg') ; ?>" width="150" height="200">
 					<div class="card-body">
 						<input type="hidden" name="iaidubi" id="iaidubi" value="2311">
 						<a href="#">
@@ -174,15 +174,13 @@
 							<br>
 							<h4 id="" class="book-title chapter"> Judul Buku : <?php echo $title; ?></h4>
 							<div id="parentparaph">
-								<div style='font-family: cursive;'><p style="margin-top: 0px; margin-bottom: 1rem; box-sizing: inherit;">
-									<?php 
-									foreach ($desc as $book) {
-										if ($count == 0) { $view_count = '+'; }else{ $view_count = $count;}
-										$data .= "<div class='mb-20'>".$book['paragraph_text']."</div>";
-									}
-									echo $data;
-									?>
-								</div>
+								<?php 
+								foreach ($desc as $book) {
+									if ($count == 0) { $view_count = '+'; }else{ $view_count = $count;}
+									$data .= "".$book['paragraph_text']."";
+								}
+								echo $data;
+								?>
 							</div>							
 						</div>
 					</div>
