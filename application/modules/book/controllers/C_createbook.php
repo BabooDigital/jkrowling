@@ -563,12 +563,13 @@ class C_createbook extends MX_Controller {
 		if ($cover != null) {
 			$covers = $cover;
 		}else{
-			$covers = "Kosong";
+			$covers = null;
 		}
 		$book_id = $this->input->post('book_id');
 		$cat = $this->input->post('category_id');
 		$user = $this->input->post('user_id');
 		$parap = $this->input->post('book_paragraph');
+		$output = preg_replace('/(<[^>]+) style=".*?"/i', '$1', $parap);
 		$bookData = array(
 			'book_id' => $book_id,
 			'title_book' => $title, 
@@ -577,7 +578,7 @@ class C_createbook extends MX_Controller {
 			'status_publish' => 'draft',
 			'user_id' => $user, 
 			'chapter_title' => $chapter, 
-			'paragraph' => $parap
+			'paragraph' => $output
 		);
 		if (!empty($this->input->post('id_books'))) {
 			$bookData['book_id'] = $this->input->post('id_books');

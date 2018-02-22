@@ -341,7 +341,7 @@ a.fr-view.fr-green {
  * Link style.
  */
 .fr-view {
-  font-family: cursive;
+  font-family: 'Noto Serif', serif;
   line-height: 40px;
   font-size: 18px;
   color: #444444;
