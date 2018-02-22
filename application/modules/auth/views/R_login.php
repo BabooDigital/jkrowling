@@ -14,7 +14,11 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/font-awesome.min.css">
 
 </head>
-
+<style>
+	#inputemail-error, #inputpass-error{
+		color: red;
+	}
+</style>
 <?php
 	error_reporting(0);
 	$actual_link = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
@@ -26,7 +30,6 @@
 		
 	}
 ?>
-
 <body>
 	<div class="container-fluid">
 		<div class="row no-gutters">
@@ -52,7 +55,7 @@
 								<p class="text-img animated slideInDown" style="margin-top:2px; color:#222;">Masuk ke Baboo</p>
 							</div>
 							<div class="col-lg-12">
-								<p class="right-text" style="margin-top:0px; margin-bottom: 20px;">Lanjutkan dengan hal</p>
+								<span class="right-text" style="margin-top:0px;">Lanjutkan dengan</span>
 							</div>
 
 							<div class="col-lg-6 col-6" style="padding-right:5px;">
@@ -74,11 +77,11 @@
 							<div class="col-lg-12">
 								<form id="login-form" action="<?php echo site_url(); ?>auth/C_Login/postloginuser" method="post" novalidate="novalidate">
 									<div class="form-group">
-										<input type="email" class="form-control login-input" id="exampleInputEmail1" name="emails" aria-describedby="emailHelp" placeholder="Enter email">
+										<input type="email" class="form-control login-input" id="inputemail" name="emails" aria-describedby="emailHelp" placeholder="Masukan alamat email" required>
 									</div>
 
 									<div class="form-group">
-										<input type="password" class="form-control login-input" id="exampleInputPassword1" name="passwords" placeholder="Password">
+										<input type="password" class="form-control login-input" id="inputpass" name="passwords" placeholder="Masukan password" required>
 									</div>
 
 									<p class="text-right text-daftar">Belum punya akun ? <a  data-toggle="modal" data-target="#register-modal" href="#" class="link-daftar">Daftar disini</a></p>
@@ -171,6 +174,7 @@
 		<script type="text/javascript" src="<?php echo base_url();?>public/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="<?php echo base_url();?>public/js/moment.js"></script>
 		<script type="text/javascript" src="<?php echo base_url();?>public/js/combodate.js"></script>
+		<script type="text/javascript" src="<?php echo base_url();?>public/js/sweetalert2.all.min.js"></script>
 		<script src="<?php echo base_url();?>public/js/jquery.validate.js"></script>
 		<script src="<?php echo base_url();?>public/js/additional-methods.js"></script>	
 
@@ -194,8 +198,7 @@
 						required: 'Email harus di isi'
 					},
 					passwords: {
-						required: 'Password harus di isi',
-						minlength: 'Password minimal 5 karakter'
+						required: 'Password harus di isi'
 					}
 				}
 			});
@@ -249,6 +252,7 @@
 				});
 			});
 		</script>
+		<?php echo $this->session->flashdata('login_alert');?>
 
 	</body>
 	</html>
