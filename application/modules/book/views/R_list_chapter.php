@@ -74,7 +74,7 @@
 		<h2><b><?php echo $title_book; ?></b></h2>
 		<hr>
 		<div class="list-group group-full">
-			<?php foreach ($list_chapter as $chapter_list): ?>
+			<?php foreach ($list_chapter['chapter'] as $chapter_list): ?>
 				<?php $array = (array)$chapter_list; ?>
 				<a href="#" class="list-group-item list-group-item-action flex-column align-items-start bg-transparent">
 					<div class="d-flex w-100 justify-content-between">
