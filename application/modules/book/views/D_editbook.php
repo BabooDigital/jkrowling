@@ -73,15 +73,9 @@
 							<div>
 								<input type="hidden" name="book_id" id="book_id" value="<?php 
 									$id = $this->session->userdata('dataBook');
-									$user = $this->session->userdata('userData');
-								if(!empty($id)){
-									echo $user['user_id']+$id['book_id'];
-								}else{
-									echo $user['user_id']."0";
-								} ?>">
+									$user = $this->session->userdata('userData');?> <?php echo $id['book_id']; ?>">
 							</div>
 							<div id="subchapter">
-								<!-- <a class="btn w-100 mb-10 chapterdata0 addsubchapt" id="editchapt">Tambah Sub Cerita</a> -->
 								<?php foreach ($detail_chapter['data']['chapter'] as $btn_chapters): ?>								
 									<a class="btn w-100 mb-10 chapterdata0 editsubchapt1 addsubchapt_on" book="425" chapter="472" id="editchapt" href="<?php $url = 'my_book/'.$detail_book['data']['book_info']['book_id'].'/chapter/'.$btn_chapters['chapter_id']; echo site_url($url) ?>" onclick="showLoading()"><?php echo $btn_chapters['chapter_title']; ?></a>
 								<?php endforeach ?>
@@ -94,9 +88,9 @@
 										<option>Kategori</option>
 									</select>
 								</div>
-								<div class="form-group">
+								<!-- <div class="form-group">
 									<input type="text" name="tag" id="tag_book" class="form-control" placeholder="Tambah Tag Buku">
-								</div>
+								</div> -->
 							</div>
 						</div>
 					</div>
