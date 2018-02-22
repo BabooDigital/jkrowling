@@ -152,7 +152,10 @@ $(document).ready(function() {
 				for (var pair of formData.entries()) {
 				    console.log(pair[0]+ ', ' + pair[1]); 
 				}
-				// location.reload();
+				location.reload();
+				$("#title_chapter").show();
+				$("#title_chapter").val();
+				$("#title_book").hide();
 				// var url = data['data']['book_id'] + '/chapter/' + data['data']['chapter_id'];
 				// url_redirect += 'create_book/' + data['data']['book_id'];
 				// aww.replaceWith('<a class="btn w-100 mb-10 chapterdata0 editsubchapt' + count + ' addsubchapt_on" book="' + data['data']['book_id'] + '" chapter="' + data['data']['chapter_id'] + '" id="editchapt" href="' + url + '">' + $("#title_book").val() + '</a>');
@@ -270,10 +273,18 @@ function getChapter() {
 		dataType: 'json'
 	})
 	.done(function(data) {
-		var chapter = ""; 
+		var chapter = "";
+		console.log(data); 
+		var title = "";
+		if (data.length == 0) {
+			title += '<input type="text" name="title_book" id="title_book" class="w-100" placeholder="Masukan Judul buku"> <input type="text" name="title_chapter" style="display: none;" id="title_chapter" value="Description" class="w-100" placeholder="Masukan Chapter">';
+		}else{
+			title += '<input type="text" name="title_chapter" id="title_chapter" class="w-100" placeholder="Masukan Chapter">';
+		}
 		$.each(data, function(index, val) {
 			chapter += '<a class="btn w-100 mb-10 chapterdata0 editsubchapt1 addsubchapt_on withanimation" book="2016" chapter="1326" id="editchapt" href="'+uri_segment+'/chapter/'+val.chapter_id+'" onclick="showLoading()">'+val.chapter_title+'</a>';
 		});
+		$(".tulisjudul").html(title);
 		$("#btn_chapter").html(chapter);
 	})
 	.fail(function() {

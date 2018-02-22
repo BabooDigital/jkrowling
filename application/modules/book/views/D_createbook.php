@@ -60,9 +60,6 @@
 										<option value="">Kategori</option>
 									</select>
 								</div>
-								<div class="form-group">
-									<input type="text" name="tag_book" id="tag_book" class="form-control" placeholder="Tambah Tag Buku">
-								</div>
 							</div>
 						</div>
 					</div>
@@ -87,7 +84,7 @@
 
 						<div>
 							<div class="mt-30 tulisjudul">
-								<input type="text" name="title_book" id="title_book" class="w-100" placeholder="Masukan Judul buku">
+								
 							</div>
 
 							<div class="tulisbuku mt-10">

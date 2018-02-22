@@ -735,10 +735,10 @@ class C_createbook extends MX_Controller {
 		$title = $this->input->post('title_book');
 		// $chapter = $this->input->post('chapter_title');
 		if (!empty($bData)) {
-			$chapter = $this->input->post('title_book');
+			$chapter = $this->input->post('title_chapter');
 			$title = $bData['title_book']; 	
 		}else{
-			$chapter = $this->input->post('title_book');
+			$chapter = $this->input->post('title_chapter');
 		}
 		$book_id = $this->input->post('book_id');
 		$cat = $this->input->post('category_id');
@@ -859,7 +859,7 @@ class C_createbook extends MX_Controller {
         {
         	$status = $resval['code'];
         }
-        // print_r($data);
+        // print_r($bookData);
     }
     public function publishBookMr()
     {
