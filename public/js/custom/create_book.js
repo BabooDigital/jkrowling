@@ -133,7 +133,7 @@ $(document).ready(function() {
 			console.log('tidak');
 		}
 		$.ajax({
-				"url": base_url+"/my_book/create_book/save",
+				"url": base_url+"my_book/create_book/save",
 				"dataType": 'json',
 				"cache": false,
 				"type": "POST",

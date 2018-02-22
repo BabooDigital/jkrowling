@@ -13,11 +13,11 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/font-awesome.min.css">
 
 
-	<link href="http://localhost/jkrowling/public/css/bootstrap.min.css" rel="stylesheet">
-	<link href="http://localhost/jkrowling/public/css/baboo.css" rel="stylesheet" type="text/css">
-	<link href="http://localhost/jkrowling/public/css/baboo-responsive.css" rel="stylesheet" type="text/css">
-	<link href="http://localhost/jkrowling/public/css/custom-margin-padding.css" rel="stylesheet" type="text/css">
-	<link href="http://localhost/jkrowling/public/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<link href="<?php echo base_url('') ?>public/css/bootstrap.min.css" rel="stylesheet">
+	<link href="<?php echo base_url('') ?>public/css/baboo.css" rel="stylesheet" type="text/css">
+	<link href="<?php echo base_url('') ?>public/css/baboo-responsive.css" rel="stylesheet" type="text/css">
+	<link href="<?php echo base_url('') ?>public/css/custom-margin-padding.css" rel="stylesheet" type="text/css">
+	<link href="<?php echo base_url('') ?>public/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 	<?php echo $script_captcha; ?>
 
 </head>
@@ -230,10 +230,10 @@ if (!empty($query['b'])) {
 	<script src="<?php echo base_url();?>public/js/jquery.validate.js"></script>
 	<script src="<?php echo base_url();?>public/js/additional-methods.js"></script>
 	
-	<script src="http://localhost/jkrowling/public/js/jquery.bxslider.min.js" type="text/javascript"></script>
-	<script src="http://localhost/jkrowling/public/js/baboo.js" type="text/javascript"></script>
-	<script src="http://localhost/jkrowling/public/js/jquery.sticky-kit.min.js" type="text/javascript"></script>
-	<script src="http://localhost/jkrowling/public/js/custom/D_timeline_out.js" type="text/javascript"></script>
+	<script src="<?php echo base_url('') ?>public/js/jquery.bxslider.min.js" type="text/javascript"></script>
+	<script src="<?php echo base_url('') ?>public/js/baboo.js" type="text/javascript"></script>
+	<script src="<?php echo base_url('') ?>public/js/jquery.sticky-kit.min.js" type="text/javascript"></script>
+	<script src="<?php echo base_url('') ?>public/js/custom/D_timeline_out.js" type="text/javascript"></script>
 
 
 	<script type="text/javascript">
