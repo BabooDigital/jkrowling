@@ -34,7 +34,6 @@
 		border: none;
 		height: 100vh;
 	}
-
 	.modal-header {
 		border-bottom-color: #EEEEEE;
 		background-color: #FAFAFA;
