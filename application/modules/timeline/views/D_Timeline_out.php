@@ -83,5 +83,8 @@
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript">
+		var base_url = "<?php echo base_url() ?>";
+	</script>
 	<?php if (isset($js)): ?><?php echo get_js($js) ?><?php endif ?>
 </div>

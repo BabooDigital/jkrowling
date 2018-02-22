@@ -1519,7 +1519,7 @@ input.formsearch:focus {
     text-decoration:underline;
 }
 #detailStyle {
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Noto Serif', serif;
     line-height:35px;
 }
 .dropbtn {
@@ -1555,3 +1555,6 @@ input.formsearch:focus {
 .dropdown a:hover {background-color: #ddd}
 
 .show {display:block;}
+#post-data {
+	font-family: 'Noto Serif', serif;
+}
