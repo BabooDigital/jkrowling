@@ -250,8 +250,13 @@ class C_Login extends MX_Controller
             else
             {
                 $status = $resval['code'];
+                $this->session->set_flashdata('login_alert', '<script>
+                      $(window).on("load", function(){
+                        swal("Gagal", "'.$psn.'", "error");
+                      });
+                    </script>');
+                redirect('login','refresh');
 
-                echo "<script type='text/javascript'>alert ('".$psn."');window.location.href = '".site_url('login')."';</script>";
             }
 
             echo json_encode(array(

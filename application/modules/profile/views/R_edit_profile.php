@@ -6,6 +6,7 @@
 	<?php if (isset($css)): ?>
 		<?php echo get_css($css) ?>
 	<?php endif ?>
+
 	<style type="text/css">
 	.login-input{
 		font-size:14px;"
@@ -55,8 +56,7 @@
 				<div class="row mb-20">
 					<div class="w-100">
 						<label class="label-fs">Tanggal Lahir</label>
-						<!-- <input type="text" class="w-100 frmProf" name="p_name"> -->
-						<input type="text" id="yourBirth" data-max-year="2015" data-first-item="name" data-format="YYYY-MM-DD" data-template="YYYY MM DD" data-custom-class="form-control login-input" data-smart-days="true"> 
+						<input type="date" class="w-100 frmProf" id="yourBirth" value="<?php echo $userData['date_of_birth'] ?>">
 					</div>
 				</div>
 				<div class="row mb-20">
@@ -81,11 +81,14 @@
 		</nav>
 	</div>
 
+	<link rel="canonical" href="http://amsul.ca/pickadate.js/">
 	<?php if (isset($js)): ?><?php echo get_js($js) ?><?php endif ?>
 	<script>
-		$(function() {
-			$('#yourBirth').combodate('method');
-		});
+		// $(function() {
+		// 	$('#yourBirth').pickadate();
+		// });
+			
+		var base_url = '<?php echo base_url(); ?>';
 	</script>
 </body>
 </html>
