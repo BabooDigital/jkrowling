@@ -448,6 +448,7 @@ class C_createbook extends MX_Controller {
 	}
 	public function img_book()
 	{
+		error_reporting(0);
 		$auth = $this->session->userdata('authKey');
 		$id_book = $this->session->userdata('idBook_');
 		
