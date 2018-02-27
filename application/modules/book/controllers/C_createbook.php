@@ -119,7 +119,6 @@ class C_createbook extends MX_Controller {
 	public function chapter()
 	{
 		if ($this->input->post('book_id')) {
-			echo "ada";
 		}else{
 			$auth = $this->session->userdata('authKey');
 			$title_book = $this->input->post('title_book');
@@ -286,33 +285,38 @@ class C_createbook extends MX_Controller {
 		$id_user = $this->session->userdata('userData')['user_id'];
 	 	$book_id = $this->uri->segment(2);
 
-	 	$url = $this->API.'/allChapters/book_id/'.$book_id;
-        $ch = curl_init();
-        $options = array(
-        	  CURLOPT_URL			 => $url,
-        	  CURLOPT_RETURNTRANSFER => true,
-	          CURLOPT_CUSTOMREQUEST  =>"GET",    // Atur type request
-	          CURLOPT_POST           =>false,    // Atur menjadi GET
-	          CURLOPT_FOLLOWLOCATION => false,    // Follow redirect aktif
-	          CURLOPT_SSL_VERIFYPEER => 0,
-	          CURLOPT_HEADER         => 1,
-	          CURLOPT_HTTPHEADER	 => array('baboo-auth-key : '.$auth)
+	 	$data_book = array(
+			'book_id' => $book_id	,
+			'user_id' => $id_user
+		);
+		$url = $this->API.'/allChapters/';
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 
-        );
-        curl_setopt_array($ch, $options);
-        $content = curl_exec($ch);
-        curl_close($ch);
-        $headers=array();
-        $data_before_chapter=explode("\n",$content);
-        $headers['status']=$data_before_chapter[0];
+		curl_setopt($ch, CURLOPT_POST, 1);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $data_book);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+		curl_setopt($ch, CURLOPT_HEADER, 1);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key : '.$auth));
+		$content = curl_exec($ch);
+		curl_close($ch);
+		$headers=array();
+		$data_before_chapter=explode("\n",$content);
+		$headers['status']=$data_before_chapter[0];
 
 		array_shift($data_before_chapter);
-
+		// print_r($data_before_chapter);
 		foreach($data_before_chapter as $part){
-		    $middle=explode(":",$part);
-		    error_reporting(0);
-		    $headers[trim($middle[0])] = trim($middle[1]);
+			$middle=explode(":",$part);
+        	error_reporting(0);
+			$headers[trim($middle[0])] = trim($middle[1]);
 		}
+		// foreach($data_before_chapter as $part){
+		// 	$middle=explode(":",$part);
+		// 	$headers[trim($middle[0])] = trim($middle[1]);
+		// }
 
         $resval = (array)json_decode(end($data_before_chapter));
         $data_resval = (array)$resval['data'];
@@ -444,6 +448,7 @@ class C_createbook extends MX_Controller {
 	}
 	public function img_book()
 	{
+		error_reporting(0);
 		$auth = $this->session->userdata('authKey');
 		$id_book = $this->session->userdata('idBook_');
 		
@@ -916,6 +921,7 @@ class C_createbook extends MX_Controller {
 		if ($resval['code'] == 200) {
 			echo json_encode($resval);
 		}
+		// print_r($resval);
     }
     public function createchapter_id()
     {

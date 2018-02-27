@@ -14,8 +14,11 @@ class C_notification extends MX_Controller
 	{
 		$data['title'] = "Notification Page - Baboo";
 
-		$data['js'][]   = "public/js/jquery.min.js";
-		$data['js'][]   = "public/js/menupage.js";
+		$data['js'][] = "public/js/jquery.min.js";
+        $data['js'][] = "public/js/umd/popper.min.js";
+        $data['js'][] = "public/js/bootstrap.min.js";
+        $data['js'][] = "public/js/menupage.js";
+        // $data['js'][] = "public/js/notification.js";
 		if ($this->agent->is_mobile()){
 
 			$this->load->view('include/head', $data);
@@ -67,7 +70,18 @@ class C_notification extends MX_Controller
 		{
 			$status = $resval['code'];
 		}
-		echo json_encode($notif);
+		$data['title'] = "Notification Page - Baboo";
+
+		$data['js'][] = "public/js/jquery.min.js";
+		$data['js'][] = "public/js/umd/popper.min.js";
+		$data['js'][] = "public/js/bootstrap.min.js";
+		$data['js'][] = "public/js/menupage.js";
+		if ($this->agent->is_mobile()){
+
+			$this->load->view('include/head', $data);
+			$this->load->view('R_notification', $data);
+
+		}
 	}
 	public function updateNtf()
 	{
@@ -114,7 +128,7 @@ class C_notification extends MX_Controller
 		{
 			$status = $resval['code'];
 		}
-		print_r($data);
+		// print_r($data);
 		// echo json_encode($data);
 	}
 }

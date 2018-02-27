@@ -96,7 +96,9 @@ class C_Login extends MX_Controller
                 $this->session->set_userdata('isLogin', $status);
                 $this->session->set_userdata('authKey', $auth);
                 $this->session->set_userdata('userData', $user);
-                redirect("firstlogin");
+                if ($this->agent->is_mobile()) {
+                    redirect("firstlogin");
+                }
             }
         }else
         {
@@ -165,8 +167,9 @@ class C_Login extends MX_Controller
             $this->session->set_userdata('isLogin', $status);
             $this->session->set_userdata('authKey', $auth);
             $this->session->set_userdata('userData', $user);
-
-            redirect('firstlogin');
+            if ($this->agent->is_mobile()) {
+                redirect("firstlogin");
+            }
         }else {
             $status = $resval['code'];
             $data = "Not Found";
@@ -327,8 +330,11 @@ class C_Login extends MX_Controller
             $this->session->set_userdata('userData', $user);
             $this->session->set_userdata('authKey', $auth);
             $this->session->set_userdata('isLogin', $status);
-            redirect("timeline");
-            // redirect('firstlogin');
+            if ($this->agent->is_mobile()) {
+                redirect("firstlogin");
+            }else{
+                redirect("timeline");
+            }
         }
         else
         {

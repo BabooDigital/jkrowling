@@ -183,16 +183,6 @@ if (!empty($query['b'])) {
 											</div>
 										</div>
 									</div>
-
-									<div class="row">
-										<div class="col-12">
-											<div class="form-group">
-												<div class="form-check">
-													<?php echo $captcha; ?>
-												</div>
-											</div>
-										</div>
-									</div>
 									<center>
 										<p class="text-daftar" style="text-align:center;">Dengan mengklik tombol daftar, anda setuju pada <a  data-toggle="modal" data-target="#register-modal" href="#" class="link-daftar"><b>Terms of Service</b></a></p>
 									</center>
@@ -237,6 +227,7 @@ if (!empty($query['b'])) {
 
 
 	<script type="text/javascript">
+		var base_url = "<?php echo base_url() ?>";
 		$(function() {
 			$('#date').combodate('method');
 			firstItem: 'name'

@@ -1,4 +1,4 @@
-<?php if (!empty($home)) {
+	<?php if (!empty($home)) {
 	foreach ($home as $s_book) { ?>
 
 	<?php if ($s_book['image_url'] == "" || $s_book['image_url'] == null || $s_book['image_url'] == "Kosong"){ ?>
@@ -74,8 +74,9 @@
 								<a href="<?php echo site_url(); ?>book/<?php echo $s_book['book_id']; ?> - <?php echo url_title($s_book['title_book'], 'dash', true); ?>"> 
 									<div class="row pl-10 pr-10">
 										<div class="media">
+											<!-- <?php print_r($s_book); ?> -->
 											<img alt="<?php
-											echo $s_book['title_book']; ?>" src="<?php if($s_book['img_url'] == NULL){ echo "https://assets.dev-baboo.co.id/baboo-cover/default1.png"; }else{ echo $s_book['img_url']; } ?>" class="w-100" height="200" style="">
+											echo $s_book['title_book']; ?>" src="<?php if($s_book['image_url'] == NULL){ echo "https://assets.dev-baboo.co.id/baboo-cover/default1.png"; }else{ echo $s_book['image_url']; } ?>" class="w-100" height="200" style="">
 										</div>
 										<h5 class="pt-20 w-100" style="font-weight: 700;"><b><a href="<?php echo site_url(); ?>book/<?php echo $s_book['book_id']; ?>-<?php echo url_title($s_book['title_book'], 'dash', true); ?>"><?php
 										echo $s_book['title_book']; ?></a></b></h5>

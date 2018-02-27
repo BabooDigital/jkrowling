@@ -37,7 +37,7 @@
 			</div>
 		</nav>
 
-		<div class="container-fluid mb-200">
+		<div class="container-fluid" style="margin-bottom: 300px;">
 			<div class="p-40">
 				<div class="row">
 					<div class="mb-100">
@@ -54,7 +54,7 @@
 									<div data-toggle="buttons" class="btn-group bizmoduleselect">
 										<label class="btn btn-secondary">
 											<div class="itemcontent">
-												<input type="checkbox" name="var_id[]" autocomplete="off" value="">
+												<input type="checkbox" name="cat_id[]" id="catselect" autocomplete="off" value="1">
 												<img src="<?php echo base_url(); ?>public/img/assets/icon_fiksi.svg" width="200" height="200">
 												<h1>Fiksi</h1>
 											</div>
@@ -67,7 +67,7 @@
 									<div data-toggle="buttons" class="btn-group itemcontent">
 										<label class="btn btn-secondary">
 											<div class="itemcontent">
-												<input type="checkbox" name="var_id[]" autocomplete="off" value="">
+												<input type="checkbox" name="cat_id[]" id="catselect" autocomplete="off" value="2">
 												<img src="<?php echo base_url(); ?>public/img/assets/icon_nonfiksi.svg" width="200" height="200">
 												<h1>Non-Fiksi</h1>
 											</div>
@@ -80,7 +80,7 @@
 									<div data-toggle="buttons" class="btn-group itemcontent">
 										<label class="btn btn-secondary">
 											<div class="itemcontent">
-												<input type="checkbox" name="var_id[]" autocomplete="off" value="">
+												<input type="checkbox" name="cat_id[]" id="catselect" autocomplete="off" value="3">
 												<img src="<?php echo base_url(); ?>public/img/assets/icon_komik.svg" width="200" height="200">
 												<h1>Komik</h1>
 											</div>
@@ -95,17 +95,20 @@
 
 				<div class="row mt-70">
 					<p style="font-size: 30pt;">*Kamu boleh pilih lebih dari satu sesuai yang kamu suka</p>
+						<input type="hidden" id="iaiduui" value="<?php echo $this->session->userdata('userData')['user_id']; ?>">
 				</div>
 			</div>
 		</div>
 
-		<nav class="navbar navbar-light bg-borr fixed-bottom p-70">
+		<nav class=" navbar-light bg-borr fixed-bottom p-70">
 			<div class="w-100">
-				<a href="<?php echo site_url(); ?>first_follow" class="mx-auto btnupdate-prof">Lanjutkan</a>
+				<button id="selectCat" class="mx-auto btnupdate-prof">Lanjutkan</button>
 			</div>
 		</nav>
 	</div>
-
+<script type="text/javascript">
+	var base_url = '<?php echo base_url(); ?>';
+</script>
 <?php if (isset($js)): ?><?php echo get_js($js) ?><?php endif ?>
 </body>
 </html>
