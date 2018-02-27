@@ -21,6 +21,9 @@
 body {
 	background: #ebf0f4 !important;
 }
+a:hover {
+	outline: none;
+}
 </style>
 <body>
 	<nav class="navbar navbar-expand-lg fixed-top baboonav">
@@ -48,7 +51,9 @@ body {
 		</div>
 	</nav><!-- slider -->
 	<div class="mt-50">
-		
+		<div class="slidecontrols">
+			<span id="slider-prev"></span> <span id="slider-next" style="padding-left: 40%;"></span>
+		</div>
 		<div class="your-class">
 			<?php $this->load->view('include/R_slide'); ?>
 		</div>
@@ -141,6 +146,9 @@ body {
 					centerMode: true,
 					centerPadding: '30px',
 					slidesToShow: 1,
+					arrows: true,
+		            prevArrow:"<i class='fa fa-chevron-left contslider slidebtn prevbtn'></i>",
+		            nextArrow:"<i class='fa fa-chevron-right contslider slidebtn nextbtn'></i>",
 					responsive: [
 					{
 						breakpoint: 768,
@@ -160,7 +168,7 @@ body {
 							slidesToShow: 1,
 						}
 					}
-					]
+					],
 				});
 
 

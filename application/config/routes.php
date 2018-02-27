@@ -148,5 +148,8 @@ $route['upload_pict'] = 'profile/C_edit_profile/postUploadProfPict';
 $route['awsd'] = 'book/C_createbook/awasd';
 
 $route['firstlogin'] = 'profile/C_edit_profile/completeProfile';
+
 $route['selectcategory'] = 'profile/C_edit_profile/selectCategory';
+$route['postselectcat'] = 'profile/C_edit_profile/firstSelectCategory';
+
 $route['first_follow'] = 'profile/C_edit_profile/firstFollowUser';

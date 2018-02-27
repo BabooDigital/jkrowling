@@ -563,7 +563,7 @@ class C_createbook extends MX_Controller {
 		if ($cover != null) {
 			$covers = $cover;
 		}else{
-			$covers = null;
+			$covers = "";
 		}
 		$book_id = $this->input->post('book_id');
 		$cat = $this->input->post('category_id');

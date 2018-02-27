@@ -16,8 +16,13 @@ class C_Library extends MX_Controller
     public function index()
     {
         $data['title'] = "Library Page | Baboo - Beyond Book & Creativity";
-        $mobile['css'][]   = "public/css/jquery.bxslider.min.css";
+        $data['css'][]   = "public/css/jquery.bxslider.min.css";
+
+        $data['js'][] = "public/js/jquery.min.js";
+        $data['js'][] = "public/js/umd/popper.min.js";
+        $data['js'][] = "public/js/bootstrap.min.js";
         $data['js'][] = "public/js/custom/mobile/library.js";
+        $data['js'][] = "public/js/menupage.js";
         $data['js'][]   = "public/js/custom/notification.js";
         // DATA SLIDER
         $ch = curl_init();
@@ -111,7 +116,7 @@ class C_Library extends MX_Controller
     public function lastRead()
     {
         error_reporting(0);
-        $url = $this->API.'/latestRead';
+        $url = 'api.dev-baboo.co.id/v1/book/Books/latestRead';
         $auth = $this->session->userdata('authKey');
         $userid = $this->input->post('user');
 
@@ -156,8 +161,8 @@ class C_Library extends MX_Controller
         $resval = (array)json_decode(end($data), true);
         $lastRead = $resval['data'];
         
-        $output = array_slice($lastRead, 0, 2);
+        $output = array_slice($lastRead, 0, 5);
         // print_r($output);
-        echo json_encode($output, TRUE); 
+        echo json_encode($output, TRUE);
     }
 }

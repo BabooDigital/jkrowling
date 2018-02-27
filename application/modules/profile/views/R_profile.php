@@ -16,11 +16,10 @@
 			</div>
 			<div class="profile">
 				<div class="profile_padding">
-					<div class="btn-setting">
-						<a href="<?php echo site_url(); ?>account/setting"><img src="<?php echo base_url('') ?>public/img/icon-tab/group_15.svg"></a>
-					</div>
-					<br>
 					<div class="profile_avatar">
+					<div class="btn-setting" style="z-index: 9999;">
+						<a href="<?php echo site_url(); ?>account/setting"><img src="<?php echo base_url('') ?>public/img/icon-tab/group_15.svg" width="23"></a>
+					</div>
 						<img alt="<?php echo $userdata['fullname']; ?>" class="rounded-circle ml-20" height="70" src="<?php if($userdata['prof_pict'] == NULL){ echo base_url('public/img/profile/blank-photo.jpg'); }else{ echo $userdata['prof_pict']; } ?>" style="border: .5px #7554bd solid;padding: 3px;" width="70">
 						<br>
 						<p class="label_name"><?php echo $userdata['fullname']; ?></p>
@@ -54,14 +53,6 @@
 							</div>
 							<br>
 							<br>
-							<br>
-							<div class="profile_balance">
-								<button class="btn-details-balance">Details</button>
-								<span class="label_balance"><img
-									src="<?php echo base_url('') ?>public/img/icon-tab/group_14.svg"><b> Balance</b></span>
-									<br>
-									<p class="profile_nominal"><b>Rp 5.100.000</b></p>
-								</div>
 							</div>
 						</div>
 					</div>
