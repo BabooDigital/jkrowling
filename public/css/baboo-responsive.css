@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Noto+Serif:400,700|Source+Sans+Pro:400,600,700,900');
 
+* {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
 a:hover {
   text-decoration: none;
 }
@@ -490,6 +494,18 @@ nav.profile {
   font-size: 14px;
   padding: 15px;
 }
+
+.markbook{
+  position:  absolute;
+  top: 10px;
+  right: 25px;
+}
+
+.borderbtm {
+  border: none;
+  border-bottom: 1px solid #adadad;
+}
+
 .bodymessage {
   background: white;
 }
@@ -535,6 +551,19 @@ nav.profile {
   padding: 10px;
   border-radius: 10px;
 }
+
+.slidebtn {
+  position:  absolute;
+  z-index:  999;
+  top: 80px;
+}
+.nextbtn {
+  right: 10px;
+}
+.prevbtn {
+  left: 10px;
+}
+
 .btnbooreadmr {
   border: 1px rgba(128, 128, 128, 0.28) solid;
   border-radius: 23px;
@@ -575,6 +604,7 @@ nav.profile {
   height: auto;
 }
 .profile_padding {
+  margin-top: 10px;
   padding: 10px;
 }
 .btn-setting {
@@ -866,13 +896,13 @@ input:checked + .slider:before {
 
   .boo-menu-active {
     color: #9785bc;
-    font-size: 10pt;
+    font-size: 9pt;
     font-weight: 600;
   }
 
   .boo-menu {
     color: #2e2e2e;
-    font-size: 10pt;
+    font-size: 9pt;
     font-weight: 300;
   }
 
