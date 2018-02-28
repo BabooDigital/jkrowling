@@ -40,28 +40,29 @@ if (!empty($query['b'])) {
 
 			<!-- Left Side Content -->
 			<div class="col-md-8" >
-				<div class="left-side" style="padding: 10px;">
-					<img src="<?php echo base_url();?>public/img/front-image/logo_purple.png" class="floating" width="150" height="70">
+				<div class="left-side" style="padding: 50px;">
+					<img src="<?php echo base_url();?>public/img/front-image/logo_purple.png" class="" width="150" height="auto">
 					<br>
-					<p class="text-img floating">Selamat Datang di Baboo</p>
+					<p class="text-img">Selamat Datang di Baboo</p>
 					<center>
 						<div class="slideboo" style="width: 100%;">
 							<!-- <div class="leftboo"></div> -->
 							<div class="slidecontrols">
-								<span id="slider-prev"></span> <span id="slider-next" style="padding-left: 40%;"></span>
+								<span id="slider-prev" style="position: absolute; left: 5%;"></span>  
+								<span id="slider-next" style="position: absolute; right: 5%;"></span>
 							</div>
 							<!-- SLIDE BABOO -->
-							<div style="width: 100%;height: auto;position: relative;">
+							<div style="width: 100%; height: auto;position: relative;">
 								<div class="slider_login">
-									<div class="contentpadding">
-										<img src="<?php echo base_url('public/img/slide/child.png') ?>" width="200" heigth="200">
+									<div class="" style="padding-top: 15px">
+										<img src="<?php echo base_url('public/img/slide/child.png') ?>" width="auto" height="350">
 										<div class="" style="padding: 5% 0;color:black;">
 											<p class="nulis">Nulis dan Baca Buku Jadi Lebih Asik</p>
 											<p class="bisa">Sekarang kamu bisa nulis dan baca buku dengan smartphone kesayangan kamu</p>
 										</div>
 									</div>
-								  	<div class="contentpadding">
-										<img src="<?php echo base_url('public/img/slide/child.png') ?>" width="200" heigth="200">
+								  	<div class="" style="padding-top: 15px">
+										<img src="<?php echo base_url('public/img/slide/child.png') ?>" width="auto" height="350">
 										<div class="" style="padding: 5% 0;color:black;">
 											<p class="nulis">Nulis dan Baca Buku Jadi Lebih Asik</p>
 											<p class="bisa">Sekarang kamu bisa nulis dan baca buku dengan smartphone kesayangan kamu</p>
