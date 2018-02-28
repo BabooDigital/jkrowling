@@ -17,8 +17,8 @@ $(document).ready(function(){
         nextSelector: '#slider-next',
         prevSelector: '#slider-prev',
 
-        nextText: '<i class="fa fa-chevron-right fa-2x contslider"></i>',
-        prevText: '<i class="fa fa-chevron-left fa-2x contslider"></i>',
+        nextText: '<i class="fa fa-angle-right fa-2x contslider"></i>',
+        prevText: '<i class="fa fa-angle-left fa-2x contslider"></i>',
       }); 
     $('.slider_login').bxSlider({
         // moveSlides: 2,
@@ -31,8 +31,8 @@ $(document).ready(function(){
         nextSelector: '#slider-next',
         prevSelector: '#slider-prev',
 
-        nextText: '<i class="fa fa-chevron-right fa-2x contslider"></i>',
-        prevText: '<i class="fa fa-chevron-left fa-2x contslider"></i>',
+        nextText: '<i class="fa fa-angle-right fa-2x contslider"></i>',
+        prevText: '<i class="fa fa-angle-left fa-2x contslider"></i>',
       });       
 
     // clicking button with class "category-button"

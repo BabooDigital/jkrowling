@@ -9,12 +9,6 @@ body{
 .padding {
 	padding: 20px;
 }
-.left-side{
-	background-color:#fff;
-	background : url(../../img/wallpaper/wp.png);
-	height:100vh;
-	padding: 10px;
-}
 
 .img-left{
 	height:180px;
@@ -24,6 +18,7 @@ body{
 	background-color: #fff;
 	height:100vh;
 	font-family: 'Proxima Nova', Georgia, sans-serif;
+	
 }
 	
 .center-content{
