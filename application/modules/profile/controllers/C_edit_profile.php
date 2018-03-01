@@ -5,6 +5,8 @@ class C_edit_profile extends MX_Controller {
 
 	function __construct(){
 		parent::__construct();
+		$api_url = checkBase();
+		$this->API = $api_url;
 
 		if ($this->session->userdata('isLogin') != 200) {
 			redirect('home');
@@ -37,7 +39,6 @@ class C_edit_profile extends MX_Controller {
 	public function postEditProfile()
 	{
 		error_reporting(0);
-		$url = 'api.dev-baboo.co.id/v1/auth/OAuth/editProfile';
 		$auth = $this->session->userdata('authKey');
 		$user = $this->session->userdata('userData');
 
@@ -55,9 +56,8 @@ class C_edit_profile extends MX_Controller {
 		);
 
 		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_URL, $this->API.'auth/OAuth/editProfile');
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 
 		curl_setopt($ch, CURLOPT_POST, 1);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $sendData);
@@ -140,23 +140,23 @@ class C_edit_profile extends MX_Controller {
 		if ($dataWritter['code'] == 200) {
 			$this->session->set_userdata('authKey', $auth);
 
-		$data['userFollow'] = $dataWritter['data'];
+			$data['userFollow'] = $dataWritter['data'];
 
-		$data['title'] = 'Ikuti Pengguna | Baboo';
-		$data['css'][] = "public/css/bootstrap.min.css";
-		$data['css'][] = "public/css/custom-margin-padding.css";
-		$data['css'][] = "public/css/font-awesome.min.css";
-		$data['css'][] = "public/css/baboo-responsive.css";
+			$data['title'] = 'Ikuti Pengguna | Baboo';
+			$data['css'][] = "public/css/bootstrap.min.css";
+			$data['css'][] = "public/css/custom-margin-padding.css";
+			$data['css'][] = "public/css/font-awesome.min.css";
+			$data['css'][] = "public/css/baboo-responsive.css";
 
-		$data['js'][] = "public/js/jquery.min.js";
-		$data['js'][] = "public/js/tether.min.js";
-		$data['js'][] = "public/js/umd/popper.min.js";
-		$data['js'][] = "public/js/bootstrap.min.js";
-		$data['js'][] = "public/js/moment.js";
-		$data['js'][] = "public/js/combodate.js";
-		$data['js'][] = "public/js/custom/mobile/r_first_follow.js";
+			$data['js'][] = "public/js/jquery.min.js";
+			$data['js'][] = "public/js/tether.min.js";
+			$data['js'][] = "public/js/umd/popper.min.js";
+			$data['js'][] = "public/js/bootstrap.min.js";
+			$data['js'][] = "public/js/moment.js";
+			$data['js'][] = "public/js/combodate.js";
+			$data['js'][] = "public/js/custom/mobile/r_first_follow.js";
 
-		$this->load->view('R_first_follow', $data);
+			$this->load->view('R_first_follow', $data);
 		}else{
 			redirect('selectcategory','refresh');
 		}
@@ -165,7 +165,6 @@ class C_edit_profile extends MX_Controller {
 	public function postUploadProfPict()
 	{
 		error_reporting(0);
-		$url = 'api.dev-baboo.co.id/v1/auth/OAuth/uploadProfpict';
 		$auth = $this->session->userdata('authKey');
 
 		$user = $this->input->post('user_id');
@@ -177,106 +176,116 @@ class C_edit_profile extends MX_Controller {
 	        	$cFile = '@' . realpath($file_name_with_full_path);
 	        }
 
-		$sendData = array(
-			'user_id' => $user['user_id'],
-			'prof_pict' => $cFile,
-		);
+	        $sendData = array(
+	        	'user_id' => $user['user_id'],
+	        	'prof_pict' => $cFile,
+	        );
 
-		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, $url);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	        $ch = curl_init();
+	        curl_setopt($ch, CURLOPT_URL, $this->API.'auth/OAuth/uploadProfpict');
+	        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-		curl_setopt($ch, CURLOPT_POST, 1);
-		curl_setopt($ch, CURLOPT_POSTFIELDS, $sendData);
-		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-		curl_setopt($ch, CURLOPT_HEADER, 1);
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: multipart/form-data','baboo-auth-key : '.$auth));
-		$result = curl_exec($ch);
-
-
-		$headers=array();
-
-		$data=explode("\n",$result);
+	        curl_setopt($ch, CURLOPT_POST, 1);
+	        curl_setopt($ch, CURLOPT_POSTFIELDS, $sendData);
+	        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+	        curl_setopt($ch, CURLOPT_HEADER, 1);
+	        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: multipart/form-data','baboo-auth-key : '.$auth));
+	        $result = curl_exec($ch);
 
 
-		array_shift($data);
-		$middle = array();
-		$moddle = array();
-		foreach($data as $part){
-			$middle=explode(":",$part);
-			$moddle=explode("{",$part);
+	        $headers=array();
 
-			if (error_reporting() == 0) {
-				$headers[trim($middle[0])] = trim($middle[1]);
-			}
-		}
+	        $data=explode("\n",$result);
 
-		$resval =  json_decode(end($data), TRUE);
 
-		$psn = $resval['message'];
-		$userdetail = $resval['data'];
-		$auth = $headers['BABOO-AUTH-KEY'];
-		if ($resval['code'] == 200) {
-			$this->session->set_userdata('authKey', $auth);
-		}
-		$status = $resval['code'];
-		print_r($resval);
+	        array_shift($data);
+	        $middle = array();
+	        $moddle = array();
+	        foreach($data as $part){
+	        	$middle=explode(":",$part);
+	        	$moddle=explode("{",$part);
+
+	        	if (error_reporting() == 0) {
+	        		$headers[trim($middle[0])] = trim($middle[1]);
+	        	}
+	        }
+
+	        $resval =  json_decode(end($data), TRUE);
+
+	        $psn = $resval['message'];
+	        $userdetail = $resval['data'];
+	        $auth = $headers['BABOO-AUTH-KEY'];
+	        if ($resval['code'] == 200) {
+	        	$this->session->set_userdata('authKey', $auth);
+	        }
+	        $status = $resval['code'];
+	        print_r($resval);
+	    }
+
+	    public function firstSelectCategory()
+	    {
+	    	error_reporting(0);
+
+	    	function build_post_fields( $data,$existingKeys='',&$returnArray=[]){
+	    		if(($data instanceof CURLFile) or !(is_array($data) or is_object($data))){
+	    			$returnArray[$existingKeys]=$data;
+	    			return $returnArray;
+	    		}
+	    		else{
+	    			foreach ($data as $key => $item) {
+	    				build_post_fields($item,$existingKeys?$existingKeys."[$key]":$key,$returnArray);
+	    			}
+	    			return $returnArray;
+	    		}
+	    	}
+
+	    	$auth = $this->session->userdata('authKey');
+
+	    	$user = $this->input->post('user_id');
+	    	$category = $this->input->post('category_id');
+	    	$cat = explode(',', $category);
+	    	$sendData = array(
+	    		'user_id' => $user,
+	    		'category_id' => $cat
+	    	);
+
+	    	$ch = curl_init();
+	    	curl_setopt($ch, CURLOPT_URL, $this->API.'timeline/Timelines/bestWriter');
+	    	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+	    	curl_setopt($ch, CURLOPT_POST, 1);
+	    	curl_setopt($ch, CURLOPT_POSTFIELDS, build_post_fields($sendData));
+	    	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+	    	curl_setopt($ch, CURLOPT_HEADER, 1);
+	    	curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key : '.$auth));
+	    	$result = curl_exec($ch);
+
+	    	$headers=array();
+
+	    	$data=explode("\n",$result);
+
+
+	    	array_shift($data);
+	    	$middle = array();
+	    	$moddle = array();
+	    	foreach($data as $part){
+	    		$middle=explode(":",$part);
+	    		$moddle=explode("{",$part);
+
+	    		if (error_reporting() == 0) {
+	    			$headers[trim($middle[0])] = trim($middle[1]);
+	    		}
+	    	}
+
+	    	$resval = json_decode(end($data), true);
+	    	$auth = $headers['BABOO-AUTH-KEY'];
+	    	if ($resval['code'] == 200) {
+	    		$this->session->set_userdata('authKey', $auth);
+	    		$this->session->set_userdata('firstFollow', $resval);
+	    	}
+
+	    	echo json_encode($resval);
+
+	    }
+
 	}
-
-	public function firstSelectCategory()
-	{
-		error_reporting(0);
-		$auth = $this->session->userdata('authKey');
-
-		$url = 'api.dev-baboo.co.id/v1/timeline/Timelines/bestWriter';
-
-		$user = $this->input->post('user_id');
-		$category = $this->input->post('category_id');
-		$cat = explode(',', $category);
-		$sendData = array(
-			'user_id' => $user,
-			'category_id' => $cat
-		);
-
-		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, $url);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-
-		curl_setopt($ch, CURLOPT_POST, 1);
-		curl_setopt($ch, CURLOPT_POSTFIELDS, $sendData);
-		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-		curl_setopt($ch, CURLOPT_HEADER, 1);
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key : '.$auth));
-		$result = curl_exec($ch);
-
-
-		$headers=array();
-
-		$data=explode("\n",$result);
-
-
-		array_shift($data);
-		$middle = array();
-		$moddle = array();
-		foreach($data as $part){
-			$middle=explode(":",$part);
-			$moddle=explode("{",$part);
-
-			if (error_reporting() == 0) {
-				$headers[trim($middle[0])] = trim($middle[1]);
-			}
-		}
-
-		$resval = json_decode(end($data), true);
-		$auth = $headers['BABOO-AUTH-KEY'];
-		if ($resval['code'] == 200) {
-			$this->session->set_userdata('authKey', $auth);
-			$this->session->set_userdata('firstFollow', $resval);
-		}
-
-		echo json_encode($resval);
-
-	}
-
-}

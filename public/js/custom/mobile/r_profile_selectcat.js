@@ -19,15 +19,12 @@ $(document).ready(function() {
           data: formData,
         })
         .done(function(data) {
-        	if(data.code === "200") location.href = base_url+"first_follow";
+        	if(data.code == "200") location.href = base_url+"first_follow";
         })
         .fail(function() {
           console.log("error");
         })
         .always(function() {
-        	for (var pair of formData.entries()) {
-    console.log(pair[0]+ ', ' + pair[1]); 
-}
         });
 	});
 });

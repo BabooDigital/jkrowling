@@ -4,6 +4,9 @@ $(function(){
   chapterBook();
   isFree();
   backLink();
+  toChaptList();
+  saveDraft();
+  addChapter();
   publishChapter();
   publishBook();
   getCategory();
@@ -79,7 +82,7 @@ function froalaEditor() {
     imageEditButtons: ['imageDisplay', 'imageAlign', 'imageInfo', 'imageRemove'],
     buttons: ['undo', 'redo' , 'sep', 'bold', 'italic', 'underline'],
     placeholderText: 'Tulis cerita di sini..',
-    heightMin: 150,
+    heightMin: 200,
     heightMax: 300,
     width: 500,
     initOnClick: true,
@@ -141,16 +144,19 @@ function isFree() {
         }
     });
 }
-function backLink() {
-    $(".backlink").on('click', function() {
 
-      var formData = new FormData();
-      var book_id = $("#book_id").val();
-      var chapter_title = $("#chapter_title_out").val();
-      var paragraph_book = $("#paragraph_book").val();
-      var url = base_url+'savechapter';
+function backLink() {
+  $(document).on('click',"#backlinks", function() {
+
+    var formData = new FormData();
+    var book_id = $("#book_id").val();
+    var chapter_title = $("#chapter_title_out").val();
+    var paragraph_book = $("#paragraph_book").val();
+    var url = base_url+'savechapter';
+    
+    if (chapter_title != '' || paragraph_book != '') {
       swal({
-        title: 'Simpan cerita?',
+        title: 'Ingin Kembali?',
         text: "Simpan cerita kamu dan menuju daftar cerita yang kamu buat.",
         showCancelButton: true,
         confirmButtonColor: '#644cb6',
@@ -159,29 +165,149 @@ function backLink() {
         cancelButtonText: 'Batal'
       }).then((result) => {
         if (result.value) {
-          $.ajax({
-                type:"POST",
-                url:url,
-                data: { 'book_id' : book_id, 'chapter_title' : chapter_title, 'paragraph_book' : paragraph_book},
-                dataType: 'json',
-                beforeSend: function () {
-                  swal({
-                    title: 'Menyimpan Cerita',
-                    timer: 60000,
-                    onOpen: () => {
-                      swal.showLoading()
-                    }
-                  });
-                },
-                success:function (data) {
-                  if (data.code == 200) {
-                    window.location = base_url+'listchapter/'+data.data['book_id'];
+          if (chapter_title == "" || paragraph_book == "") {
+            swal(
+              'Gagal!',
+              'Lengkapi Judul dan Isi Buku mu.',
+              'error'
+              )
+          }else {
+            $.ajax({
+              type:"POST",
+              url:url,
+              data: { 'book_id' : book_id, 'chapter_title' : chapter_title, 'paragraph_book' : paragraph_book},
+              dataType: 'json',
+              beforeSend: function () {
+                swal({
+                  title: 'Menyimpan Cerita',
+                  timer: 60000,
+                  onOpen: () => {
+                    swal.showLoading()
                   }
-                },
+                });
+              },
+              success:function (data) {
+                if (data.code == 200) {
+                  window.location = base_url+'listchapter/'+data.data['book_id'];
+                }
+              },
             });
+          }
+        }else{
         }
       });
+    }else {
+      window.location = base_url+'create_mybook';
+    }
+  });
+}
+
+function toChaptList() {
+  $(document).on('click',"#backdraft",function() {
+    var book_id = $("#book_id").val();
+    window.location = base_url+'listchapter/'+book_id;
+  });
+}
+
+function saveDraft() {
+  $("#saveChapt").on('click', function() {
+
+    var formData = new FormData();
+    var book_id = $("#book_id").val();
+    var chapter_title = $("#chapter_title_out").val();
+    var paragraph_book = $("#paragraph_book").val();
+    var url = base_url+'savechapter';
+
+    if (chapter_title == "" || paragraph_book == "") {
+      swal(
+        'Gagal!',
+        'Lengkapi Judul dan Isi Buku mu.',
+        'error'
+        )
+    }else {
+      $.ajax({
+        type:"POST",
+        url:url,
+        data: { 'book_id' : book_id, 'chapter_title' : chapter_title, 'paragraph_book' : paragraph_book},
+        dataType: 'json',
+        beforeSend: function () {
+          swal({
+            title: 'Menyimpan Cerita',
+            onOpen: () => {
+              swal.showLoading()
+            }
+          });
+        },
+        success:function (data) {
+          if (data.code == 200) {
+              swal.hideLoading()
+            var x = document.getElementById("snackbar");
+            x.className = "show";
+            setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+             $("#backlinks").removeClass('backlink');
+             $("#backlinks").attr("id",'backdraft');
+          }
+        },
+      });
+    }
+  });
+}
+
+function addChapter() {
+  $("#addSome").on('click', function() {
+
+    var formData = new FormData();
+    var book_id = $("#book_id").val();
+    var chapter_title = $("#chapter_title_out").val();
+    var paragraph_book = $("#paragraph_book").val();
+    var url = base_url+'savechapter';
+
+    swal({
+      title: 'Tambah cerita?',
+      text: "Simpan cerita kamu dan tambah chapter bukumu.",
+      showCancelButton: true,
+      showCloseButton: true,
+      confirmButtonColor: '#644cb6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Simpan',
+      cancelButtonText: 'Batal'
+    }).then((result) => {
+      if (result.value) {
+        if (chapter_title == "" || paragraph_book == "") {
+          swal(
+            'Gagal!',
+            'Lengkapi Judul dan Isi Buku mu.',
+            'error'
+            )
+        }else {
+          $.ajax({
+            type:"POST",
+            url:url,
+            data: { 'book_id' : book_id, 'chapter_title' : chapter_title, 'paragraph_book' : paragraph_book},
+            dataType: 'json',
+            beforeSend: function () {
+              swal({
+                title: 'Menyimpan Cerita',
+                onOpen: () => {
+                  swal.showLoading()
+                }
+              });
+            },
+            success:function (data) {
+              if (data.code == 200) {
+                swal.hideLoading();
+                $("#chapter_title_out").val('');
+                $("#paragraph_book").val('');
+                $('#paragraph_book').froalaEditor('html.set', '');
+               $("#backlinks").removeClass('backlink');
+               $("#backlinks").attr("id",'backdraft');
+              }
+            },
+          });
+        }
+      }
     });
+  });
 }
 
 function getCategory() {

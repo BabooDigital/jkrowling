@@ -7,7 +7,9 @@ class C_timeline extends MX_Controller {
 
 	function __construct(){
 		parent::__construct();
-		$this->API = "api.dev-baboo.co.id/v1/timeline/Timelines";
+		$api_url = checkBase();
+		$this->API = $api_url;			
+		
 		if ($this->session->userdata('isLogin') != 200) {
 			redirect('home');
 		}
@@ -27,15 +29,13 @@ class C_timeline extends MX_Controller {
 		}else{
 			$id = "";
 		}
-		$url = $this->API.'/index';
 		$uid = array(
 			'user_id' => $userdata['user_id'],
 			'count' => $id
 		);
 		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_URL, $this->API.'timeline/Timelines/index');
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 
 		curl_setopt($ch, CURLOPT_POST, 1);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $uid);
@@ -130,9 +130,8 @@ class C_timeline extends MX_Controller {
 		);
 
 		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, 'api.dev-baboo.co.id/v1/book/Books/preCreateBook');
+		curl_setopt($ch, CURLOPT_URL, $this->API.'book/Books/preCreateBook');
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 
 		curl_setopt($ch, CURLOPT_POST, 1);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $bookData);
@@ -184,10 +183,9 @@ class C_timeline extends MX_Controller {
 	{
 		error_reporting(0);
 		$auth = $this->session->userdata('authKey');
-		$url = 'api.dev-baboo.co.id/v1/timeline/Home/bestWriter';
 		$ch = curl_init();
 		$options = array(
-			CURLOPT_URL			 => $url,
+			CURLOPT_URL			 => $this->API.'timeline/Home/bestWriter',
 			CURLOPT_RETURNTRANSFER => true,
 	          CURLOPT_CUSTOMREQUEST  =>"GET",    // Atur type request
 	          CURLOPT_POST           =>false,    // Atur menjadi GET
@@ -226,10 +224,9 @@ class C_timeline extends MX_Controller {
 	{
 		error_reporting(0);
 		$auth = $this->session->userdata('authKey');
-		$url = 'api.dev-baboo.co.id/v1/timeline/Timelines/bestBook';
 		$ch = curl_init();
 		$options = array(
-			CURLOPT_URL			 => $url,
+			CURLOPT_URL			 => $this->API.'timeline/Timelines/bestBook',
 			CURLOPT_RETURNTRANSFER => true,
 	          CURLOPT_CUSTOMREQUEST  =>"GET",    // Atur type request
 	          CURLOPT_POST           =>false,    // Atur menjadi GET
@@ -284,23 +281,10 @@ class C_timeline extends MX_Controller {
 		$this->session->sess_destroy();
 		redirect('');
 	}
-	public function explore()
-	{
-		$this->load->view('page/explore');
-	}
-	public function library()
-	{
-		$this->load->view('page/library');
-	}
-	public function profile()
-	{
-		$this->load->view('page/profile');
-	}
 
 	public function postBookmark()
 	{
 		error_reporting(0);
-		$url = $this->API.'/bookmark';
 		$auth = $this->session->userdata('authKey');
 		$userid = $this->input->post('user_id');
 		$bookid = $this->input->post('book_id');
@@ -311,9 +295,8 @@ class C_timeline extends MX_Controller {
 		);
 
 		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_URL, $this->API.'timeline/Timelines/bookmark');
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 
 		curl_setopt($ch, CURLOPT_POST, 1);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $sendData);
@@ -359,7 +342,6 @@ class C_timeline extends MX_Controller {
 	public function postLike()
 	{
 		error_reporting(0);
-		$url = $this->API.'/likeBook';
 		$auth = $this->session->userdata('authKey');
 		$userid = $this->input->post('user_id');
 		$bookid = $this->input->post('book_id');
@@ -370,9 +352,8 @@ class C_timeline extends MX_Controller {
 		);
 
 		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_URL, $this->API.'timeline/Timelines/likeBook');
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 
 		curl_setopt($ch, CURLOPT_POST, 1);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $sendData);
@@ -417,7 +398,6 @@ class C_timeline extends MX_Controller {
 	public function postFollowUser()
 	{
 		error_reporting(0);
-		$url = $this->API.'/follow';
 		$auth = $this->session->userdata('authKey');
 		$fuserid = $this->input->post('fuser_id');
 		$userid = $this->input->post('user_id');
@@ -428,9 +408,8 @@ class C_timeline extends MX_Controller {
 		);
 
 		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_URL, $this->API.'timeline/Timelines/follow');
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 
 		curl_setopt($ch, CURLOPT_POST, 1);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $sendData);
@@ -475,7 +454,6 @@ class C_timeline extends MX_Controller {
 	public function postShareSocmed()
 	{
 		error_reporting(0);
-		$url = $this->API.'/shareBook';
 		$auth = $this->session->userdata('authKey');
 		$userid = $this->input->post('user_id');
 		$bookid = $this->input->post('book_id');
@@ -486,9 +464,8 @@ class C_timeline extends MX_Controller {
 		);
 
 		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_URL, $this->API.'timeline/Timelines/shareBook');
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 
 		curl_setopt($ch, CURLOPT_POST, 1);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $sendData);

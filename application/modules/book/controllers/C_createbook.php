@@ -16,7 +16,6 @@ class C_createbook extends MX_Controller {
 
 	public function index()
 	{
-		$data['judul'] = "Buat Sebuah Cerita - Baboo";
 		$data['title'] = "Buat Sebuah Cerita - Baboo";
 
 		$data['css'][] = "public/css/bootstrap.min.css";
@@ -119,6 +118,7 @@ class C_createbook extends MX_Controller {
 	public function chapter()
 	{
 		if ($this->input->post('book_id')) {
+			
 		}else{
 			$auth = $this->session->userdata('authKey');
 			$title_book = $this->input->post('title_book');
@@ -177,6 +177,7 @@ class C_createbook extends MX_Controller {
 		$data['css'][] = "public/css/baboo-responsive.css";
 		$data['css'][] = "public/css/baboo.css";
 		$data['css'][] = "public/css/sweetalert2.min.css";
+		$data['css'][] = "public/css/custom-margin-padding.css";
 		$data['css'][] = "public/plugins/holdOn/css/HoldOn.css";
 		$data['css'][] = "public/plugins/wysiwyg/src/bootstrap-wysihtml5.css";
 
@@ -224,6 +225,7 @@ class C_createbook extends MX_Controller {
 		$this->load->view('include/head', $data);
 		$this->load->view('R_chapter');
 	}
+
 	public function saveChapter()
 	 {
 	 	$auth = $this->session->userdata('authKey');
@@ -281,64 +283,56 @@ class C_createbook extends MX_Controller {
 	 } 
 	 public function listChapter()
 	 {
-		$auth = $this->session->userdata('authKey');
+	 	$auth = $this->session->userdata('authKey');
 		$id_user = $this->session->userdata('userData')['user_id'];
-	 	$book_id = $this->uri->segment(2);
+		$book_id = $this->uri->segment(2);
 
-	 	$data_book = array(
-			'book_id' => $book_id	,
+		$chapterData = array(
+			'book_id' => $book_id,
 			'user_id' => $id_user
 		);
-		$url = $this->API.'/allChapters/';
 		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_URL, $this->API.'/allChapters');
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 
 		curl_setopt($ch, CURLOPT_POST, 1);
-		curl_setopt($ch, CURLOPT_POSTFIELDS, $data_book);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $chapterData);
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 		curl_setopt($ch, CURLOPT_HEADER, 1);
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key : '.$auth));
-		$content = curl_exec($ch);
-		curl_close($ch);
-		$headers=array();
-		$data_before_chapter=explode("\n",$content);
-		$headers['status']=$data_before_chapter[0];
+		$result = curl_exec($ch);
 
-		array_shift($data_before_chapter);
-		// print_r($data_before_chapter);
-		foreach($data_before_chapter as $part){
+		$headers=array();
+
+		$data=explode("\n",$result);
+
+		array_shift($data);
+
+		foreach($data as $part){
 			$middle=explode(":",$part);
         	error_reporting(0);
 			$headers[trim($middle[0])] = trim($middle[1]);
 		}
-		// foreach($data_before_chapter as $part){
-		// 	$middle=explode(":",$part);
-		// 	$headers[trim($middle[0])] = trim($middle[1]);
-		// }
-
-        $resval = (array)json_decode(end($data_before_chapter));
-        $data_resval = (array)$resval['data'];
-        $auth = $headers['BABOO-AUTH-KEY'];
-        if (isset($data_before_chapter['chapter']['code']) && $data_before_chapter['chapter']['code'] == '200')
-        {
-            $status = $data_before_chapter['chapter']['code'];
-           	$this->session->set_userdata('authKey', $auth);
-        }
-        else
-        {
-            $status = $data_before_chapter['chapter']['code'];
-        }
-
-		if ($resval['code'] == 200) {
-			$data['title'] = 'Daftar chapter buku mu | Baboo Beyond Book &amp; Creativity';
-			$data['list_chapter'] = $data_resval;
-			$data['book_id'] = $book_id;
-			$data['title_book'] = $this->session->userdata('title_book');
-			$this->load->view('include/head', $data);
-			$this->load->view('R_list_chapter');
+		$resval = (array)json_decode(end($data), true);
+		$auth = $headers['BABOO-AUTH-KEY'];
+		if (isset($resval['code']) && $resval['code'] == '200')
+		{
+			$status = $resval['code'];
+			$this->session->set_userdata('authKey', $auth);
+			$this->session->set_userdata('dataBook', $user);
 		}
+		else
+		{
+			$status = $resval['code'];
+		}
+
+		$data['title'] = 'Daftar chapter buku mu | Baboo Beyond Book &amp; Creativity';
+		$data['list_chapter'] = $resval['data'];
+		$data['book_id'] = $book_id;
+		$data['title_book'] = $this->session->userdata('title_book');
+		$this->load->view('include/head', $data);
+		$this->load->view('R_list_chapter');
 	 }
 	public function cover_v()
 	{

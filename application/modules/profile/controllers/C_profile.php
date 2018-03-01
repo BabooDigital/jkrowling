@@ -7,7 +7,8 @@ class C_profile extends MX_Controller {
 
 	function __construct(){
 		parent::__construct();
-		$this->API = "api.dev-baboo.co.id/v1/auth/OAuth";
+		$api_url = checkBase();
+		$this->API = $api_url;
 
 		if ($this->session->userdata('isLogin') != 200) {
 			redirect('login');
@@ -17,7 +18,6 @@ class C_profile extends MX_Controller {
 	public function index()
 	{
 		error_reporting(0);
-		$url = $this->API.'/profile';
 		$auth = $this->session->userdata('authKey');
 		$userdata = $this->session->userdata('userData');
 
@@ -26,9 +26,8 @@ class C_profile extends MX_Controller {
 		);
 
 		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_URL, $this->API.'auth/OAuth/profile');
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 
 		curl_setopt($ch, CURLOPT_POST, 1);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $sendData);
@@ -91,7 +90,6 @@ class C_profile extends MX_Controller {
 
 	public function getPublishBook() {
 		error_reporting(0);
-		$url = 'api.dev-baboo.co.id/v1/timeline/Timelines/publish';
 		$auth = $this->session->userdata('authKey');
 		$userdata = $this->input->post('user_id');
 
@@ -100,9 +98,8 @@ class C_profile extends MX_Controller {
 		);
 
 		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_URL, $this->API.'timeline/Timelines/publish');
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 
 		curl_setopt($ch, CURLOPT_POST, 1);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $sendData);
@@ -143,7 +140,6 @@ class C_profile extends MX_Controller {
 
 	public function getDraftBook() {
 		error_reporting(0);
-		$url = 'api.dev-baboo.co.id/v1/timeline/Timelines/draft';
 		$auth = $this->session->userdata('authKey');
 		$userdata = $this->input->post('user_id');
 
@@ -152,9 +148,8 @@ class C_profile extends MX_Controller {
 		);
 
 		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_URL, $this->API.'timeline/Timelines/draft');
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 
 		curl_setopt($ch, CURLOPT_POST, 1);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $sendData);
@@ -196,7 +191,6 @@ class C_profile extends MX_Controller {
 	public function getLatestRead()
 	{
 		error_reporting(0);
-		$url = 'api.dev-baboo.co.id/v1/book/Books/latestRead';
 		$auth = $this->session->userdata('authKey');
 		$userdata = $this->input->post('user_id');
 
@@ -205,9 +199,8 @@ class C_profile extends MX_Controller {
 		);
 
 		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_URL, $this->API.'book/Books/latestRead');
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 
 		curl_setopt($ch, CURLOPT_POST, 1);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $sendData);

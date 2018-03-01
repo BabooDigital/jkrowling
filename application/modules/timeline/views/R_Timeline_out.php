@@ -15,15 +15,18 @@
 	
 </head>
 <style type="text/css">
-.card {
-	border-radius: 0 !important;
-}
-body {
-	background: #ebf0f4 !important;
-}
-a:hover {
-	outline: none;
-}
+	.card {
+		border-radius: 0 !important;
+	}
+	body {
+		background: #ebf0f4 !important;
+	}
+	.navbar {
+		padding: 0.4rem 1rem !important;
+	}
+	a:hover {
+		outline: none;
+	}
 </style>
 <body>
 	<nav class="navbar navbar-expand-lg fixed-top baboonav">
@@ -147,8 +150,8 @@ a:hover {
 					centerPadding: '30px',
 					slidesToShow: 1,
 					arrows: true,
-		            prevArrow:"<i class='fa fa-chevron-left contslider slidebtn prevbtn'></i>",
-		            nextArrow:"<i class='fa fa-chevron-right contslider slidebtn nextbtn'></i>",
+					prevArrow:"<i class='fa fa-chevron-left contslider slidebtn prevbtn'></i>",
+					nextArrow:"<i class='fa fa-chevron-right contslider slidebtn nextbtn'></i>",
 					responsive: [
 					{
 						breakpoint: 768,

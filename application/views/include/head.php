@@ -17,6 +17,11 @@
 	<?php if (isset($css)): ?>
 		<?php echo get_css($css) ?>
 	<?php endif ?>
+	<style type="text/css">
+		.navbar {
+			padding: 0.4rem 1rem !important;
+		}
+	</style>
 	<script type="text/javascript">
 		var base_url = "<?php echo base_url(''); ?>";
 	</script>
