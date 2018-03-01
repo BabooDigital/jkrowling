@@ -18,8 +18,7 @@
 	<link href="<?php echo base_url('') ?>public/css/baboo-responsive.css" rel="stylesheet" type="text/css">
 	<link href="<?php echo base_url('') ?>public/css/custom-margin-padding.css" rel="stylesheet" type="text/css">
 	<link href="<?php echo base_url('') ?>public/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-	<?php echo $script_captcha; ?>
-
+	
 </head>
 <!-- CSS -->
 <?php
@@ -109,11 +108,11 @@ if (!empty($query['b'])) {
 							<div class="col-lg-12">
 								<form id="login-form" action="<?php echo site_url(); ?>auth/C_Login/postloginuser" method="POST">
 									<div class="form-group">
-										<input type="email" class="form-control login-input" id="yourEmail" name="emails" placeholder="Alamat Email" value="test123@babolotoh.id">
+										<input type="email" class="form-control login-input" id="yourEmail" name="emails" placeholder="Alamat Email">
 									</div>
 
 									<div class="form-group">
-										<input type="password" class="required password error  form-control login-input" id="yourPassword" name="passwords" placeholder="Password" value="123456">
+										<input type="password" class="required password error  form-control login-input" id="yourPassword" name="passwords" placeholder="Password">
 									</div>
 									<p class="text-right text-daftar">Belum punya akun ? <a  data-toggle="modal" data-target="#register-modal" href="#" class="link-daftar">Daftar disini</a></p>
 									<div class="pull-right">
