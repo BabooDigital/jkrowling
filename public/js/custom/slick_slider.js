@@ -1,10 +1,1 @@
-$(document).ready(function() {
-  $('.slider').bxSlider({
-    pager: false,
-    speed: 100,
-    controls: false,
-    auto: true,
-    autoControls: false,
-    touchEnabled: true
-  });
-});
+$(document).ready(function(){$(".slider").bxSlider({pager:!1,speed:100,controls:!1,auto:!0,autoControls:!1,touchEnabled:!0})});

@@ -13,6 +13,7 @@ class C_timeline extends MX_Controller {
 		if ($this->session->userdata('isLogin') != 200) {
 			redirect('home');
 		}
+		$this->load->library('simple_cache');
 	}
 
 	
@@ -60,7 +61,7 @@ class C_timeline extends MX_Controller {
 			}
 		}
 
-    $resval = (array)json_decode(end($data), true);
+    	$resval = (array)json_decode(end($data), true);
 
 		$psn = $resval['message'];
 		$book = $resval['data'];
@@ -69,20 +70,25 @@ class C_timeline extends MX_Controller {
 		$this->session->set_userdata('authKey', $auth);
 		$status = $resval['code'];
 		
-		$datas['home'] = $book;
+		if (!$this->simple_cache->is_cached('key'))
+		{
+			$datas['home'] = $book;
 
-   		$datas['title'] = "Baboo - Beyond Book & Creativity";
-		
-    	$datas['css'][] = "public/plugins/holdOn/css/HoldOn.css";
+	   		$datas['title'] = "Baboo - Beyond Book & Creativity";
+			
+	    	$datas['css'][] = "public/plugins/holdOn/css/HoldOn.css";
 
-		$datas['js'][]   = "public/js/jquery.min.js";
-		$datas['js'][]   = "public/js/umd/popper.min.js";
-		$datas['js'][]   = "public/js/bootstrap.min.js";
-		$datas['js'][]   = "public/js/jquery.sticky-kit.min.js";
-		$datas['js'][] = "public/plugins/holdOn/js/HoldOn.js";
-		$datas['js'][]   = "public/js/custom/D_timeline_in.js";
-		$datas['js'][]   = "public/js/custom/notification.js";
-
+			$datas['js'][]   = "public/js/jquery.min.js";
+			$datas['js'][]   = "public/js/umd/popper.min.js";
+			$datas['js'][]   = "public/js/bootstrap.min.js";
+			$datas['js'][]   = "public/js/jquery.sticky-kit.min.js";
+			$datas['js'][] = "public/plugins/holdOn/js/HoldOn.js";
+			$datas['js'][]   = "public/js/custom/D_timeline_in.js";
+			$datas['js'][]   = "public/js/custom/notification.js";
+			$this->simple_cache->cache_item('key', $datas);
+		} else {
+			$datas = $this->simple_cache->get_item('key');
+		}
 		if ($resval['code'] == 403){
 			redirect('login','refresh');
 		}else{
@@ -109,8 +115,14 @@ class C_timeline extends MX_Controller {
 			{
 				$datas['js'][]   = "public/js/custom/D_timeline_in.js";
 				if (!empty($this->input->get("page"))) {
+					
 					$result = $this->load->view('data/D_timeline_in', $datas);
 				}else{
+					// if (!$this->simple_cache->is_cached('key')){
+					// 	$this->simple_cache->cache_item('key', $datas);
+					// }else{
+					// 	$data = $this->simple_cache->get_item('key');
+					// }
 					$this->load->view('include/head',$datas);
 					$this->load->view('D_Timeline_in', $datas);
 					// print_r($this->session->userdata());
