@@ -3,7 +3,10 @@
  * License https://froala.com/wysiwyg-editor/terms/
  * Copyright 2014-2017 Froala Labs
  */
-
+* {
+  font-family: 'Noto Serif', serif;
+  color: #444444;
+}
 .clearfix::after {
   clear: both;
   display: block;

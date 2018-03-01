@@ -3,7 +3,10 @@
 * {
   font-family: 'Source Sans Pro', sans-serif;
 }
-
+#detailStyle {
+    font-family: 'Noto Serif', serif;
+    line-height:35px;
+}
 a:hover {
   text-decoration: none;
 }
