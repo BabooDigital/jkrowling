@@ -8,7 +8,8 @@ class C_home extends MX_Controller {
 
 	function __construct(){
 		parent::__construct();
-		$this->API = "api.dev-baboo.co.id/v1/timeline/Home";
+		$api_url = checkBase();
+		$this->API = $api_url;
 		if ($this->session->userdata('isLogin') == 200) {
 			redirect('timeline');
 		}
@@ -25,7 +26,8 @@ class C_home extends MX_Controller {
 		}else{
 			$id = "";
 		}
-		curl_setopt($ch, CURLOPT_URL, $this->API.'/index'.$id);
+		$api_url = checkBase();
+		curl_setopt($ch, CURLOPT_URL, $this->API.'timeline/Home/index'.$id);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
 		curl_setopt($ch, CURLOPT_POST, false);
@@ -48,7 +50,7 @@ class C_home extends MX_Controller {
 
 		// DATA SLIDER
 		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, $this->API.'/bestBook');
+		curl_setopt($ch, CURLOPT_URL, $this->API.'timeline/Home/bestBook');
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
 		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
@@ -130,7 +132,7 @@ class C_home extends MX_Controller {
 	public function getWritter()
 	{
 		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, $this->API.'/bestWriter');
+		curl_setopt($ch, CURLOPT_URL, $this->API.'timeline/Home/bestWriter');
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		// curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");

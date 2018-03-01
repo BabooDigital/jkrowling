@@ -29,6 +29,7 @@
 				</div>
 			</div>
 		</div>
+		<input type="hidden" id="iaiduui" name="iaiduui" value="<?php $name = $this->session->userdata('userData'); echo $name['user_id']; ?>">
 	</div>
 		<!-- JS -->
 		<?php if (isset($js)): ?><?php echo get_js($js) ?><?php endif ?>
@@ -53,7 +54,7 @@
 				})
 				.done(function(data)
 				{
-					if(data == " "){
+					if(data == []){
 						$('.loader').html("No more records found");
 						return;
 					}

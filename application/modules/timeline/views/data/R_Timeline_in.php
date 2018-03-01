@@ -9,7 +9,8 @@
 					<img class="d-flex align-self-start mr-20 rounded-circle" src="<?php if($s_book['author_avatar'] == NULL){
 						echo base_url('public/img/profile/blank-photo.jpg');
 					}else{
-						echo $s_book['author_avatar']; } ?>" width="50" height="50" alt="Generic placeholder image">
+						echo $s_book['author_avatar']; } ?>" width="50" height="50" alt="<?php
+							echo $s_book['author_name']; ?>">
 						<div class="media-body mt-5">
 							<h5 class="card-title nametitle2"><a href="<?php echo site_url('profile/'.$s_book['author_id'].''); ?>"><?php
 							echo $s_book['author_name']; ?></a></h5>
@@ -62,7 +63,8 @@
 								<img class="d-flex align-self-start mr-20 rounded-circle" src="<?php if($s_book['author_avatar'] == NULL){
 									echo base_url('public/img/profile/blank-photo.jpg');
 								}else{
-									echo $s_book['author_avatar']; } ?>" width="50" height="50" alt="Generic placeholder image">
+									echo $s_book['author_avatar']; } ?>" width="50" height="50" alt="<?php
+										echo $s_book['author_name']; ?>">
 									<div class="media-body mt-5">
 										<h5 class="card-title nametitle2"><a href="<?php echo site_url('profile/'.$s_book['author_id'].''); ?>"><?php
 										echo $s_book['author_name']; ?></a></h5>
@@ -74,9 +76,8 @@
 								<a href="<?php echo site_url(); ?>book/<?php echo $s_book['book_id']; ?> - <?php echo url_title($s_book['title_book'], 'dash', true); ?>"> 
 									<div class="row pl-10 pr-10">
 										<div class="media">
-											<!-- <?php print_r($s_book); ?> -->
-											<img alt="<?php
-											echo $s_book['title_book']; ?>" src="<?php if($s_book['image_url'] == NULL){ echo "https://assets.dev-baboo.co.id/baboo-cover/default1.png"; }else{ echo $s_book['image_url']; } ?>" class="w-100" height="200" style="">
+												<img alt="<?php
+											echo $s_book['title_book']; ?>" src="<?php if($s_book['img_url'] == NULL){ echo "https://assets.dev-baboo.co.id/baboo-cover/default1.png"; }else{ echo $s_book['img_url']; } ?>" class="w-100 imgcover">
 										</div>
 										<h5 class="pt-20 w-100" style="font-weight: 700;"><b><a href="<?php echo site_url(); ?>book/<?php echo $s_book['book_id']; ?>-<?php echo url_title($s_book['title_book'], 'dash', true); ?>"><?php
 										echo $s_book['title_book']; ?></a></b></h5>
@@ -99,8 +100,8 @@
 									<a href="#"><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg" width="23"></a>
 								</div>
 								<div>
-									<a href="#" class="mr-20"><img src="<?php echo base_url(); ?>public/img/assets/icon_love.svg" class="mr-5" width="27"></a>
-									<a href="#"><img src="<?php echo base_url(); ?>public/img/assets/icon_comment.svg" class="mr-10" width="25"></a>
+									<a data-id="<?php echo $s_book['book_id']; ?>" href="javascript:void(0);" id="loveboo<?php echo $s_book['book_id']; ?>" class="mr-30 fs-14px <?php if($s_book['is_like'] == 'false'){ echo 'like'; }else{ echo 'unlike'; } ?>"><img src="<?php if($s_book['is_like'] == 'false'){ echo base_url('public/img/assets/icon_love.svg'); }else{ echo base_url('public/img/assets/love_active.svg'); } ?>" class="mr-10 loveicon" width="27"></a>
+									<a href="javascript:void(0);"><img src="<?php echo base_url(); ?>public/img/assets/icon_comment.svg" class="mr-10" width="25"></a>
 								</div>
 							</div>
 						</div>
@@ -140,9 +141,6 @@
 						<?php } ?>
 					</div>
 					<?php } } ?>
-					<div class="ajax-load text-center" style="display: none;">
-						<p><img src="http://demo.itsolutionstuff.com/plugin/loader.gif">Loading More post</p>
-					</div>
 
 				</div>
 				<?php } else{

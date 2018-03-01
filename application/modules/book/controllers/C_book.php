@@ -10,9 +10,6 @@ class C_book extends MX_Controller {
 		$this->API = "api.dev-baboo.co.id/v1/book/Books";
 
 		if ($this->session->userdata('isLogin') != 200) {
-			// $id = $this->uri->segment(2);
-			// $i = explode("-", $id);
-			// redirect('login?b='.$i[0]);
 			$id = $this->uri->segment(2);
 			redirect('book/'.$id.'/preview');
 		}

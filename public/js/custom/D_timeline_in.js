@@ -149,7 +149,6 @@ $(document).ready(function() {
     console.log("error");
   })
   .always(function() {
-    console.log("complete");
   });
   
 

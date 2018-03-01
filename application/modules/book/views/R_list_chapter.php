@@ -74,19 +74,19 @@
 		<h2><b><?php echo $title_book; ?></b></h2>
 		<hr>
 		<div class="list-group group-full">
-			<?php foreach ($list_chapter['chapter'] as $chapter_list): ?>
-				<?php $array = (array)$chapter_list; ?>
+			<?php foreach ($list_chapter['chapter'] as $chapter_list) {
+				$array = (array)$chapter_list; ?>
 				<a href="#" class="list-group-item list-group-item-action flex-column align-items-start bg-transparent">
 					<div class="d-flex w-100 justify-content-between">
 						<h5 class="mb-1"><b><?php echo $array['chapter_title']; ?></b></h5>
 					</div>
-					<small><?php echo $array['desc']; ?>.</small>
+					<small><?php echo $array['desc']; ?></small>
 				</a>
-			<?php endforeach ?>
-		</div>
+				<?php } ?>
+			</div>
 	</div>
 </div>
-<nav class="navbar navbar-expand-lg fixed-bottom baboonav" style="height:60px;">
+<nav class="navbar navbar-expand-lg fixed-bottom" style="height:60px;">
 	<div class="container">
 		<form style="width: 100%;" method="post" action="<?php echo site_url('chapter') ?>">
 			<input type="hidden" name="book_id" value="<?php echo $book_id; ?>">

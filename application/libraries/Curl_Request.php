@@ -6,6 +6,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 class Curl_Request
 {
+	const dev_url = 'api.dev-baboo.co.id/v1/';
+	const staging_url = 'api.stg.baboo.id/v1/';
+	const production_url = 'api.baboo.id/v1/';
+	const local = 'https://localhost/jkrowling/';
+	const dev = 'https://dev-baboo.co.id/';
+	const staging = 'https://stg.baboo.id/';
+	const production = 'https://baboo.id/';
+
+	public function __construct()
+	{
+
+	}
 	public function curl_get($auth,$url)
 	{
 		$ch = curl_init();

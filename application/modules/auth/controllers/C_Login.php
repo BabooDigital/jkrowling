@@ -9,23 +9,20 @@ class C_Login extends MX_Controller
     function __construct()
     {
         parent::__construct();
-        $this->API = "api.dev-baboo.co.id/v1/auth/OAuth";
+        $api_url = checkBase();
+        $this->API = $api_url."auth/OAuth";
         
         if ($this->session->userdata('isLogin') == 200)
         {
             redirect('timeline');
         }
 
-        $this->load->library(array('form_validation', 'Recaptcha'));
     }
     
     public function index()
     {
         $data['authUrl'] = $this->facebook->login_url();
         $data['authUrlG'] = $this->google->loginURL();
-
-        $data['captcha'] = $this->recaptcha->getWidget();
-        $data['script_captcha'] = $this->recaptcha->getScriptTag();
 
         if ($this->agent->is_mobile('ipad'))
         {
@@ -198,8 +195,6 @@ class C_Login extends MX_Controller
         $this->form_validation->set_rules('passwords', ' ', 'trim|required');
         $this->form_validation->set_error_delimiters('<div class="text-danger">', '</div>');
 
-        $recaptcha = $this->input->post('g-recaptcha-response');
-        $response = $this->recaptcha->verifyResponse($recaptcha);
         if ($this->form_validation->run() == FALSE) {
             $this->index();
         }else{
@@ -259,7 +254,6 @@ class C_Login extends MX_Controller
                       });
                     </script>');
                 redirect('login','refresh');
-
             }
 
             echo json_encode(array(
@@ -289,8 +283,6 @@ class C_Login extends MX_Controller
             'modify' => date("Y-m-d H:i:s") 
         );
 
-        $recaptcha = $this->input->post('g-recaptcha-response');
-        $response = $this->recaptcha->verifyResponse($recaptcha);
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $this->API.'/register');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -330,6 +322,7 @@ class C_Login extends MX_Controller
             $this->session->set_userdata('userData', $user);
             $this->session->set_userdata('authKey', $auth);
             $this->session->set_userdata('isLogin', $status);
+            
             if ($this->agent->is_mobile()) {
                 redirect("firstlogin");
             }else{
@@ -339,8 +332,12 @@ class C_Login extends MX_Controller
         else
         {
             $status = $resval['code'];
-
-            echo "<script type='text/javascript'>alert ('".$psn."');window.location.href = '".site_url('login')."';</script>";
+            $this->session->set_flashdata('login_alert', '<script>
+                  $(window).on("load", function(){
+                    swal("Gagal", "'.$psn.'", "error");
+                  });
+                </script>');
+            redirect('login','refresh');
         }
 
         echo json_encode(array(

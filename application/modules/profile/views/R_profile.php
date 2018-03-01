@@ -23,8 +23,8 @@
 						<img alt="<?php echo $userdata['fullname']; ?>" class="rounded-circle ml-20" height="70" src="<?php if($userdata['prof_pict'] == NULL){ echo base_url('public/img/profile/blank-photo.jpg'); }else{ echo $userdata['prof_pict']; } ?>" style="border: .5px #7554bd solid;padding: 3px;" width="70">
 						<br>
 						<p class="label_name"><?php echo $userdata['fullname']; ?></p>
-						<p class="profile_location">Jakarta , Indonesia</p>
-						<p class="fs-14px quote">We Are Avalaible For Freelance Work. mail on</p>
+						<p class="profile_location"><?php echo $userdata['address']; ?></p>
+						<p class="fs-14px quote"><?php echo $userdata['about_me']; ?></p>
 						<span class="fs-14px quote">( <?php echo $userdata['email']; ?> )</span>
 						<hr>
 						<div class="info">
@@ -65,25 +65,10 @@
 		<div class="row">
 			<div class="col-md-9">
 				<div class="row">
-					<main class="main-md">
-						<input class="input-md" id="tab1" type="radio" name="tabs" checked>
-						<label class="label-md ml-10" for="tab1">Buku</label>
-						<input class="input-md" id="tab2" type="radio" name="tabs">
-						<label class="label-md ml-10" for="tab2">Draft</label>
-						<input class="input-md" id="tab3" type="radio" name="tabs">
-						<section class="section-md" id="content1" style="background: #ebf0f4;">
-							<div id="r_publishdata">
-								<div class="loaderpubl mx-auto" style="display: none;"></div>
+					<div id="r_publishdata">
+						<div class="loaderpubl mx-auto" style="display: none;"></div>
 
-							</div>
-						</section>
-						<section class="section-md" id="content2" style="background: #ebf0f4;">
-							<div id="r_draftdata">
-								<div class="loaderdraft mx-auto" style="display: none;"></div>
-								
-							</div>
-						</section>
-					</main>
+					</div>
 				</div>
 			</div>
 		</div>
