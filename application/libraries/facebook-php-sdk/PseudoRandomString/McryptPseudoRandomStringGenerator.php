@@ -39,10 +39,10 @@ class McryptPseudoRandomStringGenerator implements PseudoRandomStringGeneratorIn
      */
     public function __construct()
     {
-        if (!function_exists('mcrypt_create_iv')) {
+        if (!function_exists('random_bytes')) {
             throw new FacebookSDKException(
                 static::ERROR_MESSAGE .
-                'The function mcrypt_create_iv() does not exist.'
+                'The function random_bytes() does not exist.'
             );
         }
     }
@@ -54,7 +54,7 @@ class McryptPseudoRandomStringGenerator implements PseudoRandomStringGeneratorIn
     {
         $this->validateLength($length);
 
-        $binaryString = mcrypt_create_iv($length, MCRYPT_DEV_URANDOM);
+        $binaryString = random_bytes($length);
 
         if ($binaryString === false) {
             throw new FacebookSDKException(

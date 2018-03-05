@@ -1,12 +1,12 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+if(!class_exists("Curl_Request")){
+    require_once APPPATH . 'libraries/Curl_Request.php';
+}
 
 if(!function_exists("checkBase")){
 	function checkBase(){
 		$CI =& get_instance();
-		if(!class_exists("Curl_Request")){
-			$CI->load->library("Curl_Request");
-		}
 		$api_current = Curl_Request::dev_url;
 		if (base_url() == Curl_Request::local || base_url() == Curl_Request::dev) {
 			$api_current = Curl_Request::dev_url;
