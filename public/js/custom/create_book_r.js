@@ -6,6 +6,7 @@ $(function(){
   backLink();
   toChaptList();
   saveDraft();
+  saveEditChapter();
   addChapter();
   publishChapter();
   publishBook();
@@ -340,3 +341,44 @@ function getCategory() {
         window.History.replaceState(null, null, url);
     }
 // }
+
+function saveEditChapter() {
+  $("#saveEdit").on('click', function() {
+
+    var formData = new FormData();
+    var book_id = $("#book_id").val();
+    var chapter_title = $("#chapter_title_out").val();
+    var paragraph_book = $("#paragraph_book").val();
+    var url = base_url+'saveeditchapter';
+
+    if (chapter_title == "" || paragraph_book == "") {
+      swal(
+        'Gagal!',
+        'Lengkapi Judul dan Isi Buku mu.',
+        'error'
+        )
+    }else {
+      $.ajax({
+        type:"POST",
+        url:url,
+        data: { 'book_id' : book_id, 'chapter_title' : chapter_title, 'paragraph_book' : paragraph_book, 'chapter_id' : chid},
+        dataType: 'json',
+        beforeSend: function () {
+          swal({
+            title: 'Menyimpan Cerita',
+            onOpen: () => {
+              swal.showLoading()
+            }
+          });
+        },
+        success:function (data) {
+          console.log(data);
+          if (data.code == 200) {
+              swal.hideLoading()
+            window.location = base_url+'listchapter/'+data.data['book_id'];
+          }
+        },
+      });
+    }
+  });
+}

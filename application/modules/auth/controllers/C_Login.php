@@ -95,12 +95,13 @@ class C_Login extends MX_Controller
                 $this->session->set_userdata('userData', $user);
                 if ($this->agent->is_mobile()) {
                     redirect("firstlogin");
+                }else {
+                    redirect('timeline');
                 }
-            }
         }else
         {
-            $status = 404;
-            $psn = "Cannot login from facebook";
+            $status = $resval['code'];
+
             $fbuser = '';
             echo "<script type='text/javascript'>alert ('".$psn."');window.location.href = '".site_url('login')."';</script>";
         }
@@ -110,6 +111,7 @@ class C_Login extends MX_Controller
             'data' => $user,
             'message' => $psn
         ));
+    }
     }
 
     public function google_login()
@@ -166,11 +168,12 @@ class C_Login extends MX_Controller
             $this->session->set_userdata('userData', $user);
             if ($this->agent->is_mobile()) {
                 redirect("firstlogin");
+            }else {
+                redirect('timeline');
             }
         }else {
-            $status = 404;
+            $status = $resval['code'];
             $data = "Not Found";
-            $psn = "Cannot login from google";
 
             echo "<script type='text/javascript'>alert ('".$psn."');window.location.href = '".site_url('login')."';</script>";
         }

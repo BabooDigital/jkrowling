@@ -10,8 +10,8 @@
 |  api_key           string   Developer key.
 |  scopes            string   Specify scopes
 */
-$config['google']['client_id']        = '415399057685-7vha73jo3hddkur2fcgs302u7pq78tfb.apps.googleusercontent.com';
-$config['google']['client_secret']    = '8o76m2Q7TNcAJwZD2eqN2ND6';
+$config['google']['client_id']        = '625200931795-1p67r3nmt5bvelu3d03ullvabqdu8kb5.apps.googleusercontent.com';
+$config['google']['client_secret']    = 'kF-LXS80J6T_QsM6SSw9PdYj';
 $config['google']['redirect_uri']     = 'https://dev-baboo.co.id/auth/C_Login/google_login';
 $config['google']['application_name'] = 'BabooLoginApp ';
 $config['google']['api_key']          = '';

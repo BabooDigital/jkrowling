@@ -34,8 +34,8 @@ $(document).ready(function() {
 			type: 'POST',
 			dataType: 'JSON',
 			contentType: false,
-	        processData: false,
-	        data:formData,
+			processData: false,
+			data:formData,
 		})
 		.done(function(data) {
 			$.each(data, function(i, item) {
@@ -56,6 +56,42 @@ $(document).ready(function() {
 		
 	});
 
+	// Hapus CHapter button Click
+	$(document).on('click', '.delCh', function() {
+		var formData = new FormData();
+
+		formData.append("chapter_id", $(this).attr("chid"));
+
+		$.ajax({
+			url: base_url+'delchapter',
+			type: 'POST',
+			dataType: 'JSON',
+			contentType: false,
+			processData: false,
+			data:formData,
+			beforeSend: function () {
+				swal({
+					title: 'Menghapus Chapter',
+					onOpen: () => {
+						swal.showLoading()
+					}
+				});
+			}
+		})
+		.done(function(data) {
+			if (data.code == 200) {
+				swal.hideLoading()
+				location.reload();
+			}
+		})
+		.fail(function() {
+			console.log("error");
+		})
+		.always(function() {
+		});
+		
+	});
+
 });
 
-		
+
