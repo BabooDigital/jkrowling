@@ -1,14 +1,365 @@
-function funcDropdown(){document.getElementById("myDropdown").classList.toggle("showss")}function showLoading(){HoldOn.open({theme:"sk-cube-grid",message:"Tunggu Sebentar ",backgroundColor:"white",textColor:"#7554bd"})}
-$(document).ready(function(){function e(a){$.ajax({url:"?page="+a,type:"get",beforeSend:function(){$(".loader").show()}}).done(function(a){" "==a?$(".loader").html("No more records found"):($(".loader").hide(),$("#post-data").append(a))}).fail(function(a,d,b){console.log("server not responding...")})}$(document).on("click",".share-fb",function(){$(this);var a=new FormData;$("#iaidubi").val();var c=$(".dbooktitle").text(),d=+$("#sharecount").text()+1,b=$(".textp").attr("data-text")+".. - Baca buku lebih lengkap disini.. | Baboo - Beyond Book & Creativity",
-e=$(".cover_image").attr("src"),f=$(".author_name").text(),g=$(".segment").attr("href");FB.ui({method:"share_open_graph",action_type:"og.shares",action_properties:JSON.stringify({object:{"og:url":base_url+"book/"+g+"/preview","og:title":c+" ~ By : "+f+" | Baboo - Beyond Book & Creativity","og:description":b,"og:image":e}})},function(b){b&&!b.error_message&&(a.append("user_id",$("#iaiduui").val()),a.append("book_id",$("#iaidubi").val()),$.ajax({url:base_url+"shares",type:"POST",dataType:"JSON",cache:!1,
-contentType:!1,processData:!1,data:a}).done(function(a){$("#sharecount").text(d)}).fail(function(){console.log("Failure")}).always(function(){}))})});var f=1;$(window).scroll(function(){$(window).scrollTop()+$(window).height()>$(document).height()-200&&(f++,e(f))});$.ajax({url:base_url+"writter",type:"GET",dataType:"json"}).done(function(a){$(".loader").hide();a=$.parseJSON(a);var c="";$.each(a.data,function(a,b){if(null!=b.avatar)var d=b.avatar;""==b.avatar?d="public/img/profile/blank-photo.jpg":
-null==b.avatar&&(d="public/img/profile/blank-photo.jpg");c+="<li class='media baboocontent'><img alt='"+b.author_name+"' class='d-flex mr-3 rounded-circle' src='"+d+"' width='50' height='50'><div class='media-body mt-7'><h5 class='mt-0 mb-1 nametitle'>"+b.author_name+"</h5><small>Fiksi</small><div class='pull-right baboocolor'><a href='#' class='addbutton'><img src='public/img/assets/icon_plus_purple.svg' width='20' class='mt-img'></a></div></div></li>"});$("#author_this_week").html(c)}).fail(function(){console.log("error")}).always(function(){});
-$.ajax({url:base_url+"bestBook",type:"GET",dataType:"json"}).done(function(a){var c="";$.each(a,function(a,b){c+='<li class="list-group-item"> <div class="media"> <div class="media-left mr-10"> <a href="#"><img class="media-object" src="'+(null==b.popular_cover_url||""==b.popular_cover_url||"Kosong"==b.popular_cover_url?base_url+"public/img/icon-tab/empty-set.png":b.popular_cover_url)+'" width="60" height="80"></a> </div> <div class="media-body"> <div> <h4 class="media-heading bold mt-10"><a href="#">'+
-b.popular_book_title+'</a></h4> <p style="font-size: 10pt;">by <a href="#">'+b.popular_author_name+"</a></p> </div> </div> </div> </li>"});$("#best_book").html(c)}).fail(function(){console.log("error")}).always(function(){});var g=$(window).width();768>g?$(".stickymenu").trigger("sticky_kit:detach"):$(".stickymenu").stick_in_parent();$(window).resize(function(){g=$(window).width();768>g?$(".stickymenu").trigger("sticky_kit:detach"):$(".stickymenu").stick_in_parent()});$(document).on("click",".like",
-function(){var a=$(this),c=new FormData,d=a.children(".txtlike");a.children(".loveicon").attr("src","public/img/assets/love_active.svg");c.append("user_id",$("#iaiduui").val());c.append("book_id",a.attr("data-id"));$.ajax({url:base_url+"like",type:"POST",dataType:"JSON",cache:!1,contentType:!1,processData:!1,data:c}).done(function(b){null==b.code?a.children(".loveicon").attr("src","public/img/assets/icon_love.svg"):(a.removeClass("like"),a.addClass("unlike"),d.removeClass("txtlike"),d.addClass("txtunlike"),
-a.children(".txtunlike").text("Batal Suka"),a.children(".loveicon").attr("src","public/img/assets/love_active.svg"))}).fail(function(){console.log("Failure")}).always(function(){})});$(document).on("click",".unlike",function(){var a=$(this),c=new FormData,d=a.children(".txtunlike");a.children(".loveicon").attr("src","public/img/assets/icon_love.svg");c.append("user_id",$("#iaiduui").val());c.append("book_id",a.attr("data-id"));$.ajax({url:base_url+"like",type:"POST",dataType:"JSON",cache:!1,contentType:!1,
-processData:!1,data:c}).done(function(b){null==b.code?a.children(".loveicon").attr("src","public/img/assets/love_active.svg"):(a.removeClass("unlike"),a.addClass("like"),d.removeClass("txtunlike"),d.addClass("txtlike"),a.children(".txtlike").text("Suka"),a.children(".loveicon").attr("src","public/img/assets/icon_love.svg"))}).fail(function(){console.log("Failure")}).always(function(){})});$(document).on("click",".like",function(){var a=$(this),c=new FormData,d=a.children(".txtlike");a.children(".loveicon").attr("src",
-"public/img/assets/love_active.svg");c.append("user_id",$("#iaiduui").val());c.append("book_id",a.attr("data-id"));$.ajax({url:base_url+"like",type:"POST",dataType:"JSON",cache:!1,contentType:!1,processData:!1,data:c}).done(function(b){null==b.code?a.children(".loveicon").attr("src","public/img/assets/icon_love.svg"):(a.removeClass("like"),a.addClass("unlike"),d.removeClass("txtlike"),d.addClass("txtunlike"),a.children(".txtunlike").text("Batal Suka"),a.children(".loveicon").attr("src","public/img/assets/love_active.svg"))}).fail(function(){console.log("Failure")}).always(function(){})});
-$(document).on("click",".unlike",function(){var a=$(this),c=new FormData,d=a.children(".txtunlike");a.children(".loveicon").attr("src","public/img/assets/icon_love.svg");c.append("user_id",$("#iaiduui").val());c.append("book_id",a.attr("data-id"));$.ajax({url:base_url+"like",type:"POST",dataType:"JSON",cache:!1,contentType:!1,processData:!1,data:c}).done(function(b){null==b.code?a.children(".loveicon").attr("src","public/img/assets/love_active.svg"):(a.removeClass("unlike"),a.addClass("like"),d.removeClass("txtunlike"),
-d.addClass("txtlike"),a.children(".txtlike").text("Suka"),a.children(".loveicon").attr("src","public/img/assets/icon_love.svg"))}).fail(function(){console.log("Failure")}).always(function(){})})});function convertToSlug(e){return e.toLowerCase().replace(/[^\w ]+/g,"").replace(/ +/g,"-")}function shareBtn(){document.getElementById("dropdownShare").classList.toggle("show")}
-window.onclick=function(e){if(!e.target.matches(".dropbtn")){e=document.getElementsByClassName("dropdown-content");var f;for(f=0;f<e.length;f++){var g=e[f];g.classList.contains("show")&&g.classList.remove("show")}}};
+function funcDropdown() {
+  document.getElementById("myDropdown").classList.toggle("showss");
+}
+function showLoading() {
+  var options = {
+   theme:"sk-cube-grid",
+   message:'Tunggu Sebentar ',
+   backgroundColor:"white",
+   textColor:"#7554bd" 
+ };
+ HoldOn.open(options);
+}
+$(document).ready(function() {
+  $(document).on('click', '.share-fb', function() {
+
+    var aww = $(this);
+    var formData = new FormData();
+    var bid = $('#iaidubi').val();
+    var blink = $('.dbooktitle').text();
+    var share = +$('#sharecount').text() + 1;
+    var desc = $('.textp').attr('data-text')+'.. - Baca buku lebih lengkap disini.. | Baboo - Beyond Book & Creativity';
+    var img = $('.cover_image').attr('src');
+    var auname = $('.author_name').text();
+    var segment = $('.segment').attr('href');
+    FB.ui({
+      method: 'share_open_graph',
+      action_type: 'og.shares',
+      action_properties: JSON.stringify({
+        object: {
+          'og:url': base_url + 'book/' + segment + '/preview',
+          'og:title': blink + ' ~ By : ' + auname + ' | Baboo - Beyond Book & Creativity',
+          'og:description': desc,
+          'og:image': img
+        }
+      })
+    },
+      // callback
+      function(response) {
+        if (response && !response.error_message) {
+
+          formData.append("user_id", $("#iaiduui").val());
+          formData.append("book_id", $('#iaidubi').val());
+
+          $.ajax({
+            url: base_url + 'shares',
+            type: 'POST',
+            dataType: 'JSON',
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: formData,
+              // beforeSend: function() {
+              // }
+            })
+          .done(function(data) {
+              // $('.loader').hide();
+              // console.log("ke share");
+              $('#sharecount').text(share);
+            })
+          .fail(function() {
+            console.log("Failure");
+          })
+          .always(function() {
+
+          });
+        } else {
+          // console.log("Batal Share");
+        }
+      });
+  });
+  var page = 2;
+  $(window).scroll(function() {
+    if  ($(window).scrollTop() == $(document).height() - $(window).height() ){
+     loadMoreData(page)
+     page++;
+   }
+ });
+
+  function loadMoreData(page) {
+    $.ajax({
+      url: '?page=' + page,
+      type: "get",
+      beforeSend: function() {
+        $('.loader').show();
+      }
+    })
+    .done(function(data) {
+      if (data == "" || data == null) {
+        $('.loader').html("No more records found");
+        return;
+
+      };
+      $('.loader').hide();
+      $("#post-data").append(data);
+      
+    })
+    .fail(function(jqXHR, ajaxOptions, thrownError) {
+      console.log('server not responding...');
+    });
+  }
+
+  $.ajax({
+    url: base_url + 'writter',
+    type: 'GET',
+    dataType: 'json',
+  })
+  .done(function(data) {
+    $(".loader").hide();
+    var json = $.parseJSON(data);
+    var datas = "";
+    $.each(json.data, function(i, item) {
+      var avatar;
+      if (item.avatar != null) {
+        avatar = item.avatar;
+      }if(item.avatar == ""){
+        avatar = 'public/img/profile/blank-photo.jpg';
+      }
+      else if(item.avatar == null){
+        avatar = 'public/img/profile/blank-photo.jpg';
+      }
+      datas += "<li class='media baboocontent'><img alt='"+item.author_name+"' class='d-flex mr-3 rounded-circle' src='"+ avatar +"' width='50' height='50'><div class='media-body mt-7'><h5 class='mt-0 mb-1 nametitle'>"+item.author_name+"</h5><small>Fiksi</small><div class='pull-right baboocolor'><a href='#' class='addbutton'><img src='public/img/assets/icon_plus_purple.svg' width='20' class='mt-img'></a></div></div></li>";
+      
+    });
+    $("#author_this_week").html(datas);
+  })
+  .fail(function() {
+    console.log("error");
+  })
+  .always(function() {});
+
+  $.ajax({
+    url: base_url+'bestBook',
+    type: 'GET',
+    dataType: 'json',
+  })
+  .done(function(data) {
+    var best_book = '';
+    $.each(data, function(index, val) {
+      var cover;
+      if (val.popular_cover_url == null || val.popular_cover_url == '' || val.popular_cover_url == 'Kosong') {
+        cover = base_url+'public/img/icon-tab/empty-set.png';
+      }else{
+        cover = val.popular_cover_url;
+      }
+      best_book += '<li class="list-group-item"> <div class="media"> <div class="media-left mr-10"> <a href="#"><img class="media-object" src="'+cover+'" width="60" height="80"></a> </div> <div class="media-body"> <div> <h4 class="media-heading bold mt-10"><a href="#">'+val.popular_book_title+'</a></h4> <p style="font-size: 10pt;">by <a href="#">'+val.popular_author_name+'</a></p> </div> </div> </div> </li>'; 
+
+    });
+    $("#best_book").html(best_book);
+  })
+  .fail(function() {
+    console.log("error");
+  })
+  .always(function() {
+  });
+  
+
+  var window_width = $(window).width();
+
+  if (window_width < 768) {
+    $(".stickymenu").trigger("sticky_kit:detach");
+  } else {
+    make_sticky();
+  }
+
+  $(window).resize(function() {
+
+    window_width = $(window).width();
+
+    if (window_width < 768) {
+      $(".stickymenu").trigger("sticky_kit:detach");
+    } else {
+      make_sticky();
+    }
+
+  });
+
+  function make_sticky() {
+    $(".stickymenu").stick_in_parent();
+  }
+
+  // LIKE BUTTON DESKTOP
+  $(document).on('click', '.like', function() {
+    var aww = $(this);
+    var formData = new FormData();
+    var txt = aww.children('.txtlike');
+
+    aww.children('.loveicon').attr("src", "public/img/assets/love_active.svg");
+    formData.append("user_id", $("#iaiduui").val());
+    formData.append("book_id", aww.attr("data-id"));
+    $.ajax({
+      url: base_url + 'like',
+      type: 'POST',
+      dataType: 'JSON',
+      cache: false,
+      contentType: false,
+      processData: false,
+      data: formData,
+        // beforeSend: function() {
+        // }
+      })
+    .done(function(data) {
+        // $('.loader').hide();
+        if (data.code == null) {
+          aww.children('.loveicon').attr("src", "public/img/assets/icon_love.svg");
+        } else {
+          aww.removeClass('like');
+          aww.addClass('unlike');
+          txt.removeClass('txtlike');
+          txt.addClass('txtunlike');
+          aww.children('.txtunlike').text('Batal Suka');
+          aww.children('.loveicon').attr("src", "public/img/assets/love_active.svg");
+        }
+      })
+    .fail(function() {
+      console.log("Failure");
+    })
+    .always(function() {});
+
+  });
+
+  // UNLIKE BUTTON DESKTOP
+  $(document).on('click', '.unlike', function() {
+
+    var aww = $(this);
+    var formData = new FormData();
+    var txt = aww.children('.txtunlike');
+
+    aww.children('.loveicon').attr("src", "public/img/assets/icon_love.svg");
+    formData.append("user_id", $("#iaiduui").val());
+    formData.append("book_id", aww.attr("data-id"));
+    $.ajax({
+      url: base_url + 'like',
+      type: 'POST',
+      dataType: 'JSON',
+      cache: false,
+      contentType: false,
+      processData: false,
+      data: formData,
+        // beforeSend: function() {
+        // }
+      })
+    .done(function(data) {
+        // $('.loader').hide();
+        if (data.code == null) {
+          aww.children('.loveicon').attr("src", "public/img/assets/love_active.svg");
+        } else {
+          aww.removeClass('unlike');
+          aww.addClass('like');
+          txt.removeClass('txtunlike');
+          txt.addClass('txtlike');
+          aww.children('.txtlike').text('Suka');
+          aww.children('.loveicon').attr("src", "public/img/assets/icon_love.svg");
+        }
+      })
+    .fail(function() {
+      console.log("Failure");
+    })
+    .always(function() {});
+
+  });
+
+  // LIKE BUTTON
+  $(document).on('click', '.like', function() {
+    var aww = $(this);
+    var formData = new FormData();
+    var txt = aww.children('.txtlike');
+
+    aww.children('.loveicon').attr("src", "public/img/assets/love_active.svg");
+    formData.append("user_id", $("#iaiduui").val());
+    formData.append("book_id", aww.attr("data-id"));
+    $.ajax({
+      url: base_url + 'like',
+      type: 'POST',
+      dataType: 'JSON',
+      cache: false,
+      contentType: false,
+      processData: false,
+      data: formData,
+    })
+    .done(function(data) {
+        // $('.loader').hide();
+        if (data.code == null) {
+          aww.children('.loveicon').attr("src", "public/img/assets/icon_love.svg");
+        } else {
+          aww.removeClass('like');
+          aww.addClass('unlike');
+          txt.removeClass('txtlike');
+          txt.addClass('txtunlike');
+          aww.children('.txtunlike').text('Batal Suka');
+          aww.children('.loveicon').attr("src", "public/img/assets/love_active.svg");
+        }
+      })
+    .fail(function() {
+      console.log("Failure");
+    })
+    .always(function() {});
+
+  });
+
+  // UNLIKE BUTTON
+  $(document).on('click', '.unlike', function() {
+
+    var aww = $(this);
+    var formData = new FormData();
+    var txt = aww.children('.txtunlike');
+
+    aww.children('.loveicon').attr("src", "public/img/assets/icon_love.svg");
+    formData.append("user_id", $("#iaiduui").val());
+    formData.append("book_id", aww.attr("data-id"));
+    $.ajax({
+      url: base_url + 'like',
+      type: 'POST',
+      dataType: 'JSON',
+      cache: false,
+      contentType: false,
+      processData: false,
+      data: formData,
+        // beforeSend: function() {
+        // }
+      })
+    .done(function(data) {
+        // $('.loader').hide();
+        if (data.code == null) {
+          aww.children('.loveicon').attr("src", "public/img/assets/love_active.svg");
+        } else {
+          aww.removeClass('unlike');
+          aww.addClass('like');
+          txt.removeClass('txtunlike');
+          txt.addClass('txtlike');
+          aww.children('.txtlike').text('Suka');
+          aww.children('.loveicon').attr("src", "public/img/assets/icon_love.svg");
+        }
+      })
+    .fail(function() {
+      console.log("Failure");
+    })
+    .always(function() {});
+
+  });
+
+});
+
+
+function convertToSlug(Text) {
+  return Text
+  .toLowerCase()
+  .replace(/[^\w ]+/g, '')
+  .replace(/ +/g, '-');
+}
+function shareBtn() {
+  document.getElementById("dropdownShare").classList.toggle("show");
+}
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}

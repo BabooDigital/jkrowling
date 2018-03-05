@@ -105,10 +105,12 @@ $route['my_book/:num/chapter/:num'] = 'book/C_createbook/mybook';
 $route['my_book/:num'] = 'book/C_createbook';
 $route['create_mybook'] = 'book/C_createbook';
 $route['chapter'] = 'book/C_createbook/chapter';
+$route['chapter/:num'] = 'book/C_createbook/editChapter';
 $route['savechapter'] = 'book/C_createbook/saveChapter';
 $route['listchapter/:num'] = 'book/C_createbook/listChapter';
 $route['cover'] = 'book/C_createbook/cover';
 $route['cover/:num'] = 'book/C_createbook/cover_v';
+$route['detaileditchapt'] = 'book/C_createbook/getDataChapter';
 
 $route['book/:any/preview'] = 'book/C_book_out';
 
@@ -142,10 +144,8 @@ $route['account/setting'] = 'profile/C_profile/settingProfile';
 $route['getpublishbook'] = 'profile/C_profile/getPublishBook';
 $route['getdraftbook'] = 'profile/C_profile/getDraftBook';
 $route['getlatestread'] = 'profile/C_profile/getLatestRead';
-$route['awsd'] = 'book/C_createbook/awasd';
 
 $route['upload_pict'] = 'profile/C_edit_profile/postUploadProfPict';
-$route['awsd'] = 'book/C_createbook/awasd';
 
 $route['firstlogin'] = 'profile/C_edit_profile/completeProfile';
 
