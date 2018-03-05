@@ -32,16 +32,19 @@
 		<div class="row p-10">
 			<p class="mt-120 mb-30"><span class="terakhir_dilihat_label">Terakhir Dibaca</span></p>
 			<!-- <span class="terakhir_dilihat_button"><b>Lihat Semua</b></span> -->
+			<div class="loader" style="display: none;margin-left: auto;margin-right: auto;"></div>
 			<div id="myWorkContent" class="mb-10" style="margin-top: -10px;">
 				<div id="insideDiv"> 
 				</div>
 			</div>
+			<div class="loader" style="display: none;margin-left: auto;margin-right: auto;"></div
 		</div>
 	</div>
 	<div class="container babooid bg-white pb-70" style="overflow-y: hidden;overflow-x: hidden;">
 		<div class="row p-20">
 			<h4><b>Bookmark Buku</b></h4>
 		</div>
+		<div class="loader" style="display: none;margin-left: auto;margin-right: auto;"></div>
 		<div class="row" id="bookmarkList">
 
 		</div>

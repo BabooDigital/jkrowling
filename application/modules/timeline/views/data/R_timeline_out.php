@@ -39,7 +39,7 @@
 									<a href="<?php echo site_url(); ?>book/<?php
 									echo $s_book['book_id']; ?>
 									-<?php echo url_title($s_book['title_book'], 'dash', true); ?>" style="background: red;"> 
-									<p class="mt-10" style="font-size:16px; font-family: Roboto;"><?php echo substr($s_book['desc'],0,200); ?> ...</p>
+									<p class="mt-10 text-justify" style="font-size:16px; font-family: Roboto;"><?php echo substr($s_book['desc'],0,200); ?> ...</p>
 								</a>
 							</div>
 						</div>
@@ -86,7 +86,7 @@
 										<span class="mr-8" style="font-size: 12px;"><?php echo $s_book['category']; ?> &#8226;</span>
 										<span class="text-muted" style="font-size: 11px;">Dibaca <?php echo $s_book['view_count']; ?> kali</span>
 										<a href="<?php echo site_url(); ?>book/<?php echo $s_book['book_id']; ?>-<?php echo url_title($s_book['title_book'], 'dash', true); ?>"> 
-											<p class="mt-10"><?php echo substr($s_book['desc'],0,200); ?> ...</p>
+											<p class="mt-10 text-justify"><?php echo substr($s_book['desc'],0,200); ?> ...</p>
 										</a>
 									</div>
 								</div>

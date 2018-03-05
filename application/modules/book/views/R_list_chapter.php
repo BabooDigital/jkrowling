@@ -1,102 +1,55 @@
 
 <body id="pageContent">
+	<input type="hidden" name="book_id" id="book_id" value="<?php echo $book_id; ?>">
 	<input type="checkbox" id="toggle-right">
 	<div class="page-wrap">
-		<nav class="navbar navbar-expand-lg fixed-top baboonav" style="height:60px;">
+		<nav class="navbar navbar-expand-lg fixed-top baboonav" style="height:55px;background: #fcfcff;">
 			<div class="container">
-				<!-- <form class="navbar-brande"> -->
-					<a href="<?php echo site_url(); ?>timeline" class="backlink" style="background: transparent;border: 1px solid transparent;"><i class="fa fa-arrow-left"></i> &nbsp; <span>Kembali</span></a>
-					<!-- </form> -->
-					<form class="form-inline" method="post" action="<?php echo site_url('cover/'.$this->uri->segment(2).'') ?>">
-						<input type="hidden" name="book_id" id="book_id" value="<?php echo $book_id; ?>">
-						<input type="hidden" name="chapter_title" id="chapter_title">
-						<!-- <input type="text" name="paragraph" id="paragraph"> -->
-						<textarea style="visibility: hidden;display: none;" name="paragraph" id="paragraph"></textarea>
-						<button class="btn-transparant" type="submit"><span>Publish</span> &nbsp;&nbsp;<img src="<?php echo base_url() ?>public/img/icon-nav/publish.png" width="30" height="30"></button>
-					</form>
-					<nav class="profile">
-						<label class="btn-transparant" for="toggle-right" class="close">&nbsp;&nbsp;&times;</label> 
-						<div class="text-center">
-							<div class="coverprev mt-20" style="margin-bottom: -60px;">
-								<p><img width="160" height="222" id="preview" src="<?php $src = $this->session->userdata('dataCover'); if(!empty($src)){  echo $src['asset_url']; }else{
-									echo base_url()."public/img/assets/def_prev.png";
-								} ?>"></p>
-								<input type="file" id="file_cover" accept="image/*" onchange="tampilkanPreview(this,'preview')" name="file_cover" value="<?php $src = $this->session->userdata('dataCover'); if(!empty($src)){  echo $src['asset_url']; }else{ echo ""; } ?>">
-							</div>
-							<div>
-				<p style="font-size: 16px;">Atau <!-- 
-					<form action="<?php echo site_url(); ?>create_cover">
-					    <input type="submit" value="Buat Disini" style="color: #b448cc;"/>
-					</form> -->
-					<input type="button" style="background: transparent; color: #b448cc;border: 0;cursor: pointer;" onclick="window.location.href = '<?php echo site_url('create_cover'); ?>';" value="Buat Disini" />
-					<!-- <a href="<?php echo site_url(); ?>create_cover" style="color: #b448cc;"><b>Buat Di Sini</b></a></p> -->
-				</div>
-			</div>
-			<div class="mt-30 form_cover">
-				<div id="loading" style="display: none;">loading</div>
-				<div class="alert alert-success" id="success" style="display: none;">
-					<strong>Success!</strong> Indicates a successful or positive action.
-				</div>
-				<span style="font-size: 18px;font-weight: 600;color: #141414;">Judul Buku</span>
-				<hr>
-				<div>
-					<input type="hidden" name="book_id" id="book_id" value="<?php 
-					echo $this->session->userdata('idBook_'); ?>">
-				</div>
-				<div id="subchapter">
-					<a style="display: none;" class="btn w-100 mb-10 chapterdata0 editsubchapt1 btnsavedraft" id="btnsavedraft" id="editchapt" href="#"></a>
-					<!-- <a class="btn w-100 mb-10 chapterdata0 addsubchapt" id="editchapt">Tambah Sub Cerita</a> -->
-					<input type="button" class="btn w-100 mb-10 chapterdata0 addsubchapt" value="Tambah Sub Cerita" />
-				</div>
-
-				<div class="mt-40">
-					<div class="form-group">
-						<select class="form-control" id="category_id" name="cat_book">
-							<option>Kategori</option>
-							<option value="1">2</option>
-							<option value="2">3</option>
-						</select>
-					</div>
-					<div class="form-group">
-						<input type="text" name="tag" id="tag_book" class="form-control" placeholder="Tambah Tag Buku">
-					</div>
-				</div>
+				<a href="javascript:void(0);" class="clear-btn backlink" id="backlinks" ><i class="fa fa-arrow-left"></i> </a>
+				<form class="form-inline" method="post" action="<?php echo site_url('cover/'.$this->uri->segment(2).'') ?>">
+					<button type="submit" class="btn-transparant" id="publish_chapter"><img src="<?php echo base_url() ?>public/img/assets/icon_publish.png" width="25"> <span style="color: #7554bd;font-size: 14px;">Publish</span></button>
+				</form>
 			</div>
 		</nav>
 	</div>
-</nav>
-</div>
-<br>
-<br>
-<br>
-<div class="container mb-80">
-	<div class="row p-10">
-		<h2><b><?php echo $title_book; ?></b></h2>
-		<hr>
-		<div class="list-group group-full">
-			<?php foreach ($list_chapter['chapter'] as $chapter_list) {
-				$array = (array)$chapter_list; ?>
-				<a href="#" class="list-group-item list-group-item-action flex-column align-items-start bg-transparent">
-					<div class="d-flex w-100 justify-content-between">
-						<h5 class="mb-1"><b><?php echo $array['chapter_title']; ?></b></h5>
+	<br>
+	<br>
+	<br>
+	<div class="container mb-80">
+		<div class="row p-10">
+			<h2><b><?php echo $title_book; ?></b></h2>
+			<hr>
+			<div class="list-group group-full">
+				<?php foreach ($list_chapter['chapter'] as $chapter_list) {
+					$array = (array)$chapter_list; ?>
+					<div class="list-group-item list-group-item-action flex-column align-items-start bg-transparent listChapt">
+						<div class="listOverlay overlayOpt">
+							<div class="backdropOverlay">
+								<div class="btnPositionList">
+									<button type="button" chId="<?php echo $array['chapter_id']; ?>" id="editCh" class="btnSlct editCh">Edit</button>
+									<button type="button" chId="<?php echo $array['chapter_id']; ?>" id="delCh" class="btnSlct delCh">Hapus</button></div>
+								</div>
+							</div>
+							<div class="d-flex w-100 justify-content-between">
+								<h5 class="mb-1"><b><?php echo $array['chapter_title']; ?></b></h5>
+							</div>
+							<small><?php echo $array['desc']; ?></small>
+						</div>
+						<?php } ?>
 					</div>
-					<small><?php echo $array['desc']; ?></small>
-				</a>
-				<?php } ?>
+				</div>
 			</div>
-	</div>
-</div>
-<nav class="navbar navbar-expand-lg fixed-bottom" style="height:60px;">
-	<div class="container">
-		<form style="width: 100%;" method="post" action="<?php echo site_url('chapter') ?>">
-			<input type="hidden" name="book_id" value="<?php echo $book_id; ?>">
-			<button class="btn-publish" type="submit">Tambah Cerita Baru</button> 
-		</form>
-	</div>
-</nav>
-<?php if (isset($js)): ?>
-	<?php echo get_js($js) ?>
-<?php endif ?>
+			<nav class="navbar navbar-expand-lg fixed-bottom" style="height:60px;">
+				<div class="container">
+					<form style="width: 100%;" method="post" action="<?php echo site_url('chapter') ?>">
+						<input type="hidden" name="book_id" value="<?php echo $book_id; ?>">
+						<button class="btn-publish" type="submit">Tambah Cerita Baru</button> 
+					</form>
+				</div>
+			</nav>
+			<?php if (isset($js)): ?>
+				<?php echo get_js($js) ?>
+			<?php endif ?>
 
-</body>
-</html>
+		</body>
+		</html>
