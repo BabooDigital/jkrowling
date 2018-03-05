@@ -9,6 +9,10 @@ class C_notification extends MX_Controller
 		if ($this->session->userdata('isLogin') != 200) {
 			redirect('login');
 		}
+
+        $api_url = checkBase();
+
+        $this->API = $api_url."/v1/timeline/Timelines";
 	}
 	public function index()
 	{
@@ -35,7 +39,7 @@ class C_notification extends MX_Controller
 			'user_id' => $id_user
 		);
 		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, 'api.dev-baboo.co.id/v1/timeline/Timelines/notification');
+		curl_setopt($ch, CURLOPT_URL, $this->API.'/notification');
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 	        // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 
@@ -93,7 +97,7 @@ class C_notification extends MX_Controller
 			'delete'   => false
 		);
 		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, 'api.dev-baboo.co.id/v1/timeline/Timelines/notifUpdatestat');
+		curl_setopt($ch, CURLOPT_URL, $this->API.'/notifUpdatestat');
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 	        // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 

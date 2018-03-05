@@ -22,7 +22,7 @@ class C_book_out extends MX_Controller {
 		);
 
 		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, 'api.dev-baboo.co.id/v1/timeline/Home/detailBook');
+		curl_setopt($ch, CURLOPT_URL, checkBase().'timeline/Home/detailBook');
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
 		curl_setopt($ch, CURLOPT_POST, 1);

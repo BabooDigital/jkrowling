@@ -7,7 +7,9 @@ class C_book extends MX_Controller {
 
 	function __construct(){
 		parent::__construct();
-		$this->API = "api.dev-baboo.co.id/v1/book/Books";
+		 $api_url = checkBase();
+
+        $this->API = $api_url."book/Books";
 
 		if ($this->session->userdata('isLogin') != 200) {
 			$id = $this->uri->segment(2);
@@ -592,7 +594,7 @@ class C_book extends MX_Controller {
 
 	public function postCommentBook() {
 		error_reporting(0);
-		$url = 'api.dev-baboo.co.id/v1/book/Books/addComment';
+		$url = $this->API.'/addComment';
 		$auth = $this->session->userdata('authKey');
 		$book_id = $this->input->post('book_id');
 		$parap_id = $this->input->post('paragraph_id');
@@ -664,7 +666,7 @@ class C_book extends MX_Controller {
 
 	public function getCommentBook() {
 		error_reporting(0);
-		$url = 'api.dev-baboo.co.id/v1/timeline/Timelines/getComment';
+		$url = $this->API.'/getComment';
 
 
 		$auth = $this->session->userdata('authKey');

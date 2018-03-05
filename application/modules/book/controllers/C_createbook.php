@@ -7,7 +7,12 @@ class C_createbook extends MX_Controller {
 
 	function __construct(){
 		parent::__construct();
-		$this->API = "api.dev-baboo.co.id/v1/book/Books";
+
+		$api_url = checkBase();
+
+		$this->API = $api_url."book/Books";
+
+		$this->API_EXT = $api_url;
 
 		if ($this->session->userdata('isLogin') != 200) {
 			redirect('home');
@@ -16,7 +21,7 @@ class C_createbook extends MX_Controller {
 
 	public function index()
 	{
-		$data['title'] = "Buat Sebuah Cerita - Baboo";
+		$data['judul'] = "Buat Sebuah Cerita - Baboo";
 
 		$data['css'][] = "public/css/bootstrap.min.css";
 		$data['css'][] = "public/css/custom-margin-padding.css";
@@ -446,54 +451,77 @@ class C_createbook extends MX_Controller {
 		$auth = $this->session->userdata('authKey');
 		$id_book = $this->session->userdata('idBook_');
 		
-		$file_name_with_full_path = $_FILES["file"]["tmp_name"];
-        if (function_exists('curl_file_create')) { // php 5.5+
-        	$cFile = curl_file_create($file_name_with_full_path, $_FILES["file"]["type"],$_FILES["file"]["name"]);
-        } else { //`
-        	$cFile = '@' . realpath($file_name_with_full_path);
+		if(isset($_FILES["file"]["tmp_name"]))  
+		{  
+			$config['upload_path'] = './uploads';  
+			$config['allowed_types'] = 'jpg|jpeg|png|gif';  
+			$this->load->library('upload', $config);  
+			if(!$this->upload->do_upload('file'))  
+			{  
+				echo $this->upload->display_errors();  
+			}  
+			else  
+			{  
+				$data = $this->upload->data();  
+				$config['image_library'] = 'gd2';  
+				$config['source_image'] = './uploads/'.$data["file_name"];  
+				$config['create_thumb'] = FALSE;  
+				$config['maintain_ratio'] = FALSE;  
+				$config['quality'] = '75%';  
+				$config['width'] = 640;  
+				$config['height'] = 480;  
+				$config['new_image'] = './uploads/'.$data["file_name"];  
+				$this->load->library('image_lib', $config);  
+				$this->image_lib->resize();    
+				$image_data = array(  
+					'name'          =>     $data["file_name"]  
+				);
+				if (function_exists('curl_file_create')) {
+	        		$cFile = curl_file_create($data['full_path'], $data["file_type"],$data["file_name"]);
+		        } else { 
+		        	$cFile = '@' . realpath($data['full_path']);
+		        }
+		        $url = $this->API.'/uploadImage';
+		        $data = array(
+		        	'is_cover'	=> 'false',
+		        	'image_url' => $cFile,
+		        	'book_id'	=> $id_book
+		        );
+		        $ch = curl_init();
+		        curl_setopt($ch, CURLOPT_URL, $this->API.'/uploadImage');
+		        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+		        curl_setopt($ch, CURLOPT_POST, 1);
+		        curl_setopt($ch, CURLOPT_SAFE_UPLOAD, false);
+		        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+		        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+		        curl_setopt($ch, CURLOPT_HEADER, 1);
+		        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: multipart/form-data','baboo-auth-key : '.$auth));
+		        $result = curl_exec($ch);
+
+		        $headers=array();
+
+		        $data=explode("\n",$result);
+		        
+		        array_shift($data);
+
+		        foreach($data as $part){
+		        	$middle=explode(":",$part);
+		        	error_reporting(0);
+		        	$headers[trim($middle[0])] = trim($middle[1]);
+		        }
+		        $resval = (array)json_decode(end($data), true);
+
+		        $psn = $resval['message'];
+		        $data_img = $resval['data']['asset_url'];
+		        $auth = $headers['BABOO-AUTH-KEY'];
+		        $this->session->set_userdata('authKey', $auth);
+				if (unlink($cFile->name))
+				{
+					echo json_encode(array("link"=>$data_img,"name"=>$data_img));  
+				}
+			}  
         }
-
-		$url = $this->API.'/uploadImage';
-        $data = array(
-        	'is_cover'	=> 'false',
-        	'image_url' => $cFile,
-        	'book_id'	=> $id_book
-        );
-        // print_r($data);
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $this->API.'/uploadImage');
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_SAFE_UPLOAD, false);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-        curl_setopt($ch, CURLOPT_HEADER, 1);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: multipart/form-data','baboo-auth-key : '.$auth));
-        $result = curl_exec($ch);
-
-        $headers=array();
-
-        $data=explode("\n",$result);
-        
-        array_shift($data);
-
-        foreach($data as $part){
-        	$middle=explode(":",$part);
-        	error_reporting(0);
-        	$headers[trim($middle[0])] = trim($middle[1]);
-        }
-        // print_r($headers);
-        $resval = (array)json_decode(end($data), true);
-
-        $psn = $resval['message'];
-        $data_img = $resval['data']['asset_url'];
-        $auth = $headers['BABOO-AUTH-KEY'];
-        $this->session->set_userdata('authKey', $auth);
-		// print_r($result);
-		echo json_encode(array("link"=>$data_img,"name"=>$data_img));
-
 	}
 	public function video_book()
 	{
@@ -761,7 +789,7 @@ class C_createbook extends MX_Controller {
 	        );
 
 	        $ch = curl_init();
-	        curl_setopt($ch, CURLOPT_URL, 'api.dev-baboo.co.id/v1/book/Books/uploadImage');
+	        curl_setopt($ch, CURLOPT_URL, $this->API.'/uploadImage');
 	        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 	    // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 

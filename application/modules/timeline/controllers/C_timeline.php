@@ -60,7 +60,6 @@ class C_timeline extends MX_Controller {
 				$headers[trim($middle[0])] = trim($middle[1]);
 			}
 		}
-
     	$resval = (array)json_decode(end($data), true);
 
 		$psn = $resval['message'];
@@ -92,12 +91,6 @@ class C_timeline extends MX_Controller {
 		if ($resval['code'] == 403){
 			redirect('login','refresh');
 		}else{
-			if ($this->agent->is_mobile('ipad'))
-			{
-				$datas['js'][]   = "public/js/custom/D_timeline_in.js";
-				$this->load->view('include/head', $datas);
-				$this->load->view('D_Timeline_in');
-			}
 			if ($this->agent->is_mobile())
 			{
 				$data['js'][]   = "public/js/menupage.js";
