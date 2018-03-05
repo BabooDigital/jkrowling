@@ -18,6 +18,7 @@ class Curl_Request
 	{
 
 	}
+
 	public function curl_get($auth,$url)
 	{
 		$ch = curl_init();

@@ -99,8 +99,8 @@ class C_Login extends MX_Controller
             }
         }else
         {
-            $status = $resval['code'];
-
+            $status = 404;
+            $psn = "Cannot login from facebook";
             $fbuser = '';
             echo "<script type='text/javascript'>alert ('".$psn."');window.location.href = '".site_url('login')."';</script>";
         }
@@ -168,8 +168,9 @@ class C_Login extends MX_Controller
                 redirect("firstlogin");
             }
         }else {
-            $status = $resval['code'];
+            $status = 404;
             $data = "Not Found";
+            $psn = "Cannot login from google";
 
             echo "<script type='text/javascript'>alert ('".$psn."');window.location.href = '".site_url('login')."';</script>";
         }
