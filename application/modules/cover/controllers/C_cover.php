@@ -7,7 +7,9 @@ class C_cover extends MX_Controller {
 
 	function __construct(){
 		parent::__construct();
-		$this->API = "api.dev-baboo.co.id/v1/book/Books";
+            $api_url = checkBase();
+
+            $this->API = $api_url."book/Books";
 		
 		if ($this->session->userdata('isLogin') != 200 || $this->session->userdata('idBook_') == NULL) {
 			redirect('home');
