@@ -6,7 +6,7 @@
  * Time: 4:52 PM
  */
 
-shell_exec("sudo -u root /root/deploy.sh | tee -a /home/devbaboo/tmp/deploy-git.txt 2>/dev/null >/dev/null &");
+shell_exec("sudo -u root /home/deploy.sh | tee -a /home/devbaboo/tmp/deploy-git.txt 2>/dev/null >/dev/null &");
 
 sleep(5);
 
