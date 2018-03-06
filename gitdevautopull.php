@@ -6,4 +6,13 @@
  * Time: 4:52 PM
  */
 
-shell_exec("cd public_html && git pull origin development");
+shell_exec("sudo -u root /root/deploy.sh | tee -a /home/devbaboo/tmp/deploy-git.txt 2>/dev/null >/dev/null &");
+
+sleep(5);
+
+$filename = "/home/devbaboo/tmp/deploy-git.txt";
+$handle = fopen($filename, "r");
+$contents = fread($handle, filesize($filename));
+fclose($handle);
+
+echo "<pre>".$contents."</pre>";
