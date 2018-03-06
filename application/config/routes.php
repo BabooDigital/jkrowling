@@ -63,6 +63,7 @@ $route['timeline'] = 'timeline/C_timeline';
 $route['timeline/:any'] = 'timeline/C_timeline';
 $route['message'] = 'message/C_message';
 $route['detail_message/:num'] = 'message/C_message/detailMessage';
+$route['send_message'] = 'message/C_message/send_message';
 $route['createidbook'] = 'timeline/C_timeline/createbook_id';
 
 $route['writter'] = 'timeline/C_timeline/getWritter';
