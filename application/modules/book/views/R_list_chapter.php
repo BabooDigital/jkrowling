@@ -26,8 +26,9 @@
 						<div class="listOverlay overlayOpt">
 							<div class="backdropOverlay">
 								<div class="btnPositionList">
-									<button type="button" chId="<?php echo $array['chapter_id']; ?>" id="editCh" class="btnSlct editCh">Edit</button>
-									<button type="button" chId="<?php echo $array['chapter_id']; ?>" id="delCh" class="btnSlct delCh">Hapus</button></div>
+									<button type="button" chId="<?php echo $array['chapter_id']; ?>" id="delCh" class="btnSlct delCh mr-50"><img src="<?php echo base_url('public/img/assets/icon_del.svg'); ?>" width="18"> <span style="font-size: 14pt;">Hapus</span></button>
+									<button type="button" chId="<?php echo $array['chapter_id']; ?>" id="editCh" class="btnSlct editCh"><img src="<?php echo base_url('public/img/assets/icon_pen_white.svg'); ?>" width="25"> <span style="font-size: 14pt;">Edit</span></button>
+								</div>
 								</div>
 							</div>
 							<div class="d-flex w-100 justify-content-between">

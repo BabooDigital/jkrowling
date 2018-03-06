@@ -11,7 +11,7 @@ class C_book extends MX_Controller
         parent::__construct();
         $api_url = checkBase();
 
-        $this->API = $api_url . "book/Books";
+        $this->API = $api_url;
 
         if ($this->session->userdata('isLogin') != 200) {
             $id = $this->uri->segment(2);
@@ -35,7 +35,7 @@ class C_book extends MX_Controller
         // print_r($data_book);
 
         // START GET CHAPTER
-        $url = $this->API . '/allChapters/';
+        $url = $this->API . 'book/Books/allChapters/';
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -69,7 +69,7 @@ class C_book extends MX_Controller
 
         // END GET CHAPTER
         $ch = curl_init();
-        $url = $this->API . '/detailBook/';
+        $url = $this->API . 'book/Books/detailBook/';
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
@@ -102,7 +102,7 @@ class C_book extends MX_Controller
         } else {
             $chapter_id = $data_before_chapter['chapter']['data']['chapter'][$this->input->get("chapter")]['chapter_id'];
 
-            $url = $this->API . '/detailBook/';
+            $url = $this->API . 'book/Books/detailBook/';
             $data_book = array(
                 'book_id' => $idb[0],
                 'user_id' => $user,
@@ -110,7 +110,7 @@ class C_book extends MX_Controller
             );
 
             $ch = curl_init();
-            $url = $this->API . '/detailBook/';
+            $url = $this->API . 'book/Books/detailBook/';
             curl_setopt($ch, CURLOPT_URL, $url);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
@@ -204,7 +204,7 @@ class C_book extends MX_Controller
         );
         // print_r($data_book);
         $ch = curl_init();
-        $url = $this->API . '/detailBook/';
+        $url = $this->API . 'book/Books/detailBook/';
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
@@ -275,7 +275,7 @@ class C_book extends MX_Controller
     public function getChapterResponsive()
     {
         error_reporting(0);
-        $url = $this->API . '/detailBook';
+        $url = $this->API . 'book/Books/detailBook';
         $auth = $this->session->userdata('authKey');
         $bid = $this->uri->segment(2);
         $str = explode('-', $bid);
@@ -360,7 +360,7 @@ class C_book extends MX_Controller
         // print_r($data_book);
 
         // START GET CHAPTER
-        $url = $this->API . '/allChapters/';
+        $url = $this->API . 'book/Books/allChapters/';
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -420,7 +420,7 @@ class C_book extends MX_Controller
         // print_r($data_book);
 
         // START GET CHAPTER
-        $url = $this->API . '/allChapters/';
+        $url = $this->API . 'book/Books/allChapters/';
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -456,7 +456,7 @@ class C_book extends MX_Controller
 
         // END GET CHAPTER
         $ch = curl_init();
-        $url = $this->API . '/detailBook/';
+        $url = $this->API . 'book/Books/detailBook/';
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
@@ -495,7 +495,7 @@ class C_book extends MX_Controller
             } else {
                 $chapter_id = $data_before_chapter['chapter']['data']['chapter'][$this->input->get("chapter")]['chapter_id'];
 
-                $url = $this->API . '/detailBook/';
+                $url = $this->API . 'book/Books/detailBook/';
                 $data_book = array(
                     'book_id' => $idb[0],
                     'user_id' => $user,
@@ -503,7 +503,7 @@ class C_book extends MX_Controller
                 );
 
                 $ch = curl_init();
-                $url = $this->API . '/detailBook/';
+                $url = $this->API . 'book/Books/detailBook/';
                 curl_setopt($ch, CURLOPT_URL, $url);
                 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
                 // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
@@ -550,7 +550,6 @@ class C_book extends MX_Controller
             $data['css'][] = "public/css/bootstrap.min.css";
             $data['css'][] = "public/css/custom-margin-padding.css";
             $data['css'][] = "public/css/font-awesome.min.css";
-            $data['css'][] = "public/css/baboo.css";
             $data['css'][] = "public/plugins/holdOn/css/HoldOn.css";
 
             $data['js'][] = "public/js/jquery.min.js";
@@ -560,6 +559,7 @@ class C_book extends MX_Controller
 
             $data['js'][] = "public/js/custom/reading_mode.js";
             if ($this->agent->mobile()) {
+            $data['css'][] = "public/css/baboo-responsive.css";
                 $this->load->view('include/head', $data);
                 $this->load->view('R_book', $data);
             } else {
@@ -567,6 +567,7 @@ class C_book extends MX_Controller
                     if ($data_before_chapter['chapter']['data']['chapter'][$this->input->get("chapter")] == null || $data_before_chapter['chapter']['data']['chapter'][$this->input->get("chapter")] == '') {
                         // print_r("kosong chapter");
                     } else {
+            $data['css'][] = "public/css/baboo.css";
                         $result = $this->load->view('data/D_readingmode', $data);
 
                     }
@@ -581,7 +582,7 @@ class C_book extends MX_Controller
     public function postCommentBook()
     {
         error_reporting(0);
-        $url = $this->API . '/addComment';
+        $url = $this->API . 'book/Books/addComment';
         $auth = $this->session->userdata('authKey');
         $book_id = $this->input->post('book_id');
         $parap_id = $this->input->post('paragraph_id');
@@ -654,7 +655,7 @@ class C_book extends MX_Controller
     public function getCommentBook()
     {
         error_reporting(0);
-        $url = $this->API . '/getComment';
+        $url = $this->API . 'timeline/Timelines/getComment';
 
 
         $auth = $this->session->userdata('authKey');
@@ -725,7 +726,7 @@ class C_book extends MX_Controller
     {
         error_reporting(0);
         $auth = $this->session->userdata('authKey');
-        $url = $this->API . '/allCategory';
+        $url = $this->API . 'book/Books/allCategory';
         $ch = curl_init();
         $options = array(
             CURLOPT_URL => $url,

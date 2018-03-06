@@ -105,23 +105,23 @@
 </div>
 <div class="modal right fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
     <div class="modal-dialog" role="document">
-        <div class="modal-content">
+        <div class="modal-content" style="border:none !important;">
 
             <div class="modal-header bg-white">
                 <button type="button" class="closes" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fa fa-arrow-left"></i></span>
                 </button>
             </div>
 
-            <div class="modal-body">
+            <div class="modal-body bg-white mb-50" style="height: 100px;">
             </div>
-            <nav class="navbar navbar-light fixed-bottom  bg-white">
-                <span class="w-100 mb-20">
+            <div class="modal-footer navbar navbar-light fixed-bottom  bg-white">
+                <span class="w-100">
                     <input id="pmessageas" placeholder="Tulis sesuatu.." type="text" class="frmcomment commentform"
                            style="width: 80%;height: 45px;">
                     <a href="javascript:void(0)" id="postMessage" class="btn Rpost-message-parap"
                        data-p-id="390">Kirim</a>
                 </span>
-            </nav>
+            </div>
         </div><!-- modal-content -->
     </div><!-- modal-dialog -->
 </div><!-- modal -->
