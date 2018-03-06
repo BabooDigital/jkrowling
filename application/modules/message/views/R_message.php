@@ -12,9 +12,9 @@
     .modal.right.fade.in .modal-dialog {
         right: 0;
     }
-    .modal-backdrop
-    {
-        opacity:0.5 !important;
+
+    .modal-backdrop {
+        opacity: 0.5 !important;
     }
 
     /* ----- MODAL STYLE ----- */
@@ -29,15 +29,21 @@
         border-bottom: none;
         background-color: #f5f8fa;
     }
-
+    .modal-header > h4{
+        position:relative;
+        left:13.5%;
+        padding-top:10px;
+    }
+    .modal-body{
+        overflow-y: auto;
+    }
     .closes {
         background: none;
-        font-size: 2rem;
+        font-size: 15px;
         line-height: 1;
         opacity: .5;
         border: none;
         position: absolute;
-        right: 35px;
     }
 </style>
 <body id="pageContent" class="bodymessage">
@@ -58,7 +64,7 @@
     <div class="row form_book">
         <div class="">
             <span class="title_book_form"><h4><b>Pesan Masuk</b></h4></span>
-			<div class="loader" style="display: none;"></div>
+            <div class="loader" style="display: none;"></div>
         </div>
     </div>
 </div>
@@ -69,11 +75,11 @@
                    aria-label="Search">
         </form>
     </div>
-    <br />
+    <br/>
     <?php if (isset($listMessage) && !empty($listMessage)) { ?>
         <?php foreach ($listMessage as $messv) { ?>
             <div class="card-library mb-15 message-user" data-usr-msg="<?php echo $messv["user_id"]; ?>"
-                 style="height: auto;">
+                 data-usr-name ="<?php echo $messv["fullname"]; ?>" style="height: auto;">
                 <div class="list-group">
                     <div class="row mb-10" style="padding: 0px 10px 0px 10px;">
                         <div class="media">
@@ -86,7 +92,7 @@
                                 <h5 class="card-title nametitle2"><?php echo $messv["fullname"]; ?></h5>
                                 <p class="text-muted" style="margin-top:-10px;">
                                     <small>
-                                        <span><?php echo (strlen($messv["user_latest_message"]) >= 20) ? substr($messv["user_latest_message"], 0, 20) : $messv["user_latest_message"]. '...' ; ?></span>
+                                        <span><?php echo (strlen($messv["user_latest_message"]) >= 20) ? substr($messv["user_latest_message"], 0, 20) : $messv["user_latest_message"] . '...'; ?></span>
                                         <span class="ml-10"><?php echo $messv["user_chat_time"]; ?></span></small>
                                 </p>
                             </div>
@@ -101,12 +107,21 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
 
-            <div class="modal-header">
-                <button type="button" class="closes" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <div class="modal-header bg-white">
+                <button type="button" class="closes" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fa fa-arrow-left"></i></span>
+                </button>
             </div>
 
             <div class="modal-body">
             </div>
+            <nav class="navbar navbar-light fixed-bottom  bg-white">
+                <span class="w-100 mb-20">
+                    <input id="pmessageas" placeholder="Tulis sesuatu.." type="text" class="frmcomment commentform"
+                           style="width: 80%;height: 45px;">
+                    <a href="javascript:void(0)" id="postMessage" class="btn Rpost-message-parap"
+                       data-p-id="390">Kirim</a>
+                </span>
+            </nav>
         </div><!-- modal-content -->
     </div><!-- modal-dialog -->
 </div><!-- modal -->
