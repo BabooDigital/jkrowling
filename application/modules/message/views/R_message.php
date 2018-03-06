@@ -71,7 +71,7 @@
 <div class="container bodymessage">
     <div class="paddingbook search_message">
         <form class="">
-            <input class="form-search search_message_form" type="text" placeholder="Cari pesan masuk"
+            <input id="search_user" class="form-search search_message_form" type="text" placeholder="Cari pesan masuk"
                    aria-label="Search">
         </form>
     </div>
