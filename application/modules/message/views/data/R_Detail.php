@@ -1,10 +1,15 @@
+<div class="container">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#"><-</a>
+  </nav>
+</div>
 <div class="container bodymessage">
     <div class="row form_book">
         <div class="">
             <?php if($userWith && !empty($userWith)){ ?>
             <span class="title_book_form"><h4><b><?php echo $userWith["fullname"]; ?></b></h4></span>
             <?php } ?>
-			<div class="loader" style="display: none;"></div>
+            <div class="loader" style="display: none;"></div>
         </div>
     </div>
 </div>
@@ -36,3 +41,9 @@
         <?php } ?>
     <?php } ?>
 </div>
+<nav class="navbar navbar-light bg-light fixed-bottom">
+    <span class="w-100 mb-20">
+        <input id="pcomments" placeholder="Tulis sesuatu.." type="text" class="frmcomment commentform" style="width: 80%;height: 45px;">
+        <button class="btn Rpost-comment-parap" data-p-id="390">Kirim</button>
+    </span>
+</nav>
