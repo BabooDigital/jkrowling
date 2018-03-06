@@ -6,8 +6,10 @@
 <div class="container bodymessage">
     <div class="row form_book">
         <div class="">
+            <span class="hidden-lg hidden-md hidden-sm hidden-xs" ><input type="hidden" id="paltui" <?php $dat = $this->session->userdata('userData'); echo "data-pname='".$dat['fullname']."' data-pimage='".$dat['prof_pict']."'"; ?> /></span>
             <?php if($userWith && !empty($userWith)){ ?>
             <span class="title_book_form"><h4><b><?php echo $userWith["fullname"]; ?></b></h4></span>
+            <span class="hidden-lg hidden-md hidden-sm hidden-xs"><input type="hidden" id="iuswithid" value="<?php echo $userWith["user_id"]; ?>" /></span>
             <?php } ?>
             <div class="loader" style="display: none;"></div>
         </div>
@@ -16,7 +18,7 @@
 <div id="message_container" class="container bodymessage">
     <?php if (isset($listMessage) && !empty($listMessage)) { ?>
         <?php foreach ($listMessage as $messv) { ?>
-            <div class="card-library mb-15" data-usr-msg="<?php echo $messv["user_id"]; ?>"
+            <div class="card-library mb-15"
                  style="height: auto;">
                 <div class="list-group">
                     <div class="row mb-10" style="padding: 0px 10px 0px 10px;">
@@ -44,6 +46,6 @@
 <nav class="navbar navbar-light bg-light fixed-bottom">
     <span class="w-100 mb-20">
         <input id="pmessages" placeholder="Tulis sesuatu.." type="text" class="frmcomment commentform" style="width: 80%;height: 45px;">
-        <button class="btn Rpost-message-parap" data-p-id="390">Kirim</button>
+        <a href="javascript:void(0)" id="postMessage" class="btn Rpost-message-parap" data-p-id="390">Kirim</a>
     </span>
 </nav>
