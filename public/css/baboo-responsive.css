@@ -1041,12 +1041,35 @@ a:hover {
                     text-align: center;
                   }
                   .btnPositionList {
-                    position:  relative;display:  inline-block;top: 30%;
+                    position:  relative;display:  inline-block;top: 25%;
                   }
                   .btnSlct {
                     background: #fff;
-                    border: 2px solid #7554bd;
-                    border-radius: 8px;
-                    padding: 3px 30px;
-                    color:  #7554bd;
+                    border-radius: 24px;
+                    border: none;
+                    padding: 5px 30px;
                   }
+                  #editCh {
+                    background: #7661ca;
+                    color: #ffffff;
+                  }
+                  #delCh {
+                    color: #7554bd;
+                    background: #ffffff;
+                  }
+
+.comment-marker {
+  position: absolute;
+  right: 0;
+  opacity: .5;
+  padding: 0 3px 3px 3px;
+}
+.comment-marker .num-comment {
+  position: absolute;
+  font-size: 10px;
+  font-weight: 700;
+  color: #333;
+  left: 50%;
+  top: 0;
+  transform: translate(-50%);
+}
