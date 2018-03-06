@@ -43,7 +43,7 @@
 </div>
 <nav class="navbar navbar-light bg-light fixed-bottom">
     <span class="w-100 mb-20">
-        <input id="pcomments" placeholder="Tulis sesuatu.." type="text" class="frmcomment commentform" style="width: 80%;height: 45px;">
-        <button class="btn Rpost-comment-parap" data-p-id="390">Kirim</button>
+        <input id="pmessages" placeholder="Tulis sesuatu.." type="text" class="frmcomment commentform" style="width: 80%;height: 45px;">
+        <button class="btn Rpost-message-parap" data-p-id="390">Kirim</button>
     </span>
 </nav>
