@@ -1,14 +1,8 @@
-<div class="container">
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#"><-</a>
-  </nav>
-</div>
 <div class="container bodymessage">
     <div class="row form_book">
         <div class="">
             <span class="hidden-lg hidden-md hidden-sm hidden-xs" ><input type="hidden" id="paltui" <?php $dat = $this->session->userdata('userData'); echo "data-pname='".$dat['fullname']."' data-pimage='".$dat['prof_pict']."'"; ?> /></span>
             <?php if($userWith && !empty($userWith)){ ?>
-            <span class="title_book_form"><h4><b><?php echo $userWith["fullname"]; ?></b></h4></span>
             <span class="hidden-lg hidden-md hidden-sm hidden-xs"><input type="hidden" id="iuswithid" value="<?php echo $userWith["user_id"]; ?>" /></span>
             <?php } ?>
             <div class="loader" style="display: none;"></div>
@@ -46,6 +40,6 @@
 <nav class="navbar navbar-light bg-light fixed-bottom">
     <span class="w-100 mb-20">
         <input id="pmessages" placeholder="Tulis sesuatu.." type="text" class="frmcomment commentform" style="width: 80%;height: 45px;">
-        <a href="javascript:void(0)" id="postMessage" class="btn Rpost-message-parap" data-p-id="390">Kirim</a>
+        <button href="javascript:void(0)" id="postMessage" class="btn Rpost-message-parap" data-p-id="390">Kirim</button>
     </span>
 </nav>

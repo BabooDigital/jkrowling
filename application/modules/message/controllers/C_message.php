@@ -218,7 +218,7 @@ class C_message extends MX_Controller
             redirect('login', 'refresh');
         } else {
 
-            $datas['title'] = "Detail Pesan - Baboo";
+//            $datas['title'] = "Detail Pesan - Baboo";
             $lists = $resval['data'];
             $datas["resval"] = $resval;
             $datas['userWith'] = $lists["user_with"];

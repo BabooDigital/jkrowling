@@ -6,15 +6,15 @@ function processAjaxData(responses, urlPath){
 
 $(document).ready(function() {
     $(document).on("click","#postMessage", function() {
-        var a = $(this),
+        var ab = $(this),
             b = new FormData,
-            message = $("#pmessages").val(),
+            message = ab.siblings("#pmessageas").val(),
             fullname = $("#paltui").attr("data-pname"),
             prof_pict = $("#paltui").attr("data-pimage");
         c = "<div class='card-library mb-15' style='height: auto;'> <div class='list-group'> <div class='row mb-10' style='padding: 0px 10px 0px 10px;'> <div class='media'> <img class='d-flex align-self-start mr-20 rounded-circle' src="+prof_pict+" width='48' alt='Generic placeholder image'> <div class='media-body mt-5'> <h5 class='card-title nametitle2'>"+fullname+"</h5> <p class='text-muted' style='margin-top:-10px;'> <small> <span>"+message+"</span> <span class='ml-10'>Just Now</span></small> </p></div></div></div></div></div>";
         $("#message_container").append(c);
         b.append("user_to", $("#iuswithid").val());
-        b.append("message", $("#pmessages").val());
+        b.append("message", ab.siblings("#pmessageas").val());
         $.ajax({
             url: base_url + "send_message",
             type: "POST",
@@ -24,8 +24,7 @@ $(document).ready(function() {
             processData: !1,
             data: b
         }).done(function(a) {
-            // console.log("Koneksi Bermasalah");
-            $("#pmessages").val("")
+            ab.siblings("#pmessageas").val("");
         }).fail(function() {
             console.log("error")
         }).always(function() {})
@@ -51,6 +50,8 @@ $(document).ready(function() {
             if (null == usr_with || "" == usr_with) alert("user not found");
             else {
                 $('#myModal2').modal('show').find('.modal-body').load(b);
+                var bahtml = "<button type='button' class='closes' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'><i class='fa fa-arrow-left'></i></span></button><h4><b>"+boo.attr("data-usr-name")+"</b></h4>";
+                $('#myModal2').find('.modal-header').html(bahtml);
                 var refreshId = setInterval(function() {
                     $("#myModal2").find('.modal-body').load(b);
                 }, 9000);
