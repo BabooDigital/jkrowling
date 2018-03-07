@@ -11,6 +11,10 @@ a:hover {
   text-decoration: none;
 }
 
+@-ms-viewport{
+  width: device-width;
+}
+
 @media screen and (max-width: 350px) {
   .navbar-brand {
     margin: auto !important;
@@ -351,7 +355,7 @@ a:hover {
       background: transparent;
       border: 0;
       width: 100%;
-      font-size: 35pt;
+      font-size: 25pt;
       font-weight: bold;
       text-align: center;
       outline: 0;

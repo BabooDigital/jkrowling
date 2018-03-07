@@ -135,7 +135,7 @@
 												<div class="form-group">
 													<div class="form-check">
 														<label class="form-check-label">
-															<input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked> 
+															<input class="form-check-input" type="radio" name="j_kelamin" id="exampleRadios1" value="pria" checked> 
 															<span class="text-modal" style="margin-left:5px;">Laki-laki</span>
 														</label>
 													</div>
@@ -146,7 +146,7 @@
 												<div class="form-group">
 													<div class="form-check">
 														<label class="form-check-label">
-															<input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+															<input class="form-check-input" type="radio" name="j_kelamin" id="exampleRadios2" value="wanita">
 															<span class="text-modal" style="margin-left:10px;">Perempuan</span>
 														</label>
 													</div>

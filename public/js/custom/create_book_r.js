@@ -82,10 +82,10 @@ function froalaEditor() {
   $('#paragraph_book').froalaEditor({
     imageEditButtons: ['imageDisplay', 'imageAlign', 'imageInfo', 'imageRemove'],
     buttons: ['undo', 'redo' , 'sep', 'bold', 'italic', 'underline'],
-    placeholderText: 'Tulis cerita di sini..',
+    placeholderText: 'Kamu adalah apa yang kamu pikirkan...',
     heightMin: 200,
     heightMax: 300,
-    width: 500,
+    width: 600,
     initOnClick: true,
     toolbarBottom: true
   })

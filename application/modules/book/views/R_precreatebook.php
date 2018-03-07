@@ -14,7 +14,7 @@
 	<br>
 	<br>
 	<div class="form_book_title" align="center">
-		<h4>Tuliskan Judul Buku Disini</h4>
+		<h5>Judul</h5>
 		<br>
 		<textarea type="text" name="title_book_out" id="title_book_out" class="title_book_form autoExpand" data-min-rows='3' placeholder="Judul Buku"> </textarea>
 	</div>

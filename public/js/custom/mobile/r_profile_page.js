@@ -37,38 +37,6 @@ $(document).ready(function() {
 	}).always(function() {
 	});
 
-	// DRAFT BOOK MOBILE RESPONSIVE
-	$.ajax({
-		url: base_url + 'getdraftbook',
-		type: 'POST',
-		dataType: 'json',
-		data: {
-			user_id: id
-		},
-		beforeSend: function()
-		{
-			$('.loaderdraft').show();
-		}
-	}).done(function(data) {
-		var datas = "";
-		$.each(data, function(i, item) {
-			desc = item.desc;
-			var cover;
-			unk = 'public/img/profile/blank-photo.jpg';
-	        if (item.cover_url != "Kosong") {
-	          cover = item.cover_url;
-	        } else if (item.cover_url == "Kosong") {
-	          cover = 'public/img/profile/blank-photo.jpg';
-	        }
-			datas += "<div class='card p-10 mb-20'> <div class='card-header'> <span><img src='public/img/assets/icon_clock.svg' width='20'> Sekarang</span> <span class='float-right' style='color: red;'>Draft</span> </div> <div class='card-body'> <a href='book/"+ item.book_id+"-"+convertToSlug(item.title_book) +"'> <img alt='asd' class='d-flex align-self-start mr-10 float-left' src='"+ cover +"' onError='this.onerror=null;this.src="+'unk'+";' width='120' height='170'> </a> <h4 class='card-title nametitle3'><a href='book/"+ item.book_id+"-"+convertToSlug(item.title_book) +"'>"+item.title_book+"</a></h4> <p class='catbook mb-10'><a class='mr-10' href='#'><span class='btn-no-fill'>FIKSI</span></a> <a class='mr-10' href='#'><span class='btn-no-fill'>BIOGRAFI</span></a></p> <p class='text-desc-in'> "+ desc.substr(0, 220) +" </p> </div> <div class='card-footer text-muted' style='font-size: 0.8em;font-weight: bold;'> <div class='pull-right mt-10'> <a class='mr-10 fs-14px' href='#' style='border:  1px #333 solid;border-radius:  40px;padding: 10px 25px;'><img src='public/img/assets/icon_pen.svg' width='23'> Edit</a> <a href='#' style='border: 1px #7554bd solid;border-radius: 40px;padding: 10px 20px;color: #7554bd; '><img class='mr-10 fs-14px' src='public/img/assets/icon_publish.svg' width='20'> Publish</a> </div> <div> <a href='#'><img src='public/img/icon-tab/dustbin.svg' width='27'></a> </div> </div> </div>";
-		}); 
-		$('.loader').hide();
-		$("#r_draftdata").html(datas);
-	}).fail(function() {
-		console.log("error");
-	}).always(function() {
-	});
-
 
 	$('#confEdit').on('click', function() {
 		var formData = new FormData();

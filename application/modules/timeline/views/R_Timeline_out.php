@@ -37,17 +37,11 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav">
 				<li class="nav-item mr-20 active">
-					<a class="nav-link b-nav-link" href="#">Beranda</a>
-				</li>
-				<li class="nav-item mr-100">
-					<a class="nav-link" href="#">Explore</a>
-				</li>
-				<li class="nav-item mr-30">
-					<a class="nav-link btn-navmasuk" href="#">Masuk</a>
+					<a class="nav-link b-nav-link" href="<?php echo site_url('home'); ?>">Beranda</a>
 				</li>
 				<li class="nav-item">
 					<div class="mb-10">
-						<a class="nav-link btn-navdaftar" href="#"><span class="navdaftar">Daftar</span></a>
+						<a class="nav-link btn-navdaftar" href="<?php echo site_url(); ?>login#btndaftar"><span class="navdaftar">Daftar</span></a>
 					</div>
 				</li>
 			</ul>
@@ -89,6 +83,9 @@
 					<div class="col-md-6" id="post-data">
 						<?php 
 						$this->load->view('data/R_timeline_out', $home);
+						if ($home == null || $home == [] || empty($home)) {
+							echo "<div class='container first_login mt-30'> <div class='row'> <div class='mx-auto' style='width: 85%;'> <div class='text-center mb-10'> <img src='".base_url('public/img/first_login.png')."'> </div> <div class='text-center'> <h4><b>Tentukan konten yang kamu suka!</b></h4> <p style='font-size: 12pt;'>Jangan buang-buang waktu dengan hal yg tidak kamu suka, yuk atur konten yg kamu suka.</p> <br> <a href='".site_url('login')."' class='btn btn-navdaftar'><span class='navdaftar'>Daftar Sekarang</span></a> </div> </div> </div> </div> ";
+						}
 						?>
 					</div>
 					<div class="loader" style="display: none;margin-left: auto;margin-right: auto;"></div>
