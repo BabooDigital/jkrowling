@@ -85,7 +85,7 @@ $route['shares'] = 'timeline/C_timeline/postShareSocmed';
 $route['like'] = 'timeline/C_timeline/postLike';
 
 // Bookmark
-$route['bookmark'] = 'timeline/C_timeline/postBookmark';
+$route['sendbookmark'] = 'timeline/C_timeline/postBookmark';
 
 // Explore
 $route['notification'] = 'notification/C_notification';

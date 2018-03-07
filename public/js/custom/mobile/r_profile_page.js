@@ -15,7 +15,7 @@ $(document).ready(function() {
 			$(".loader").show();
 		}
 	}).done(function(data) {
-		if (data == '[]') {
+		if (data.code != 200) {
 			datas = "<div class='alert alert-success' role='alert'> <h4 class='alert-heading'>Aw Snap! Kamu belum publish buku :(</h4> <p>Ayo buat dan kreasikan buku mu semenarik mungkin, dan mulai dapatkan penghasilan di Baboo. Buku yang kamu publikasikan akan muncul disini :).</p> </div>";
 		}else {
 			var datas = "";
