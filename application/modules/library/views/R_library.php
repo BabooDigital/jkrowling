@@ -38,7 +38,8 @@
 				</div>
 			</div>
 			<div class="loader" style="display: none;margin-left: auto;margin-right: auto;"></div
-		</div>
+		>
+	</div>
 	</div>
 	<div class="container babooid bg-white pb-70" style="overflow-y: hidden;overflow-x: hidden;">
 		<div class="row p-20">
@@ -47,6 +48,7 @@
 		<div class="loader" style="display: none;margin-left: auto;margin-right: auto;"></div>
 		<div class="row" id="bookmarkList">
 
+		</div>
 		</div>
 		<!-- JS -->
 		<script type="text/javascript">

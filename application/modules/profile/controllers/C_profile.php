@@ -129,13 +129,19 @@ class C_profile extends MX_Controller {
 		$resval =  json_decode($getdata, TRUE);
 
 		$psn = $resval['message'];
-		$userdetail = $resval['data'];
+		$datas = $resval['data'];
+		$status = $resval['code'];
 		$auth = $headers['BABOO-AUTH-KEY'];
 		
 		$this->session->set_userdata('authKey', $auth);
-		$status = $resval['code'];
-
-		echo json_encode($userdetail);	
+		if ($status == 403){
+			$this->session->unset_userdata('userData');
+			$this->session->unset_userdata('authKey');
+			$this->session->sess_destroy();
+			redirect('login','refresh');
+		}else{
+			echo json_encode(array('code' => $status, 'data' => $datas));
+		}
 	}
 
 	public function getDraftBook() {

@@ -60,7 +60,7 @@ function getBookmark() {
     })
     .done(function(data) {
         $(".loader").hide();
-        if (data == []) {
+        if (data != []) {
             var html = '';
             $.each(data, function(index, val) {
                 var title = val.title_book;
@@ -73,7 +73,7 @@ function getBookmark() {
                 if (authorimg == null || authorimg == 'Kosong' || authorimg == '') {
                     authorimg = 'public/img/profile/blank-photo.jpg';
                 }
-                html += '<a href="book/'+ val.book_id+"-"+convertToSlug(val.title_book) +'"><div class="col-12 mb-20"> <div class="bookmarkbook w-100"> <img src="'+ val.cover_url +'" width="150" height="180" class="rounded"> <img src="public/img/assets/bookmark.png" width="30" height="40" class="markbook"> <div class="mt-10"> <div id="title_book"> <p style="font-size: 13px;font-weight: bold;">'+ viewtitle +'</p> </div> <div id="author_book"> <p style="font-size: 12px;"><img src="'+ authorimg +'" width="20" height="20" class="rounded-circle"> '+ val.author_name +'</p> </div> </div> </div> </div></a>'; 
+                html += '<a href="book/'+ val.book_id+"-"+convertToSlug(val.title_book) +'"><div class="col-12 mb-20"> <div class="bookmarkbook w-100"> <img src="'+ val.cover_url +'" width="150" height="180" class="rounded"> <img src="public/img/assets/bookmark.png" width="30" height="40" class="markbook"> <div class="mt-10" style="text-align:left;"> <div id="title_book"> <p style="font-size: 13px;font-weight: bold;">'+ viewtitle +'</p> </div> <div id="author_book"> <p style="font-size: 12px;"><img src="'+ authorimg +'" width="20" height="20" class="rounded-circle"> '+ val.author_name +'</p> </div> </div> </div> </div></a>'; 
 
             });
             $("#bookmarkList").html(html);

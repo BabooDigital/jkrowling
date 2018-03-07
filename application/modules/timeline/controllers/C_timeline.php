@@ -340,7 +340,7 @@ class C_timeline extends MX_Controller {
 			$this->session->sess_destroy();
 			redirect('login','refresh');
 		}else{
-			echo json_encode(array('code' => $status, 'message' => $pesan));	
+			echo json_encode(array('code' => $status, 'message' => $pesan));
 		}
 	}
 
