@@ -19,7 +19,7 @@
 	<div class="container">
 		<div class="row p-20">
 			<div class="input-group paddingbook">
-				<input type="text" name="chapter_title" id="chapter_title_out" class="title_book_form" style="text-align: left;" placeholder="Judul Chapter">
+				<input type="text" name="chapter_title" id="chapter_title_out" class="title_book_form" style="text-align: left;" placeholder="Chapter">
 				<div class="loader" style="display: none;"></div>
 			</div>
 			<div class="input-group paddingparagraph">

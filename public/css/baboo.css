@@ -552,8 +552,8 @@ input.formsearch:focus {
 }
 
 .card-footer {
-        background: #ddd3;
-    border-radius: 45px !important;
+        background: #ddd;
+    border-radius: 45px ;
         border-top: none;
 }
 .effect-img {

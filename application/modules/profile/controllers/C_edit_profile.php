@@ -288,4 +288,69 @@ class C_edit_profile extends MX_Controller {
 
 	    }
 
+	    public function firstEditProfile()
+	    {
+	    	error_reporting(0);
+	    	$auth = $this->session->userdata('authKey');
+	    	$user = $this->session->userdata('userData');
+
+	    	$address = $this->input->post('location');
+	    	$bio = $this->input->post('about_me');
+
+	    	$sendData = array(
+	    		'user_id' => $user['user_id'],
+	    		'address' => $address,
+	    		'about_me' => $bio
+	    	);
+
+	    	$ch = curl_init();
+	    	curl_setopt($ch, CURLOPT_URL, $this->API.'/auth/OAuth/editProfile');
+	    	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+	    	curl_setopt($ch, CURLOPT_POST, 1);
+	    	curl_setopt($ch, CURLOPT_POSTFIELDS, $sendData);
+	    	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+	    	curl_setopt($ch, CURLOPT_HEADER, 1);
+	    	curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key : '.$auth));
+	    	$result = curl_exec($ch);
+
+
+	    	$headers=array();
+
+	    	$data=explode("\n",$result);
+
+
+	    	array_shift($data);
+	    	$middle = array();
+	    	$moddle = array();
+	    	foreach($data as $part){
+	    		$middle=explode(":",$part);
+	    		$moddle=explode("{",$part);
+
+	    		if (error_reporting() == 0) {
+	    			$headers[trim($middle[0])] = trim($middle[1]);
+	    		}
+	    	}
+	    	$resval =  json_decode(end($data), TRUE);
+
+	    	$psn = $resval['message'];
+	    	$status = $resval['code'];
+	    	$datas = $resval['data'];
+	    	$auth = $headers['BABOO-AUTH-KEY'];
+
+	    	$this->session->set_userdata('authKey', $auth);
+	    	
+	    	if ($status == 403) {
+	    		$this->session->unset_userdata('userData');
+	    		$this->session->unset_userdata('authKey');
+	    		$this->session->sess_destroy();
+	    		redirect('login', 'refresh');
+	    	} else {
+	    		echo json_encode(array(
+	    			'status' => $status,
+	    			'data' => $datas
+	    		));
+	    	}
+
+	    }
 	}

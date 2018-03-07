@@ -66,6 +66,10 @@ $route['detail_message/:num'] = 'message/C_message/detailMessage';
 $route['send_message'] = 'message/C_message/send_message';
 $route['createidbook'] = 'timeline/C_timeline/createbook_id';
 
+// Draft
+$route['yourdraft'] = 'timeline/C_timeline/draftListView';
+$route['deldraft'] = 'book/C_book/deleteDraftBook';
+
 $route['writter'] = 'timeline/C_timeline/getWritter';
 $route['bestBook'] = 'timeline/C_timeline/getBestBook';
 $route['writters'] = 'timeline/C_home/getWritter';
@@ -142,6 +146,7 @@ $route['send_cover'] = 'cover/C_cover/sendCover';
 // Profile
 $route['profile/(:any)'] = 'profile/C_profile';
 $route['profile'] = 'profile/C_profile';
+$route['firstedit'] = 'profile/C_edit_profile/firstEditProfile';
 $route['account/edit'] = 'profile/C_edit_profile';
 $route['account/edit_profile'] = 'profile/C_edit_profile/postEditProfile';
 $route['account/setting'] = 'profile/C_profile/settingProfile';
@@ -157,3 +162,4 @@ $route['selectcategory'] = 'profile/C_edit_profile/selectCategory';
 $route['postselectcat'] = 'profile/C_edit_profile/firstSelectCategory';
 
 $route['first_follow'] = 'profile/C_edit_profile/firstFollowUser';
+
