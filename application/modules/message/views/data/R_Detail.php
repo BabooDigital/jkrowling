@@ -9,31 +9,37 @@
         </div>
     </div>
 </div>
-<div id="message_container" class="container bodymessage">
-    <?php if (isset($listMessage) && !empty($listMessage)) { ?>
+<div id="message_container" class="bodymessage">
+    <?php $me = $this->session->userdata('userData');
+    if (isset($listMessage) && !empty($listMessage)) { ?> 
+    <ol class="chat">
         <?php foreach ($listMessage as $messv) { ?>
-            <div class="card-library mb-15"
-                 style="height: auto;">
-                <div class="list-group">
-                    <div class="row mb-10" style="padding: 0px 10px 0px 10px;">
-                        <div class="media">
-                            <img class="d-flex align-self-start mr-20 rounded-circle"
-                                 src="<?php if (empty($messv["prof_pict"])) {
-                                     echo base_url(); ?>public/img/profile/pp_wanita2.png<?php } else {
-                                     echo $messv["prof_pict"];
-                                 } ?>" width="48" alt="Generic placeholder image">
-                            <div class="media-body mt-5">
-                                <h5 class="card-title nametitle2"><?php echo $messv["fullname"]; ?></h5>
-                                <p class="text-muted" style="margin-top:-10px;">
-                                    <small>
-                                        <span><?php echo (strlen($messv["message"]) >= 20) ? substr($messv["message"], 0, 20). '...' : $messv["message"] ; ?></span>
-                                        <span class="ml-10"><?php echo $messv["chat_time"]; ?></span></small>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+        <?php if ($me['user_id'] == $messv['user_id']) { ?>
+        <li class="self">
+            <div class="avatar"><img class="d-flex align-self-start mr-20 rounded-circle"
+               src="<?php if (empty($messv["prof_pict"])) {
+                   echo base_url(); ?>public/img/profile/pp_wanita2.png<?php } else {
+                       echo $messv["prof_pict"];
+                   } ?>" width="48" height="48" alt="<?php echo $messv["fullname"]; ?>" draggable="false"></div>
+                   <div class="msg msg-self">
+                    <p><?php echo $messv["message"]; ?></p>
+                    <span class="pull-right text-muted"><?php echo $messv["chat_time"]; ?></span></small>
                 </div>
-            </div>
-        <?php } ?>
-    <?php } ?>
-</div>
+            </li>
+            <?php }else { ?>
+            <li class="other">
+                <div class="avatar"><img class="d-flex align-self-start mr-20 rounded-circle"
+                   src="<?php if (empty($messv["prof_pict"])) {
+                       echo base_url(); ?>public/img/profile/pp_wanita2.png<?php } else {
+                           echo $messv["prof_pict"];
+                       } ?>" width="48" height="48" alt="<?php echo $messv["fullname"]; ?>" draggable="false"></div>
+                       <div class="msg">
+                        <p><?php echo $messv["message"]; ?></p>
+                        <span class="pull-right text-muted"><?php echo $messv["chat_time"]; ?></span></small>
+                    </div>
+                </li>
+                <?php } ?>
+                <?php } ?>
+            </ol>
+            <?php } ?>
+        </div>
