@@ -64,6 +64,8 @@ $route['timeline/:any'] = 'timeline/C_timeline';
 $route['message'] = 'message/C_message';
 $route['detail_message/:num'] = 'message/C_message/detailMessage';
 $route['send_message'] = 'message/C_message/send_message';
+$route['search'] = 'search/C_search';
+$route['searching'] = 'search/C_search/search';
 $route['createidbook'] = 'timeline/C_timeline/createbook_id';
 
 // Draft
