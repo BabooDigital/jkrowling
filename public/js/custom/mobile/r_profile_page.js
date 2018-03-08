@@ -1,6 +1,13 @@
 $(document).ready(function() {
 
 	var id = $('#iaiduui').val();
+
+	function convertToSlug(Text) {
+	  return Text
+	    .toLowerCase()
+	    .replace(/[^\w ]+/g, '')
+	    .replace(/ +/g, '-');
+	}
 	
 	// PUBLISH BOOK MOBILE RESPONSIVE
 	$.ajax({
@@ -19,7 +26,7 @@ $(document).ready(function() {
 			datas = "<div class='alert alert-success' role='alert'> <h4 class='alert-heading'>Aw Snap! Kamu belum publish buku :(</h4> <p>Ayo buat dan kreasikan buku mu semenarik mungkin, dan mulai dapatkan penghasilan di Baboo. Buku yang kamu publikasikan akan muncul disini :).</p> </div>";
 		}else {
 			var datas = "";
-			$.each(data, function(i, item) {
+			$.each(data.data, function(i, item) {
 				desc = item.desc;
 				var cover;
 		        if (item.cover_url != "" || item.cover_url == " ") {
@@ -68,10 +75,3 @@ $(document).ready(function() {
 	});
 
 });
-
-function convertToSlug(Text) {
-  return Text
-    .toLowerCase()
-    .replace(/[^\w ]+/g, '')
-    .replace(/ +/g, '-');
-}

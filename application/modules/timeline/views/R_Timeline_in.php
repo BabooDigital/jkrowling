@@ -3,6 +3,13 @@
 	border-radius: 0 !important;
 }
 </style>
+<script>(function(d, s, id) {
+	var js, fjs = d.getElementsByTagName(s)[0];
+	if (d.getElementById(id)) return;
+	js = d.createElement(s); js.id = id;
+	js.src = 'https://connect.facebook.net/id_ID/sdk.js#xfbml=1&version=v2.12&appId=147496629264839';
+	fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 <body id="pageContent">
 	<div class="wrapper">
 		<div class="lds-css ng-scope" style="display: none;">
@@ -35,7 +42,7 @@
 		</div>
 		<input type="hidden" id="iaiduui" name="iaiduui" value="<?php $name = $this->session->userdata('userData'); echo $name['user_id']; ?>">
 	</div>
-		<!-- JS -->
-		<?php if (isset($js)): ?><?php echo get_js($js) ?><?php endif ?>
+	<!-- JS -->
+	<?php if (isset($js)): ?><?php echo get_js($js) ?><?php endif ?>
 </body>
 </html>
