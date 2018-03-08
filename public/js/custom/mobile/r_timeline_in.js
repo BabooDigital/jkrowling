@@ -9,13 +9,13 @@ $(document).ready(function() {
     var desc = aww.parents(".card").find(".textp").attr('data-text')+'.. - Baca buku lebih lengkap disini.. | Baboo - Beyond Book & Creativity';
     var img = aww.parents(".card").find('.cover_image').attr('src');
     var auname = aww.parents(".card").find('.author_name').text();
-    var segment = aww.parents(".card").find('.segment').attr('href');
+    var segment = aww.parents(".card").find('.segment').attr('data-href');
     FB.ui({
       method     : 'share_open_graph',
       action_type: 'og.shares',
       action_properties: JSON.stringify({
         object: {
-          'og:url': base_url + 'book/' + segment + '/preview',
+          'og:url': base_url + 'book/' + convertToSlug(segment) + '/preview',
           'og:title': blink + ' ~ By : ' + auname + ' | Baboo - Beyond Book & Creativity',
           'og:description': desc,
           'og:image': img
