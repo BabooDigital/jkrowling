@@ -237,9 +237,9 @@
 	<div class="page-wrap">
 		<nav class="navbar navbar-expand-lg fixed-top" style="height:50px;">
 			<div class="container bodymessage">
-				<button style="background: none;border:none;">
+				<a href="javascript:history.back();">
 					<i class="fa fa-arrow-left"></i> &nbsp;
-				</button>
+				</a>
 
 			</div>
 		</nav>

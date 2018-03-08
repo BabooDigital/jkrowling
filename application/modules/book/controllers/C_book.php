@@ -775,7 +775,7 @@ class C_book extends MX_Controller
     public function deleteDraftBook()
     {
     	error_reporting(0);
-    	$url = $this->API . '/draftDelete';
+    	$url = $this->API . 'book/Books/draftDelete';
 
     	$auth = $this->session->userdata('authKey');
     	$book_id = $this->input->post('book_id');
@@ -831,7 +831,7 @@ class C_book extends MX_Controller
     		echo json_encode($datas);
     	}
         // echo $result;
-    }
+    
 		curl_setopt($ch, CURLOPT_POST, 1);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $sendData);
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
@@ -874,127 +874,5 @@ class C_book extends MX_Controller
 			echo json_encode($userdetail);
 		}
 		// print_r($data);
-	}
-
-	public function getCommentBook() {
-		error_reporting(0);
-		$url = $api_url.'timeline/Timelines/getComment';
-
-
-		$auth = $this->session->userdata('authKey');
-		$book_id = $this->input->post('book_id');
-		$idb = explode('-', $book_id, 2);
-		if (is_array($idb));
-		$parap_id = $this->input->post('paragraph_id');
-		if (!empty($book_id)) {
-			$sendData = array(
-				'book_id' => $idb[0]
-			);	
-		}else{
-			$sendData = array(
-				'paragraph_id' => $parap_id
-			);
-		}
-
-		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, $url);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-
-		curl_setopt($ch, CURLOPT_POST, 1);
-		curl_setopt($ch, CURLOPT_POSTFIELDS, $sendData);
-		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-		curl_setopt($ch, CURLOPT_HEADER, 1);
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key : '.$auth));
-		$result = curl_exec($ch);
-
-
-		$headers=array();
-
-		$data=explode("\n",$result);
-
-
-		array_shift($data);
-		$middle = array();
-		$moddle = array();
-		foreach($data as $part){
-			$middle=explode(":",$part);
-			$moddle=explode("{",$part);
-
-			if (error_reporting() == 0) {
-				$headers[trim($middle[0])] = trim($middle[1]);
-			}
-		}
-		$getdata = end($data);
-		$resval =  json_decode($getdata, TRUE);
-
-		$psn = $resval['message'];
-		$userdetail = $resval['data']['comments'];
-		$auth = $headers['BABOO-AUTH-KEY'];
-		
-		$this->session->set_userdata('authKey', $auth);
-		$status = $resval['code'];
-		if ($status == 403){
-			$this->session->unset_userdata('userData');
-			$this->session->unset_userdata('authKey');
-			$this->session->sess_destroy();
-			redirect('login','refresh');
-		}else{
-			// echo json_encode($userdetail);
-			print_r($result);
-		}
-		// echo $result;
-	}
-	public function getCategory()
-	{
-		error_reporting(0);
-		$auth = $this->session->userdata('authKey');
-		$url = $this->API.'/allCategory';
-		$ch = curl_init();
-		$options = array(
-			CURLOPT_URL			 => $url,
-			CURLOPT_RETURNTRANSFER => true,
-	          CURLOPT_CUSTOMREQUEST  =>"GET",    // Atur type request
-	          CURLOPT_POST           =>false,    // Atur menjadi GET
-	          CURLOPT_FOLLOWLOCATION => false,    // Follow redirect aktif
-	          CURLOPT_SSL_VERIFYPEER => 0,
-	          CURLOPT_HEADER         => 1,
-	          CURLOPT_HTTPHEADER	 => array('baboo-auth-key : '.$auth)
-
-	      );
-		curl_setopt_array($ch, $options);
-		$content = curl_exec($ch);
-		curl_close($ch);
-		$headers=array();
-		
-		$data=explode("\n",$content);
-		$headers['status']=$data[0];
-
-		array_shift($data);
-
-		foreach($data as $part){
-			$middle=explode(":",$part);
-			$headers[trim($middle[0])] = trim($middle[1]);
-		}
-
-		$data['category'] = json_decode(end($data), true);
-		$auth = $headers['BABOO-AUTH-KEY'];
-		if (isset($data['category']['code']) && $data['category']['code'] == '200')
-		{
-			$status = $data['category']['code'];
-			$this->session->set_userdata('authKey', $auth);
-		}
-		else
-		{
-			$status = $data['category']['code'];
-		}
-		if ($status == 403){
-			$this->session->unset_userdata('userData');
-			$this->session->unset_userdata('authKey');
-			$this->session->sess_destroy();
-			redirect('login','refresh');
-		}else{
-			echo json_encode($data['category']['data']);
-		}
 	}
 }

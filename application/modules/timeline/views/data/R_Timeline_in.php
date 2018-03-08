@@ -13,7 +13,7 @@
 						echo $s_book['author_avatar']; } ?>" width="50" height="50" alt="<?php
 							echo $s_book['author_name']; ?>">
 						<div class="media-body mt-5">
-							<h5 class="card-title nametitle2"><a href="<?php echo site_url('profile/'.$s_book['author_id'].''); ?>"><?php
+							<h5 class="card-title nametitle2"><a href="<?php echo site_url('profile/'.$s_book['author_id'].''); ?>" class="author_name"><?php
 							echo $s_book['author_name']; ?></a></h5>
 							<p class="text-muted" style="margin-top:-10px;"><small><span>Jakarta, Indonesia</span>
 								<span class="ml-10"><?php echo $s_book['publish_date']; ?></span></small></p>
@@ -22,8 +22,7 @@
 					</div>
 					<a href="<?php echo site_url(); ?>book/<?php echo $s_book['book_id']; ?> - <?php echo url_title($s_book['title_book'], 'dash', true); ?>"> 
 						<div class="row pl-10 pr-10">
-							<h5 class="w-100" style="font-weight: 700;"><b><a href="<?php echo site_url(); ?>book/<?php echo $s_book['book_id']; ?>-<?php echo url_title($s_book['title_book'], 'dash', true); ?>"><?php
-							echo $s_book['title_book']; ?></a></b></h5>
+							<h5 class="w-100" style="font-weight: 700;"><b><a href="<?php echo site_url(); ?>book/<?php echo $s_book['book_id']; ?>-<?php echo url_title($s_book['title_book'], 'dash', true); ?>" class="dbooktitle segment"><?php echo $s_book['title_book']; ?></a></b></h5>
 							<div class="w-100">
 								<span class="mr-15" style="font-size: 12px;"><?php echo $s_book['category']; ?> &#8226; </span>
 
@@ -38,8 +37,8 @@
 									echo $s_book['comment_count']; ?></span>
 								</span>
 
-								<a href="<?php echo site_url(); ?>book/<?php echo $s_book['book_id']; ?>-<?php echo url_title($s_book['title_book'], 'dash', true); ?>"> 
-									<p class="mt-10 text-justify"><?php echo substr($s_book['desc'],0,200); ?> ...</p>
+								<a href="<?php echo site_url(); ?>book/<?php echo $s_book['book_id']; ?>-<?php echo url_title($s_book['title_book'], 'dash', true); ?>" class="segment"> 
+									<p class="mt-10 text-justify textp" data-text="<?php echo substr($s_book['desc'],0,200); ?> ..."><?php echo substr($s_book['desc'],0,200); ?> ...</p>
 								</a>
 							</div>
 						</div>
@@ -67,38 +66,47 @@
 									echo $s_book['author_avatar']; } ?>" width="50" height="50" alt="<?php
 										echo $s_book['author_name']; ?>">
 									<div class="media-body mt-5">
-										<h5 class="card-title nametitle2"><a href="<?php echo site_url('profile/'.$s_book['author_id'].''); ?>"><?php
+										<h5 class="card-title nametitle2"><a href="<?php echo site_url('profile/'.$s_book['author_id'].''); ?>" class="author_name"><?php
 										echo $s_book['author_name']; ?></a></h5>
 										<p class="text-muted" style="margin-top:-10px;"><small><span>Jakarta, Indonesia</span>
 											<span class="ml-10"><?php echo $s_book['publish_date']; ?></span></small></p>
 										</div>
 									</div>
 								</div>
-								<a href="<?php echo site_url(); ?>book/<?php echo $s_book['book_id']; ?> - <?php echo url_title($s_book['title_book'], 'dash', true); ?>"> 
+								<a href="<?php echo site_url(); ?>book/<?php echo $s_book['book_id']; ?> - <?php echo url_title($s_book['title_book'], 'dash', true); ?>" class="segment"> 
 									<div class="row pl-10 pr-10">
 										<div class="media">
 												<img alt="<?php
-											echo $s_book['title_book']; ?>" src="<?php if($s_book['img_url'] == NULL){ echo "https://assets.dev-baboo.co.id/baboo-cover/default1.png"; }else{ echo $s_book['img_url']; } ?>" class="w-100 imgcover">
+											echo $s_book['title_book']; ?>" src="<?php if($s_book['cover_url'] == NULL){ echo "https://assets.dev-baboo.co.id/baboo-cover/default1.png"; }else{ echo $s_book['cover_url']; } ?>" class="w-100 imgcover cover_image">
 										</div>
-										<h5 class="pt-20 w-100" style="font-weight: 700;"><b><a href="<?php echo site_url(); ?>book/<?php echo $s_book['book_id']; ?>-<?php echo url_title($s_book['title_book'], 'dash', true); ?>"><?php
+										<h5 class="pt-20 w-100" style="font-weight: 700;"><b><a href="<?php echo site_url(); ?>book/<?php echo $s_book['book_id']; ?>-<?php echo url_title($s_book['title_book'], 'dash', true); ?>" class="dbooktitle "><?php
 										echo $s_book['title_book']; ?></a></b></h5>
 										<div class="w-100">
 											<span class="mr-8" style="font-size: 12px;"><?php echo $s_book['category']; ?> &#8226;</span>
 											<span class="text-muted" style="font-size: 11px;">Dibaca <?php echo $s_book['view_count']; ?> kali</span>
 											<a href="<?php echo site_url(); ?>book/<?php echo $s_book['book_id']; ?>-<?php echo url_title($s_book['title_book'], 'dash', true); ?>"> 
-												<p class="mt-10 text-justify"><?php echo substr($s_book['desc'],0,200); ?> ...</p>
+												<p class="mt-10 text-justify textp" data-text="<?php echo substr($s_book['desc'],0,200); ?> ..."><?php echo substr($s_book['desc'],0,200); ?> ...</p>
 											</a>
 										</div>
 									</div>
 								</a>
 							</div>
 							<div class="col-12 text-muted" style="font-size: 11px;">
-								<div class="pull-right"><span><b><?php echo $s_book['share_count']; ?></b> Bagikan</span></div>
-								<div><span class="mr-30"><b><?php echo $s_book['like_count']; ?></b> Suka</span><span><b><?php echo $s_book['comment_count']; ?></b> Komentar</span></div>
+								<div class="pull-right"><span><b class="share_countys"><?php echo $s_book['share_count']; ?></b> Bagikan</span></div>
+								<div><span class="mr-30"><b class="like_countys"><?php echo $s_book['like_count']; ?></b> Suka</span><span><b class="txtlike"><?php echo $s_book['comment_count']; ?></b> Komentar</span></div>
 							</div>
 							<div class="bg-white card-footer text-muted" style="font-size: 0.8em;font-weight: bold;">
 								<div class="pull-right">
-									<a href="#"><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg" width="23"></a>
+									<div class="dropdown">
+										<button class="share-btn dropbtn" type="button" id="dropShare" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+											<img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg" width="23">
+										</button>
+										<div class="dropdown-menu" aria-labelledby="dropShare">
+											<a class="dropdown-item share-fb" href="javascript:void(0);" data-share="<?php echo $s_book['book_id']; ?>"><img src="<?php echo base_url(); ?>public/img/assets/fb-icon.svg" width="20"> Facebook</a>
+											<!-- <a class="dropdown-item share-twit" href="javascript:void(0);" data-share="<?php echo $s_book['book_id']; ?>"><img src="<?php echo base_url(); ?>public/img/assets/twit_icon.svg" width="20"> Twitter</a> -->
+										</div>
+									</div>
+									<!-- <a href="#"><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg" width="23"></a> -->
 								</div>
 								<div>
 									<a data-id="<?php echo $s_book['book_id']; ?>" href="javascript:void(0);" id="loveboo<?php echo $s_book['book_id']; ?>" class="mr-30 fs-14px <?php if($s_book['is_like'] == false){ echo 'like'; }else{ echo 'unlike'; } ?>"><img src="<?php if($s_book['is_like'] == false){ echo base_url('public/img/assets/icon_love.svg'); }else{ echo base_url('public/img/assets/love_active.svg'); } ?>" class="mr-10 loveicon" width="27"></a>
