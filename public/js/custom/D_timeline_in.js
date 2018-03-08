@@ -34,7 +34,6 @@ $(document).ready(function() {
         }
       })
     },
-      // callback
       function(response) {
         if (response && !response.error_message) {
 
@@ -42,27 +41,27 @@ $(document).ready(function() {
           formData.append("book_id", $('#iaidubi').val());
 
           $.ajax({
-            url: base_url + 'shares',
-            type: 'POST',
-            dataType: 'JSON',
-            cache: false,
-            contentType: false,
-            processData: false,
-            data: formData,
+              url: base_url + 'shares',
+              type: 'POST',
+              dataType: 'JSON',
+              cache: false,
+              contentType: false,
+              processData: false,
+              data: formData,
               // beforeSend: function() {
               // }
             })
-          .done(function(data) {
+            .done(function(data) {
               // $('.loader').hide();
               // console.log("ke share");
               $('#sharecount').text(share);
             })
-          .fail(function() {
-            console.log("Failure");
-          })
-          .always(function() {
+            .fail(function() {
+              console.log("Failure");
+            })
+            .always(function() {
 
-          });
+            });
         } else {
           // console.log("Batal Share");
         }
@@ -75,8 +74,6 @@ $(document).ready(function() {
      page++;
    }
  });
-
-  function loadMoreData(page) {
     $.ajax({
       url: '?page=' + page,
       type: "get",
@@ -92,7 +89,6 @@ $(document).ready(function() {
       };
       $('.loader').hide();
       $("#post-data").append(data);
-      
     })
     .fail(function(jqXHR, ajaxOptions, thrownError) {
       console.log('server not responding...');
@@ -142,7 +138,7 @@ $(document).ready(function() {
       }else{
         cover = val.popular_cover_url;
       }
-      best_book += '<li class="list-group-item"> <div class="media"> <div class="media-left mr-10"> <a href="#"><img class="media-object" src="'+cover+'" width="60" height="80"></a> </div> <div class="media-body"> <div> <h4 class="media-heading bold mt-10"><a href="#">'+val.popular_book_title+'</a></h4> <p style="font-size: 10pt;">by <a href="#">'+val.popular_author_name+'</a></p> </div> </div> </div> </li>'; 
+      best_book += '<a><li class="list-group-item"> <div class="media"> <div class="media-left mr-10"> <a href="#"><img class="media-object" src="'+cover+'" width="60" height="80"></a> </div> <div class="media-body"> <div> <h4 class="media-heading bold mt-10"><a href="book/'+ val.popular_book_id+"-"+convertToSlug(val.popular_book_title) +'">'+val.popular_book_title+'</a></h4> <p style="font-size: 10pt;">by <a onclick="showProfile(); return false;" id="'+val.popular_author_id+'" href="'+base_url+'profile/'+val.popular_author_id+'-'+convertToSlug(val.popular_author_name)+'">'+val.popular_author_name+'</a></p> </div> </div> </div> </li>'; 
 
     });
     $("#best_book").html(best_book);
@@ -152,8 +148,9 @@ $(document).ready(function() {
   })
   .always(function() {
   });
-  
-
+  function showProfile() {
+    console.log('a');
+  }
   var window_width = $(window).width();
 
   if (window_width < 768) {

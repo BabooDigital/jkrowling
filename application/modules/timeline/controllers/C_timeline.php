@@ -89,6 +89,9 @@ class C_timeline extends MX_Controller {
 			$datas = $this->simple_cache->get_item('key');
 		}
 		if ($resval['code'] == 403){
+			$this->session->unset_userdata('userData');
+			$this->session->unset_userdata('authKey');
+			$this->session->sess_destroy();
 			redirect('login','refresh');
 		}else{
 			if ($this->agent->is_mobile())

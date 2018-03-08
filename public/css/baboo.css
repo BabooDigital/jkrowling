@@ -78,6 +78,16 @@ a:hover {
 	background-size: 18px;
 	background-position: 95% 50%;
 }
+.search-msg {
+	border-radius: 50px;
+	height: 35px;
+	font-size: 13px;
+	width: 100% !important;
+	color: #888 !important;
+	background: url("../img/search.png") no-repeat right;
+	background-size: 18px;
+	background-position: 95% 50%;
+}
 .form-search:focus {
 	outline: 0;
 }
@@ -422,6 +432,14 @@ input.formsearch:focus {
 	box-shadow: 0 1px 2px 0 rgba(227, 214, 255, 0.7);
 	border: solid 1px #7554bd;
 	text-align: center;
+}
+.create-msg {
+  width: 125px;
+  height: 25px;
+  float: right;
+  color: white;
+  border-radius: 12.5px;
+  background-color: #6246b0;
 }
 .btn-newstory {
 	outline: 0;
@@ -1557,6 +1575,71 @@ input.formsearch:focus {
 .dropdown a:hover {background-color: #ddd}
 
 .show {display:block;}
+
 #post-data {
 	font-family: 'Noto Serif', serif;
+}
+
+
+.darker {
+    border-color: #ccc;
+    background-color: #ddd;
+}
+
+
+.time-right {
+    float: right;
+    color: #aaa;
+}
+
+.time-left {
+    float: left;
+    color: #999;
+}
+.chatleft {
+	width: 100%;
+	margin-left: 10px;
+    border-radius: 25px; 
+}
+.chatright {
+	float: right;
+	width: 100%;
+	margin-right: 10px;
+    border-radius: 25px; 
+}
+.txtchatleft {
+	background: red;
+	width: 30%;
+	float: left;
+	padding: 10px;
+	border-radius: 25px;
+}
+.txtchatright {
+	background: blue;
+	width: 30%;
+	float: right;
+	padding: 10px;
+	border-radius: 25px;
+}
+.rowchat {
+	height: 500px;
+	overflow-y: scroll;
+	overflow-x: scroll;
+	overflow: scroll;
+}
+.form-msg {
+  outline: 0;
+  padding: 10px;
+  width: 93%;
+  
+  height: 40px;
+  border-radius: 29.5px;
+  background-color: #fcfbfc;
+  border: solid 0.7px #acacac;
+}
+.submit-msg {
+  width: 40px;
+  height: 40px;
+  background-color: #fcfbfc;
+  border: solid 0.7px #8c40d5;
 }

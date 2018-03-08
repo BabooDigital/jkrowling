@@ -10,7 +10,7 @@
 						echo $s_book['author_avatar']; } ?>" width="60" height="60" alt="<?php
 						echo $s_book['author_name']; ?>"></a>
 						<div class="media-body mt-5">
-							<a href="#"><h5 class="card-title nametitle2"><?php
+							<a href="<?php echo site_url('profile/'.$s_book['author_id'].'-'.url_title($s_book['author_name'])) ?>"><h5 class="card-title nametitle2"><?php
 							echo $s_book['author_name']; ?></h5></a>
 							<p><small><span>Jakarta, Indonesia</span>
 								<span class="ml-10"><?php echo $s_book['publish_date'] ?></span></small></p>

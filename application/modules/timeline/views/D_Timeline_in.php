@@ -22,38 +22,6 @@
 							</ul>
 						</div>
 					</div>
-					<!-- Penulis Minggu Ini -->
-
-					<!-- Trending -->
-					<div class="side-card mb-15">
-						<div class="card-header">
-							Trending
-						</div>
-						<div class="card-body p-0">
-							<ul class="list-group list-group-flush">
-								<li class="list-group-item">
-									<p><span class="bold"><a href="#">UI Interactions of the week</a></span>
-										<span class="bold"><a href="#">#94</a></span>
-										<span style="font-size: 10pt;">by <a href="#">Muzil</a></span></p>
-									</li>
-									<li class="list-group-item">
-										<p><span class="bold"><a href="#">UI Interactions of the week</a></span>
-											<span class="bold"><a href="#">#94</a></span>
-											<span style="font-size: 10pt;">by <a href="#">Muzil</a></span></p>
-										</li>
-										<li class="list-group-item">
-											<p><span class="bold"><a href="#">UI Interactions of the week</a></span>
-												<span class="bold"><a href="#">#94</a></span>
-												<span style="font-size: 10pt;">by <a href="#">Muzil</a></span></p>
-											</li>
-											<li class="list-group-item">
-												<p><span class="bold"><a href="#">UI Interactions of the week</a></span>
-													<span class="bold"><a href="#">#94</a></span>
-													<span style="font-size: 10pt;">by <a href="#">Muzil</a></span></p>
-												</li>
-											</ul>
-										</div>
-									</div>
 									<!-- Trending -->
 								</div>
 							</div>

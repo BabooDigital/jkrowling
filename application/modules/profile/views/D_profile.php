@@ -39,9 +39,15 @@
 								<p>( <?php echo $userdata['email']; ?> )</p>
 							</div>
 							<div class="mb-20">
-								<button class="btn-edprof p-5 fs-12px mr-10">Edit Profile</button> <button class="btn-edprof p-5 fs-12px">Pesan Masuk</button>
+								<?php if (!$this->uri->segment(2)): ?>
+									<button class="btn-edprof p-5 fs-12px mr-10">Edit Profile</button> <button class="btn-edprof p-5 fs-12px">Pesan Masuk</button>
+								<?php else: ?>
+									<button class="btn-edprof p-5 fs-12px mr-10">Follow</button>
+								<?php endif ?>
 							</div>
 							<hr>
+							<?php if (!$this->uri->segment(2)): ?>
+								
 							<div>
 								<button class="btn-details-balance">Topup</button> <span class="label_balance"><b>Balance</b></span><br>
 								<br>
@@ -75,11 +81,13 @@
 								<p><small>Buku Terjual</small></p>
 								<p style="font-size: 25px;color: #7a5abf;font-weight: 700;">Rp. 25.500.000</p>
 							</div>
+							<?php endif ?>
 						</div>
 					</div>
 				</div><!-- Trending -->
 			</div>
 		</div><!-- Mid Side -->
+		<?php if (!$this->uri->segment(2)): ?>
 		<div class="col-md-6" id="post-data">
 			<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
 			  <li class="nav-item mr-50">
@@ -103,6 +111,11 @@
 			</div>
 			</div>
 		</div><!-- Right Side -->
+		<?php else: ?>
+			<div class="col-md-6" id="post-data">
+				
+			</div><!-- Right Side -->
+		<?php endif ?>
 		<div class="col-md-3 tmlin">
 			<div class="">
 				<!-- Buku Populer -->

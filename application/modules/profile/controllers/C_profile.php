@@ -87,7 +87,84 @@ class C_profile extends MX_Controller {
 
 		}
 	}
+	public function otherProfile()
+	{
+		error_reporting(0);
+		$auth = $this->session->userdata('authKey');
+		$userdata = $this->session->userdata('userData');
 
+		$id_user = $this->uri->segment(2);
+		$idu = explode('-', $id_user, 2);
+		if (is_array($idu));
+
+		$sendData = array(
+			'user_id' => $userdata['user_id'], 
+			'user_profile' => $idu[0] 
+		);
+
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $this->API.'auth/OAuth/otherProfile');
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+		curl_setopt($ch, CURLOPT_POST, 1);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $sendData);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+		curl_setopt($ch, CURLOPT_HEADER, 1);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key : '.$auth));
+		$result = curl_exec($ch);
+
+
+		$headers=array();
+
+		$data=explode("\n",$result);
+
+
+		array_shift($data);
+		$middle = array();
+		$moddle = array();
+		foreach($data as $part){
+			$middle=explode(":",$part);
+			$moddle=explode("{",$part);
+
+			if (error_reporting() == 0) {
+				$headers[trim($middle[0])] = trim($middle[1]);
+			}
+		}
+		$getdata = end($data);
+		$resval =  json_decode($getdata, TRUE);
+
+		$psn = $resval['message'];
+		$userdetail = $resval['data'];
+		$auth = $headers['BABOO-AUTH-KEY'];
+		
+		$this->session->set_userdata('authKey', $auth);
+		$status = $resval['code'];
+		$data['userdata'] = $userdetail['user_info'];
+
+		$data['title'] = "Profile Page - Baboo";
+		$data['js'][] = "public/js/jquery.min.js";
+		$data['js'][] = "public/js/umd/popper.min.js";
+		$data['js'][] = "public/js/bootstrap.min.js";
+		$data['js'][] = "public/js/jquery.sticky-kit.min.js";
+		if ($this->agent->mobile()) {
+
+			$data['css'][] = "public/css/baboo-responsive.css";
+			$data['js'][] = "public/js/custom/mobile/r_profile_page.js";
+			$data['js'][] = "public/js/menupage.js";
+			
+			$this->load->view('include/head', $data);
+			$this->load->view('R_profile', $data);
+			
+		}else{
+			$data['js'][] = "public/js/custom/profile_page.js";
+
+			$this->load->view('include/head', $data);
+			$this->load->view('D_profile');
+			// $this->load->view('timeline/include/foot');
+
+		}
+		// print_r($data['userdata']);
+	}
 	public function getPublishBook() {
 		error_reporting(0);
 		$auth = $this->session->userdata('authKey');
