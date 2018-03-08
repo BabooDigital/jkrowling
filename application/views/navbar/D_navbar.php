@@ -77,7 +77,7 @@
 							</div>
 						</li>			
 						<li class="nav-item mt-5">
-							<a class="nav-link" href="#"><img src="<?php echo site_url(); ?>public/img/icon-tab/pesan.svg" width="25"><p class="fs-12px"><b>Pesan</b></p></a>
+							<a class="nav-link" href="<?php echo site_url('message') ?>"><img src="<?php echo site_url(); ?>public/img/icon-tab/pesan.svg" width="25"><p class="fs-12px"><b>Pesan</b></p></a>
 						</li>
 						<li class="nav-item ml-100 mr-30">
 							<form action="<?php echo site_url(); ?>createidbook" method="POST" class="mt-10">

@@ -87,6 +87,8 @@ $route['like'] = 'timeline/C_timeline/postLike';
 // Bookmark
 $route['sendbookmark'] = 'timeline/C_timeline/postBookmark';
 
+$route['activity'] = 'notification/C_notification/activity';
+
 // Explore
 $route['notification'] = 'notification/C_notification';
 $route['more'] = 'more/C_more';
@@ -144,7 +146,7 @@ $route['create_cover'] = 'cover/C_cover';
 $route['send_cover'] = 'cover/C_cover/sendCover';
 
 // Profile
-$route['profile/(:any)'] = 'profile/C_profile';
+$route['profile/(:any)'] = 'profile/C_profile/otherProfile';
 $route['profile'] = 'profile/C_profile';
 $route['firstedit'] = 'profile/C_edit_profile/firstEditProfile';
 $route['account/edit'] = 'profile/C_edit_profile';

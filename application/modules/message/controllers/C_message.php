@@ -27,6 +27,15 @@ class C_message extends MX_Controller
 //
 //		}
         $this->listMessage();
+		if ($this->agent->is_mobile()){
+
+			$this->load->view('include/head', $data);
+			$this->load->view('R_message', $data);
+		
+		}else{
+			$this->load->view('include/head', $data);
+			$this->load->view('D_message', $data);	
+		}
 	}
 	public function listMessage(){
         error_reporting(0);
