@@ -93,7 +93,6 @@ $(document).ready(function() {
     .fail(function(jqXHR, ajaxOptions, thrownError) {
       console.log('server not responding...');
     });
-  }
 
   $.ajax({
     url: base_url + 'writter',

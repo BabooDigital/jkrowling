@@ -20,22 +20,7 @@ class C_message extends MX_Controller
 
 		$data['js'][]   = "public/js/jquery.min.js";
 		$data['js'][]   = "public/js/menupage.js";
-//		if ($this->agent->is_mobile()){
-//
-//			$this->load->view('include/head', $data);
-//			$this->load->view('R_message', $data);
-//
-//		}
         $this->listMessage();
-		if ($this->agent->is_mobile()){
-
-			$this->load->view('include/head', $data);
-			$this->load->view('R_message', $data);
-		
-		}else{
-			$this->load->view('include/head', $data);
-			$this->load->view('D_message', $data);	
-		}
 	}
 	public function listMessage(){
         error_reporting(0);
@@ -45,10 +30,6 @@ class C_message extends MX_Controller
         $data_message = array(
             'user_id' => $user['user_id']
         );
-        // print_r($data_book);
-        // print_r($data_book);
-
-        // START GET CHAPTER
         $url = $this->API . '/listMessage/';
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -107,7 +88,8 @@ class C_message extends MX_Controller
                 $this->load->view('include/head', $datas);
                 $this->load->view('R_message', $data);
             } else {
-                    $this->load->view('D_message', $datas);
+                $this->load->view('include/head', $datas);
+                $this->load->view('D_message', $data);
             }
         }
     }
@@ -127,6 +109,7 @@ class C_message extends MX_Controller
                 'message' => $message
         );
 
+        // print_r($sendData);
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -180,7 +163,11 @@ class C_message extends MX_Controller
     public function detailMessage(){
         error_reporting(0);
         $auth = $this->session->userdata('authKey');
-        $params = $this->uri->segment(2);
+        if ($this->input->post()) {
+        	$params = $this->input->post('usr_msg');
+        }else{
+			$params = $this->uri->segment(2);
+        }
         $user_with = ($params && !empty($params))? $params : 0;
         $user = $this->session->userdata('userData');
         $data_message = array(
@@ -220,6 +207,37 @@ class C_message extends MX_Controller
         if(!empty($auth)) $this->session->set_userdata('authKey', $auth);
 
 
+        $auth = $this->session->userdata('authKey');
+        $user = $this->session->userdata('userData');
+
+        $data_message = array(
+            'user_id' => $user['user_id']
+        );
+        $url = $this->API . '/listMessage/';
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data_message);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+        curl_setopt($ch, CURLOPT_HEADER, 1);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key : ' . $auth));
+        $content = curl_exec($ch);
+        $headers = array();
+
+        $data = explode("\n", $content);
+        $headers['status'] = $data[0];
+
+        array_shift($data);
+
+        foreach ($data as $part) {
+            $middle = explode(":", $part);
+            $headers[trim($middle[0])] = trim($middle[1]);
+        }
+        $data['list_message'] = json_decode(end($data), true);
+
         if ($resval['code'] == 403) {
             $this->session->unset_userdata('userData');
             $this->session->unset_userdata('authKey');
@@ -232,6 +250,7 @@ class C_message extends MX_Controller
             $datas["resval"] = $resval;
             $datas['userWith'] = $lists["user_with"];
             $datas['listMessage'] = $lists["messages"];
+            $datas['listMessageDetail'] = $data["list_message"]["data"];
             $datas["user_iw"] = $user_with;
             $datas['css'][] = "public/css/bootstrap.min.css";
             $datas['css'][] = "public/css/custom-margin-padding.css";
@@ -249,7 +268,8 @@ class C_message extends MX_Controller
                 $this->load->view('include/head', $datas);
                 $this->load->view('data/R_Detail', $data);
             } else {
-                    $this->load->view('D_message', $datas);
+                $this->load->view('include/head', $datas);
+	            $this->load->view('D_message', $data);
             }
         }
     }

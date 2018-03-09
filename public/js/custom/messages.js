@@ -48,12 +48,6 @@ $(document).ready(function () {
         })
     });
 
-    var c = $(window).width();
-    768 > c ? $(".stickymenu").trigger("sticky_kit:detach") : $(".stickymenu").stick_in_parent();
-    $(window).resize(function () {
-        c = $(window).width();
-        768 > c ? $(".stickymenu").trigger("sticky_kit:detach") : $(".stickymenu").stick_in_parent()
-    });
     $(document).on("click", ".btncompar", function () {
         var a = $(this).parents(".textp").attr("data-text");
         $(".append_txt").text(a)
@@ -65,7 +59,9 @@ $(document).ready(function () {
             var boo = $(this);
             var usr_with = boo.attr("data-usr-msg");
             var b = base_url + "detail_message/" + usr_with;
-            if (null == usr_with || "" == usr_with) alert("user not found");
+            if (null == usr_with || "" == usr_with){
+                
+            }
             else {
                 $('#myModal2').modal('show').find('.modal-body').load(b);
                 var bahtml = "<button type='button' class='closes' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'><i class='fa fa-arrow-left'></i></span></button><h4><b>" + boo.attr("data-usr-name") + "</b></h4>";
@@ -76,7 +72,50 @@ $(document).ready(function () {
                 $.ajaxSetup({cache: false});
             }
         });
+    $(document).on('click', '.btn_list_msg', function(event) {
+        event.preventDefault();
+        var boo = $(this);
+        var usr_with = boo.attr("data-usr-msg");
+        var usr_name = boo.attr("data-usr-name");
+        var formdata = new FormData();
 
+        formdata.append("user_msg", usr_with);
+        var url = base_url+'message/'+convertToSlug(usr_name);
+        var form = $('<form action="' + url + '" method="post">' +
+          '<input type="hidden" name="usr_msg" value="' + usr_with + '" />' +
+          '<input type="hidden" name="usr_name" value="' + usr_name + '" />' +
+          '</form>');
+        $(boo).append(form);
+        form.submit();
+    });
+    $( "#submit_msg" ).submit(function(event) {
+      event.preventDefault();
+      var msg = $(".input_msg").val();
+      var usr_input = $(".input_usr").val();
+      $(".msg_view").append('<div class="text-right p-10 chatright"> <p class="txtchatright msg_view">'+msg+'</p> </div>');
+      $(".input_msg").val('');
+
+      var formdata = new FormData();
+      formdata.append('message', msg);
+      formdata.append('user_to', usr_input);
+      $.ajax({
+        url: base_url+'send_message',
+        cache: false,
+        type: "POST",
+        contentType: false,
+        processData: false,
+        data: formdata
+      })
+      .done(function() {
+          console.log("success");
+      })
+      .fail(function() {
+          console.log("error");
+      })
+      .always(function() {
+          console.log("complete");
+      });
+    });
 });
 
 function loadMessage() {

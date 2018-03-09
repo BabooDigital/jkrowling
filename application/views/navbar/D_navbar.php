@@ -2,7 +2,12 @@
 	<div class="container">
 		<a class="navbar-brand" href="<?php echo site_url(); ?>"><img alt="Baboo Main Logo" src="<?php echo base_url(); ?>public/img/logo_purple.png" width="100"></a>
 		<form class="form-inline my-2 my-lg-0">
-			<input aria-label="Search" class="search-form form-control" placeholder="Cari di baboo" type="search">
+			<input aria-label="Search" class="search-form form-control search_bbo" placeholder="Cari di baboo" type="search">
+			<div class="dropdown-menu search_result_bbo" style="margin-left: 18%;overflow: scroll;overflow-x: scroll;overflow-y: scroll;width: 20%;">
+			    <a class="dropdown-item" href="#">Action</a>
+			    <a class="dropdown-item" href="#">Another action</a>
+			    <a class="dropdown-item" href="#">Something else here</a>
+			</div>
 		</form>
 
 		<?php if ($this->session->userdata('isLogin') != 200) { ?>
@@ -77,7 +82,7 @@
 							</div>
 						</li>			
 						<li class="nav-item mt-5">
-							<a class="nav-link" href="<?php echo site_url('message') ?>"><img src="<?php echo site_url(); ?>public/img/icon-tab/pesan.svg" width="25"><p class="fs-12px"><b>Pesan</b></p></a>
+							<a class="nav-link" href="<?php echo site_url('message') ?>"><img src="<?php echo site_url(); ?>public/img/icon-tab/message.svg" width="25"><p class="fs-12px"><b>Pesan</b></p></a>
 						</li>
 						<li class="nav-item ml-100 mr-30">
 							<form action="<?php echo site_url(); ?>createidbook" method="POST" class="mt-10">

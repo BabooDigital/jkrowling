@@ -1597,6 +1597,7 @@ input.formsearch:focus {
     color: #999;
 }
 .chatleft {
+	float: left;
 	width: 100%;
 	margin-left: 10px;
     border-radius: 25px; 
@@ -1608,15 +1609,16 @@ input.formsearch:focus {
     border-radius: 25px; 
 }
 .txtchatleft {
-	background: red;
-	width: 30%;
+	background: #f1f0f0;
+	width: auto;
 	float: left;
 	padding: 10px;
 	border-radius: 25px;
 }
 .txtchatright {
-	background: blue;
-	width: 30%;
+	background: #7159a5;
+	width: auto;
+	color: white;
 	float: right;
 	padding: 10px;
 	border-radius: 25px;
