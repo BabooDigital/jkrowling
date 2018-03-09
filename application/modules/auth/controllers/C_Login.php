@@ -94,24 +94,28 @@ class C_Login extends MX_Controller
                 $this->session->set_userdata('authKey', $auth);
                 $this->session->set_userdata('userData', $user);
                 if ($this->agent->is_mobile()) {
-                    redirect("firstlogin");
+                    if ($user['is_newuser'] != false) {
+                        redirect("firstlogin");
+                    }else {
+                        redirect('timeline');
+                    }
                 }else {
                     redirect('timeline');
                 }
-        }else
-        {
-            $status = $resval['code'];
+            }else
+            {
+                $status = $resval['code'];
 
-            $fbuser = '';
-            echo "<script type='text/javascript'>alert ('".$psn."');window.location.href = '".site_url('login')."';</script>";
+                $fbuser = '';
+                echo "<script type='text/javascript'>alert ('".$psn."');window.location.href = '".site_url('login')."';</script>";
+            }
+
+            echo json_encode(array(
+                'status' => $status,
+                'data' => $user,
+                'message' => $psn
+            ));
         }
-
-        echo json_encode(array(
-            'status' => $status,
-            'data' => $user,
-            'message' => $psn
-        ));
-    }
     }
 
     public function google_login()
@@ -166,8 +170,13 @@ class C_Login extends MX_Controller
             $this->session->set_userdata('isLogin', $status);
             $this->session->set_userdata('authKey', $auth);
             $this->session->set_userdata('userData', $user);
+            
             if ($this->agent->is_mobile()) {
-                redirect("firstlogin");
+                if ($user['is_newuser'] != false) {
+                    redirect("firstlogin");
+                }else {
+                    redirect('timeline');
+                }
             }else {
                 redirect('timeline');
             }
@@ -253,10 +262,10 @@ class C_Login extends MX_Controller
             {
                 $status = $resval['code'];
                 $this->session->set_flashdata('login_alert', '<script>
-                      $(window).on("load", function(){
-                        swal("Gagal", "'.$psn.'", "error");
-                      });
-                    </script>');
+                  $(window).on("load", function(){
+                    swal("Gagal", "'.$psn.'", "error");
+                });
+                </script>');
                 redirect('login','refresh');
             }
 
@@ -337,10 +346,10 @@ class C_Login extends MX_Controller
         {
             $status = $resval['code'];
             $this->session->set_flashdata('login_alert', '<script>
-                  $(window).on("load", function(){
-                    swal("Gagal", "'.$psn.'", "error");
-                  });
-                </script>');
+              $(window).on("load", function(){
+                swal("Gagal", "'.$psn.'", "error");
+            });
+            </script>');
             redirect('login','refresh');
         }
 
