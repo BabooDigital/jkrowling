@@ -64,7 +64,7 @@
 							</div>
 						</div>
 						<?php } }else {
-							echo "Kosong";
+							echo "<div class='container first_login mt-30' style='height:100vh;'> <div class='row'> <div class='mx-auto' style='width: 85%;'> <div class='text-center mb-10'> <img src='".base_url('public/img/icon_draft_blank.png')."' width='190'> </div> <div class='text-center'> <h4><b>Belum ada draft buku yang kamu tulis</b></h4><a href='".site_url('create_mybook')."' class='btn btn-navdaftar' style='border: 1px #7554bd solid;border-radius: 40px;padding: 8px 20px;color: #7554bd;'><span>Atur Sekarang</span></a> </div> </div> </div> </div> ";
 						} ?>
 					</div>
 				</div>

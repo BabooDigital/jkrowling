@@ -65,11 +65,18 @@ class C_book_out extends MX_Controller {
 		$book['detailBook'] = $resval['data'];
 		$book['title'] = $resval['data']['book_info']['title_book'];
 		$book['cover'] = $resval['data']['book_info']['cover_url'];
+		$book['category'] = $resval['data']['category']['category_name'];
+		$book['view'] = $resval['data']['book_info']['view_count'];
 		$book['desc'] = $resval['data']['chapter']['paragraphs'];
 		$book['bid'] = $resval['data']['book_info']['book_id'];
+		$book['aid'] = $resval['data']['author']['author_id'];
 		$book['author'] = $resval['data']['author']['author_name'];
 		$book['avatar'] = $resval['data']['author']['avatar'];
-
-		$this->load->view('D_book_out', $book);
+		$book['ch_title'] = $resval['data']['chapter']['chapter_title'];
+		if ($this->agent->mobile()) {
+			$this->load->view('R_book_out', $book);
+		}else {
+			$this->load->view('D_book_out', $book);
+		}
 	}
 }

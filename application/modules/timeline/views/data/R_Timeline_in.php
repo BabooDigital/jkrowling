@@ -103,10 +103,8 @@
 										</button>
 										<div class="dropdown-menu" aria-labelledby="dropShare">
 											<a class="dropdown-item share-fb" href="javascript:void(0);" data-share="<?php echo $s_book['book_id']; ?>"><img src="<?php echo base_url(); ?>public/img/assets/fb-icon.svg" width="20"> Facebook</a>
-											<!-- <a class="dropdown-item share-twit" href="javascript:void(0);" data-share="<?php echo $s_book['book_id']; ?>"><img src="<?php echo base_url(); ?>public/img/assets/twit_icon.svg" width="20"> Twitter</a> -->
 										</div>
 									</div>
-									<!-- <a href="#"><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg" width="23"></a> -->
 								</div>
 								<div>
 									<a data-id="<?php echo $s_book['book_id']; ?>" href="javascript:void(0);" id="loveboo<?php echo $s_book['book_id']; ?>" class="mr-30 fs-14px <?php if($s_book['is_like'] == false){ echo 'like'; }else{ echo 'unlike'; } ?>"><img src="<?php if($s_book['is_like'] == false){ echo base_url('public/img/assets/icon_love.svg'); }else{ echo base_url('public/img/assets/love_active.svg'); } ?>" class="mr-10 loveicon" width="27"></a>

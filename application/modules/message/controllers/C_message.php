@@ -94,7 +94,7 @@ class C_message extends MX_Controller
             $datas['css'][] = "public/css/bootstrap.min.css";
             $datas['css'][] = "public/css/custom-margin-padding.css";
             $datas['css'][] = "public/css/font-awesome.min.css";
-            $datas['css'][] = "public/css/baboo.css";
+            // $datas['css'][] = "public/css/baboo.css";
             $datas['css'][] = "public/plugins/holdOn/css/HoldOn.css";
 
             $datas['js'][] = "public/js/jquery.min.js";
@@ -114,6 +114,7 @@ class C_message extends MX_Controller
 
     public function send_message()
     {
+		$data['js'][]   = "public/js/menupage.js";
         error_reporting(0);
         $url = $this->API . '/message';
         $auth = $this->session->userdata('authKey');
@@ -236,7 +237,7 @@ class C_message extends MX_Controller
             $datas['css'][] = "public/css/bootstrap.min.css";
             $datas['css'][] = "public/css/custom-margin-padding.css";
             $datas['css'][] = "public/css/font-awesome.min.css";
-            $datas['css'][] = "public/css/baboo.css";
+            // $datas['css'][] = "public/css/baboo.css";
             $datas['css'][] = "public/plugins/holdOn/css/HoldOn.css";
 
             $datas['js'][] = "public/js/jquery.min.js";

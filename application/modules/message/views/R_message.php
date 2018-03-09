@@ -232,14 +232,23 @@
 	height: 26px;
 }
 </style>
-<body id="pageContent" class="bodymessage">
+<body id="pageContent">
+	<div class="bodymessage">
+			<div class="lds-css ng-scope" style="display: none;">
+			<div class="lds-eclipse" style="width:100%;height:100%">
+				<img class="img-loading" src="<?php echo base_url('public/img/splash_.png'); ?>" width="90">
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+			</div>
+		</div>
 	<input type="checkbox" id="toggle-right">
 	<div class="page-wrap">
 		<nav class="navbar navbar-expand-lg fixed-top" style="height:50px;">
 			<div class="container bodymessage">
-				<a href="javascript:history.back();">
-					<i class="fa fa-arrow-left"></i> &nbsp;
-				</a>
+				<a class="menu-page <?php if ($this->uri->segment('1') == 'timeline') { echo 'boo-menu-active'; }else { echo 'boo-menu'; } ?>" href="<?php echo site_url('timeline'); ?>" id="tab_page" dat-title="Timeline"><i class="fa fa-arrow-left fa-2x"></i></a>
 
 			</div>
 		</nav>
@@ -288,6 +297,7 @@
 				</div>
 				<?php } ?>
 				<?php } ?>
+			</div>
 			</div>
 			<div class="modal right fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
 				<div class="modal-dialog" role="document">

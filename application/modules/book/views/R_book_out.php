@@ -1,0 +1,150 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<meta charset="utf-8">
+	<meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+
+	<?php 
+	foreach ($desc as $meta) {
+		$txt  = strip_tags($meta['paragraph_text']);
+		if ($counts == 0) { $view_counts = '+'; }else{ $view_counts = $counts;}
+		$datas .= substr($txt, 0, 150);
+	}
+	echo "<meta name='description'  content='".$datas."' />";
+	?>
+	<meta name="Keywords" content="baboo">
+
+	<!-- Facebook -->
+	<?php $u1= $this->uri->segment(2); echo "<meta property='og:url'                content='".base_url('book/'.$u1.'/preview')."' />"; ?>
+	<meta property="og:type"               content="website" />
+	<meta property="og:title"              content="<?php echo $title; ?> | Baboo - Beyond Book &amp; Creativity" />
+	<?php 
+	foreach ($desc as $meta) {
+		$txt  = strip_tags($meta['paragraph_text']);
+		if ($counts == 0) { $view_counts = '+'; }else{ $view_counts = $counts;}
+		$datas .= substr($txt, 0, 150);
+	}
+	echo "<meta property='og:description'			content='".$datas."' />";
+	?>
+	
+	<meta property="og:image"              content="<?php echo $cover; ?>" />
+
+	<title><?php echo $title; ?> | Baboo - Beyond Book &amp; Creativity</title>
+
+	<!-- CSS -->
+	<link href="<?php echo base_url('') ?>public/css/bootstrap.min.css" rel="stylesheet">
+	<link href="<?php echo base_url('') ?>public/css/baboo-responsive.css" rel="stylesheet" type="text/css">
+	<link href="<?php echo base_url('') ?>public/css/custom-margin-padding.css" rel="stylesheet" type="text/css">
+	<link href="<?php echo base_url('') ?>public/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<style type="text/css">
+	.bgboo {
+		background: #f3f5f7;
+	}
+	.title_out {
+		font-weight: 900;
+	}
+	.desc_outs {
+		font-weight: 600;
+	}
+	.pcat {
+		font-size: 10pt;
+	}
+	.btnlogin {
+		color: #fff;
+		background: #7554bd;
+		padding: 10px 90px;
+		border-radius: 35px;
+		box-shadow: 0px 2px 3px #818181;
+	}
+	a {
+		color: #333;
+	}
+	.btnlogin a:hover {
+		color: #fff;
+	}
+</style>
+<script type="text/javascript">
+	var base_url = "<?php echo base_url('') ?>";
+</script>
+</head>
+<body class="bgboo">
+	<div class="wrapper">
+		<nav class="navbar navbar-expand-lg fixed-top mb-20 bgboo">
+			<div class="container">
+				<form class="navbar-brande">
+					<button type="button" class="clear-btn" onclick="history.go(-1)"><i class="fa fa-arrow-left"></i> &nbsp; </button>
+
+				</form>
+				<label class="btn-transparant">&nbsp;&nbsp;&nbsp;&nbsp;<img src="<?php echo base_url('') ?>/public/img/icon-tab/more_icon.svg"></label> 
+			</div>
+		</nav>
+
+		<div class="container mt-60">
+			<div class="row">
+				<div class="col-12">
+					<div class="text-center">
+						<h2 class="title_out"><?php echo $title; ?></h2>
+						<p class="text-muted pcat"><b><?php echo $category; ?></b> &#8226; Dibaca <?php echo $view; ?> kali</p>
+					</div>
+				</div>
+			</div>
+			<div class="row mt-20">
+				<div class="col-12">
+					<div class="media mb-20">
+						<img class="d-flex align-self-start mr-20 rounded-circle" src="<?php if($avatar == NULL){ echo base_url('public/img/profile/blank-photo.jpg'); }else{ echo $avatar; } ?>" width="40" height="40" alt="<?php echo $detail_book['data']['author']['author_name']; ?>">
+						<div class="media-body">
+							<span class="nametitle2 title_out" style="display: -webkit-inline-box;"><a href="#" class="author_name"><?php echo $author; ?></a></span>
+							<a href="#" data-follow="<?php echo $aid; ?>" class="btn-topup follow-u float-right mt-5"
+								><span class="nametitle2 txtfollow pcat">Follow</span>
+							</a>
+							<p style="margin-top: -5px;"><span class="text-muted"><small>Jakarta, Indonesia</small></span>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-12">
+					<div class="text-center">
+						<h2 class="title_out"><?php echo $ch_title; ?></h2>
+						<!-- <p class="text-muted pcat">Chapter</p> -->
+					</div>
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-12">
+					<?php 
+					foreach ($desc as $book) {
+						$text = strip_tags($book['paragraph_text']);
+						$data .= "<div id='detailStyle' class='text-justify'>".$book['paragraph_text']."</div>";
+					}
+					echo $data;
+					?>
+				</div>
+			</div>
+			<hr>
+			<div class="row mb-20">
+				<div class="col-12">
+					<div class="text-center">
+						<span class="desc_outs">Silakan masuk untuk melanjutkan membaca</span>
+					</div>
+				</div>
+			</div>
+			<div class="row mb-50">
+				<div class="col-12">
+					<div class="text-center">
+						<a href="<?php echo site_url(); ?>login?b=<?php echo $bid; ?>" class="btnlogin">Masuk</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="<?php echo base_url('') ?>public/js/jquery.min.js" type="text/javascript"></script>
+	<script src="<?php echo base_url('') ?>public/js/umd/popper.min.js" type="text/javascript"></script>
+	<script src="<?php echo base_url('') ?>public/js/bootstrap.min.js" type="text/javascript"></script>
+</body>
+</html>
