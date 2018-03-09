@@ -28,8 +28,8 @@ $(document).ready(function () {
             message = ab.siblings("#pmessageas").val(),
             fullname = $("#paltui").attr("data-pname"),
             prof_pict = $("#paltui").attr("data-pimage");
-        c = "<div class='card-library mb-15' style='height: auto;'> <div class='list-group'> <div class='row mb-10' style='padding: 0px 10px 0px 10px;'> <div class='media'> <img class='d-flex align-self-start mr-20 rounded-circle' src=" + prof_pict + " width='48' alt='Generic placeholder image'> <div class='media-body mt-5'> <h5 class='card-title nametitle2'>" + fullname + "</h5> <p class='text-muted' style='margin-top:-10px;'> <small> <span>" + message + "</span> <span class='ml-10'>Just Now</span></small> </p></div></div></div></div></div>";
-        $("#message_container").append(c);
+        c = "<li class='self'> <div class='avatar'><img class='d-flex align-self-start mr-20 rounded-circle'src='" + prof_pict + "' width='48' height='48' alt='" + fullname + "' draggable='false'></div> <div class='msg msg-self'> <p>" + message + "</p> <span class='pull-right text-muted'>Just Now</span></small> </div> </li>";
+        $(".chat").append(c);
         b.append("user_to", $("#iuswithid").val());
         b.append("message", ab.siblings("#pmessageas").val());
         $.ajax({
@@ -138,120 +138,6 @@ function loadMessage() {
         console.log("error")
     }).always(function () {
     })
-}
-
-function progressScroll() {
-    var d = function () {
-        return $(document).height() - $(window).height()
-    };
-    if ("max" in document.getElementById("progress")) {
-        var c = $("progress");
-        c.attr({
-            max: d()
-        });
-        $(document).on("scroll", function () {
-            c.attr({
-                value: $(window).scrollTop()
-            })
-        });
-        $(window).resize(function () {
-            c.attr({
-                max: d(),
-                value: $(window).scrollTop()
-            })
-        })
-    } else {
-        c = $(".progress-bar");
-        var e = d(),
-            a, b, g = function () {
-                a = $(window).scrollTop();
-                b = a / e * 100;
-                return b += "%"
-            },
-            f = function () {
-                c.css({
-                    width: g()
-                })
-            };
-        $(document).on("scroll", f);
-        $(window).on("resize",
-            function () {
-                e = d();
-                f()
-            })
-    }
-}
-
-function showLoading() {
-    HoldOn.open({
-        theme: "sk-cube-grid",
-        message: "Tunggu Sebentar ",
-        backgroundColor: "white",
-        textColor: "#7554bd"
-    })
-}
-
-function strip_tags(d) {
-    d = d.toString();
-    return d.replace(/<\/?[^>]+>/gi, "")
-}
-
-function getContent(d, c) {
-    $.ajax({
-        url: d,
-        type: "GET",
-        cache: !1,
-        dataType: "json",
-        success: function (d) {
-            HoldOn.close();
-            var a = "";
-            a = 0 == c ? a + "<small>Page</small> <strong>Description</strong>" : a + ("<small>Page</small> <strong>" + c + "</strong>");
-            $("#id_page").html(a);
-            var b = "";
-            $(".loader").hide();
-            $(".chapter").html(d.chapter.chapter_title);
-            $.each(d.chapter.paragraphs, function (a, c) {
-                var d = strip_tags(c.paragraph_text),
-                    e = c.comment_count;
-                b += "<div class='mb-20 textp' data-id-p='" + c.paragraph_id + "' data-text='" + d + "'>" + c.paragraph_text +
-                    "<button type='button' data-p-id='" + c.paragraph_id + "' data-toggle='modal' id='comm_p' data-target='#myModal2' class='btncompar comment-marker on-inline-comments-modal' for='toggle-right'><span class='num-comment'>" + (0 == e ? "+" : e) + "</span><span  aria-hidden='true' style='font-size:28px;'><img src='" + base_url + "public/img/assets/icon_comment.svg'></span></button></div>"
-            });
-            $("#parentparaph").html(b)
-        }
-    })
-}
-
-function getCommentBook() {
-    $.ajax({
-        url: base_url + "getcommentbook",
-        type: "POST",
-        dataType: "json",
-        data: {
-            book_id: segment
-        },
-        beforeSend: function () {
-            $(".loader").show()
-        }
-    }).done(function (d) {
-        var c = "";
-        $.each(d, function (d, a) {
-            var b;
-            console.log(a.comment_user_avatar);
-            "" != a.comment_user_avatar ? b = a.comment_user_avatar : "" == a.comment_user_avatar && (b = base_url + "public/img/profile/blank-photo.jpg");
-            c += "<div class='commentview'><div class='media'> <img class='d-flex align-self-start mr-20 rounded-circle' width='50' height='50' src='" +
-                b + "'> <div class='media-body'> <h5 class='nametitle2 mb-5'>" + a.comment_user_name + "</h5> <small><span>Jakarta, Indonesia</span></small> </div> </div> <div class='mt-10'> <p class='fs-14px' id='" + a.comment_id + "'>" + a.comment_text + "</p> </div> <a href='#'><b>Balas</b></a> <hr></div>"
-        });
-        $(".loader").hide();
-        $("#bookcomment_list").html(c)
-    }).fail(function () {
-        console.log("error")
-    }).always(function () {
-    })
-}
-
-function ScrollToBottom(d) {
-    var c;
-    for (c = 0; c <= d; c++) window.scrollTo(0, document.querySelector("#post-data").scrollHeight)
 }
 
 function convertToSlug(d) {
