@@ -217,7 +217,7 @@ a:hover {
       z-index: 999;
       border: none;
     }
-    .floating-btn:hover{background: white}
+    .floating-btn:hover{background: none;}
 
     .terakhir_dilihat {
       padding: 10px;
@@ -355,7 +355,7 @@ a:hover {
       background: transparent;
       border: 0;
       width: 100%;
-      font-size: 25pt;
+      font-size: 17pt;
       font-weight: bold;
       text-align: center;
       outline: 0;
@@ -514,7 +514,7 @@ a:hover {
                   }
 
                   .bodymessage {
-                    background: white;
+                    background: white !important;
                   }
                   .yourimage {
                     width: 100%;
@@ -995,8 +995,8 @@ a:hover {
                     border-radius: 2px;
                     padding: 16px;
                     position: fixed;
-                    z-index: 9999;
-                    left: 45%;
+                    z-index: 9999
+;                    left: 45%;
                     bottom: 100px;
                     font-size: 17px;
                   }
@@ -1076,4 +1076,13 @@ a:hover {
   left: 50%;
   top: 0;
   transform: translate(-50%);
+}
+.form-searchs {    
+  padding: 3px 15px 3px 12px;   
+  color: #848484;   
+  border: 2px solid rgba(210, 215, 218, 0.6);   
+  border-radius: 100px;   
+  background: url("../img/search.png") no-repeat right;   
+  background-size: 18px;    
+  background-position: 95% 50%;   
 }

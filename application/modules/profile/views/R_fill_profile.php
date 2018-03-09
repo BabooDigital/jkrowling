@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title><?php echo $title; ?></title>
 
 	<?php if (isset($css)): ?> <?php echo get_css($css) ?> <?php endif ?>

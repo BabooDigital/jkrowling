@@ -19,7 +19,6 @@ class C_search extends MX_Controller
         $data['title'] = "Pencarian - Baboo";
 
         $data['js'][]   = "public/js/jquery.min.js";
-        $data['js'][]   = "public/js/menupage.js";
 
         $datas['title'] = "Pencarian - Baboo";
         $datas['css'][] = "public/css/bootstrap.min.css";
@@ -33,6 +32,7 @@ class C_search extends MX_Controller
         $datas['js'][] = "public/js/bootstrap.min.js";
         $datas['js'][] = "public/plugins/holdOn/js/HoldOn.js";
         $datas['js'][] = "public/js/custom/search.js";
+        $datas['js'][]   = "public/js/menupage.js";
 
         if ($this->agent->mobile()) {
             $this->load->view('include/head', $datas);
@@ -173,6 +173,7 @@ class C_search extends MX_Controller
             $datas['js'][] = "public/js/bootstrap.min.js";
             $datas['js'][] = "public/plugins/holdOn/js/HoldOn.js";
             $datas['js'][] = "public/js/custom/messages.js";
+            $datas['js'][]   = "public/js/menupage.js";
 
             if ($this->agent->mobile()) {
                 $this->load->view('include/head', $datas);

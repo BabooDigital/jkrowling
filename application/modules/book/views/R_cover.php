@@ -41,7 +41,7 @@
 									</select>
 				</div>
 			</div>
-			<div class="float-left"><span><b>Jual Buku ?</b></span></div>
+			<!-- <div class="float-left"><span><b>Jual Buku ?</b></span></div>
 			<div class="float-right">
 				<label class="switch">
 					<input type="checkbox" id="is_free">
@@ -61,7 +61,7 @@
 			<br>
 			<div class="float-left"><span><b>Penjualan buku akan aktif jika tulisan anda sudah memenuhi kriteria yang di tentukan baboo </b></span>
 				<input type="button" style="background: transparent; color: #b448cc;border: 0;cursor: pointer;" onclick="window.location.href = '<?php echo site_url('create_cover'); ?>';" value="Details" />
-			</div>
+			</div> -->
 		</div>
 	</div>
 	<footer class="navbar navbar-expand-lg fixed-bottom baboonav" style="height:60px;">
