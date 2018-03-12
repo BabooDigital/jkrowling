@@ -54,6 +54,7 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['login'] = 'auth/C_Login';
+$route['booRegis'] = 'auth/C_Login/postregisteruser';
 $route['logout'] = 'timeline/C_timeline/signout';
 
 /*Timeline*/
@@ -171,3 +172,5 @@ $route['postselectcat'] = 'profile/C_edit_profile/firstSelectCategory';
 
 $route['first_follow'] = 'profile/C_edit_profile/firstFollowUser';
 
+// TERMS
+$route['tnc'] = 'terms/C_terms';

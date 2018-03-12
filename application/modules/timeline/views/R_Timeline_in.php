@@ -30,6 +30,15 @@
 			<div class="row">
 				<div class="col-12 mt-130" id="post-data">
 					<!-- Status -->
+					<?php if (!empty($home['event']['redirect']) || !empty($home['event']['image'])) { ?>
+					<div class="card mb-15 bg-transparent" style="box-shadow: none;">
+						<div class="card-body pt-5 pb-5 pr-10 pl-10">
+							<a href="<?php echo $home['event']['redirect']; ?>">
+								<img src="<?php echo $home['event']['image']; ?>" class="img-fluid">
+							</a>
+						</div>
+					</div>
+					<?php } else { } ?>
 					<?php 
 					$this->load->view('data/R_Timeline_in', $home);
 					if ($home == null || $home == [] || empty($home)) {

@@ -1,10 +1,10 @@
-	<?php if (!empty($home)) {
+	<?php if (!empty($home['timeline'])) {
 		$awds = 200;
-	foreach ($home as $s_book) { ?>
+	foreach ($home['timeline'] as $s_book) { ?>
 
 	<?php if ($s_book['image_url'] == "" || $s_book['image_url'] == null || $s_book['image_url'] == "Kosong"){ ?>
 	<div class="card mb-15">
-		<div class="card-body p-0 pl-20 pr-20 pt-20 pb-10">
+		<div class="card-body pl-20 pr-20 pt-20 pb-10">
 			<div class="row mb-10 pl-10 pr-10">
 				<div class="media">
 					<img class="d-flex align-self-start mr-20 rounded-circle" src="<?php if($s_book['author_avatar'] == NULL){
@@ -57,7 +57,7 @@
 			<?php }else{ ?>
 			<a href="<?php echo site_url(); ?>book/<?php echo $s_book['book_id']; ?>-<?php echo url_title($s_book['title_book'], 'dash', true); ?>">
 				<div class="card mb-15" style="padding: 0 00px;">
-					<div class="card-body p-0 pl-20 pr-20 pt-20 pb-10">
+					<div class="card-body pl-20 pr-20 pt-20 pb-10">
 						<div class="row mb-10 pl-10 pr-10">
 							<div class="media">
 								<img class="d-flex align-self-start mr-20 rounded-circle" src="<?php if($s_book['author_avatar'] == NULL){

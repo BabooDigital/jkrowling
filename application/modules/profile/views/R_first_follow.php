@@ -7,85 +7,80 @@
 	<?php if (isset($css)): ?> <?php echo get_css($css) ?> <?php endif ?>
 </head>
 <style type="text/css">
-	.btnfollow-f {
-	    background: #fff;
-	    border: none;
-	    border-radius: 50px;
-	    padding: 0% 20%;
-	    font-size: 30pt;
-	    color: #7554bd;
-	}
-	.body-foll {
-		background: #7db6d0;
-	    padding: 5% 0%;
-	    color: #fff !important;
-	    border-top-right-radius: 10px;
-	    border-bottom-right-radius: 10px;
-	}
-	.media-border {
-		box-shadow: 0px 0px 10px #bdbdbd;
-		border-radius: 10px;
-	}
+.btnfollow-f {
+	background: #fff;
+	border: none;
+	border-radius: 50px;
+	padding: 0% 10%;
+	font-size: 12pt;
+	color: #7554bd;
+}
+.body-foll {
+	background: #7db6d0;
+	padding: 6% 3% 0% 0%;
+	color: #fff !important;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+.media-border {
+	box-shadow: 0px 0px 10px #bdbdbd;
+	border-radius: 10px;
+}
 </style>
 <body class="bg-borr">
 	<div class="wrapper">
-		<nav class="navbar navbar-light bg-borr pl-40 pr-40 pt-30 pb-30">
-			<div class="container-fluid">
-				<div></div>
-					<a href="<?php echo site_url(); ?>timeline" style="color: #333;"> <span class="float-right" style="font-size: 30pt;">Lewati</span> </a>
-			</div>
+		<nav class="navbar navbar-light bg-borr">
+			<a href="<?php echo site_url(); ?>timeline" style="color: #333;"> <span class="float-right" style="font-size: 12pt;">Lewati</span> </a>
 		</nav>
-		<div class="container-fluid mb-200">
-		<input type="hidden" id="iaiduui" value="<?php $aw = $this->session->userdata('userData'); echo $aw['user_id']; ?>">
-			<div class="p-40">
-				<div class="row">
-					<div class="mb-100">
-						<h1 class="parent-title">Penulis yang sesuai dengan minatmu</h1>
-					</div>
+		<div class="container mt-20 mb-20">
+			<input type="hidden" id="iaiduui" value="<?php $aw = $this->session->userdata('userData'); echo $aw['user_id']; ?>">
+			<div class="row">
+				<div class="col-12 mb-20">
+					<h1 class="parent-title">Penulis yang sesuai dengan minatmu</h1>
 				</div>
+			</div>
+			<div class="mb-90">
 				<?php foreach ($userFollow as $ufoll) { ?>
-				<div class="row mb-50">
-					<div class="col-12">
-						<div class="media bg-white media-border">
-							<div class="media-first text-center p-30" style="width: 48%;">
-								<img src="<?php if($ufoll['prof_pict']	== null){ echo base_url('public/img/profile/blank-photo.jpg'); }else { echo $ufoll['prof_pict']; }  ?>" width="160" height="160" class="rounded-circle">
-								<p><h2><b><?php echo $ufoll['fullname'] ?></b></h2></p>
-								<p><h3>Jakarta, Indonesia</h3></p>
-							</div>
-							<div class="media-body body-foll">
-								<div class="row">
-									<div class="col-6 text-center">
-										<p style="display: inline-flex;"><img src="<?php echo base_url('') ?>public/img/icon-tab/book.svg" width="80"> <span style="font-size: 30pt;"><?php echo $ufoll['book_made'] ?></span></p>
-										<h2>Buku</h2>
-									</div>
-									<div class="col-6 text-center">
-										<p style="display: inline-flex;"><img src="<?php echo base_url('') ?>public/img/icon-tab/followers.svg" width="80"> <span style="font-size: 30pt;"><?php echo $ufoll['followers'] ?></span></p>
-										<h2>Pengikut</h2>
-									</div>
+			<div class="row mb-15">
+				<div class="col-12">
+					<div class="media bg-white media-border">
+						<div class="media-first text-center p-10" style="width: 48%;">
+							<img src="<?php if($ufoll['prof_pict']	== null){ echo base_url('public/img/profile/blank-photo.jpg'); }else { echo $ufoll['prof_pict']; }  ?>" width="50" height="50" class="rounded-circle mb-10">
+							<span style="display: block;font-weight: bold;"><?php echo $ufoll['fullname'] ?></span>
+							<span>Jakarta, Indonesia</span>
+						</div>
+						<div class="media-body body-foll">
+							<div class="row">
+								<div class="col-6 text-center">
+									<span style="display: inline-flex;"><img src="<?php echo base_url('') ?>public/img/icon-tab/book.svg" width="30"> <span style="font-size: 12pt;"><?php echo $ufoll['book_made'] ?></span></span>
+									<span>Buku</span>
 								</div>
-								<div class="row mt-50">
-									<div class="col-12 text-center">
-										<button class="btnfollow-f follow-u" user-d="<?php echo $ufoll['user_id'] ?>"><img src="<?php echo site_url(); ?>public/img/icon-tab/add_follow.svg" width="80"> <span class="txtfollow">Follow</span></button>
-									</div>
+								<div class="col-6 text-center">
+									<span style="display: inline-flex;"><img src="<?php echo base_url('') ?>public/img/icon-tab/followers.svg" width="30"> <span style="font-size: 12pt;"><?php echo $ufoll['followers'] ?></span></span>
+									<span>Pengikut</span>
+								</div>
+							</div>
+							<div class="row mt-10">
+								<div class="col-12 text-center mb-20">
+									<button class="btnfollow-f follow-u" user-d="<?php echo $ufoll['user_id'] ?>"><img src="<?php echo site_url(); ?>public/img/icon-tab/add_follow.svg" width="30"> <span class="txtfollow">Follow</span></button>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-				<?php } ?>
-
 			</div>
+			<?php } ?>
+			</div>
+
 		</div>
 
-		<nav class="navbar navbar-light bg-borr fixed-bottom p-70">
-			<div class="w-100">
+		<nav class="navbar navbar-light bg-borr fixed-bottom p-10">
 				<a href="<?php echo site_url(); ?>timeline" class="mx-auto btnupdate-prof">Lanjutkan</a>
-			</div>
 		</nav>
 	</div>
 
-<?php if (isset($js)): ?><?php echo get_js($js) ?><?php endif ?>
-<script type="text/javascript">
+	<?php if (isset($js)): ?><?php echo get_js($js) ?><?php endif ?>
+	<script type="text/javascript">
 		var base_url = "<?php echo base_url('') ?>";
 	</script>
 </body>
