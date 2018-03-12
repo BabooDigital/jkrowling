@@ -60,7 +60,7 @@ if (!empty($query['b'])) {
 											<p class="bisa">Sekarang kamu bisa nulis dan baca buku dengan smartphone kesayangan kamu</p>
 										</div>
 									</div>
-								  	<div class="" style="padding-top: 15px">
+									<div class="" style="padding-top: 15px">
 										<img src="<?php echo base_url('public/img/slide/child.png') ?>" width="auto" height="350">
 										<div class="" style="padding: 5% 0;color:black;">
 											<p class="nulis">Nulis dan Baca Buku Jadi Lebih Asik</p>
@@ -196,117 +196,182 @@ if (!empty($query['b'])) {
 		</div>
 	</div>
 	<!-- End Modal Register -->
+	<!-- Modal Login -->
+	<div class="modal fade" id="event-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content" style="width: 105% !important;">
+				<div class="modal-body">
+					<div class="container">
 
-	<!-- Footer -->
-	<div class="container">
-		<ul style="position: absolute; bottom: 10px; left:20px;">
-			<li class="footer-link"><a href="<?php echo site_url(); ?>login" class="footer-link">Masuk</a></li>
-			<li class="footer-link m-l-20"><a data-toggle="modal" data-target="#register-modal" href="#" class="footer-link">Daftar</a></li>
-			<li class="footer-link m-l-20"><a href="https://www.baboo.id/about.html" target="_blank" class="footer-link">Tentang Baboo</a></li>
-			<li class="footer-link m-l-20"><a href="#" class="footer-link">Terms of Use</a></li>
-			<li class="footer-link m-l-20"><a href="https://www.baboo.id/kebijakan.html" target="_blank" class="footer-link">Privacy &amp; Policy</a></li>
-			<li class="footer-link m-l-20"><a href="#" class="footer-link">Baboo Carrier</a></li>
-		</ul>
+						<div class="col-lg-12 col-xl-12">
+							<img src="<?php echo base_url();?>public/img/logo_purple.png" style="height:50px; margin-top:36px;">
+						</div>
+
+						<div class="col-lg-12 col-xl-12">
+
+							<p class="text-img-modal">Selamat datang di Baboo</p>
+
+							<form id="form-login" action="<?php echo site_url(); ?>auth/C_Login/postloginuser" method="POST">
+								<div class="row">
+									<div class="col-lg-12">
+										<p class="right-text">Lanjutkan dengan</p>
+									</div>
+
+									<div class="col-lg-6 col-md-12 col-xl-6">
+										<button class="btn btn-block btn-sosmed" id="login_fb">
+											<img src="<?php echo base_url();?>public/img/assets/fb-icon.svg" class="btn-img-sosmed"> <span class="btn-text-sosmed">Facebook</span>
+										</button>
+									</div>
+
+									<div class="col-lg-6 col-md-12 col-xl-6">
+										<button class="btn btn-block btn-sosmed" id="login_google">	
+											<img src="<?php echo base_url();?>public/img/assets/google-icon.svg" class="btn-img-sosmed"> <span class="btn-text-sosmed">Google</span>
+										</button>
+									</div>
+
+									<div class="col-lg-12" style="margin-top:55.1px;">
+										<p style="font-size:15px;">Atau login menggunakan email</p>
+									</div>
+
+									<div class="col-lg-12">
+										<form id="login-form" action="<?php echo site_url(); ?>auth/C_Login/postloginuser" method="POST">
+											<div class="form-group">
+												<input type="email" class="form-control login-input" id="yourEmail" name="emails" placeholder="Alamat Email">
+											</div>
+
+											<div class="form-group">
+												<input type="password" class="required password error  form-control login-input" id="yourPassword" name="passwords" placeholder="Password">
+											</div>
+											<p class="text-right text-daftar">Belum punya akun ? <a  data-toggle="modal" data-target="#register-modal" href="#" class="link-daftar">Daftar disini</a></p>
+											<div class="pull-right">
+												<button type="submit" name="submit" class="btn btn-primary pull-right btn-login"><i class="icon-arrow-right"></i></button>	
+											</form>
+										</div>
+
+									</div>
+								</div>
+							</div> 
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
-	<!-- End Footer -->
+</div>
+<!-- END Modal Login -->
+<!-- Footer -->
+<div class="container">
+	<ul style="position: absolute; bottom: 10px; left:20px;">
+		<li class="footer-link"><a href="<?php echo site_url(); ?>login" class="footer-link">Masuk</a></li>
+		<li class="footer-link m-l-20"><a data-toggle="modal" data-target="#register-modal" href="#" class="footer-link">Daftar</a></li>
+		<li class="footer-link m-l-20"><a href="https://www.baboo.id/about.html" target="_blank" class="footer-link">Tentang Baboo</a></li>
+		<li class="footer-link m-l-20"><a href="#" class="footer-link">Terms of Use</a></li>
+		<li class="footer-link m-l-20"><a href="https://www.baboo.id/kebijakan.html" target="_blank" class="footer-link">Privacy &amp; Policy</a></li>
+		<li class="footer-link m-l-20"><a href="#" class="footer-link">Baboo Carrier</a></li>
+	</ul>
+</div>
+<!-- End Footer -->
 
-	<!-- Javascript -->
-	<script type="text/javascript" src="<?php echo base_url();?>public/js/jquery.min.js"></script>
-	<script type="text/javascript" src="<?php echo base_url();?>public/js/tether.min.js"></script>
-	<script type="text/javascript" src="<?php echo base_url();?>public/js/umd/popper.min.js"></script>
-	<script type="text/javascript" src="<?php echo base_url();?>public/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="<?php echo base_url();?>public/js/moment.js"></script>
-	<script type="text/javascript" src="<?php echo base_url();?>public/js/combodate.js"></script>
-	<script src="<?php echo base_url();?>public/js/jquery.validate.js"></script>
-	<script src="<?php echo base_url();?>public/js/additional-methods.js"></script>
-	
-	<script src="<?php echo base_url('') ?>public/js/jquery.bxslider.min.js" type="text/javascript"></script>
-	<script src="<?php echo base_url('') ?>public/js/baboo.js" type="text/javascript"></script>
-	<script src="<?php echo base_url('') ?>public/js/jquery.sticky-kit.min.js" type="text/javascript"></script>
-	<script src="<?php echo base_url('') ?>public/js/custom/D_timeline_out.js" type="text/javascript"></script>
+<!-- Javascript -->
+<script type="text/javascript" src="<?php echo base_url();?>public/js/jquery.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>public/js/tether.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>public/js/umd/popper.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>public/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>public/js/moment.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>public/js/combodate.js"></script>
+<script src="<?php echo base_url();?>public/js/jquery.validate.js"></script>
+<script src="<?php echo base_url();?>public/js/additional-methods.js"></script>
+
+<script src="<?php echo base_url('') ?>public/js/jquery.bxslider.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url('') ?>public/js/baboo.js" type="text/javascript"></script>
+<script src="<?php echo base_url('') ?>public/js/jquery.sticky-kit.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url('') ?>public/js/custom/D_timeline_out.js" type="text/javascript"></script>
 
 
-	<script type="text/javascript">
-		var base_url = "<?php echo base_url() ?>";
-		$(function() {
-			$('#date').combodate('method');
-			firstItem: 'name'
-		});
-		$(document).ready(function() {
-			var getHashDaft = window.location.hash;
-			if (getHashDaft != "" && getHashDaft == "#btndaftar") {
-				$('#register-modal').modal('toggle');
+<script type="text/javascript">
+	var base_url = "<?php echo base_url() ?>";
+	$(function() {
+		$('#date').combodate('method');
+		firstItem: 'name'
+	});
+	$(document).ready(function() {
+		var getHashDaft = window.location.hash;
+		if (getHashDaft != "" && getHashDaft == "#btndaftar") {
+			$('#register-modal').modal('toggle');
+		}
+		if (getHashDaft != "" && getHashDaft == "#event") {
+			$('#event-modal').modal('toggle');
+		}
+		$("#login-form").validate({
+			rules: {
+				emails: {
+					required: true,
+					email: true
+				},
+				passwords: {
+					required: true,
+					minlength: 5
+				}
+			},
+			messages: {
+				emails: {
+					required: 'Email harus di isi'
+				},
+				passwords: {
+					required: 'Password harus di isi',
+					minlength: 'Password minimal 5 karakter'
+				}
 			}
-			$("#login-form").validate({
-				rules: {
-					emails: {
-						required: true,
-						email: true
-					},
-					passwords: {
-						required: true,
-						minlength: 5
-					}
-				},
-				messages: {
-					emails: {
-						required: 'Email harus di isi'
-					},
-					passwords: {
-						required: 'Password harus di isi',
-						minlength: 'Password minimal 5 karakter'
-					}
-				}
-			});
-			$("#form-register").validate({
-				ignore: [],
-				rules: {
-					name: {
-						required: true
-					},
-					email: {
-						required: true,
-						email: true
-					},
-					password: {
-						required: true,
-						minlength: 5
-					},
-					retype_password: {
-						equalTo: "#password"
-					},
-					tgl_lahir: {
-						required: true
-					}
-				},
-				messages: {
-					name: {
-						required: 'Nama lengkap harus di isi'
-					},
-					email: {
-						required: 'Email harus di isi',
-						email   : 'Email harus valid'
-					},
-					password: {
-						required: 'Password harus di isi',
-						minlength: 'Password minimal 5 karakter'
-					},
-					retype_password: {
-						equalTo: 'Retype Password Tidak sama',
-					},
-					tgl_lahir: {
-						required: 'Tanggal lahir harus di isi',
-					}
-				}
-			});
-			$("#login_fb").on("click", function() {
-				window.location.href = '<?php echo $authUrl; ?>';
-			});
-			$("#login_google").on("click", function() {
-				window.location.href = '<?php echo $authUrlG; ?>';
-			});
 		});
-	</script>
+		$("#form-register").validate({
+			ignore: [],
+			rules: {
+				name: {
+					required: true
+				},
+				email: {
+					required: true,
+					email: true
+				},
+				password: {
+					required: true,
+					minlength: 5
+				},
+				retype_password: {
+					equalTo: "#password"
+				},
+				tgl_lahir: {
+					required: true
+				}
+			},
+			messages: {
+				name: {
+					required: 'Nama lengkap harus di isi'
+				},
+				email: {
+					required: 'Email harus di isi',
+					email   : 'Email harus valid'
+				},
+				password: {
+					required: 'Password harus di isi',
+					minlength: 'Password minimal 5 karakter'
+				},
+				retype_password: {
+					equalTo: 'Retype Password Tidak sama',
+				},
+				tgl_lahir: {
+					required: 'Tanggal lahir harus di isi',
+				}
+			}
+		});
+		$("#login_fb").on("click", function() {
+			window.location.href = '<?php echo $authUrl; ?>';
+		});
+		$("#login_google").on("click", function() {
+			window.location.href = '<?php echo $authUrlG; ?>';
+		});
+	});
+</script>
 
 </body>
 </html>
