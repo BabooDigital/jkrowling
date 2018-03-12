@@ -58,6 +58,8 @@ $route['logout'] = 'timeline/C_timeline/signout';
 
 /*Timeline*/
 $route['home'] = 'timeline/C_home';
+$route['event'] = 'timeline/C_home';
+$route['event'] = 'event/C_Event';
 $route['home/:num'] = 'timeline/C_home';
 $route['timeline'] = 'timeline/C_timeline';
 $route['timeline/:any'] = 'timeline/C_timeline';
@@ -66,6 +68,7 @@ $route['message/:any'] = 'message/C_message/detailMessage';
 $route['detail_message/:num'] = 'message/C_message/detailMessage';
 $route['send_message'] = 'message/C_message/send_message';
 $route['search'] = 'search/C_search';
+$route['search/:any'] = 'search/C_search';
 $route['searching'] = 'search/C_search/search';
 $route['createidbook'] = 'timeline/C_timeline/createbook_id';
 

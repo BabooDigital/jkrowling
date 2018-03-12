@@ -82,4 +82,50 @@ function convertToSlug(Text) {
   .replace(/[^\w ]+/g, '')
   .replace(/ +/g, '-');
 }
+function convertSearch(Text) {
+  return Text
+  .toLowerCase()
+  .replace(/[^\w ]+/g, '')
+  .replace(/ +/g, '+');
+}
+    $(document).on('keyup', '.search_bbo', function(event) {
+        var search = $(this).val();
+        var formdata = new FormData();
+
+        formdata.append('search', search);
+        $.ajax({
+            url: base_url + "searching",
+            type: "POST",
+            dataType: "JSON",
+            cache: !1,
+            contentType: !1,
+            processData: !1,
+            data: formdata,
+        })
+        .done(function(data) {
+            if (search.length >=0) {
+                console.log(data['books']);
+                $(".search_result_bbo").addClass('show');
+                var list_book = '',
+                    list_user = '';
+                    list_all = '';
+                list_book += '<h6 class="dropdown-header">List Book</h6>';
+                $.each(data['books'], function(index, val) {
+                    list_book += '<a class="dropdown-item" href="'+base_url+'book/'+val.book_id+'-'+convertToSlug(val.title_book)+'">'+val.title_book+'</a>';
+                });
+                list_user += '<h6 class="dropdown-header">List User</h6>';
+                $.each(data['user'], function(index, val) {
+                    list_user += '<a class="dropdown-item" href="#">'+val.fullname+'</a>';
+                });
+                list_all += '<hr><a href="'+base_url+'search/'+convertSearch(search)+'">Lihat Semua</a>';
+                $(".search_result_bbo").html(list_book+list_user+list_all);
+            }
+        })
+        .fail(function() {
+            console.log("error");
+        })
+        .always(function() {
+            console.log("complete");
+        });
+    });
 });

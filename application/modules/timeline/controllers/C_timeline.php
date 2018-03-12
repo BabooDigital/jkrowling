@@ -83,6 +83,7 @@ class C_timeline extends MX_Controller {
 			$datas['js'][]   = "public/js/jquery.sticky-kit.min.js";
 			$datas['js'][] = "public/plugins/holdOn/js/HoldOn.js";
 			$datas['js'][]   = "public/js/custom/notification.js";
+			$datas['js'][]   = "public/js/custom/search.js";
 			$this->simple_cache->cache_item('key', $datas);
 		} else {
 			$datas = $this->simple_cache->get_item('key');
