@@ -15,20 +15,47 @@
 
 </head>
 <style>
-	#inputemail-error, #inputpass-error{
-		color: red;
-	}
+#inputemail-error, #inputpass-error{
+	color: red;
+}
+.subtitle { 
+	color: #000;font-size: 13pt;font-weight: 600;
+}
+.bg-greypale {
+	background: #f5f8fa;
+}
+.modal-content {
+	border :none;
+}
+.btntnc {
+	border: none;
+    border-radius: 35px;
+    padding: 10px 50px;
+    box-shadow: 0px 2px 5px 0px #999999;
+    font-weight: 600;
+}
+.btn-diss {
+    background: #dadada;
+    color: #333;
+}
+.btn-acc {
+    background: #7661ca;
+    color: #fff;
+}
+.mb-50 {
+	margin-bottom: 50px;
+}
 </style>
 <?php
-	error_reporting(0);
-	$actual_link = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-	$parts = parse_url($actual_link);
-	parse_str($parts['query'], $query);
-	if (!empty($query['b'])) {
-		$this->session->set_userdata('bookRef', $query['b']);
-	}else{	
-		
-	}
+error_reporting(0);
+$actual_link = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+$parts = parse_url($actual_link);
+parse_str($parts['query'], $query);
+if (!empty($query['b'])) {
+	$this->session->set_userdata('bookRef', $query['b']);
+}else{	
+
+}
 ?>
 <body>
 	<div class="container-fluid">
@@ -112,9 +139,9 @@
 							</div>
 							<div class="row">
 								<div class="col-lg-12 col-xl-12">
-									<form id="form-register" action="<?php echo site_url(); ?>auth/C_Login/postregisteruser" method="POST">
+									<form id="form-register">
 										<div class="form-group">
-											<input type="text" class="form-control login-input" placeholder="Nama Lengkap" name="name">
+											<input type="text" class="form-control login-input" placeholder="Nama Lengkap" name="name" id="yname">
 										</div>
 
 										<div class="form-group">
@@ -153,9 +180,6 @@
 												</div>
 											</div>
 										</div>
-										<center>
-											<p class="text-daftar" style="text-align:center;">Dengan mengklik tombol daftar, anda setuju pada <a  data-toggle="modal" data-target="#register-modal" href="#" class="link-daftar"><b>Terms of Service</b></a></p>
-										</center>
 										<button type="submit" class="btn btn-signup btn-block"><b>Daftar</b></button>
 									</div> 
 								</form>
@@ -167,6 +191,8 @@
 			</div>
 		</div>
 
+		<?php $this->load->view('include/modal_tnc'); ?>
+
 		<!-- Javascript -->
 		<script type="text/javascript" src="<?php echo base_url();?>public/js/jquery.min.js"></script>
 		<script type="text/javascript" src="<?php echo base_url();?>public/js/tether.min.js"></script>
@@ -177,81 +203,8 @@
 		<script type="text/javascript" src="<?php echo base_url();?>public/js/sweetalert2.all.min.js"></script>
 		<script src="<?php echo base_url();?>public/js/jquery.validate.js"></script>
 		<script src="<?php echo base_url();?>public/js/additional-methods.js"></script>	
-
-		<script type="text/javascript">
-			$(function() {
-				$('#date').combodate('method');
-			});
-			$("#login-form").validate({
-				rules: {
-					emails: {
-						required: true,
-						email: true
-					},
-					passwords: {
-						required: true,
-						minlength: 5
-					}
-				},
-				messages: {
-					emails: {
-						required: 'Email harus di isi'
-					},
-					passwords: {
-						required: 'Password harus di isi'
-					}
-				}
-			});
-			$("#form-register").validate({
-				ignore: [],
-				rules: {
-					name: {
-						required: true
-					},
-					email: {
-						required: true,
-						email: true
-					},
-					password: {
-						required: true,
-						minlength: 5
-					},
-					retype_password: {
-						equalTo: "#password"
-					},
-					tgl_lahir: {
-						required: true
-					}
-				},
-				messages: {
-					name: {
-						required: 'Nama lengkap harus di isi'
-					},
-					email: {
-						required: 'Email harus di isi',
-						email   : 'Email harus valid'
-					},
-					password: {
-						required: 'Password harus di isi',
-						minlength: 'Password minimal 5 karakter'
-					},
-					retype_password: {
-						equalTo: 'Retype Password Tidak sama',
-					},
-					tgl_lahir: {
-						required: 'Tanggal lahir harus di isi',
-					}
-				}
-			});
-			$(document).ready(function() {
-				$("#login_fb").on("click",function() {
-					window.location.href = '<?php echo $authUrl; ?>';
-				});
-				$("#login_google").on("click",function() {
-					window.location.href = '<?php echo $authUrlG; ?>';
-				});
-			});
-		</script>
+		<script src="<?php echo base_url();?>public/js/custom/auth.js"></script>
+		<script> var base_url = '<?php echo base_url(); ?>'</script>	
 		<?php echo $this->session->flashdata('login_alert');?>
 
 	</body>

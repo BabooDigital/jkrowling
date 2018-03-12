@@ -328,9 +328,10 @@ class C_Login extends MX_Controller
         $psn = $resval['message'];
         $user = $resval['data'];
         $auth = $headers['BABOO-AUTH-KEY'];
+        $status = $resval['code'];
         if (isset($resval['code']) && $resval['code'] == '200')
         {
-            $status = $resval['code'];
+            // $status = $resval['code'];
 
             $this->session->set_userdata('userData', $user);
             $this->session->set_userdata('authKey', $auth);
@@ -341,16 +342,6 @@ class C_Login extends MX_Controller
             }else{
                 redirect("timeline");
             }
-        }
-        else
-        {
-            $status = $resval['code'];
-            $this->session->set_flashdata('login_alert', '<script>
-              $(window).on("load", function(){
-                swal("Gagal", "'.$psn.'", "error");
-            });
-            </script>');
-            redirect('login','refresh');
         }
 
         echo json_encode(array(
