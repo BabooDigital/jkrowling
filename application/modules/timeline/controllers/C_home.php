@@ -186,16 +186,7 @@ class C_home extends MX_Controller {
 		$data['home'] = json_decode(end($data), true);
 		$data_best = $data['home']['data'];
 		$auth = $headers['BABOO-AUTH-KEY'];
-		if (isset($data['home']['code']) && $data['home']['code'] == '200')
-		{
-			$status = $data['home']['code'];
-			$this->session->set_userdata('authKey', $auth);
-		}
-		else
-		{
-			$status = $data['home']['code'];
-			$this->session->set_userdata('authKey', $auth);
-		}
+		$this->session->set_userdata('authKey', $auth);
 		// print_r(end($data));
 		if ($datas['home']['code'] == 403){
 			$this->session->unset_userdata('userData');

@@ -25,9 +25,9 @@ img {
 					<br>
 					<div class="float-left"><b>Peserta Lomba</b></div>
 					<div class="follow-right">
-						<a class="btn-follow" href="<?php echo ($this->session->userdata('userData') ? base_url().'timeline' : base_url().'login#event') ?>" id="btndaftar"><span class="navdaftar">Ikuti Event</span></a>
+						<a class="btn-follow" href="<?php echo ($this->session->userdata('userData') ? base_url().'follow_event' : base_url().'login#event') ?>" id="btndaftar"><span class="navdaftar">Ikuti Event</span></a>
 					</div>
-					<br><br>
+					<br><br><br>
 					<div align="left">
 						<div class="row participant_event">
 							

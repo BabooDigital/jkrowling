@@ -332,13 +332,12 @@ class C_Login extends MX_Controller
                 $this->session->set_userdata('userData', $user);
                 $this->session->set_userdata('authKey', $auth);
                 $this->session->set_userdata('isLogin', $status);
-                $this->session->set_flashdata('is_follow_event', '200');
                 
                 $bsession = $this->session->userdata('bookRef');
                 if (!empty($bsession)) {
                     redirect('book/'.$bsession);
                 }else{
-                    redirect('timeline');
+                    redirect('follow_event');
                 }
             }
             else

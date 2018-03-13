@@ -25,14 +25,18 @@ class C_Event extends MX_Controller
     }
     public function getEvent()
     {
+
+        $auth = $this->session->userdata('authKey');
+        $userdata = $this->session->userdata('userData');
+
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $this->API.'event/Events/getEvent');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-        curl_setopt($ch, CURLOPT_POST, false);
+
+        curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
         curl_setopt($ch, CURLOPT_HEADER, 1);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key : '.$auth));
         
         $result = curl_exec($ch);
         $headers=array();
@@ -44,7 +48,13 @@ class C_Event extends MX_Controller
                 $headers[trim($middle[0])] = trim($middle[1]);
             }
         }
+        $this->session->set_userdata('authKey', $auth);
         $data = json_decode(end($datas), true);
         return $data;
+    }
+    public function followEvent()
+    {
+        $this->session->set_flashdata('is_follow_event', '200');
+        redirect('timeline');
     }
 }
