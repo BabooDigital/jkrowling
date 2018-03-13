@@ -172,7 +172,7 @@ Class Facebook
         // If we did not have a stored access token or if it has expired, try get a new access token
         if(!$access_token){
             try{
-                $access_token = $this->helper->getAccessToken();
+                $access_token = $this->helper->getAccessToken(base_url().$this->config->item('facebook_login_redirect_url'));
             }catch (FacebookSDKException $e){
                 $this->logError($e->getCode(), $e->getMessage());
                 return null;
