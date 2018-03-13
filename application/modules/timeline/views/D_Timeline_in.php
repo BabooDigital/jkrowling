@@ -68,3 +68,8 @@
 					<?php if (isset($js)): ?>
 						<?php echo get_js($js) ?>
 					<?php endif ?>
+					<?php if ($this->session->flashdata('is_follow_event')): ?>
+						<script type="text/javascript">
+							swal("Good job!", "Kamu Sukses Mengikuti Event!", "success");
+						</script>
+					<?php endif ?>

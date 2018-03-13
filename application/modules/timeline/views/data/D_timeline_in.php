@@ -1,5 +1,5 @@
-<?php if (!empty($home)) {
-	foreach ($home as $s_book) {  ?>
+<?php if (!empty($home['timeline'])) {
+	foreach ($home['timeline'] as $s_book) {  ?>
 	<div class="card mb-15" style="padding: 0 10px 10px;">
 		<div class="card-body p-0 p-20">
 			<div class="row mb-30 " style="padding-bottom:20px;border-bottom:solid 1px #DDD;">

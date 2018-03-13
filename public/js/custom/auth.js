@@ -51,7 +51,13 @@ $('.modal').on('shown.bs.modal', function (e) {
 $('.modal').on('hidden.bs.modal', function (e) {
 	modal_lv--
 });
-
+var getHashDaft = window.location.hash;
+if (getHashDaft != "" && getHashDaft == "#btndaftar") {
+	$('#register-modal').modal('toggle');
+}
+if (getHashDaft != "" && getHashDaft == "#event") {
+	$('#event-modal').modal('toggle');
+}
 $(function() {
 	$('#date').combodate('method');
 });
