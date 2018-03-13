@@ -3,7 +3,7 @@ $(document).ready(function() {
 });
 function getBestBook() {
 	$.ajax({
-	    url: base_url+'bestBook',
+	    url: base_url+'bestBookHome',
 	    type: 'GET',
 	    dataType: 'json',
 	  })

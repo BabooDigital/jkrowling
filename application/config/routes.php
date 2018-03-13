@@ -59,7 +59,7 @@ $route['logout'] = 'timeline/C_timeline/signout';
 
 /*Timeline*/
 $route['home'] = 'timeline/C_home';
-$route['event'] = 'timeline/C_home';
+// $route['event'] = 'timeline/C_home';
 $route['event'] = 'event/C_Event';
 $route['home/:num'] = 'timeline/C_home';
 $route['timeline'] = 'timeline/C_timeline';
@@ -79,6 +79,7 @@ $route['deldraft'] = 'book/C_book/deleteDraftBook';
 
 $route['writter'] = 'timeline/C_timeline/getWritter';
 $route['bestBook'] = 'timeline/C_timeline/getBestBook';
+$route['bestBookHome'] = 'timeline/C_home/getBestBook';
 $route['writters'] = 'timeline/C_home/getWritter';
 $route['slide'] = 'timeline/C_home/getSlide';
 
