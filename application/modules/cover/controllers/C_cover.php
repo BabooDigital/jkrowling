@@ -18,7 +18,7 @@ class C_cover extends MX_Controller {
 
 	public function index()
 	{
-		$data['judul'] = "Buat Sebuah Cover Untuk Buku Mu - Baboo";
+		$data['title'] = "Buat Sebuah Cover Untuk Buku Mu - Baboo";
 
 		$data['css'][] = "public/css/bootstrap.min.css";
 		$data['css'][] = "public/css/custom-margin-padding.css";

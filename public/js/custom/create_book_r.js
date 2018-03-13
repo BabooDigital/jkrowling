@@ -11,12 +11,14 @@ $(function(){
   publishChapter();
   publishBook();
   getCategory();
+  uploadCoverMr();
 });
 function publishBook() {
     $("#publish_book").click(function() {
       var formData = new FormData();
       formData.append("book_id", $("#uri").val());
-      formData.append("file_cover", $("#cover_name").val());
+      // formData.append("file_cover", $("#cover_name").val());
+      formData.append("file_cover", $('input[type=file]')[0].files[0]);
       formData.append("category", $("#category_ids").val());
 
       $.ajax({
@@ -29,15 +31,43 @@ function publishBook() {
         "data":formData,
       })
       .done(function(data) {
-        if (data.code == 200) {
-          window.location = base_url+'timeline';
-        }
+        console.log(data);
+        // if (data.code == 200) {
+        //   window.location = base_url+'timeline';
+        // }
       })
       .fail(function() {
         console.log("error");
-      });
+      })
+      .always(function() {
+  for (var pair of formData.entries()) {
+    console.log(pair[0]+ ', ' + pair[1]); 
+}
+});
     });
 }
+
+function uploadCoverMr() {
+  $("#file_cover").change(function() {
+        var a = new FormData;
+        a.append("file_cover", $("#file_cover")[0].files[0]);
+        a.append("book_id", $("#uri").val());
+        $.ajax({
+            url: base_url + "post_cover",
+            type: "POST",
+            dataType: "JSON",
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: a
+        }).done(function(data) {
+            console.log(data);
+        }).fail(function() {
+            console.log("error");
+        }).always(function() {})
+    });
+}
+
 function publishChapter() {
     $("#publish_chapter").click(function() {
       var title = $("#chapter_title_out").val();
@@ -116,7 +146,7 @@ function tampilkanPreview(gambar, idpreview) {
     var imageType = /image.*/;
     var preview = document.getElementById(idpreview);
     var reader = new FileReader();
-      console.log(gbPreview);
+      // console.log(gbPreview);
     if (gbPreview.type.match(imageType)) {
       // jika tipe data sesuai
       preview.file = gbPreview;

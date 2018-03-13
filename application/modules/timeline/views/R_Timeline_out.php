@@ -65,6 +65,15 @@
 			<div class="col-md-9">
 				<div class="row">
 					<div class="col-md-6" id="post-data">
+						<?php if (!empty($event['data']['image']) || !empty($event['data']['redirect'])) { ?>
+						<div class="card mb-15 bg-transparent" style="box-shadow: none;">
+							<div class="card-body pt-5 pb-5 pr-10 pl-10">
+								<a href="<?php echo $event['data']['redirect']; ?>">
+									<img src="<?php echo $event['data']['image']; ?>" class="img-fluid">
+								</a>
+							</div>
+						</div>
+						<?php } else { } ?>
 						<?php 
 						$this->load->view('data/R_timeline_out', $home);
 						if ($home == null || $home == [] || empty($home)) {
