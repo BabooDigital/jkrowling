@@ -39,13 +39,16 @@
 								<div class="stickymenu">
 									<!-- Card Widget -->
 									<div class="card card-widget mb-15">
-										<div class="card-content">
+										<!-- <div class="card-content">
 											<p class="smalltitle">Tunggu apalagi?</p>
 											<p class="fillcontent">Tuliskan semua ceritamu dan dapatkan banyak pembaca</p>											<form action="<?php echo site_url(); ?>createidbook" method="POST">
 												<input type="hidden" id="iaiduui" name="iaiduui" value="<?php $name = $this->session->userdata('userData'); echo $name['user_id']; ?>">
 												<button type="submit" class="btn btn-white" style="cursor: pointer;"><i class="fa fa-pencil-square-o"></i> Tulis Cerita</button>
 											</form>
-										</div>
+										</div> -->
+										<a href="<?php echo base_url('event') ?>">
+											<img src="<?php echo base_url('public/img/event/event1.svg') ?>" style="width:100%;height: 100%;">
+										</a>
 									</div>
 									<!-- Card Widget -->
 
@@ -68,8 +71,13 @@
 					<?php if (isset($js)): ?>
 						<?php echo get_js($js) ?>
 					<?php endif ?>
-					<?php if ($this->session->flashdata('is_follow_event')): ?>
+					<?php if ($this->session->flashdata('is_follow_event') == 200): ?>
 						<script type="text/javascript">
 							swal("Good job!", "Kamu Sukses Mengikuti Event!", "success");
+						</script>
+					<?php endif ?>
+					<?php if ($this->session->userdata('is_follow_event') == 403): ?>
+						<script type="text/javascript">
+							swal("Gagal!", "Email Kamu Sudah Terdaftar!", "info");
 						</script>
 					<?php endif ?>

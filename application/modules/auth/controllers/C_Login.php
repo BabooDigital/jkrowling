@@ -10,6 +10,7 @@ class C_Login extends MX_Controller
     {
         parent::__construct();
         $api_url = checkBase();
+        $this->API_BASE = $api_url;
         $this->API = $api_url."auth/OAuth";
         
         if ($this->session->userdata('isLogin') == 200)
@@ -23,6 +24,7 @@ class C_Login extends MX_Controller
     {
         $data['authUrl'] = $this->facebook->login_url();
         $data['authUrlG'] = $this->google->loginURL();
+        $data['authUrlGEv'] = $this->google->loginURLEvent();
 
         if ($this->agent->is_mobile('ipad'))
         {
@@ -37,7 +39,16 @@ class C_Login extends MX_Controller
             $this->load->view('D_login', $data);
         }
     }
-    
+    public function google_event()
+    {
+        $array = array(
+            'event' => 1
+        );
+        
+        $this->session->set_userdata($array);
+
+        redirect($this->google->loginURLEvent());
+    }
     public function fb_login()
     {
         error_reporting(0);
@@ -170,15 +181,9 @@ class C_Login extends MX_Controller
             $this->session->set_userdata('isLogin', $status);
             $this->session->set_userdata('authKey', $auth);
             $this->session->set_userdata('userData', $user);
-            
-            if ($this->agent->is_mobile()) {
-                if ($user['is_newuser'] != false) {
-                    redirect("firstlogin");
-                }else {
-                    redirect('timeline');
-                }
-            }else {
-                redirect('timeline');
+            if ($this->session->userdata('event') == 1) {
+                $this->session->set_userdata('userData', $user);
+                redirect('follow_event');
             }
         }else {
             $status = $resval['code'];
@@ -186,11 +191,11 @@ class C_Login extends MX_Controller
 
             echo "<script type='text/javascript'>alert ('".$psn."');window.location.href = '".site_url('login')."';</script>";
         }
-        echo json_encode(array(
-            'status' => $status, 
-            'data' => $user,
-            'message' => $psn
-        ));
+        // echo json_encode(array(
+        //     'status' => $status, 
+        //     'data' => $user,
+        //     'message' => $psn
+        // )); 
     }
 
     public function postloginuser()
@@ -337,6 +342,7 @@ class C_Login extends MX_Controller
                 if (!empty($bsession)) {
                     redirect('book/'.$bsession);
                 }else{
+                    $this->session->set_userdata('userData', $user);
                     redirect('follow_event');
                 }
             }
