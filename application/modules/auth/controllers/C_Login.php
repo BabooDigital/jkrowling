@@ -276,7 +276,89 @@ class C_Login extends MX_Controller
             ));
         }
     }
+    public function postloginevent()
+    {
+        error_reporting(0);
+        $email = $this->input->post('emails');
+        $password = $this->input->post('passwords');
 
+        $userData = array(
+            'username' => $email,
+            'password' => $password
+        );
+
+        $this->form_validation->set_rules('emails', ' ', 'trim|required');
+        $this->form_validation->set_rules('passwords', ' ', 'trim|required');
+        $this->form_validation->set_error_delimiters('<div class="text-danger">', '</div>');
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->index();
+        }else{
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $this->API.'/login');
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $userData);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+            curl_setopt($ch, CURLOPT_HEADER, 1);
+            $result = curl_exec($ch);
+            
+            $headers=array();
+
+            $data=explode("\n",$result);
+
+
+            array_shift($data);
+
+            foreach($data as $part){
+                $middle=explode(":",$part);
+                if (error_reporting() == 0) {
+                    $headers[trim($middle[0])] = trim($middle[1]);
+                }
+            }
+            
+            
+            $resval = (array)json_decode(end($data), true);
+
+            $psn = $resval['message'];
+            $user = $resval['data'];
+            $auth = $headers['BABOO-AUTH-KEY'];
+            if (isset($resval['code']) && $resval['code'] == '200')
+            {
+                $status = $resval['code'];
+
+                $this->session->set_userdata('userData', $user);
+                $this->session->set_userdata('authKey', $auth);
+                $this->session->set_userdata('isLogin', $status);
+                $this->session->set_flashdata('is_follow_event', '200');
+                
+                $bsession = $this->session->userdata('bookRef');
+                if (!empty($bsession)) {
+                    redirect('book/'.$bsession);
+                }else{
+                    redirect('timeline');
+                }
+            }
+            else
+            {
+                $status = $resval['code'];
+                $this->session->set_flashdata('login_alert', '<script>
+                  $(window).on("load", function(){
+                    swal("Gagal", "'.$psn.'", "error");
+                });
+                </script>');
+                redirect('login','refresh');
+            }
+
+            echo json_encode(array(
+                'status' => $status,
+                'data' => $user,
+                'message' => $psn
+            ));
+        }
+    }
     public function postregisteruser()
     {
         error_reporting(0);

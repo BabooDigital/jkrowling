@@ -77,6 +77,11 @@ class C_timeline extends MX_Controller {
 			
 	    	$datas['css'][] = "public/plugins/holdOn/css/HoldOn.css";
 
+	    	if ($this->session->flashdata('is_follow_event') == '200') {
+	    		$datas['css'][] = "public/css/sweetalert2.min.css";
+				$datas['js'][] = "public/js/sweetalert2.all.min.js";
+	    	}
+
 			$datas['js'][]   = "public/js/jquery.min.js";
 			$datas['js'][]   = "public/js/umd/popper.min.js";
 			$datas['js'][]   = "public/js/bootstrap.min.js";
@@ -114,11 +119,7 @@ class C_timeline extends MX_Controller {
 					
 					$result = $this->load->view('data/D_timeline_in', $datas);
 				}else{
-					// if (!$this->simple_cache->is_cached('key')){
-					// 	$this->simple_cache->cache_item('key', $datas);
-					// }else{
-					// 	$data = $this->simple_cache->get_item('key');
-					// }
+
 					$this->load->view('include/head',$datas);
 					$this->load->view('D_Timeline_in', $datas);
 					// print_r($this->session->userdata());
@@ -127,7 +128,59 @@ class C_timeline extends MX_Controller {
 		}
 		// print_r($data);
 	}
+	public function getBestBookEvent()
+	{
+		error_reporting(0);
+		$auth = $this->session->userdata('authKey');
+		$ch = curl_init();
+		$options = array(
+			CURLOPT_URL			 => $this->API.'timeline/Home/bestBook',
+			CURLOPT_RETURNTRANSFER => true,
+	          CURLOPT_CUSTOMREQUEST  =>"GET",    // Atur type request
+	          CURLOPT_POST           =>false,    // Atur menjadi GET
+	          CURLOPT_FOLLOWLOCATION => false,    // Follow redirect aktif
+	          CURLOPT_SSL_VERIFYPEER => 0,
+	          CURLOPT_HEADER         => 1,
+	          CURLOPT_HTTPHEADER	 => array('baboo-auth-key : '.$auth)
+	      );
+		curl_setopt_array($ch, $options);
+		$content = curl_exec($ch);
+		curl_close($ch);
+		$headers=array();
 
+		$data=explode("\n",$content);
+		$headers['status']=$data[0];
+
+		array_shift($data);
+
+		foreach($data as $part){
+			$middle=explode(":",$part);
+			$headers[trim($middle[0])] = trim($middle[1]);
+		}
+
+		$data['home'] = json_decode(end($data), true);
+		$data_best = $data['home']['data'];
+		$auth = $headers['BABOO-AUTH-KEY'];
+		if (isset($data['home']['code']) && $data['home']['code'] == '200')
+		{
+			$status = $data['home']['code'];
+			$this->session->set_userdata('authKey', $auth);
+		}
+		else
+		{
+			$status = $data['home']['code'];
+			$this->session->set_userdata('authKey', $auth);
+		}
+		// print_r(end($data));
+		if ($datas['home']['code'] == 403){
+			$this->session->unset_userdata('userData');
+			$this->session->unset_userdata('authKey');
+			$this->session->sess_destroy();
+			redirect('login','refresh');
+		}else{
+			echo json_encode($data_best, true);
+		}
+	}
 	public function createbook_id()
 	{
 		error_reporting(0);

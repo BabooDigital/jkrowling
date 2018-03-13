@@ -211,20 +211,20 @@ if (!empty($query['b'])) {
 
 							<p class="text-img-modal">Selamat datang di Baboo</p>
 
-							<form id="form-login" action="<?php echo site_url(); ?>auth/C_Login/postloginuser" method="POST">
+							<form id="form-login" action="<?php echo site_url(); ?>auth/C_Login/postloginevent" method="POST">
 								<div class="row">
 									<div class="col-lg-12">
 										<p class="right-text">Lanjutkan dengan</p>
 									</div>
 
 									<div class="col-lg-6 col-md-12 col-xl-6">
-										<button class="btn btn-block btn-sosmed" id="login_fb">
+										<button class="btn btn-block btn-sosmed" id="login_fb_event">
 											<img src="<?php echo base_url();?>public/img/assets/fb-icon.svg" class="btn-img-sosmed"> <span class="btn-text-sosmed">Facebook</span>
 										</button>
 									</div>
 
 									<div class="col-lg-6 col-md-12 col-xl-6">
-										<button class="btn btn-block btn-sosmed" id="login_google">	
+										<button class="btn btn-block btn-sosmed" id="login_google_event">	
 											<img src="<?php echo base_url();?>public/img/assets/google-icon.svg" class="btn-img-sosmed"> <span class="btn-text-sosmed">Google</span>
 										</button>
 									</div>
@@ -234,7 +234,7 @@ if (!empty($query['b'])) {
 									</div>
 
 									<div class="col-lg-12">
-										<form id="login-form" action="<?php echo site_url(); ?>auth/C_Login/postloginuser" method="POST">
+										<form id="login-form" action="<?php echo site_url(); ?>auth/C_Login/postloginevent" method="POST">
 											<div class="form-group">
 												<input type="email" class="form-control login-input" id="yourEmail" name="emails" placeholder="Alamat Email">
 											</div>
