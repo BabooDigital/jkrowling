@@ -60,7 +60,9 @@ $route['logout'] = 'timeline/C_timeline/signout';
 /*Timeline*/
 $route['home'] = 'timeline/C_home';
 // $route['event'] = 'timeline/C_home';
-$route['event'] = 'event/C_Event';
+$route['event'] = 'event/C_event';
+$route['follow_event'] = 'event/C_event/followEvent';
+
 $route['home/:num'] = 'timeline/C_home';
 $route['timeline'] = 'timeline/C_timeline';
 $route['timeline/:any'] = 'timeline/C_timeline';
