@@ -19,12 +19,7 @@ class C_Library extends MX_Controller
         $data['title'] = "Library Page | Baboo - Beyond Book & Creativity";
         $data['css'][]   = "public/css/jquery.bxslider.min.css";
 
-        $data['js'][] = "public/js/jquery.min.js";
-        $data['js'][] = "public/js/umd/popper.min.js";
-        $data['js'][] = "public/js/bootstrap.min.js";
-        $data['js'][] = "public/js/custom/mobile/library.js";
-        $data['js'][] = "public/js/menupage.js";
-        $data['js'][]   = "public/js/custom/notification.js";
+
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $this->API.'timeline/Home/bestBook');
@@ -53,11 +48,19 @@ class C_Library extends MX_Controller
 
         $data['slide'] = $resval2;
         if ($this->agent->is_mobile()) {
-
+            $data['js'][] = "public/js/jquery.min.js";
+            $data['js'][] = "public/js/umd/popper.min.js";
+            $data['js'][] = "public/js/bootstrap.min.js";
+            $data['js'][] = "public/js/custom/mobile/library.js";
+            $data['js'][] = "public/js/menupage.js";
+            $data['js'][]   = "public/js/custom/notification.js";
             $this->load->view('include/head', $data);
             $this->load->view('R_library', $data);
 
         }else{
+            $data['js'][] = "public/js/umd/popper.min.js";
+            $data['js'][] = "public/js/menupage.js";
+            $data['js'][]   = "public/js/custom/notification.js";
             $this->load->view('include/head', $data);
             $this->load->view('D_library', $data);
         }

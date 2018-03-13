@@ -3,14 +3,7 @@ $(document).ready(function () {
     getLastRead();
 });
 
-function convertToSlug(Text)
-{
-    return Text
-    .toLowerCase()
-    .replace(/[^\w ]+/g,'')
-    .replace(/ +/g,'-')
-    ;
-}
+function convertToSlug(Text) {return Text.toString().toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-');}
 
 function getLastRead() {
     $.ajax({
@@ -32,12 +25,12 @@ function getLastRead() {
         }else {
             var html = '';
             $.each(data, function(index, val) {
-                var title = val.title_book;
+                var title = val.title_book.toString();
                 var viewtitle = title;
                 if (title.length > 10) {
                     viewtitle = title.substring(0,11) + '...';
                 }
-                html += '<a class="pull-left" href="book/'+ val.book_id+"-"+convertToSlug(val.title_book) +'"> <div class="col-12" style="height:auto;"> <div> <img src="'+val.cover_url+'" width="110" height="140" class="rounded" style="box-shadow: 0px 0px 10px rgba(76, 76, 76, 0.3);"> </div> <div class="mt-10" style="text-align:left;"> <div id="title_book"> <p style="font-size: 13px;font-weight: bold;">'+ viewtitle +'</p> </div> <div id="author_book" class="text-muted"> <p style="font-size: 10px;">by '+val.author_name+'</p> </div> </div> </div> </a>'; });
+                html += '<a class="pull-left" href="book/'+ val.book_id+"-"+convertToSlug(val.title_book.toString()) +'"> <div class="col-12" style="height:auto;"> <div> <img src="'+val.cover_url.toString()+'" width="110" height="140" class="rounded" style="box-shadow: 0px 0px 10px rgba(76, 76, 76, 0.3);"> </div> <div class="mt-10" style="text-align:left;"> <div id="title_book"> <p style="font-size: 13px;font-weight: bold;">'+ viewtitle +'</p> </div> <div id="author_book" class="text-muted"> <p style="font-size: 10px;">by '+val.author_name+'</p> </div> </div> </div> </a>'; });
             $("#insideDiv").html(html);
         }
     })
@@ -63,17 +56,17 @@ function getBookmark() {
         if (data != []) {
             var html = '';
             $.each(data, function(index, val) {
-                var title = val.title_book;
+                var title = val.title_book.toString();
                 var viewtitle = title;
                 if (title.length > 22) {
                     viewtitle = title.substring(0,21) + '...';
                 }
 
-                var authorimg = val.author_avatar;
+                var authorimg = val.author_avatar.toString();
                 if (authorimg == null || authorimg == 'Kosong' || authorimg == '') {
                     authorimg = 'public/img/profile/blank-photo.jpg';
                 }
-                html += '<a href="book/'+ val.book_id+"-"+convertToSlug(val.title_book) +'"><div class="col-12 mb-20"> <div class="bookmarkbook w-100"> <img src="'+ val.cover_url +'" width="150" height="180" class="rounded"> <img src="public/img/assets/bookmark.png" width="30" height="40" class="markbook"> <div class="mt-10" style="text-align:left;"> <div id="title_book"> <p style="font-size: 13px;font-weight: bold;">'+ viewtitle +'</p> </div> <div id="author_book"> <p style="font-size: 12px;"><img src="'+ authorimg +'" width="20" height="20" class="rounded-circle"> '+ val.author_name +'</p> </div> </div> </div> </div></a>'; 
+                html += '<a href="book/'+ val.book_id+"-"+convertToSlug(val.title_book) +'"><div class="col-12 mb-20"> <div class="bookmarkbook w-100"> <img src="'+ val.cover_url.toString() +'" width="150" height="180" class="rounded"> <img src="public/img/assets/bookmark.png" width="30" height="40" class="markbook"> <div class="mt-10" style="text-align:left;"> <div id="title_book"> <p style="font-size: 13px;font-weight: bold;">'+ viewtitle +'</p> </div> <div id="author_book"> <p style="font-size: 12px;"><img src="'+ authorimg +'" width="20" height="20" class="rounded-circle"> '+ val.author_name +'</p> </div> </div> </div> </div></a>';
 
             });
             $("#bookmarkList").html(html);
