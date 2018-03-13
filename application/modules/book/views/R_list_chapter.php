@@ -1,6 +1,5 @@
 
 <body id="pageContent">
-	<input type="hidden" name="book_id" id="book_id" value="<?php echo $book_id; ?>">
 	<input type="checkbox" id="toggle-right">
 	<div class="page-wrap">
 		<nav class="navbar navbar-expand-lg fixed-top baboonav" style="height:55px;background: #fcfcff;">
@@ -38,6 +37,7 @@
 						</div>
 						<?php } ?>
 					</div>
+	<input type="hidden" name="book_id" id="book_id" value="<?php echo $book_id; ?>">
 				</div>
 			</div>
 			<nav class="navbar navbar-expand-lg fixed-bottom" style="height:60px;">

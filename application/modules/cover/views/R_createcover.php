@@ -10,7 +10,7 @@
 	<div class="page-wrap">
 		<nav class="navbar navbar-expand-lg fixed-top baboonav" style="height:60px;">
 			<div class="container">
-				<form class="navbar-brande">
+				<form class="navbar-brande backbtn">
 					<i class="fa fa-arrow-left"></i> &nbsp; <span>Kembali</span> 
 				</form>
 				<!-- <form class="form-inline"> -->

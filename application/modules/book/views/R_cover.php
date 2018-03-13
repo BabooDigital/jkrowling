@@ -5,8 +5,7 @@
 		<nav class="navbar navbar-expand-lg fixed-top baboonav" style="height:60px;">
 			<div class="container">
 				<form class="navbar-brande">
-					<a href="<?php echo site_url(); ?>listchapter/<?php 
-					echo $this->uri->segment(2); ?>">
+					<a href="<?php echo site_url(); ?>listchapter/<?php echo $this->uri->segment(2); ?>">
 					<i class="fa fa-arrow-left"></i> &nbsp; <span>Kembali</span> 
 				</a>
 			</form>

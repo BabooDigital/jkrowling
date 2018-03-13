@@ -157,6 +157,7 @@ $route['example/trigger_event'] = 'notification/C_notification/trigger_event';
 // Cover
 $route['create_cover'] = 'cover/C_cover';
 $route['send_cover'] = 'cover/C_cover/sendCover';
+$route['post_cover'] = 'book/C_createbook/postUploadCover';
 
 // Profile
 $route['profile/(:any)'] = 'profile/C_profile/otherProfile';

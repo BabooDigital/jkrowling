@@ -73,8 +73,34 @@ class C_home extends MX_Controller {
 			}
 		}
 
+		// DATA BANNER EVENT 
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $this->API.'event/Events/getEvent');
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+		curl_setopt($ch, CURLOPT_POST, false);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+		curl_setopt($ch, CURLOPT_HEADER, 1);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key : '.$auths));
+		$result = curl_exec($ch);
+		
+		$headers=array();
+		
+		$event=explode("\n",$result);
+		
+		array_shift($event);
+		
+		foreach($event as $part){
+			$middle=explode(":",$part);
+			if (error_reporting() == 0) {
+				$headers[trim($middle[0])] = trim($middle[1]);
+			}
+		}
+
 		$resval1 = (array)json_decode(end($timeline), true);
 		$resval2 = (array)json_decode(end($slider), true);
+		$resval3 = (array)json_decode(end($event), true);
 
 		$psn = $timeline['home']['message'];
 		$data = $timeline['home']['data'];
@@ -90,6 +116,7 @@ class C_home extends MX_Controller {
 
 		$data['home'] = json_decode(end($timeline), true);
 		$data['slide'] = $resval2;
+		$data['event'] = $resval3;
 		$data['title'] = "Baboo - Beyond Book & Creativity";
 		$data['js'][]   = "public/js/jquery.min.js";
 		$data['js'][]   = "public/plugins/infinite_scroll/jquery.jscroll.js";
