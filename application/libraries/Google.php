@@ -41,7 +41,9 @@ class Google{
     public function loginURL() {
         return $this->client->createAuthUrl();
     }
-    
+    public function loginURLEvent() {
+        return $this->client->createAuthUrl();
+    }
     public function getAuthenticate() {
         return $this->client->authenticate();
     }

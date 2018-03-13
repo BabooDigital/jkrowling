@@ -211,7 +211,7 @@ if (!empty($query['b'])) {
 
 							<p class="text-img-modal">Selamat datang di Baboo</p>
 
-							<form id="form-login" action="<?php echo site_url(); ?>auth/C_Login/postloginevent" method="POST">
+							<!-- <form id="form-login" action="<?php echo site_url(); ?>auth/C_Login/postloginevent" method="POST"> -->
 								<div class="row">
 									<div class="col-lg-12">
 										<p class="right-text">Lanjutkan dengan</p>
@@ -251,7 +251,7 @@ if (!empty($query['b'])) {
 									</div>
 								</div>
 							</div> 
-						</form>
+						<!-- </form> -->
 					</div>
 				</div>
 			</div>
@@ -369,6 +369,13 @@ if (!empty($query['b'])) {
 		});
 		$("#login_google").on("click", function() {
 			window.location.href = '<?php echo $authUrlG; ?>';
+		});
+		$("#login_fb_event").on("click", function() {
+			window.location.href = '<?php echo $authUrl; ?>';
+		});
+		$("#login_google_event").on("click", function() {
+			window.location.href = '<?php echo base_url('google_event'); ?>';
+			// console.log("a");
 		});
 	});
 </script>

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="194" height="185" viewBox="0 0 194 185">
+    <defs>
+        <linearGradient id="a" x1="107.451%" x2="15.147%" y1="-11.074%" y2="83.255%">
+            <stop offset="0%" stop-color="#7554BD"/>
+            <stop offset="100%" stop-color="#4D257A"/>
+        </linearGradient>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <rect width="193.731" height="184.932" fill="url(#a)" rx="5"/>
+        <text font-family="SourceSansPro-Bold, Source Sans Pro" font-size="19.909" font-weight="bold">
+            <tspan x="9" y="38" fill="#FFF">Baboo </tspan> <tspan x="9" y="57" fill="#FFF">Digital</tspan> <tspan x="66.676" y="57" fill="#000"> </tspan> <tspan x="70.658" y="57" fill="#FFF">Indon</tspan> <tspan x="121.883" y="57" fill="#FFF" letter-spacing="-.028">e</tspan> <tspan x="132.168" y="57" fill="#FFF">sia </tspan>
+        </text>
+        <text fill="#FBAD23" font-family="SourceSansPro-BoldItalic, Source Sans Pro" font-size="13.633" font-style="italic" font-weight="bold">
+            <tspan x="9" y="73">Kontes #1</tspan>
+        </text>
+        <text font-family="SourceSansPro-Regular, Source Sans Pro" font-size="12" letter-spacing="-.33">
+            <tspan x="9" y="95" fill="#FFF">Lomba Menulis Daftarnya </tspan> <tspan x="130.566" y="95" fill="#F5A919" font-family="SourceSansPro-SemiBold, Source Sans Pro" font-weight="500">GRATIS</tspan> <tspan x="165.558" y="95" fill="#F5A919"> </tspan>
+        </text>
+        <text font-family="SourceSansPro-Regular, Source Sans Pro" font-size="12" letter-spacing="-.327">
+            <tspan x="9" y="111" fill="#FFF">Berhadiah </tspan> <tspan x="60.063" y="111" fill="#F5A919" font-family="SourceSansPro-Bold, Source Sans Pro" font-size="18" font-weight="bold">Jutaan Rupiah</tspan>
+        </text>
+        <rect width="171" height="35" x="11" y="137" fill="#FFF" rx="17.5"/>
+        <text fill="#4D257A" font-family="SourceSansPro-Bold, Source Sans Pro" font-size="14" font-weight="bold">
+            <tspan x="46.415" y="158">Daftar Sekarang</tspan>
+        </text>
+    </g>
+</svg>

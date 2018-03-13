@@ -77,7 +77,7 @@ class C_timeline extends MX_Controller {
 			
 	    	$datas['css'][] = "public/plugins/holdOn/css/HoldOn.css";
 
-	    	if ($this->session->flashdata('is_follow_event') == '200') {
+	    	if ($this->session->flashdata('is_follow_event') == '200' || $this->session->flashdata('is_follow_event') == '403') {
 	    		$datas['css'][] = "public/css/sweetalert2.min.css";
 				$datas['js'][] = "public/js/sweetalert2.all.min.js";
 	    	}

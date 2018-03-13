@@ -1660,3 +1660,7 @@ input.formsearch:focus {
 .follow-right {
 	float: right;
 }
+
+.paddingevent{
+	padding: 10px 100px !important;
+}
