@@ -29,24 +29,8 @@
 	}
 </style>
 <body>
-	<nav class="navbar navbar-expand-lg fixed-top baboonav">
-		<button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbarSupportedContent" data-toggle="collapse" type="button"><span class="fa fa-bars"></span></button>
-		<a class="" href="#"><img alt="Baboo - Beyond Book &amp; Creativity" src="<?php echo base_url(); ?>public/img/new_logo.svg" width="100"></a>
-		<a href="<?php echo site_url();?>login" class="btn bukupilihan" style="background-color:#f7f3ff; border:solid 1px #7554bd; color:#7554bd; ">Masuk</a>
-
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav">
-				<li class="nav-item mr-20 active">
-					<a class="nav-link b-nav-link" href="<?php echo site_url('home'); ?>">Beranda</a>
-				</li>
-				<li class="nav-item">
-					<div class="mb-10">
-						<a class="nav-link btn-navdaftar" href="<?php echo site_url(); ?>login#btndaftar"><span class="navdaftar">Daftar</span></a>
-					</div>
-				</li>
-			</ul>
-		</div>
-	</nav><!-- slider -->
+	<?php $this->load->view('navbar/R_navbar'); ?>
+	<!-- slider -->
 	<div class="mt-50">
 		<div class="slidecontrols">
 			<span id="slider-prev"></span> <span id="slider-next" style="padding-left: 40%;"></span>

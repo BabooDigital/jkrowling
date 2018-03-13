@@ -1,4 +1,10 @@
-<?php $this->load->view('navbar/D_navbar'); ?>	
+<?php 
+if ($this->agent->mobile()) {
+	$this->load->view('navbar/R_navbar');
+}else{
+	$this->load->view('navbar/D_navbar');
+}
+?>	
 <style type="text/css">
 img {
 	display: block;
