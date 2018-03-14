@@ -462,6 +462,9 @@ class C_Login extends MX_Controller
             }else{
                 redirect("timeline");
             }
+        }else{
+            $this->session->set_flashdata('isRegistered', $status);
+            redirect('login#btndaftar');
         }
 
         echo json_encode(array(
