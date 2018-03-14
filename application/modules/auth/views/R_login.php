@@ -268,6 +268,13 @@ if (!empty($query['b'])) {
 		<script src="<?php echo base_url();?>public/js/custom/auth.js"></script>
 		<script> var base_url = '<?php echo base_url(); ?>'</script>	
 		<?php echo $this->session->flashdata('login_alert');?>
-
+		<script type="text/javascript">
+			$("#login_fb").on("click",function() {
+				window.location.href = '<?php echo $authUrl; ?>';
+			});
+			$("#login_google").on("click",function() {
+				window.location.href = '<?php echo $authUrlG; ?>';
+			});
+		</script>
 	</body>
 	</html>

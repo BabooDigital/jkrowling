@@ -1,11 +1,4 @@
 $(document).ready(function() {
-	$("#login_fb").on("click",function() {
-		window.location.href = '<?php echo $authUrl; ?>';
-	});
-	$("#login_google").on("click",function() {
-		window.location.href = '<?php echo $authUrlG; ?>';
-	});
-
 	$(document).on('click', '#accRegis', function() {
 		var aww = $(this);
 		var formData = new FormData();
