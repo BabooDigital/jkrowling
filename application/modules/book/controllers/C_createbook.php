@@ -659,7 +659,7 @@ class C_createbook extends MX_Controller
 
 			if(isset($_FILES["file"]["tmp_name"]))  
 			{  
-				$config['upload_path'] = './uploads';  
+				$config['upload_path'] = '../uploads';  
 				$config['allowed_types'] = 'jpg|jpeg|png|gif';  
 				$this->load->library('upload', $config);  
 				if(!$this->upload->do_upload('file'))  
@@ -670,13 +670,13 @@ class C_createbook extends MX_Controller
 				{  
 					$data = $this->upload->data();  
 					$config['image_library'] = 'gd2';  
-					$config['source_image'] = './uploads/'.$data["file_name"];  
+					$config['source_image'] = '../uploads/'.$data["file_name"];  
 					$config['create_thumb'] = FALSE;  
 					$config['maintain_ratio'] = FALSE;  
 					$config['quality'] = '75%';  
 					$config['width'] = 640;  
 					$config['height'] = 480;  
-					$config['new_image'] = './uploads/'.$data["file_name"];  
+					$config['new_image'] = '../uploads/'.$data["file_name"];  
 					$this->load->library('image_lib', $config);  
 					$this->image_lib->resize();    
 					$image_data = array(  
@@ -1182,7 +1182,7 @@ class C_createbook extends MX_Controller
 
 			if(isset($_FILES["file_cover"]["tmp_name"]))  
 			{  
-				$config['upload_path'] = './uploads';  
+				$config['upload_path'] = '../uploads';  
 				$config['allowed_types'] = 'jpg|jpeg|png|gif';  
 				$this->load->library('upload', $config);  
 				if(!$this->upload->do_upload('file_cover'))  
@@ -1193,13 +1193,13 @@ class C_createbook extends MX_Controller
 				{  
 					$data = $this->upload->data();  
 					$config['image_library'] = 'gd2';  
-					$config['source_image'] = './uploads/'.$data["file_name"];  
+					$config['source_image'] = '../uploads/'.$data["file_name"];  
 					$config['create_thumb'] = FALSE;  
 					$config['maintain_ratio'] = FALSE;  
 					$config['quality'] = '75%';  
 					$config['width'] = 400;  
 					$config['height'] = 540;  
-					$config['new_image'] = './uploads/'.$data["file_name"];  
+					$config['new_image'] = '../uploads/'.$data["file_name"];  
 					$this->load->library('image_lib', $config);  
 					$this->image_lib->resize();    
 					$image_data = array(  

@@ -134,7 +134,11 @@ if (!empty($query['b'])) {
 				<div class="modal-content" style="width: 105% !important;">
 					<div class="modal-body">
 						<div class="container">
-
+							<?php if ($this->session->flashdata('isRegistered')): ?>
+								<div class="alert alert-warning">
+								  <strong>Warning!</strong> Email Sudah Digunakan.
+								</div>
+							<?php endif ?>
 							<div class="col-lg-12 col-xl-12">
 								<img src="<?php echo base_url();?>public/img/logo_purple.png" style="height:50px; margin-top:36px;">
 							</div>
