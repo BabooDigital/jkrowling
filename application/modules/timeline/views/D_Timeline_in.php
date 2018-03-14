@@ -6,39 +6,39 @@
 	fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 <?php $this->load->view('navbar/D_navbar'); ?>	
-	<div class="container babooidin">
-		<div class="row">
-			<!-- Left Side -->
-			<div class="col-md-3 tmlin">
-				<div class="stickymenu">
-					<!-- Penulis Minggu Ini -->
-					<div class="side-card mb-15">
-						<div class="card-header">
-							Penulis minggu ini
-						</div>
-						<div class="card-body p-0">
-							<ul class="list-group list-group-flush" id="author_this_week">
-								<div class="loads-css ng-scope"><div style="width:20px;height:20px" class="lds-flickr"><div></div><div></div><div></div></div></div>
-							</ul>
-						</div>
+<div class="container babooidin">
+	<div class="row">
+		<!-- Left Side -->
+		<div class="col-md-3 tmlin">
+			<div class="stickymenu">
+				<!-- Penulis Minggu Ini -->
+				<div class="side-card mb-15">
+					<div class="card-header">
+						Penulis minggu ini
 					</div>
-									<!-- Trending -->
-								</div>
-							</div>
+					<div class="card-body p-0">
+						<ul class="list-group list-group-flush" id="author_this_week">
+							<div class="loads-css ng-scope"><div style="width:20px;height:20px" class="lds-flickr"><div></div><div></div><div></div></div></div>
+						</ul>
+					</div>
+				</div>
+				<!-- Trending -->
+			</div>
+		</div>
 
-							<!-- Mid Side -->
-							<div class="col-md-6" id="post-data">
-								<?php 
-								$this->load->view('data/D_timeline_in', $home);
-								?>
-								<!-- <span class="loader" style="display: none;margin-left: auto;margin-right: auto;"></span> -->
-							</div>
+		<!-- Mid Side -->
+		<div class="col-md-6" id="post-data">
+			<?php 
+			$this->load->view('data/D_timeline_in', $home);
+			?>
+			<!-- <span class="loader" style="display: none;margin-left: auto;margin-right: auto;"></span> -->
+		</div>
 
-							<!-- Right Side -->
-							<div class="col-md-3 tmlin">
-								<div class="stickymenu">
-									<!-- Card Widget -->
-									<div class="card card-widget mb-15">
+		<!-- Right Side -->
+		<div class="col-md-3 tmlin">
+			<div class="stickymenu">
+				<!-- Card Widget -->
+				<div class="card card-widget mb-15">
 										<!-- <div class="card-content">
 											<p class="smalltitle">Tunggu apalagi?</p>
 											<p class="fillcontent">Tuliskan semua ceritamu dan dapatkan banyak pembaca</p>											<form action="<?php echo site_url(); ?>createidbook" method="POST">
@@ -72,12 +72,12 @@
 						<?php echo get_js($js) ?>
 					<?php endif ?>
 					<?php if ($this->session->flashdata('is_follow_event')): ?>
-		<script type="text/javascript">
-			swal("Good job!", "Kamu Sukses Mengikuti Event!", "success");
-		</script>
-	<?php endif ?>
-	<?php if ($this->session->flashdata('is_not_follow_event')): ?>
-		<script type="text/javascript">
-			swal("Maaf..", "Kamu Sudah Mengikuti Event!", "warning");
-		</script>
-	<?php endif ?>
+						<script type="text/javascript">
+							swal("Good job!", "Kamu Sukses Mengikuti Event!", "success");
+						</script>
+					<?php endif ?>
+					<?php if ($this->session->flashdata('is_not_follow_event')): ?>
+						<script type="text/javascript">
+							swal("Maaf..", "Kamu Sudah Mengikuti Event!", "warning");
+						</script>
+					<?php endif ?>
