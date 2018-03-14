@@ -81,7 +81,7 @@ class C_cover extends MX_Controller {
             curl_setopt($ch, CURLOPT_POSTFIELDS, $coverData);
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
             curl_setopt($ch, CURLOPT_HEADER, 1);
-            curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: multipart/form-data','baboo-auth-key : '.$auth));
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: multipart/form-data','baboo-auth-key: '.$auth));
             $result = curl_exec($ch);
 
             $headers=array();

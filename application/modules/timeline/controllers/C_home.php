@@ -57,7 +57,7 @@ class C_home extends MX_Controller {
 		curl_setopt($ch, CURLOPT_POST, false);
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 		curl_setopt($ch, CURLOPT_HEADER, 1);
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key : '.$auths));
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key: '.$auths));
 		$result = curl_exec($ch);
 		
 		$headers=array();
@@ -82,7 +82,7 @@ class C_home extends MX_Controller {
 		curl_setopt($ch, CURLOPT_POST, false);
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 		curl_setopt($ch, CURLOPT_HEADER, 1);
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key : '.$auths));
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key: '.$auths));
 		$result = curl_exec($ch);
 		
 		$headers=array();
@@ -193,7 +193,7 @@ class C_home extends MX_Controller {
 	          CURLOPT_FOLLOWLOCATION => false,    // Follow redirect aktif
 	          CURLOPT_SSL_VERIFYPEER => 0,
 	          CURLOPT_HEADER         => 1,
-	          CURLOPT_HTTPHEADER	 => array('baboo-auth-key : '.$auth)
+	          CURLOPT_HTTPHEADER	 => array('baboo-auth-key: '.$auth)
 	      );
 		curl_setopt_array($ch, $options);
 		$content = curl_exec($ch);

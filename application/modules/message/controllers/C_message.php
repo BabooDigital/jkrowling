@@ -40,7 +40,7 @@ class C_message extends MX_Controller
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data_message);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
         curl_setopt($ch, CURLOPT_HEADER, 1);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key : ' . $auth));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key: ' . $auth));
         $content = curl_exec($ch);
         $headers = array();
 
@@ -120,7 +120,7 @@ class C_message extends MX_Controller
         curl_setopt($ch, CURLOPT_POSTFIELDS, $sendData);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
         curl_setopt($ch, CURLOPT_HEADER, 1);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key : ' . $auth));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key: ' . $auth));
         $result = curl_exec($ch);
 
 
@@ -189,7 +189,7 @@ class C_message extends MX_Controller
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data_message);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
         curl_setopt($ch, CURLOPT_HEADER, 1);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key : ' . $auth));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key: ' . $auth));
         $content = curl_exec($ch);
         $headers = array();
 
@@ -224,7 +224,7 @@ class C_message extends MX_Controller
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data_message);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
         curl_setopt($ch, CURLOPT_HEADER, 1);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key : ' . $auth));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key: ' . $auth));
         $content = curl_exec($ch);
         $headers = array();
 
