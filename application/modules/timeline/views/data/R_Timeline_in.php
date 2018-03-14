@@ -20,7 +20,7 @@
 							</div>
 						</div>
 					</div>
-					<a href="<?php echo site_url(); ?>book/<?php echo $s_book['book_id']; ?> - <?php echo url_title($s_book['title_book'], 'dash', true); ?>"> 
+					<a href="<?php echo site_url(); ?>book/<?php echo $s_book['book_id']; ?>-<?php echo url_title($s_book['title_book'], 'dash', true); ?>"> 
 						<div class="row pl-10 pr-10">
 							<h5 class="w-100" style="font-weight: 700;"><b><a href="<?php echo site_url(); ?>book/<?php echo $s_book['book_id']; ?>-<?php echo url_title($s_book['title_book'], 'dash', true); ?>" class="dbooktitle segment" data-href="<?php echo $s_book['book_id']; ?>-<?php echo url_title($s_book['title_book'], 'dash', true); ?>"><?php echo $s_book['title_book']; ?></a></b></h5>
 							<div class="w-100">
@@ -73,7 +73,7 @@
 										</div>
 									</div>
 								</div>
-								<a href="<?php echo site_url(); ?>book/<?php echo $s_book['book_id']; ?> - <?php echo url_title($s_book['title_book'], 'dash', true); ?>" data-href="<?php echo $s_book['book_id']; ?>-<?php echo url_title($s_book['title_book'], 'dash', true); ?>" class="segment"> 
+								<a href="<?php echo site_url(); ?>book/<?php echo $s_book['book_id']; ?>-<?php echo url_title($s_book['title_book'], 'dash', true); ?>" data-href="<?php echo $s_book['book_id']; ?>-<?php echo url_title($s_book['title_book'], 'dash', true); ?>" class="segment"> 
 									<div class="row pl-10 pr-10">
 										<div class="media">
 												<img alt="<?php
