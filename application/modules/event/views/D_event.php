@@ -12,7 +12,7 @@ if ($this->agent->mobile()) {
 			<div>
 				<img src="<?php echo $event['event_banner']; ?>" class="img-fluid" alt="Event Banner">
 				<div class="ikutPosi">
-					<a href="<?php echo ($this->session->userdata('userData') ? base_url().'follow_event' : base_url().'login#event') ?>" class="btnIkut">Ikut Lomba</a>
+					<a href="<?php echo ($this->session->userdata('userData') ? base_url().'follow_event' : base_url().'login#event') ?>" class="btnIkut follow_event">Ikut Lomba</a>
 				</div>
 				<!-- <div class="howPosi">
 					<a href="#" class="btnTop btnRegis">Daftar / Masuk</a>

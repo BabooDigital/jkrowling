@@ -36,7 +36,6 @@ if (!empty($query['b'])) {
 <body>
 	<div class="container-fluid">
 		<div class="row no-gutters">
-
 			<!-- Left Side Content -->
 			<div class="col-md-8" >
 				<div class="left-side" style="padding: 50px;">
@@ -202,7 +201,11 @@ if (!empty($query['b'])) {
 			<div class="modal-content" style="width: 105% !important;">
 				<div class="modal-body">
 					<div class="container">
-
+						<?php if ($this->session->flashdata('login_alert')): ?>
+							<div class="alert alert-warning">
+							  <strong>Warning!</strong> Username atau password salah.
+							</div>
+						<?php endif ?>
 						<div class="col-lg-12 col-xl-12">
 							<img src="<?php echo base_url();?>public/img/logo_purple.png" style="height:50px; margin-top:36px;">
 						</div>
@@ -300,7 +303,7 @@ if (!empty($query['b'])) {
 			$('#register-modal').modal('toggle');
 		}
 		if (getHashDaft != "" && getHashDaft == "#event") {
-			$('#event-modal').modal('toggle');
+			$('#event-modal').modal({backdrop: 'static', keyboard: false});
 		}
 		$("#login-form").validate({
 			rules: {
