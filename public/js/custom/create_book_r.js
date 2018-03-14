@@ -14,87 +14,81 @@ $(function(){
   uploadCoverMr();
 });
 function publishBook() {
-    $("#publish_book").click(function() {
-      var formData = new FormData();
-      formData.append("book_id", $("#uri").val());
+  $("#publish_book").click(function() {
+    var formData = new FormData();
+    formData.append("book_id", $("#uri").val());
       // formData.append("file_cover", $("#cover_name").val());
-      formData.append("file_cover", $('input[type=file]')[0].files[0]);
+      formData.append("file_cover", $("#cover_file").val());
       formData.append("category", $("#category_ids").val());
 
       $.ajax({
-        "url": base_url+'publishbook',
-        "dataType": 'json',
-        "cache": false,
-        "type": "POST",
-        "contentType": false,
-        "processData": false,
-        "data":formData,
+        url: base_url+'publishbook',
+        dataType: 'json',
+        type: 'POST',
+        contentType: false,
+        processData: false,
+        data: formData
       })
       .done(function(data) {
-        console.log(data);
-        // if (data.code == 200) {
-        //   window.location = base_url+'timeline';
-        // }
+        if (data.code == 200) {
+          window.location = base_url+'timeline';
+        }
       })
       .fail(function() {
-        console.log("error");
+        console.log("errorss");
       })
       .always(function() {
-  for (var pair of formData.entries()) {
-    console.log(pair[0]+ ', ' + pair[1]); 
-}
-});
+      });
     });
 }
 
 function uploadCoverMr() {
   $("#file_cover").change(function() {
-        var a = new FormData;
-        a.append("file_cover", $("#file_cover")[0].files[0]);
-        a.append("book_id", $("#uri").val());
-        $.ajax({
-            url: base_url + "post_cover",
-            type: "POST",
-            dataType: "JSON",
-            cache: false,
-            contentType: false,
-            processData: false,
-            data: a
-        }).done(function(data) {
-            console.log(data);
-        }).fail(function() {
-            console.log("error");
-        }).always(function() {})
-    });
+    var a = new FormData();
+    a.append("file_cover", $("#file_cover")[0].files[0]);
+    a.append("book_id", $("#uri").val());
+    $.ajax({
+      url: base_url + "post_cover",
+      type: "POST",
+      dataType: 'json',
+      contentType: false,
+      processData: false,
+      data: a
+    }).done(function(data) {
+       $("#cover_file").val(data.link);
+    }).fail(function() {
+      console.log("error");
+    }).always(function() {})
+  });
 }
 
 function publishChapter() {
-    $("#publish_chapter").click(function() {
-      var title = $("#chapter_title_out").val();
-      var paragraph = $("#paragraph_book").val();
-      var book_id = $("#book_id").val();
+  $("#publish_chapter").click(function() {
+    var title = $("#chapter_title_out").val();
+    var paragraph = $("#paragraph_book").val();
+    var book_id = $("#book_id").val();
 
-      var formData = new FormData();
+    var formData = new FormData();
 
-      formData.append("book_id", book_id);
-      formData.append("chapter_title", title);
-      formData.append("paragraph", paragraph);
+    formData.append("book_id", book_id);
+    formData.append("chapter_title", title);
+    formData.append("paragraph", paragraph);
 
-      $.ajax({
-        url: base_url+'cover',
-        type: 'POST',
-        dataType: 'json',
-        data: {book_id: book_id, chapter_title: title, paragraph: paragraph}
-      })
-      .done(function(data) {
-        if (data.code == 200) {
-          window.location = base_url+'cover/'+data.data['book_id'];
-        }
-      })
-      .fail(function() {
-        console.log("error");
-      })
-    });
+    $.ajax({
+      url: base_url+'cover',
+      type: 'POST',
+      dataType: 'json',
+      data: {book_id: book_id, chapter_title: title, paragraph: paragraph}
+    })
+    .done(function(data) {
+      if (data.code == 200) {
+        window.location = base_url+'cover/'+data.data['book_id'];
+      }
+    })
+    .fail(function() {
+      console.log("error");
+    })
+  });
 }
 function froalaEditor() {
   $.FroalaEditor.DefineIcon('imageInfo', {NAME: 'info'});
@@ -121,9 +115,9 @@ function froalaEditor() {
   })
 }
 function titleBook() {
-    $("#title_book_out").keyup(function(event) {
-      $("#title_book").val($(this).val());
-    });
+  $("#title_book_out").keyup(function(event) {
+    $("#title_book").val($(this).val());
+  });
 }
 function chapterBook() {
   $("#chapter_title_out").keyup(function(event) {
@@ -135,7 +129,7 @@ function chapterBook() {
 }
 function tampilkanPreview(gambar, idpreview) {
 // membuat objek gambar
-  var gb = gambar.files;
+var gb = gambar.files;
 
   // loop untuk merender gambar
   // console.log(idpreview);
@@ -147,7 +141,7 @@ function tampilkanPreview(gambar, idpreview) {
     var preview = document.getElementById(idpreview);
     var reader = new FileReader();
       // console.log(gbPreview);
-    if (gbPreview.type.match(imageType)) {
+      if (gbPreview.type.match(imageType)) {
       // jika tipe data sesuai
       preview.file = gbPreview;
       reader.onload = (function(element) {
@@ -167,13 +161,13 @@ function tampilkanPreview(gambar, idpreview) {
 }
 
 function isFree() {
-    $("#is_free").change(function() {
-        if ($(this).is(':checked')) {
-          $(".rangebook").show();
-        }else{
-          $(".rangebook").hide();
-        }
-    });
+  $("#is_free").change(function() {
+    if ($(this).is(':checked')) {
+      $(".rangebook").show();
+    }else{
+      $(".rangebook").hide();
+    }
+  });
 }
 
 function backLink() {
@@ -271,12 +265,12 @@ function saveDraft() {
         },
         success:function (data) {
           if (data.code == 200) {
-              swal.hideLoading()
+            swal.hideLoading()
             var x = document.getElementById("snackbar");
             x.className = "show";
             setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
-             $("#backlinks").removeClass('backlink');
-             $("#backlinks").attr("id",'backdraft');
+            $("#backlinks").removeClass('backlink');
+            $("#backlinks").attr("id",'backdraft');
           }
         },
       });
@@ -330,8 +324,8 @@ function addChapter() {
                 $("#chapter_title_out").val('');
                 $("#paragraph_book").val('');
                 $('#paragraph_book').froalaEditor('html.set', '');
-               $("#backlinks").removeClass('backlink');
-               $("#backlinks").attr("id",'backdraft');
+                $("#backlinks").removeClass('backlink');
+                $("#backlinks").attr("id",'backdraft');
               }
             },
           });
@@ -363,13 +357,13 @@ function getCategory() {
 }
 
 // function back(url) {
-    if (history.length > 2 || document.referrer.length > 0) {
+  if (history.length > 2 || document.referrer.length > 0) {
         // go back:
         // window.History.back();
-    } else if (url) {
+      } else if (url) {
         // go to specified fallback url:
         window.History.replaceState(null, null, url);
-    }
+      }
 // }
 
 function saveEditChapter() {
@@ -404,7 +398,7 @@ function saveEditChapter() {
         success:function (data) {
           console.log(data);
           if (data.code == 200) {
-              swal.hideLoading()
+            swal.hideLoading()
             window.location = base_url+'listchapter/'+data.data['book_id'];
           }
         },

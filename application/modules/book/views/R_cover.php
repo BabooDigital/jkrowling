@@ -25,6 +25,7 @@
 					echo base_url()."public/img/assets/def_prev.png";
 				} ?>"></p>
 				<input type="hidden" name="cover_name" id="cover_name" accept="image/*"  value="<?php $src = $this->session->userdata('dataCover'); if($src != NULL){  echo $src['asset_url']; }else{ echo ""; } ?>">
+				<input type="hidden" name="cover_file" id="cover_file" accept="image/*">
 				<input type="file" id="file_cover" accept="image/*" onchange="tampilkanPreview(this,'previews')" name="file_cover" value="<?php $src = $this->session->userdata('dataCover'); if(!empty($src)){  echo $src['asset_url']; }else{ echo ""; } ?>">
 			</div>
 			<div class="min_padding">
@@ -40,27 +41,6 @@
 									</select>
 				</div>
 			</div>
-			<!-- <div class="float-left"><span><b>Jual Buku ?</b></span></div>
-			<div class="float-right">
-				<label class="switch">
-					<input type="checkbox" id="is_free">
-					<span class="slider round">    
-					</span>
-				</label>
-			</div>
-			<div class="mt-40 rangebook">
-				<div class="input-group">
-					<select class="selectbook select-kurs" id="category_id" name="cat_book">
-						<option value="rp">Rp</option>
-					</select>
-					&nbsp;&nbsp;&nbsp;
-					<input type="text" name="Harga Buku" class="input-range" placeholder="Masukan Harga Buku">
-				</div>
-			</div>
-			<br>
-			<div class="float-left"><span><b>Penjualan buku akan aktif jika tulisan anda sudah memenuhi kriteria yang di tentukan baboo </b></span>
-				<input type="button" style="background: transparent; color: #b448cc;border: 0;cursor: pointer;" onclick="window.location.href = '<?php echo site_url('create_cover'); ?>';" value="Details" />
-			</div> -->
 		</div>
 	</div>
 	<footer class="navbar navbar-expand-lg fixed-bottom baboonav" style="height:60px;">
@@ -69,7 +49,7 @@
 		</div>
 	</footer>
 	<?php if (isset($js)): ?>
-		<?php echo get_js($js) ?>
+		<?php echo get_js($js)	 ?>
 	<?php endif ?>
 </body>
 </html>
