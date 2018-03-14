@@ -182,3 +182,8 @@ $route['first_follow'] = 'profile/C_edit_profile/firstFollowUser';
 
 // TERMS
 $route['tnc'] = 'terms/C_terms';
+
+
+//event
+
+$route['event/follow_event'] = 'event/C_event/followEvent';

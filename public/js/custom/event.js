@@ -1,6 +1,7 @@
 $(document).ready(function() {
 	getBestBook();
 	followEvent();
+	validateEvent();
 });
 function getBestBook() {
 	$.ajax({
@@ -50,4 +51,44 @@ function followEvent() {
         	window.location = $(this).attr('href');;
         }
     });
+}
+function validateEvent() {
+	$("#follow-formevent").validate({
+		rules: {
+			email: {
+				required: true,
+				email: true
+			},
+			nohp: {
+				required: true,
+				minlength: 10
+			},
+			accept_event : {
+				required: true
+			}
+		},
+		messages: {
+			email: {
+				required: 'Email harus di isi'
+			},
+			nohp: {
+				required: 'No Hp harus di isi',
+				minlength: 'No Hp minimal 10 karakter'
+			},
+			accept_event: {
+				required: 'Harus di isi'
+			}
+		},
+		submitHandler: function(form) {
+        $.ajax({
+            url: base_url+'event/follow_event',
+            type: 'POST',
+            data: $(form).serialize(),
+            success: function(response) {
+            	// $('#answers').html(response);
+            	location.href = base_url+'timeline';
+            }            
+        });
+    }
+	});
 }
