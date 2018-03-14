@@ -577,14 +577,19 @@ input.formsearch:focus {
 	color: #fff !important;
 }
 
+.card-body {
+	overflow: hidden;
+}
+
 .card-content {
 	padding: 15% 7%;
 }
 
 .card-footer {
-        background: #ddd;
+
+        background: #fff;
     border-radius: 45px ;
-        border-top: none;
+        border-top: 1px #f0f0f0 solid;
 }
 .effect-img {
 	    box-shadow: 0 4px 4px 0 rgba(112, 89, 165, 0.22), 0 6px 20px 0 rgba(0, 0, 0, 0.19);

@@ -34,7 +34,7 @@ if (!empty($query['b'])) {
 ?>
 
 <body>
-	<div class="container-fluid">
+	<div class="container-fluid p-0">
 		<div class="row no-gutters">
 			<!-- Left Side Content -->
 			<div class="col-md-8" >
@@ -237,13 +237,13 @@ if (!empty($query['b'])) {
 									</div>
 
 									<div class="col-lg-12">
-										<form id="login-form" action="<?php echo site_url(); ?>auth/C_Login/postloginevent" method="POST">
+										<form id="login-formevent" action="<?php echo site_url(); ?>auth/C_Login/postloginevent" method="POST">
 											<div class="form-group">
-												<input type="email" class="form-control login-input" id="yourEmail" name="emails" placeholder="Alamat Email">
+												<input type="email" class="form-control login-input" id="yourEmailRe" name="emails" placeholder="Alamat Email">
 											</div>
 
 											<div class="form-group">
-												<input type="password" class="required password error  form-control login-input" id="yourPassword" name="passwords" placeholder="Password">
+												<input type="password" class="required password error  form-control login-input" id="yourPasswordRe" name="passwords" placeholder="Password">
 											</div>
 											<p class="text-right text-daftar">Belum punya akun ? <a  data-toggle="modal" data-target="#register-modal" href="#" class="link-daftar">Daftar disini</a></p>
 											<div class="pull-right">
@@ -288,7 +288,6 @@ if (!empty($query['b'])) {
 <script src="<?php echo base_url('') ?>public/js/jquery.bxslider.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url('') ?>public/js/baboo.js" type="text/javascript"></script>
 <script src="<?php echo base_url('') ?>public/js/jquery.sticky-kit.min.js" type="text/javascript"></script>
-<script src="<?php echo base_url('') ?>public/js/custom/D_timeline_out.js" type="text/javascript"></script>
 
 
 <script type="text/javascript">
@@ -306,6 +305,27 @@ if (!empty($query['b'])) {
 			$('#event-modal').modal({backdrop: 'static', keyboard: false});
 		}
 		$("#login-form").validate({
+			rules: {
+				emails: {
+					required: true,
+					email: true
+				},
+				passwords: {
+					required: true,
+					minlength: 5
+				}
+			},
+			messages: {
+				emails: {
+					required: 'Email harus di isi'
+				},
+				passwords: {
+					required: 'Password harus di isi',
+					minlength: 'Password minimal 5 karakter'
+				}
+			}
+		});
+		$("#login-formevent").validate({
 			rules: {
 				emails: {
 					required: true,

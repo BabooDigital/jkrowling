@@ -20,6 +20,7 @@
 	    width: 45%;
 	    border-radius: 40px;
 	    border: solid 1px #797979;
+	    padding: 5px 20px;
 	}
 </style>
 <div class="container babooidin">	
@@ -32,29 +33,29 @@
 						<div class="card-body p-0">
 							<input type="hidden" id="iaiduui" name="iaiduui" value="<?php $name = $this->session->userdata('userData'); echo $name['user_id']; ?>">
 							<img alt="<?php echo $userdata['name']; ?>" class="rounded-circle p-5" height="100" src="<?php if($userdata['prof_pict'] == NULL){ echo base_url('public/img/profile/blank-photo.jpg'); }else{ echo $userdata['prof_pict']; } ?>" style="border: .5px #7554bd solid;" width="100">
-							<p class="mt-10"><b><?php echo $userdata['name']; ?></b></p>
+							<p class="mt-10"><b><?php echo $userdata['fullname']; ?></b></p>
 							<p>Jakarta, Indonesia</p>
 							<div class="quote">
-								<p>Kita memang gila, tak pernah berfikir. Bila dirasakan, pasti banyak kurang.</p>
+								<p><?php echo $userdata['about_me']; ?></p>
 								<p>( <?php echo $userdata['email']; ?> )</p>
 							</div>
 							<div class="mb-20">
 								<?php if (!$this->uri->segment(2)): ?>
-									<button class="btn-edprof p-5 fs-12px mr-10">Edit Profile</button> <button class="btn-edprof p-5 fs-12px">Pesan Masuk</button>
+									<a href="#" class="btn-edprof fs-12px mr-10">Edit Profile</a> <a href="<?php echo site_url('message'); ?>" class="btn-edprof fs-12px">Message</a>
 								<?php else: ?>
-									<button class="btn-edprof p-5 fs-12px mr-10">Follow</button>
+									<a href="#" class="btn-edprof fs-12px mr-10">Follow</a>
 								<?php endif ?>
 							</div>
 							<hr>
 							<?php if (!$this->uri->segment(2)): ?>
 								
-							<div>
+							<!-- <div>
 								<button class="btn-details-balance">Topup</button> <span class="label_balance"><b>Balance</b></span><br>
 								<br>
 								<p class="profile_nominal"><b>Rp <?php echo $userdata['balance']; ?></b></p>
 							</div><br>
 							<br>
-							<hr>
+							<hr> -->
 							<!-- <div class="penghargaan">
                                         <label><b>Penghargaan</b></label>
                                     </div> -->
@@ -77,10 +78,10 @@
 								<a href="#"><img src="<?php echo base_url(); ?>public/img/assets/icon_soldbook.svg" width="27">
 								<p class="mt-5"><?php echo $userdata['book_sold']; ?></p></a>
 							</div><br>
-							<div class="mt-100 mb-20" style="background: #fcfbff;padding: 15px;">
+							<!-- <div class="mt-100 mb-20" style="background: #fcfbff;padding: 15px;">
 								<p><small>Buku Terjual</small></p>
 								<p style="font-size: 25px;color: #7a5abf;font-weight: 700;">Rp. 25.500.000</p>
-							</div>
+							</div> -->
 							<?php endif ?>
 						</div>
 					</div>
@@ -127,9 +128,9 @@
 						<ul class="list-group list-group-flush" id="latestreadbook">
 							
 						</ul>
-						<div class="text-center p-20">
+						<!-- <div class="text-center p-20">
 							<a href="#" style="border-radius: 4px;border: 1px #dedede solid;display:  block;" class="p-10">Lihat Semua</a>
-						</div>
+						</div> -->
 					</div>
 				</div><!-- Buku Populer -->
 			</div>
