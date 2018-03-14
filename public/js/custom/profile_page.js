@@ -1,3 +1,6 @@
+function funcDropdown() {
+    document.getElementById("myDropdown").classList.toggle("showss")
+}
 $(document).ready(function() {
 	var window_width = $( window ).width();
 

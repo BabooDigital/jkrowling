@@ -18,6 +18,7 @@
 	<link href="<?php echo base_url('') ?>public/css/baboo-responsive.css" rel="stylesheet" type="text/css">
 	<link href="<?php echo base_url('') ?>public/css/custom-margin-padding.css" rel="stylesheet" type="text/css">
 	<link href="<?php echo base_url('') ?>public/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<link href="<?php echo base_url('') ?>public/css/sweetalert2.min.css" rel="stylesheet" type="text/css">
 	
 </head>
 <!-- CSS -->
@@ -284,6 +285,7 @@ if (!empty($query['b'])) {
 <script type="text/javascript" src="<?php echo base_url();?>public/js/combodate.js"></script>
 <script src="<?php echo base_url();?>public/js/jquery.validate.js"></script>
 <script src="<?php echo base_url();?>public/js/additional-methods.js"></script>
+<script src="<?php echo base_url();?>public/js/sweetalert2.all.min.js"></script>
 
 <script src="<?php echo base_url('') ?>public/js/jquery.bxslider.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url('') ?>public/js/baboo.js" type="text/javascript"></script>
@@ -402,6 +404,7 @@ if (!empty($query['b'])) {
 		});
 	});
 </script>
+<?php echo $this->session->flashdata('login_alert');?>
 
 </body>
 </html>
