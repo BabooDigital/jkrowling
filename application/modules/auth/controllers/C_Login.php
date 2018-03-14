@@ -378,9 +378,8 @@ class C_Login extends MX_Controller
                     swal("Gagal", "'.$psn.'", "error");
                 });
                 </script>');
-                redirect('login','refresh');
+                redirect('login#event','refresh');
             }
-
             echo json_encode(array(
                 'status' => $status,
                 'data' => $user,
