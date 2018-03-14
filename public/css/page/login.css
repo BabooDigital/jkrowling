@@ -16,7 +16,9 @@ body{
 
 .right-side{
 	background-color: #fff;
-	height:100vh;
+	height:100%;
+	position: fixed;
+	display: block;
 	font-family: 'Proxima Nova', Georgia, sans-serif;
 	
 }

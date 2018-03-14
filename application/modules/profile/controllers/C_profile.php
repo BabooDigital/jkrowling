@@ -60,7 +60,6 @@ class C_profile extends MX_Controller {
 		$userdetail = $resval['data'];
 		$auth = $headers['BABOO-AUTH-KEY'];
 		
-		$this->session->set_userdata('authKey', $auth);
 		$status = $resval['code'];
 		$data['userdata'] = $userdetail;
 
@@ -69,22 +68,32 @@ class C_profile extends MX_Controller {
 		$data['js'][] = "public/js/umd/popper.min.js";
 		$data['js'][] = "public/js/bootstrap.min.js";
 		$data['js'][] = "public/js/jquery.sticky-kit.min.js";
-		if ($this->agent->mobile()) {
+		
 
-			$data['css'][] = "public/css/baboo-responsive.css";
-			$data['js'][] = "public/js/custom/mobile/r_profile_page.js";
-			$data['js'][] = "public/js/menupage.js";
-			
-			$this->load->view('include/head', $data);
-			$this->load->view('R_profile', $data);
-			
+		if ($status == 403){
+			$this->session->unset_userdata('userData');
+			$this->session->unset_userdata('authKey');
+			$this->session->sess_destroy();
+			redirect('login','refresh');
 		}else{
-			$data['js'][] = "public/js/custom/profile_page.js";
+			$this->session->set_userdata('authKey', $auth);
+			if ($this->agent->mobile()) {
 
-			$this->load->view('include/head', $data);
-			$this->load->view('D_profile');
+				$data['css'][] = "public/css/baboo-responsive.css";
+				$data['js'][] = "public/js/custom/mobile/r_profile_page.js";
+				$data['js'][] = "public/js/menupage.js";
+
+				$this->load->view('include/head', $data);
+				$this->load->view('R_profile', $data);
+
+			}else{
+				$data['js'][] = "public/js/custom/profile_page.js";
+
+				$this->load->view('include/head', $data);
+				$this->load->view('D_profile');
 			// $this->load->view('timeline/include/foot');
 
+			}
 		}
 	}
 	public function otherProfile()
@@ -265,10 +274,18 @@ class C_profile extends MX_Controller {
 		$userdetail = $resval['data'];
 		$auth = $headers['BABOO-AUTH-KEY'];
 		
-		$this->session->set_userdata('authKey', $auth);
 		$status = $resval['code'];
+		$this->session->set_userdata('authKey', $auth);
 
-		echo json_encode($userdetail);	
+		
+		if ($status == 403){
+			$this->session->unset_userdata('userData');
+			$this->session->unset_userdata('authKey');
+			$this->session->sess_destroy();
+			redirect('login','refresh');
+		}else{
+			echo json_encode($userdetail);
+		}
 	}
 
 	public function getLatestRead()
@@ -319,7 +336,15 @@ class C_profile extends MX_Controller {
 		$this->session->set_userdata('authKey', $auth);
 		$status = $resval['code'];
 
-		echo json_encode($userdetail);
+		
+		if ($status == 403){
+			$this->session->unset_userdata('userData');
+			$this->session->unset_userdata('authKey');
+			$this->session->sess_destroy();
+			redirect('login','refresh');
+		}else{
+			echo json_encode($userdetail);
+		}
 	}
 
 	public function settingProfile()

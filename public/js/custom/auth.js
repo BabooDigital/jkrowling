@@ -1,4 +1,5 @@
 $(document).ready(function() {
+	
 	$(document).on('click', '#accRegis', function() {
 		var aww = $(this);
 		var formData = new FormData();
