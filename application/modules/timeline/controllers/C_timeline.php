@@ -42,7 +42,7 @@ class C_timeline extends MX_Controller {
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $uid);
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 		curl_setopt($ch, CURLOPT_HEADER, 1);
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key : '.$auth));
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key: '.$auth));
 		$result = curl_exec($ch);
 
 
@@ -141,7 +141,7 @@ class C_timeline extends MX_Controller {
 	          CURLOPT_FOLLOWLOCATION => false,    // Follow redirect aktif
 	          CURLOPT_SSL_VERIFYPEER => 0,
 	          CURLOPT_HEADER         => 1,
-	          CURLOPT_HTTPHEADER	 => array('baboo-auth-key : '.$auth)
+	          CURLOPT_HTTPHEADER	 => array('baboo-auth-key: '.$auth)
 	      );
 		curl_setopt_array($ch, $options);
 		$content = curl_exec($ch);
@@ -189,7 +189,7 @@ class C_timeline extends MX_Controller {
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $bookData);
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 		curl_setopt($ch, CURLOPT_HEADER, 1);
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key : '.$auth));
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key: '.$auth));
 		$result = curl_exec($ch);
 
 		$headers=array();
@@ -244,7 +244,7 @@ class C_timeline extends MX_Controller {
 	          CURLOPT_FOLLOWLOCATION => false,    // Follow redirect aktif
 	          CURLOPT_SSL_VERIFYPEER => 0,
 	          CURLOPT_HEADER         => 1,
-	          CURLOPT_HTTPHEADER	 => array('baboo-auth-key : '.$auth)
+	          CURLOPT_HTTPHEADER	 => array('baboo-auth-key: '.$auth)
 
 	      );
 		curl_setopt_array($ch, $options);
@@ -285,7 +285,7 @@ class C_timeline extends MX_Controller {
 	          CURLOPT_FOLLOWLOCATION => false,    // Follow redirect aktif
 	          CURLOPT_SSL_VERIFYPEER => 0,
 	          CURLOPT_HEADER         => 1,
-	          CURLOPT_HTTPHEADER	 => array('baboo-auth-key : '.$auth)
+	          CURLOPT_HTTPHEADER	 => array('baboo-auth-key: '.$auth)
 
 	      );
 		curl_setopt_array($ch, $options);
@@ -354,7 +354,7 @@ class C_timeline extends MX_Controller {
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $sendData);
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 		curl_setopt($ch, CURLOPT_HEADER, 1);
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key : '.$auth));
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key: '.$auth));
 		$result = curl_exec($ch);
 
 		$headers=array();
@@ -411,7 +411,7 @@ class C_timeline extends MX_Controller {
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $sendData);
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 		curl_setopt($ch, CURLOPT_HEADER, 1);
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key : '.$auth));
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key: '.$auth));
 		$result = curl_exec($ch);
 
 		$headers=array();
@@ -467,7 +467,7 @@ class C_timeline extends MX_Controller {
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $sendData);
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 		curl_setopt($ch, CURLOPT_HEADER, 1);
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key : '.$auth));
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key: '.$auth));
 		$result = curl_exec($ch);
 
 		$headers=array();
@@ -523,7 +523,7 @@ class C_timeline extends MX_Controller {
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $sendData);
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 		curl_setopt($ch, CURLOPT_HEADER, 1);
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key : '.$auth));
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key: '.$auth));
 		$result = curl_exec($ch);
 
 		$headers=array();
@@ -577,7 +577,7 @@ class C_timeline extends MX_Controller {
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $sendData);
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 		curl_setopt($ch, CURLOPT_HEADER, 1);
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key : '.$auth));
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key: '.$auth));
 		$result = curl_exec($ch);
 
 		$headers=array();

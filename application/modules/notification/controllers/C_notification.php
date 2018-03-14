@@ -47,7 +47,7 @@ class C_notification extends MX_Controller
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $userdata);
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 		curl_setopt($ch, CURLOPT_HEADER, 1);
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key : '.$auth));
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key: '.$auth));
 		$result = curl_exec($ch);
 
 		$headers=array();
@@ -101,7 +101,7 @@ class C_notification extends MX_Controller
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $userdata);
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 		curl_setopt($ch, CURLOPT_HEADER, 1);
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key : '.$auth));
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key: '.$auth));
 		$result = curl_exec($ch);
 
 		$headers=array();
@@ -162,7 +162,7 @@ class C_notification extends MX_Controller
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $updateNtf);
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 		curl_setopt($ch, CURLOPT_HEADER, 1);
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key : '.$auth));
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key: '.$auth));
 		$result = curl_exec($ch);
 
 		$headers=array();

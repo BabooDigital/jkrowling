@@ -142,7 +142,7 @@ class C_createbook extends MX_Controller
 			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 			curl_setopt($ch, CURLOPT_HEADER, 1);
 			curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-				'baboo-auth-key : ' . $auth
+				'baboo-auth-key: ' . $auth
 			));
 			$result = curl_exec($ch);
 			
@@ -254,7 +254,7 @@ class C_createbook extends MX_Controller
 			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 			curl_setopt($ch, CURLOPT_HEADER, 1);
 			curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-				'baboo-auth-key : ' . $auth
+				'baboo-auth-key: ' . $auth
 			));
 			$result = curl_exec($ch);
 			
@@ -358,7 +358,7 @@ class C_createbook extends MX_Controller
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 		curl_setopt($ch, CURLOPT_HEADER, 1);
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-			'baboo-auth-key : ' . $auth
+			'baboo-auth-key: ' . $auth
 		));
 		$result = curl_exec($ch);
 		
@@ -415,7 +415,7 @@ class C_createbook extends MX_Controller
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 		curl_setopt($ch, CURLOPT_HEADER, 1);
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-			'baboo-auth-key : ' . $auth
+			'baboo-auth-key: ' . $auth
 		));
 		$result = curl_exec($ch);
 		
@@ -480,7 +480,7 @@ class C_createbook extends MX_Controller
 			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 			curl_setopt($ch, CURLOPT_HEADER, 1);
 			curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-				'baboo-auth-key : ' . $auth
+				'baboo-auth-key: ' . $auth
 			));
 			$result = curl_exec($ch);
 
@@ -532,7 +532,7 @@ class C_createbook extends MX_Controller
 			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 			curl_setopt($ch, CURLOPT_HEADER, 1);
 			curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-				'baboo-auth-key : ' . $auth
+				'baboo-auth-key: ' . $auth
 			));
 			$result = curl_exec($ch);
 
@@ -619,7 +619,7 @@ class C_createbook extends MX_Controller
 			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 			curl_setopt($ch, CURLOPT_HEADER, 1);
 			curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-				'baboo-auth-key : ' . $auth
+				'baboo-auth-key: ' . $auth
 			));
 			$result = curl_exec($ch);
 
@@ -702,7 +702,7 @@ class C_createbook extends MX_Controller
 					curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
 					curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 					curl_setopt($ch, CURLOPT_HEADER, 1);
-					curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: multipart/form-data','baboo-auth-key : '.$auth));
+					curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: multipart/form-data','baboo-auth-key: '.$auth));
 					$result = curl_exec($ch);
 
 					$headers=array();
@@ -761,7 +761,7 @@ class C_createbook extends MX_Controller
 		curl_setopt($ch, CURLOPT_HEADER, 1);
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array(
 			'Content-Type: multipart/form-data',
-			'baboo-auth-key : ' . $auth
+			'baboo-auth-key: ' . $auth
 		));
 		$result = curl_exec($ch);
 		
@@ -838,7 +838,7 @@ class C_createbook extends MX_Controller
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 		curl_setopt($ch, CURLOPT_HEADER, 1);
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-			'baboo-auth-key : ' . $auth
+			'baboo-auth-key: ' . $auth
 		));
 		$result = curl_exec($ch);
 		
@@ -930,7 +930,7 @@ class C_createbook extends MX_Controller
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 		curl_setopt($ch, CURLOPT_HEADER, 1);
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-			'baboo-auth-key : ' . $auth
+			'baboo-auth-key: ' . $auth
 		));
 		$result = curl_exec($ch);
 		
@@ -1016,7 +1016,7 @@ class C_createbook extends MX_Controller
 	        curl_setopt($ch, CURLOPT_POSTFIELDS, $coverData);
 	        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 	        curl_setopt($ch, CURLOPT_HEADER, 1);
-	        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: multipart/form-data','baboo-auth-key : '.$auths));
+	        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: multipart/form-data','baboo-auth-key: '.$auths));
 	        $result = curl_exec($ch);
 
 	        $headers=array();
@@ -1069,7 +1069,7 @@ class C_createbook extends MX_Controller
 	    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 	    curl_setopt($ch, CURLOPT_HEADER, 1);
 	    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-	    	'baboo-auth-key : ' . $auths
+	    	'baboo-auth-key: ' . $auths
 	    ));
 	    $result = curl_exec($ch);
 
@@ -1133,7 +1133,7 @@ class C_createbook extends MX_Controller
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 		curl_setopt($ch, CURLOPT_HEADER, 1);
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-			'baboo-auth-key : ' . $auth
+			'baboo-auth-key: ' . $auth
 		));
 		$result = curl_exec($ch);
 		
@@ -1225,7 +1225,7 @@ class C_createbook extends MX_Controller
 					curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
 					curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 					curl_setopt($ch, CURLOPT_HEADER, 1);
-					curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: multipart/form-data','baboo-auth-key : '.$auth));
+					curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: multipart/form-data','baboo-auth-key: '.$auth));
 					$result = curl_exec($ch);
 
 					$headers=array();
@@ -1310,7 +1310,7 @@ class C_createbook extends MX_Controller
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 		curl_setopt($ch, CURLOPT_HEADER, 1);
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-			'baboo-auth-key : ' . $auth
+			'baboo-auth-key: ' . $auth
 		));
 		$content = curl_exec($ch);
 		curl_close($ch);
@@ -1343,7 +1343,7 @@ class C_createbook extends MX_Controller
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 		curl_setopt($ch, CURLOPT_HEADER, 1);
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-			'baboo-auth-key : ' . $auth
+			'baboo-auth-key: ' . $auth
 		));
 		$result = curl_exec($ch);
 		
@@ -1505,7 +1505,7 @@ class C_createbook extends MX_Controller
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 		curl_setopt($ch, CURLOPT_HEADER, 1);
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-			'baboo-auth-key : ' . $auth
+			'baboo-auth-key: ' . $auth
 		));
 		$content = curl_exec($ch);
 		curl_close($ch);
@@ -1558,7 +1558,7 @@ class C_createbook extends MX_Controller
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 		curl_setopt($ch, CURLOPT_HEADER, 1);
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-			'baboo-auth-key : ' . $auth
+			'baboo-auth-key: ' . $auth
 		));
 		$result = curl_exec($ch);
 		
