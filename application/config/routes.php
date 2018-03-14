@@ -76,6 +76,7 @@ $route['searching'] = 'search/C_search/search';
 $route['createidbook'] = 'timeline/C_timeline/createbook_id';
 
 $route['google_event'] = 'auth/C_Login/google_event';
+$route['facebook_event'] = 'auth/C_Login/facebook_event';
 
 // Draft
 $route['yourdraft'] = 'timeline/C_timeline/draftListView';

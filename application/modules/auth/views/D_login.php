@@ -371,7 +371,7 @@ if (!empty($query['b'])) {
 			window.location.href = '<?php echo $authUrlG; ?>';
 		});
 		$("#login_fb_event").on("click", function() {
-			window.location.href = '<?php echo $authUrl; ?>';
+			window.location.href = '<?php echo base_url('facebook_event'); ?>';
 		});
 		$("#login_google_event").on("click", function() {
 			window.location.href = '<?php echo base_url('google_event'); ?>';
