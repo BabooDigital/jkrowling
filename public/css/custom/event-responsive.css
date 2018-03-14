@@ -1,0 +1,154 @@
+img {
+	display: block;
+	margin: 0 auto;
+}
+
+.title_ {
+	font-size: 16pt;
+    font-weight: bold;
+}
+
+.img-peserta {
+	width: 160px;
+	display: block;
+	box-shadow: 0px 0px 10px rgba(163, 163, 163, 0.34);
+	height: 200px;
+}
+.img-pesertacir {
+	border: 3px #f5a623 solid;
+	display: block;
+	box-shadow: 0px 0px 10px rgba(163, 163, 163, 0.34);
+	height: 150px;
+}
+
+.btnIkut {
+	padding: 10px 70px;
+    border: 6px #fff solid;
+    border-radius: 15px;
+    background-color: #fac53a;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.32);
+    font-size: 20pt;
+    color: #333;
+    font-weight: bold;
+}
+
+.btnIkut:hover {
+	background: #d79d05;
+	color: #fefefe;
+	border: 6px #f0f0f0 solid;
+}
+
+.btnTop {
+    color: #fff;
+    padding: 5px 25px;
+    border-radius: 10px;
+    font-size: 15pt;
+    font-weight: 600;
+}
+
+.btnTop:hover {
+	color: #f3f5f7;
+}
+
+.btnRegis {
+	background: #dd4141;
+}
+.btnHowto {
+	background: #6b6b6b;
+}
+.btnTnc {
+	background: #1dcdc4;
+}
+
+.ikutPosi {
+	position:  absolute;
+	top: 15%;
+	left: 34%;
+}
+
+.howPosi {
+	position: absolute;
+    top: 3px;
+    right: 0;
+}
+
+.txtTitleBook {
+	font-weight: bold;
+	display: block;
+}
+
+.txtAuthor {
+	font-size: 10pt;
+}
+
+.seePeserta {
+	font-size: 11pt;
+    font-weight: 600;
+    color: #7661ca;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+	.fixed-top {
+    top: -4px !important;
+}
+.howPosi {
+    position: absolute;
+    top: 0px;
+    right: 0;
+}
+.btnTop {
+    color: #fff;
+    padding: 5px 7px;
+    border-radius: 10px;
+    font-size: 8pt;
+    font-weight: 600;
+}
+.btnIkut {
+    padding: 1px 20px;
+    border: 2px #fff solid;
+    border-radius: 15px;
+    background-color: #fac53a;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.32);
+    font-size: 12pt;
+    color: #333;
+    font-weight: bold;
+}
+.btnIkut:hover {
+	background: #d79d05;
+	color: #fefefe;
+}
+.caption {
+	text-align: center;
+}
+.img-peserta {
+	width: 120px;
+	height: 140px;
+}
+.toppane {
+	margin-top: 130px !important;
+}
+.img-pesertacir {
+	height: 125px;
+}
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+
+} 
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+
+} 
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+
+}

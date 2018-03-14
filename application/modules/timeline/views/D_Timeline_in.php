@@ -71,13 +71,13 @@
 					<?php if (isset($js)): ?>
 						<?php echo get_js($js) ?>
 					<?php endif ?>
-					<?php if ($this->session->flashdata('is_follow_event') == 200): ?>
-						<script type="text/javascript">
-							swal("Good job!", "Kamu Sukses Mengikuti Event!", "success");
-						</script>
-					<?php endif ?>
-					<?php if ($this->session->userdata('is_follow_event') == 403): ?>
-						<script type="text/javascript">
-							swal("Gagal!", "Email Kamu Sudah Terdaftar!", "info");
-						</script>
-					<?php endif ?>
+					<?php if ($this->session->flashdata('is_follow_event')): ?>
+		<script type="text/javascript">
+			swal("Good job!", "Kamu Sukses Mengikuti Event!", "success");
+		</script>
+	<?php endif ?>
+	<?php if ($this->session->flashdata('is_not_follow_event')): ?>
+		<script type="text/javascript">
+			swal("Maaf..", "Kamu Sudah Mengikuti Event!", "warning");
+		</script>
+	<?php endif ?>

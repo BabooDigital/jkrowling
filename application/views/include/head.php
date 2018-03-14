@@ -2,6 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
 	<meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
 
 	<link rel="icon" href="<?php echo base_url(); ?>public/img/favicon.ico" sizes="16x16">
