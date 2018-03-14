@@ -102,13 +102,11 @@ class C_profile extends MX_Controller {
 		$auth = $this->session->userdata('authKey');
 		$userdata = $this->session->userdata('userData');
 
-		$id_user = $this->uri->segment(2);
-		$idu = explode('-', $id_user, 2);
-		if (is_array($idu));
+		$id_user = $this->input->post('usr_prf');
 
 		$sendData = array(
 			'user_id' => $userdata['user_id'], 
-			'user_profile' => $idu[0] 
+			'user_profile' => $id_user 
 		);
 
 		$ch = curl_init();
@@ -121,7 +119,6 @@ class C_profile extends MX_Controller {
 		curl_setopt($ch, CURLOPT_HEADER, 1);
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key: '.$auth));
 		$result = curl_exec($ch);
-
 
 		$headers=array();
 
@@ -147,8 +144,49 @@ class C_profile extends MX_Controller {
 		$auth = $headers['BABOO-AUTH-KEY'];
 		
 		$this->session->set_userdata('authKey', $auth);
-		$status = $resval['code'];
+
+		// $ch = curl_init();
+		// curl_setopt($ch, CURLOPT_URL, $this->API.'timeline/Timelines/publish');
+		// curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+		// curl_setopt($ch, CURLOPT_POST, 1);
+		// curl_setopt($ch, CURLOPT_POSTFIELDS, array('id_user'=>$id_user));
+		// curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+		// curl_setopt($ch, CURLOPT_HEADER, 1);
+		// curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key : '.$auth));
+		// $result_books = curl_exec($ch);
+
+		// $headers=array();
+
+		// $data_books=explode("\n",$result_books);
+
+
+		// array_shift($data_books);
+		// $middle = array();
+		// $moddle = array();
+		// foreach($data_books as $part){
+		// 	$middle=explode(":",$part);
+		// 	$moddle=explode("{",$part);
+
+		// 	if (error_reporting() == 0) {
+		// 		$headers[trim($middle[0])] = trim($middle[1]);
+		// 	}
+		// }
+		// $getdata_books = end($data_books);
+		// $resval_books =  json_decode($getdata_books, TRUE);
+
+		// $psn = $resval['message'];
+		// $userbook = $resval_books['data'];
+
+		// $auth = $headers['BABOO-AUTH-KEY'];
+		
+		// $this->session->set_userdata('authKey', $auth);
+		// $status = $resval['code'];
+
+
+
 		$data['userdata'] = $userdetail['user_info'];
+		// $data['bookprofile'] = $userbook;
 
 		$data['title'] = "Profile Page - Baboo";
 		$data['js'][] = "public/js/jquery.min.js";
@@ -172,6 +210,7 @@ class C_profile extends MX_Controller {
 			// $this->load->view('timeline/include/foot');
 
 		}
+		// print_r($result_books);
 		// print_r($data['userdata']);
 	}
 	public function getPublishBook() {
