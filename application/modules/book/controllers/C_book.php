@@ -830,49 +830,6 @@ class C_book extends MX_Controller
     	} else {
     		echo json_encode($datas);
     	}
-        // echo $result;
-    
-		curl_setopt($ch, CURLOPT_POST, 1);
-		curl_setopt($ch, CURLOPT_POSTFIELDS, $sendData);
-		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-		curl_setopt($ch, CURLOPT_HEADER, 1);
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key : '.$auth));
-		$result = curl_exec($ch);
-
-
-		$headers=array();
-
-		$data=explode("\n",$result);
-
-
-		array_shift($data);
-		$middle = array();
-		$moddle = array();
-		foreach($data as $part){
-			$middle=explode(":",$part);
-			$moddle=explode("{",$part);
-
-			if (error_reporting() == 0) {
-				$headers[trim($middle[0])] = trim($middle[1]);
-			}
-		}
-		$getdata = end($data);
-		$resval =  json_decode($getdata, TRUE);
-
-		$psn = $resval['message'];
-		$userdetail = $resval['data'];
-		$auth = $headers['BABOO-AUTH-KEY'];
-		
-		$this->session->set_userdata('authKey', $auth);
-		$status = $resval['code'];
-		if ($status == 403){
-			$this->session->unset_userdata('userData');
-			$this->session->unset_userdata('authKey');
-			$this->session->sess_destroy();
-			redirect('login','refresh');
-		}else{
-			echo json_encode($userdetail);
-		}
-		// print_r($data);
+    	echo json_encode(array("code"=>$status));  
 	}
 }

@@ -2,7 +2,7 @@
 	foreach ($home['timeline'] as $s_book) {  ?>
 	<div class="card mb-15" style="padding: 0 10px 10px;">
 		<div class="card-body p-0 p-20">
-			<div class="row mb-30 " style="padding-bottom:20px;border-bottom:solid 1px #DDD;">
+			<div class="row mb-20 pb-10" style="border-bottom: 1px rgba(225, 225, 225, 0.28) solid;">
 				<div class="media">
 					<a href="#"><img class="d-flex align-self-start mr-20 rounded-circle" src="<?php if($s_book['author_avatar'] == NULL){
 						echo base_url('public/img/profile/blank-photo.jpg');
@@ -13,7 +13,7 @@
 							<a href="<?php echo site_url('profile/'.$s_book['author_id'].'-'.url_title($s_book['author_name'])) ?>"><h5 class="card-title nametitle2"><?php
 							echo $s_book['author_name']; ?></h5></a>
 							<p><small>
-								<span class="ml-10"><?php echo $s_book['publish_date'] ?></span></small></p>
+								<span><?php echo $s_book['publish_date'] ?></span></small></p>
 							</div>
 						</div>
 					</div>
@@ -28,7 +28,7 @@
 								">
 								<input type="hidden" name="" class="dbooktitle" value="<?php echo $s_book['title_book']; ?>">
 								<?php if ($s_book['cover_url'] != null): ?>
-									<img class="effect-img d-flex align-self-start mr-10 float-left" src="<?php echo ($s_book['cover_url'] != 'Kosong') ? ($s_book['cover_url'] != null ? $s_book['cover_url'] : base_url('public/img/icon-tab/empty-set.png')) : base_url('public/img/icon-tab/empty-set.png'); ?>" width="120" height="170" alt="<?php
+									<img class="effect-img d-flex align-self-start mr-20 float-left" src="<?php echo ($s_book['cover_url'] != 'Kosong') ? ($s_book['cover_url'] != null ? $s_book['cover_url'] : base_url('public/img/icon-tab/empty-set.png')) : base_url('public/img/icon-tab/empty-set.png'); ?>" width="120" height="170" alt="<?php
 									echo $s_book['title_book']; ?>">
 								<?php endif ?>
 							</a>

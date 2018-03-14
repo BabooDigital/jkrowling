@@ -47,9 +47,9 @@
 								<a href="<?php echo site_url(); ?>account/edit" class="btn-profile"><img
 									src="<?php echo base_url('') ?>public/img/assets/icon_edit.png" width="20"> Edit Profile
 								</a>
-								<button class="btn-message"><img
+								<a href="<?php echo site_url(); ?>pesan" class="btn-message"><img
 									src="<?php echo base_url('') ?>public/img/icon-tab/message.svg" width="25">Pesan Masuk
-								</button>
+								</a>
 							</div>
 							<br>
 							<br>
@@ -65,11 +65,11 @@
 		<div class="row">
 			<div class="col-md-9">
 				<div class="row">
-					<div class="loader" style="display: none;margin-left: auto;margin-right: auto;"></div>
-					<div id="r_publishdata">
+					<div id="r_publishdata" class="w-100">
 						<div class="loaderpubl mx-auto" style="display: none;"></div>
 
 					</div>
+					<div class="loader" style="display: none;margin-left: auto;margin-right: auto;"></div>
 				</div>
 			</div>
 		</div>

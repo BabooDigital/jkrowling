@@ -603,30 +603,32 @@ class C_timeline extends MX_Controller {
 		$auth = $headers['BABOO-AUTH-KEY'];
 		
 		$this->session->set_userdata('authKey', $auth);
-		// if ($status == 403){
-		// 	$this->session->unset_userdata('userData');
-		// 	$this->session->unset_userdata('authKey');
-		// 	$this->session->sess_destroy();
-		// 	redirect('login','refresh');
-		// }else{
-			// echo json_encode(array('code' => $status, 'message' => $pesan));	
-		// }
-		// if ($this->agent->mobile()) {
+		if ($status == 403){
+			$this->session->unset_userdata('userData');
+			$this->session->unset_userdata('authKey');
+			$this->session->sess_destroy();
+			redirect('login','refresh');
+		}else{	
+		}
+		if ($this->agent->mobile()) {
 			$data['datadraft'] = $resval['data'];
 			$data['title'] = "Daftar Draft Buku | Baboo - Beyond Book &amp; Creativity";
 			$data['css'][] = "public/css/bootstrap.min.css";
 			$data['css'][] = "public/css/font-awesome.min.css";
 			$data['css'][] = "public/css/baboo-responsive.css";
 			$data['css'][] = "public/css/custom-margin-padding.css";
+			$data['css'][] = "public/css/sweetalert2.min.css";
 
 			$data['js'][] = "public/js/jquery.min.js";
 			$data['js'][] = "public/js/tether.min.js";
 			$data['js'][] = "public/js/umd/popper.min.js";
 			$data['js'][] = "public/js/bootstrap.min.js";
+			$data['js'][] = "public/js/sweetalert2.all.min.js";
+			$data['js'][] = "public/js/custom/mobile/r_draft.js";
 			$data['js'][] = "public/js/menupage.js";
 
 			$this->load->view('R_draft', $data);
-		// }else{
-		// }
+		}else{
+		}
 	}
 }
