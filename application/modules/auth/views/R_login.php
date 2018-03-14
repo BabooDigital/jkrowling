@@ -275,6 +275,13 @@ if (!empty($query['b'])) {
 			$("#login_google").on("click",function() {
 				window.location.href = '<?php echo $authUrlG; ?>';
 			});
+			$("#login_fb_event").on("click", function() {
+				window.location.href = '<?php echo base_url('facebook_event'); ?>';
+			});
+			$("#login_google_event").on("click", function() {
+				window.location.href = '<?php echo base_url('google_event'); ?>';
+				// console.log("a");
+			});
 		</script>	
 		<?php echo $this->session->flashdata('login_alert');?>
 		<script type="text/javascript">
@@ -283,6 +290,13 @@ if (!empty($query['b'])) {
 			});
 			$("#login_google").on("click",function() {
 				window.location.href = '<?php echo $authUrlG; ?>';
+			});
+			$("#login_fb_event").on("click", function() {
+				window.location.href = '<?php echo base_url('facebook_event'); ?>';
+			});
+			$("#login_google_event").on("click", function() {
+				window.location.href = '<?php echo base_url('google_event'); ?>';
+				// console.log("a");
 			});
 		</script>
 	</body>
