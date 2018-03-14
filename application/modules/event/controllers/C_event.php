@@ -86,12 +86,9 @@ class C_Event extends MX_Controller
 
         if ($resval['code'] == 200) {
             $this->session->set_flashdata('is_follow_event', 200);
-            echo "berhasil";
         }if($resval['code'] == 403){
             $this->session->set_flashdata('is_not_follow_event', 403);
-            echo "anda sudah terdaftar";
         }
-        // print_r($user['email']);
         redirect('timeline');
     }
 }

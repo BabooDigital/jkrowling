@@ -49,6 +49,15 @@ class C_Login extends MX_Controller
 
         redirect($this->google->loginURLEvent());
     }
+    public function facebook_event()
+    {
+        $array = array(
+            'event' => 1
+        );
+        
+        $this->session->set_userdata($array);
+        redirect($this->facebook->login_url());
+    }
     public function fb_login()
     {
         error_reporting(0);
@@ -104,14 +113,19 @@ class C_Login extends MX_Controller
                 $this->session->set_userdata('isLogin', $status);
                 $this->session->set_userdata('authKey', $auth);
                 $this->session->set_userdata('userData', $user);
-                if ($this->agent->is_mobile()) {
-                    if ($user['is_newuser'] != false) {
-                        redirect("firstlogin");
+                if ($this->session->userdata('event') == 1) {
+                    $this->session->set_userdata('userData', $user);
+                    redirect('follow_event');
+                }else{
+                    if ($this->agent->is_mobile()) {
+                        if ($user['is_newuser'] != false) {
+                            redirect("firstlogin");
+                        }else {
+                            redirect('timeline');
+                        }
                     }else {
                         redirect('timeline');
                     }
-                }else {
-                    redirect('timeline');
                 }
             }else
             {
@@ -184,6 +198,16 @@ class C_Login extends MX_Controller
             if ($this->session->userdata('event') == 1) {
                 $this->session->set_userdata('userData', $user);
                 redirect('follow_event');
+            }else{
+                if ($this->agent->is_mobile()) {
+                    if ($user['is_newuser'] != false) {
+                        redirect("firstlogin");
+                    }else {
+                        redirect('timeline');
+                    }
+                }else {
+                    redirect('timeline');
+                }
             }
         }else {
             $status = $resval['code'];
