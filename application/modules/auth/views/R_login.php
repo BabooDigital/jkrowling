@@ -29,18 +29,18 @@
 }
 .btntnc {
 	border: none;
-    border-radius: 35px;
-    padding: 10px 50px;
-    box-shadow: 0px 2px 5px 0px #999999;
-    font-weight: 600;
+	border-radius: 35px;
+	padding: 10px 50px;
+	box-shadow: 0px 2px 5px 0px #999999;
+	font-weight: 600;
 }
 .btn-diss {
-    background: #dadada;
-    color: #333;
+	background: #dadada;
+	color: #333;
 }
 .btn-acc {
-    background: #7661ca;
-    color: #fff;
+	background: #7661ca;
+	color: #fff;
 }
 .mb-50 {
 	margin-bottom: 50px;
@@ -205,47 +205,45 @@ if (!empty($query['b'])) {
 							</div>
 							<div class="row">
 								<div class="col-lg-12 col-xl-12">
-									<form id="form-login" action="<?php echo site_url(); ?>auth/C_Login/postloginevent" method="POST">
-								<div class="row">
-									<div class="col-lg-12">
-										<p class="right-text">Lanjutkan dengan</p>
-									</div>
-
-									<div class="col-lg-6 col-md-12 col-xl-6">
-										<button class="btn btn-block btn-sosmed" id="login_fb_event">
-											<img src="<?php echo base_url();?>public/img/assets/fb-icon.svg" class="btn-img-sosmed"> <span class="btn-text-sosmed">Facebook</span>
-										</button>
-									</div>
-
-									<div class="col-lg-6 col-md-12 col-xl-6">
-										<button class="btn btn-block btn-sosmed" id="login_google_event">	
-											<img src="<?php echo base_url();?>public/img/assets/google-icon.svg" class="btn-img-sosmed"> <span class="btn-text-sosmed">Google</span>
-										</button>
-									</div>
-
-									<div class="col-lg-12" style="margin-top:55.1px;">
-										<p style="font-size:15px;">Atau login menggunakan email</p>
-									</div>
-
-									<div class="col-lg-12">
-										<form id="login-form" action="<?php echo site_url(); ?>auth/C_Login/postloginevent" method="POST">
-											<div class="form-group">
-												<input type="email" class="form-control login-input" id="yourEmail" name="emails" placeholder="Alamat Email">
-											</div>
-
-											<div class="form-group">
-												<input type="password" class="required password error  form-control login-input" id="yourPassword" name="passwords" placeholder="Password">
-											</div>
-											<p class="text-right text-daftar">Belum punya akun ? <a  data-toggle="modal" data-target="#register-modal" href="#" class="link-daftar">Daftar disini</a></p>
-											<div class="pull-right">
-												<button type="submit" name="submit" class="btn btn-primary pull-right btn-login"><i class="icon-arrow-right"></i></button>	
-											</form>
+									<div class="row">
+										<div class="col-lg-12">
+											<p class="right-text">Lanjutkan dengan</p>
 										</div>
 
+										<div class="col-lg-6 col-md-12 col-xl-6">
+											<button class="btn btn-block btn-sosmed" id="login_fb_event">
+												<img src="<?php echo base_url();?>public/img/assets/fb-icon.svg" class="btn-img-sosmed"> <span class="btn-text-sosmed">Facebook</span>
+											</button>
+										</div>
+
+										<div class="col-lg-6 col-md-12 col-xl-6">
+											<button class="btn btn-block btn-sosmed" id="login_google_event">	
+												<img src="<?php echo base_url();?>public/img/assets/google-icon.svg" class="btn-img-sosmed"> <span class="btn-text-sosmed">Google</span>
+											</button>
+										</div>
+
+										<div class="col-lg-12" style="margin-top:55.1px;">
+											<p style="font-size:15px;">Atau login menggunakan email</p>
+										</div>
+
+										<div class="col-lg-12">
+											<form id="login-form" action="<?php echo site_url(); ?>auth/C_Login/postloginevent" method="POST">
+												<div class="form-group">
+													<input type="email" class="form-control login-input" id="yourEmail" name="emails" placeholder="Alamat Email">
+												</div>
+
+												<div class="form-group">
+													<input type="password" class="required password error  form-control login-input" id="yourPassword" name="passwords" placeholder="Password">
+												</div>
+												<p class="text-right text-daftar">Belum punya akun ? <a  data-toggle="modal" data-target="#register-modal" href="#" class="link-daftar">Daftar disini</a></p>
+												<div class="pull-right">
+													<button type="submit" name="submit" class="btn btn-primary pull-right btn-login"><i class="icon-arrow-right"></i></button>	
+												</form>
+											</div>
+
+										</div>
 									</div>
 								</div>
-							</div> 
-						</form>
 							</div>
 
 						</div>
