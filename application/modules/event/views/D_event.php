@@ -8,67 +8,20 @@ if ($this->agent->mobile()) {
 <div class="container mb-30">
 	<div class="row">
 		<div class="col-md-2 hidden-sm-down"></div>
-		<div class="col-md-8 col-sm-12 mt-100 p-0 toppane">
+		<?php  if (empty($this->session->userdata('userData'))) { ?>
+		<div class="col-md-8 col-sm-12 mt-70 p-0">
+		<?php }else { ?>
+		<div class="col-md-8 col-sm-12 mt-130 p-0">
+		<?php  } ?>
 			<div>
 				<img src="<?php echo $event['event_banner']; ?>" class="img-fluid" alt="Event Banner">
 				<div class="ikutPosi">
 					<a href="<?php echo ($this->session->userdata('userData') ? base_url().'follow_event' : base_url().'login#event') ?>" class="btnIkut follow_event">Ikut Lomba</a>
 				</div>
-				<!-- <div class="howPosi">
-					<a href="#" class="btnTop btnRegis">Daftar / Masuk</a>
-					<a href="#" class="btnTop btnHowto">Cara Mengikuti</a>
-					<a href="#" class="btnTop btnTnc">Syarat &amp; Ketentuan</a>
-				</div> -->
 			</div>
 		</div>
 		<div class="col-md-2 hidden-sm-down"></div>
 	</div>
-	
-	<!-- <div class="row">
-		<div class="col-md-2 hidden-sm-down"></div>
-		<div class="col-md-8 col-sm-12">
-			<p class="title_ mt-40">Peserta Lomba</p>
-			<div class="card mt-10">
-				<div class="card-body">
-					<div class="row participant_event">
-
-					</div>
-				</div>
-			</div>
-			<p class="mt-15">
-				<a href="#" class="seePeserta">Lihat semua</a>
-			</p>
-		</div>
-		<div class="col-md-2 hidden-sm-down"></div>
-	</div>
-
-	<div class="row">
-		<div class="col-md-2 hidden-sm-down"></div>
-		<div class="col-md-8 col-sm-12">
-			<p class="title_ mt-40">Pemenang Event</p>
-			<div class="row">
-				<div class="col-6">
-					<div class="card mt-10">
-						<div class="card-body">
-							<div class="thumbnail">
-								<div>
-									<img alt="100%x200" class="rounded-circle img-fluid img-pesertacir" src="<?php echo base_url('public/img/profile/blank-photo.jpg') ?>">
-								</div>
-								<div class="caption"> 
-									<h5 align="center">
-										<b>Sweeta Kartika</b>
-									</h5> 
-									<h4 align="center">Pemenang #1</h4>
-									<p></p> <p></p>
-								</div> 
-							</div> 
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-2 hidden-sm-down"></div>
-	</div> -->
 </div>
 <div class="modal fade" id="follow-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">

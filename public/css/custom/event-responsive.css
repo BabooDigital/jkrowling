@@ -61,9 +61,9 @@ img {
 }
 
 .ikutPosi {
-	position:  absolute;
-	top: 15%;
-	left: 34%;
+	position: absolute;
+    top: 46%;
+    left: 18%;
 }
 
 .howPosi {
@@ -105,12 +105,12 @@ img {
     font-weight: 600;
 }
 .btnIkut {
-    padding: 1px 20px;
+    padding: 10px 60px;
     border: 2px #fff solid;
     border-radius: 15px;
     background-color: #fac53a;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.32);
-    font-size: 12pt;
+    font-size: 17pt;
     color: #333;
     font-weight: bold;
 }
