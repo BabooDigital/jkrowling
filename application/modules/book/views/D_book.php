@@ -187,7 +187,7 @@
 		</div>
 		<div class="col-md-7">
 			<ul class="navbar-nav pull-right">
-				<li class="nav-item"><span class="text-muted" id="id_page"><small>Page</small> <strong>Description</strong></span></li>
+				<!-- <li class="nav-item"><span class="text-muted" id="id_page"><small>Page</small> <strong>Description</strong></span></li> -->
 			</ul>
 			<ul class="navbar-nav">
 				<li class="nav-item">
@@ -199,6 +199,9 @@
 					<button data-b-id="<?php echo $detail_book['data']['book_info']['book_id']; ?>" onclick="getCommentBook()" type="button" data-toggle="modal" data-target="#commentModal" style="cursor: pointer;background: none;border: none;">
 						<div class="thumbnail"><img src="<?php echo base_url(); ?>public/img/assets/icon_comment.svg" width="25"><div class="caption fs-12px"><span id="commentcount"><?php echo $detail_book['data']['book_info']['book_comment_count']; ?></span></div></div>
 					</button>
+				</li>
+				<li class="nav-item ml-20">
+					<a href="javascript:void(0);" id="bookmarkboo" class="<?php if($detail_book['data']['book_info']['is_bookmark'] == false){ echo 'bookmark'; }else{ echo 'unbookmark'; } ?>" data-id="<?php echo $detail_book['data']['book_info']['book_id']; ?>"><img src="<?php if($detail_book['data']['book_info']['is_bookmark'] == false){ echo base_url('public/img/assets/icon_bookmark.svg'); }else{ echo base_url('public/img/assets/icon_bookmark_active.svg'); } ?>" class="mr-5 bookmarkicon" width="27"></a>
 				</li>
 			</ul>
 		</div>

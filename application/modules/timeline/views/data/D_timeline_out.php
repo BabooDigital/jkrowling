@@ -13,7 +13,7 @@
 							<div class="media-body mt-5">
 								<h5 class="card-title nametitle2"><a href="<?php echo site_url('profile/'.$s_book['author_id'].''); ?>"><?php
 								echo $s_book['author_name']; ?></a></h5>
-								<p><small><span>Jakarta, Indonesia</span> <span class="ml-10">1 hours ago</span></small></p>
+								<p><small><span class="ml-10">1 hours ago</span></small></p>
 							</div>
 						</div>
 					</div>

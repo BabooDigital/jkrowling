@@ -1031,7 +1031,7 @@ input.formsearch:focus {
 	}
 
 	.showss {
-		display: block;
+		display: block !important;
 	}
 
 	/*PROGRESS BAR*/
@@ -1522,7 +1522,7 @@ input.formsearch:focus {
     display:none;
     width:350px;
     position:absolute;
-    height: 1000px;
+    height: auto;
     top:60px;
     margin-left: auto;
     margin-right: auto;
@@ -1754,11 +1754,11 @@ input.formsearch:focus {
 }
 .lds-flickr div {
   position: absolute;
-    width: 40px;
-    height: 40px;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
     top: 20px;
-    left: 60px;
+    left: 80px;
 }
 .lds-flickr div:nth-child(1) {
   background: #e4d8eb;

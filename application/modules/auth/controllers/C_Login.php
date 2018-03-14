@@ -132,7 +132,12 @@ class C_Login extends MX_Controller
                 $status = $resval['code'];
 
                 $fbuser = '';
-                echo "<script type='text/javascript'>alert ('".$psn."');window.location.href = '".site_url('login')."';</script>";
+                $this->session->set_flashdata('login_alert', '<script>
+                  $(window).on("load", function(){
+                    swal("Gagal", "'.$psn.'", "error");
+                });
+                </script>');
+                redirect('login','refresh');
             }
 
             echo json_encode(array(
@@ -213,7 +218,12 @@ class C_Login extends MX_Controller
             $status = $resval['code'];
             $data = "Not Found";
 
-            echo "<script type='text/javascript'>alert ('".$psn."');window.location.href = '".site_url('login')."';</script>";
+            $this->session->set_flashdata('login_alert', '<script>
+                  $(window).on("load", function(){
+                    swal("Gagal", "'.$psn.'", "error");
+                });
+                </script>');
+                redirect('login','refresh');
         }
         // echo json_encode(array(
         //     'status' => $status, 
