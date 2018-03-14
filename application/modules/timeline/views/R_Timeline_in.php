@@ -3,13 +3,25 @@
 	border-radius: 0 !important;
 }
 </style>
-<script>(function(d, s, id) {
-	var js, fjs = d.getElementsByTagName(s)[0];
-	if (d.getElementById(id)) return;
-	js = d.createElement(s); js.id = id;
-	js.src = 'https://connect.facebook.net/id_ID/sdk.js#xfbml=1&version=v2.12&appId=147496629264839';
-	fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+<?php 
+	$base = (isset($_SERVER['HTTPS']) ? "https://" : "http://").$_SERVER['HTTP_HOST'];
+	$appid = '382931948848880';
+	if (strpos($base, 'stg.baboo.id') !== false) {
+		$appid = '1015515621929474';
+	} elseif (strpos($base, 'localhost/jkrowling') !== false || strpos($base, 'dev-baboo.co.id') !== false) {
+		$appid = '382931948848880';
+	} elseif (strpos($base, 'baboo.id') !== false) {
+		$appid = '142508586445900';
+	}
+	echo "<script>(function(d, s, id) {
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) return;
+		js = d.createElement(s); js.id = id;
+		js.src = 'https://connect.facebook.net/id_ID/sdk.js#xfbml=1&version=v2.12&appId=".$appid."';
+		fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>";
+?>
+
 <body id="pageContent">
 	<div class="wrapper">
 		<div class="lds-css ng-scope" style="display: none;">
