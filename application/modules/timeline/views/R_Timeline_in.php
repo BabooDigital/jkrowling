@@ -58,5 +58,10 @@
 			swal("Good job!", "Kamu Sukses Mengikuti Event!", "success");
 		</script>
 	<?php endif ?>
+	<?php if ($this->session->flashdata('is_not_follow_event')): ?>
+		<script type="text/javascript">
+			swal("Maaf..", "Kamu Sudah Mengikuti Event!", "warning");
+		</script>
+	<?php endif ?>
 </body>
 </html>
