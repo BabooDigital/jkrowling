@@ -3,7 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
-	<title><?php echo $judul; ?></title><?php if (isset($css)): ?><?php echo get_css($css) ?><?php endif ?>
+	<title><?php echo $title; ?></title>
+	<?php if (isset($css)): ?><?php echo get_css($css) ?><?php endif ?>
 
 	<script type="text/javascript">
 		var base_url = '<?php echo base_url() ?>';
