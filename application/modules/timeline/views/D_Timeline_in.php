@@ -18,7 +18,7 @@
 						</div>
 						<div class="card-body p-0">
 							<ul class="list-group list-group-flush" id="author_this_week">
-								<div class="loader" align="center" style="margin-left: auto;margin-right: auto;"></div>
+								<div class="loads-css ng-scope"><div style="width:20px;height:20px" class="lds-flickr"><div></div><div></div><div></div></div></div>
 							</ul>
 						</div>
 					</div>
@@ -59,7 +59,7 @@
 										</div>
 										<div class="card-body p-0">
 											<ul class="list-group list-group-flush" id="best_book">
-												<div class="loader" align="center" style="margin-left: auto;margin-right: auto;"></div>
+												<div class="loads-css ng-scope"><div style="width:20px;height:20px" class="lds-flickr"><div></div><div></div><div></div></div></div>
 											</ul>
 										</div>
 									</div>

@@ -17,20 +17,27 @@ class C_Library extends MX_Controller
     public function index()
     {
         $data['title'] = "Library Page | Baboo - Beyond Book & Creativity";
-        $data['css'][]   = "public/css/jquery.bxslider.min.css";
+        $datas['title'] = "Library Page | Baboo - Beyond Book & Creativity";
 
+        error_reporting(0);
+        $auth = $this->session->userdata('authKey');
+        $seg = $this->session->userdata('userData');
+        $userid = $seg['user_id'];
 
-
+        $sendData = array(
+            'user_id' => $userid
+        );
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $this->API.'timeline/Home/bestBook');
+        curl_setopt($ch, CURLOPT_URL, $this->API.'book/Books/latestRead');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
-        curl_setopt($ch, CURLOPT_POST, false);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $sendData);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
         curl_setopt($ch, CURLOPT_HEADER, 1);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key : '.$auth));
         $result = curl_exec($ch);
-        
+
         $headers=array();
         
         $slider=explode("\n",$result);
@@ -44,9 +51,41 @@ class C_Library extends MX_Controller
             }
         }
 
-        $resval2 = (array)json_decode(end($slider), true);
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $this->API.'timeline/Timelines/listBookmark');
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-        $data['slide'] = $resval2;
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $sendData);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+        curl_setopt($ch, CURLOPT_HEADER, 1);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key : '.$auth));
+        $result = curl_exec($ch);
+
+        $headers=array();
+
+        $book=explode("\n",$result);
+
+
+        array_shift($book);
+        $middle = array();
+        $moddle = array();
+        foreach($book as $part){
+            $middle=explode(":",$part);
+            $moddle=explode("{",$part);
+
+            if (error_reporting() == 0) {
+                $headers[trim($middle[0])] = trim($middle[1]);
+            }
+        }
+
+        $auth = $headers['BABOO-AUTH-KEY'];
+        $resval1 = (array)json_decode(end($slider), true);
+        $resval2 = (array)json_decode(end($book), true);
+        
+        $datas['slide'] = $resval1;
+        $datas['bookmark'] = $resval2;
+        $this->session->set_userdata('authKey', $auth);
         if ($this->agent->is_mobile()) {
             $data['js'][] = "public/js/jquery.min.js";
             $data['js'][] = "public/js/umd/popper.min.js";
@@ -54,15 +93,13 @@ class C_Library extends MX_Controller
             $data['js'][] = "public/js/custom/mobile/library.js";
             $data['js'][] = "public/js/menupage.js";
             $data['js'][]   = "public/js/custom/notification.js";
+
             $this->load->view('include/head', $data);
             $this->load->view('R_library', $data);
 
         }else{
-            $data['js'][] = "public/js/umd/popper.min.js";
-            $data['js'][] = "public/js/menupage.js";
-            $data['js'][]   = "public/js/custom/notification.js";
-            $this->load->view('include/head', $data);
-            $this->load->view('D_library', $data);
+            $this->load->view('include/head', $datas);
+            $this->load->view('D_library');
         }
     }
     public function bookmark()
