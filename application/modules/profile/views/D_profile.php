@@ -37,7 +37,6 @@
 							<p>Jakarta, Indonesia</p>
 							<div class="quote">
 								<p><?php echo $userdata['about_me']; ?></p>
-								<p>( <?php echo $userdata['email']; ?> )</p>
 							</div>
 							<div class="mb-20">
 								<?php if (!$this->uri->segment(2)): ?>

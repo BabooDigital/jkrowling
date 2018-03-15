@@ -15,7 +15,7 @@ foreach ($detail_book['data']['chapter']['paragraphs'] as $book) {
 	$text = strip_tags($book['paragraph_text']);
 	$count = $book['comment_count'];
 	if ($count == 0) { $view_count = '+'; }else{ $view_count = $count;}
-	$data .= "<div id='detailStyle'>".$book['paragraph_text']."</div>";
+	$data .= "<div id='detailStyle' class='textp' data-text='".$text."'>".$book['paragraph_text']."</div>";
 }
 	echo $data;
 ?>

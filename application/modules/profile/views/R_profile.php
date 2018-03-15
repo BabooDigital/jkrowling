@@ -25,7 +25,6 @@
 						<p class="label_name"><?php echo $userdata['fullname']; ?></p>
 						<p class="profile_location"><?php echo $userdata['address']; ?></p>
 						<p class="fs-14px quote"><?php echo $userdata['about_me']; ?></p>
-						<span class="fs-14px quote">( <?php echo $userdata['email']; ?> )</span>
 						<hr>
 						<div class="info">
 							<img src="<?php echo base_url('') ?>public/img/icon-tab/book.svg"><b class="label_info">

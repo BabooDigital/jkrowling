@@ -16,7 +16,7 @@
 							<h5 class="card-title nametitle2"><a href="<?php echo site_url('profile/'.$s_book['author_id'].''); ?>" class="author_name"><?php
 							echo $s_book['author_name']; ?></a></h5>
 							<p class="text-muted" style="margin-top:-10px;"><small>
-								<span class="ml-10"><?php echo $s_book['publish_date']; ?></span></small></p>
+								<span><?php echo $s_book['publish_date']; ?></span></small></p>
 							</div>
 						</div>
 					</div>
@@ -69,7 +69,7 @@
 										<h5 class="card-title nametitle2"><a href="<?php echo site_url('profile/'.$s_book['author_id'].''); ?>" class="author_name"><?php
 										echo $s_book['author_name']; ?></a></h5>
 										<p class="text-muted" style="margin-top:-10px;"><small>
-											<span class="ml-10"><?php echo $s_book['publish_date']; ?></span></small></p>
+											<span><?php echo $s_book['publish_date']; ?></span></small></p>
 										</div>
 									</div>
 								</div>
