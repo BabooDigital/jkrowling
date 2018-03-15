@@ -71,7 +71,7 @@ $(document).ready(function() {
 				d = $("#profname").text(),
 				e = +$("#commentcount").text() + 1;
 				b = "<div class='commentviewnull'><div class='media'> <img class='d-flex align-self-start mr-20 rounded-circle' width='50' height='50' src='" + c + "'> <div class='media-body'> <h5 class='nametitle2 mb-5'>" + d + "</h5> <small><span>Jakarta, Indonesia</span></small> </div> </div> <div class='mt-10'> <p class='fs-14px' id='nullcomment'>" +
-				b + "</p> </div> <a href='#'><b>Balas</b></a> <hr></div>";
+				b + "</p> </div> <hr></div>";
 				$("#bookcomment_list").append(b);
 				a.append("user_id", $("#iaiduui").val());
 				a.append("book_id", $("#iaidubi").val());
@@ -100,7 +100,7 @@ $(document).ready(function() {
 		d = $("#profpict").attr("src"),
 		e = $("#profpict").attr("alt");
 		c = "<div class='pcommentviewnull'><div class='media'> <img class='d-flex align-self-start mr-20 rounded-circle' src='" + d + "' width='48' height='48' alt='" + e + "'> <div class='media-body mt-5'> <p><h5 class='card-title nametitle3'><a href='#'>" + e + "</a><small><span class='text-muted ml-10 timepost'>Just now</span></small></h5> <div class='text-muted' style='margin-top:-10px;'></div></p> <p style='font-size:16px; font-family: Roboto;'>" +
-		c + "</p> <div> <a href='#' class='fs-14px'>Reply</a> <div class='pull-right'><a href='#'><img base_url+spublic/img/assets/icon_love.svg'> </a></div> </div> </div> </div><hr></div>";
+		c + "</p></div> </div><hr></div>";
 		$("#paragraphcomment_list").append(c);
 		b.append("user_id", $("#iaiduui").val());
 		b.append("paragraph_id", a.attr("data-p-id"));
@@ -297,7 +297,7 @@ $(document).ready(function() {
 				var d;
 				"" != b.comment_user_avatar ? d = b.comment_user_avatar : "" == b.comment_user_avatar && (d = "public/img/profile/blank-photo.jpg");
 				c += "<div class='media'> <img class='d-flex align-self-start mr-20 rounded-circle' src='" + d + "' width='48' height='48' alt='" +
-				b.comment_user_name + "'> <div class='media-body mt-5'> <p><h5 class='card-title nametitle3'><a href='#'>" + b.comment_user_name + "</a><small><span class='text-muted ml-10'>" + b.comment_date + "</span></small></h5> <div class='text-muted' style='margin-top:-10px;'></div></p> <p style='font-size:16px; font-family: Roboto;' id='" + b.comment_id + "'>" + b.comment_text + "</p> <div> <a href='#' class='fs-14px'>Reply</a> <div class='pull-right'><a href='#'><img base_url+spublic/img/assets/icon_love.svg'> </a></div> </div> </div> </div><hr>"
+				b.comment_user_name + "'> <div class='media-body mt-5'> <p><h5 class='card-title nametitle3'><a href='#'>" + b.comment_user_name + "</a><small><span class='text-muted ml-10'>" + b.comment_date + "</span></small></h5> <div class='text-muted' style='margin-top:-10px;'></div></p> <p style='font-size:16px; font-family: Roboto;' id='" + b.comment_id + "'>" + b.comment_text + "</p> </div> </div><hr>"
 			});
 			$("#paragraphcomment_list").html(c);
 			$(".post-comment-parap").attr("data-p-id", a.attr("data-p-id"))
@@ -476,7 +476,7 @@ function getCommentBook() {
 			console.log(a.comment_user_avatar);
 			"" != a.comment_user_avatar ? b = a.comment_user_avatar : "" == a.comment_user_avatar && (b = base_url + "public/img/profile/blank-photo.jpg");
 			c += "<div class='commentview'><div class='media'> <img class='d-flex align-self-start mr-20 rounded-circle' width='50' height='50' src='" +
-			b + "'> <div class='media-body'> <h5 class='nametitle2 mb-5'>" + a.comment_user_name + "</h5> <small><span>Jakarta, Indonesia</span></small> </div> </div> <div class='mt-10'> <p class='fs-14px' id='" + a.comment_id + "'>" + a.comment_text + "</p> </div> <a href='#'><b>Balas</b></a> <hr></div>"
+			b + "'> <div class='media-body'> <h5 class='nametitle2 mb-5'>" + a.comment_user_name + "</h5> <small><span>Jakarta, Indonesia</span></small> </div> </div> <div class='mt-10'> <p class='fs-14px' id='" + a.comment_id + "'>" + a.comment_text + "</p> </div> <hr></div>"
 		});
 		$(".loader").hide();
 		$("#bookcomment_list").html(c)

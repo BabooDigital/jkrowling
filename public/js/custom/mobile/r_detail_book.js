@@ -10,7 +10,7 @@ $(document).ready(function() {
             c = $("#profpict").attr("src"),
             e = $("#profpict").attr("alt");
         a = "<div class='rcommentviewnull'><div class='media'> <img class='d-flex align-self-start mr-20 rounded-circle' src='" + c + "' width='48' height='48' alt='" + e + "'> <div class='media-body mt-5'> <p><h5 class='card-title nametitle3'><a href='#'>" +
-            e + "</a><small><span class='text-muted ml-10 timepost'>Just now</span></small></h5> <div class='text-muted' style='margin-top:-10px;'></div></p> <p style='font-size:16px; font-family: Roboto;'>" + a + "</p> <div> <a href='#' class='fs-14px'>Reply</a> <div class='pull-right'><a href='#'><img base_url+spublic/img/assets/icon_love.svg'> </a></div> </div> </div> </div><hr></div>";
+            e + "</a><small><span class='text-muted ml-10 timepost'>Just now</span></small></h5> <div class='text-muted' style='margin-top:-10px;'></div></p> <p style='font-size:16px; font-family: Roboto;'>" + a + "</p> </div> </div><hr></div>";
         $("#Rbookcomment_list").append(a);
         b.append("user_id", $("#iaiduui").val());
         b.append("book_id", $("#iaidubi").val());
@@ -38,7 +38,7 @@ $(document).ready(function() {
             e = $("#profpict").attr("src"),
             d = $("#profpict").attr("alt");
         c = "<div class='rcommentviewnull'><div class='media'> <img class='d-flex align-self-start mr-20 rounded-circle' src='" +
-            e + "' width='48' height='48' alt='" + d + "'> <div class='media-body mt-5'> <p><h5 class='card-title nametitle3'><a href='#'>" + d + "</a><small><span class='text-muted ml-10 timepost'>Just now</span></small></h5> <div class='text-muted' style='margin-top:-10px;'></div></p> <p style='font-size:16px; font-family: Roboto;'>" + c + "</p> <div> <a href='#' class='fs-14px'>Reply</a> <div class='pull-right'><a href='#'><img base_url+spublic/img/assets/icon_love.svg'> </a></div> </div> </div> </div><hr></div>";
+            e + "' width='48' height='48' alt='" + d + "'> <div class='media-body mt-5'> <p><h5 class='card-title nametitle3'><a href='#'>" + d + "</a><small><span class='text-muted ml-10 timepost'>Just now</span></small></h5> <div class='text-muted' style='margin-top:-10px;'></div></p> <p style='font-size:16px; font-family: Roboto;'>" + c + "</p> </div> </div><hr></div>";
         $("#Rparagraphcomment_list").append(c);
         a.append("user_id", $("#iaiduui").val());
         a.append("paragraph_id", b.attr("data-p-id"));
@@ -207,8 +207,8 @@ $(document).ready(function() {
             var c = "";
             $.each(a, function(a, b) {
                 var d;
-                "" != b.comment_user_avatar ? d = b.comment_user_avatar : "" == b.comment_user_avatar && (d = "public/img/profile/blank-photo.jpg");
-                c += "<div class='media'> <img class='d-flex align-self-start mr-20 rounded-circle' src='" + d + "' width='48' height='48' alt='" + b.comment_user_name + "'> <div class='media-body mt-5'> <p><h5 class='card-title nametitle3'><a href='#'>" + b.comment_user_name + "</a><small><span class='text-muted ml-10'>" + b.comment_date + "</span></small></h5> <div class='text-muted' style='margin-top:-10px;'></div></p> <p style='font-size:16px; font-family: Roboto;' id='" + b.comment_id + "'>" + b.comment_text + "</p> <div> <a href='#' class='fs-14px'>Reply</a> <div class='pull-right'><a href='#'><img base_url+spublic/img/assets/icon_love.svg'> </a></div> </div> </div> </div><hr>"
+                "" != b.comment_user_avatar ? d = b.comment_user_avatar : "" == b.comment_user_avatar && (d = "../public/img/profile/blank-photo.jpg");
+                c += "<div class='media'> <img class='d-flex align-self-start mr-20 rounded-circle' src='" + d + "' width='48' height='48' alt='" + b.comment_user_name + "'> <div class='media-body mt-5'> <p><h5 class='card-title nametitle3'><a href='#'>" + b.comment_user_name + "</a><small><span class='text-muted ml-10'>" + b.comment_date + "</span></small></h5> <div class='text-muted' style='margin-top:-10px;'></div></p> <p style='font-size:16px; font-family: Roboto;' id='" + b.comment_id + "'>" + b.comment_text + "</p>  </div> </div><hr>"
             });
             $("#Rparagraphcomment_list").html(c);
             $(".Rpost-comment-parap").attr("data-p-id", b.attr("data-p-id"))
@@ -294,9 +294,9 @@ function getRCommentBook() {
         var b = "";
         $.each(a, function(a, d) {
             var c;
-            "" != d.comment_user_avatar ? c = d.comment_user_avatar : "" == d.comment_user_avatar && (c = "public/img/profile/blank-photo.jpg");
+            "" != d.comment_user_avatar ? c = d.comment_user_avatar : "" == d.comment_user_avatar && (c = "../public/img/profile/blank-photo.jpg");
             b += "<div class='media' id='" + d.comment_id + "'> <img class='d-flex align-self-start mr-20 rounded-circle' src='" + c + "' width='48' height='48' alt='" + d.comment_user_name +
-                "'> <div class='media-body mt-5'> <p><h5 class='card-title nametitle3'><a href='#'>" + d.comment_user_name + "</a><small><span class='text-muted ml-10'>" + d.comment_date + "</span></small></h5> <div class='text-muted' style='margin-top:-10px;'></div></p> <p style='font-size:16px; font-family: Roboto;' id='" + d.comment_id + "'>" + d.comment_text + "</p> <div> <a href='#' class='fs-14px'>Reply</a> <div class='pull-right'><a href='#'><img base_url+spublic/img/assets/icon_love.svg'> </a></div> </div> </div> </div><hr>"
+                "'> <div class='media-body mt-5'> <p><h5 class='card-title nametitle3'><a href='#'>" + d.comment_user_name + "</a><small><span class='text-muted ml-10'>" + d.comment_date + "</span></small></h5> <div class='text-muted' style='margin-top:-10px;'></div></p> <p style='font-size:16px; font-family: Roboto;' id='" + d.comment_id + "'>" + d.comment_text + "</p> </div> </div><hr>"
         });
         $(".loader").hide();
         $("#Rbookcomment_list").html(b)
