@@ -1,3 +1,8 @@
+<script type="text/javascript">
+	function funcDropdown() {
+    document.getElementById("myDropdown").classList.toggle("showss")
+}
+</script>
 <?php $this->load->view('navbar/D_navbar'); ?>
 <br><br><br>
 <div class="container mb-30 content-white">
