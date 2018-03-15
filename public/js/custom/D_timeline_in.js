@@ -49,6 +49,29 @@ $(document).ready(function() {
         $(boo).append(form);
         form.submit();
     });
+    $(document).on('click', '.followprofile', function(event) {
+        event.preventDefault();
+        var a = $(this),
+        b = new FormData;
+        a.hide(); 
+        b.append("user_id", $("#iaiduui").val());
+        b.append("fuser_id", a.attr("data-follow"));
+        $.ajax({
+            url: base_url + "follows",
+            type: "POST",
+            dataType: "JSON",
+            cache: !1,
+            contentType: !1,
+            processData: !1,
+            data: b
+        }).done(function(data) {
+            if (data.code == 200) {
+            }
+            // console.log(data.code);
+        }).fail(function() {
+            console.log("error")
+        }).always(function() {})
+    });
     $(document).on("click", ".share-fb", function() {
         $(this);
         var e = new FormData,
@@ -108,7 +131,14 @@ $(document).ready(function() {
             t = "";
         $.each(a.data, function(e, a) {
             var o;
-            null != a.avatar && (o = a.avatar), "" == a.avatar ? o = "public/img/profile/blank-photo.jpg" : null == a.avatar && (o = "public/img/profile/blank-photo.jpg"), t += "<li class='media baboocontent'><img alt='" + a.author_name + "' class='d-flex mr-3 rounded-circle' src='" + o + "' width='50' height='50'><div class='media-body mt-7'><a href='profile/"+ a.author_id+"-"+ convertToSlug(a.author_name) + "'><h5 class='mt-0 mb-1 nametitle'>" + a.author_name + "</h5></a><small>Fiksi</small><div class='pull-right baboocolor'><a href='#' class='addbutton'><img src='public/img/assets/icon_plus_purple.svg' width='20' class='mt-img'></a></div></div></li>"
+            var follow = '';
+            // console.log(a);
+            if (a.isFollow == false) {
+                follow += "<a href='#' class='addbutton followprofile'><img src='public/img/assets/icon_plus_purple.svg' width='20' class='mt-img'></a>"; 
+            }else{
+                follow += ""; 
+            }
+            null != a.avatar && (o = a.avatar), "" == a.avatar ? o = "public/img/profile/blank-photo.jpg" : null == a.avatar && (o = "public/img/profile/blank-photo.jpg"), t += "<li class='media baboocontent'><img alt='" + a.author_name + "' class='d-flex mr-3 rounded-circle' src='" + o + "' width='50' height='50'><div class='media-body mt-7'><a class='profile' data-usr-prf='"+a.author_id+"' data-usr-name='"+convertToSlug(a.author_name)+"' href='profile/"+convertToSlug(a.author_name) + "'><h5 class='mt-0 mb-1 nametitle'>" + a.author_name + "</h5></a><div class='pull-right baboocolor'>"+follow+"</div></div></li>"
         }), $("#author_this_week").html(t)
     }).fail(function() {
         console.log("error")

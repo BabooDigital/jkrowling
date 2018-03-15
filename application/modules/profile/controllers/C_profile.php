@@ -186,6 +186,7 @@ class C_profile extends MX_Controller {
 
 
 		$data['userdata'] = $userdetail['user_info'];
+		$data['bookdata'] = $userdetail['book_published'];
 		// $data['bookprofile'] = $userbook;
 
 		$data['title'] = "Profile Page - Baboo";
@@ -193,6 +194,7 @@ class C_profile extends MX_Controller {
 		$data['js'][] = "public/js/umd/popper.min.js";
 		$data['js'][] = "public/js/bootstrap.min.js";
 		$data['js'][] = "public/js/jquery.sticky-kit.min.js";
+		$data['js'][] = "public/js/custom/follow.js";
 		if ($this->agent->mobile()) {
 
 			$data['css'][] = "public/css/baboo-responsive.css";
