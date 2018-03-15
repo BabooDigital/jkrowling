@@ -48,7 +48,7 @@ function followEvent() {
 			    window.location = base_url+"login#event";
 			});
         }else{
-        	window.location = $(this).attr('href');;
+        	window.location = $(this).attr('href');
         }
     });
 }

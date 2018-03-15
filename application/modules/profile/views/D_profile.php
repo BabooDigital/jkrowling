@@ -42,7 +42,9 @@
 								<?php if (!$this->uri->segment(2)): ?>
 									<a href="#" class="btn-edprof fs-12px mr-10">Edit Profile</a> <a href="<?php echo site_url('message'); ?>" class="btn-edprof fs-12px">Message</a>
 								<?php else: ?>
-									<a href="#" class="btn-edprof fs-12px mr-10">Follow</a>
+									<a href="#" data-follow="<?php echo $userdata['user_id']; ?>" class="btn-edprof fs-12px mr-10 <?php if ($userdata['isFollow'] == false) { echo "follow-u"; }else{ echo "unfollow-u"; } ?>"><span class=" txtfollow"><?php if ($userdata['isFollow'] == false) { echo "Follow"; }else{ echo "Unfollow"; } ?></span></a>
+									<input type="hidden" name="iaiduui" id="iaiduui" value="<?php $dat = $this->session->userdata('userData'); echo $dat['user_id']; ?>">
+									<!-- <a href="#" data-follow="<?php echo $userdata['isFollow']; ?>" class="btn-edprof fs-12px mr-10 dbookfollowbtn <?php echo $userdata['isFollow']; ?> <?php if ($userdata['isFollow'] == false) { echo "follow-u"; }else{ echo "unfollow-u"; } ?>"><span class="nametitle2 txtfollow"><?php if ($userdata['isFollow'] == false) { echo "Follow"; }else{ echo "Unfollow"; } ?></span></a> -->
 								<?php endif ?>
 							</div>
 							<hr>
@@ -102,9 +104,8 @@
 		</div><!-- Right Side -->
 	<?php else: ?>
 		<div class="col-md-6" id="post-data">
-			<?php print_r($bookprofile); ?>
-			<?php if (!empty($bookprofile)) {
-			foreach ($bookprofile as $s_book) {  ?>
+			<?php if (!empty($bookdata)) {
+			foreach ($bookdata as $s_book) {  ?>
 			<div class="card mb-15" style="padding: 0 10px 10px;">
 				<div class="card-body p-0 p-20">
 					<div class="row mb-30 " style="padding-bottom:20px;border-bottom:solid 1px #DDD;">

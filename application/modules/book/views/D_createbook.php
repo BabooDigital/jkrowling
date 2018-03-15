@@ -78,7 +78,7 @@
 									<input type="hidden" id="cover_url" accept="image/*" onchange="tampilkanPreview(this,'preview')" name="cover_url" value="<?php $src = $this->session->userdata('dataCover'); if($src != NULL){  echo $src['asset_url']; }else{ echo " "; } ?>">
 									<div id="books_id"></div>
 								<h5 class="mt-0 mb-1 nametitle"><?php $uri = $this->session->userdata('userData'); echo $uri['fullname'] ?></h5>
-								<small>Fiksi</small>
+								<!-- <small>Fiksi</small> -->
 							</div>
 						</div>
 
