@@ -57,7 +57,7 @@ $(document).ready(function() {
             o = $(".textp").attr("data-text") + ".. - Baca buku lebih lengkap disini.. | Baboo - Beyond Book & Creativity",
             i = $(".cover_image").attr("src"),
             l = $(".author_name").text(),
-            n = $(".segment").attr("href");
+            n = $(".segment").attr("data-href");
         FB.ui({
             method: "share_open_graph",
             action_type: "og.shares",
@@ -79,7 +79,6 @@ $(document).ready(function() {
                 processData: !1,
                 data: e
             }).done(function(e) {
-                $("#sharecount").text(t)
             }).fail(function() {
                 console.log("Failure")
             }).always(function() {}))

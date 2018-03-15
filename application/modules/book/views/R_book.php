@@ -59,7 +59,7 @@
 		$appid = '1015515621929474';
 	} elseif (strpos($base, 'localhost/jkrowling') !== false || strpos($base, 'dev-baboo.co.id') !== false) {
 		$appid = '382931948848880';
-	} elseif (strpos($base, 'baboo.id') !== false) {
+	} elseif (strpos($base, 'baboo.id') !== false || strpos($base, 'www.baboo.id') !== false) {
 		$appid = '142508586445900';
 	}
 	echo "<script>(function(d, s, id) {

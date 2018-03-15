@@ -44,7 +44,9 @@
 							echo $s_book['share_count']; ?></span></p>
 							<p class="text-desc-in desc<?php
 							echo $s_book['book_id']; ?>"><?php
-							echo $s_book['desc']; ?> <a class="segment" onclick="showLoading()" href="<?php echo site_url(); ?>book/<?php
+							echo $s_book['desc']; ?> <a class="segment" data-href="<?php
+							echo $s_book['book_id']; ?>-<?php echo url_title($s_book['title_book'], 'dash', true); ?>
+							" onclick="showLoading()" href="<?php echo site_url(); ?>book/<?php
 							echo $s_book['book_id']; ?>
 							-<?php echo url_title($s_book['title_book'], 'dash', true); ?>
 							" class="readmore">Lanjut</a>
@@ -61,7 +63,7 @@
 					</button>
 					<div id="dropdownShare" class="dropdown-content">
 						<a href="javascript:void(0);" class="share-fb">Facebook</a>
-						<a href="#about">Twitter</a>
+						<!-- <a href="#about">Twitter</a> -->
 					</div>
 				</div>
 			</div>
