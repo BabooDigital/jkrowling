@@ -43,13 +43,9 @@
 							echo $s_book['view_count']; ?></span> <span><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg"> <?php
 							echo $s_book['share_count']; ?></span></p>
 							<p class="text-desc-in desc<?php
-							echo $s_book['book_id']; ?>"><?php
-							echo $s_book['desc']; ?> <a class="segment" data-href="<?php
-							echo $s_book['book_id']; ?>-<?php echo url_title($s_book['title_book'], 'dash', true); ?>
-							" onclick="showLoading()" href="<?php echo site_url(); ?>book/<?php
-							echo $s_book['book_id']; ?>
-							-<?php echo url_title($s_book['title_book'], 'dash', true); ?>
-							" class="readmore">Lanjut</a>
+							echo $s_book['book_id']; ?>"><span class="ptexts" style="font-family: 'Noto Serif', serif;"><?php
+							echo $s_book['desc']; ?> </span><a class="segment" data-href="<?php
+							echo $s_book['book_id']; ?>-<?php echo url_title($s_book['title_book'], 'dash', true); ?>" onclick="showLoading()" href="<?php echo site_url(); ?>book/<?php echo $s_book['book_id']; ?>-<?php echo url_title($s_book['title_book'], 'dash', true); ?>" class="readmore">Lanjut</a>
 						</p>
 					</div>
 				</div>
@@ -58,12 +54,11 @@
 		<div class="card-footer text-muted" style="font-size: 0.8em;font-weight: bold;border-radius: 15px;">
 			<div class="pull-right">
 				<div class="dropdown">
-					<button data-share="<?php echo $s_book['book_id']; ?>" class="fs-14px share-btn dropdown-toggle dropbtn" onclick="shareBtn()"><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg" class="mr-10" width="23" data-toggle="dropdown"> Bagikan
-						<span class="caret"></span>
+					<button class="share-btn dropbtn fs-14px" type="button" id="dropShare" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg" width="23" class="mr-10"> Bagikan
 					</button>
-					<div id="dropdownShare" class="dropdown-content">
-						<a href="javascript:void(0);" class="share-fb">Facebook</a>
-						<!-- <a href="#about">Twitter</a> -->
+					<div class="dropdown-menu" aria-labelledby="dropShare">
+						<a class="dropdown-item share-fb" href="javascript:void(0);" data-share="<?php echo $s_book['book_id']; ?>"><img src="<?php echo base_url(); ?>public/img/assets/fb-icon.svg" width="20"> Facebook</a>
 					</div>
 				</div>
 			</div>

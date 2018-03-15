@@ -50,23 +50,24 @@ $(document).ready(function() {
         form.submit();
     });
     $(document).on("click", ".share-fb", function() {
-        $(this);
+        var aww = $(this);
         var e = new FormData,
-            a = ($("#iaidubi").val(), $(".dbooktitle").text()),
+            title = aww.parents('.card').find(".dbooktitle").val();
             t = +$("#sharecount").text() + 1,
-            o = $(".textp").attr("data-text") + ".. - Baca buku lebih lengkap disini.. | Baboo - Beyond Book & Creativity",
-            i = $(".cover_image").attr("src"),
-            l = $(".author_name").text(),
-            n = $(".segment").attr("data-href");
+            desc = aww.parents('.card').find(".ptexts").text() + ".. - Baca buku lebih lengkap disini | Baboo - Beyond Book & Creativity";
+            coverimg = aww.parents('.card').find(".effect-img").attr("src"),
+            authname = aww.parents('.card').find(".nametitle2").text(),
+            links = aww.parents('.card').find(".segment").attr("data-href");
+            
         FB.ui({
             method: "share_open_graph",
             action_type: "og.shares",
             action_properties: JSON.stringify({
                 object: {
-                    "og:url": base_url + "book/" + n + "/preview",
-                    "og:title": a + " ~ By : " + l + " | Baboo - Beyond Book & Creativity",
-                    "og:description": o,
-                    "og:image": i
+                    "og:url": base_url + "book/" + convertToSlug(links) + "/preview",
+                    "og:title": title + " ~ By : " + authname + " | Baboo - Beyond Book & Creativity",
+                    "og:description": desc,
+                    "og:image": coverimg
                 }
             })
         }, function(a) {
