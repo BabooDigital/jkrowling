@@ -195,6 +195,7 @@ class C_profile extends MX_Controller {
 		$data['js'][] = "public/js/bootstrap.min.js";
 		$data['js'][] = "public/js/jquery.sticky-kit.min.js";
 		$data['js'][] = "public/js/custom/follow.js";
+		$data['js'][] = "public/js/custom/notification.js";
 		if ($this->agent->mobile()) {
 
 			$data['css'][] = "public/css/baboo-responsive.css";

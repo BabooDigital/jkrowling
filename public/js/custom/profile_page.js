@@ -137,3 +137,43 @@ $(document).ready(function() {
 function funcDropdown() {
 	document.getElementById("myDropdown").classList.toggle("showss");
 }
+
+function convertToSlug(d) {
+	return d.toLowerCase().replace(/[^\w ]+/g, "").replace(/ +/g, "-")
+};
+$(document).on("click", ".share-fb", function() {
+    var aww = $(this);
+    var e = new FormData,
+        title = aww.parents('.card').find(".dbooktitle").val();
+        t = +$("#sharecount").text() + 1,
+        desc = aww.parents('.card').find(".ptexts").text() + ".. - Baca buku lebih lengkap disini | Baboo - Beyond Book & Creativity";
+        coverimg = aww.parents('.card').find(".effect-img").attr("src"),
+        authname = aww.parents('.card').find(".nametitle2").text(),
+        links = aww.parents('.card').find(".segment").attr("data-href");
+        
+    FB.ui({
+        method: "share_open_graph",
+        action_type: "og.shares",
+        action_properties: JSON.stringify({
+            object: {
+                "og:url": base_url + "book/" + convertToSlug(links) + "/preview",
+                "og:title": title + " ~ By : " + authname + " | Baboo - Beyond Book & Creativity",
+                "og:description": desc,
+                "og:image": coverimg
+            }
+        })
+    }, function(a) {
+        a && !a.error_message && (e.append("user_id", $("#iaiduui").val()), e.append("book_id", $("#iaidubi").val()), $.ajax({
+            url: base_url + "shares",
+            type: "POST",
+            dataType: "JSON",
+            cache: !1,
+            contentType: !1,
+            processData: !1,
+            data: e
+        }).done(function(e) {
+        }).fail(function() {
+            console.log("Failure")
+        }).always(function() {}))
+    })
+});

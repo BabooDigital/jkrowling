@@ -1,7 +1,5 @@
 <div class="slider6" id="slide_show" style="left: 11% !important; height: 500px;">
-
-		<?php print_r($slide['data']); ?>
-	<?php foreach ($slide['data'] as $key => $slide_show): ?>
+<?php foreach ($slide['data'] as $key => $slide_show): ?>
 		<div class="slide">
 			<div class="<?php echo ($key%2==0) ? 'pinkslidebg' : 'blueslidebg'; ?>">
 				<div class="media">
