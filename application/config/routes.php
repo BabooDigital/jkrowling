@@ -57,8 +57,8 @@ $route['login'] = 'auth/C_Login';
 $route['logout'] = 'timeline/C_timeline/signout';
 
 $route['booRegis'] = 'auth/C_Login/postregisteruser';
-$route['google_event'] = 'auth/C_Register/google_event';
-$route['facebook_event'] = 'auth/C_Register/facebook_event';
+$route['google_event'] = 'auth/C_Login/google_event';
+$route['facebook_event'] = 'auth/C_Login/facebook_event';
 
 /*Timeline*/
 $route['home'] = 'timeline/C_home';
