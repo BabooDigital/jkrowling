@@ -5,8 +5,9 @@ $(document).ready(function() {
 			type: 'GET',
 			cache: false,
 			success: function(data) {
-				$(".lds-css").hide();
-				$("#pageContent").html(data);
+				location.reload();
+				// $(".lds-css").hide();
+				// $("#pageContent").html(data);
 			}
 		})
 		

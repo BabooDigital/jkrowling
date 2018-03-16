@@ -13,7 +13,7 @@
 						echo $s_book['author_avatar']; } ?>" width="50" height="50" alt="<?php
 							echo $s_book['author_name']; ?>">
 						<div class="media-body mt-5">
-							<h5 class="card-title nametitle2"><a href="<?php echo site_url('profile/'.$s_book['author_id'].''); ?>" class="author_name"><?php
+							<h5 class="card-title nametitle2"><a href="<?php echo site_url('profile/'.$s_book['author_id'].'-'.url_title($s_book['author_name'], 'dash', true)); ?>" class="author_name menu-page" id="tab-page"><?php
 							echo $s_book['author_name']; ?></a></h5>
 							<p class="text-muted" style="margin-top:-10px;"><small>
 								<span><?php echo $s_book['publish_date']; ?></span></small></p>
@@ -66,7 +66,7 @@
 									echo $s_book['author_avatar']; } ?>" width="50" height="50" alt="<?php
 										echo $s_book['author_name']; ?>">
 									<div class="media-body mt-5">
-										<h5 class="card-title nametitle2"><a href="<?php echo site_url('profile/'.$s_book['author_id'].''); ?>" class="author_name"><?php
+										<h5 class="card-title nametitle2"><a href="<?php echo site_url('profile/'.$s_book['author_id'].'-'.url_title($s_book['author_name'], 'dash', true)); ?>" class="author_name menu-page" id="tab-page"><?php
 										echo $s_book['author_name']; ?></a></h5>
 										<p class="text-muted" style="margin-top:-10px;"><small>
 											<span><?php echo $s_book['publish_date']; ?></span></small></p>
