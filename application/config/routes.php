@@ -54,8 +54,11 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['login'] = 'auth/C_Login';
-$route['booRegis'] = 'auth/C_Login/postregisteruser';
 $route['logout'] = 'timeline/C_timeline/signout';
+
+$route['booRegis'] = 'auth/C_Login/postregisteruser';
+$route['google_event'] = 'auth/C_Register/google_event';
+$route['facebook_event'] = 'auth/C_Register/facebook_event';
 
 /*Timeline*/
 $route['home'] = 'timeline/C_home';
@@ -75,8 +78,6 @@ $route['search/:any'] = 'search/C_search';
 $route['searching'] = 'search/C_search/search';
 $route['createidbook'] = 'timeline/C_timeline/createbook_id';
 
-$route['google_event'] = 'auth/C_Login/google_event';
-$route['facebook_event'] = 'auth/C_Login/facebook_event';
 
 // Draft
 $route['yourdraft'] = 'timeline/C_timeline/draftListView';

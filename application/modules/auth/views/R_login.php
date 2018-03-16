@@ -102,7 +102,7 @@ if (!empty($query['b'])) {
 							</div>
 
 							<div class="col-lg-12">
-								<form id="login-form" action="<?php echo site_url(); ?>auth/C_Login/postloginuser" method="post" novalidate="novalidate">
+								<form id="form-login" action="<?php echo site_url(); ?>auth/C_Login/postloginuser" method="post" novalidate="novalidate">
 									<div class="form-group">
 										<input type="email" class="form-control login-input" id="inputemail" name="emails" aria-describedby="emailHelp" placeholder="Masukan alamat email" required>
 									</div>
