@@ -26,7 +26,7 @@
 					<!-- Penulis Minggu Ini -->
 					
 					<!-- Buku Populer -->
-					<div class="card mb-15" style="background-color: transparent;border: none;">
+					<!-- <div class="card mb-15" style="background-color: transparent;border: none;">
 						<div class="card-header" style="border: none;">
 							Buku Populer
 						</div>
@@ -47,7 +47,7 @@
 								</li>
 							</ul>
 						</div>
-					</div>
+					</div> -->
 					<!-- Buku Populer -->
 
 				</div>
