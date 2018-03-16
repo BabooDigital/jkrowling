@@ -67,6 +67,8 @@ class C_profile extends MX_Controller {
 				$this->load->view('include/head', $data);
 				$this->load->view('R_profile', $data);
 			}else{
+				$data['css'][] = "public/css/sweetalert2.min.css";
+				$data['js'][] = "public/js/sweetalert2.all.min.js";
 				$data['js'][] = "public/js/custom/profile_page.js";
 				$this->load->view('include/head', $data);
 				$this->load->view('D_profile');
