@@ -20,10 +20,24 @@
 	<?php $this->load->view('navbar/D_navbar'); ?>	
 	
 	<style type="text/css">
+	@media only screen and (min-width: 1200px) {
+		.modal.right.fade .modal-dialog {
+			right: -29%;
+		}
+	}
+	@media only screen and (min-width: 1300px) {
+		.modal.right.fade .modal-dialog {
+			right: -32%;
+		}
+	}
+	@media only screen and (max-width: 1000px) {
+		.modal.right.fade .modal-dialog {
+			right: -25%;
+		}
+	}
 
 	/*Right*/
 	.modal.right.fade .modal-dialog {
-		right: -435px;
 		-webkit-transition: opacity 0.3s linear, right 0.3s ease-out;
 		-moz-transition: opacity 0.3s linear, right 0.3s ease-out;
 		-o-transition: opacity 0.3s linear, right 0.3s ease-out;
