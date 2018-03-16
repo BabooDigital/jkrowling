@@ -145,10 +145,19 @@ img {
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
-
+    .ikutPosi {
+        position: absolute;
+        top: 29%;
+        left: 35%;
+    }
 } 
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
+    .ikutPosi {
+        position: absolute;
+        top: 29%;
+        left: 35%;
+    }
 
 }

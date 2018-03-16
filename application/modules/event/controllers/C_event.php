@@ -26,6 +26,7 @@ class C_Event extends MX_Controller
         $data['js'][] = "public/js/custom/event.js";
 
         $data['event'] = $this->getEvent();
+        $data['winner'] = $this->bestWinner();
         $this->load->view('include/head', $data);
         $this->load->view('D_event', $data);
     }
@@ -160,6 +161,49 @@ class C_Event extends MX_Controller
             redirect('login','refresh');
         }else{
             return $data_best;
+        }
+    }
+    public function bestWinner()
+    {
+        error_reporting(0);
+        $auth = $this->session->userdata('authKey');
+        $ch = curl_init();
+        $options = array(
+            CURLOPT_URL          => $this->API.'timeline/Home/finalisWinner',
+            CURLOPT_RETURNTRANSFER => true,
+              CURLOPT_CUSTOMREQUEST  =>"GET",    // Atur type request
+              CURLOPT_POST           =>false,    // Atur menjadi GET
+              CURLOPT_FOLLOWLOCATION => false,    // Follow redirect aktif
+              CURLOPT_SSL_VERIFYPEER => 0,
+              CURLOPT_HEADER         => 1,
+              CURLOPT_HTTPHEADER     => array('baboo-auth-key: '.$auth)
+          );
+        curl_setopt_array($ch, $options);
+        $content = curl_exec($ch);
+        curl_close($ch);
+        $headers=array();
+
+        $data=explode("\n",$content);
+        $headers['status']=$data[0];
+
+        array_shift($data);
+
+        foreach($data as $part){
+            $middle=explode(":",$part);
+            $headers[trim($middle[0])] = trim($middle[1]);
+        }
+
+        $data['home'] = json_decode(end($data), true);
+        $data_best = $data['home']['data'];
+        $auth = $headers['BABOO-AUTH-KEY'];
+        $this->session->set_userdata('authKey', $auth);
+        if ($datas['home']['code'] == 403){
+            $this->session->unset_userdata('userData');
+            $this->session->unset_userdata('authKey');
+            $this->session->sess_destroy();
+            redirect('login','refresh');
+        }else{
+            return $data['home'];
         }
     }
     public function followEvent()

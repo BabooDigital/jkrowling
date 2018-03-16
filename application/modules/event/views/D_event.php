@@ -36,33 +36,39 @@ if ($this->agent->mobile()) {
 					</div>
 					<div class="col-md-2 hidden-sm-down"></div>
 				</div>
-				<div class="row">
-					<div class="col-md-2 hidden-sm-down"></div>
-					<div class="col-md-8 col-sm-12">
-						<p class="title_ mt-40">Pemenang Event</p>
-						<div class="row">
-							<div class="col-6">
-								<div class="card mt-10">
-									<div class="card-body">
-										<div class="thumbnail">
-											<div>
-												<img alt="100%x200" class="rounded-circle img-fluid img-pesertacir" src="<?php echo base_url('public/img/profile/blank-photo.jpg') ?>">
-											</div>
-											<div class="caption"> 
-												<h5 align="center">
-													<b>Sweeta Kartika</b>
-												</h5> 
-												<h4 align="center">Pemenang #1</h4>
-												<p></p> <p></p>
+				<?php if ($winner['code'] != 404): ?>
+						
+					<div class="row">
+						<div class="col-md-2 hidden-sm-down"></div>
+						<div class="col-md-8 col-sm-12">
+							<p class="title_ mt-40">Pemenang Event</p>
+							<div class="row">
+							<?php foreach ($winner['data'] as $key => $value): ?>
+								<div class="col-6">
+									<div class="card mt-10">
+										<div class="card-body">
+											<div class="thumbnail">
+												<div>
+													<img alt="100%x200" class="rounded-circle img-fluid img-pesertacir" src="<?php echo ($value['author_avatar'] != null) ? $value['author_avatar'] : base_url('public/img/profile/blank-photo.jpg'); ?>">
+												</div>
+												<div class="caption"> 
+													<h5 align="center">
+														<b><?php echo $value['author_name'] ?></b>
+													</h5> 
+													<h4 align="center">Pemenang #1</h4>
+													<p></p> <p></p>
+												</div> 
 											</div> 
-										</div> 
+										</div>
 									</div>
 								</div>
+							<?php endforeach ?>
 							</div>
 						</div>
+						<div class="col-md-2 hidden-sm-down"></div>
 					</div>
-					<div class="col-md-2 hidden-sm-down"></div>
-				</div>
+
+				<?php endif ?>
 		</div>
 		<div class="col-md-2 hidden-sm-down"></div>
 	</div>
