@@ -171,7 +171,7 @@ class C_Event extends MX_Controller
         $options = array(
             CURLOPT_URL          => $this->API.'timeline/Home/finalisWinner',
             CURLOPT_RETURNTRANSFER => true,
-              CURLOPT_CUSTOMREQUEST  =>"GET",    // Atur type request
+              CURLOPT_CUSTOMREQUEST  =>"POST",    // Atur type request
               CURLOPT_POST           =>false,    // Atur menjadi GET
               CURLOPT_FOLLOWLOCATION => false,    // Follow redirect aktif
               CURLOPT_SSL_VERIFYPEER => 0,
