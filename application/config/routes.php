@@ -85,8 +85,7 @@ $route['deldraft'] = 'book/C_book/deleteDraftBook';
 
 $route['writter'] = 'timeline/C_timeline/getWritter';
 $route['bestBook'] = 'timeline/C_timeline/getBestBook';
-$route['bestBookEvent'] = 'timeline/C_timeline/getBestBookEvent';
-$route['bestBookHome'] = 'timeline/C_home/getBestBookEvent';
+// $route['bestBookHome'] = 'timeline/C_home/getBestBookEvent';
 $route['writters'] = 'timeline/C_home/getWritter';
 $route['slide'] = 'timeline/C_home/getSlide';
 
@@ -188,3 +187,7 @@ $route['tnc'] = 'terms/C_terms';
 //event
 
 $route['event/follow_event'] = 'event/C_event/followEvent';
+$route['event/sea_all'] = 'event/C_event/seeAll';
+
+$route['bestBookEventSeeAll'] = 'event/C_event/bestBookEventSeeAll';
+$route['bestBookEvent'] = 'event/C_event/getBestBookEvent';

@@ -2,6 +2,22 @@ function funcDropdown() {
     document.getElementById("myDropdown").classList.toggle("showss")
 }
 $(document).ready(function() {
+	$(document).on('click', '.profile', function() {
+        event.preventDefault();
+        var boo = $(this);
+        var usr_prf = boo.attr("data-usr-prf");
+        var usr_name = boo.attr("data-usr-name");
+        var formdata = new FormData();
+
+        formdata.append("user_prf", usr_prf);
+        var url = base_url+'profile/'+usr_name;
+        var form = $('<form action="' + url + '" method="post">' +
+          '<input type="hidden" name="usr_prf" value="' + usr_prf + '" />' +
+          '<input type="hidden" name="usr_name" value="' + usr_name + '" />' +
+          '</form>');
+        $(boo).append(form);
+        form.submit();
+    });
 	var window_width = $( window ).width();
 
 	if (window_width < 768) {

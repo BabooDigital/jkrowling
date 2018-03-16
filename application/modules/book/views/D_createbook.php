@@ -88,7 +88,8 @@
 							</div>
 
 							<div class="tulisbuku mt-10">
-								<textarea id="book_paragraph" class="form-control book_paragraph" style="height: 1000px;" name="book_paragraph"></textarea>
+								<textarea id="book_paragraph" class="form-control book_paragraph" style="height: 1000px;" name="book_paragraph" required></textarea>
+								<!-- <textarea id="froala_validation" required></textarea> -->
 							</div>
 
 						</div>
@@ -96,7 +97,7 @@
 
 					<div class="pull-right mb-10">
 						<input type="button" class="mr-30 saveasdraft" style="font-size: 18px;font-weight: bold;background: transparent; border: 0; cursor: pointer;" value="Simpan ke Draft" />
-						<button type="submit" onclick="showLoading()" class="btnbeliskrg" href="#" style="padding: 10px 50px;"><span class="txtbtnbeliskrg" ">Publish</span></button>
+						<button type="submit" class="btnbeliskrg" href="#" style="padding: 10px 50px;"><span class="txtbtnbeliskrg" ">Publish</span></button>
 					</div>
 				</div>
 			</div>

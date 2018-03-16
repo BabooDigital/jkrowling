@@ -134,7 +134,7 @@
 									echo $s_book['author_avatar']; } ?>" width="60" height="60" alt="<?php
 									echo $s_book['author_name']; ?>"></a>
 									<div class="media-body mt-5">
-										<a href="<?php echo site_url('profile/'.$s_book['author_id'].'-'.url_title($s_book['author_name'])) ?>"><h5 class="card-title nametitle2"><?php
+										<a data-usr-prf="<?php echo $s_book['author_id']; ?>" data-usr-name="<?php echo url_title($s_book['author_name'], 'dash', true); ?>" href="<?php echo site_url(); ?>profile/<?php echo url_title($s_book['author_name'], 'dash', true); ?>" class="profile"><h5 class="card-title nametitle2"><?php
 										echo $s_book['author_name']; ?></h5></a>
 										<p><small>
 											<span><?php echo $s_book['publish_date'] ?></span></small></p>

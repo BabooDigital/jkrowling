@@ -277,9 +277,9 @@ function getChapter() {
 		console.log(data); 
 		var title = "";
 		if (data == null || data.length == 0) {
-			title += '<input type="text" name="title_book" id="title_book" class="w-100" placeholder="Masukan Judul buku"> <input type="text" name="title_chapter" style="display: none;" id="title_chapter" value="Description" class="w-100" placeholder="Masukan Chapter">';
+			title += '<input type="text" name="title_book" id="title_book" class="w-100" placeholder="Masukan Judul buku" required> <input type="text" name="title_chapter" style="display: none;" id="title_chapter" value="Description" class="w-100" placeholder="Masukan Chapter">';
 		}else{
-			title += '<input type="text" name="title_chapter" id="title_chapter" class="w-100" placeholder="Masukan Chapter">';
+			title += '<input type="text" name="title_chapter" id="title_chapter" class="w-100" placeholder="Masukan Chapter" required>';
 		}
 		$.each(data, function(index, val) {
 			chapter += '<a class="btn w-100 mb-10 chapterdata0 editsubchapt1 addsubchapt_on withanimation" book="2016" chapter="1326" id="editchapt" href="'+uri_segment+'/chapter/'+val.chapter_id+'" onclick="showLoading()">'+val.chapter_title+'</a>';

@@ -113,7 +113,7 @@
 						<div>
 							<div class="mt-30 tulisjudul">
 								<input type="hidden" name="title_book" id="title_book" class="w-100" placeholder="Masukan Judul buku" value="<?php echo $detail_book['data']['book_info']['title_book']; ?>">
-								<input type="text" name="title_chapter" id="title_chapter" class="w-100" placeholder="Masukan Judul buku" value="<?php echo $detail_book['data']['chapter']['chapter_title']; ?>">
+								<input type="text" name="title_chapter" id="title_chapter" class="w-100" placeholder="Masukan Judul buku" value="<?php echo $detail_book['data']['chapter']['chapter_title']; ?>" required>
 							</div>
 
 							<div class="tulisbuku mt-10">
