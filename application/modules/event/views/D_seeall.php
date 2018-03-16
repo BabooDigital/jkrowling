@@ -6,7 +6,55 @@ if ($this->agent->mobile()) {
 }
 ?>
 
-<div class="container mb-30">
+<div class="container mt-100">
+	<div class="row">
+		<div class="col-12">
+			<p class="title_">Peserta Lomba</p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-6 mb-20">
+			<div class="card">
+				<div class="card-body">
+					<div class="media">
+						<img class="align-self-start mr-3" src="http://placehold.it/300x300" width="150" height="210" alt="Generic placeholder image">
+						<div class="media-body">
+							<h5 class="mt-0" style="color: #7661ca;">Top #1</h5>
+							<h3 class="mt-0">The Kite Runner - Powerfull Hunting</h3>
+							<span class="mr-10" style="font-size: 12px;">Fiksi &#8226;</span>
+							<span class="text-muted" style="font-size: 11px;">Dibaca 123 kali</span>
+							<div class="media mt-20">
+								<img class="d-flex align-self-start mr-10 rounded-circle" src="http://placehold.it/300x300" width="50" height="50">
+								<div class="media-body mt-5">
+									<h5 class="card-title nametitle2"><a href="#" class="author_name menu-page" id="tab-page">Aditia</a></h5>
+									<p class="text-muted" style="margin-top:-10px;"><small>
+										<span>10 Januari 2018</span></small></p>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row mt-10">
+							<div class="col-12 text-muted" style="font-size: 13px;">
+								<div class="pull-right"><span><b class="share_countys">123</b> Bagikan</span></div>
+								<div><span class="mr-30"><b class="like_countys">123</b> Suka</span><span><b class="txtlike">123</b> Komentar</span></div>
+							</div>
+						</div>
+					</div>
+					<div class="card-footer">
+						<div class="pull-right">
+							<a href="javascript:void(0);" data-share="123" class="fs-14px share-btn"><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg" class="mr-10" width="23"> </a>
+						</div>
+						<div class="pull-left" style="display: flex;">
+							<a data-id="12" href="javascript:void(0);" id="loveboo12" class="mr-30 fs-14px like"><img src="<?php echo base_url('public/img/assets/icon_love.svg'); ?>" class="mr-10 loveicon" width="27"></a>
+						<a href="#" id="commentboo" class="fs-14px"><img src="<?php echo base_url(); ?>public/img/assets/icon_comment.svg" class="mr-10" width="25"> </a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<!-- <div class="container mb-30">
 	<div class="row">
 		<div class="col-2 hidden-sm-down"></div>
 		<?php  if (empty($this->session->userdata('userData'))) { ?>
@@ -38,39 +86,10 @@ if ($this->agent->mobile()) {
 								<div class="row">
 										<?php $this->load->view('data/D_seeall'); ?>
 								</div>
-								<!-- <div class="row participant_event_all"> -->
-								<!-- </div> -->
 							</div>
 						</div>
 						<p class="mt-15">
 						</p>
-					</div>
-					<div class="col-2 hidden-sm-down"></div>
-				</div>
-				<div class="row">
-					<div class="col-2 hidden-sm-down"></div>
-					<div class="col-8 col-sm-12">
-						<p class="title_ mt-40">Pemenang Event</p>
-						<div class="row">
-							<div class="col-6">
-								<div class="card mt-10">
-									<div class="card-body">
-										<div class="thumbnail">
-											<div>
-												<img alt="100%x200" class="rounded-circle img-fluid img-pesertacir" src="<?php echo base_url('public/img/profile/blank-photo.jpg') ?>">
-											</div>
-											<div class="caption"> 
-												<h5 align="center">
-													<b>Sweeta Kartika</b>
-												</h5> 
-												<h4 align="center">Pemenang #1</h4>
-												<p></p> <p></p>
-											</div> 
-										</div> 
-									</div>
-								</div>
-							</div>
-						</div>
 					</div>
 					<div class="col-2 hidden-sm-down"></div>
 				</div>
@@ -123,12 +142,11 @@ if ($this->agent->mobile()) {
 							</div>
 						</div>
 					</div> 
-					<!-- </form> -->
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
+</div> -->
 <?php if (isset($js)): ?>
 	<?php echo get_js($js) ?>
 <?php endif ?>

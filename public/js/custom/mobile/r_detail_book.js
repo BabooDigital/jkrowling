@@ -222,7 +222,7 @@ $(document).ready(function() {
         $("#iaidubi").val();
         var a = $(".title_book").text(),
             c = +$("#sharecount").text() + 1,
-            e = $(".textp").attr("data-text") + ".. - Baca buku lebih lengkap disini.. | Baboo - Beyond Book & Creativity",
+            e = $(".textp").attr("data-text"),
             d = $(".cover_image").attr("src"),
             f = $(".author_name").text();
         FB.ui({
@@ -231,7 +231,7 @@ $(document).ready(function() {
             action_properties: JSON.stringify({
                 object: {
                     "og:url": base_url + "book/" + segment + "/preview",
-                    "og:title": a + " ~ By : " + f + " | Baboo - Beyond Book & Creativity",
+                    "og:title": a + " ~ By : " + f,
                     "og:description": e,
                     "og:image": d
                 }

@@ -218,7 +218,7 @@ $(document).on("click", ".share-fb", function() {
     var e = new FormData,
         title = aww.parents('.card').find(".dbooktitle").val();
         t = +$("#sharecount").text() + 1,
-        desc = aww.parents('.card').find(".ptexts").text() + ".. - Baca buku lebih lengkap disini | Baboo - Beyond Book & Creativity";
+        desc = aww.parents('.card').find(".ptexts").text();
         coverimg = aww.parents('.card').find(".effect-img").attr("src"),
         authname = aww.parents('.card').find(".nametitle2").text(),
         links = aww.parents('.card').find(".segment").attr("data-href");
@@ -229,7 +229,7 @@ $(document).on("click", ".share-fb", function() {
         action_properties: JSON.stringify({
             object: {
                 "og:url": base_url + "book/" + convertToSlug(links) + "/preview",
-                "og:title": title + " ~ By : " + authname + " | Baboo - Beyond Book & Creativity",
+                "og:title": title + " ~ By : " + authname,
                 "og:description": desc,
                 "og:image": coverimg
             }

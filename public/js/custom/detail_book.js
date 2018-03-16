@@ -247,10 +247,10 @@ $(document).ready(function() {
 		$(this);
 		var a = new FormData;
 		$("#iaidubi").val();
-		var b = $(".dbooktitle").text(),
-		c = +$("#sharecount").text() + 1,
-		d = $(".textp").attr("data-text") + ".. - Baca buku lebih lengkap disini.. | Baboo - Beyond Book & Creativity",
-		e = $(".cover_image").attr("src"),
+		var b = $(".dbooktitle").text();
+		c = +$("#sharecount").text() + 1;
+		d = $(".textp").attr("data-text");
+		e = $(".cover_image").attr("src");
 		k = $(".author_name").text();
 		FB.ui({
 			method: "share_open_graph",
@@ -258,7 +258,7 @@ $(document).ready(function() {
 			action_properties: JSON.stringify({
 				object: {
 					"og:url": base_url + "book/" + segment + "/preview",
-					"og:title": b + " ~ By : " + k + " | Baboo - Beyond Book & Creativity",
+					"og:title": b + " ~ By : " + k,
 					"og:description": d,
 					"og:image": e
 				}
