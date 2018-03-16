@@ -13,44 +13,65 @@ if ($this->agent->mobile()) {
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-6 mb-20">
+		<?php foreach ($seeall_event as $s_book): ?>
+			<div class="col-6 mb-20">
 			<div class="card">
 				<div class="card-body">
 					<div class="media">
-						<img class="align-self-start mr-3" src="http://placehold.it/300x300" width="150" height="210" alt="Generic placeholder image">
+						<img class="align-self-start mr-3" src="<?php echo ($s_book['popular_cover_url'] != 'Kosong') ? ($s_book['popular_cover_url'] != null ? $s_book['popular_cover_url'] : base_url('public/img/icon-tab/empty-set.png')) : base_url('public/img/icon-tab/empty-set.png'); ?>" width="150" height="210" alt="Generic placeholder image">
 						<div class="media-body">
-							<h5 class="mt-0" style="color: #7661ca;">Top #1</h5>
-							<h3 class="mt-0">The Kite Runner - Powerfull Hunting</h3>
+							<!-- <h5 class="mt-0" style="color: #7661ca;">Top #1</h5> -->
+							<h3 class="mt-0"><?php echo $s_book['popular_book_title']; ?></h3>
 							<span class="mr-10" style="font-size: 12px;">Fiksi &#8226;</span>
-							<span class="text-muted" style="font-size: 11px;">Dibaca 123 kali</span>
+							<span class="text-muted" style="font-size: 11px;">Dibaca <?php echo $s_book['popular_book_view'] ?> kali</span>
+							<br>
 							<div class="media mt-20">
-								<img class="d-flex align-self-start mr-10 rounded-circle" src="http://placehold.it/300x300" width="50" height="50">
+								<img class="d-flex align-self-start mr-10 rounded-circle" src="<?php if($s_book['popular_author_avatar'] == NULL){
+										echo base_url('public/img/profile/blank-photo.jpg');
+									}else{
+										echo $s_book['popular_author_avatar']; } ?>" width="50" height="50">
 								<div class="media-body mt-5">
-									<h5 class="card-title nametitle2"><a href="#" class="author_name menu-page" id="tab-page">Aditia</a></h5>
+									<h5 class="card-title nametitle2"><a href="#" class="author_name menu-page" id="tab-page"><?php echo $s_book['popular_author_name']; ?></a></h5>
 									<p class="text-muted" style="margin-top:-10px;"><small>
-										<span>10 Januari 2018</span></small></p>
+										<span><?php echo $s_book['popular_publish_date'] ?></span></small></p>
 									</div>
 								</div>
 							</div>
 						</div>
 						<div class="row mt-10">
-							<div class="col-12 text-muted" style="font-size: 13px;">
-								<div class="pull-right"><span><b class="share_countys">123</b> Bagikan</span></div>
+							<!-- <div class="col-12 text-muted" style="font-size: 13px;">
+								<div class="pull-right"><span><b class="share_countys"><?php echo $s_book['share_count']; ?></b> Bagikan</span></div>
 								<div><span class="mr-30"><b class="like_countys">123</b> Suka</span><span><b class="txtlike">123</b> Komentar</span></div>
-							</div>
+							</div> -->
 						</div>
 					</div>
 					<div class="card-footer">
 						<div class="pull-right">
-							<a href="javascript:void(0);" data-share="123" class="fs-14px share-btn"><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg" class="mr-10" width="23"> </a>
+							<!-- <?php  if (empty($this->session->userdata('userData'))) { ?>
+								<a href="#" data-share="123" class="fs-14px share-btn"><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg" class="mr-10" width="23"> </a>
+							<?php }else { ?>
+								<a href="#" data-share="123" class="fs-14px share-btn"><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg" class="mr-10" width="23"> </a>
+							<?php  } ?> -->
 						</div>
-						<div class="pull-left" style="display: flex;">
-							<a data-id="12" href="javascript:void(0);" id="loveboo12" class="mr-30 fs-14px like"><img src="<?php echo base_url('public/img/assets/icon_love.svg'); ?>" class="mr-10 loveicon" width="27"></a>
-						<a href="#" id="commentboo" class="fs-14px"><img src="<?php echo base_url(); ?>public/img/assets/icon_comment.svg" class="mr-10" width="25"> </a>
-						</div>
+						<!-- <div class="pull-left" style="display: flex;">
+							<?php  if (empty($this->session->userdata('userData'))) { ?>
+								<a data-id="12" href="#" id="loveboo12" class="mr-30 fs-14px like"><img src="<?php echo base_url('public/img/assets/icon_love.svg'); ?>" class="mr-10 loveicon" width="27"></a>
+							<?php }else { ?>
+								<a data-id="<?php echo $s_book['book_id']; ?>" href="javascript:void(0);" id="loveboo<?php echo $s_book['book_id']; ?>" class="mr-30 fs-14px <?php if($s_book['is_like'] == false){ echo 'like'; }else{ echo 'unlike'; } ?>"><img src="<?php if($s_book['is_like'] == false){ echo base_url('public/img/assets/icon_love.svg'); }else{ echo base_url('public/img/assets/love_active.svg'); } ?>" class="mr-10 loveicon" width="27"> <span class="<?php if($s_book['is_like'] == false){ echo 'txtlike'; }else{ echo 'txtunlike'; } ?>"><?php if($s_book['is_like'] == false){ echo 'Suka'; }else{ echo 'Batal Suka'; } ?></span></a>
+							<?php  } ?>
+							<?php  if (empty($this->session->userdata('userData'))) { ?>
+								<a href="#" id="commentboo" class="fs-14px"><img src="<?php echo base_url(); ?>public/img/assets/icon_comment.svg" class="mr-10" width="25"> </a>
+							<?php }else { ?>
+								<a onclick="showLoading()" href="<?php echo site_url(); ?>book/<?php
+									echo $s_book['book_id']; ?>
+									-<?php echo url_title($s_book['popular_book_title'], 'dash', true); ?>#comment
+									" id="commentboo" class="fs-14px"><img src="<?php echo base_url(); ?>public/img/assets/icon_comment.svg" class="mr-10" width="25"> Komentar</a>
+							<?php  } ?>
+						</div> -->
 					</div>
 				</div>
 			</div>
+		<?php endforeach ?>
 		</div>
 	</div>
 

@@ -50,7 +50,7 @@ class C_home extends MX_Controller {
 
 		// DATA SLIDER
 		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, $this->API.'timeline/Home/bestBook');
+		curl_setopt($ch, CURLOPT_URL, $this->API.'timeline/Home/slideBook');
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
 		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
