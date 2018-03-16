@@ -50,7 +50,8 @@ $(document).ready(function() {
 		}
 	}).done(function(data) {
 		if (data.code != 200) {
-			datas += "<div class='alert alert-success' role='alert'> <h4 class='alert-heading'>Aw Snap! Kamu belum publish buku :(</h4> <p>Ayo buat dan kreasikan buku mu semenarik mungkin, dan mulai dapatkan penghasilan di Baboo. Buku yang kamu publikasikan akan muncul disini :).</p> </div>";
+			var datas = "";
+			datas += "<div class='container first_login mt-30'> <div class='row'> <div class='mx-auto' style='width: 85%;'> <div class='text-center mb-10'> <img src='public/img/icon_draft_blank.png' width='190'> </div> <div class='text-center'> <h4><b>Tentukan konten yang kamu suka!</b></h4> <p style='font-size: 12pt;'>Belum ada buku yg kamu publish</p></div> </div> </div> </div> ";
 		}else{
 			var datas = "";
 			$.each(data.data, function(i, item) {
@@ -83,16 +84,21 @@ $(document).ready(function() {
 			$('.loader').show();
 		}
 	}).done(function(data) {
-		var datas = "";
-		$.each(data, function(i, item) {
-			var cover;
-			if (item.cover_url == null || item.cover_url == [] || item.cover_url == "") {
-				cover = 'public/img/blank_cover.png';
-			}else {
-				cover = item.cover_url;
-			}
-			datas += "<div class='card mb-15'> <div class='card-body pt-20 pb-20 pl-30 pr-30'> <div class='row'> <div class='media w-100'> <div class='media-body'> <a href='book/"+ item.book_id+"-"+convertToSlug(item.title_book) +"'><img alt='"+item.title_book+"' class='d-flex align-self-start mr-10 float-left' height='170' src='"+cover+"' width='120'></a> <h5 class='card-title nametitle3'><a href='book/"+ item.book_id+"-"+convertToSlug(item.title_book) +"'>"+item.title_book+"</a></h5> <p class='catbook'><a class='mr-20' href='#'><span class='btn-no-fill'>FIKSI</span></a></p> <p class='text-desc-in'>"+item.desc+" <a class='readmore' href='#'>Lanjut</a></p> </div> </div> </div> </div> <div class='card-footer text-muted' style='font-weight: bold;padding: 20px 20px;'> <div class='pull-right'> <a href='#' class='arrowdraft'>Draft</a> </div> </div> </div>";
-		}); 
+		if (data.code == 200) {
+			var datas = "";
+			$.each(data, function(i, item) {
+				var cover;
+				if (item.cover_url == null || item.cover_url == [] || item.cover_url == "") {
+					cover = 'public/img/blank_cover.png';
+				}else {
+					cover = item.cover_url;
+				}
+				datas += "<div class='card mb-20'> <div class='card-header bg-white'> <span><img src='public/img/assets/icon_clock.svg' width='20'> "+item.latest_update+"</span> <span class='float-right' style='color: red;'>Draft</span> </div> <div class='card-body'> <img alt='"+item.category+"' class='d-flex align-self-start mr-10 float-left' height='170' src='"+cover+"' width='120'> <h4 class='card-title nametitle3'><span class='titlebooks'>"+item.title_book+"</span></h4> <p class='catbook mb-10'><span class='btn-no-fill'>"+item.category+"</span></p> <p class='text-desc-in'>"+item.desc+"</p> </div> <div class='card-footer text-muted bg-white' style='font-size: 0.8em;font-weight: bold;'> <div class='pull-right' style='margin-top: 3px;'> <a class='mr-10 fs-14px mb-5' href='"+base_url+"my_book/"+item.book_id+"' style='border: 1px #333 solid;border-radius: 40px;padding: 8px 25px;'><img src='public/img/assets/icon_pen.svg' width='23'> Edit</a> </div> <div> <button type='button' class='clear-btn deldraft' draft-id='"+item.book_id+"'><img src='public/img/icon-tab/dustbin.svg' width='20'></button> </div> </div> </div>";
+			}); 
+		}else {
+			var datas = "";
+			datas += "<div class='container first_login mt-30' style='height:100vh;'> <div class='row'> <div class='mx-auto' style='width: 85%;'> <div class='text-center mb-10'> <img src='public/img/icon_draft_blank.png' width='190'> </div> <div class='text-center'> <h4><b>Belum ada draft buku yang kamu tulis</b></h4> </div> </div> </div> </div>" ;
+		}
 		$('.loader').hide();
 		$("#draftdata").html(datas);
 	}).fail(function() {
@@ -115,16 +121,21 @@ $(document).ready(function() {
 			$('.loader').show();
 		}
 	}).done(function(data) {
-		var datas = "";
-		$.each(data, function(i, item) {
-			var cover;
-			if (item.cover_url != null || item.cover_url != [] || item.cover_url != "") {
-				cover = item.cover_url;
-			} else if (item.cover_url == null || item.cover_url == [] || item.cover_url == "") {
-				cover = 'public/img/blank_cover.png';
-			}
-			datas += "<li class='list-group-item'> <div class='media'> <div class='media-left mr-10'> <a href='book/"+ item.id_book+"-"+convertToSlug(item.title_book) +"'><img class='media-object' src='"+ cover +"' width='60' height='80'></a> </div> <div class='media-body'> <div> <h4 class='media-heading bold mt-10'><a href='book/"+ item.id_book+"-"+convertToSlug(item.title_book) +"'>"+ item.title_book +"</a></h4> <p style='font-size: 10pt;'>by <a href='profile/"+item.author_id+"-"+convertToSlug(item.author_name)+"'>"+ item.author_name +"</a></p> </div> </div> </div> </li>";
-		}); 
+		if (data.code == 200) {
+			var datas = "";
+			$.each(data, function(i, item) {
+				var cover;
+				if (item.cover_url != null || item.cover_url != [] || item.cover_url != "") {
+					cover = item.cover_url;
+				} else if (item.cover_url == null || item.cover_url == [] || item.cover_url == "") {
+					cover = 'public/img/blank_cover.png';
+				}
+				datas += "<li class='list-group-item'> <div class='media'> <div class='media-left mr-10'> <a href='book/"+ item.id_book+"-"+convertToSlug(item.title_book) +"'><img class='media-object' src='"+ cover +"' width='60' height='80'></a> </div> <div class='media-body'> <div> <h4 class='media-heading bold mt-10'><a href='book/"+ item.id_book+"-"+convertToSlug(item.title_book) +"'>"+ item.title_book +"</a></h4> <p style='font-size: 10pt;'>by <a href='profile/"+item.author_id+"-"+convertToSlug(item.author_name)+"'>"+ item.author_name +"</a></p> </div> </div> </div> </li>";
+			});
+		}else {
+			var datas = "";
+			datas += "<p class='text-center'>Belum membaca buku manapun</p>";
+		}
 		$('.loader').hide();
 		$("#latestreadbook").html(datas);
 	}).fail(function() {
@@ -132,6 +143,51 @@ $(document).ready(function() {
 	}).always(function() {
 	});
 
+});
+
+$(document).on('click', '.deldraft', function() {
+	var formData = new FormData();
+
+	formData.append("book_id", $(this).attr("draft-id"));
+
+	swal({
+		title: 'Hapus draft buku?',
+		type: 'warning',
+		showCancelButton: true,
+		confirmButtonColor: '#3085d6',
+		cancelButtonColor: '#d33',
+		confirmButtonText: 'Hapus',
+		cancelButtonText: 'Batal'
+	}).then((result) => {
+		if (result.value) {
+			$.ajax({
+				url: base_url+'deldraft',
+				type: 'POST',
+				dataType: 'JSON',
+				contentType: false,
+				processData: false,
+				data:formData,
+				beforeSend: function () {
+					swal({
+						title: 'Menghapus Draft Book',
+						onOpen: () => {
+							swal.showLoading()
+						}
+					});
+				}
+			})
+			.done(function(data) {
+					location.reload();
+				})
+			.fail(function() {
+				console.log("error");
+			})
+			.always(function() {
+			});
+		}else{
+
+		}
+	});
 });
 
 function funcDropdown() {
