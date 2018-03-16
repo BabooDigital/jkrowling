@@ -8,10 +8,12 @@
 					<div class="media-body mt-10 blueslide" style="padding: 5% 0;">
 						<h4 class="mt-0"><b><?php echo $slide_show['popular_book_title']; ?></b></h4>
 						<p class="authorslide"></p>
-						<p>By : <?php echo $slide_show['popular_author_name']; ?></p>
-						<br>
+						<p>by <?php echo $slide_show['popular_author_name']; ?></p>
 						<p><?php echo substr($slide_show['popular_book_desc'], 0, 110).'...'; ?></p>
-						<div class="mt-20"><a href="#" class="btnbooread"><span style="">Baca Buku</span></a></div>
+						<div class="mt-20"><a href="<?php echo site_url(); ?>book/<?php
+								echo $slide_show['popular_book_id']; ?>
+								-<?php echo url_title($slide_show['popular_book_title'], 'dash', true); ?>
+								" class="btnbooread">Baca Buku</a></div>
 					</div>
 				</div>
 			</div>

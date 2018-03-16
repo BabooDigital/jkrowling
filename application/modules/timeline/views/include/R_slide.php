@@ -7,7 +7,7 @@
 					<div class="media-body pinkslide">
 						<h6 class="mt-0"><b><?php if(strlen($slide_show['popular_book_title']) > 15){ $str =  substr($slide_show['popular_book_title'], 0, 13).'...'; echo $str; }else { echo $slide_show['popular_book_title']; }  ?></b></h6>
 						<p class="mb-10" style="font-size:14px;">by <?php echo $slide_show['popular_author_name']; ?></p>
-						<p style="font-size:12px;"><?php echo substr($slide_show['popular_book_desc'], 0, 90).'...'; ?></p>
+						<p style="font-size:12px;"><?php echo substr($slide_show['popular_book_desc'], 0, 80).'...'; ?></p>
 						<div class="mt-10"><a href="<?php echo site_url(); ?>book/<?php echo $slide_show['popular_book_id']; ?>-<?php echo url_title($slide_show['popular_book_title'], 'dash', true); ?>" class="btnbooreadmr"><span style="">Baca Buku</span></a></div>	
 					</div>
 				</div>								
