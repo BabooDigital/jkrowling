@@ -63,8 +63,8 @@ class C_Event extends MX_Controller
         $options = array(
             CURLOPT_URL          => $this->API.'timeline/Home/finalisBook',
             CURLOPT_RETURNTRANSFER => true,
-              CURLOPT_CUSTOMREQUEST  =>"GET",    // Atur type request
-              CURLOPT_POST           =>false,    // Atur menjadi GET
+              CURLOPT_CUSTOMREQUEST  =>"POST",    // Atur type request
+              CURLOPT_POST           =>TRUE,    // Atur menjadi GET
               CURLOPT_FOLLOWLOCATION => false,    // Follow redirect aktif
               CURLOPT_SSL_VERIFYPEER => 0,
               CURLOPT_HEADER         => 1,
@@ -128,8 +128,8 @@ class C_Event extends MX_Controller
         $options = array(
             CURLOPT_URL          => $this->API.'timeline/Home/finalisBook',
             CURLOPT_RETURNTRANSFER => true,
-              CURLOPT_CUSTOMREQUEST  =>"GET",    // Atur type request
-              CURLOPT_POST           =>false,    // Atur menjadi GET
+              CURLOPT_CUSTOMREQUEST  =>"POST",    // Atur type request
+              CURLOPT_POST           =>TRUE,    // Atur menjadi GET
               CURLOPT_FOLLOWLOCATION => false,    // Follow redirect aktif
               CURLOPT_SSL_VERIFYPEER => 0,
               CURLOPT_HEADER         => 1,

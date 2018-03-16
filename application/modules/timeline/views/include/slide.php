@@ -9,6 +9,8 @@
 						<h4 class="mt-0"><b><?php echo $slide_show['popular_book_title']; ?></b></h4>
 						<p class="authorslide"></p>
 						<p>By : <?php echo $slide_show['popular_author_name']; ?></p>
+						<br>
+						<p><?php echo substr($slide_show['popular_book_desc'], 0, 110).'...'; ?></p>
 						<div class="mt-20"><a href="#" class="btnbooread"><span style="">Baca Buku</span></a></div>
 					</div>
 				</div>
