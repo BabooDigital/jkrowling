@@ -105,10 +105,21 @@
 
 					</div>
 				</div>
-				<nav class="navbar fixed-bottom navbar-light bg-greypale">
-					<button type="button" class="btntnc btn-diss" data-dismiss="modal" aria-label="Close">Tolak</button>
-					<button type="button" class="btntnc btn-acc" id="<?php if (empty($this->session->userdata('userData'))) {echo "accRegis"; }else{echo "accBook"; } ?>">Setuju</button>
-				</nav>
+				<?php if (!empty($this->session->userdata('userData'))) { ?>
+				
+				<?php }else{ ?>
+				<form action="<?php echo site_url(); ?>auth/C_Login/postregisteruser" method="POST">
+					<input type="hidden" name="name" id="namess" value="">
+					<input type="hidden" name="email" id="emailss" value="">
+					<input type="hidden" name="password" id="passss" value="">
+					<input type="hidden" name="tgl_lahir" id="datess" value="">
+					<input type="hidden" name="j_kelamin" id="jkss" value="">
+					<nav class="navbar fixed-bottom navbar-light bg-greypale">
+						<button type="button" class="btntnc btn-diss" data-dismiss="modal" aria-label="Close">Tolak</button>
+						<button type="submit" class="btntnc btn-acc">Setuju</button>
+					</nav>
+				</form>
+				<?php } ?>
 			</div>
 		</div>
 	</div>

@@ -1,39 +1,39 @@
 $(document).ready(function() {
 	
-	$(document).on('click', '#accRegis', function() {
-		var aww = $(this);
-		var formData = new FormData();
+	// $(document).on('click', '#accRegis', function() {
+	// 	var aww = $(this);
+	// 	var formData = new FormData();
 
-		formData.append("name", $("#yname").val());
-		formData.append("email", $("#emailRegis").val());
-		formData.append("password", $("#passRegis").val());
-		formData.append("tgl_lahir", $("#date").val());
-		formData.append("j_kelamin", $("input[name=j_kelamin]").val());
+	// 	formData.append("name", $("#yname").val());
+	// 	formData.append("email", $("#emailRegis").val());
+	// 	formData.append("password", $("#passRegis").val());
+	// 	formData.append("tgl_lahir", $("#date").val());
+	// 	formData.append("j_kelamin", $("input[name=j_kelamin]").val());
 
-		$.ajax({
-			url: base_url+'booRegis',
-			dataType: 'json',
-			type: 'POST',
-			cache: false,
-			contentType: false,
-			processData: false,
-			data: formData
-		})
-		.done(function(data) {
-			console.log(data);
-			if (data.status != 200) {
-                swal("Gagal", data.message, "error");
-			}else{
-                window.location = base_url+'firstlogin';
-			}
-		})
-		.fail(function() {
-			console.log("error");
-		})
-		.always(function() {
-		});
+	// 	$.ajax({
+	// 		url: base_url+'booRegis',
+	// 		dataType: 'json',
+	// 		type: 'POST',
+	// 		cache: false,
+	// 		contentType: false,
+	// 		processData: false,
+	// 		data: formData
+	// 	})
+	// 	.done(function(data) {
+	// 		console.log(data);
+	// 		if (data.status != 200) {
+ //                swal("Gagal", data.message, "error");
+	// 		}else{
+ //                window.location = base_url+'firstlogin';
+	// 		}
+	// 	})
+	// 	.fail(function() {
+	// 		console.log("error");
+	// 	})
+	// 	.always(function() {
+	// 	});
 
-	});
+	// });
 });
 var modal_lv = 0;
 $('.modal').on('shown.bs.modal', function (e) {
@@ -56,6 +56,26 @@ $(function() {
 	$('#date').combodate('method');
 });
 $("#login-form").validate({
+	rules: {
+		emails: {
+			required: true,
+			email: true
+		},
+		passwords: {
+			required: true,
+			minlength: 5
+		}
+	},
+	messages: {
+		emails: {
+			required: 'Email harus di isi'
+		},
+		passwords: {
+			required: 'Password harus di isi'
+		}
+	}
+});
+$("#login-form, #form-login").validate({
 	rules: {
 		emails: {
 			required: true,
@@ -117,5 +137,16 @@ $("#form-register").validate({
 	},
 	submitHandler: function(form) {
 		$('#tnc-modal').modal('show');
+		var a = $("#yname").val();
+		var b = $("#emailRegis").val();
+		var c = $("#passRegis").val();
+		var d = $("#date").val();
+		var e = $("input[name=j_kelamin]").val();
+
+		$('#namess').val(a);
+		$('#emailss').val(b);
+		$('#passss').val(c);
+		$('#datess').val(d);
+		$('#jkss').val(e);
 	}
 });

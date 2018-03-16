@@ -106,7 +106,7 @@ class C_Login extends MX_Controller
             $psn = $resval['message'];
             $user = $resval['data'];
             $auth = $headers['BABOO-AUTH-KEY'];
-            if (isset($resval['code']) && $resval['code'] == '200')
+            if (isset($resval['code']) && $resval['code'] == 200)
             {
                 $status = $resval['code'];
 
@@ -281,7 +281,7 @@ class C_Login extends MX_Controller
             $psn = $resval['message'];
             $user = $resval['data'];
             $auth = $headers['BABOO-AUTH-KEY'];
-            if (isset($resval['code']) && $resval['code'] == '200')
+            if (isset($resval['code']) && $resval['code'] == 200)
             {
                 $status = $resval['code'];
 
@@ -364,7 +364,7 @@ class C_Login extends MX_Controller
             $psn = $resval['message'];
             $user = $resval['data'];
             $auth = $headers['BABOO-AUTH-KEY'];
-            if (isset($resval['code']) && $resval['code'] == '200')
+            if (isset($resval['code']) && $resval['code'] == 200)
             {
                 $status = $resval['code'];
 
@@ -449,7 +449,7 @@ class C_Login extends MX_Controller
         $user = $resval['data'];
         $auth = $headers['BABOO-AUTH-KEY'];
         $status = $resval['code'];
-        if (isset($resval['code']) && $resval['code'] == '200')
+        if (isset($resval['code']) && $resval['code'] == 200)
         {
             // $status = $resval['code'];
 
