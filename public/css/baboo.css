@@ -987,9 +987,9 @@ input.formsearch:focus {
 	.outleft > .is_stuck {
 		margin-top: 5% !important;
 	}
-	.tmlin > .is_stuck {
+	/*.tmlin > .is_stuck {
 		margin-top: 70px !important;
-	}
+	}*/
 	.dtlbok > .is_stuck {
 		margin-top: 80px !important;
 	}
