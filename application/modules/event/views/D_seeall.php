@@ -39,35 +39,35 @@ if ($this->agent->mobile()) {
 							</div>
 						</div>
 						<div class="row mt-10">
-							<!-- <div class="col-12 text-muted" style="font-size: 13px;">
+							<div class="col-12 text-muted" style="font-size: 13px;">
 								<div class="pull-right"><span><b class="share_countys"><?php echo $s_book['share_count']; ?></b> Bagikan</span></div>
 								<div><span class="mr-30"><b class="like_countys">123</b> Suka</span><span><b class="txtlike">123</b> Komentar</span></div>
-							</div> -->
+							</div>
 						</div>
 					</div>
 					<div class="card-footer">
 						<div class="pull-right">
-							<!-- <?php  if (empty($this->session->userdata('userData'))) { ?>
+							<?php  if (empty($this->session->userdata('userData'))) { ?>
 								<a href="#" data-share="123" class="fs-14px share-btn"><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg" class="mr-10" width="23"> </a>
 							<?php }else { ?>
 								<a href="#" data-share="123" class="fs-14px share-btn"><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg" class="mr-10" width="23"> </a>
-							<?php  } ?> -->
+							<?php  } ?>
 						</div>
-						<!-- <div class="pull-left" style="display: flex;">
+						<div class="pull-left" style="display: flex;">
 							<?php  if (empty($this->session->userdata('userData'))) { ?>
-								<a data-id="12" href="#" id="loveboo12" class="mr-30 fs-14px like"><img src="<?php echo base_url('public/img/assets/icon_love.svg'); ?>" class="mr-10 loveicon" width="27"></a>
+								<a data-id="12" href="<?php echo base_url('login') ?>" id="loveboo12" class="mr-30 fs-14px like"><img src="<?php echo base_url('public/img/assets/icon_love.svg'); ?>" class="mr-10 loveicon" width="27"></a>
 							<?php }else { ?>
 								<a data-id="<?php echo $s_book['book_id']; ?>" href="javascript:void(0);" id="loveboo<?php echo $s_book['book_id']; ?>" class="mr-30 fs-14px <?php if($s_book['is_like'] == false){ echo 'like'; }else{ echo 'unlike'; } ?>"><img src="<?php if($s_book['is_like'] == false){ echo base_url('public/img/assets/icon_love.svg'); }else{ echo base_url('public/img/assets/love_active.svg'); } ?>" class="mr-10 loveicon" width="27"> <span class="<?php if($s_book['is_like'] == false){ echo 'txtlike'; }else{ echo 'txtunlike'; } ?>"><?php if($s_book['is_like'] == false){ echo 'Suka'; }else{ echo 'Batal Suka'; } ?></span></a>
 							<?php  } ?>
 							<?php  if (empty($this->session->userdata('userData'))) { ?>
-								<a href="#" id="commentboo" class="fs-14px"><img src="<?php echo base_url(); ?>public/img/assets/icon_comment.svg" class="mr-10" width="25"> </a>
+								<a href="<?php echo base_url('login') ?>" id="commentboo" class="fs-14px"><img src="<?php echo base_url(); ?>public/img/assets/icon_comment.svg" class="mr-10" width="25"> </a>
 							<?php }else { ?>
 								<a onclick="showLoading()" href="<?php echo site_url(); ?>book/<?php
 									echo $s_book['book_id']; ?>
 									-<?php echo url_title($s_book['popular_book_title'], 'dash', true); ?>#comment
 									" id="commentboo" class="fs-14px"><img src="<?php echo base_url(); ?>public/img/assets/icon_comment.svg" class="mr-10" width="25"> Komentar</a>
 							<?php  } ?>
-						</div> -->
+						</div>
 					</div>
 				</div>
 			</div>
