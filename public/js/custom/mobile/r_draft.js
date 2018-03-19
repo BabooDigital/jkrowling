@@ -31,11 +31,10 @@ $(document).ready(function() {
 					}
 				})
 				.done(function(data) {
-					console.log(data);
-					// if (data.code == 200) {
+					if (data.code == 200) {
 						swal.hideLoading()
 						location.reload();
-					// }
+					}
 				})
 				.fail(function() {
 					console.log("error");

@@ -39,6 +39,10 @@
 	background: #dadada;
 	color: #333;
 }
+.btns {
+	background: none;
+	border: none;
+}
 .btn-acc {
 	background: #7661ca;
 	color: #fff;
@@ -133,7 +137,7 @@ if (!empty($query['b'])) {
 			<div class="modal-dialog" role="document" style="width: 100%; height: 100%; padding: 0; margin:0;">
 				<div class="modal-content" style="height:100%; border-radius:0; color:#333; overflow:auto;">
 					<div class="modal-body">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<button type="button" class="btns float-right" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true" style="font-size:13px; 	font-family: 'Proxima Nova', Georgia, sans-serif; ">Daftar Nanti </span>
 						</button>
 						<div class="row">

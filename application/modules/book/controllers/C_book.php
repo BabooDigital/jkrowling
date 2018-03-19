@@ -828,8 +828,7 @@ class C_book extends MX_Controller
     		$this->session->sess_destroy();
     		redirect('login', 'refresh');
     	} else {
-    		echo json_encode($datas);
-    	}
     	echo json_encode(array("code"=>$status));  
+        }
 	}
 }

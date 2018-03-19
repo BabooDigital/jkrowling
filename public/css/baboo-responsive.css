@@ -901,9 +901,10 @@ a:hover {
                   .btnupdate-prof {
                     border-radius: 100px;
                     background: #7554bd;
-                    padding: 3% 36%;
+                    padding: 10px 110px;
                     font-size: 15pt;
                     color: #fff;
+                    border: none;
                   }
 
                   .btnupdate-prof:hover {

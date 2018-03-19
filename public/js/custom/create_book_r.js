@@ -111,7 +111,8 @@ function froalaEditor() {
     heightMax: 300,
     width: 600,
     initOnClick: true,
-    toolbarBottom: false
+    toolbarBottom: false,
+    pastePlain: true
   });
   $('#paragraph_book').froalaEditor('events.on', 'focus', function (e) { 
     $('#paragraph_book').froalaEditor('fullscreen.toggle');

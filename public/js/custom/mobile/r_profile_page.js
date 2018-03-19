@@ -7,7 +7,7 @@ $(document).ready(function() {
     var aww = $(this);
     var formData = new FormData();
 
-    aww.children('.loveicon').attr("src", "public/img/assets/love_active.svg");
+    aww.children('.loveicon').attr("src", base_url+"public/img/assets/love_active.svg");
     formData.append("user_id", $("#iaiduui").val());
     formData.append("book_id", aww.attr("data-id"));
     $.ajax({
@@ -22,11 +22,11 @@ $(document).ready(function() {
     .done(function(data) {
         // $('.loader').hide();
         if (data.code == null || data.code == 403 || data.code == 404) {
-          aww.children('.loveicon').attr("src", "public/img/assets/icon_love.svg");
+          aww.children('.loveicon').attr("src", base_url+"public/img/assets/icon_love.svg");
         } else {
           aww.removeClass('like');
           aww.addClass('unlike');
-          aww.children('.loveicon').attr("src", "public/img/assets/love_active.svg");
+          aww.children('.loveicon').attr("src", base_url+"public/img/assets/love_active.svg");
         }
       })
     .fail(function() {
@@ -43,7 +43,7 @@ $(document).ready(function() {
     var formData = new FormData();
     var txt = + aww.parents(".card").find(".like_countys").text() - 1;
 
-    aww.children('.loveicon').attr("src", "public/img/assets/icon_love.svg");
+    aww.children('.loveicon').attr("src", base_url+"public/img/assets/icon_love.svg");
     formData.append("user_id", $("#iaiduui").val());
     formData.append("book_id", aww.attr("data-id"));
     $.ajax({
@@ -60,13 +60,13 @@ $(document).ready(function() {
     .done(function(data) {
         // $('.loader').hide();
         if (data.code == null || data.code == 403 || data.code == 404) {
-          aww.children('.loveicon').attr("src", "public/img/assets/love_active.svg");
+          aww.children('.loveicon').attr("src", base_url+"public/img/assets/love_active.svg");
         } else {
           aww.removeClass('unlike');
           aww.addClass('like');
           aww.parents(".card").find(".like_countys").text(txt);
           aww.children('.txtlike').text('Suka');
-          aww.children('.loveicon').attr("src", "public/img/assets/icon_love.svg");
+          aww.children('.loveicon').attr("src", base_url+"public/img/assets/icon_love.svg");
         }
       })
     .fail(function() {
@@ -155,27 +155,37 @@ $(document).ready(function() {
 		}
 	}).done(function(data) {
 		if (data.code != 200) {
-			datas = "<div class='container first_login mt-30'> <div class='row'> <div class='mx-auto' style='width: 85%;'> <div class='text-center mb-10'> <img src='public/img/icon_draft_blank.png' width='190'> </div> <div class='text-center'> <h4><b>Tentukan konten yang kamu suka!</b></h4> <p style='font-size: 12pt;'>Belum ada buku yg kamu publish</p></div> </div> </div> </div> ";
+			datas = "<div class='container first_login mt-30'> <div class='row'> <div class='mx-auto' style='width: 85%;'> <div class='text-center mb-10'> <img src='"+base_url+"public/img/icon_draft_blank.png' width='190'> </div> <div class='text-center'> <h4><b>Tentukan konten yang kamu suka!</b></h4> <p style='font-size: 12pt;'>Belum ada buku yg kamu publish</p></div> </div> </div> </div> ";
 		}else {
 			var datas = "";
 			$.each(data.data, function(i, item) {
 				desc = item.desc;
 				var cover;
-		        if (item.cover_url != "" || item.cover_url == " ") {
-		          cover = item.cover_url;
-		        } else if (item.cover_url == "") {
-		          cover = 'public/img/profile/blank-photo.jpg';
+		        if (item.image_url != "" || item.image_url == null) {
+		          cover = item.image_url;
+		        } else if (item.image_url == "") {
+		          if (item.cover_url) {
+		          	cover = item.cover_url;
+		          }else{
+		          	cover = base_url+'public/img/profile/blank-photo.jpg';
+		          }
+		        }
+				var profpict;
+		        if (item.author_avatar != "" || item.author_avatar == null) {
+		          profpict = item.author_avatar;
+		        } else {
+		          profpict = base_url+'public/img/profile/blank-photo.jpg';
 		        }
 		        var like;
 		        var likeimg;
 		        if (item.is_like == true) {
 		        	like = 'unlike';
-		        	likeimg = 'public/img/assets/icon_love.svg';
+		        	likeimg = base_url+'public/img/assets/icon_love.svg';
 		        }else {
 		        	like = 'like';
-		        	likeimg = 'public/img/assets/love_active.svg';
+		        	likeimg = base_url+'public/img/assets/love_active.svg';
 		        }
-				datas += "<div class='card mb-15 p-0'> <div class='card-body p-0 pl-30 pr-30 pt-15'> <div class='row mb-10 pl-15 pr-15'> <div class='media'> <img class='d-flex align-self-start mr-20 rounded-circle' src='"+ item.author_avatar +"' width='50' height='50' alt='"+ item.author_name +"'> <div class='media-body mt-5'> <h5 class='card-title nametitle2 author_name'><a href='javascript:void(0);'>"+ item.author_name +"</a></h5> <p class='text-muted' style='margin-top:-10px;'><small><span>Jakarta, Indonesia</span> <span class='ml-10'>"+ item.publish_date +"</span></small></p> </div> </div> </div> <div class='media'> <a href='book/"+ item.book_id+"-"+convertToSlug(item.title_book) +"'><img alt='"+item.title_book+"' src='"+cover+"' class='w-100 imgcover cover_image'></a> </div> <a href='book/"+ item.book_id+"-"+convertToSlug(item.title_book) +"' class='segment' data-href='"+ item.book_id+"-"+convertToSlug(item.title_book) +"'><h5 class='pt-20 w-100' style='font-weight: 700;'><b class='dbooktitle'>"+item.title_book+"</b></h5></a> <div class='w-100'> <span class='mr-8' style='font-size: 12px;'>"+item.category+" &#8226;</span> <span class='text-muted' style='font-size: 11px;'>Dibaca "+ item.view_count +" kali</span> <p class='mt-10 textp' data-text='"+ desc.substr(0, 100)+'...' +"'>"+ desc.substr(0, 100)+'...' +"</p> </div> </div> <div class='bg-white card-footer text-muted pr-30 pl-30' style='font-size: 0.8em;font-weight: bold;'> <div class='pull-right'> <div class='dropdown'> <button class='share-btn dropbtn' type='button' id='dropShare' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'> <img src='public/img/assets/icon_share.svg' width='23'> </button> <div class='dropdown-menu' aria-labelledby='dropShare'> <a class='dropdown-item share-fb' href='javascript:void(0);' data-share=''><img src='public/img/assets/fb-icon.svg' width='20'> Facebook</a> </div> </div> </div> <div> <a data-id='"+ item.book_id+"' href='javascript:void(0);' class='"+like+"' id='loveboo"+ item.book_id+"'><img src='"+likeimg+"' class='mr-20 loveicon' width='27'></a> <a href='book/"+ item.book_id+"-"+convertToSlug(item.title_book) +"#comments'><img src='public/img/assets/icon_comment.svg' class='mr-10' width='25'></a> </div> </div> </div>"; 
+				datas += "<div class='card mb-15 p-0'> <div class='card-body p-0 pl-30 pr-30 pt-15'> <div class='row mb-10 pl-15 pr-15'> <div class='media'> <img class='d-flex align-self-start mr-20 rounded-circle' src='"+ profpict +"' width='50' height='50' alt='"+ item.author_name +"'> <div class='media-body mt-5'> <h5 class='card-title nametitle2 author_name'><a href='javascript:void(0);'>"+ item.author_name +"</a></h5> <p class='text-muted' style='margin-top:-10px;'><small><span>Jakarta, Indonesia</span> <span class='ml-10'>"+ item.publish_date +"</span></small></p> </div> </div> </div> <div class='media'> <a href='book/"+ item.book_id+"-"+convertToSlug(item.title_book) +"'><img alt='"+item.title_book+"' src='"+cover+"' class='w-100 imgcover cover_image'></a> </div> <a href='book/"+ item.book_id+"-"+convertToSlug(item.title_book) +"' class='segment' data-href='"+ item.book_id+"-"+convertToSlug(item.title_book) +"'><h5 class='pt-20 w-100' style='font-weight: 700;'><b class='dbooktitle'>"+item.title_book+"</b></h5></a> <div class='w-100'> <span class='mr-8' style='font-size: 12px;'>"+item.category+" &#8226;</span> <span class='text-muted' style='font-size: 11px;'>Dibaca "+ item.view_count +" kali</span> <p class='mt-10 textp' data-text='"+ desc.substr(0, 100)+'...' +"'>"+ desc.substr(0, 100)+'...' +"</p> </div> </div> <div class='bg-white card-footer text-muted pr-30 pl-30' style='font-size: 0.8em;font-weight: bold;'> <div class='pull-right'> <div class='dropdown'> <button class='share-btn dropbtn' type='button' id='dropShare' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'> <img src='"+base_url+"public/img/assets/icon_share.svg' width='23'> </button> <div class='dropdown-menu' aria-labelledby='dropShare'> <a class='dropdown-item share-fb' href='javascript:void(0);' data-share=''><img src='"+base_url+"public/img/assets/fb-icon.svg' width='20'> Facebook</a> </div> </div> </div> <div> <a data-id='"+ item.book_id+"' href='javascript:void(0);' class='"+like+"' id='loveboo"+ item.book_id+"'><img src='"+likeimg+"' class='mr-20 loveicon' width='27'></a> <a href='book/"+ item.book_id+"-"+convertToSlug(item.title_book) +"#comments'><img src='"+base_url+"public/img/assets/icon_comment.svg' class='mr-10' width='25'></a> </div> </div> </div>"; 
 			});
 		}
 			$(".loader").hide();
@@ -191,26 +201,29 @@ $(document).ready(function() {
 
 		formData.append('fullname', $('#yourName').val());
 		formData.append('date_of_birth', $('#yourBirth').val());
-		formData.append('location', $('#yourLoc').val());
+		formData.append('address', $('#yourLoc').val());
 		formData.append('about_me', $('#yourBio').val());
 
 		$.ajax({
 			url: 'edit_profile',
 			type: 'POST',
-			dataType: 'JSON)',
+			dataType: 'JSON',
 			cache: false,
 		    contentType: false,
 		    processData: false,
 			data: formData,
 		})
-		.done(function() {
-			window.location = base_url+'profile';
+		.done(function(data) {
+			if (data.code == 200) {
+				window.location = base_url+'profile';
+			}else{
+				location.reload();
+			}
 		})
 		.fail(function() {
 			console.log("error");
 		})
 		.always(function() {
-			console.log("complete");
 		});
 		
 	});
