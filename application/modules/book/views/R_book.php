@@ -101,16 +101,16 @@ echo "<script>(function(d, s, id) {
 		</nav><br>
 		<br>
 		<div class="container mt-30">
+			<?php if (empty($this->uri->segment(3))) { ?>
 			<div class="row mb-30">
 				<div class="col-12">
 					<div class="text-center mb-15">
 						<h2 style="font-weight: 900;"><?php echo $detail_book['data']['book_info']['title_book']; ?></h2>
-						<?php if (empty($this->uri->segment(3))) { ?>
 						<p class="text-muted pcat"><b><?php echo $detail_book['data']['category']['category_name']; ?></b> &#8226; Dibaca <?php echo $detail_book['data']['book_info']['view_count']; ?> kali</p>
-						<?php }else{} ?>
 					</div>
 				</div>
 			</div>
+			<?php }else{} ?>
 			<div class="row">
 				<div class="col-12">
 					<?php if (empty($this->uri->segment(3))) { ?>
@@ -126,6 +126,11 @@ echo "<script>(function(d, s, id) {
 
 					} ?>
 						<input id="iaidubi" name="iaidubi" type="hidden" value="<?php echo $detail_book['data']['book_info']['book_id']; ?>"> <input id="iaiduui" name="iaiduui" type="hidden" value="<?php $dat = $this->session->userdata('userData'); echo $dat['user_id']; ?>">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-12 text-center mt-10">
+					<h4 style="font-weight: 900;"><?php echo $detail_book['data']['chapter']['chapter_title']; ?></h4>
 				</div>
 			</div>
 		<div class="row">
