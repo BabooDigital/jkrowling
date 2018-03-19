@@ -968,6 +968,7 @@ class C_createbook extends MX_Controller
 		} else {
 			$status = $resval['code'];
 		}
+		// print_r($bookData);
 		echo json_encode(array(
 			'code' => $status,
 			'data' => $user,
@@ -997,7 +998,7 @@ class C_createbook extends MX_Controller
 		$user    = $this->input->post('user_id');
 		$parap   = $this->input->post('book_paragraph');
 		$cover   = $this->input->post('cover_name');
-		if ($_FILES['file_cover']['size'] != 0 || $cover != null) {
+		if ($_FILES['file_cover']['size'] != 0) {
 			$covers                   = $cover;
 			$file_name_with_full_path = $_FILES["file_cover"]["tmp_name"];
 	        if (function_exists('curl_file_create')) { // php 5.5+
@@ -1049,7 +1050,7 @@ class C_createbook extends MX_Controller
 	        $this->session->set_userdata('authKey', $auths);
 	        $this->session->set_userdata('dataCover', $covers);
 	    }else{
-	    	$covers = "";
+	    	$covers = $cover;
 	    }
 		// print_r($bookData) ;
 	    $bookData = array(

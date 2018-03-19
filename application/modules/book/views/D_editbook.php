@@ -98,20 +98,23 @@
 				<div class="col-md-9" id="pageContent">
 					<div class="pt-10 pb-10 pl-50 pr-50">
 						<div class="media">
-							<img alt="Name" class="d-flex mr-3 rounded-circle" src="<?php echo base_url(); ?>public/img/profile/pp_wanita2.png" width="50">
+							<img alt="Name" class="d-flex mr-3 rounded-circle" src="<?php $uri = $this->session->userdata('userData'); if($uri['prof_pict'] == NULL){
+									echo base_url('public/img/profile/blank-photo.jpg');
+								}else{
+									echo $uri['prof_pict']; } ?>" width="50" height="50">
 							<div class="media-body mt-7">
 								<input type="hidden" name="user_id" id="user_id" value="<?php $name = $this->session->userdata('userData');
 										echo $name['user_id']; ?>">
-										<input type="hidden" name="books_id" id="books_id" value="<?php echo $this->uri->segment(2); ?>">
-										<input type="hidden" name="chapter_id" id="chapter_id" value="<?php echo $this->uri->segment(4); ?>">
-									<!-- <input type="text" name="book_id" id="books_id" value=""> -->
-								<input type="hidden" name="id_books" id="id_books" value="<?php echo $detail_book['data']['book_info']['book_id'] ?>">
-								<h5 class="mt-0 mb-1 nametitle">Risa Sulistya</h5>
-								<small>Fiksi</small>
+									<input type="hidden" name="book_id" id="book_id" value="<?php echo $this->uri->segment(2); ?>">
+									<input type="hidden" id="cover_url" accept="image/*" onchange="tampilkanPreview(this,'preview')" name="cover_url" value="<?php $src = $this->session->userdata('dataCover'); if($src != NULL){  echo $src['asset_url']; }else{ echo " "; } ?>">
+									<div id="books_id"></div>
+								<h5 class="mt-0 mb-1 nametitle"><?php $uri = $this->session->userdata('userData'); echo $uri['fullname'] ?></h5>
 							</div>
 						</div>
 						<div>
 							<div class="mt-30 tulisjudul">
+								<input type="hidden" name="books_id" id="books_id" value="<?php echo $this->uri->segment(2); ?>">
+								<input type="hidden" name="chapter_id" id="chapter_id" value="<?php echo $this->uri->segment(4); ?>">
 								<input type="hidden" name="title_book" id="title_book" class="w-100" placeholder="Masukan Judul buku" value="<?php echo $detail_book['data']['book_info']['title_book']; ?>">
 								<input type="text" name="title_chapter" id="title_chapter" class="w-100" placeholder="Masukan Judul buku" value="<?php echo $detail_book['data']['chapter']['chapter_title']; ?>" required>
 							</div>
@@ -121,7 +124,7 @@
 									<?php 
 										$data = "";
 										foreach ($detail_book['data']['chapter']['paragraphs'] as $book) {
-											$data .= $book['paragraph_text'].'<p></p>';
+											$data .= $book['paragraph_text'];
 										}
 										echo $data;
 									?>
@@ -132,7 +135,7 @@
 					</div>
 					<div class="pull-right mb-10">
 						<input type="button" class="mr-30" id="updateChapter" style="font-size: 18px;font-weight: bold;background: transparent; border: 0; cursor: pointer;" value="Update Chapter" />
-						<button type="submit" onclick="showLoading()" class="btnbeliskrg" href="#" style="padding: 10px 50px;"><span class="txtbtnbeliskrg" ">Publish</span></button>
+						<button type="submit" class="btnbeliskrg" href="#" style="padding: 10px 50px;"><span class="txtbtnbeliskrg" ">Publish</span></button>
 					</div>
 				</div>
 			</div>
