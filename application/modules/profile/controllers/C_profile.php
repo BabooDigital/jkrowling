@@ -304,7 +304,7 @@ class C_profile extends MX_Controller {
 	}
 	public function settingProfile()
 	{
-		$data['title'] = 'Pengaturan | Baboo - Beyond Book &amp; Creativity';
+		$data['title'] = 'Pengaturan | Baboo.id';
 		$data['css'][] = "public/css/bootstrap.min.css";
 		$data['css'][] = "public/css/custom-margin-padding.css";
 		$data['css'][] = "public/css/font-awesome.min.css";

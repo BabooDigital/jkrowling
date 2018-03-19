@@ -16,8 +16,8 @@ class C_Library extends MX_Controller
 
     public function index()
     {
-        $data['title'] = "Library Page | Baboo - Beyond Book & Creativity";
-        $datas['title'] = "Library Page | Baboo - Beyond Book & Creativity";
+        $data['title'] = "Library Page | Baboo.id";
+        $datas['title'] = "Library Page | Baboo.id";
 
         error_reporting(0);
         $auth = $this->session->userdata('authKey');

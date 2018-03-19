@@ -12,7 +12,7 @@ class C_Event extends MX_Controller
     }
     public function index()
     {
-        $data['title'] = "Event Page | Baboo - Beyond Book & Creativity";
+        $data['title'] = "Event Page | Baboo.id";
 
         $data['css'][] = "public/css/custom/event-responsive.css";
         $data['js'][] = "public/js/jquery.min.js";
@@ -147,7 +147,7 @@ class C_Event extends MX_Controller
     }
     public function seeAll()
     {
-        $data['title'] = "Event Page | Baboo - Beyond Book & Creativity";
+        $data['title'] = "Event Page | Baboo.id";
 
         $data['css'][] = "public/css/custom/event-responsive.css";
         $data['js'][] = "public/js/jquery.min.js";

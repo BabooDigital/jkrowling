@@ -73,7 +73,7 @@ class C_timeline extends MX_Controller {
 		{
 			$datas['home'] = $book;
 
-	   		$datas['title'] = "Baboo - Beyond Book & Creativity";
+	   		$datas['title'] = "Baboo.id";
 			
 	    	$datas['css'][] = "public/plugins/holdOn/css/HoldOn.css";
 
@@ -612,7 +612,7 @@ class C_timeline extends MX_Controller {
 		}
 		if ($this->agent->mobile()) {
 			$data['datadraft'] = $resval['data'];
-			$data['title'] = "Daftar Draft Buku | Baboo - Beyond Book &amp; Creativity";
+			$data['title'] = "Daftar Draft Buku | Baboo.id";
 			$data['css'][] = "public/css/bootstrap.min.css";
 			$data['css'][] = "public/css/font-awesome.min.css";
 			$data['css'][] = "public/css/baboo-responsive.css";
