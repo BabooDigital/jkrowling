@@ -21,7 +21,7 @@ $(document).ready(function() {
 			type: 'GET',
 			cache: false,
 			success: function(data) {
-				location.reload();
+				// location.reload();
 				// $(".lds-css").hide();
 				// $("#pageContent").html(data);
 			}
@@ -30,14 +30,14 @@ $(document).ready(function() {
 	}
 
 	$(".menu-page").on('click', function(event) {
-		var tab_page = $(this).attr('href');
-		var title = $(this).attr('dat-title');
+		// var tab_page = $(this).attr('href');
+		// var title = $(this).attr('dat-title');
 		$(".lds-css").show();
-		history.pushState(null, null, tab_page);
+		// history.pushState(null, null, tab_page);
 
-		getContent(tab_page);
-		document.title = title+' | Baboo - Beyond Book & Creativity';
-		event.preventDefault();		
+		// getContent(tab_page);
+		// document.title = title;
+		// event.preventDefault();		
 	});
 });
 

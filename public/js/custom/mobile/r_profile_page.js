@@ -204,7 +204,7 @@ $(document).ready(function() {
 			data: formData,
 		})
 		.done(function() {
-			console.log("success");
+			window.location = base_url+'profile';
 		})
 		.fail(function() {
 			console.log("error");

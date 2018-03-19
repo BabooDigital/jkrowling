@@ -111,8 +111,12 @@ function froalaEditor() {
     heightMax: 300,
     width: 600,
     initOnClick: true,
-    toolbarBottom: true
-  })
+    toolbarBottom: false
+  });
+  $('#paragraph_book').froalaEditor('events.on', 'focus', function (e) { 
+    $('#paragraph_book').froalaEditor('fullscreen.toggle');
+    $('.fr-element').css({'background-color':'#f3f5f7', 'height':'100vh', 'z-index':'9999'});
+  }, false);
 }
 function titleBook() {
   $("#title_book_out").keyup(function(event) {

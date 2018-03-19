@@ -42,7 +42,7 @@ class C_createbook extends MX_Controller
 		$data['css'][] = "public/plugins/froala/css/plugins/line_breaker.css";
 		$data['css'][] = "public/plugins/froala/css/plugins/table.css";
 		$data['css'][] = "public/plugins/froala/css/plugins/char_counter.css";
-		$data['css'][] = "public/plugins/froala/css/plugins/video.css";
+		// $data['css'][] = "public/plugins/froala/css/plugins/video.css";
 		$data['css'][] = "public/plugins/froala/css/plugins/fullscreen.css";
 		// $data['css'][] = "public/plugins/froala/css/plugins/file.css";
 		$data['css'][] = "public/plugins/froala/css/plugins/quick_insert.css";
@@ -69,7 +69,7 @@ class C_createbook extends MX_Controller
 			$data['js'][] = "public/plugins/froala/js/plugins/paragraph_style.min.js";
 			// $data['js'][] = "public/plugins/froala/js/plugins/save.min.js";
 			$data['js'][] = "public/plugins/froala/js/plugins/url.min.js";
-			$data['js'][] = "public/plugins/froala/js/plugins/video.min.js";
+			// $data['js'][] = "public/plugins/froala/js/plugins/video.min.js";
 			$this->load->view('include/head', $data);
 			$this->load->view('R_precreatebook');
 		} else {
@@ -98,7 +98,7 @@ class C_createbook extends MX_Controller
 			$data['js'][] = "public/plugins/froala/js/plugins/table.min.js";
 			$data['js'][] = "public/plugins/froala/js/plugins/save.min.js";
 			$data['js'][] = "public/plugins/froala/js/plugins/url.min.js";
-			$data['js'][] = "public/plugins/froala/js/plugins/video.min.js";
+			// $data['js'][] = "public/plugins/froala/js/plugins/video.min.js";
 			
 			$data['js'][] = "public/js/umd/popper.min.js";
 			$data['js'][] = "public/js/bootstrap.min.js";
@@ -196,7 +196,7 @@ class C_createbook extends MX_Controller
 		$data['css'][] = "public/plugins/froala/css/plugins/line_breaker.css";
 		$data['css'][] = "public/plugins/froala/css/plugins/table.css";
 		$data['css'][] = "public/plugins/froala/css/plugins/char_counter.css";
-		$data['css'][] = "public/plugins/froala/css/plugins/video.css";
+		// $data['css'][] = "public/plugins/froala/css/plugins/video.css";
 		$data['css'][] = "public/plugins/froala/css/plugins/fullscreen.css";
 		$data['css'][] = "public/plugins/froala/css/plugins/quick_insert.css";
 		
@@ -219,7 +219,7 @@ class C_createbook extends MX_Controller
 		$data['js'][] = "public/plugins/froala/js/plugins/paragraph_format.min.js";
 		$data['js'][] = "public/plugins/froala/js/plugins/paragraph_style.min.js";
 		$data['js'][] = "public/plugins/froala/js/plugins/url.min.js";
-		$data['js'][] = "public/plugins/froala/js/plugins/video.min.js";
+		// $data['js'][] = "public/plugins/froala/js/plugins/video.min.js";
 		if ($this->input->post('book_id')) {
 			$data['book_id'] = $this->input->post('book_id');
 		} else {
@@ -299,7 +299,7 @@ class C_createbook extends MX_Controller
 		$data['css'][] = "public/plugins/froala/css/plugins/line_breaker.css";
 		$data['css'][] = "public/plugins/froala/css/plugins/table.css";
 		$data['css'][] = "public/plugins/froala/css/plugins/char_counter.css";
-		$data['css'][] = "public/plugins/froala/css/plugins/video.css";
+		// $data['css'][] = "public/plugins/froala/css/plugins/video.css";
 		$data['css'][] = "public/plugins/froala/css/plugins/fullscreen.css";
 		$data['css'][] = "public/plugins/froala/css/plugins/quick_insert.css";
 		
@@ -322,7 +322,7 @@ class C_createbook extends MX_Controller
 		$data['js'][] = "public/plugins/froala/js/plugins/paragraph_format.min.js";
 		$data['js'][] = "public/plugins/froala/js/plugins/paragraph_style.min.js";
 		$data['js'][] = "public/plugins/froala/js/plugins/url.min.js";
-		$data['js'][] = "public/plugins/froala/js/plugins/video.min.js";
+		// $data['js'][] = "public/plugins/froala/js/plugins/video.min.js";
 		if ($this->input->post('book_id')) {
 			$data['book_id'] = $this->input->post('book_id');
 		} else {
@@ -1400,7 +1400,7 @@ class C_createbook extends MX_Controller
 		$data['css'][] = "public/plugins/froala/css/plugins/line_breaker.css";
 		$data['css'][] = "public/plugins/froala/css/plugins/table.css";
 		$data['css'][] = "public/plugins/froala/css/plugins/char_counter.css";
-		$data['css'][] = "public/plugins/froala/css/plugins/video.css";
+		// $data['css'][] = "public/plugins/froala/css/plugins/video.css";
 		$data['css'][] = "public/plugins/froala/css/plugins/fullscreen.css";
 		$data['css'][] = "public/plugins/froala/css/plugins/file.css";
 		$data['css'][] = "public/plugins/froala/css/plugins/quick_insert.css";
@@ -1432,7 +1432,7 @@ class C_createbook extends MX_Controller
 		$data['js'][] = "public/plugins/froala/js/plugins/table.min.js";
 		$data['js'][] = "public/plugins/froala/js/plugins/save.min.js";
 		$data['js'][] = "public/plugins/froala/js/plugins/url.min.js";
-		$data['js'][] = "public/plugins/froala/js/plugins/video.min.js";
+		// $data['js'][] = "public/plugins/froala/js/plugins/video.min.js";
 		
 		$data['js'][] = "public/js/custom/create_book_r.js";
 		if ($this->agent->mobile()) {
