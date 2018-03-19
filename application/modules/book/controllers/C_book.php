@@ -284,7 +284,7 @@ class C_book extends MX_Controller
 
         $sendData = array(
             'book_id' => $bookid,
-            'chapter_id' => $idch,
+            'chapter' => $idch,
         );
 
         $ch = curl_init();
