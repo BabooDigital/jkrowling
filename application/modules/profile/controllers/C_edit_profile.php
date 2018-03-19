@@ -15,9 +15,41 @@ class C_edit_profile extends MX_Controller {
 
 	public function index()
 	{
-		$user = $this->session->userdata('userData');
-
-		$data['userData'] = $user;
+		error_reporting(0);
+		$auth = $this->session->userdata('authKey');
+		$userdata = $this->session->userdata('userData');
+		$sendData = array(
+			'user_id' => $userdata['user_id']
+		);
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $this->API.'auth/OAuth/profile');
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_POST, 1);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $sendData);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+		curl_setopt($ch, CURLOPT_HEADER, 1);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key: '.$auth));
+		$result = curl_exec($ch);
+		$headers=array();
+		$data=explode("\n",$result);
+		array_shift($data);
+		$middle = array();
+		$moddle = array();
+		foreach($data as $part){
+			$middle=explode(":",$part);
+			$moddle=explode("{",$part);
+			if (error_reporting() == 0) {
+				$headers[trim($middle[0])] = trim($middle[1]);
+			}
+		}
+		$getdata = end($data);
+		$resval =  json_decode($getdata, TRUE);
+		$psn = $resval['message'];
+		$userdetail = $resval['data'];
+		$status = $resval['code'];
+		$auth = $headers['BABOO-AUTH-KEY'];
+		
+		$data['userData'] = $userdetail;
 
 		$data['title'] = "Ubah Data Profile | Baboo.id";
 		$data['css'][] = "public/css/bootstrap.min.css";
@@ -33,7 +65,18 @@ class C_edit_profile extends MX_Controller {
 		$data['js'][] = "public/js/combodate.js";
 		$data['js'][] = "public/js/custom/mobile/r_profile_page.js";
 
-		$this->load->view('R_edit_profile', $data);
+		if ($status == 403){
+			$this->session->unset_userdata('userData');
+			$this->session->unset_userdata('authKey');
+			$this->session->sess_destroy();
+			redirect('login','refresh');
+		}else{
+			if ($this->agent->mobile()) {
+				$this->load->view('R_edit_profile', $data);
+			}else{
+			}
+		}
+
 	}
 
 	public function postEditProfile()
@@ -44,16 +87,16 @@ class C_edit_profile extends MX_Controller {
 
 		$name = $this->input->post('fullname');
 		$date = $this->input->post('date_of_birth');
-		$address = $this->input->post('location');
+		$address = $this->input->post('address');
 		$bio = $this->input->post('about_me');
 
 		$sendData = array(
-			'user_id' => $user['user_id'],
 			'fullname' => $name,
 			'date_of_birth' => $date,
-			'location' => $address,
+			'address' => $address,
 			'about_me' => $bio
 		);
+		$this->session->set_userdata('userData', $sendData);
 
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $this->API.'auth/OAuth/editProfile');
@@ -92,6 +135,7 @@ class C_edit_profile extends MX_Controller {
 		
 		$this->session->set_userdata('authKey', $auth);
 		$status = $resval['code'];
+		echo json_encode(array('code'=>$status));
 	}
 
 	public function completeProfile()
@@ -219,7 +263,6 @@ class C_edit_profile extends MX_Controller {
 	        	$this->session->set_userdata('authKey', $auth);
 	        }
 	        $status = $resval['code'];
-	        print_r($resval);
 	    }
 
 	    public function firstSelectCategory()

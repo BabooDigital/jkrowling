@@ -1,3 +1,30 @@
+<style>
+#imageUpload
+{
+	display: none;
+}
+
+#profileImage
+{
+	cursor: pointer;
+}
+
+#profile-container {
+	width: 100px;
+	height: 100px;
+	overflow: hidden;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	-ms-border-radius: 50%;
+	-o-border-radius: 50%;
+	border-radius: 50%;
+}
+
+#profile-container img {
+	width: 100px;
+	height: 100px;
+}
+</style>
 <?php 
 	$base = (isset($_SERVER['HTTPS']) ? "https://" : "http://").$_SERVER['HTTP_HOST'];
 	$appid = '382931948848880';
@@ -38,11 +65,16 @@
 			<div class="profile">
 				<div class="p-10 mt-10">
 					<div class="profile_avatar">
-					<div class="btn-setting" style="z-index: 9999;">
+					<div class="btn-setting" style="z-index: 9999;position: absolute;right: 15px;">
 						<a href="<?php echo site_url(); ?>account/setting"><img src="<?php echo base_url('') ?>public/img/icon-tab/group_15.svg" width="23"></a>
 					</div>
-						<img alt="<?php echo $userdata['fullname']; ?>" class="rounded-circle ml-20" height="80" src="<?php if($userdata['prof_pict'] == NULL){ echo base_url('public/img/profile/blank-photo.jpg'); }else{ echo $userdata['prof_pict']; } ?>" style="border: .5px #7554bd solid;padding: 3px;" width="80">
-						<br>
+					<div class="w-100 text-center">
+						<div id="profile-container" class="mx-auto mb-10">
+							<image id="profileImage" src="<?php if($userdata['prof_pict'] == null) {echo base_url('public/img/profile/blank-photo.jpg');}else{echo $userdata['prof_pict'];} ?>" />
+							</div>
+							<input id="imageUpload" type="file" 
+							name="profile_photo" placeholder="Photo" required="" capture>
+						</div>
 						<p class="label_name"><?php echo $userdata['fullname']; ?></p>
 						<p class="profile_location"><?php echo $userdata['address']; ?></p>
 						<p class="fs-14px quote"><?php echo $userdata['about_me']; ?></p>
@@ -55,7 +87,7 @@
 							<div class="info">
 								<img src="<?php echo base_url('') ?>public/img/icon-tab/followers.svg"><b
 								class="label_info"> <?php echo $userdata['followers']; ?></b>
-								<p class="text-muted">Pengikut</p>
+								<p class="text-muted">Teman</p>
 							</div>
 							<div class="info_last">
 								<img src="<?php echo base_url('') ?>public/img/icon-tab/sale.svg"><b

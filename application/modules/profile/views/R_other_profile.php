@@ -49,7 +49,7 @@ echo "<script>(function(d, s, id) {
 							<div class="info">
 								<img src="<?php echo base_url('') ?>public/img/icon-tab/followers.svg"><b
 								class="label_info"> <?php echo $userdata['followers']; ?></b>
-								<p class="text-muted">Pengikut</p>
+								<p class="text-muted">Teman</p>
 							</div>
 							<div class="info_last">
 								<img src="<?php echo base_url('') ?>public/img/icon-tab/sale.svg"><b

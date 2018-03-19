@@ -50,7 +50,6 @@
 				</div>
 				<div class="row">
 					<div class="col-12 mb-20">
-						<input type="hidden" id="dat-id" value="<?php $aw = $this->session->userdata('userData'); echo $aw['user_id']; ?>">
 					<div class="w-100 text-center">
 						<div id="profile-container" class="mx-auto">
 							<image id="profileImage" src="<?php base_url(); ?>public/img/profile/blank-photo.jpg" />
@@ -77,7 +76,7 @@
 
 		<nav class="navbar navbar-light bg-borr fixed-bottom">
 				
-				<button type="button" class="mx-auto btnupdate-prof" dat-id="<?php $aw = $this->session->userdata('userData'); echo $aw['user_id']; ?>">Lanjutkan</button>
+				<button type="button" class="mx-auto btnupdate-prof">Lanjutkan</button>
 		</nav>
 	</div>
 
