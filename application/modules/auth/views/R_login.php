@@ -9,6 +9,7 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/page/login.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/animate.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/simple-line-icons.css">
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/baboo-responsive.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/fonts/fonts.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/sweetalert2.min.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/font-awesome.min.css">
@@ -58,6 +59,10 @@ if (!empty($query['b'])) {
 }
 ?>
 <body>
+	<!-- BANNER POPUP BUTTON PLAYSTORE MOBILE -->
+	<div class="bannerPopUp"></div>
+	<!-- BANNER POPUP BUTTON PLAYSTORE MOBILE -->
+
 	<div class="container-fluid">
 		<div class="row no-gutters">
 			<div class="col-lg-8 col-xl-9 nopadding">

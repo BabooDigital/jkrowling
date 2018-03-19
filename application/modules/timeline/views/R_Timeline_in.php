@@ -23,6 +23,10 @@
 ?>
 
 <body id="pageContent">
+	<!-- BANNER POPUP BUTTON PLAYSTORE MOBILE -->
+	<div class="bannerPopUp"></div>
+	<!-- BANNER POPUP BUTTON PLAYSTORE MOBILE -->
+	
 	<div class="wrapper">
 		<div class="lds-css ng-scope" style="display: none;">
 			<div class="lds-eclipse" style="width:100%;height:100%">

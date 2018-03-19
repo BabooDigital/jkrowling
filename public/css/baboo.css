@@ -1787,3 +1787,30 @@ input.formsearch:focus {
   -webkit-transform: translate(-100px, -100px) scale(1) translate(100px, 100px);
   transform: translate(-100px, -100px) scale(1) translate(100px, 100px);
 }
+
+.popUpBannerBox {
+		position: fixed;
+		width: 100%;
+		/*height: 100%;*/
+		top: 0;
+		left: 0;
+		color: #FFF;
+		z-index: 999999;
+		display: none;
+	}
+	.popUpBannerInner {
+		max-width: 310px;
+		margin: 0 auto;
+	}
+	.popUpBannerContent {
+		position: fixed;
+		bottom: 20px;
+	}
+	.closeButton {
+		position: relative;
+		color: white;
+		text-decoration: none;
+		font-size: 22pt;
+		bottom: -3px;
+		right: 40px;
+	}

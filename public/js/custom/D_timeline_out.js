@@ -1,5 +1,14 @@
 $(document).ready(function() {
-    getWritters()
+	function showPopUpBanner() {
+        $('.popUpBannerBox').fadeIn("2000");
+    }
+    setTimeout(showPopUpBanner, 3000);
+
+    $('.closeButton').click(function() {
+        $('.popUpBannerBox').fadeOut("2000");
+        return false;
+    });
+    getWritters();
 });
 
 function getWritters() {
