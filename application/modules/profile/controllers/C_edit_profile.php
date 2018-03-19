@@ -19,7 +19,7 @@ class C_edit_profile extends MX_Controller {
 
 		$data['userData'] = $user;
 
-		$data['title'] = "Ubah Data Profile | Baboo - Beyond Book &amp; Creativity";
+		$data['title'] = "Ubah Data Profile | Baboo.id";
 		$data['css'][] = "public/css/bootstrap.min.css";
 		$data['css'][] = "public/css/custom-margin-padding.css";
 		$data['css'][] = "public/css/font-awesome.min.css";

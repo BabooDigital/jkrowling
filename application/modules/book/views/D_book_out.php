@@ -18,7 +18,7 @@
 	<!-- Facebook -->
 	<?php $u1= $this->uri->segment(2); echo "<meta property='og:url'                content='".base_url('book/'.$u1.'/preview')."' />"; ?>
 	<meta property="og:type"               content="website" />
-	<meta property="og:title"              content="<?php echo $title; ?> | Baboo - Beyond Book &amp; Creativity" />
+	<meta property="og:title"              content="<?php echo $title; ?> | Baboo.id" />
 	<?php 
 	foreach ($desc as $meta) {
 		$txt  = strip_tags($meta['paragraph_text']);
@@ -30,7 +30,7 @@
 	
 	<meta property="og:image"              content="<?php echo $cover; ?>" />
 
-	<title><?php echo $title; ?> | Baboo - Beyond Book &amp; Creativity</title>
+	<title><?php echo $title; ?> | Baboo.id</title>
 
 	<!-- CSS -->
 	<link href="<?php echo base_url('') ?>public/css/bootstrap.min.css" rel="stylesheet">

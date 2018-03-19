@@ -556,7 +556,7 @@ class C_createbook extends MX_Controller
 			} else {
 				$status = $resval['code'];
 			}
-			$data['title'] = 'Daftar chapter buku mu | Baboo Beyond Book &amp; Creativity';
+			$data['title'] = 'Daftar chapter buku mu | Baboo.id';
 
 			$data['css'][] = "public/css/sweetalert2.min.css";
 
