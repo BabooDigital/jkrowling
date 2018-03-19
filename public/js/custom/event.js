@@ -3,6 +3,9 @@ $(document).ready(function() {
 	participantEventAll();
 	followEvent();
 	validateEvent();
+	like();
+	unlike();
+	shareFB();
 });
 function getBestBook() {
 	$.ajax({
@@ -127,3 +130,84 @@ function validateEvent() {
     }
 	});
 }
+function like() {
+	$(document).on("click", ".like", function() {
+        var e = $(this),
+            a = new FormData,
+            t = e.children(".txtlike");
+        e.children(".loveicon").attr("src", base_url+"public/img/assets/love_active.svg"), a.append("user_id", $("#iaiduui").val()), a.append("book_id", e.attr("data-id")), $.ajax({
+            url: base_url + "like",
+            type: "POST",
+            dataType: "JSON",
+            cache: !1,
+            contentType: !1,
+            processData: !1,
+            data: a
+        }).done(function(a) {
+            null == a.code ? e.children(".loveicon").attr("src", base_url+"public/img/assets/icon_love.svg") : (e.removeClass("like"), e.addClass("unlike"), t.removeClass("txtlike"), t.addClass("txtunlike"), e.children(".txtunlike").text("Batal Suka"), e.children(".loveicon").attr("src", base_url+"public/img/assets/love_active.svg"))
+        }).fail(function() {
+            console.log("Failure")
+        }).always(function() {})
+    })
+}
+function unlike() {
+	$(document).on("click", ".unlike", function() {
+        var e = $(this),
+            a = new FormData,
+            t = e.children(".txtunlike");
+        e.children(".loveicon").attr("src", base_url+"public/img/assets/icon_love.svg"), a.append("user_id", $("#iaiduui").val()), a.append("book_id", e.attr("data-id")), $.ajax({
+            url: base_url + "like",
+            type: "POST",
+            dataType: "JSON",
+            cache: !1,
+            contentType: !1,
+            processData: !1,
+            data: a
+        }).done(function(a) {
+            null == a.code ? e.children(".loveicon").attr("src", base_url+"public/img/assets/love_active.svg") : (e.removeClass("unlike"), e.addClass("like"), t.removeClass("txtunlike"), t.addClass("txtlike"), e.children(".txtlike").text("Suka"), e.children(".loveicon").attr("src", base_url+"public/img/assets/icon_love.svg"))
+        }).fail(function() {
+            console.log("Failure")
+        }).always(function() {})
+    })
+}
+function shareFB() {
+	$(document).on("click", ".share-fb", function() {
+	    var aww = $(this);
+	    var e = new FormData,
+	        title = aww.parents('.card').find(".dbooktitle").val();
+	        t = +$("#sharecount").text() + 1,
+	        desc = aww.parents('.card').find(".ptexts").text();
+	        coverimg = aww.parents('.card').find(".effect-img").attr("src"),
+	        authname = aww.parents('.card').find(".nametitle2").text(),
+	        links = aww.parents('.card').find(".book_link").attr("href");
+	        
+	    FB.ui({
+	        method: "share_open_graph",
+	        action_type: "og.shares",
+	        action_properties: JSON.stringify({
+	            object: {
+	                "og:url": base_url + "book/" + convertToSlug(links) + "/preview",
+	                "og:title": title + " ~ By : " + authname,
+	                "og:description": desc,
+	                "og:image": coverimg
+	            }
+	        })
+	    }, function(a) {
+	        a && !a.error_message && (e.append("user_id", $("#iaiduui").val()), e.append("book_id", $("#iaidubi").val()), $.ajax({
+	            url: base_url + "shares",
+	            type: "POST",
+	            dataType: "JSON",
+	            cache: !1,
+	            contentType: !1,
+	            processData: !1,
+	            data: e
+	        }).done(function(e) {
+	        }).fail(function() {
+	            console.log("Failure")
+	        }).always(function() {}))
+	    })
+	});
+}
+function convertToSlug(d) {
+	return d.toLowerCase().replace(/[^\w ]+/g, "").replace(/ +/g, "-")
+};

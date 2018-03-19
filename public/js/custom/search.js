@@ -1,4 +1,21 @@
 $(document).ready(function () {
+    $(document).on('click', '.profile', function() {
+        // event.preventDefault();
+        // var boo = $(this);
+        // var usr_prf = boo.attr("data-usr-prf");
+        // var usr_name = boo.attr("data-usr-name");
+        // var formdata = new FormData();
+
+        // formdata.append("user_prf", usr_prf);
+        // var url = base_url+'profile/'+usr_name;
+        // var form = $('<form action="' + url + '" method="post">' +
+        //   '<input type="hidden" name="usr_prf" value="' + usr_prf + '" />' +
+        //   '<input type="hidden" name="usr_name" value="' + usr_name + '" />' +
+        //   '</form>');
+        // $(boo).append(form);
+        // form.submit();
+        console.log("aaa");
+    });
     $(document).on("keyup", "#searchss", function () {
         $("#myWorkContent").html("<div id='insideDiv'></div>");
         $("#search_books").html("");
@@ -115,7 +132,7 @@ function convertSearch(Text) {
                 });
                 list_user += '<h6 class="dropdown-header">List User</h6>';
                 $.each(data['user'], function(index, val) {
-                    list_user += '<a class="dropdown-item" href="#">'+val.fullname+'</a>';
+                    list_user += '<a class="dropdown-item profile"  data-usr-prf="'+val.user_id+'" data-usr-name="'+convertToSlug(val.fullname)+'" href="'+base_url+'profile/'+convertToSlug(val.fullname)+'">'+val.fullname+'</a>';
                 });
                 list_all += '<hr><a href="'+base_url+'search/'+convertSearch(search)+'">Lihat Semua</a>';
                 $(".search_result_bbo").html(list_book+list_user+list_all);
@@ -128,4 +145,5 @@ function convertSearch(Text) {
             console.log("complete");
         });
     });
+
 });
