@@ -51,6 +51,12 @@
 				</div>
 			</div>
 		</div>
+		<div class="row mt-10">
+			<div class="col-12 text-muted" style="font-size: 13px;">
+				<div class="pull-right"><span><b class="share_countys"><?php echo $s_book['share_count']; ?></b> Bagikan </span></div>
+				<div><span class="mr-30"><b class="like_countys"><?php echo $s_book['like_count'] ?></b> Suka</span><span><b class="txtlike"><?php echo $s_book['comment_count'] ?></b> Komentar</span></div>
+			</div>
+		</div>
 		<div class="card-footer text-muted" style="font-size: 0.8em;font-weight: bold;border-radius: 15px;">
 			<div class="pull-right">
 				<div class="dropdown">
