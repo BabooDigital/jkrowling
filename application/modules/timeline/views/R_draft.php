@@ -14,6 +14,15 @@
 </style>
 </head>
 <body id="pageContent">
+	<!-- BANNER POPUP BUTTON PLAYSTORE MOBILE -->
+	<div class="popUpBannerBox" style="display: block;"> 
+		<div class="popUpBannerInner"> 
+			<div class="popUpBannerContent">
+				<a href="https://play.google.com/store/apps/details?id=id.android.baboo"><span style="background:  #482d8e;padding: 15px 100px;border-radius:  35px;color:  #fff;font-size: 15pt;">Download App</span></a><a href="#" class="closeButton">X</a>
+
+			</div>
+		</div>
+	</div>
 	<div class="wrapper" style="background: #f5f8fa;">
 
 		<div class="lds-css ng-scope" style="display: none;">
@@ -64,7 +73,7 @@
 							</div>
 						</div>
 						<?php } }else {
-							echo "<div class='container first_login mt-30' style='height:100vh;'> <div class='row'> <div class='mx-auto' style='width: 85%;'> <div class='text-center mb-10'> <img src='".base_url('public/img/icon_draft_blank.png')."' width='190'> </div> <div class='text-center'> <h4><b>Belum ada draft buku yang kamu tulis</b></h4> </div> </div> </div> </div> ";
+							echo "<div class='container first_login mt-30' style='height:100vh;'> <div class='row'> <div class='mx-auto' style='width: 85%;'> <div class='text-center mb-10'> <img src='".base_url('public/img/icon_draft_blank.png')."' width='190'> </div> <div class='text-center'> <h4><b>Belum ada draft buku yang kamu tulis</b></h4> </div> </div> </div> </div>";
 						} ?>
 					</div>
 				</div>

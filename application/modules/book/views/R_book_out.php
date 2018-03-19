@@ -70,6 +70,10 @@
 </script>
 </head>
 <body class="bgboo">
+	
+	<!-- BANNER POPUP BUTTON PLAYSTORE MOBILE -->
+	<div class="bannerPopUp"></div>
+	<!-- BANNER POPUP BUTTON PLAYSTORE MOBILE -->
 	<div class="wrapper">
 		<nav class="navbar navbar-expand-lg fixed-top mb-20 bgboo">
 			<div class="container">
@@ -146,5 +150,21 @@
 	<script src="<?php echo base_url('') ?>public/js/jquery.min.js" type="text/javascript"></script>
 	<script src="<?php echo base_url('') ?>public/js/umd/popper.min.js" type="text/javascript"></script>
 	<script src="<?php echo base_url('') ?>public/js/bootstrap.min.js" type="text/javascript"></script>
+	<script>
+		$(window).on('load', function() {
+			var link = 'market://details?id=id.android.baboo';
+			$('.bannerPopUp').html("<div class='popUpBannerBox' style='display: block;'> <div class='popUpBannerInner'> <div class='popUpBannerContent'> <a href='"+link+"'><span style='background:  #482d8e;padding: 15px 95px;border-radius:  35px;color:  #fff;font-size: 15pt;'>Download App</span></a><a href='#' class='closeButton'>&#120;</a> </div> </div> </div>");
+
+			function showPopUpBanner() {
+				$('.popUpBannerBox').fadeIn("2000");
+			}
+			setTimeout(showPopUpBanner, 3000);
+
+			$('.closeButton').click(function() {
+				$('.popUpBannerBox').fadeOut("2000");
+				return false;
+			});
+		});
+	</script>
 </body>
 </html>

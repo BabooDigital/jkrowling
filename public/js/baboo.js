@@ -1,6 +1,7 @@
 
 // FILTER-GALERI TIMELINE OUT
 $(document).ready(function(){
+            
     $('.slider6').bxSlider({
         auto: true,
         autoHover: true,
