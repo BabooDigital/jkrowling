@@ -6,7 +6,7 @@
 					<img alt="<?php
 					echo $slide_show['title_book']; ?>" class="d-flex mr-10" src="<?php echo ($slide_show['popular_cover_url'] != null) ? $slide_show['popular_cover_url'] : base_url('public/img/icon-tab/empty-set.png'); ?>" width="160" height="245">
 					<div class="media-body mt-10 blueslide" style="padding: 5% 0;">
-						<h4 class="mt-0"><b><?php echo $slide_show['popular_book_title']; ?></b></h4>
+						<h4 class="mt-0"><b><?php echo substr($slide_show['popular_book_title'], 0, 23).'...'; ?></b></h4>
 						<p class="authorslide"></p>
 						<p>by <?php echo $slide_show['popular_author_name']; ?></p>
 						<p><?php echo substr($slide_show['popular_book_desc'], 0, 110).'...'; ?></p>
