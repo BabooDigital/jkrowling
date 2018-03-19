@@ -14,15 +14,6 @@
 </style>
 </head>
 <body id="pageContent">
-	<!-- BANNER POPUP BUTTON PLAYSTORE MOBILE -->
-	<div class="popUpBannerBox" style="display: block;"> 
-		<div class="popUpBannerInner"> 
-			<div class="popUpBannerContent">
-				<a href="https://play.google.com/store/apps/details?id=id.android.baboo"><span style="background:  #482d8e;padding: 15px 100px;border-radius:  35px;color:  #fff;font-size: 15pt;">Download App</span></a><a href="#" class="closeButton">X</a>
-
-			</div>
-		</div>
-	</div>
 	<div class="wrapper" style="background: #f5f8fa;">
 
 		<div class="lds-css ng-scope" style="display: none;">

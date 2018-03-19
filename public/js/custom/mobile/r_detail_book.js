@@ -207,7 +207,7 @@ $(document).ready(function() {
             var c = "";
             $.each(a, function(a, b) {
                 var d;
-                "" != b.comment_user_avatar ? d = b.comment_user_avatar : "" == b.comment_user_avatar && (d = "../public/img/profile/blank-photo.jpg");
+                "" != b.comment_user_avatar ? d = b.comment_user_avatar : "" == b.comment_user_avatar && (d = base_url+"public/img/profile/blank-photo.jpg");
                 c += "<div class='media'> <img class='d-flex align-self-start mr-20 rounded-circle' src='" + d + "' width='48' height='48' alt='" + b.comment_user_name + "'> <div class='media-body mt-5'> <p><h5 class='card-title nametitle3'><a href='#'>" + b.comment_user_name + "</a><small><span class='text-muted ml-10'>" + b.comment_date + "</span></small></h5> <div class='text-muted' style='margin-top:-10px;'></div></p> <p style='font-size:16px; font-family: Roboto;' id='" + b.comment_id + "'>" + b.comment_text + "</p>  </div> </div><hr>"
             });
             $("#Rparagraphcomment_list").html(c);
@@ -294,7 +294,7 @@ function getRCommentBook() {
         var b = "";
         $.each(a, function(a, d) {
             var c;
-            "" != d.comment_user_avatar ? c = d.comment_user_avatar : "" == d.comment_user_avatar && (c = "../public/img/profile/blank-photo.jpg");
+            "" != d.comment_user_avatar ? c = d.comment_user_avatar : "" == d.comment_user_avatar && (c = base_url+"public/img/profile/blank-photo.jpg");
             b += "<div class='media' id='" + d.comment_id + "'> <img class='d-flex align-self-start mr-20 rounded-circle' src='" + c + "' width='48' height='48' alt='" + d.comment_user_name +
                 "'> <div class='media-body mt-5'> <p><h5 class='card-title nametitle3'><a href='#'>" + d.comment_user_name + "</a><small><span class='text-muted ml-10'>" + d.comment_date + "</span></small></h5> <div class='text-muted' style='margin-top:-10px;'></div></p> <p style='font-size:16px; font-family: Roboto;' id='" + d.comment_id + "'>" + d.comment_text + "</p> </div> </div><hr>"
         });

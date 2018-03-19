@@ -27,7 +27,7 @@
 			</div>
 		</div>
 	</div>
-	<nav class=" navbar-light fixed-bottom p-20" style="background: #f5f8fa;">
+	<nav class="navcreate navbar-light fixed-bottom p-20" style="background: #f5f8fa;">
 		<button class="navbar-brand btn-transparant" id="saveChapt">
 			<img src="<?php echo base_url(); ?>public/img/assets/icon_save.png" width="30" height="30" class="d-inline-block align-top" alt="Save to Draft?">
 			Simpan ke Draft

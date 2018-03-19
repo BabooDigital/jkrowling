@@ -65,7 +65,7 @@ if (!empty($query['b'])) {
 
 	<div class="container-fluid">
 		<div class="row no-gutters">
-			<div class="col-lg-8 col-xl-9 nopadding">
+			<div class="col-12 nopadding">
 				<div class="left-side d-none hidden-md-down">
 					<center>
 						<img src="<?php echo base_url();?>public/img/logo_purple.png" class="img-fluid img-left animated slideInDown center-content">
@@ -74,8 +74,8 @@ if (!empty($query['b'])) {
 				</div>
 			</div>
 
-			<div class="col-lg-4 col-xl-3 nopadding">
-				<div class="right-side">
+			<div class="col-12 nopadding">
+				<div class="right-side" style="position: inherit;">
 					<div class="right-side-p" style="margin-bottom: 30px;">
 						<div class="row" style="margin-right:-32px; margin-left:-32px;">
 							<div class="col-lg-12 col-xs-12 text-right" style="margin-top:20px;">
@@ -271,6 +271,11 @@ if (!empty($query['b'])) {
 		<script src="<?php echo base_url();?>public/js/custom/auth.js"></script>
 		<script> 
 			var base_url = '<?php echo base_url(); ?>';
+
+			$(function(){
+			    $(window).scrollTop($(".form-group").offset().top);
+			    $("input").focus();
+			});
 			
 			$("#login_fb").on("click",function() {
 				window.location.href = '<?php echo $authUrl; ?>';

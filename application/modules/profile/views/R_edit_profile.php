@@ -37,7 +37,7 @@
 </head>
 <body class="bg-borr">
 	<div class="wrapper">
-		<nav class="navbar navbar-light bg-borr pl-40 pr-40 pt-30 pb-30">
+		<nav class="navbar navbar-light bg-borr">
 			<button type="button" class="clear-btn" onclick="history.go(-1)"><i class="fa fa-arrow-left fa-2x"></i> </button>
 		</nav>
 
