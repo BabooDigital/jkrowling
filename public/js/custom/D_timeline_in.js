@@ -134,7 +134,7 @@ $(document).ready(function() {
             var follow = '';
             // console.log(a);
             if (a.isFollow == false) {
-                follow += "<a href='#' class='addbutton followprofile'><img src='public/img/assets/icon_plus_purple.svg' width='20' class='mt-img'></a>"; 
+                follow += "<a href='#' data-follow='"+a.author_id+"' class='addbutton followprofile'><img src='public/img/assets/icon_plus_purple.svg' width='20' class='mt-img'></a>"; 
             }else{
                 follow += ""; 
             }

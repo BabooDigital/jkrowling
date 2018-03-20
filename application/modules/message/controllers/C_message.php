@@ -72,10 +72,9 @@ class C_message extends MX_Controller
             $datas["resval"] = $resval;
             $datas['listMessage'] = $data["list_message"]["data"];
 
-            $datas['css'][] = "public/css/bootstrap.min.css";
+            // $datas['css'][] = "public/css/bootstrap.min.css";
             $datas['css'][] = "public/css/custom-margin-padding.css";
             $datas['css'][] = "public/css/font-awesome.min.css";
-            // $datas['css'][] = "public/css/baboo.css";
             $datas['css'][] = "public/plugins/holdOn/css/HoldOn.css";
 
             $datas['js'][] = "public/js/jquery.min.js";
@@ -83,6 +82,7 @@ class C_message extends MX_Controller
             $datas['js'][] = "public/js/bootstrap.min.js";
             $datas['js'][] = "public/plugins/holdOn/js/HoldOn.js";
             $datas['js'][] = "public/js/custom/messages.js";
+            $datas['js'][] = "public/js/custom/notification.js";
 
             if ($this->agent->mobile()) {
                 $this->load->view('include/head', $datas);
@@ -253,7 +253,7 @@ class C_message extends MX_Controller
             $datas['listMessage'] = $lists["messages"];
             $datas['listMessageDetail'] = $data["list_message"]["data"];
             $datas["user_iw"] = $user_with;
-            $datas['css'][] = "public/css/bootstrap.min.css";
+            // $datas['css'][] = "public/css/bootstrap.min.css";
             $datas['css'][] = "public/css/custom-margin-padding.css";
             $datas['css'][] = "public/css/font-awesome.min.css";
             // $datas['css'][] = "public/css/baboo.css";
