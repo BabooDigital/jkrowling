@@ -20,25 +20,35 @@ function publishBook() {
       // formData.append("file_cover", $("#cover_name").val());
       formData.append("file_cover", $("#cover_file").val());
       formData.append("category", $("#category_ids").val());
+      var cat = $("#category_ids").val();
 
-      $.ajax({
-        url: base_url+'publishbook',
-        dataType: 'json',
-        type: 'POST',
-        contentType: false,
-        processData: false,
-        data: formData
-      })
-      .done(function(data) {
-        if (data.code == 200) {
-          window.location = base_url+'timeline';
-        }
-      })
-      .fail(function() {
-        console.log("errorss");
-      })
-      .always(function() {
-      });
+      if (cat == null || cat == "") {
+        swal(
+          'Gagal!',
+          'Pilih kategori buku mu.',
+          'error'
+          );
+      }else {
+        $.ajax({
+          url: base_url+'publishbook',
+          dataType: 'json',
+          type: 'POST',
+          contentType: false,
+          processData: false,
+          data: formData
+        })
+        .done(function(data) {
+          if (data.code == 200) {
+            window.location = base_url+'timeline';
+          }
+        })
+        .fail(function() {
+          console.log("errorss");
+        })
+        .always(function() {
+        });
+      }
+
     });
 }
 
@@ -325,12 +335,13 @@ function addChapter() {
             },
             success:function (data) {
               if (data.code == 200) {
-                swal.hideLoading();
-                $("#chapter_title_out").val('');
-                $("#paragraph_book").val('');
-                $('#paragraph_book').froalaEditor('html.set', '');
-                $("#backlinks").removeClass('backlink');
-                $("#backlinks").attr("id",'backdraft');
+                // swal.hideLoading();
+                window.location = base_url+'listchapter/'+book_id;
+                // $("#chapter_title_out").val('');
+                // $("#paragraph_book").val('');
+                // $('#paragraph_book').froalaEditor('html.set', '');
+                // $("#backlinks").removeClass('backlink');
+                // $("#backlinks").attr("id",'backdraft');
               }
             },
           });
