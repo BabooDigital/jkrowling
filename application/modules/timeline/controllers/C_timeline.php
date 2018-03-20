@@ -453,11 +453,16 @@ class C_timeline extends MX_Controller {
 		$auth = $this->session->userdata('authKey');
 		$fuserid = $this->input->post('fuser_id');
 		$userid = $this->input->post('user_id');
-
+		if (empty($userid)) {
+			$id_user = $userid;
+		}else{
+			$id_user = $this->session->userdata('userData')['user_id'];
+		}
 		$sendData = array(
 			'user_follow' => $fuserid,
-			'user_id' => $userid
+			'user_id' => $id_user
 		);
+		// print_r($sendData);
 
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $this->API.'timeline/Timelines/follow');

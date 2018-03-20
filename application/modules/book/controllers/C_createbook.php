@@ -662,40 +662,40 @@ class C_createbook extends MX_Controller
 
 			if(isset($_FILES["file"]["tmp_name"]))  
 			{  
-				// $config['upload_path'] = '../uploads';  
-				// $config['allowed_types'] = 'jpg|jpeg|png|gif';  
-				// $this->load->library('upload', $config);  
-				// if(!$this->upload->do_upload('file'))  
-				// {  
-				// 	echo $this->upload->display_errors();  
-				// }  
-				// else  
-				// {  
-					// $data = $this->upload->data();  
-					// $config['image_library'] = 'gd2';  
-					// $config['source_image'] = '../uploads/'.$data["file_name"];  
-					// $config['create_thumb'] = FALSE;  
-					// $config['maintain_ratio'] = FALSE;  
-					// $config['quality'] = '75%';  
-					// $config['width'] = 640;  
-					// $config['height'] = 480;  
-					// $config['new_image'] = '../uploads/'.$data["file_name"];  
-					// $this->load->library('image_lib', $config);  
-					// $this->image_lib->resize();    
-					// $image_data = array(  
-					// 	'name'          =>     $data["file_name"]  
-					// );
-					// if (function_exists('curl_file_create')) {
-					// 	$cFile = curl_file_create($data['full_path'], $data["file_type"],$data["file_name"]);
-					// } else { 
-					// 	$cFile = '@' . realpath($data['full_path']);
-					// }
-					$file_name_with_full_path = $_FILES["file"]["tmp_name"];
-			        if (function_exists('curl_file_create')) { // php 5.5+
-			        	$cFile = curl_file_create($file_name_with_full_path, $_FILES["file"]["type"],$_FILES["file"]["name"]);
-			        } else { //
-			        	$cFile = '@' . realpath($file_name_with_full_path);
-			        }
+				$config['upload_path'] = './uploads';  
+				$config['allowed_types'] = 'jpg|jpeg|png|gif';  
+				$this->load->library('upload', $config);  
+				if(!$this->upload->do_upload('file'))  
+				{  
+					echo $this->upload->display_errors();  
+				}  
+				else  
+				{  
+					$data = $this->upload->data();  
+					$config['image_library'] = 'gd2';  
+					$config['source_image'] = './uploads/'.$data["file_name"];  
+					$config['create_thumb'] = FALSE;  
+					$config['maintain_ratio'] = FALSE;  
+					$config['quality'] = '75%';  
+					$config['width'] = 640;  
+					$config['height'] = 480;  
+					$config['new_image'] = './uploads/'.$data["file_name"];  
+					$this->load->library('image_lib', $config);  
+					$this->image_lib->resize();    
+					$image_data = array(  
+						'name'          =>     $data["file_name"]  
+					);
+					if (function_exists('curl_file_create')) {
+						$cFile = curl_file_create($data['full_path'], $data["file_type"],$data["file_name"]);
+					} else { 
+						$cFile = '@' . realpath($data['full_path']);
+					}
+					// $file_name_with_full_path = $_FILES["file"]["tmp_name"];
+			  //       if (function_exists('curl_file_create')) { // php 5.5+
+			  //       	$cFile = curl_file_create($file_name_with_full_path, $_FILES["file"]["type"],$_FILES["file"]["name"]);
+			  //       } else { //
+			  //       	$cFile = '@' . realpath($file_name_with_full_path);
+			  //       }
 					$url = $this->API.'/uploadImage';
 					$data = array(
 						'is_cover'	=> 'false',
@@ -731,11 +731,11 @@ class C_createbook extends MX_Controller
 					$data_img = $resval['data']['asset_url'];
 					$auth = $headers['BABOO-AUTH-KEY'];
 					$this->session->set_userdata('authKey', $auth);
-					// if (unlink($cFile->name))
-					// {
+					if (unlink($cFile->name))
+					{
 						echo json_encode(array("link"=>$data_img,"name"=>$data_img));  
-					// }
-				// }  
+					}
+				}  
 			}
 		}
 
@@ -1192,7 +1192,7 @@ class C_createbook extends MX_Controller
 
 			if(isset($_FILES["file_cover"]["tmp_name"]))  
 			{  
-				$config['upload_path'] = '../uploads';  
+				$config['upload_path'] = './uploads';  
 				$config['allowed_types'] = 'jpg|jpeg|png|gif';  
 				$this->load->library('upload', $config);  
 				if(!$this->upload->do_upload('file_cover'))  
@@ -1203,13 +1203,13 @@ class C_createbook extends MX_Controller
 				{  
 					$data = $this->upload->data();  
 					$config['image_library'] = 'gd2';  
-					$config['source_image'] = '../uploads/'.$data["file_name"];  
+					$config['source_image'] = './uploads/'.$data["file_name"];  
 					$config['create_thumb'] = FALSE;  
 					$config['maintain_ratio'] = FALSE;  
 					$config['quality'] = '75%';  
 					$config['width'] = 400;  
 					$config['height'] = 540;  
-					$config['new_image'] = '../uploads/'.$data["file_name"];  
+					$config['new_image'] = './uploads/'.$data["file_name"];  
 					$this->load->library('image_lib', $config);  
 					$this->image_lib->resize();    
 					$image_data = array(  

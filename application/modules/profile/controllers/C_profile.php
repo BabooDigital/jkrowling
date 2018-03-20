@@ -52,6 +52,7 @@ class C_profile extends MX_Controller {
 		$data['js'][] = "public/js/umd/popper.min.js";
 		$data['js'][] = "public/js/bootstrap.min.js";
 		$data['js'][] = "public/js/jquery.sticky-kit.min.js";
+		$data['js'][] = "public/js/custom/notification.js";
 		
 		if ($status == 403){
 			$this->session->unset_userdata('userData');
