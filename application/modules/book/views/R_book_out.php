@@ -54,7 +54,8 @@
 	.btnlogin {
 		color: #fff;
 		background: #7554bd;
-		padding: 10px 90px;
+		padding: 10px 100px;
+		font-size: 15pt;
 		border-radius: 35px;
 		box-shadow: 0px 2px 3px #818181;
 	}
@@ -120,14 +121,16 @@
 			<br>
 			<div class="row">
 				<div class="col-12">
+					<div id='detailStyle' style="font-size: 21px;">
 					<?php 
 					foreach ($desc as $book) {
 						$text = strip_tags($book['paragraph_text']);
-						$data .= "<div id='detailStyle' class='text-justify'>".$book['paragraph_text']."</div>";
+						$data .= $book['paragraph_text'];
 					}
 					echo $data;
 					?>
 				</div>
+			</div>
 			</div>
 			<hr>
 			<div class="row mb-20">
