@@ -69,4 +69,36 @@ class Curl_Request
 		    $headers[trim($middle[0])] = trim($middle[1]);
 		}
 	}
+	public function curl_post_no_key($url, $sendData)
+	{
+		$ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $sendData);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+        curl_setopt($ch, CURLOPT_HEADER, 1);
+        $result = curl_exec($ch);
+        
+        $headers=array();
+
+        $data=explode("\n",$result);
+
+
+        array_shift($data);
+
+        foreach($data as $part){
+            $middle=explode(":",$part);
+            if (error_reporting() == 0) {
+                $headers[trim($middle[0])] = trim($middle[1]);
+            }
+        }
+        
+        
+        $resval = (array)json_decode(end($data), true);
+
+        return $resval;
+	}
 }

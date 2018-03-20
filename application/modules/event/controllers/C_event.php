@@ -25,6 +25,7 @@ class C_Event extends MX_Controller
         }
         $data['js'][] = "public/js/jquery.validate.js";
         $data['js'][] = "public/js/custom/event.js";
+        $data['js'][] = "public/js/custom/notification.js";
 
         $data['event'] = $this->getEvent();
         $data['winner'] = $this->bestWinner();
@@ -59,47 +60,55 @@ class C_Event extends MX_Controller
     public function followEvent()
     {
         $email = $this->session->userdata('userData')['email'];
-        if ($this->input->post()) {
-            $nohp = $this->input->post('nohp');
+        $data = $this->curl_request->curl_post_no_key($this->API.'/event/Events/cekEvent', array('email'=>$email));
 
-            $sendData = array('email'=>$email, 'phone'=>$nohp);
+        if ($data['code'] == 200) {
+            // echo "belum terdaftar";
+            if ($this->input->post()) {
+                $nohp = $this->input->post('nohp');
 
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, $this->API.'event/Events/setEvent');
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                $sendData = array('email'=>$email, 'phone'=>$nohp);
 
-            curl_setopt($ch, CURLOPT_POST, 1);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $sendData);
-            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-            curl_setopt($ch, CURLOPT_HEADER, 1);
-            $result = curl_exec($ch);
+                $ch = curl_init();
+                curl_setopt($ch, CURLOPT_URL, $this->API.'event/Events/setEvent');
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-            $headers=array();
+                curl_setopt($ch, CURLOPT_POST, 1);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, $sendData);
+                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+                curl_setopt($ch, CURLOPT_HEADER, 1);
+                $result = curl_exec($ch);
 
-            $data=explode("\n",$result);
+                $headers=array();
+
+                $data=explode("\n",$result);
 
 
-            array_shift($data);
+                array_shift($data);
 
-            foreach($data as $part){
-                $middle=explode(":",$part);
-                if (error_reporting() == 0) {
-                    $headers[trim($middle[0])] = trim($middle[1]);
+                foreach($data as $part){
+                    $middle=explode(":",$part);
+                    if (error_reporting() == 0) {
+                        $headers[trim($middle[0])] = trim($middle[1]);
+                    }
                 }
-            }
 
 
-            $resval = (array)json_decode(end($data), true);
+                $resval = (array)json_decode(end($data), true);
 
-            if ($resval['code'] == 200) {
-                $this->session->set_flashdata('is_follow_event', 200);
-            }if($resval['code'] == 403){
-                $this->session->set_flashdata('is_not_follow_event', 403);
+                if ($resval['code'] == 200) {
+                    $this->session->set_flashdata('is_follow_event', 200);
+                }if($resval['code'] == 403){
+                    $this->session->set_flashdata('is_not_follow_event', 403);
+                }
+            }else{
+                $user = $this->session->userdata('userData');
+                $this->session->set_userdata('userData', $user);
+                redirect('event#follow_event');
             }
         }else{
-            $user = $this->session->userdata('userData');
-            $this->session->set_userdata('userData', $user);
-            redirect('event#follow_event');
+            $this->session->set_flashdata('is_not_follow_event', 403);
+            redirect('timeline');
         }
     }
     public function getBestBookEvent()

@@ -12,7 +12,7 @@ class C_notification extends MX_Controller
 
         $api_url = checkBase();
 
-        $this->API = $api_url."/timeline/Timelines";
+        $this->API = $api_url."timeline/Timelines";
 	}
 	public function index()
 	{
