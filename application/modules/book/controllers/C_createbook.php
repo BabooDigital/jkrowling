@@ -581,14 +581,17 @@ class C_createbook extends MX_Controller
 			$data['css'][] = "public/css/font-awesome.min.css";
 			$data['css'][] = "public/css/baboo-responsive.css";
 			$data['css'][] = "public/css/baboo.css";
+			$data['css'][] = "public/css/sweetalert2.min.css";
 			$data['css'][] = "public/plugins/holdOn/css/HoldOn.css";
 
 			$data['css'][] = "public/plugins/froala/css/froala_editor.css";
 			$data['css'][] = "public/plugins/froala/css/froala_style.css";
 
+
 			$data['js'][] = "public/js/jquery.min.js";
 			$data['js'][] = "public/plugins/froala/js/froala_editor.min.js";
 			$data['js'][] = "public/js/custom/create_book_r.js";
+			$data['js'][] = "public/js/sweetalert2.all.min.js";
 
 			$data['book_id'] = $this->uri->segment(2);
 			$this->load->view('include/head', $data);

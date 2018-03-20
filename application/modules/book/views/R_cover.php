@@ -10,7 +10,7 @@
 				</a>
 			</form>
 			<form class="form-inline">
-				<button class="btn-transparant"><span>Selesai</span> &nbsp;&nbsp;<img src="<?php echo base_url() ?>public/img/icon-nav/publish.png" width="30" height="30"></button> 
+				<!-- <button class="btn-transparant"><span>Selesai</span> &nbsp;&nbsp;<img src="<?php echo base_url() ?>public/img/icon-nav/publish.png" width="30" height="30"></button>  -->
 				<!-- <label for="toggle-right" class="profile-toggle"><b>+</b></label> -->
 			</form>
 		</div>
