@@ -96,7 +96,6 @@ class C_edit_profile extends MX_Controller {
 			'address' => $address,
 			'about_me' => $bio
 		);
-		$this->session->set_userdata('userData', $sendData);
 
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $this->API.'auth/OAuth/editProfile');
