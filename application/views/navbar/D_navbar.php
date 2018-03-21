@@ -39,7 +39,7 @@
 						<div id="noti_Counter"></div>
 						<a id="noti_Button" class="nav-link" href="#"><img src="<?php echo site_url(); ?>public/img/icon-tab/notif_icon.svg" width="25"><p class="fs-12px"><b>Notification</b></p></a>
 						<!-- <div id="noti_Counter2" style="display: none;">7</div> -->
-						<div id="notifications" style="margin-left: 50%;overflow: scroll;overflow-x: scroll;overflow-y: scroll;">
+						<div id="notifications" style="margin-left: 50%;overflow: scroll;overflow-x: scroll;overflow-y: scroll;overflow: scroll;">
 							<h5>Notifications</h5>
 							<div class="loader" id="loader_notif" style="margin-left: auto;margin-right: auto;"></div>
 							<div class="list-group" id="notification">

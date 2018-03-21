@@ -86,13 +86,13 @@ class C_Library extends MX_Controller
         $datas['slide'] = $resval1;
         $datas['bookmark'] = $resval2;
         $this->session->set_userdata('authKey', $auth);
+        $datas['js'][]   = "public/js/custom/notification.js";
         if ($this->agent->is_mobile()) {
             $data['js'][] = "public/js/jquery.min.js";
             $data['js'][] = "public/js/umd/popper.min.js";
             $data['js'][] = "public/js/bootstrap.min.js";
             $data['js'][] = "public/js/custom/mobile/library.js";
             $data['js'][] = "public/js/menupage.js";
-            $data['js'][]   = "public/js/custom/notification.js";
 
             $this->load->view('include/head', $data);
             $this->load->view('R_library', $data);
