@@ -1499,7 +1499,6 @@ input.formsearch:focus {
     border-radius:50%;
     -moz-border-radius:50%; 
     -webkit-border-radius:50%;
-    background:#FFF;
     cursor:pointer;
 }
     
@@ -1520,9 +1519,9 @@ input.formsearch:focus {
 }
 #notifications {
     display:none;
-    width:350px;
+    width:320px;
     position:absolute;
-    height: auto;
+    height: 580px;
     top:60px;
     overflow:scroll;
     overflow-y: scroll;
