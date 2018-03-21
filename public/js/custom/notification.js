@@ -274,3 +274,7 @@ $(document).click(function () {
   }
 });
 }
+
+function convertToSlug(e) {
+    return e.toLowerCase().replace(/[^\w ]+/g, "").replace(/ +/g, "-")
+}

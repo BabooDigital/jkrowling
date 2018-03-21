@@ -1,16 +1,7 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="30px" height="27px" viewBox="0 0 30 27" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: sketchtool 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
-    <title>86CDF871-5A34-4793-9586-F1F4DC23390D</title>
-    <desc>Created with sketchtool.</desc>
-    <defs></defs>
-    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.5">
-        <g id="notifIcon" stroke="#333333">
-            <g id="Group" transform="translate(3.176934, 2.000000)">
-                <circle id="Oval-9" cx="11.8020192" cy="11.2765528" r="11.0576923"></circle>
-                <path d="M12.9750475,19.3975657 C14.1466521,19.2294121 15.2381271,18.8131083 16.1945046,18.2036224 M18.9694649,15.2507838 C19.6174395,14.0787079 19.9862701,12.7308005 19.9862701,11.2967481 C19.9862701,6.77671118 16.3220561,3.11249724 11.8020192,3.11249724 C7.28198223,3.11249724 3.6177683,6.77671118 3.6177683,11.2967481 C3.6177683,15.5406333 6.84792882,19.0300741 10.9837877,19.4406083" id="Oval-9" stroke-linecap="round"></path>
-                <circle id="Oval" cx="11.8020192" cy="11.2765528" r="2.21153846"></circle>
-            </g>
-        </g>
+<svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21">
+    <g fill="none" fill-rule="evenodd" transform="translate(1 1)">
+        <circle cx="9.5" cy="9.5" r="9.5" stroke="#979797" stroke-width="2"/>
+        <path stroke="#979797" stroke-linecap="round" stroke-width="2" d="M10.495 14.365a5.068 5.068 0 0 0 1.64-.677m2.101-2.69a5.098 5.098 0 1 0-6.21 3.299"/>
+        <circle cx="9.249" cy="9.236" r="1.495" fill="#979797"/>
     </g>
 </svg>
