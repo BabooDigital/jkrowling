@@ -50,6 +50,8 @@ class C_createbook extends MX_Controller
 		$data['js'][] = "public/js/jquery.validate.js";
 		$data['js'][] = "public/plugins/froala/js/froala_editor.min.js";
 		$data['js'][] = "public/js/custom/create_book_r.js";
+		$data['css'][] = "public/css/sweetalert2.min.css";
+		$data['js'][] = "public/js/sweetalert2.all.min.js";
 		
 		if ($this->agent->mobile()) {
 			$data['js'][] = "public/plugins/froala/js/plugins/align.min.js";
