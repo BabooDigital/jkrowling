@@ -451,7 +451,7 @@ function getContent(d, c) {
 				var d = strip_tags(c.paragraph_text),
 				e = c.comment_count;
 				b += "<div class='mb-20 textp' data-id-p='" + c.paragraph_id + "' data-text='" + d + "'>" + c.paragraph_text +
-				"<button type='button' data-p-id='" + c.paragraph_id + "' data-toggle='modal' id='comm_p' data-target='#myModal2' class='btncompar comment-marker on-inline-comments-modal' for='toggle-right'><span class='num-comment'>" + (0 == e ? "+" : e) + "</span><span  aria-hidden='true' style='font-size:28px;'><img src='" + base_url + "public/img/assets/icon_comment.svg'></span></button></div>"
+				"<button type='button' data-p-id='" + c.paragraph_id + "' data-toggle='modal' id='comm_p' data-target='#myModal2' class='btncompar comment-marker on-inline-comments-modal' for='toggle-right'><span class='num-comment'>" + (0 == e ? "+" : e) + "</span><span  aria-hidden='true'><img src='" + base_url + "public/img/assets/icon_comment.svg'></span></button></div>"
 			});
 			$("#parentparaph").html(b)
 		}
