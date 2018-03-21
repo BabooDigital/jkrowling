@@ -100,7 +100,7 @@ $(document).ready(function() {
 			$('.loader').show();
 		}
 	}).done(function(data) {
-		console.log(data);
+		// console.log(data);
 		if (data.length != 0) {
 			var datas = "";
 			$.each(data, function(i, item) {

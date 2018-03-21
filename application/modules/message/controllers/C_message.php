@@ -246,7 +246,7 @@ class C_message extends MX_Controller
             redirect('login', 'refresh');
         } else {
 
-//            $datas['title'] = "Detail Pesan - Baboo";
+           $datas['title'] = "Detail Pesan - Baboo";
             $lists = $resval['data'];
             $datas["resval"] = $resval;
             $datas['userWith'] = $lists["user_with"];
@@ -264,6 +264,7 @@ class C_message extends MX_Controller
             $datas['js'][] = "public/js/bootstrap.min.js";
             $datas['js'][] = "public/plugins/holdOn/js/HoldOn.js";
             $datas['js'][] = "public/js/custom/messages.js";
+            $datas['js'][]   = "public/js/custom/notification.js";
 
             if ($this->agent->mobile()) {
                 $this->load->view('include/head', $datas);
