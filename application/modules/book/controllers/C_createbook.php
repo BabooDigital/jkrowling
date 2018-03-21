@@ -167,7 +167,7 @@ class C_createbook extends MX_Controller
 				$status = $resval['code'];
 				$this->session->set_userdata('title_book', $title_book);
 				$this->session->set_userdata('authKey', $auth);
-				$this->session->set_userdata('idBook_', $book_id);
+				$this->session->set_userdata('idBook_', $book_id['book_id']);
 				$this->session->set_userdata('dataBook', $user);
 			} else {
 				$status = $resval['code'];

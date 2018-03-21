@@ -93,6 +93,7 @@ class C_Library extends MX_Controller
             $data['js'][] = "public/js/bootstrap.min.js";
             $data['js'][] = "public/js/custom/mobile/library.js";
             $data['js'][] = "public/js/menupage.js";
+            $data['js'][] = "public/js/custom/notification.js";
 
             $this->load->view('include/head', $data);
             $this->load->view('R_library', $data);
