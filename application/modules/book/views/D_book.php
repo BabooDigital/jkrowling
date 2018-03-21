@@ -87,6 +87,9 @@
 		font-weight: bold;
 		color: #7554bd;
 	}
+	.comment-marker .num-comment{
+		top: 5px !important;
+	}
 </style>
 <div class="container pt-100 mb-80">
 	<div class="row">
