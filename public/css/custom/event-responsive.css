@@ -140,7 +140,11 @@ img {
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
-
+    .ikutPosi {
+        position: absolute;
+        top: 40%;
+        left: 21%;
+    }
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
