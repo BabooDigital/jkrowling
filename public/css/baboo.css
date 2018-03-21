@@ -1522,50 +1522,13 @@ input.formsearch:focus {
     width:320px;
     position:absolute;
     height: 580px;
-    top:60px;
-    overflow:scroll;
     overflow-y: scroll;
-    overflow-x: scroll;
-    margin-left: auto;
-    margin-right: auto;
-    left:0;
+    top:60px;
+    left:45%;
     background:#FFF;
     border:solid 1px rgba(100, 100, 100, .20);
     -webkit-box-shadow:0 3px 8px rgba(0, 0, 0, .20);
     z-index: 0;
-}
-/* AN ARROW LIKE STRUCTURE JUST OVER THE NOTIFICATIONS WINDOW */
-#notifications:before {         
-    content: '';
-    /*display:block;*/
-    width:0;
-    overflow:scroll;
-    overflow-y: scroll;
-    overflow-x: scroll;
-    height:0;
-    color:transparent;
-    border:10px solid #CCC;
-    border-color:transparent transparent #FFF;
-    margin-top:-20px;
-    margin-left:10px;
-}
-  
-    
-.seeAll {
-    /*background:#F6F7F8;*/
-    padding:8px;
-    font-size:12px;
-    font-weight:bold;
-    border-top:solid 1px rgba(100, 100, 100, .30);
-    text-align:center;
-}
-.seeAll a {
-    /*color:#3b5998;*/
-}
-.seeAll a:hover {
-    /*background:#F6F7F8;*/
-    /*color:#3b5998;*/
-    text-decoration:underline;
 }
 #detailStyle {
     font-family: 'Noto Serif', serif;
