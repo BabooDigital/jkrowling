@@ -1,13 +1,13 @@
 	
 	<!-- BANNER POPUP BUTTON PLAYSTORE DESKTOP -->
-	<div class="popUpBannerBox" style="display: block;"> 
+	<!-- <div class="popUpBannerBox" style="display: block;"> 
 		<div class="popUpBannerInner"> 
 			<div class="popUpBannerContent">
 				<a href="https://play.google.com/store/apps/details?id=id.android.baboo"><span style="background:  #482d8e;padding: 15px 100px;border-radius:  35px;color:  #fff;font-size: 15pt;">Download App</span></a><a href="#" class="closeButton">X</a>
 
 			</div>
 		</div>
-	</div>
+	</div> -->
 	<?php $this->load->view('navbar/D_navbar'); ?>	
 <div class="mt-50 hidden-sm hidden-xs">
 	<div class="slideboo">
@@ -30,7 +30,9 @@
 							Penulis minggu ini
 						</div>
 						<div class="card-body p-0">
-							<ul class="list-group list-group-flush" id="author_this_week"></ul>
+							<ul class="list-group list-group-flush" id="author_this_week">
+								<div class="loads-css ng-scope"><div style="width:20px;height:20px" class="lds-flickr"><div></div><div></div><div></div></div></div>
+							</ul>
 						</div>
 					</div>
 					<!-- Penulis Minggu Ini -->

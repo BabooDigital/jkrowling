@@ -100,7 +100,8 @@ $(document).ready(function() {
 			$('.loader').show();
 		}
 	}).done(function(data) {
-		if (data.code == 200) {
+		console.log(data);
+		if (data.length != 0) {
 			var datas = "";
 			$.each(data, function(i, item) {
 				var cover;
@@ -137,7 +138,7 @@ $(document).ready(function() {
 			$('.loader').show();
 		}
 	}).done(function(data) {
-		if (data.code == 200) {
+		if (data != 0) {
 			var datas = "";
 			$.each(data, function(i, item) {
 				var cover;
