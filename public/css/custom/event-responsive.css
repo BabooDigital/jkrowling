@@ -142,7 +142,7 @@ img {
 @media only screen and (min-width: 600px) {
     .ikutPosi {
         position: absolute;
-        top: 40%;
+        top: 39%;
         left: 21%;
     }
 }
