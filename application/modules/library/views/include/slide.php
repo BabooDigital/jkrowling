@@ -7,7 +7,7 @@
 				<div class="media-body mt-10 pinkslide" style="padding: 1% 0;text-align: left;">
 					<h6 class="mt-0"><b><?php echo substr($slide_show['title_book'],0,7); ?>...</b></h6>
 					<p style="font-size:16px;">by <?php echo $slide_show['author_name']; ?></p>
-					<p style="font-size:12px;"><?php echo substr($slide_show['desc'],0,40); ?> ..."><?php echo substr($slide_show['desc'],0,40); ?> ...</p>
+					<p style="font-size:12px;"><?php echo substr($slide_show['desc'],0,40); ?> ...<?php echo substr($slide_show['desc'],0,40); ?> ...</p>
 					<div class="mt-20"><a href="<?php echo site_url(); ?>book/<?php echo $slide_show['book_id']; ?>-<?php echo url_title($slide_show['title_book'], 'dash', true); ?>" class="btnbooreadmr" style="padding: 7px 25px;
 					"><span style="">Baca Buku</span></a></div>	
 				</div>

@@ -43,8 +43,7 @@
 							<div class="alert alert-success" id="success" style="display: none;">
 							  <strong>Success!</strong> Subchapter telah ditambahkan.
 							</div>
-							<span style="font-size: 18px;font-weight: 600;color: #141414;">Judul Buku</span>
-							<p class="title_book_txt"></p>
+							<span style="font-size: 18px;font-weight: 600;color: #141414;" class="title_book_txt">Judul Buku</span>
 							<hr>
 							<div id="subchapter">
 								<a style="display: none;" class="btn w-100 mb-10 chapterdata0 editsubchapt1 btnsavedraft" id="btnsavedraft" id="editchapt" href="#"></a>

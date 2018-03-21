@@ -28,7 +28,10 @@ function getWritters() {
     $.ajax({
         url: "writters",
         type: "GET",
-        dataType: "json"
+        dataType: "json",
+        beforeSend : function() {
+            $('.loader').show();   
+        }
     }).done(function(c) {
         var b = "";
         $.each(c, function(c, a) {
