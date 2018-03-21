@@ -1524,6 +1524,9 @@ input.formsearch:focus {
     position:absolute;
     height: auto;
     top:60px;
+    overflow:scroll;
+    overflow-y: scroll;
+    overflow-x: scroll;
     margin-left: auto;
     margin-right: auto;
     left:0;
@@ -1535,8 +1538,11 @@ input.formsearch:focus {
 /* AN ARROW LIKE STRUCTURE JUST OVER THE NOTIFICATIONS WINDOW */
 #notifications:before {         
     content: '';
-    display:block;
+    /*display:block;*/
     width:0;
+    overflow:scroll;
+    overflow-y: scroll;
+    overflow-x: scroll;
     height:0;
     color:transparent;
     border:10px solid #CCC;

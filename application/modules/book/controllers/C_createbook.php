@@ -821,7 +821,7 @@ class C_createbook extends MX_Controller
 		$cat      = $this->input->post('category_id');
 		$user     = $this->input->post('user_id');
 		$parap    = $this->input->post('book_paragraph');
-		$output   = preg_replace('/(<[^>]+) style=".*?"/i', '$1', $parap);
+		$output   = preg_replace("/(<[^>]+) style='.*?'/i", "$1", $parap);
 		$bookData = array(
 			'book_id' => $book_id,
 			'title_book' => $title,
@@ -1000,6 +1000,9 @@ class C_createbook extends MX_Controller
 		$cat     = $this->input->post('category_id');
 		$user    = $this->input->post('user_id');
 		$parap   = $this->input->post('book_paragraph');
+
+		$output   = preg_replace("/(<[^>]+) style='.*?'/i", "$1", $parap);
+
 		$cover   = $this->input->post('cover_name');
 		if ($_FILES['file_cover']['size'] != 0) {
 			$covers                   = $cover;
@@ -1055,7 +1058,6 @@ class C_createbook extends MX_Controller
 	    }else{
 	    	$covers = $cover;
 	    }
-		// print_r($bookData) ;
 	    $bookData = array(
 	    	'book_id' => $book_id,
 	    	'title_book' => $title,
@@ -1064,7 +1066,7 @@ class C_createbook extends MX_Controller
 	    	'status_publish' => 'publish',
 	    	'user_id' => $user,
 	    	'chapter_title' => $chapter,
-	    	'paragraph' => $parap
+	    	'paragraph' => $output
 	    );
 	    if (!empty($this->input->post('id_books'))) {
 	    	$bookData['book_id'] = $this->input->post('id_books');
@@ -1539,7 +1541,7 @@ class C_createbook extends MX_Controller
 		} else {
 			$status = $data_before_chapter['chapter']['code'];
 		}
-		echo json_encode($data_before_chapter['chapter']['data']['chapter']);
+		echo json_encode($data_before_chapter['chapter']['data']);
 		// print_r($data_before_chapter['chapter']['data']['chapter']);
 	}
 	
