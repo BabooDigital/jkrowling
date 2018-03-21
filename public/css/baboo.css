@@ -1623,21 +1623,18 @@ input.formsearch:focus {
 		border-radius: 25px;
 	}
 	.rowchat {
-		height: 500px;
-		overflow-y: scroll;
-		overflow-x: scroll;
-		overflow: scroll;
-	}
-	.form-msg {
-		outline: 0;
-		padding: 10px;
-		width: 93%;
-
-		height: 40px;
-		border-radius: 29.5px;
-		background-color: #fcfbfc;
-		border: solid 0.7px #acacac;
-	}
+	height: auto;
+	max-height: 400px;
+	overflow-y: scroll;
+}
+.form-msg {
+  outline: 0;
+  padding: 10px;
+  width: 88%;
+  border-radius: 29.5px;
+  background-color: #fcfbfc;
+  border: solid 0.7px #acacac;
+}
 	.submit-msg {
 		width: 40px;
 		height: 40px;

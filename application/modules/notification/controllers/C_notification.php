@@ -22,11 +22,11 @@ class C_notification extends MX_Controller
         $data['js'][] = "public/js/umd/popper.min.js";
         $data['js'][] = "public/js/bootstrap.min.js";
         $data['js'][] = "public/js/menupage.js";
-        // $data['js'][] = "public/js/notification.js";
+        $data['js'][] = "public/js/custom/notification.js";
 		if ($this->agent->is_mobile()){
 
 			$this->load->view('include/head', $data);
-			$this->load->view('R_notification', $data);
+			$this->load->view('R_notification');
 
 		}
 	}
