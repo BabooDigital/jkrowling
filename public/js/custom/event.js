@@ -20,7 +20,9 @@ function getBestBook() {
 	      var cover;
 	      var title;
 	      var txt = val.popular_book_title;
-	      title = txt.substring(0, 17) + '...';
+	      if (txt != null) {
+			title = txt.substring(0, 17) + '...';
+	      }
 	      if (val.popular_cover_url == null || val.popular_cover_url == '' || val.popular_cover_url == 'Kosong') {
 	        cover = base_url+'public/img/icon-tab/empty-set.png';
 	      }else{
