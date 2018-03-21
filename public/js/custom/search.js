@@ -39,13 +39,23 @@ $(document).ready(function () {
             if (Object.keys(data.user).length > 0) {
                 var userhtml = "";
 
+
                 if (bak.length >= 1) {
                     $.each(data.user, function (valkey, valid) {
+                        var follow;
+                        var txtfol;
+                        if (valid.isFollow == false) {
+                            follow = 'follow-u';
+                            txtfol = 'Follow';
+                        }else {
+                            follow = 'unfollow-u';
+                            txtfol = 'Unfollow';
+                        }
                         var prof_picts = valid.prof_pict;
                         if (valid.prof_pict == '' || valid.prof_pict == null) {
                             prof_picts = base_url + "public/img/profile/blank-photo.jpg";
                         }
-                        userhtml += "<div class='card mr-10 pull-left' style='width:15%;'> <div class='container'> <div class='row'> <div class='col-12'> <div class='text-center p-10'> <img src='" + prof_picts + "' width='50' height='50' class='rounded-circle'> <p class='nametitled'><a href='#'>" + valid.fullname + "</a></p> </div> </div> </div> <div class='row'> <div class='col-6 text-center rborder'> <p style='display: inline-flex;'><img src='public/img/icon-tab/book.svg' width='25'> <span>" + valid.book_made + "</span></p> <h6>Buku</h6> </div> <div class='col-6 text-center'> <p style='display: inline-flex;'><img src='public/img/icon-tab/followers.svg' width='25'> <span>" + valid.followers + "</span></p> <h6>Pengikut</h6> </div> </div> <br> <div class='row'> <div class='col-12 text-center'> <button class='btnfollow-f follow-u' user-d='" + valid.user_id + "'><img src='public/img/icon-tab/add_follow.svg' width='30'> <span class='txtfollow'>Ikuti</span></button> </div> </div> <br> </div> </div>";
+                        userhtml += "<div class='card mr-10 pull-left' style='width:15%;'> <div class='container'> <div class='row'> <div class='col-12'> <div class='text-center p-10'> <img src='" + prof_picts + "' width='50' height='50' class='rounded-circle'> <p class='nametitled'><a href='"+base_url+"profile/"+valid.user_id+"-"+convertToSlug(valid.fullname)+"'>" + valid.fullname + "</a></p> </div> </div> </div> <div class='row'> <div class='col-6 text-center rborder'> <p style='display: inline-flex;'><img src='public/img/icon-tab/book.svg' width='25'> <span>" + valid.book_made + "</span></p> <h6>Buku</h6> </div> <div class='col-6 text-center'> <p style='display: inline-flex;'><img src='public/img/icon-tab/followers.svg' width='25'> <span>" + valid.followers + "</span></p> <h6>Pengikut</h6> </div> </div> <br> <div class='row'> <div class='col-12 text-center'> <button class='btnfollow-f "+follow+"' user-d='" + valid.user_id + "'><img src='public/img/icon-tab/add_follow.svg' width='30'> <span class='txtfollow'>"+txtfol+"</span></button> </div> </div> <br> </div> </div>";
                     });
                 }
                 $('.loader').hide();
@@ -61,6 +71,10 @@ $(document).ready(function () {
                 var bookhtml = "";
                 if (bak.length >= 1) {
                     $.each(data.books, function (valkay, valad) {
+                        var ava = valad.author_avatar;
+                        if (valad.author_avatar == null || valad.author_avatar == '') {
+                            ava = 'public/img/profile/blank-photo.jpg';
+                        }
                         var cover_url = valad.cover_url;
                         if (valad.cover_url == '' || valad.cover_url == null) {
                             cover_url = "https://assets.dev-baboo.co.id/baboo-cover/default1.png";
@@ -71,11 +85,11 @@ $(document).ready(function () {
                         }
                         var unlikes = "like";
                         var img_love = base_url + "public/img/assets/icon_love.svg";
-                        if(valad.is_like == false){
+                        if(valad.is_like == true){
                             unlikes = "unlike";
                             img_love = base_url + "public/img/assets/love_active.svg";
                         }
-                        bookhtml += "<div class='card mb-15 p-0 text-left'> <div class='card-body p-0 pl-30 pr-30 pt-15'> <div class='row mb-10 pl-15 pr-15'> <div class='media'> <img class='d-flex align-self-start mr-20 rounded-circle' src='"+ valad.author_avatar +"' width='50' height='50' alt='"+ valad.author_name +"'> <div class='media-body mt-5'> <h5 class='card-title nametitle2'><a href='javascript:void(0);'>"+ valad.author_name +"</a></h5> <p class='text-muted' style='margin-top:-10px;'><small><span>Jakarta, Indonesia</span> <span class='ml-10'>"+ valad.publish_date +"</span></small></p> </div> </div> </div> <div class='media'> <a href='book/"+ valad.book_id+"-"+convertToSlug(valad.title_book) +"'><img alt='"+valad.title_book+"' src='"+cover_url+"' class='w-100 imgcover'></a> </div> <a href='book/"+ valad.book_id+"-"+convertToSlug(valad.title_book) +"'><h5 class='pt-20 w-100' style='font-weight: 700;'><b>"+valad.title_book+"</b></h5></a> <div class='w-100'> <span class='mr-8' style='font-size: 12px;'>"+valad.category+" &#8226;</span> <span class='text-muted' style='font-size: 11px;'>Dibaca "+ valad.view_count +" kali</span> <p class='mt-10'>"+ valad.desc.substr(0, 100)+'...' +"</p> </div> </div> <div class='bg-white card-footer text-muted pr-30 pl-30' style='font-size: 0.8em;font-weight: bold;'> <div class='pull-right'> <a href='#'><img src='public/img/assets/icon_share.svg' width='23'></a> </div> <div> <a data-id='"+ valad.book_id+"' href='javascript:void(0);' id='loveboo"+ valad.book_id+"'><img src='public/img/assets/icon_love.svg' class='mr-20 loveicon' width='27'></a> <a href='javascript:void(0);'><img src='public/img/assets/icon_comment.svg' class='mr-10' width='25'></a> </div> </div> </div>";
+                        bookhtml += "<div class='card mb-15 p-0 text-left'> <div class='card-body p-0 pl-30 pr-30 pt-15'> <div class='row mb-10 pl-15 pr-15'> <div class='media'> <img class='d-flex align-self-start mr-20 rounded-circle' src='"+ ava +"' width='50' height='50' alt='"+ valad.author_name +"'> <div class='media-body mt-5'> <h5 class='card-title nametitle2'><a href='javascript:void(0);' class='author_name'>"+ valad.author_name +"</a></h5> <p class='text-muted' style='margin-top:-10px;'><small><span>Jakarta, Indonesia</span> <span class='ml-10'>"+ valad.publish_date +"</span></small></p> </div> </div> </div> <div class='media'> <a href='book/"+ valad.book_id+"-"+convertToSlug(valad.title_book) +"'><img alt='"+valad.title_book+"' src='"+cover_url+"' class='w-100 imgcover cover_image'></a> </div> <a href='book/"+ valad.book_id+"-"+convertToSlug(valad.title_book) +"' class='segment' data-href='"+ valad.book_id+"-"+convertToSlug(valad.title_book) +"'><h5 class='pt-20 w-100' style='font-weight: 700;'><b class='dbooktitle'>"+valad.title_book+"</b></h5></a> <div class='w-100'> <span class='mr-8' style='font-size: 12px;'>"+valad.category+" &#8226;</span> <span class='text-muted' style='font-size: 11px;'>Dibaca "+ valad.view_count +" kali</span> <p class='mt-10 textp' data-text='"+ valad.desc +"'>"+ valad.desc.substr(0, 100)+'...' +"</p> </div> </div> <div class='bg-white card-footer text-muted pr-30 pl-30' style='font-size: 0.8em;font-weight: bold;'> <div class='pull-right'> <div class='dropdown'> <button class='share-btn dropbtn' type='button' id='dropShare' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'> <img src='public/img/assets/icon_share.svg' width='23'> </button> <div class='dropdown-menu' aria-labelledby='dropShare'> <a class='dropdown-item share-fb' href='javascript:void(0);' data-share='"+valad.book_id+"'><img src='public/img/assets/fb-icon.svg' width='20'> Facebook</a> </div> </div> </div> <div> <a data-id='"+ valad.book_id+"' href='javascript:void(0);' class='"+unlikes+"'><img src='"+img_love+"' class='mr-20 loveicon' width='27'></a> <a href='book/"+ valad.book_id+"-"+convertToSlug(valad.title_book) +"#comments'><img src='public/img/assets/icon_comment.svg' class='mr-10' width='25'></a> </div> </div> </div>";
                     });
                 }
                 $('.loader').hide();
@@ -92,6 +106,145 @@ $(document).ready(function () {
         }).always(function () {
         })
     });
+
+$(document).on("click", ".like", function() {
+        var b = $(this),
+            a = new FormData;
+        $(".loveicon").attr("src", base_url + "public/img/assets/love_active.svg");
+        a.append("book_id", b.attr("data-id"));
+        $.ajax({
+            url: base_url + "like",
+            type: "POST",
+            dataType: "JSON",
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: a
+        }).done(function() {
+            b.removeClass("like");
+            b.addClass("unlike");
+        }).fail(function() {
+            console.log("error")
+        }).always(function() {})
+    });
+    $(document).on("click", ".unlike", function() {
+        var b = $(this),
+            a = new FormData;
+        $(".loveicon").attr("src", base_url + "public/img/assets/icon_love.svg");
+        a.append("book_id", b.attr("data-id"));
+        $.ajax({
+            url: base_url + "like",
+            type: "POST",
+            dataType: "JSON",
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: a
+        }).done(function() {
+            b.removeClass("unlike");
+            b.addClass("like");
+        }).fail(function() {
+            console.log("error")
+        }).always(function() {})
+    });
+
+
+    $(document).on("click", ".follow-u", function() {
+        var b = $(this),
+            a = new FormData;
+        a.append("fuser_id", b.attr("user-d"));
+        $.ajax({
+            url: base_url + "follows",
+            type: "POST",
+            dataType: "JSON",
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: a
+        }).done(function() {
+            b.removeClass("follow-u");
+            b.addClass("unfollow-u");
+            b.children(".txtfollow").text("Unfollow");
+        }).fail(function() {
+            console.log("error")
+        }).always(function() {})
+    });
+    $(document).on("click", ".unfollow-u", function() {
+        var b = $(this),
+            a = new FormData;
+        a.append("fuser_id", b.attr("user-d"));
+        $.ajax({
+            url: base_url + "follows",
+            type: "POST",
+            dataType: "JSON",
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: a
+        }).done(function() {
+            b.removeClass("unfollow-u");
+            b.addClass("follow-u");
+            b.children(".txtfollow").text("Follow");
+        }).fail(function() {
+            console.log("error")
+        }).always(function() {})
+    });
+
+    $(document).on('click', '.share-fb', function() {
+
+    var aww = $(this);
+    var formData = new FormData();
+    var blink = aww.parents(".card").find(".dbooktitle").text();
+    var desc = aww.parents(".card").find(".textp").attr('data-text')+'.. - Baca buku lebih lengkap disini.. | Baboo.id';
+    var img = aww.parents(".card").find('.cover_image').attr('src');
+    var auname = aww.parents(".card").find('.author_name').text();
+    var segment = aww.parents(".card").find('.segment').attr('data-href');
+
+    FB.ui({
+      method     : 'share_open_graph',
+      action_type: 'og.shares',
+      action_properties: JSON.stringify({
+        object: {
+          'og:url': base_url + 'book/' + convertToSlug(segment) + '/preview',
+          'og:title': blink + ' ~ By : ' + auname + ' | Baboo.id',
+          'og:description': desc,
+          'og:image': img
+        }
+      })
+    },
+      // callback
+      function(response) {
+        if (response && !response.error_message) {
+
+          formData.append("user_id", $("#iaiduui").val());
+          formData.append("book_id", aww.attr('data-share'));
+
+          $.ajax({
+            url: base_url + 'shares',
+            type: 'POST',
+            dataType: 'JSON',
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: formData,
+              // beforeSend: function() {
+              // }
+            })
+          .done(function(data) {
+              // $('.loader').hide();
+              // console.log("ke share");
+            })
+          .fail(function() {
+            console.log("Failure");
+          })
+          .always(function() {
+
+          });
+        } else {
+          console.log("Batal Share");
+        }
+      });
+  });
 
 function convertToSlug(Text) {
   return Text

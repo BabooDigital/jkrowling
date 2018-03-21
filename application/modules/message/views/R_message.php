@@ -246,7 +246,7 @@
 		</div>
 	<input type="checkbox" id="toggle-right">
 	<div class="page-wrap">
-		<nav class="navbar navbar-expand-lg fixed-top" style="height:50px;">
+		<nav class="navbar navbar-expand-lg fixed-top bg-white" style="height:50px;">
 			<div class="container bodymessage">
 				<a class="menu-page <?php if ($this->uri->segment('1') == 'timeline') { echo 'boo-menu-active'; }else { echo 'boo-menu'; } ?>" href="<?php echo site_url('timeline'); ?>" id="tab_page" dat-title="Timeline"><i class="fa fa-arrow-left fa-2x"></i></a>
 
@@ -263,7 +263,8 @@
 			</div>
 		</div>
 	</div>
-	<div class="container bodymessage">
+	<div class="container bodymessage" style="height: 100vh;">
+		<?php if (isset($listMessage) && !empty($listMessage)) { ?>
 		<div class="paddingbook search_message">
 			<form class="">
 				<input id="search_user" class="form-search search_message_form" type="text" placeholder="Cari pesan masuk"
@@ -271,7 +272,6 @@
 			</form>
 		</div>
 		<br/>
-		<?php if (isset($listMessage) && !empty($listMessage)) { ?>
 		<?php foreach ($listMessage as $messv) { ?>
 		<div class="card-library mb-15 message-user" data-usr-msg="<?php echo $messv["user_id"]; ?>"
 			data-usr-name ="<?php echo $messv["fullname"]; ?>" style="height: auto;">
@@ -296,6 +296,11 @@
 					</div>
 				</div>
 				<?php } ?>
+				<?php }else { ?>
+					<div class="text-center mt-50">
+						<img class="mr-20 mb-30" src="<?php echo base_url('public/img/message_empty.png'); ?>">
+						<h4>Pesan kosong</h4>
+					</div>
 				<?php } ?>
 			</div>
 			</div>
