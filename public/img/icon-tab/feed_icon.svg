@@ -1,22 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="30px" height="27px" viewBox="0 0 30 27" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: sketchtool 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
-    <title>85FD9E6B-B810-425F-876E-ED5FAE57678F</title>
-    <desc>Created with sketchtool.</desc>
-    <defs></defs>
-    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.5">
-        <g id="feedIcon_" stroke="#333333">
-            <g id="Group-7" transform="translate(2.829021, 3.500000)">
-                <path d="M1,0 L10.1770666,0 L10.1770666,-2.22044605e-16 C11.2816361,5.56104062e-16 12.1770666,0.8954305 12.1770666,2 L12.1770666,19.926109 L1,19.926109 L1,19.926109 C0.44771525,19.926109 1.91872266e-15,19.4783937 -1.11022302e-16,18.926109 L0,1 L-1.11022302e-16,1 C-1.78657678e-16,0.44771525 0.44771525,-9.5692398e-18 1,-1.11022302e-16 Z" id="Rectangle-5"></path>
-                <path d="M13.1770666,0 L22.3541332,0 L22.3541332,-2.22044605e-16 C23.4587027,5.56104062e-16 24.3541332,0.8954305 24.3541332,2 L24.3541332,19.926109 L13.1770666,19.926109 L13.1770666,19.926109 C12.6247818,19.926109 12.1770666,19.4783937 12.1770666,18.926109 L12.1770666,1 L12.1770666,1 C12.1770666,0.44771525 12.6247818,-9.5692398e-18 13.1770666,-1.11022302e-16 Z" id="Rectangle-5-Copy" transform="translate(18.265600, 9.963054) scale(-1, 1) translate(-18.265600, -9.963054) "></path>
-                <path d="M3.24667028,6.77856377 L6.24667028,6.77856377" id="Line-3-Copy-6" stroke-linecap="round" stroke-linejoin="round"></path>
-                <path d="M3.24667028,9.17903835 L9.24667028,9.17903835" id="Line-3-Copy-9" stroke-linecap="round" stroke-linejoin="round"></path>
-                <path d="M3.24667028,11.5932415 L9.24667028,11.5932415" id="Line-3-Copy-2" stroke-linecap="round" stroke-linejoin="round"></path>
-                <path d="M3.24667028,14.2370084 L9.24667028,14.2370084" id="Line-3-Copy-7" stroke-linecap="round" stroke-linejoin="round"></path>
-                <path d="M15.4701902,11.5932415 L21.4701902,11.5932415" id="Line-3-Copy-5" stroke-linecap="round" stroke-linejoin="round"></path>
-                <path d="M15.4701902,14.2370084 L21.4701902,14.2370084" id="Line-3-Copy-8" stroke-linecap="round" stroke-linejoin="round"></path>
-                <rect id="Rectangle-6" stroke-linecap="round" stroke-linejoin="round" x="15.4701902" y="6.48989607" width="6" height="2.70000005"></rect>
-            </g>
-        </g>
+<svg xmlns="http://www.w3.org/2000/svg" width="30" height="27" viewBox="0 0 30 27">
+    <g fill="none" fill-rule="evenodd" stroke="#979797">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.15 21.738A3.15 3.15 0 0 1 5 18.588V8.15A3.15 3.15 0 0 1 8.15 5h4.979c1.16 0 2.1.94 2.1 2.1v14.638h-2.924"/>
+        <path stroke-width="2" d="M22.729 5H17.5a2 2 0 0 0-2 2v14.738h7.229a3 3 0 0 0 3-3V8a3 3 0 0 0-3-3z"/>
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8.15 10.04h2.52M8.15 13.19h3.43M8.15 16.55h3.43M18.935 16.55h3.16"/>
+        <path fill="#979797" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M18.935 10.452h3.16v2.268h-3.16z"/>
     </g>
 </svg>
