@@ -101,59 +101,42 @@ a:hover {
 			</script> 
 			<script src="<?php echo base_url(); ?>public/js/baboo.js">
 			</script>
+			<script src="<?php echo base_url(); ?>public/js/menupage.js">
+			</script>
 			<script src="<?php echo base_url(); ?>public/js/slick.js">
 			</script>
 			<script type="text/javascript">
-				var page = 1;
+				var page = 2;
 				$(window).scroll(function() {
-					if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
+					if  ($(window).scrollTop() == $(document).height() - $(window).height() ){
+						loadMoreData(page)
 						page++;
-						loadMoreData(page);
 					}
 				});
 
-				function loadMoreData(page){
-					$.ajax(
-					{
+				function loadMoreData(page) {
+					$.ajax({
 						url: '?page=' + page,
 						type: "get",
-						beforeSend: function()
-						{
+						beforeSend: function() {
 							$('.loader').show();
 						}
 					})
-					.done(function(data)
-					{
-						if(data == " "){
+					.done(function(data) {
+						if (data == "" || data == null) {
 							$('.loader').html("No more records found");
 							return;
-						}
+
+						};
 						$('.loader').hide();
 						$("#post-data").append(data);
-				            // console.log(data);
-				        })
-					.fail(function(jqXHR, ajaxOptions, thrownError)
-					{
+
+					})
+					.fail(function(jqXHR, ajaxOptions, thrownError) {
 						console.log('server not responding...');
 					});
 				}
-			</script>
-			<script type="text/javascript">
-				
-$(window).on('load', function() {
-	var link = 'market://details?id=id.android.baboo';
-	$('.bannerPopUp').html("<div class='popUpBannerBox' style='display: block;'> <div class='popUpBannerInner'> <div class='popUpBannerContent'> <a href='"+link+"'><span style='background:  #482d8e;padding: 15px 95px;border-radius:  35px;color:  #fff;font-size: 15pt;'>Download App</span></a><a href='#' class='closeButton'>&#120;</a> </div> </div> </div>");
-	
-	function showPopUpBanner() {
-		$('.popUpBannerBox').fadeIn("2000");
-	}
-	setTimeout(showPopUpBanner, 3000);
 
-	$('.closeButton').click(function() {
-		$('.popUpBannerBox').fadeOut("2000");
-		return false;
-	});
-});
 				$('.your-class').slick({
 					centerMode: true,
 					centerPadding: '30px',
@@ -183,6 +166,6 @@ $(window).on('load', function() {
 					],
 				});
 
-</script>
+			</script>
 </body>
 </html>

@@ -35,7 +35,7 @@ class C_timeline extends MX_Controller {
 			'count' => $id
 		);
 		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, $this->API.'timeline/Timelines/index');
+		curl_setopt($ch, CURLOPT_URL, $this->API.'timeline/Timelines/index'.$id);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
 		curl_setopt($ch, CURLOPT_POST, 1);

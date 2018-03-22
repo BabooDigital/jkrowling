@@ -254,6 +254,7 @@ function saveDraft() {
 
     var formData = new FormData();
     var book_id = $("#book_id").val();
+    var chapter_id = $("#ch_id").val();
     var chapter_title = $("#chapter_title_out").val();
     var paragraph_book = $("#paragraph_book").val();
     var url = base_url+'savechapter';
@@ -264,11 +265,11 @@ function saveDraft() {
         'Lengkapi Judul dan Isi Buku mu.',
         'error'
         )
-    }else {
+    }else { 
       $.ajax({
         type:"POST",
         url:url,
-        data: { 'book_id' : book_id, 'chapter_title' : chapter_title, 'paragraph_book' : paragraph_book},
+        data: { 'book_id' : book_id, 'chapter_title' : chapter_title, 'paragraph_book' : paragraph_book, 'chapter_id' : chapter_id},
         dataType: 'json',
         beforeSend: function () {
           swal({
@@ -279,7 +280,9 @@ function saveDraft() {
           });
         },
         success:function (data) {
+            var chid = data.data.chapter_id;
           if (data.code == 200) {
+            $('#ch_id').val(chid);
             swal.hideLoading()
             var x = document.getElementById("snackbar");
             x.className = "show";

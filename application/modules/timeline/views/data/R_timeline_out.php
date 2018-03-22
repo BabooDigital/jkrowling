@@ -108,13 +108,9 @@
 					</div>
 				</a>
 				<?php } ?>
-
-					<?php 
-					if ($s_book['populars']) {
-						echo "<label class='ml-10'><b>Buku Populer</b></label>";
-					} 
-					?>
-					<?php foreach ($s_book['populars'] as $populars){ ?>
+				
+					<?php $asd = $s_book['populars']; echo "<label class='ml-10'><b>".$asd['desc']."</b></label>";
+					 foreach ($s_book['populars'] as $populars){ ?>
 					<div id="myWorkContent" class="bg-white mb-20" style="margin-top: -10px;">
 						<?php error_reporting(0); foreach ($populars as $pop){ ?>
 						<div id="insideDiv">

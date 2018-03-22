@@ -27,7 +27,7 @@
 	<div class="wrapper">
 		<nav class="navbar navbar-light bg-borr">
 			<button type="button" class="clear-btn" onclick="history.go(-1)"><i class="fa fa-arrow-left"></i> </button>
-			<a href="<?php echo site_url(); ?>timeline" style="color: #333;"> <span style="font-size: 15pt;">X</span> </a>
+			<a href="<?php echo site_url(); ?>timeline" style="color: #333;"> <span style="font-size: 15pt;">Nanti Saja</span> </a>
 		</nav>
 
 		<div class="container mt-20">
@@ -87,7 +87,7 @@
 				</div>
 			</div>
 
-			<nav class=" navbar-light bg-borr fixed-bottom p-10">
+			<nav class="text-center navbar-light bg-borr fixed-bottom p-10">
 				<button id="selectCat" class="mx-auto btnupdate-prof">Lanjutkan</button>
 			</nav>
 		</div>

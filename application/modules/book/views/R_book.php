@@ -159,7 +159,7 @@ echo "<script>(function(d, s, id) {
 					<img alt="<?php $dat = $this->session->userdata('userData'); echo $dat['fullname']; ?>" class="d-flex align-self-start mr-20 rounded-circle" height="48" id="profpict" src="<?php $dat = $this->session->userdata('userData');  if($dat['prof_pict'] == NULL){ echo base_url('public/img/profile/blank-photo.jpg'); }else{ echo $dat['prof_pict']; } ?>" width="48">
 					<div class="media-body mt-5">
 						<div>
-							<span><input class="frmcomment commentform" id="comments" placeholder="Tulis sesuatu.." style="width: 70%;height: 45px;" type="text"> <button class="Rpost-comment-parap" type="button" style="background: none;border: none;"><img src="<?php echo base_url('public/img/assets/icon_sendcomm.png'); ?>" width="45" height="45"></button></span>
+							<span><input class="frmcomment commentform" id="comments" placeholder="Tulis sesuatu.." style="width: 70%;height: 45px;" type="text"> <button class="Rpost-comment" type="button" style="background: none;border: none;"><img src="<?php echo base_url('public/img/assets/icon_sendcomm.png'); ?>" width="45" height="45"></button></span>
 						</div>
 					</div>
 				</div><br>
