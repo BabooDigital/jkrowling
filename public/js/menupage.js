@@ -1,20 +1,8 @@
 
-$(window).on('load', function() {
-	var link = 'market://details?id=id.android.baboo';
-	$('.bannerPopUp').html("<div class='popUpBannerBox' style='display: block;'> <div class='popUpBannerInner'> <div class='popUpBannerContent'> <a href='"+link+"'><span style='background:  #482d8e;padding: 15px 95px;border-radius:  35px;color:  #fff;font-size: 15pt;'>Download App</span></a><a href='#' class='closeButton'>&#120;</a> </div> </div> </div>");
-	
-	function showPopUpBanner() {
-		$('.popUpBannerBox').fadeIn("2000");
-	}
-	setTimeout(showPopUpBanner, 3000);
 
-	$('.closeButton').click(function() {
-		$('.popUpBannerBox').fadeOut("2000");
-		return false;
-	});
-});
 $(document).ready(function() {
-    
+	showPopUpBanner();
+
 	function getContent(tab_page) {
 		$.ajax({
 			url: tab_page,
@@ -42,5 +30,39 @@ $(document).ready(function() {
 });
 
 function funcDropdown() {
-  document.getElementById("myDropdown").classList.toggle("showss");
+	document.getElementById("myDropdown").classList.toggle("showss");
 }
+
+var isMobile = {
+	Android: function() {
+		return navigator.userAgent.match(/Android/i);
+	},
+	BlackBerry: function() {
+		return navigator.userAgent.match(/BlackBerry/i);
+	},
+	iOS: function() {
+		return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+	},
+	Opera: function() {
+		return navigator.userAgent.match(/Opera Mini/i);
+	},
+	Windows: function() {
+		return navigator.userAgent.match(/IEMobile/i);
+	},
+	any: function() {
+		return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+	}
+};
+
+	var link = 'market://details?id=id.android.baboo';
+	$('.bannerPopUp').html("<div class='popUpBannerBox'> <div class='popUpBannerInner'> <div class='popUpBannerContent'> <a href='"+link+"'><span style='background:  #482d8e;padding: 15px 95px;border-radius:  35px;color:  #fff;font-size: 15pt;'>Download App</span></a><a href='#' class='closeButton'>&#120;</a> </div> </div> </div>");
+	
+	function showPopUpBanner() {
+		if( isMobile.Android() )
+		$('.popUpBannerBox').fadeIn("2000");
+	}
+
+	$('.closeButton').click(function() {
+		$('.popUpBannerBox').fadeOut("2000");
+		return false;
+	});

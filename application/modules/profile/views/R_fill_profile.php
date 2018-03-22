@@ -17,8 +17,8 @@
 }
 
 #profile-container {
-	width: 100px;
-	height: 100px;
+	width: 120px;
+	height: 120px;
 	overflow: hidden;
 	-webkit-border-radius: 50%;
 	-moz-border-radius: 50%;
@@ -28,8 +28,8 @@
 }
 
 #profile-container img {
-	width: 100px;
-	height: 100px;
+	width: 120px;
+	height: 120px;
 }
 </style>
 </head>
@@ -39,7 +39,7 @@
 <body class="bg-borr">
 	<div class="wrapper">
 		<nav class="navbar navbar-light bg-borr">
-				<a href="<?php echo site_url(); ?>timeline" style="color: #333;"> <span style="font-size: 12pt;">Lewati</span> </a>
+				<a href="<?php echo site_url(); ?>selectcategory" style="color: #333;"> <span style="font-size: 12pt;">Nanti Saja</span> </a>
 		</nav>
 
 		<div class="container">
@@ -56,20 +56,19 @@
 						</div>
 						<input id="imageUpload" type="file" 
 						name="profile_photo" placeholder="Photo" required="" capture>
-						<img src="<?php base_url(); ?>public/img/assets/icon_plus_purple.svg" width="30" style="position: relative;bottom: 25px;left: 25px;">
 					</div>
 					</div>
 				</div>
 				<div class="row mb-20">
 					<div class="col-12">
-						<label class="label-fs">Domisili</label>
+						<label for="yourDomisili" class="label-fs">Domisili</label>
 						<input type="text" class="w-100 frmProf" id="yourDomisili" >
 					</div>
 				</div>
 				<div class="row mb-20">
 					<div class="col-12">
-						<label class="label-fs">Bio</label>
-						<input type="text" class="w-100 frmProf" id="yourBio" value="">
+						<label for="yourBio" class="label-fs">Bio</label>
+						<input type="text" class="w-100 frmProf" id="yourBio">
 					</div>
 				</div>
 		</div>

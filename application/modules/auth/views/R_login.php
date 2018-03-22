@@ -296,6 +296,7 @@ if (!empty($query['b'])) {
 			});
 		</script>	
 		<?php echo $this->session->flashdata('login_alert');?>
+		<?php echo $this->session->flashdata('isRegistered');?>
 		<script type="text/javascript">
 			$("#login_fb").on("click",function() {
 				window.location.href = '<?php echo $authUrl; ?>';

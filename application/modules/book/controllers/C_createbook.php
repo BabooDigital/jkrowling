@@ -342,11 +342,13 @@ class C_createbook extends MX_Controller
 		$id_user = $this->session->userdata('userData');
 		
 		$book_id       = $this->input->post('book_id');
+		$chapter_id    = $this->input->post('chapter_id');
 		$chapter_title = $this->input->post('chapter_title');
 		$paragraph     = $this->input->post('paragraph_book');
-		
+
 		$chapterData = array(
 			'book_id' => $book_id,
+			'chapter_id' => $chapter_id,
 			'chapter_title' => $chapter_title,
 			'paragraph' => $paragraph
 		);

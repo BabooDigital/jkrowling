@@ -463,7 +463,11 @@ class C_Login extends MX_Controller
                 redirect("timeline");
             }
         }else{
-            $this->session->set_flashdata('isRegistered', $status);
+            $this->session->set_flashdata('isRegistered', '<script>
+                  $(window).on("load", function(){
+                    swal("Gagal", "'.$psn.'", "error");
+                });
+                </script>');
             redirect('login#btndaftar');
         }
 

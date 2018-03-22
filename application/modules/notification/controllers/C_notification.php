@@ -141,7 +141,7 @@ class C_notification extends MX_Controller
 			// print_r($result);
 
 		}else{
-			echo json_encode($notif);
+			redirect('timeline','refresh');
 		}
 	}
 	public function updateNtf()
