@@ -80,17 +80,12 @@ $(document).ready(function() {
     var img = aww.parents(".card").find('.cover_image').attr('src');
     var auname = aww.parents(".card").find('.author_name').text();
     var segment = aww.parents(".card").find('.segment').attr('data-href');
-    console.log(blink);
-    console.log(desc);
-    console.log(img);
-    console.log(auname);
-    console.log(segment);
     FB.ui({
       method     : 'share_open_graph',
       action_type: 'og.shares',
       action_properties: JSON.stringify({
         object: {
-          'og:url': base_url + 'book/' + convertToSlug(segment) + '/preview',
+          'og:url': base_url + 'book/' + segment + '/preview',
           'og:title': blink + ' ~ By : ' + auname + ' | Baboo.id',
           'og:description': desc,
           'og:image': img

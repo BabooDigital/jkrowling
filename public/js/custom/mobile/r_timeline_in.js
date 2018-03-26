@@ -15,7 +15,7 @@ $(document).ready(function() {
       action_type: 'og.shares',
       action_properties: JSON.stringify({
         object: {
-          'og:url': base_url + 'book/' + convertToSlug(segment) + '/preview',
+          'og:url': base_url + 'book/' + segment + '/preview',
           'og:title': blink + ' ~ By : ' + auname + ' | Baboo.id',
           'og:description': desc,
           'og:image': img
