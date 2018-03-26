@@ -48,12 +48,15 @@ class C_profile extends MX_Controller {
 		$status = $resval['code'];
 		$data['userdata'] = $userdetail;
 		$data['title'] = "Profile Page - Baboo";
+		$data['css'][] = "public/css/sweetalert2.min.css";
+
 		$data['js'][] = "public/js/jquery.min.js";
 		$data['js'][] = "public/js/umd/popper.min.js";
 		$data['js'][] = "public/js/bootstrap.min.js";
 		$data['js'][] = "public/js/jquery.sticky-kit.min.js";
 		$data['js'][] = "public/js/custom/notification.js";
 		$data['js'][] = "public/js/jquery.validate.js";
+		$data['js'][] = "public/js/sweetalert2.all.min.js";
 		
 		if ($status == 403){
 			$this->session->unset_userdata('userData');
@@ -71,8 +74,6 @@ class C_profile extends MX_Controller {
 				$this->load->view('R_profile', $data);
 			}else{
 				$data['css'][] = "public/css/baboo.css";
-				$data['css'][] = "public/css/sweetalert2.min.css";
-				$data['js'][] = "public/js/sweetalert2.all.min.js";
 				$data['js'][] = "public/js/custom/profile_page.js";
 				$this->load->view('include/head', $data);
 				$this->load->view('D_profile');

@@ -131,6 +131,7 @@ $route['chapter/:num'] = 'book/C_createbook/editChapter';
 $route['savechapter'] = 'book/C_createbook/saveChapter';
 $route['saveeditchapter'] = 'book/C_createbook/saveEditChapter';
 $route['delchapter'] = 'book/C_createbook/deleteChapter';
+$route['delpublish'] = 'book/C_createbook/deletePublishBook';
 $route['listchapter/:num'] = 'book/C_createbook/listChapter';
 $route['cover'] = 'book/C_createbook/cover';
 $route['cover/:num'] = 'book/C_createbook/cover_v';

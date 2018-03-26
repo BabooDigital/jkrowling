@@ -48,7 +48,7 @@
 					<!-- Status -->
 					<?php if (!empty($home['event']['redirect']) || !empty($home['event']['image'])) { ?>
 					<div class="card mb-15 bg-transparent" style="box-shadow: none;">
-						<div class="card-body pt-5 pb-5 pr-10 pl-10">
+						<div class="card-body pt-0 pb-0 pr-0 pl-0">
 							<a href="<?php echo $home['event']['redirect']; ?>">
 								<img src="<?php echo $home['event']['image']; ?>" class="img-fluid">
 							</a>
