@@ -24,6 +24,14 @@
 	width: 100px;
 	height: 100px;
 }
+.btn-clear {
+	background: none;
+	border: none;
+}
+.right-posi {
+	position: absolute;
+	right: 30px;
+}
 </style>
 <?php 
 	$base = (isset($_SERVER['HTTPS']) ? "https://" : "http://").$_SERVER['HTTP_HOST'];

@@ -515,6 +515,55 @@ class C_createbook extends MX_Controller
 		// }
 		}
 
+		public function deletePublishBook()
+		{
+			$auth    = $this->session->userdata('authKey');
+		
+		$bid    = $this->input->post('book_id');
+		$bookData = array(
+			'book_id' => $bid
+		);
+		
+		$ch          = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $this->API . 'book/Books/deleteBook');
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		// curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+		
+		curl_setopt($ch, CURLOPT_POST, 1);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $bookData);
+			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+			curl_setopt($ch, CURLOPT_HEADER, 1);
+			curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+				'baboo-auth-key: ' . $auth
+			));
+			$result = curl_exec($ch);
+
+			$headers = array();
+
+			$data = explode("\n", $result);
+
+
+			array_shift($data);
+
+			foreach ($data as $part) {
+				$middle = explode(":", $part);
+				error_reporting(0);
+				$headers[trim($middle[0])] = trim($middle[1]);
+			}
+			$resval  = (array) json_decode(end($data));
+			$book_id = (array) $resval['data'];
+			$auth    = $headers['BABOO-AUTH-KEY'];
+			if (isset($resval['code']) && $resval['code'] == '200') {
+				$status = $resval['code'];
+				$this->session->set_userdata('authKey', $auth);
+			} else {
+				$status = $resval['code'];
+			}
+		// if ($resval['code'] == 200) {
+			echo json_encode($resval);
+		// }
+		}
+
 
 		public function listChapter()
 		{
