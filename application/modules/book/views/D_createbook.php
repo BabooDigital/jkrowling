@@ -74,6 +74,7 @@
 							<div class="media-body mt-7">
 								<input type="hidden" name="user_id" id="user_id" value="<?php $name = $this->session->userdata('userData');
 										echo $name['user_id']; ?>">
+									<input type="hidden" name="book_id" id="uri" value="<?php echo $this->uri->segment(2); ?>">
 									<input type="hidden" name="book_id" id="book_id" value="<?php echo $this->uri->segment(2); ?>">
 									<input type="hidden" id="cover_url" accept="image/*" onchange="tampilkanPreview(this,'preview')" name="cover_url" value="<?php $src = $this->session->userdata('dataCover'); if($src != NULL){  echo $src['asset_url']; }else{ echo " "; } ?>">
 									<div id="books_id"></div>

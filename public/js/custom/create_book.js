@@ -392,6 +392,12 @@ function getChapter() {
 			});
 			$(".title_book_txt").html(title_book);
 		}
+		if (data.book_info.cover_url != "") {
+			$("#preview").attr('src', data.book_info.cover_url);
+			$("#cover_name").val(data.book_info.cover_url);
+		}else{
+			$("#preview").attr('src', base_url+'public/img/assets/def_prev.png');
+		}
 		$(".tulisjudul").html(title);
 		$("#btn_chapter").html(chapter);
 	})
