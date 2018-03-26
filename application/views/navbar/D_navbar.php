@@ -29,15 +29,15 @@
 			<button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbarSupportedContent" data-toggle="collapse" type="button"><span class="fa fa-bars fa-border"></span></button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav text-center" style="margin-bottom: -8px;">
-					<li class="nav-item active mt-5">
-						<a class="nav-link  <?php if ($this->uri->segment('1') == 'timeline') { echo 'boo-menu-des-active'; }else { echo 'boo-menu-des'; } ?>" href="<?php echo site_url(); ?>"><img src="<?php if ($this->uri->segment('1') == 'timeline') { echo base_url('public/img/icon-tab/feed_icon_active.svg'); }else { echo base_url('public/img/icon-tab/feed_icon.svg'); } ?>" width="23"><p class="fs-12px"><b>Explore</b></p></a>
+					<li class="nav-item active mt-7">
+						<a class="nav-link  <?php if ($this->uri->segment('1') == 'timeline') { echo 'boo-menu-des-active'; }else { echo 'boo-menu-des'; } ?>" href="<?php echo site_url(); ?>"><img src="<?php if ($this->uri->segment('1') == 'timeline') { echo base_url('public/img/icon-tab/feed_icon_active.svg'); }else { echo base_url('public/img/icon-tab/feed_icon.svg'); } ?>" height="27"><p class="fs-12px">Explore</p></a>
 					</li>
-					<li class="nav-item mt-5">
-						<a class="nav-link <?php if ($this->uri->segment('1') == 'library') { echo 'boo-menu-des-active'; }else { echo 'boo-menu-des'; } ?>" href="<?php echo site_url('library') ?>"><img src="<?php if ($this->uri->segment('1') == 'library') { echo base_url('public/img/icon-tab/library_icon_active.svg'); }else { echo base_url('public/img/icon-tab/library_icon.svg'); } ?>" width="25"><p class="fs-12px"><b>Library</b></p></a>
+					<li class="nav-item mt-7">
+						<a class="nav-link <?php if ($this->uri->segment('1') == 'library') { echo 'boo-menu-des-active'; }else { echo 'boo-menu-des'; } ?>" href="<?php echo site_url('library') ?>"><img src="<?php if ($this->uri->segment('1') == 'library') { echo base_url('public/img/icon-tab/library_icon_active.svg'); }else { echo base_url('public/img/icon-tab/library_icon.svg'); } ?>" height="27"><p class="fs-12px">Library</p></a>
 					</li>
-					<li class="nav-item mt-5 noti_Container">
+					<li class="nav-item mt-7 noti_Container">
 						<div id="noti_Counter"></div>
-						<a id="noti_Button" class="nav-link <?php if ($this->uri->segment('1') == 'notification') { echo 'boo-menu-des-active'; }else { echo 'boo-menu-des'; } ?>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#"><img src="<?php echo site_url(); ?>public/img/icon-tab/notif_icon.svg" width="25" height="22"><p class="fs-12px"><b>Notification</b></p></a>
+						<a id="noti_Button" class="nav-link <?php if ($this->uri->segment('1') == 'notification') { echo 'boo-menu-des-active'; }else { echo 'boo-menu-des'; } ?>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#"><img src="<?php echo site_url(); ?>public/img/icon-tab/notif_icon.svg" height="27"><p class="fs-12px">Activity</p></a>
 						<!-- <div id="noti_Counter2" style="display: none;">7</div> -->
 						<div id="notifications">
 							<h5>Notifications</h5>
@@ -46,13 +46,13 @@
 							</div>
 						</div>
 					</li>			
-					<li class="nav-item mt-5">
-						<a class="nav-link <?php if ($this->uri->segment('1') == 'message') { echo 'boo-menu-des-active'; }else { echo 'boo-menu-des'; } ?>" href="<?php echo site_url('message') ?>"><img src="<?php echo site_url(); ?>public/img/icon-tab/message.svg"  width="25" height="23"><p class="fs-12px"><b>Pesan</b></p></a>
+					<li class="nav-item mt-7">
+						<a class="nav-link <?php if ($this->uri->segment('1') == 'message') { echo 'boo-menu-des-active'; }else { echo 'boo-menu-des'; } ?>" href="<?php echo site_url('message') ?>"><img src="<?php echo site_url(); ?>public/img/icon-tab/message.svg"  height="27"><p class="fs-12px">Pesan</p></a>
 					</li>
 					<li class="nav-item ml-100 mr-30">
 						<form action="<?php echo site_url(); ?>createidbook" method="POST" class="mt-10">
 							<input type="hidden" name="iaiduui" id="iaiduui" value="<?php $name = $this->session->userdata('userData'); echo $name['user_id']; ?>">
-							<button type="submit" class="nav-link btn-newstory" style="cursor: pointer;height: 33px;"><span><i class="fa fa-pencil-square-o"></i> Tulis Cerita</span></button>
+							<button type="submit" class="nav-link btn-newstory" style="cursor: pointer;height: 33px;"><span><i class="fa fa-pencil-square-o"></i> Tulis Buku</span></button>
 						</form>
 					</li>
 					<li class="nav-item">

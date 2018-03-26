@@ -175,10 +175,13 @@ $route['upload_pict'] = 'profile/C_edit_profile/postUploadProfPict';
 
 $route['firstlogin'] = 'profile/C_edit_profile/completeProfile';
 
+$route['complete_profile'] = 'profile/C_edit_profile/completeProfile';
+
 $route['selectcategory'] = 'profile/C_edit_profile/selectCategory';
 $route['postselectcat'] = 'profile/C_edit_profile/firstSelectCategory';
 
 $route['first_follow'] = 'profile/C_edit_profile/firstFollowUser';
+$route['edit_profile'] = 'profile/C_edit_profile/postEditProfile';
 
 // TERMS
 $route['tnc'] = 'terms/C_terms';

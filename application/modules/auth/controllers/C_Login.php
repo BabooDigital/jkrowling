@@ -460,7 +460,7 @@ class C_Login extends MX_Controller
             if ($this->agent->is_mobile()) {
                 redirect("firstlogin");
             }else{
-                redirect("timeline");
+                redirect("complete_profile");
             }
         }else{
             $this->session->set_flashdata('isRegistered', $status);

@@ -58,7 +58,7 @@
 							</div>
 							<div class="mb-20">
 								<?php if (!$this->uri->segment(2)): ?>
-									<a href="#" class="btn-edprof fs-12px mr-10">Edit Profile</a> <a href="<?php echo site_url('message'); ?>" class="btn-edprof fs-12px">Message</a>
+									<a data-toggle="modal" data-target="#edit-profile" href="#" class="btn-edprof fs-12px mr-10">Edit Profile</a> <a href="<?php echo site_url('message'); ?>" class="btn-edprof fs-12px">Message</a>
 								<?php else: ?>
 									<a href="#" data-follow="<?php echo $userdata['user_id']; ?>" class="btn-edprof fs-12px mr-10 <?php if ($userdata['isFollow'] == false) { echo "follow-u"; }else{ echo "unfollow-u"; } ?>"><span class=" txtfollow"><?php if ($userdata['isFollow'] == false) { echo "Follow"; }else{ echo "Unfollow"; } ?></span></a>
 									<input type="hidden" name="iaiduui" id="iaiduui" value="<?php $dat = $this->session->userdata('userData'); echo $dat['user_id']; ?>">
@@ -210,11 +210,61 @@
 						<ul class="list-group list-group-flush" id="latestreadbook">
 
 						</ul>
-						<!-- <div class="text-center p-20">
-							<a href="#" style="border-radius: 4px;border: 1px #dedede solid;display:  block;" class="p-10">Lihat Semua</a>
-						</div> -->
 					</div>
 				</div><!-- Buku Populer -->
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="edit-profile" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content" style="width: 105% !important;height: 800px;">
+			<div class="modal-body">
+				<div class="container">
+					<div class="alert alert-success" id="alert_success" style="display: none;">
+					  <strong>Success!</strong> Data Updated.
+					</div>
+					<div class="col-lg-12 col-xl-12">
+						<img src="<?php echo base_url();?>public/img/logo_purple.png" style="height:50px; margin-top:36px;">
+					</div>
+					<div class="col-lg-12 col-xl-12">
+							<div class="row">
+								<div class="col-lg-12" style="margin-top:55.1px;">
+									<p class="text-img-modal"><h3><b>Edit Profile</b></h3></p>
+									<br>
+								</div>
+								<div class="col-lg-12">
+									<form id="profile-edit">
+										<div class="form-group">
+											<label>Nama Lengkap</label>
+											<input type="text" class="required fullname error form-control login-input" id="fullname" name="fullname" placeholder="Nama Lengkap">
+										</div>
+										<div class="form-group">
+											<label>Tanggal Lahir</label>
+											<input type="date" class="required date_of_birth error form-control login-input" id="date_of_birth" name="date_of_birth" placeholder="Tanggal Lahir">
+										</div>
+										<div class="form-group">
+											<label>Alamat</label>
+											<textarea class="required address error form-control login-input" id="address" name="address" placeholder="Alamat"></textarea>
+											<!-- <input type="date" class="required date_of_birth error form-control login-input" id="date_of_birth" name="date_of_birth" placeholder="Tanggal Lahir"> -->
+										</div>
+										<div class="form-group">
+											<label>Bio</label>
+											<input type="text" class="about_me error form-control login-input" id="about_me" name="about_me" placeholder="About Me">
+										</div>
+										<div class="form-group">
+											<div class="pull-left">
+												<button type="submit" name="submit" class="btn btn-primary pull-right btn-login ikuti-lomba"><i class="icon-arrow-right"></i>Update Profile</button>
+											</div>	
+										</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div> 
+						<!-- </form> -->
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

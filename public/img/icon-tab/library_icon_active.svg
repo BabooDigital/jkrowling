@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="27" viewBox="0 0 30 27">
-    <g fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2">
-        <path fill="#6454BD" stroke="#6454BD" d="M27.063 12.685H6.833a3.841 3.841 0 0 0 0 7.682h20.23a5.16 5.16 0 0 1-1.708-3.84 5.16 5.16 0 0 1 1.708-3.842z"/>
-        <path stroke="#FFF" d="M24.881 16.526H9.613"/>
-        <path fill="#6454BD" stroke="#FFF" d="M10.856 16.523h6.145v8.084l-3.02-2.133-3.125 2.133z"/>
-        <path fill="#6454BD" stroke="#6454BD" d="M25.185 3.97H9.89a3.133 3.133 0 1 0 0 6.265h15.295a4.208 4.208 0 0 1-1.393-3.133c0-1.243.537-2.36 1.393-3.133z"/>
-        <path stroke="#FFF" d="M23.88 7.203H11.542"/>
+    <g fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <path fill="#6454BD" stroke="#6454BD" stroke-width="2" d="M17.851 19.009h-9.21a3.226 3.226 0 0 1 0-6.453h16.992a4.334 4.334 0 0 0-1.435 3.226c0 1.28.554 2.432 1.435 3.227h-8.436"/>
+        <path stroke="#FFF" stroke-width="1.5" d="M25.55 15.7h-15.3"/>
+        <path fill="#6454BD" stroke="#FFF" stroke-width="1.5" d="M12.35 15.85h6.222v6.821l-3.057-1.88-3.165 1.88z"/>
+        <path fill="#6454BD" stroke="#6454BD" stroke-width="2" d="M24.055 4.394a3.534 3.534 0 0 0-1.17 2.631c0 1.045.452 1.983 1.17 2.632H11.208a2.631 2.631 0 1 1 0-5.263h12.847z"/>
+        <path stroke="#FFF" stroke-width="1.5" d="M24.46 7.11H19.8"/>
     </g>
 </svg>

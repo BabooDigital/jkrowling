@@ -31,7 +31,7 @@
 </head>
 <style>
 .nav-link {
-	padding: 0px 0.3rem !important;
+	padding: 0px 8px !important;
 }
 </style>
 <body>
