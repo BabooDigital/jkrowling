@@ -243,7 +243,7 @@ class C_createbook extends MX_Controller
 			$chid	= $this->uri->segment(2);
 			
 			$chapterData = array(
-				'book_id' => $bid['book_id'],
+				'book_id' => $bid,
 				'chapter_id' => $chid
 			);
 
@@ -557,6 +557,7 @@ class C_createbook extends MX_Controller
 				$status = $resval['code'];
 				$this->session->set_userdata('authKey', $auth);
 				$this->session->set_userdata('dataBook', $user);
+				$this->session->set_userdata('idBook_', $book_id);
 			} else {
 				$status = $resval['code'];
 			}
@@ -570,7 +571,7 @@ class C_createbook extends MX_Controller
 
 			$data['list_chapter'] = $resval['data'];
 			$data['book_id']      = $book_id;
-			$data['title_book']   = $this->session->userdata('title_book');
+			$data['title_book']   = $resval['data']['book_info']['title_book'];
 			$this->load->view('include/head', $data);
 			$this->load->view('R_list_chapter');
 		}

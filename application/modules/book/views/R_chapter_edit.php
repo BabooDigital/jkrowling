@@ -9,7 +9,7 @@
 		<nav class="navbar navbar-expand-lg fixed-top baboonav" style="height:55px;background: #fcfcff;">
 			<div class="container">
 				<a href="javascript:void(0);" class="clear-btn backlink" id="backlinks" ><i class="fa fa-arrow-left"></i> </a>
-				<input type="hidden" name="book_id" id="book_id" value="<?php $uri = $this->session->userdata('idBook_'); echo  $uri['book_id']; ?>">
+				<input type="hidden" name="book_id" id="book_id" value="<?php $uri = $this->session->userdata('idBook_'); echo  $uri; ?>">
 				<button class="btn-transparant" id="publish_chapter"><img src="<?php echo base_url() ?>public/img/assets/icon_publish.png" width="25"> <span style="color: #7554bd;font-size: 14px;">Publish</span></button>
 			</div>
 		</nav>
