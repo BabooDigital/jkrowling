@@ -2,6 +2,12 @@
 .fr-box {
 	width: 100% !important;
 }
+.fr-box.fr-basic .fr-element{
+	padding: 0px 10px;
+}
+.fr-toolbar .fr-command.fr-btn, .fr-popup .fr-command.fr-btn {
+	margin: 0;
+}
 </style>
 <body id="pageContent">
 	<input type="checkbox" id="toggle-right">

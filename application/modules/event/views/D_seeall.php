@@ -24,8 +24,8 @@ if ($this->agent->mobile()) {
 }
 ?>
 
-<div class="container mt-100">
-	<div class="row">
+<div class="container mt-120">
+	<div class="row mb-20">
 		<div class="col-12">
 			<p class="title_">Peserta Lomba</p>
 		</div>
@@ -34,7 +34,7 @@ if ($this->agent->mobile()) {
 		<!-- <?php echo json_encode($seeall_event); ?> -->
 		<?php foreach ($seeall_event as $s_book): ?>
 			<?php print_r($s_book['popular_book_isLike']); ?>
-			<div class="col-6 mb-20">
+			<div class="col-md-6 col-sm-12 col-xs-12 mb-20">
 			<div class="card">
 				<div class="card-body">
 					<div class="media">

@@ -24,7 +24,7 @@ function getBestBook() {
 			title = txt.substring(0, 17) + '...';
 	      }
 	      if (val.popular_cover_url == null || val.popular_cover_url == '' || val.popular_cover_url == 'Kosong') {
-	        cover = base_url+'public/img/icon-tab/empty-set.png';
+	        cover = 'https://assets.dev-baboo.co.id/baboo-cover/default3.png';
 	      }else{
 	        cover = val.popular_cover_url;
 	      }

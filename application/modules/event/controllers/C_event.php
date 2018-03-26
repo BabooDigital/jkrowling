@@ -162,6 +162,7 @@ class C_Event extends MX_Controller
         $data['js'][] = "public/js/jquery.min.js";
         $data['js'][]   = "public/js/umd/popper.min.js";
         $data['js'][] = "public/js/bootstrap.min.js";
+        $data['js'][] = "public/js/custom/notification.js";
         if (!$this->session->userdata('isLogin')) {
             $data['css'][] = "public/css/sweetalert2.min.css";
             $data['js'][] = "public/js/sweetalert2.all.min.js";
