@@ -152,8 +152,11 @@ class C_edit_profile extends MX_Controller {
 		$data['js'][] = "public/js/moment.js";
 		$data['js'][] = "public/js/combodate.js";
 		$data['js'][] = "public/js/custom/mobile/r_first_login.js";
-		
-		$this->load->view('R_fill_profile', $data);
+		if ($this->agent->mobile()) {
+			$this->load->view('R_fill_profile', $data);
+		}else{
+			$this->load->view('D_fill_profile', $data);
+		}
 	}
 
 	public function selectCategory()
@@ -172,7 +175,11 @@ class C_edit_profile extends MX_Controller {
 		$data['js'][] = "public/js/combodate.js";
 		$data['js'][] = "public/js/custom/mobile/r_profile_selectcat.js";
 
-		$this->load->view('R_select_category', $data);
+		if ($this->agent->mobile()) {
+			$this->load->view('R_select_category', $data);
+		}else{
+			$this->load->view('D_select_category', $data);
+		}
 	}
 
 	public function firstFollowUser()
@@ -199,7 +206,11 @@ class C_edit_profile extends MX_Controller {
 			$data['js'][] = "public/js/combodate.js";
 			$data['js'][] = "public/js/custom/mobile/r_first_follow.js";
 
-			$this->load->view('R_first_follow', $data);
+			if ($this->agent->mobile()) {
+				$this->load->view('R_first_follow', $data);
+			}else{
+				$this->load->view('D_first_follow', $data);
+			}
 		}else{
 			redirect('selectcategory','refresh');
 		}

@@ -182,7 +182,7 @@ a:hover {
       width:100%;
     }
     ::-webkit-scrollbar { 
-      display: none; 
+      /*display: none; */
     }
     .checked{
       color: orange;

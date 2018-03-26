@@ -2,6 +2,49 @@ function funcDropdown() {
     document.getElementById("myDropdown").classList.toggle("showss")
 }
 $(document).ready(function() {
+	// validateProfile();
+	$("#profile-edit").validate({
+		rules: {
+			fullname: {
+				required: true
+			},
+			dateofbirth: {
+				required: true
+			},
+			address : {
+				required: true
+			}
+		},
+		messages: {
+			fullname: {
+				required: 'Nama Lengkap harus di isi'
+			},
+			dateofbirth: {
+				required: 'Tanggal Harus Diisi'
+			},
+			address: {
+				required: 'Alamat Harus di isi'
+			}
+		},
+		submitHandler: function(form) {
+        $.ajax({
+            url: base_url+'edit_profile',
+            type: 'POST',
+            data: $(form).serialize(),
+            success: function(response) {
+     //        	if (response.code == 200) {
+				  $('#alert_success').show('slow/400/fast', function() {
+        			setTimeout(function() {
+						$('#edit-profile').modal('hide');
+					}, 300);
+				  });
+            	// }
+     			// console.log(response);
+            	// location.href = base_url+'';
+            }            
+        });
+    }
+	});
 	$(document).on('click', '.profile', function() {
         event.preventDefault();
         var boo = $(this);
@@ -147,7 +190,8 @@ $(document).ready(function() {
 				} else if (item.cover_url == null || item.cover_url == [] || item.cover_url == "") {
 					cover = 'public/img/blank_cover.png';
 				}
-				datas += "<li class='list-group-item'> <div class='media'> <div class='media-left mr-10'> <a href='book/"+ item.id_book+"-"+convertToSlug(item.title_book) +"'><img class='media-object' src='"+ cover +"' width='60' height='80'></a> </div> <div class='media-body'> <div> <h4 class='media-heading bold mt-10'><a href='book/"+ item.id_book+"-"+convertToSlug(item.title_book) +"'>"+ item.title_book +"</a></h4> <p style='font-size: 10pt;'>by <a href='profile/"+item.author_id+"-"+convertToSlug(item.author_name)+"'>"+ item.author_name +"</a></p> </div> </div> </div> </li>";
+				// console.log(item);
+				datas += "<li class='list-group-item'> <div class='media'> <div class='media-left mr-10'> <a href='book/"+ item.book_id+"-"+convertToSlug(item.title_book) +"'><img class='media-object' src='"+ cover +"' width='60' height='80'></a> </div> <div class='media-body'> <div> <h4 class='media-heading bold mt-10'><a href='book/"+ item.book_id+"-"+convertToSlug(item.title_book) +"'>"+ item.title_book +"</a></h4> <p style='font-size: 10pt;'>by <a href='profile/"+item.author_id+"-"+convertToSlug(item.author_name)+"'>"+ item.author_name +"</a></p> </div> </div> </div> </li>";
 			});
 		}else {
 			var datas = "";
@@ -214,6 +258,9 @@ function funcDropdown() {
 function convertToSlug(d) {
 	return d.toLowerCase().replace(/[^\w ]+/g, "").replace(/ +/g, "-")
 };
+function validateProfile() {
+	
+}
 $(document).on("click", ".share-fb", function() {
     var aww = $(this);
     var e = new FormData,
