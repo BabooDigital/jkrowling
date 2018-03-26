@@ -31,7 +31,7 @@
 				</div>
 				<div class="col-2 mt-5 mb-1">
 					<center>
-						<div id="noti_Counter"></div>
+						<div id="noti_Counter" style="top:-20px;right: 20px;"></div>
 						<a class="menu-page <?php if ($this->uri->segment('1') == 'activity') { echo 'boo-menu-active'; }else { echo 'boo-menu'; } ?>" href="<?php echo site_url('activity'); ?>" id="tab_page" dat-title="activity"><img height="25" src="<?php if ($this->uri->segment('1') == 'activity') { echo base_url('public/img/icon-tab/notif_icon_active.svg'); }else { echo base_url('public/img/icon-tab/notif_icon.svg'); } ?>" width="25">
 						<p>Activity</p></a>
 					</center>

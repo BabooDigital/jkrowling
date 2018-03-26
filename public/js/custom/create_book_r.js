@@ -191,6 +191,7 @@ function backLink() {
     var formData = new FormData();
     var book_id = $("#book_id").val();
     var chapter_title = $("#chapter_title_out").val();
+    var chapter_id = $("#ch_id").val();
     var paragraph_book = $("#paragraph_book").val();
     var url = base_url+'savechapter';
     
@@ -215,7 +216,7 @@ function backLink() {
             $.ajax({
               type:"POST",
               url:url,
-              data: { 'book_id' : book_id, 'chapter_title' : chapter_title, 'paragraph_book' : paragraph_book},
+              data: { 'book_id' : book_id, 'chapter_title' : chapter_title, 'paragraph_book' : paragraph_book, 'chapter_id' : chapter_id},
               dataType: 'json',
               beforeSend: function () {
                 swal({

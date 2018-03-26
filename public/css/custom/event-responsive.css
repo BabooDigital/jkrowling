@@ -133,7 +133,7 @@ img {
 }
 .ikutPosi {
         position: absolute;
-    top: 28%;
+    top: 655px;
     left: 21%;
 }
 }
@@ -142,7 +142,7 @@ img {
 @media only screen and (min-width: 600px) {
     .ikutPosi {
         position: absolute;
-        top: 39%;
+        top: 1700px;
         left: 21%;
     }
 }

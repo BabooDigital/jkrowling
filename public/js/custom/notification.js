@@ -65,7 +65,7 @@ function count_notif() {
     $('#noti_Counter')
           .css({ opacity: 0 })
           .text(count_unread)
-          .css({ top: '-10px', opacity: 1  });
+          .css({opacity: 1  });
   })
   .fail(function() {
     // console.log("error");
