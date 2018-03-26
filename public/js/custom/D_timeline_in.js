@@ -87,7 +87,7 @@ $(document).ready(function() {
             action_type: "og.shares",
             action_properties: JSON.stringify({
                 object: {
-                    "og:url": base_url + "book/" + convertToSlug(links) + "/preview",
+                    "og:url": base_url + "book/" + links + "/preview",
                     "og:title": title + " ~ By : " + authname,
                     "og:description": desc,
                     "og:image": coverimg

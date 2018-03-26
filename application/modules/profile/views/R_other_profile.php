@@ -101,7 +101,7 @@ echo "<script>(function(d, s, id) {
 									</div>
 								</div>
 								<div class='media'>
-									<a href='<?php echo site_url(); ?>book/<?php echo $book['book_id']; ?>-<?php echo url_title($book['title_book'], 'dash', true); ?>' class="segment" data-href="<?php echo $book['book_id']; ?>-<?php echo url_title($book['title_book'], 'dash', true); ?>"><img alt='<?php echo $book['title_book']; ?>' class='w-100 imgcover cover_image' src='<?php echo $book['cover_url']; ?>'></a>
+									<a href='<?php echo site_url(); ?>book/<?php echo $book['book_id']; ?>-<?php echo url_title($book['title_book'], 'dash', true); ?>' class="segment" data-href="<?php echo $book['book_id']; ?>"><img alt='<?php echo $book['title_book']; ?>' class='w-100 imgcover cover_image' src='<?php echo $book['cover_url']; ?>'></a>
 								</div><a href='<?php echo site_url(); ?>book/<?php echo $book['book_id']; ?>-<?php echo url_title($book['title_book'], 'dash', true); ?>'>
 									<h5 class='pt-20 w-100' style='font-weight: 700;'><b class="dbooktitle"><?php echo $book['title_book']; ?></b></h5></a>
 									<div class='w-100'>
