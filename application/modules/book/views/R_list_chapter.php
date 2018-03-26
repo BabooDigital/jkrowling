@@ -40,7 +40,7 @@
 	<input type="hidden" name="book_id" id="book_id" value="<?php echo $book_id; ?>">
 				</div>
 			</div>
-			<nav class="navbar navbar-expand-lg fixed-bottom" style="height:60px;">
+			<nav class="navbar navbar-expand-lg fixed-bottom" style="height:60px;background: #f3f5f7;">
 				<div class="container">
 					<form style="width: 100%;" method="post" action="<?php echo site_url('chapter') ?>">
 						<input type="hidden" name="book_id" value="<?php echo $book_id; ?>">

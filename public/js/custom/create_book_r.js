@@ -237,7 +237,7 @@ function backLink() {
         }
       });
     }else {
-      window.location = base_url+'create_mybook';
+      window.history.back();
     }
   });
 }
@@ -303,6 +303,7 @@ function addChapter() {
     var book_id = $("#book_id").val();
     var chapter_title = $("#chapter_title_out").val();
     var paragraph_book = $("#paragraph_book").val();
+    var chapter_id = $("#ch_id").val();
     var url = base_url+'savechapter';
 
     swal({
@@ -326,7 +327,7 @@ function addChapter() {
           $.ajax({
             type:"POST",
             url:url,
-            data: { 'book_id' : book_id, 'chapter_title' : chapter_title, 'paragraph_book' : paragraph_book},
+            data: { 'book_id' : book_id, 'chapter_title' : chapter_title, 'paragraph_book' : paragraph_book, 'chapter_id' : chapter_id},
             dataType: 'json',
             beforeSend: function () {
               swal({
@@ -392,7 +393,7 @@ function saveEditChapter() {
     var book_id = $("#book_id").val();
     var chapter_title = $("#chapter_title_out").val();
     var paragraph_book = $("#paragraph_book").val();
-    var url = base_url+'saveeditchapter';
+    var url = base_url+'savechapter';
 
     if (chapter_title == "" || paragraph_book == "") {
       swal(
