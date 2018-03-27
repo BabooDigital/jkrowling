@@ -1347,6 +1347,10 @@ class C_createbook extends MX_Controller
 
 	public function mybook()
 	{
+		if ($this->session->userdata('dataBook')) {
+			$this->session->unset_userdata('dataCover');
+	    	$this->session->unset_userdata('dataBook');
+		}
 		error_reporting(0);
 		$auth = $this->session->userdata('authKey');
 		
