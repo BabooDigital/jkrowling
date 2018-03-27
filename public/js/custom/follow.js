@@ -4,7 +4,7 @@ $(document).ready(function() {
 		b = new FormData;
 		a.removeClass("follow-u");
 		a.addClass("unfollow-u");
-		$(".txtfollow").text("Unfollow");
+		a.children(".txtfollow").text("Diikuti");
 		b.append("user_id", $("#iaiduui").val());
 		b.append("fuser_id", a.attr("data-follow"));
 		$.ajax({
@@ -16,9 +16,6 @@ $(document).ready(function() {
 			processData: !1,
 			data: b
 		}).done(function() {
-			// a.removeClass("follow-u");
-			// a.addClass("unfollow-u");
-			// $(".txtfollow").text("Unfollow")
 		}).fail(function() {
 			console.log("error")
 		}).always(function() {})
@@ -28,7 +25,7 @@ $(document).ready(function() {
 		b = new FormData;
 		a.removeClass("unfollow-u");
 			a.addClass("follow-u");
-			$(".txtfollow").text("Follow");
+			a.children(".txtfollow").text("Ikuti");
 		b.append("user_id", $("#iaiduui").val());
 		b.append("fuser_id", a.attr("data-follow"));
 		$.ajax({
@@ -40,9 +37,6 @@ $(document).ready(function() {
 			processData: !1,
 			data: b
 		}).done(function() {
-			// a.removeClass("unfollow-u");
-			// a.addClass("follow-u");
-			// $(".txtfollow").text("Follow")
 		}).fail(function() {
 			console.log("error")
 		}).always(function() {})

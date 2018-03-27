@@ -1,11 +1,4 @@
 <style type="text/css">
-.nametitled {
-    font-weight: 600;
-    font-size: 12pt;
-}
-.rborder {
-    border-right: 1px #e3e3e3 solid;
-}
 .btnfollow-f {
     background: #7554bd;
     border: none;
