@@ -174,6 +174,10 @@ class C_timeline extends MX_Controller {
 	}
 	public function createbook_id()
 	{
+		if ($this->session->userdata('dataBook')) {
+			$this->session->unset_userdata('dataCover');
+	    	$this->session->unset_userdata('dataBook');
+		}
 		error_reporting(0);
 		$auth = $this->session->userdata('authKey');
 		$id = $this->input->post('iaiduui');
