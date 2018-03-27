@@ -1,12 +1,12 @@
 <?php 
 $base = (isset($_SERVER['HTTPS']) ? "https://" : "http://").$_SERVER['HTTP_HOST'];
-$appid = '382931948848880';
+$appid = '196429547790304';
 if (strpos($base, 'stg.baboo.id') !== false) {
-	$appid = '1015515621929474';
+	$appid = '1677083049033942';
 } elseif (strpos($base, 'localhost/jkrowling') !== false || strpos($base, 'dev-baboo.co.id') !== false) {
-	$appid = '382931948848880';
+	$appid = '196429547790304';
 } elseif (strpos($base, 'baboo.id') !== false || strpos($base, 'www.baboo.id') !== false) {
-	$appid = '142508586445900';
+	$appid = '2093513617332249';
 }
 echo "<script>(function(d, s, id) {
 	var js, fjs = d.getElementsByTagName(s)[0];
@@ -62,13 +62,13 @@ echo "<script>(function(d, s, id) {
 									src="<?php echo base_url('') ?>public/img/icon-tab/icon_message.svg" width="20"> Kirim Pesan
 								</a>
 								<?php if($userdata['isFollow'] == false) { ?>
-								<a href="javascript:void();" class="btn-message">
+								<a href="javascript:void(0);" class="btn-message follow-u" data-follow="<?php echo $userdata['user_id']; ?>">
 									<img src="<?php echo base_url('') ?>public/img/icon-tab/add_follow.svg" width="25">
-									Follow
+									<span class="txtfollow">Follow</span>
 								</a>
 								<?php }else { ?>
-								<a href="javascript:void();" class="btn-message">
-									Unfollow
+								<a href="javascript:void(0);" class="btn-message unfollow-u" data-follow="<?php echo $userdata['user_id']; ?>">
+									<span class="txtfollow">Unfollow</span>
 								</a>
 								<?php } ?>
 							</div>
