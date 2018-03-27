@@ -1,3 +1,12 @@
+<?php if ($bookmark['code'] == 404): ?>
+<div class="col-md-12" align="center">
+	<div id="myWorkContent">
+		<div class='container first_login mt-30'> <div class='row'> <div class='mx-auto' style='width: 85%;'> <div class='text-center mb-10'> <img src='<?php echo base_url('') ?>public/img/icon_draft_blank.png' width='190'> </div> <div class='text-center'> <h4><b></b></h4> <p style='font-size: 12pt;'>Yuk cari buku yg kamu suka <br> dan jadikan bookmark koleksi buku kamu</p></div> 
+		<a href="<?php echo site_url('timeline') ?>" ><button class="search-now">Cari Sekarang</button></a>
+	</div> </div> </div>
+	</div>
+</div>	
+<?php else: ?>
 <?php foreach ($bookmark['data'] as $book) { ?>
 <div class="col-3">
 	<div id="myWorkContent">
@@ -21,3 +30,4 @@
 	</div>
 </div>
 <?php } ?>
+<?php endif ?>
