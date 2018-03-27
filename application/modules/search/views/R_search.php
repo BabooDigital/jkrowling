@@ -22,13 +22,13 @@
 </style>
 <?php 
     $base = (isset($_SERVER['HTTPS']) ? "https://" : "http://").$_SERVER['HTTP_HOST'];
-    $appid = '382931948848880';
+    $appid = '196429547790304';
     if (strpos($base, 'stg.baboo.id') !== false) {
-        $appid = '1015515621929474';
+        $appid = '1677083049033942';
     } elseif (strpos($base, 'localhost/jkrowling') !== false || strpos($base, 'dev-baboo.co.id') !== false) {
-        $appid = '382931948848880';
+        $appid = '196429547790304';
     } elseif (strpos($base, 'baboo.id') !== false || strpos($base, 'www.baboo.id') !== false) {
-        $appid = '142508586445900';
+        $appid = '2093513617332249';
     }
     echo "<script>(function(d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];

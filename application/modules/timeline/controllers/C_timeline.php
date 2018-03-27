@@ -640,4 +640,9 @@ class C_timeline extends MX_Controller {
 		}else{
 		}
 	}
+
+	public function getPopularWriters()
+	{
+		
+	}
 }

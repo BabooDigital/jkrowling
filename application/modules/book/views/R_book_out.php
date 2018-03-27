@@ -122,15 +122,15 @@
 			<div class="row">
 				<div class="col-12">
 					<div id='detailStyle' style="font-size: 21px;">
-					<?php 
-					foreach ($desc as $book) {
-						$text = strip_tags($book['paragraph_text']);
-						$data .= $book['paragraph_text'];
-					}
-					echo $data;
-					?>
+						<?php 
+						foreach ($desc as $book) {
+							$text = strip_tags($book['paragraph_text']);
+							$data .= $book['paragraph_text'];
+						}
+						echo $data;
+						?>
+					</div>
 				</div>
-			</div>
 			</div>
 			<hr>
 			<div class="row mb-20">
@@ -153,6 +153,46 @@
 	<script src="<?php echo base_url('') ?>public/js/jquery.min.js" type="text/javascript"></script>
 	<script src="<?php echo base_url('') ?>public/js/umd/popper.min.js" type="text/javascript"></script>
 	<script src="<?php echo base_url('') ?>public/js/bootstrap.min.js" type="text/javascript"></script>
-	<script src="<?php echo base_url('') ?>public/js/menupage.js" type="text/javascript"></script>
+	<script>
+		$(document).ready(function() {
+			showPopUpBanner();
+		});
+		var isMobile = {
+			Android: function() {
+				return navigator.userAgent.match(/Android/i);
+			},
+			BlackBerry: function() {
+				return navigator.userAgent.match(/BlackBerry/i);
+			},
+			iOS: function() {
+				return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+			},
+			Opera: function() {
+				return navigator.userAgent.match(/Opera Mini/i);
+			},
+			Windows: function() {
+				return navigator.userAgent.match(/IEMobile/i);
+			},
+			any: function() {
+				return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+			}
+		};
+		var bid = '<?php echo $this->uri->segment(2); ?>';
+		var link = "intent://www.baboo.id/book/"+bid+"#Intent;scheme=https;package=id.android.baboo;S.doctype=FRA;S.docno=FRA1234;S.browser_fallback_url=market://details?id=id.android.baboo;end";
+		$('.bannerPopUp').html("<div class='popUpBannerBox'> <div class='popUpBannerInner'> <div class='popUpBannerContent'> <a href='"+link+"'><span style='background:  #482d8e;padding: 15px 95px;border-radius:  35px;color:  #fff;font-size: 15pt;'>Baca di Aplikasi</span></a><a href='#' class='closeButton'>&#120;</a> </div> </div> </div>");
+
+		function showPopUpBanner() {
+			if( isMobile.Android() ) {
+				$('.popUpBannerBox').fadeIn("2000");
+			}else{
+
+			}
+		}
+
+		$('.closeButton').click(function() {
+			$('.popUpBannerBox').fadeOut("2000");
+			return false;
+		});
+	</script>
 </body>
 </html>

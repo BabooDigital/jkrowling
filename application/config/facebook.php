@@ -19,17 +19,17 @@
 
 	$CI =& get_instance();
 	$base = (isset($_SERVER['HTTPS']) ? "https://" : "http://").$_SERVER['HTTP_HOST'];
-	$appid = '382931948848880';
-	$secret = '430d521842b720b566c2fae7a81d0022';
+	$appid = '196429547790304';
+	$secret = '51d446946c5024034b06b66a18e70a81';
 	if (strpos($base, Curl_Request::staging) !== false) {
-		$appid = '1015515621929474';
-		$secret = 'd43ecd9f845acf851018a8980df350ea';
+		$appid = '1677083049033942';
+		$secret = '72bfed7ed3b202de2797977e5d1ce09b';
 	} elseif (strpos($base, Curl_Request::local) !== false || strpos($base, Curl_Request::dev) !== false) {
-		$appid = '382931948848880';
-		$secret = '430d521842b720b566c2fae7a81d0022';
+		$appid = '196429547790304';
+		$secret = '51d446946c5024034b06b66a18e70a81';
 	} elseif (strpos($base, Curl_Request::production) !== false) {
-		$appid = '142508586445900';
-		$secret = '241fc515da5a34cac76f9b58df81cdce';
+		$appid = '2093513617332249';
+		$secret = '39ee66409a3d976689d7db1fc48e842f';
 	}
 
 

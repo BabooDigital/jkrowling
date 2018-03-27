@@ -54,13 +54,13 @@
 </style>
 <?php 
 $base = (isset($_SERVER['HTTPS']) ? "https://" : "http://").$_SERVER['HTTP_HOST'];
-$appid = '382931948848880';
+$appid = '196429547790304';
 if (strpos($base, 'stg.baboo.id') !== false) {
-	$appid = '1015515621929474';
+	$appid = '1677083049033942';
 } elseif (strpos($base, 'localhost/jkrowling') !== false || strpos($base, 'dev-baboo.co.id') !== false) {
-	$appid = '382931948848880';
+	$appid = '196429547790304';
 } elseif (strpos($base, 'baboo.id') !== false || strpos($base, 'www.baboo.id') !== false) {
-	$appid = '142508586445900';
+	$appid = '2093513617332249';
 }
 echo "<script>(function(d, s, id) {
 	var js, fjs = d.getElementsByTagName(s)[0];
@@ -70,7 +70,10 @@ echo "<script>(function(d, s, id) {
 	fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>";
 ?>
-<body id="pageContent">
+	<!-- BANNER POPUP BUTTON PLAYSTORE MOBILE -->
+	<div class="bannerPopUp"></div>
+	<!-- BANNER POPUP BUTTON PLAYSTORE MOBILE -->
+
 	<input type="checkbox" id="toggle-right">	
 	<div class="page-wrap wrapper">
 		<div id="banner">
@@ -225,12 +228,14 @@ echo "<script>(function(d, s, id) {
 		<?php echo get_js($js) ?>
 	<?php endif ?>
 	<script type="text/javascript">
+		$(document).ready(function() {
+			showPopUpBanner();
+		});
+
 		var segment = '<?php echo $this->uri->segment(2); ?>';
 		var active = '<?php echo $this->uri->segment(3); ?>';
 		var count_data = '<?php echo $detailChapter; ?>';
-	</script>
-	<script type="<?php echo base_url('') ?>/public/plugins/froala/js/plugins/image.min.js"></script>
-	<script>
+
 		var banner_height = $("#navscroll, #navscrollf").height();
 		var lastScrollTop = 0;
 		$(window).scroll(function() {
@@ -243,6 +248,43 @@ echo "<script>(function(d, s, id) {
 			}
 			lastScrollTop = currScrollTop;
 
+		});
+
+		var isMobile = {
+			Android: function() {
+				return navigator.userAgent.match(/Android/i);
+			},
+			BlackBerry: function() {
+				return navigator.userAgent.match(/BlackBerry/i);
+			},
+			iOS: function() {
+				return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+			},
+			Opera: function() {
+				return navigator.userAgent.match(/Opera Mini/i);
+			},
+			Windows: function() {
+				return navigator.userAgent.match(/IEMobile/i);
+			},
+			any: function() {
+				return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+			}
+		};
+		var bid = segment.split('-');
+		var link = "intent://www.baboo.id/book/"+bid[0]+"#Intent;scheme=https;package=id.android.baboo;S.doctype=FRA;S.docno=FRA1234;S.browser_fallback_url=market://details?id=id.android.baboo;end";
+		$('.bannerPopUp').html("<div class='popUpBannerBox'> <div class='popUpBannerInner'> <div class='popUpBannerContent'> <a href='"+link+"'><span style='background:  #482d8e;padding: 15px 95px;border-radius:  35px;color:  #fff;font-size: 15pt;'>Baca di Aplikasi</span></a><a href='#' class='closeButton'>&#120;</a> </div> </div> </div>");
+
+		function showPopUpBanner() {
+			if( isMobile.Android() ) {
+				$('.popUpBannerBox').fadeIn("2000");
+			}else{
+
+			}
+		}
+
+		$('.closeButton').click(function() {
+			$('.popUpBannerBox').fadeOut("2000");
+			return false;
 		});
 	</script>
 </body>
