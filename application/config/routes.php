@@ -78,15 +78,18 @@ $route['search/:any'] = 'search/C_search';
 $route['searching'] = 'search/C_search/search';
 $route['createidbook'] = 'timeline/C_timeline/createbook_id';
 
+// See All / Lihat Semua
+$route['popular_writers'] = 'timeline/C_timeline/AllPopularWriters';
+
 
 // Draft
 $route['yourdraft'] = 'timeline/C_timeline/draftListView';
 $route['deldraft'] = 'book/C_book/deleteDraftBook';
 
 $route['writter'] = 'timeline/C_timeline/getWritter';
+$route['writters'] = 'timeline/C_home/getWritter';
 $route['bestBook'] = 'timeline/C_timeline/getBestBook';
 // $route['bestBookHome'] = 'timeline/C_home/getBestBookEvent';
-$route['writters'] = 'timeline/C_home/getWritter';
 $route['slide'] = 'timeline/C_home/getSlide';
 
 // Follow

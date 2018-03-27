@@ -1102,20 +1102,14 @@ input.formsearch:focus {
 		/*Upload Cover CSS STYLE*/
 		.coverprev > input[type=file] {
 			cursor: pointer;
-			width: 40px;
-			position: relative;
-			bottom: 135px;
+		    width: 25%;
+		    height: 100px;
+		    position: relative;
+		    bottom: 165px;
 		}
-		.coverprev > input[type=file] {
-	/*display: inline-block;
-	border-radius: 2px;
-	background-color: #ffffff;
-	box-shadow: 0 2px 4px 0 rgba(111, 111, 111, 0.16);
-	border: solid 1px #b5bec3;
-	padding: 90px 60px 60px 60px;*/
 }
 .coverprev > input[type=file]:before {
-	content: url(../img/assets/icon_plus_purple.svg);
+	/*content: url(../img/assets/icon_plus_purple.svg);*/
 }
 .coverprev > input[type=file]::-webkit-file-upload-button {
 	visibility: hidden;
@@ -1515,7 +1509,7 @@ input.formsearch:focus {
 
 	/* THE POPULAR RED NOTIFICATIONS COUNTER. */
 	#noti_Counter {
-		    display: block;
+		    display: none;
     position: absolute;
     background: #E1141E;
     color: #FFF;
