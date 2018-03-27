@@ -27,7 +27,7 @@
 <div class="container">
     <!-- <div class="row"> -->
         <div class="paddingslide" align="center">
-            <div class="col-md-8">
+            <div class="col-md-10">
                 <h4 align="left"><b>Terakhir Dibaca</b></h4>
                 <div class="your-class">
                     <?php $this->load->view('include/slide'); ?>
@@ -35,7 +35,7 @@
             </div>
         </div>
         <div class="paddingslide" align="center">
-            <div class="col-md-8">
+            <div class="col-md-10">
                 <h4 align="left"><b>Bookmark Buku</b></h4>
                 <div class="container" align="center">
                     <div class="row">
