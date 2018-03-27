@@ -1,4 +1,5 @@
 $(document).ready(function() {
+  
   $(document).on('click', '.share-fb', function() {
 
     var aww = $(this);
@@ -166,7 +167,6 @@ $(document).ready(function() {
 
 });
 
-
 function convertToSlug(Text) {
   return Text
   .toLowerCase()
@@ -175,6 +175,9 @@ function convertToSlug(Text) {
 }
 function shareBtn() {
   document.getElementById("dropdownShare").classList.toggle("show");
+}
+function kFormatter(num) {
+    return num > 999 ? (num/1000).toFixed(1) + 'k' : num
 }
 window.onclick = function(event) {
   if (!event.target.matches('.dropbtn')) {

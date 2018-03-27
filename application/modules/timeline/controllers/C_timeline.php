@@ -13,7 +13,7 @@ class C_timeline extends MX_Controller {
 		if ($this->session->userdata('isLogin') != 200) {
 			redirect('home');
 		}
-		$this->load->library('simple_cache');
+		$this->load->library(array('simple_cache','thousand_to_k'));
 	}
 
 	
@@ -31,11 +31,11 @@ class C_timeline extends MX_Controller {
 			$id = "";
 		}
 		$uid = array(
-			'user_id' => $userdata['user_id'],
+			// 'user_id' => $userdata['user_id'],
 			'count' => $id
 		);
 		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, $this->API.'timeline/Timelines/index'.$id);
+		curl_setopt($ch, CURLOPT_URL, $this->API.'timeline/Timelines/home');
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
 		curl_setopt($ch, CURLOPT_POST, 1);
@@ -60,7 +60,7 @@ class C_timeline extends MX_Controller {
 				$headers[trim($middle[0])] = trim($middle[1]);
 			}
 		}
-    	$resval = (array)json_decode(end($data), true);
+		$resval = (array)json_decode(end($data), true);
 
 		$psn = $resval['message'];
 		$book = $resval['data'];
@@ -73,14 +73,14 @@ class C_timeline extends MX_Controller {
 		{
 			$datas['home'] = $book;
 
-	   		$datas['title'] = "Baboo.id";
+			$datas['title'] = "Baboo.id";
 			
-	    	$datas['css'][] = "public/plugins/holdOn/css/HoldOn.css";
+			$datas['css'][] = "public/plugins/holdOn/css/HoldOn.css";
 
-	    	if ($this->session->flashdata('is_follow_event') == 200 || $this->session->flashdata('is_not_follow_event') == 403) {
-	    		$datas['css'][] = "public/css/sweetalert2.min.css";
+			if ($this->session->flashdata('is_follow_event') == 200 || $this->session->flashdata('is_not_follow_event') == 403) {
+				$datas['css'][] = "public/css/sweetalert2.min.css";
 				$datas['js'][] = "public/js/sweetalert2.all.min.js";
-	    	}
+			}
 
 			$datas['js'][]   = "public/js/jquery.min.js";
 			$datas['js'][]   = "public/js/umd/popper.min.js";
@@ -88,7 +88,7 @@ class C_timeline extends MX_Controller {
 			$datas['js'][]   = "public/js/jquery.sticky-kit.min.js";
 			$datas['js'][] = "public/plugins/holdOn/js/HoldOn.js";
 			$datas['js'][]   = "public/js/custom/notification.js";
-			$datas['js'][]   = "public/js/custom/search.js";
+			$datas['js'][]   = "public/js/custom/follow.js";
 			$this->simple_cache->cache_item('key', $datas);
 		} else {
 			$datas = $this->simple_cache->get_item('key');
@@ -176,7 +176,7 @@ class C_timeline extends MX_Controller {
 	{
 		if ($this->session->userdata('dataBook')) {
 			$this->session->unset_userdata('dataCover');
-	    	$this->session->unset_userdata('dataBook');
+			$this->session->unset_userdata('dataBook');
 		}
 		error_reporting(0);
 		$auth = $this->session->userdata('authKey');
@@ -616,8 +616,76 @@ class C_timeline extends MX_Controller {
 		}
 	}
 
-	public function getPopularWriters()
+	public function AllPopularWriters()
 	{
-		
+		error_reporting(0);
+		$auth = $this->session->userdata('authKey');
+		$url = $this->API . 'timeline/Home/popularWriter';
+		$ch = curl_init();
+		$options = array(
+			CURLOPT_URL => $url,
+			CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_CUSTOMREQUEST => "GET",    // Atur type request
+            CURLOPT_POST => false,    // Atur menjadi GET
+            CURLOPT_FOLLOWLOCATION => false,    // Follow redirect aktif
+            CURLOPT_SSL_VERIFYPEER => 0,
+            CURLOPT_HEADER => 1,
+            CURLOPT_HTTPHEADER => array('baboo-auth-key: ' . $auth)
+
+        );
+		curl_setopt_array($ch, $options);
+		$content = curl_exec($ch);
+		curl_close($ch);
+		$headers = array();
+
+		$data = explode("\n", $content);
+		$headers['status'] = $data[0];
+
+		array_shift($data);
+
+		foreach ($data as $part) {
+			$middle = explode(":", $part);
+			$headers[trim($middle[0])] = trim($middle[1]);
+		}
+
+		$resval = json_decode(end($data), true);
+		$auth = $headers['BABOO-AUTH-KEY'];
+		if (isset($resval['code']) && $resval['code'] == 200) {
+			if ($this->agent->is_mobile())
+			{
+				$data['populars'] = $resval['data'];
+				$data['title'] = "Daftar Penulis Populer | Baboo.id";
+				$data['css'][] = "public/css/bootstrap.min.css";
+				$data['css'][] = "public/css/font-awesome.min.css";
+				$data['css'][] = "public/css/baboo-responsive.css";
+				$data['css'][] = "public/css/custom-margin-padding.css";
+
+				$data['js'][] = "public/js/jquery.min.js";
+				$data['js'][] = "public/js/tether.min.js";
+				$data['js'][] = "public/js/umd/popper.min.js";
+				$data['js'][] = "public/js/bootstrap.min.js";
+				$data['js'][]   = "public/js/custom/follow.js";
+				$data['js'][] = "public/js/menupage.js";
+
+				$this->session->set_userdata('authKey', $auth);
+				$this->load->view('data/R_popular_writer', $data);
+			}
+			else
+			{
+				
+			}
+
+		} else {
+			$status = $resval['code'];
+		}
+
+		if ($resval['code'] == 403) {
+			$this->session->unset_userdata('userData');
+			$this->session->unset_userdata('authKey');
+			$this->session->sess_destroy();
+			redirect('login', 'refresh');
+		} else {
+			
+		}
 	}
 }
