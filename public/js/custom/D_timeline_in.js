@@ -127,9 +127,9 @@ $(document).ready(function() {
         dataType: "json"
     }).done(function(e) {
         $(".loader").hide();
-        var a = $.parseJSON(e),
-            t = "";
-        $.each(a.data, function(e, a) {
+        // var a = $.parseJSON(e),
+           var t = "";
+        $.each(e, function(e, a) {
             var o;
             var follow = '';
             if (a.isFollow == false) {

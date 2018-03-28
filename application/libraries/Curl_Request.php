@@ -69,17 +69,17 @@ class Curl_Request
 		    $headers[trim($middle[0])] = trim($middle[1]);
 		}
 	}
-	public function curl_post_no_key($url, $sendData)
+	public function curl_post_no_key($url, $sendData = '', $auth = '')
 	{
 		$ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $sendData);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
         curl_setopt($ch, CURLOPT_HEADER, 1);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key: '.$auth));
         $result = curl_exec($ch);
         
         $headers=array();
@@ -99,6 +99,38 @@ class Curl_Request
         
         $resval = (array)json_decode(end($data), true);
 
+        return $resval;
+	}
+	public function curl_get_no_key($url, $sendData = '', $auth = '')
+	{
+		error_reporting(0);
+		$ch = curl_init();
+		$options = array(
+			CURLOPT_URL			 => $url,
+			CURLOPT_RETURNTRANSFER => true,
+	          CURLOPT_CUSTOMREQUEST  =>"GET",
+	          CURLOPT_POST           =>false,
+	          CURLOPT_FOLLOWLOCATION => false,
+	          CURLOPT_SSL_VERIFYPEER => 0,
+	          CURLOPT_HEADER         => 1,
+	          CURLOPT_HTTPHEADER	 => array('baboo-auth-key: '.$auth)
+
+	      );
+		curl_setopt_array($ch, $options);
+		$content = curl_exec($ch);
+		curl_close($ch);
+		$headers=array();
+
+		$data=explode("\n",$content);
+		$headers['status']=$data[0];
+
+		array_shift($data);
+
+		foreach($data as $part){
+			$middle=explode(":",$part);
+			$headers[trim($middle[0])] = trim($middle[1]);
+		}
+		$resval = (array)json_decode(end($data), true);
         return $resval;
 	}
 }
