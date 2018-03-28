@@ -60,7 +60,7 @@ class C_Event extends MX_Controller
     public function followEvent()
     {
         $email = $this->session->userdata('userData')['email'];
-        $data = $this->curl_request->curl_post_no_key($this->API.'/event/Events/cekEvent', array('email'=>$email));
+        $data = $this->curl_request->curl_post($this->API.'/event/Events/cekEvent', array('email'=>$email));
 
         if ($data['code'] == 200) {
             // echo "belum terdaftar";
