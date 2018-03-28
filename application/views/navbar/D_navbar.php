@@ -47,7 +47,7 @@
 						</div>
 					</li>			
 					<li class="nav-item mt-7">
-						<a class="nav-link <?php if ($this->uri->segment('1') == 'message') { echo 'boo-menu-des-active'; }else { echo 'boo-menu-des'; } ?>" href="<?php echo site_url('message') ?>"><img src="<?php echo site_url(); ?>public/img/icon-tab/message.svg"  height="27"><p class="fs-12px">Pesan</p></a>
+						<a class="nav-link <?php if ($this->uri->segment('1') == 'message') { echo 'boo-menu-des-active'; }else { echo 'boo-menu-des'; } ?>" href="<?php echo site_url('message') ?>"><img src="<?php if ($this->uri->segment('1') == 'message') { echo base_url('public/img/icon-tab/message_active.svg'); }else { echo base_url('public/img/icon-tab/message.svg'); } ?>" height="27"><p class="fs-12px">Pesan</p></a>
 					</li>
 					<li class="nav-item ml-100 mr-30">
 						<form action="<?php echo site_url(); ?>createidbook" method="POST" class="mt-10">

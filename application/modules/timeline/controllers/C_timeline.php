@@ -239,41 +239,16 @@ class C_timeline extends MX_Controller {
 	{
 		error_reporting(0);
 		$auth = $this->session->userdata('authKey');
-		$ch = curl_init();
-		$options = array(
-			CURLOPT_URL			 => $this->API.'timeline/Home/bestWriter',
-			CURLOPT_RETURNTRANSFER => true,
-	          CURLOPT_CUSTOMREQUEST  =>"GET",    // Atur type request
-	          CURLOPT_POST           =>false,    // Atur menjadi GET
-	          CURLOPT_FOLLOWLOCATION => false,    // Follow redirect aktif
-	          CURLOPT_SSL_VERIFYPEER => 0,
-	          CURLOPT_HEADER         => 1,
-	          CURLOPT_HTTPHEADER	 => array('baboo-auth-key: '.$auth)
+		$data = $this->curl_request->curl_get_no_key($this->API.'timeline/Home/bestWriter', '', $auth);
 
-	      );
-		curl_setopt_array($ch, $options);
-		$content = curl_exec($ch);
-		curl_close($ch);
-		$headers=array();
-
-		$data=explode("\n",$content);
-		$headers['status']=$data[0];
-
-		array_shift($data);
-
-		foreach($data as $part){
-			$middle=explode(":",$part);
-			$headers[trim($middle[0])] = trim($middle[1]);
-		}
-
-		$datas['home'] = json_decode(end($data), true);
+		$datas['home'] = $data;
 		if ($datas['home']['code'] == 403){
 			$this->session->unset_userdata('userData');
 			$this->session->unset_userdata('authKey');
 			$this->session->sess_destroy();
 			redirect('login','refresh');
 		}else{
-			echo json_encode(end($data), true);				 
+			echo json_encode(end($datas['home']), true);
 		}
 	}
 	public function getBestBook()
