@@ -136,13 +136,13 @@ class C_timeline extends MX_Controller {
 		$options = array(
 			CURLOPT_URL			 => $this->API.'timeline/Timelines/bestBook',
 			CURLOPT_RETURNTRANSFER => true,
-	          CURLOPT_CUSTOMREQUEST  =>"GET",    // Atur type request
-	          CURLOPT_POST           =>false,    // Atur menjadi GET
-	          CURLOPT_FOLLOWLOCATION => false,    // Follow redirect aktif
-	          CURLOPT_SSL_VERIFYPEER => 0,
-	          CURLOPT_HEADER         => 1,
-	          CURLOPT_HTTPHEADER	 => array('baboo-auth-key: '.$auth)
-	      );
+	        CURLOPT_CUSTOMREQUEST  =>"GET",    // Atur type request
+	        CURLOPT_POST           =>false,    // Atur menjadi GET
+	        CURLOPT_FOLLOWLOCATION => false,    // Follow redirect aktif
+	        CURLOPT_SSL_VERIFYPEER => 0,
+	        CURLOPT_HEADER         => 1,
+	        CURLOPT_HTTPHEADER	 => array('baboo-auth-key: '.$auth)
+	    );
 		curl_setopt_array($ch, $options);
 		$content = curl_exec($ch);
 		curl_close($ch);
@@ -239,7 +239,7 @@ class C_timeline extends MX_Controller {
 	{
 		error_reporting(0);
 		$auth = $this->session->userdata('authKey');
-		$data = $this->curl_request->curl_get_no_key($this->API.'timeline/Home/bestWriter', '', $auth);
+		$data = $this->curl_request->curl_get($this->API.'timeline/Home/bestWriter', '', $auth);
 
 		$datas['home'] = $data;
 		if ($datas['home']['code'] == 403){
