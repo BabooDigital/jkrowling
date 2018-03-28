@@ -55,7 +55,7 @@ var isMobile = {
 };
 
 	var link = 'market://details?id=id.android.baboo';
-	$('.bannerPopUp').html("<div class='popUpBannerBox'> <div class='popUpBannerInner'> <div class='popUpBannerContent'> <a href='"+link+"'><span style='background:  #482d8e;padding: 15px 95px;border-radius:  35px;color:  #fff;font-size: 15pt;'>Unduh Aplikasi</span></a><a href='#' class='closeButton'>&#120;</a> </div> </div> </div>");
+	$('.bannerPopUp').html("<div class='popUpBannerBox'> <div class='popUpBannerInner'> <div class='popUpBannerContent'> <a href='"+link+"'><span class='popUpBannerSpan'>Unduh Aplikasi</span></a><a href='#' class='closeButton'>&#120;</a> </div> </div> </div>");
 	
 	function showPopUpBanner() {
 		if( isMobile.Android() ) {
