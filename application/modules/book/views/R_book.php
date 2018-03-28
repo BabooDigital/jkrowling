@@ -108,7 +108,7 @@ echo "<script>(function(d, s, id) {
 			<div class="row mb-30">
 				<div class="col-12">
 					<div class="text-center mb-15">
-						<h2 style="font-weight: 900;"><?php echo $detail_book['data']['book_info']['title_book']; ?></h2>
+						<h3 style="font-weight: 900;"><?php echo $detail_book['data']['book_info']['title_book']; ?></h3>
 						<p class="text-muted pcat"><b><?php echo $detail_book['data']['category']['category_name']; ?></b> &#8226; Dibaca <?php echo $detail_book['data']['book_info']['view_count']; ?> kali</p>
 					</div>
 				</div>
@@ -133,7 +133,7 @@ echo "<script>(function(d, s, id) {
 			</div>
 			<div class="row">
 				<div class="col-12 text-center mt-10">
-					<h4 style="font-weight: 900;"><?php echo $detail_book['data']['chapter']['chapter_title']; ?></h4>
+					<h5 style="font-weight: 900;"><?php echo $detail_book['data']['chapter']['chapter_title']; ?></h5>
 				</div>
 			</div>
 		<div class="row">
@@ -272,7 +272,7 @@ echo "<script>(function(d, s, id) {
 		};
 		var bid = segment.split('-');
 		var link = "intent://www.baboo.id/book/"+bid[0]+"#Intent;scheme=https;package=id.android.baboo;S.doctype=FRA;S.docno=FRA1234;S.browser_fallback_url=market://details?id=id.android.baboo;end";
-		$('.bannerPopUp').html("<div class='popUpBannerBox'> <div class='popUpBannerInner'> <div class='popUpBannerContent'> <a href='"+link+"'><span style='background:  #482d8e;padding: 15px 95px;border-radius:  35px;color:  #fff;font-size: 15pt;'>Baca di Aplikasi</span></a><a href='#' class='closeButton'>&#120;</a> </div> </div> </div>");
+		$('.bannerPopUp').html("<div class='popUpBannerBox'> <div class='popUpBannerInner'> <div class='popUpBannerContent'> <a href='"+link+"'><span class='popUpBannerSpan'>Baca di Aplikasi</span></a><a href='#' class='closeButton'>&#120;</a> </div> </div> </div>");
 
 		function showPopUpBanner() {
 			if( isMobile.Android() ) {

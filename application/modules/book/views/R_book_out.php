@@ -90,7 +90,7 @@
 			<div class="row">
 				<div class="col-12">
 					<div class="text-center">
-						<h2 class="title_out"><?php echo $title; ?></h2>
+						<h4 class="title_out"><?php echo $title; ?></h4>
 						<p class="text-muted pcat"><b><?php echo $category; ?></b> &#8226; Dibaca <?php echo $view; ?> kali</p>
 					</div>
 				</div>
@@ -113,7 +113,7 @@
 			<div class="row">
 				<div class="col-12">
 					<div class="text-center">
-						<h2 class="title_out"><?php echo $ch_title; ?></h2>
+						<h5 class="title_out"><?php echo $ch_title; ?></h5>
 						<!-- <p class="text-muted pcat">Chapter</p> -->
 					</div>
 				</div>
@@ -179,7 +179,7 @@
 		};
 		var bid = '<?php echo $this->uri->segment(2); ?>';
 		var link = "intent://www.baboo.id/book/"+bid+"#Intent;scheme=https;package=id.android.baboo;S.doctype=FRA;S.docno=FRA1234;S.browser_fallback_url=market://details?id=id.android.baboo;end";
-		$('.bannerPopUp').html("<div class='popUpBannerBox'> <div class='popUpBannerInner'> <div class='popUpBannerContent'> <a href='"+link+"'><span style='background:  #482d8e;padding: 15px 95px;border-radius:  35px;color:  #fff;font-size: 15pt;'>Baca di Aplikasi</span></a><a href='#' class='closeButton'>&#120;</a> </div> </div> </div>");
+		$('.bannerPopUp').html("<div class='popUpBannerBox'> <div class='popUpBannerInner'> <div class='popUpBannerContent'> <a href='"+link+"'><span class='popUpBannerSpan'>Baca di Aplikasi</span></a><a href='#' class='closeButton'>&#120;</a> </div> </div> </div>");
 
 		function showPopUpBanner() {
 			if( isMobile.Android() ) {
