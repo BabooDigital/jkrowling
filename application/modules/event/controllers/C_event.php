@@ -142,9 +142,6 @@ class C_Event extends MX_Controller
 
         $data['home'] = json_decode(end($data), true);
         $data_best = $data['home']['data'];
-        // $auth = $headers['BABOO-AUTH-KEY'];
-        // $this->session->set_userdata('authKey', $auth);
-        // print_r(end($data));
         if ($datas['home']['code'] == 403){
             $this->session->unset_userdata('userData');
             $this->session->unset_userdata('authKey');
@@ -156,6 +153,15 @@ class C_Event extends MX_Controller
     }
     public function seeAll()
     {
+        if (!empty($this->input->get("page"))) {
+            $id = $this->input->get("page");
+        }else{
+            $id = "";
+        }
+        $uid = array(
+            'count' => $id
+        );
+
         $data['title'] = "Event Page | Baboo.id";
 
         $data['css'][] = "public/css/custom/event-responsive.css";
@@ -170,13 +176,17 @@ class C_Event extends MX_Controller
         $data['js'][] = "public/js/jquery.validate.js";
         $data['js'][] = "public/js/custom/event.js";
 
-        $seall = $this->bestBookEventSeeAll();
+        $seall = $this->bestBookEventSeeAll($uid);
         $data['event'] = $this->getEvent();
         $data['seeall_event'] = $seall;
-        $this->load->view('include/head', $data);
-        $this->load->view('D_seeall', $data);
+        if (!empty($this->input->get('page'))) {
+            $this->load->view('data/D_seeall', $data);
+        }else{
+            $this->load->view('include/head', $data);
+            $this->load->view('D_seeall', $data);   
+        }
     }
-    public function bestBookEventSeeAll()
+    public function bestBookEventSeeAll($uid)
     {
         error_reporting(0);
         // $auth = $this->session->userdata('authKey');
@@ -188,6 +198,7 @@ class C_Event extends MX_Controller
               CURLOPT_POST           =>TRUE,    // Atur menjadi GET
               CURLOPT_FOLLOWLOCATION => false,    // Follow redirect aktif
               CURLOPT_SSL_VERIFYPEER => 0,
+              CURLOPT_POSTFIELDS     => $uid,
               CURLOPT_HEADER         => 1,
               CURLOPT_HTTPHEADER     => array('baboo-auth-key: '.$auth)
           );
