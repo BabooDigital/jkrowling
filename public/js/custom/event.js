@@ -7,6 +7,37 @@ $(document).ready(function() {
 	unlike();
 	shareFB();
 });
+
+var page = 1;
+$(window).scroll(function() {
+	if ($(window).scrollTop() == $(document).height() - $(window).height()){
+		page++;
+		loadMoreData(page);
+	} 
+});
+function loadMoreData(page) {
+	$.ajax({
+		url: '?page=' + page,
+		type: "get",
+		beforeSend: function()
+		{
+			$('#loader_scroll').show();
+		}
+	})
+	.done(function(data)
+	{
+		if(data == " "){
+			$('#loader_scroll').html("No more records found");
+			return;
+		}
+		$('#loader_scroll').hide();
+		$("#post-data").append(data);
+	})
+	.fail(function(jqXHR, ajaxOptions, thrownError)
+	{
+		console.log('server not responding...');
+	});
+}
 function getBestBook() {
 	$.ajax({
 	    url: base_url+"bestBookEvent",
