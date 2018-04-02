@@ -643,6 +643,8 @@ class C_createbook extends MX_Controller
 
 
 			$data['js'][] = "public/js/jquery.min.js";
+			$data['js'][] = "public/js/umd/popper.min.js";
+            $data['js'][] = "public/js/bootstrap.min.js";
 			$data['js'][] = "public/plugins/froala/js/froala_editor.min.js";
 			$data['js'][] = "public/js/custom/create_book_r.js";
 			$data['js'][] = "public/js/sweetalert2.all.min.js";
@@ -1551,22 +1553,57 @@ class C_createbook extends MX_Controller
 
 	public function getChapter()
 	{
-
+		error_reporting(0);
 		$auth    = $this->session->userdata('authKey');
 		$user    = $this->session->userdata('userData');
 		$id_book = $this->input->post('book_id');
+		// print_r($data_book);
+		
+		// START GET CHAPTER
 		$data_book = array(
 			'book_id' => $id_book,
 			'user_id' => $user['user_id']
 		);
-		$data = $this->curl_request->curl_post($this->API . 'book/Books/allChapters/', $data_book, $auth);
-		if (isset($data['code']) && $data['code'] == '200') {
-			$status = $data['code'];
+		// print_r($data_book);
+		
+		// START GET CHAPTER
+		$url = $this->API . 'book/Books/allChapters/';
+		$ch  = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		// curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+		
+		curl_setopt($ch, CURLOPT_POST, 1);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $data_book);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+		curl_setopt($ch, CURLOPT_HEADER, 1);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+			'baboo-auth-key: ' . $auth
+		));
+		$content = curl_exec($ch);
+		curl_close($ch);
+		$headers = array();
+		
+		$data_before_chapter = explode("\n", $content);
+		$headers['status']   = $data_before_chapter[0];
+		
+		array_shift($data_before_chapter);
+		
+		foreach ($data_before_chapter as $part) {
+			$middle                    = explode(":", $part);
+			$headers[trim($middle[0])] = trim($middle[1]);
+		}
+		
+		$data_before_chapter['chapter'] = json_decode(end($data_before_chapter), true);
+		$auth                           = $headers['BABOO-AUTH-KEY'];
+		if (isset($data_before_chapter['chapter']['code']) && $data_before_chapter['chapter']['code'] == '200') {
+			$status = $data_before_chapter['chapter']['code'];
 			$this->session->set_userdata('authKey', $auth);
 		} else {
-			$status = $data['code'];
+			$status = $data_before_chapter['chapter']['code'];
 		}
-		echo json_encode($data['data']);
+		echo json_encode($data_before_chapter['chapter']['data']);
+		// print_r($data_before_chapter['chapter']['data']['chapter']);
 	}
 	
 	
