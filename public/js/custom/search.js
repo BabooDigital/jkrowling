@@ -55,7 +55,7 @@ $(document).ready(function () {
                         if (valid.prof_pict == '' || valid.prof_pict == null) {
                             prof_picts = base_url + "public/img/profile/blank-photo.jpg";
                         }
-                        userhtml += "<div class='card mr-10 pull-left' style='width:15%;'> <div class='container'> <div class='row'> <div class='col-12'> <div class='text-center p-10'> <img src='" + prof_picts + "' width='50' height='50' class='rounded-circle'> <p class='nametitled'><a href='"+base_url+"profile/"+valid.user_id+"-"+convertToSlug(valid.fullname)+"'>" + valid.fullname + "</a></p> </div> </div> </div> <div class='row'> <div class='col-6 text-center rborder'> <p style='display: inline-flex;'><img src='public/img/icon-tab/book.svg' width='25'> <span>" + valid.book_made + "</span></p> <h6>Buku</h6> </div> <div class='col-6 text-center'> <p style='display: inline-flex;'><img src='public/img/icon-tab/followers.svg' width='25'> <span>" + valid.followers + "</span></p> <h6>Teman</h6> </div> </div> <br> <div class='row'> <div class='col-12 text-center'> <button class='btnfollow-f "+follow+"' user-d='" + valid.user_id + "'><img src='public/img/icon-tab/add_follow.svg' width='30'> <span class='txtfollow'>"+txtfol+"</span></button> </div> </div> <br> </div> </div>";
+                        userhtml += "<div class='card mr-10 pull-left' style='width:15%;'> <div class='container'> <div class='row'> <div class='col-12'> <div class='text-center p-10'> <img src='" + prof_picts + "' width='50' height='50' class='rounded-circle'> <p class='nametitled'><a href='"+base_url+"profile/"+valid.user_id+"-"+convertToSlug(valid.fullname)+"'>" + valid.fullname + "</a></p> </div> </div> </div> <div class='row'> <div class='col-6 text-center rborder'> <p style='display: inline-flex;'><img src='public/img/icon-tab/book.svg' width='25'> <span>" + valid.book_made + "</span></p> <h6>Buku</h6> </div> <div class='col-6 text-center'> <p style='display: inline-flex;'><img src='public/img/icon-tab/followers.svg' width='25'> <span>" + valid.followers + "</span></p> <h6>Teman</h6> </div> </div> <br> <div class='row'> <div class='col-12 text-center'> <button class='btnfollow-f "+follow+"' data-follow='" + valid.user_id + "'><img src='public/img/icon-tab/add_follow.svg' width='30'> <span class='txtfollow'>"+txtfol+"</span></button> </div> </div> <br> </div> </div>";
                     });
                 }
                 $('.loader').hide();
@@ -143,48 +143,6 @@ $(document).on("click", ".like", function() {
         }).done(function() {
             b.removeClass("unlike");
             b.addClass("like");
-        }).fail(function() {
-            console.log("error")
-        }).always(function() {})
-    });
-
-
-    $(document).on("click", ".follow-u", function() {
-        var b = $(this),
-            a = new FormData;
-        a.append("fuser_id", b.attr("user-d"));
-        $.ajax({
-            url: base_url + "follows",
-            type: "POST",
-            dataType: "JSON",
-            cache: false,
-            contentType: false,
-            processData: false,
-            data: a
-        }).done(function() {
-            b.removeClass("follow-u");
-            b.addClass("unfollow-u");
-            b.children(".txtfollow").text("Unfollow");
-        }).fail(function() {
-            console.log("error")
-        }).always(function() {})
-    });
-    $(document).on("click", ".unfollow-u", function() {
-        var b = $(this),
-            a = new FormData;
-        a.append("fuser_id", b.attr("user-d"));
-        $.ajax({
-            url: base_url + "follows",
-            type: "POST",
-            dataType: "JSON",
-            cache: false,
-            contentType: false,
-            processData: false,
-            data: a
-        }).done(function() {
-            b.removeClass("unfollow-u");
-            b.addClass("follow-u");
-            b.children(".txtfollow").text("Follow");
         }).fail(function() {
             console.log("error")
         }).always(function() {})
