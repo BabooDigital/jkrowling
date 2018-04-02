@@ -206,7 +206,7 @@
 					<div class="pt-20 pb-20">
 						<p class="mb-30">
 							<a data-id="2311" href="<?php echo site_url(); ?>login?b=<?php echo $bid; ?>" id="loveboo" class="fs-14px unlike">
-								<img src="<?php echo base_url('') ?>public/img/assets/love_active.svg" class="loveicon" width="40">
+								<img src="<?php echo base_url('') ?>public/img/assets/icon_love.svg" class="" width="40">
 							</a>
 						</p>
 						<p><button type="button" data-toggle="modal" data-target="#commentModal" style="cursor: pointer;background: none;border: none;">
