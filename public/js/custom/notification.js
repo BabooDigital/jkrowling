@@ -1,7 +1,7 @@
 $(document).ready(function () {
   load_notification();
   count_notif();
-  setInterval(count_notif,10000);
+  setInterval(count_notif,5000);
   $("#btn_notif_comment").on('click', function(event) {
     // console.log($(this).attr('ntf'));
     var ntf = $(this).attr('ntf');
@@ -62,10 +62,17 @@ function count_notif() {
           count_unread++;
         }
     });
-    $('#noti_Counter')
+    if (count_unread == 0) {
+      $('#noti_Counter')
           .css({ opacity: 0 })
           .text(count_unread)
-          .css({opacity: 1  });
+          .css({opacity: 1, display: 'none'  });
+    }else{
+      $('#noti_Counter')
+          .css({ opacity: 0 })
+          .text(count_unread)
+          .css({opacity: 1, display: 'block'  });
+    }
   })
   .fail(function() {
     // console.log("error");
