@@ -10,7 +10,7 @@ class C_Library extends MX_Controller
         $api_url = checkBase();
         $this->API = $api_url; 
         if ($this->session->userdata('isLogin') != 200) {
-        	redirect('login');
+            redirect('login');
         }
     }
 
@@ -96,7 +96,7 @@ class C_Library extends MX_Controller
             $data['js'][] = "public/js/custom/notification.js";
 
             $this->load->view('include/head', $data);
-            $this->load->view('R_library', $data);
+            $this->load->view('R_library');
 
         }else{
             $this->load->view('include/head', $datas);

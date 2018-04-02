@@ -21,11 +21,18 @@ function publishBook() {
       formData.append("file_cover", $("#cover_file").val());
       formData.append("category", $("#category_ids").val());
       var cat = $("#category_ids").val();
+      var tnc = $('.checktnc:checkbox:checked');
 
       if (cat == null || cat == "") {
         swal(
           'Gagal!',
           'Pilih kategori buku mu.',
+          'error'
+          );
+      }else if(tnc.length == 0){
+        swal(
+          'Gagal!',
+          'Setujui Term of Service.',
           'error'
           );
       }else {
@@ -363,7 +370,7 @@ function getCategory() {
     dataType: 'json'
   })
   .done(function(data) {
-    var category = "<option value=''>Pilih Category Buku</option>"; 
+    var category = "<option value=''>Kategori Buku</option>"; 
     $.each(data, function(index, val) {
       category += "<option value='"+val.category_id+"'>"+val.category_name+"</option>";
     });

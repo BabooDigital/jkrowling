@@ -105,8 +105,11 @@
 
 					</div>
 				</div>
-				<?php if (!empty($this->session->userdata('userData'))) { ?>
-				
+				<?php if (!empty($this->uri->segment(2))) { ?>
+				<nav class="navbar fixed-bottom navbar-light bg-greypale">
+						<button type="button" class="btntnc btn-diss" data-dismiss="modal" aria-label="Close">Tolak</button>
+						<button type="submit" class="btntnc btn-acc">Setuju</button>
+					</nav>
 				<?php }else{ ?>
 				<form action="<?php echo site_url(); ?>auth/C_Login/postregisteruser" method="POST">
 					<input type="hidden" name="name" id="namess" value="">
