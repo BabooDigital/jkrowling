@@ -30,12 +30,8 @@
 								<input type="file" id="file_cover" accept="image/*" onchange="tampilkanPreview(this,'preview')" name="file_cover" value="<?php $src = $this->session->userdata('dataCover'); if($src != NULL){  echo $src['asset_url']; }else{ echo ""; } ?>">
 							</div>
 							<div>
-								<p style="font-size: 16px;">Atau <!-- 
-									<form action="<?php echo site_url(); ?>create_cover">
-									    <input type="submit" value="Buat Disini" style="color: #b448cc;"/>
-									</form> -->
+								<p style="font-size: 16px;">Atau
 									<input type="button" style="background: transparent; color: #b448cc;border: 0;cursor: pointer;" onclick="window.location.href = '<?php echo site_url('create_cover'); ?>';" value="Buat Disini" />
-									<!-- <a href="<?php echo site_url(); ?>create_cover" style="color: #b448cc;"><b>Buat Di Sini</b></a></p> -->
 							</div>
 						</div>
 						<div class="mt-30">
@@ -47,18 +43,56 @@
 							<hr>
 							<div id="subchapter">
 								<a style="display: none;" class="btn w-100 mb-10 chapterdata0 editsubchapt1 btnsavedraft" id="btnsavedraft" id="editchapt" href="#"></a>
-								<!-- <a class="btn w-100 mb-10 chapterdata0 addsubchapt" id="editchapt">Tambah Sub Cerita</a> -->
 								<div id="btn_chapter" align="center">
 									<div class="loader"></div>
 								</div>
 								<input type="button" class="btn w-100 mb-10 chapterdata0 addsubchapt" value="Tambah Sub Cerita" />
 							</div>
-
-							<div class="mt-40">
+							<div class="mt-5">
 								<div class="form-group">
 									<select class="form-control" id="category_id" name="category_id" required>
 										<option value="">Kategori</option>
 									</select>
+								</div>
+							</div>
+							<div class="mt-20">
+								<div class="form-group">
+									<span class="text-left">Jual Buku ?</span>
+									<span style="float: right;">
+										<label class="switch">
+										  <input type="checkbox" id="is_free">
+										  <span class="slider round"></span>
+										</label>
+									</span>
+								</div>
+							</div>
+							<div class="container mt-20 rangebook" style="background: #DDDDDD;">
+								<div class="col-md-15">
+									<div class="form-group">
+										<select class="selectbook select-kurs" id="category_id" name="cat_book">
+											<option value="rp">Rp</option>
+										</select>
+										<input type="text" name="Harga Buku" class="input-range" placeholder="Masukan Harga Buku">
+									</div>
+									<div class="form-group pd-ppn">
+										<label class="text-muted fs-10">PPN 10%</label>
+										<label class="text-muted fs-10-right"><b style="display: none;" id="rp">Rp</b> <b id="ppn">-</b></label>
+									</div>
+									<div class="form-group pd-ppn" style="margin-top: -30px;">
+										<label class="text-muted fs-10">Payment Fee</label>
+										<label class="text-muted fs-10-right"> <b style="display: none;" id="rp_fee">Rp</b> <b id="payment_fee">-</b></label>
+									<hr style="margin-top: -5px;">
+									</div>
+									<div class="form-group pd-ppn" style="margin-top: -35px;">
+										<label class="text-muted fs-10">Harga Jual Buku</label>
+										<label class="text-muted fs-10-right"> <b style="display: none;" id="rp_total">Rp</b> <b id="total">-</b></label>
+									</div>
+									<div class="form-group">
+										<label class="text-muted">Mulai Jual Pada Chapter</label>
+										<input type="number" value="3" min="3" class="input-range" id="font-size" style="width: 40%;">
+										<a class="ml-20 btn-transparant value-control addmin" data-action="minus" data-target="font-size"><img src="<?php echo base_url('public/img/assets/icon_minch_active.png'); ?>" width="35"></a>
+										<a class="ml-10 btn-transparant value-control addplus" data-action="plus" data-target="font-size"><img src="<?php echo base_url('public/img/assets/icon_plusch_active.png'); ?>" width="35"></a>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -90,7 +124,6 @@
 
 							<div class="tulisbuku mt-10">
 								<textarea id="book_paragraph" class="form-control book_paragraph" style="height: 1000px;" name="book_paragraph" required></textarea>
-								<!-- <textarea id="froala_validation" required></textarea> -->
 							</div>
 
 						</div>

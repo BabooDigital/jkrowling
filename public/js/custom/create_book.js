@@ -66,6 +66,8 @@ function getContent(tab_page, book, chapter) {
 $(document).ready(function() {
 	getCategory();
 	getChapter();
+	sellBook();
+	addMinusPlus();
 	$('.backbtn').on('click', function() {
 		window.history.go(-1);
 	});
@@ -420,3 +422,34 @@ $(function () {
         },0);
 	});
 });
+function sellBook() {
+	$(document).on('keyup', '.input-range', function(event) {
+		event.preventDefault();
+		var id = $(this).val();
+		var payment_fee = 6000;
+		var nominal = $(this).val().split(".").join("");
+		var ppn = 10 * nominal / 100;
+		var rp_total = id - (ppn + payment_fee);
+		$("#rp").show();
+		$("#rp_fee").show();
+		$("#rp_total").show();
+		$('#ppn').number(ppn);
+		$('#payment_fee').number(payment_fee);
+		$('#total').number(rp_total);
+	});
+	$('.input-range').number(true);
+}
+function addMinusPlus() {
+	$(document).on('click','.value-control',function(){
+		var action = $(this).attr('data-action')
+		var target = $(this).attr('data-target')
+		var value  = parseFloat($('[id="'+target+'"]').val());
+		if ( action == "plus" ) {
+			value++;
+		}
+		if ( action == "minus" ) {
+			value--;
+		}
+		$('[id="'+target+'"]').val(value);
+	});
+}
