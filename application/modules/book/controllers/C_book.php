@@ -159,7 +159,6 @@ class C_book extends MX_Controller
         $data['js'][] = "public/js/bootstrap.min.js";
         $data['js'][] = "public/js/jquery.sticky-kit.min.js";
         $data['js'][] = "public/plugins/holdOn/js/HoldOn.js";
-        $data['js'][] = "public/js/custom/notification.js";
 
         $data['id_chapter'] = $this->input->get("chapter");
 
@@ -169,6 +168,7 @@ class C_book extends MX_Controller
             $this->load->view('include/head', $data);
             $this->load->view('R_book', $data);
         } else {
+            $data['js'][] = "public/js/custom/notification.js";
             if ($this->input->get("chapter")) {
                 if ($data_before_chapter['chapter']['data']['chapter'][$this->input->get("chapter")] == null || $data_before_chapter['chapter']['data']['chapter'][$this->input->get("chapter")] == '') {
                     // print_r("kosong chapter");
@@ -559,7 +559,7 @@ class C_book extends MX_Controller
 
             $data['js'][] = "public/js/custom/reading_mode.js";
             if ($this->agent->mobile()) {
-            $data['css'][] = "public/css/baboo-responsive.css";
+                $data['css'][] = "public/css/baboo-responsive.css";
                 $this->load->view('include/head', $data);
                 $this->load->view('R_book', $data);
             } else {
@@ -567,7 +567,7 @@ class C_book extends MX_Controller
                     if ($data_before_chapter['chapter']['data']['chapter'][$this->input->get("chapter")] == null || $data_before_chapter['chapter']['data']['chapter'][$this->input->get("chapter")] == '') {
                         // print_r("kosong chapter");
                     } else {
-            $data['css'][] = "public/css/baboo.css";
+                        $data['css'][] = "public/css/baboo.css";
                         $result = $this->load->view('data/D_readingmode', $data);
 
                     }
@@ -780,55 +780,55 @@ class C_book extends MX_Controller
     	$auth = $this->session->userdata('authKey');
     	$book_id = $this->input->post('book_id');
 
-		$sendData = array(
-			'book_id' => $book_id
-		);
+      $sendData = array(
+         'book_id' => $book_id
+     );
 
-    	$ch = curl_init();
-    	curl_setopt($ch, CURLOPT_URL, $url);
-    	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+      $ch = curl_init();
+      curl_setopt($ch, CURLOPT_URL, $url);
+      curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 
-    	curl_setopt($ch, CURLOPT_POST, 1);
-    	curl_setopt($ch, CURLOPT_POSTFIELDS, $sendData);
-    	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-    	curl_setopt($ch, CURLOPT_HEADER, 1);
-    	curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key: ' . $auth));
-    	$result = curl_exec($ch);
+      curl_setopt($ch, CURLOPT_POST, 1);
+      curl_setopt($ch, CURLOPT_POSTFIELDS, $sendData);
+      curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+      curl_setopt($ch, CURLOPT_HEADER, 1);
+      curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key: ' . $auth));
+      $result = curl_exec($ch);
 
 
-    	$headers = array();
+      $headers = array();
 
-    	$data = explode("\n", $result);
+      $data = explode("\n", $result);
 
 
-    	array_shift($data);
-    	$middle = array();
-    	$moddle = array();
-    	foreach ($data as $part) {
-    		$middle = explode(":", $part);
-    		$moddle = explode("{", $part);
+      array_shift($data);
+      $middle = array();
+      $moddle = array();
+      foreach ($data as $part) {
+          $middle = explode(":", $part);
+          $moddle = explode("{", $part);
 
-    		if (error_reporting() == 0) {
-    			$headers[trim($middle[0])] = trim($middle[1]);
-    		}
-    	}
-    	$getdata = end($data);
-    	$resval = json_decode($getdata, TRUE);
+          if (error_reporting() == 0) {
+             $headers[trim($middle[0])] = trim($middle[1]);
+         }
+     }
+     $getdata = end($data);
+     $resval = json_decode($getdata, TRUE);
 
-    	$psn = $resval['message'];
-    	$datas = $resval['data'];
-    	$auth = $headers['BABOO-AUTH-KEY'];
+     $psn = $resval['message'];
+     $datas = $resval['data'];
+     $auth = $headers['BABOO-AUTH-KEY'];
 
-    	$this->session->set_userdata('authKey', $auth);
-    	$status = $resval['code'];
-    	if ($status == 403) {
-    		$this->session->unset_userdata('userData');
-    		$this->session->unset_userdata('authKey');
-    		$this->session->sess_destroy();
-    		redirect('login', 'refresh');
-    	} else {
-    	echo json_encode(array("code"=>$status));  
-        }
-	}
+     $this->session->set_userdata('authKey', $auth);
+     $status = $resval['code'];
+     if ($status == 403) {
+      $this->session->unset_userdata('userData');
+      $this->session->unset_userdata('authKey');
+      $this->session->sess_destroy();
+      redirect('login', 'refresh');
+  } else {
+   echo json_encode(array("code"=>$status));  
+}
+}
 }

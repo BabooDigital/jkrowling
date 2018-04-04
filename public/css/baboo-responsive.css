@@ -470,13 +470,13 @@ a:hover {
 
           #toggle-right {
             display: none; }
-            #toggle-right:checked + .page-wrap nav.profile {
+            #toggle-right:checked + .page-wrap div.profiles {
               right: 0px; }
               #toggle-right:checked + .page-wrap .profile-toggle {
                 right: 220px; }
 
 
-                nav.profile {
+                div.profiles {
                   position: fixed;
                   overflow-y: scroll;
                   top: 0px;
@@ -488,7 +488,7 @@ a:hover {
                   transition: all 0.15s ease-out 0s;
                   height: auto;
                   width: 250px;
-                  background: #FFF;
+                  background: #f5f8fa;
                   z-index: 2000; }
 
                   .search_message {
@@ -875,7 +875,9 @@ a:hover {
                     background: none;
                     border: none;
                   }
-
+                  .bg-none {
+                    background: none;
+                  }
 
                   .bg-borr {
                     background: #f5f8fa;
