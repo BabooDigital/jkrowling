@@ -489,7 +489,7 @@ a:hover {
                   height: auto;
                   width: 250px;
                   background: #f5f8fa;
-                  z-index: 2000; }
+                  z-index: 1050; }
 
                   .search_message {
                     background: white;
