@@ -91,7 +91,7 @@ echo "<script>(function(d, s, id) {
 		</nav>
 	</div>
 	<div class="profiles">
-		<label class="close" for="toggle-right">&nbsp;&nbsp;&times;</label>
+		<label class="close" for="toggle-right" style="height: 45px;">&nbsp;&nbsp;&times;</label>
 		<div class="text-center">
 			<div class="mt-20">
 				<p><img class="cover_image rounded" height="180" src="<?php echo $detail_book['data']['book_info']['cover_url']; ?>" width="130"></p>
@@ -110,7 +110,7 @@ echo "<script>(function(d, s, id) {
 		<div class="bg-white" style="width: 250px;height: auto;position: fixed;bottom: 0;padding: 5px 15px;">
 			<small>Versi Buku Full</small>
 			<div>
-				<p><img src="<?php echo site_url('public/img/assets/icon_sell.png'); ?>" width="20" class="mr-5"><span style="color: #7661ca;font-weight: 600;">Rp <?php echo $detail_book['data']['book_info']['book_price']; ?></span> <a href="#" class="float-right" style="margin-top: -10px;padding: 3px 30px;border-radius: 35px;background: #7661ca;color: #fff;">Beli</a></p>
+				<p><img src="<?php echo site_url('public/img/assets/icon_sell.png'); ?>" width="20" class="mr-5"><span style="color: #7661ca;font-weight: 600;">Rp <span class="priceb"><?php echo $detail_book['data']['book_info']['book_price']; ?></span></span> <button type="button" class="float-right btn-transparant buyfullbook" style="margin-top: -10px;padding: 3px 30px;border-radius: 35px;background: #7661ca;color: #fff;">Beli</button></p>
 			</div>
 		</div>
 		<?php } ?>
@@ -122,7 +122,7 @@ echo "<script>(function(d, s, id) {
 			<div class="col-12">
 				<div class="text-center mb-15">
 					<h3 style="font-weight: 900;"><?php echo $detail_book['data']['book_info']['title_book']; ?></h3>
-					<p class="text-muted pcat"><b><?php echo $detail_book['data']['category']['category_name']; ?></b> &#8226; Dibaca <?php echo $detail_book['data']['book_info']['view_count']; ?> kali</p>
+					<p class="text-muted pcat"><b class="cbookd"><?php echo $detail_book['data']['category']['category_name']; ?></b> &#8226; Dibaca <span class="boview"><?php echo $detail_book['data']['book_info']['view_count']; ?></span> kali</p>
 				</div>
 			</div>
 		</div>
@@ -131,7 +131,7 @@ echo "<script>(function(d, s, id) {
 			<div class="col-12">
 				<?php $sess = $this->session->userdata('userData'); if (empty($this->uri->segment(3))) { ?>
 				<div class="media mb-20">
-					<img alt="<?php echo $detail_book['data']['author']['author_name']; ?>" class="d-flex align-self-start mr-20 rounded-circle" height="55" src="<?php if($detail_book['data']['author']['avatar'] == NULL){ echo base_url('public/img/profile/blank-photo.jpg'); }else{ echo $detail_book['data']['author']['avatar']; } ?>" width="55">
+					<img alt="<?php echo $detail_book['data']['author']['author_name']; ?>" class="d-flex align-self-start mr-20 rounded-circle authimg" height="55" src="<?php if($detail_book['data']['author']['avatar'] == NULL){ echo base_url('public/img/profile/blank-photo.jpg'); }else{ echo $detail_book['data']['author']['avatar']; } ?>" width="55">
 					<div class="media-body mt-5">
 						<div style="display: flex;"><h5 class="nametitle2 mr-20"><a href="#" class="author_name"><?php echo $detail_book['data']['author']['author_name']; ?></a></h5>
 							<?php if ($sess['user_id'] == $detail_book['data']['author']['author_id']) { ?>
@@ -181,7 +181,7 @@ echo "<script>(function(d, s, id) {
 			</div>
 			<div class="row mt-15">
 				<div class="col-12">
-					<a href="#" class="w-100" style="padding: 10px 80px;border-radius: 35px;background: #7661ca;color: #fff;">Beli</a>
+					<button type="button" class="float-right btn-transparant buyfullbook w-100" style="margin-top: -10px;padding: 3px 30px;border-radius: 35px;background: #7661ca;color: #fff;">Beli</button>
 				</div>
 			</div>	
 		</div>
@@ -220,7 +220,7 @@ echo "<script>(function(d, s, id) {
 				<a href="#comments"><img class="mr-5" src="<?php echo base_url(); ?>public/img/assets/icon_comment.svg" width="22"> <?php echo $detail_book['data']['book_info']['book_comment_count']; ?></a>
 			</div>
 			<div>
-				<a class="share-fb" href="javascript:void(0);"><img class="mr-5" src="<?php echo base_url(); ?>public/img/assets/icon_share.svg" width="23"> <?php echo $detail_book['data']['book_info']['share_count']; ?></a>
+				<a class="share-fb" href="javascript:void(0);"><img class="mr-5" src="<?php echo base_url(); ?>public/img/assets/icon_share.svg" width="23"> <span class="boshare"><?php echo $detail_book['data']['book_info']['share_count']; ?></span></a>
 			</div>
 			<div>
 				<a href="#"><img class="mr-5" src="<?php echo base_url(); ?>public/img/assets/icon_view.svg" width="35"> <?php echo $detail_book['data']['book_info']['view_count']; ?></a>
@@ -260,6 +260,9 @@ echo "<script>(function(d, s, id) {
 		</div><!-- modal-content -->
 	</div><!-- modal-dialog -->
 </div><!-- modal -->
+
+	<?php $this->load->view('include/modal_checkout'); ?>
+
 <?php if (isset($js)): ?>
 	<?php echo get_js($js) ?>
 <?php endif ?>
