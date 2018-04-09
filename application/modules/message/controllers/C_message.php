@@ -82,12 +82,12 @@ class C_message extends MX_Controller
             $datas['js'][] = "public/js/bootstrap.min.js";
             $datas['js'][] = "public/plugins/holdOn/js/HoldOn.js";
             $datas['js'][] = "public/js/custom/messages.js";
-            $datas['js'][] = "public/js/custom/notification.js";
 
             if ($this->agent->mobile()) {
                 $this->load->view('include/head', $datas);
                 $this->load->view('R_message', $data);
             } else {
+                $datas['js'][] = "public/js/custom/notification.js";
                 $this->load->view('include/head', $datas);
                 $this->load->view('D_message', $data);
             }
@@ -101,11 +101,9 @@ class C_message extends MX_Controller
         $url = $this->API . '/message';
         $auth = $this->session->userdata('authKey');
         $user_to = $this->input->post('user_to');
-        $user = $this->session->userdata('userData');
         $message = $this->input->post('message');
 
         $sendData = array(
-                'user_id' => $user["user_id"],
                 'user_to' => $user_to,
                 'message' => $message
         );
@@ -264,12 +262,12 @@ class C_message extends MX_Controller
             $datas['js'][] = "public/js/bootstrap.min.js";
             $datas['js'][] = "public/plugins/holdOn/js/HoldOn.js";
             $datas['js'][] = "public/js/custom/messages.js";
-            $datas['js'][]   = "public/js/custom/notification.js";
 
             if ($this->agent->mobile()) {
                 $this->load->view('include/head', $datas);
                 $this->load->view('data/R_Detail', $data);
             } else {
+                $datas['js'][]   = "public/js/custom/notification.js";
                 $this->load->view('include/head', $datas);
 	            $this->load->view('D_message', $data);
             }

@@ -115,6 +115,11 @@ $route['updatentf'] = 'notification/C_notification/updateNtf';
 $route['library'] = 'library/C_library';
 $route['bookmark'] = 'library/C_library/bookmark';
 $route['lastread'] = 'library/C_library/lastRead';
+$route['collections'] = 'library/C_library/Collections';
+
+$route['library/all_collection'] = 'library/C_library/allCollection';
+$route['library/all_bookmark'] = 'library/C_library/allBookmark';
+$route['library/all_lastread'] = 'library/C_library/allLatestRead';
 
 // Book
 $route['img_book'] = 'book/C_createbook/img_book';

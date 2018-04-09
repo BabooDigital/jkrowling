@@ -107,7 +107,7 @@
 								<a href="<?php echo site_url(); ?>account/edit" class="btn-profile"><img
 									src="<?php echo base_url('') ?>public/img/assets/icon_edit.png" width="20"> Edit Profile
 								</a>
-								<a href="<?php echo site_url(); ?>pesan" class="btn-message"><img
+								<a href="<?php echo site_url(); ?>message" class="btn-message"><img
 									src="<?php echo base_url('') ?>public/img/icon-tab/message.svg" width="25">Pesan Masuk
 								</a>
 							</div>

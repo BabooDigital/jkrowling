@@ -1,4 +1,4 @@
-<style type="text/css">
+<style>
 
 /*Right*/
 .modal.right.fade .modal-dialog {

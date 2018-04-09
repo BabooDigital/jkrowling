@@ -31,25 +31,41 @@
 	</div> -->
 	<div class="container babooid" align="center">
 		<div class="row p-10">
-			<p class="mt-120 mb-30"><span class="terakhir_dilihat_label">Terakhir Dibaca</span></p>
-			<!-- <span class="terakhir_dilihat_button"><b>Lihat Semua</b></span> -->
-			<div class="loader" style="display: none;margin-left: auto;margin-right: auto;"></div>
+			<p class="mt-120 mb-30 w-100"><span class="terakhir_dilihat_label">Terakhir Dibaca</span> <span class="float-right alllast" style="display: none;"><a href="<?php echo site_url('library/all_lastread'); ?>">Lihat Semua</a></span></p>
 			<div id="myWorkContent" class="mb-10" style="margin-top: -10px;">
 				<div id="insideDiv"> 
 				</div>
 			</div>
 			<div class="loader" style="display: none;margin-left: auto;margin-right: auto;"></div
-		>
-	</div>
-	</div>
-	<div class="container babooid bg-white pb-70" style="overflow-y: hidden;overflow-x: hidden;">
-		<div class="row p-20">
-			<h4><b>Bookmark Buku</b></h4>
+				>
+			</div>
 		</div>
-		<div class="loader" style="display: none;margin-left: auto;margin-right: auto;"></div>
-		<div class="row" id="bookmarkList">
+		<div class="container babooid pb-70" style="overflow-y: hidden;overflow-x: hidden;background: #fcfcff;">
+			<div class="row p-20">
+				<h4><b>Koleksi Buku</b></h4>
+			</div>
+			<div class="loader" style="display: none;margin-left: auto;margin-right: auto;"></div>
+			<div class="row" id="collectionList">
 
-		</div>
+			</div>
+			<div class="row allcoll" style="display: none;">
+				<div class="col-12">
+					<button type="button" class="btn-all">Lihat Semua Koleksi</button>
+				</div>
+			</div>
+
+			<div class="row p-20 mt-30">
+				<h4><b>Bookmark Buku</b></h4>
+			</div>
+			<div class="loader" style="display: none;margin-left: auto;margin-right: auto;"></div>
+			<div class="row" id="bookmarkList">
+
+			</div>
+			<div class="row allmark" style="display: none;">
+				<div class="col-12">
+					<button type="button" class="btn-all">Lihat Semua Bookmark</button>
+				</div>
+			</div>
 		</div>
 		<!-- JS -->
 		<script type="text/javascript">
