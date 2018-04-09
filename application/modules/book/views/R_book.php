@@ -110,7 +110,7 @@ echo "<script>(function(d, s, id) {
 		<div class="bg-white" style="width: 250px;height: auto;position: fixed;bottom: 0;padding: 5px 15px;">
 			<small>Versi Buku Full</small>
 			<div>
-				<p><img src="<?php echo site_url('public/img/assets/icon_sell.png'); ?>" width="20" class="mr-5"><span style="color: #7661ca;font-weight: 600;">Rp <span class="priceb"><?php echo $detail_book['data']['book_info']['book_price']; ?></span></span> <button type="button" class="float-right btn-transparant buyfullbook" style="margin-top: -10px;padding: 3px 30px;border-radius: 35px;background: #7661ca;color: #fff;">Beli</button></p>
+				<p><img src="<?php echo site_url('public/img/assets/icon_sell.png'); ?>" width="20" class="mr-5"><span style="color: #7661ca;font-weight: 600;">Rp <span class="priceb"><?php echo number_format( $detail_book['data']['book_info']['book_price'], 0, ',', '.'); ?></span></span> <button type="button" class="float-right btn-transparant buyfullbook" style="margin-top: -10px;padding: 3px 30px;border-radius: 35px;background: #7661ca;color: #fff;">Beli</button></p>
 			</div>
 		</div>
 		<?php } ?>
@@ -126,10 +126,19 @@ echo "<script>(function(d, s, id) {
 				</div>
 			</div>
 		</div>
-		<?php }else{} ?>
+		<?php }else{ ?>
+		<div class="row mb-30" style="display: none;">
+			<div class="col-12">
+				<div class="text-center mb-15">
+					<h3 style="font-weight: 900;"><?php echo $detail_book['data']['book_info']['title_book']; ?></h3>
+					<p class="text-muted pcat"><b class="cbookd"><?php echo $detail_book['data']['category']['category_name']; ?></b> &#8226; Dibaca <span class="boview"><?php echo $detail_book['data']['book_info']['view_count']; ?></span> kali</p>
+				</div>
+			</div>
+		</div>
+		<?php } ?>
+		<?php $sess = $this->session->userdata('userData'); if (empty($this->uri->segment(3))) { ?>
 		<div class="row">
 			<div class="col-12">
-				<?php $sess = $this->session->userdata('userData'); if (empty($this->uri->segment(3))) { ?>
 				<div class="media mb-20">
 					<img alt="<?php echo $detail_book['data']['author']['author_name']; ?>" class="d-flex align-self-start mr-20 rounded-circle authimg" height="55" src="<?php if($detail_book['data']['author']['avatar'] == NULL){ echo base_url('public/img/profile/blank-photo.jpg'); }else{ echo $detail_book['data']['author']['avatar']; } ?>" width="55">
 					<div class="media-body mt-5">
@@ -144,12 +153,29 @@ echo "<script>(function(d, s, id) {
 						</p>
 					</div>
 				</div>
-				<?php }else{
-
-				} ?>
-				<input id="iaidubi" name="iaidubi" type="hidden" value="<?php echo $detail_book['data']['book_info']['book_id']; ?>"> <input id="iaiduui" name="iaiduui" type="hidden" value="<?php $dat = $this->session->userdata('userData'); echo $dat['user_id']; ?>">
 			</div>
 		</div>
+		<?php }else{ ?>
+		<div class="row" style="display: none;">
+			<div class="col-12">
+				<div class="media mb-20">
+					<img alt="<?php echo $detail_book['data']['author']['author_name']; ?>" class="d-flex align-self-start mr-20 rounded-circle authimg" height="55" src="<?php if($detail_book['data']['author']['avatar'] == NULL){ echo base_url('public/img/profile/blank-photo.jpg'); }else{ echo $detail_book['data']['author']['avatar']; } ?>" width="55">
+					<div class="media-body mt-5">
+						<div style="display: flex;"><h5 class="nametitle2 mr-20"><a href="#" class="author_name"><?php echo $detail_book['data']['author']['author_name']; ?></a></h5>
+							<?php if ($sess['user_id'] == $detail_book['data']['author']['author_id']) { ?>
+							<div></div>
+							<?php }else{ ?>
+							<a data-follow="<?php echo $detail_book['data']['author']['author_id']; ?>" class="btn-topup <?php if ($detail_book['data']['author']['is_follow'] == false) { echo "follow-u"; }else{ echo "unfollow-u"; } ?>"><span class="nametitle2 txtfollow" style="font-size: 12px;"><?php if ($detail_book['data']['author']['is_follow'] == false) { echo "Ikuti"; }else{ echo "Diikuti"; } ?></span></a>
+							<?php } ?>
+						</div>
+						<p style="margin-top: -5px;"><span class="text-muted"><small><?php echo $detail_book['data']['book_info']['publish_date']; ?></small></span>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<?php } ?>
+		<input id="iaidubi" name="iaidubi" type="hidden" value="<?php echo $detail_book['data']['book_info']['book_id']; ?>"> <input id="iaiduui" name="iaiduui" type="hidden" value="<?php $dat = $this->session->userdata('userData'); echo $dat['user_id']; ?>">
 		<?php if ($detail_book['data']['chapter']['chapter_free'] == true) { ?>
 		<div class="row">
 			<div class="col-12 text-center mt-10">
@@ -176,13 +202,13 @@ echo "<script>(function(d, s, id) {
 			<div class="row">
 				<div class="col-12">
 					<h3>Versi Buku Full</h3>
-					<img src="<?php echo site_url('public/img/assets/icon_sell.png'); ?>" width="40" class="mr-5"><span style="color: #7661ca;font-weight: 600;font-size: 40px;">Rp <?php echo $detail_book['data']['book_info']['book_price']; ?></span>
+					<img src="<?php echo site_url('public/img/assets/icon_sell.png'); ?>" width="20" class="mr-5"><span style="color: #7661ca;font-weight: 600;">Rp <span><?php echo number_format( $detail_book['data']['book_info']['book_price'], 0, ',', '.'); ?></span></span> 
 				</div>
 			</div>
 			<div class="row mt-15">
-				<div class="col-12">
-					<button type="button" class="float-right btn-transparant buyfullbook w-100" style="margin-top: -10px;padding: 3px 30px;border-radius: 35px;background: #7661ca;color: #fff;">Beli</button>
-				</div>
+				<!-- <div class="col-12">
+					<button type="button" class="float-right btn-transparant buyfullbook w-100" style="margin-top: -10px;padding: 10px 30px;border-radius: 35px;background: #7661ca;color: #fff;">Beli</button>
+				</div> -->
 			</div>	
 		</div>
 	</div>
@@ -261,7 +287,7 @@ echo "<script>(function(d, s, id) {
 	</div><!-- modal-dialog -->
 </div><!-- modal -->
 
-	<?php $this->load->view('include/modal_checkout'); ?>
+<?php $this->load->view('include/modal_checkout'); ?>
 
 <?php if (isset($js)): ?>
 	<?php echo get_js($js) ?>

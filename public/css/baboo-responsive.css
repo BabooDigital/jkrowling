@@ -583,7 +583,8 @@ a:hover {
                   }
                   .margin_cover {
                     margin-top: 80px;
-                    height: 700px;
+                    margin-bottom: 100px;
+                    height: auto;
                   }
                   .colordiv {
                     background-color:white;
