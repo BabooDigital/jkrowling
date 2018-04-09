@@ -12,14 +12,24 @@ $(function(){
   publishBook();
   getCategory();
   uploadCoverMr();
+
 });
 function publishBook() {
   $("#publish_book").click(function() {
     var formData = new FormData();
-    formData.append("book_id", $("#uri").val());
-      // formData.append("file_cover", $("#cover_name").val());
+    var slide = $('.priceCheck:checkbox:checked');
+      if (slide.length == 0) {
+      formData.append("book_id", $("#uri").val());
       formData.append("file_cover", $("#cover_file").val());
       formData.append("category", $("#category_ids").val());
+      formData.append("is_paid", false);
+    }else{
+      formData.append("book_id", $("#uri").val());
+      formData.append("file_cover", $("#cover_file").val());
+      formData.append("category", $("#category_ids").val());
+      formData.append("price", $("#inputprice").val());
+      formData.append("is_paid", true);
+    }
       var cat = $("#category_ids").val();
       var tnc = $('.checktnc:checkbox:checked');
 
@@ -72,11 +82,11 @@ function uploadCoverMr() {
       processData: false,
       data: a
     }).done(function(data) {
-       $("#cover_file").val(data.link);
-    }).fail(function() {
-      console.log("error");
-    }).always(function() {})
-  });
+     $("#cover_file").val(data.link);
+   }).fail(function() {
+    console.log("error");
+  }).always(function() {})
+ });
 }
 
 function publishChapter() {
@@ -288,7 +298,7 @@ function saveDraft() {
           });
         },
         success:function (data) {
-            var chid = data.data.chapter_id;
+          var chid = data.data.chapter_id;
           if (data.code == 200) {
             $('#ch_id').val(chid);
             swal.hideLoading()
@@ -432,5 +442,83 @@ function saveEditChapter() {
         },
       });
     }
+  });
+}
+
+function check_book() {
+  var formData = new FormData();
+  formData.append("book_id", $("#uri").val());
+
+  $.ajax({
+    url: base_url+'validateSell',
+    type: 'POST',
+    dataType: 'JSON',
+    contentType: false,
+    processData: false,
+    data: formData,
+    beforeSend: function() {
+      swal({
+        text: 'Harap tunggu...',
+        onOpen: () => {
+          swal.showLoading();
+        }
+      });
+    }
+  })
+  .done(function(data) {
+    if (data.code == 200) {
+      swal({
+        onOpen: () => {
+          swal.hideLoading();
+        }
+      });
+      if (data.data.is_publishable == true) {
+        $('.switch').show();
+        swal({
+          title: 'Yeay...!',
+          text: 'Buku anda sudah layak untuk dijual. Mau dijual sekarang?',
+          imageUrl: base_url+'public/img/can_sell.png',
+          imageAlt: 'Congrats! You Can Sell your Book. :)',
+          animation: true,
+          showCancelButton: true,
+          confirmButtonColor: '#7661ca',
+          cancelButtonColor: '#979797',
+          confirmButtonText: 'Ya, Jual',
+          cancelButtonText: 'Nanti'
+        }).then((result) => {
+          if (result.value) {
+            $('#showOpt').prop('checked', true);
+            $('#priceSet').addClass('show');
+          }else{
+
+          }
+        });
+
+        $(document).on('keyup', '#inputprice', function(event) {
+              event.preventDefault();
+              var id = $(this).val();
+              var payment_fee = data.data.payment_fee;
+              var nominal = $(this).val().split(".").join("");
+              var ppn = data.data.ppn * nominal / 100;
+              var rp_total = parseFloat(id) + (ppn + payment_fee);
+              $("#rp").show();
+              $("#rp_fee").show();
+              $("#rp_total").show();
+              $('#ppn').number(ppn);
+              $('#payment_fee').number(payment_fee);
+              $('#total').number(rp_total);
+            });
+      }else{
+
+      }
+    }else{
+      window.location = base_url+'yourdraft';
+    }
+  })
+  .fail(function() {
+    console.log("error");
+  })
+  .always(function() {
+    console.log("complete");
   });
 }

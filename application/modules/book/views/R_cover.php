@@ -170,28 +170,50 @@ input:checked + .slider:before {
 			<div class="mt-20">
 				<div class="form-group">
 					<label style="font-size: 14pt;">Jual Buku? <a href="#" class="ainfo ml-15">Info Lengkap</a></label>
-					<!-- <label class="switch float-right">
-						<input type="checkbox" id="showOpt" data-toggle='collapse' data-target='#collapsediv1'>
+					<label class="switch float-right" style="display: none;">
+						<input type="checkbox" id="showOpt" data-toggle='collapse' data-target='#priceSet' class="priceCheck">
 						<span class="slider round"></span>
-					</label> -->
-					<div class="container bg-white collapse" id='collapsediv1'>
+					</label>
+					<div class="container bg-white collapse" id='priceSet'>
 						<div class="row" style="width: 110%;">
 							<div class="form-group col-4">
 								<label style="color: #fff;">l</label>
 								<select id="inputCurrency" class="form-control">
 									<option selected>Rp</option>
-									<option>$</option>
 								</select>
 							</div>
 							<div class="form-group col-8">
 								<label class="text-muted">Harga Buku Lengkap</label>
-								<input type="number" class="form-control" id="inputAddress" placeholder="60000">
+								<input type="number" class="form-control" id="inputprice" placeholder="60000">
 							</div>
 						</div>
-						<div class="row" style="width: 110%;">
+						<div class="row">
+							<div class="col-4">
+								<label class="text-muted fs-10">PPN 10%</label>
+							</div>
+							<div class="col-8">
+								<label class="text-muted fs-10-right"><b style="display: none;" id="rp">Rp</b> <b id="ppn">-</b></label>
+							</div>
+							<div class="col-4">
+								<label class="text-muted fs-10">Payment Fee</label>
+							</div>
+							<div class="col-8">
+								<label class="text-muted fs-10-right"> <b style="display: none;" id="rp_fee">Rp</b> <b id="payment_fee">-</b></label>
+							</div>
+						</div>
+						<hr class="mt-5 mb-5">
+						<div class="row">
+							<div class="col-6">
+								<label class="text-muted fs-10" style="font-size: 16px;">Harga Jual Buku</label>
+							</div>
+							<div class="col-6">
+								<label class="text-muted fs-10-right" style="font-size: 16px;"> <b style="display: none;" id="rp_total">Rp</b> <b id="total">0</b></label>
+							</div>
+						</div>
+						<div class="row mt-20" style="width: 110%;">
 							<div class="form-group col-8">
 								<label class="text-muted">Mulai Jual Pada Chapter</label>
-								<input type="number" value="3" min="3" class="form-control chaptermin" id="font-size">
+								<input type="number" value="6" min="3" class="form-control chaptermin" id="font-size">
 							</div>
 							<div class="col-2" style="margin-left: -15px;">
 								<label style="color: #fff;">min</label>
@@ -227,6 +249,7 @@ input:checked + .slider:before {
 			<?php echo get_js($js) ?>
 		<?php endif ?>
 		<script>
+			check_book();
 			$(document).on('click','.tncModal',function(){
 				$('#tnc-modal').modal('show');
 				$(document).on('click', '.btn-acc', function() {
