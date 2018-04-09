@@ -150,7 +150,9 @@ class C_profile extends MX_Controller {
 
 			if ($this->agent->mobile()) {
 
+				$data['css'][] = "public/css/sweetalert2.min.css";
 				$data['css'][] = "public/css/baboo-responsive.css";
+				$data['js'][] = "public/js/sweetalert2.all.min.js";
 				$data['js'][] = "public/js/menupage.js";
 				$data['js'][] = "public/js/custom/mobile/r_other_profile.js";
 

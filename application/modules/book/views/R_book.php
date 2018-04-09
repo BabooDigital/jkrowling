@@ -142,7 +142,7 @@ echo "<script>(function(d, s, id) {
 				<div class="media mb-20">
 					<img alt="<?php echo $detail_book['data']['author']['author_name']; ?>" class="d-flex align-self-start mr-20 rounded-circle authimg" height="55" src="<?php if($detail_book['data']['author']['avatar'] == NULL){ echo base_url('public/img/profile/blank-photo.jpg'); }else{ echo $detail_book['data']['author']['avatar']; } ?>" width="55">
 					<div class="media-body mt-5">
-						<div style="display: flex;"><h5 class="nametitle2 mr-20"><a href="#" class="author_name"><?php echo $detail_book['data']['author']['author_name']; ?></a></h5>
+						<div style="display: flex;"><h5 class="nametitle2 mr-20"><a href="<?php echo site_url('profile/'.$detail_book['data']['author']['author_id'].'-'.url_title($detail_book['data']['author']['author_name'], 'dash', true)); ?>" class="author_name"><?php echo $detail_book['data']['author']['author_name']; ?></a></h5>
 							<?php if ($sess['user_id'] == $detail_book['data']['author']['author_id']) { ?>
 							<div></div>
 							<?php }else{ ?>

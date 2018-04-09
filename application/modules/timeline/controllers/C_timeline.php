@@ -114,6 +114,7 @@ class C_timeline extends MX_Controller {
 			}
 			else
 			{
+				$datas['js'][]   = "public/js/custom/search.js";
 				$datas['js'][]   = "public/js/custom/D_timeline_in.js";
 				if (!empty($this->input->get("page"))) {
 					

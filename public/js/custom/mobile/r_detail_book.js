@@ -78,7 +78,6 @@ $(document).ready(function() {
             processData: false,
             data: a
         }).done(function(data) {
-        	console.log(data);
             b.removeClass("bookmark");
             b.addClass("unbookmark")
         }).fail(function() {

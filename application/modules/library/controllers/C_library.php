@@ -103,6 +103,7 @@ class C_Library extends MX_Controller
             $this->load->view('D_library');
         }
     }
+
     public function bookmark()
     {
         error_reporting(0);
@@ -148,8 +149,19 @@ class C_Library extends MX_Controller
         $resval = (array)json_decode(end($data), true);
         $bookmark = $resval['data'];
         
-        echo json_encode($bookmark, TRUE);  
+        if ($data['code'] == 403){
+            $this->session->unset_userdata('userData');
+            $this->session->unset_userdata('authKey');
+            $this->session->sess_destroy();
+            redirect('login','refresh');
+        }else{
+            echo json_encode(array(
+                'code' => $status,
+                'data' => $bookmark
+            ));
+        }
     }
+    
     public function lastRead()
     {
         error_reporting(0);
@@ -197,7 +209,135 @@ class C_Library extends MX_Controller
         $lastRead = $resval['data'];
         
         $output = array_slice($lastRead, 0, 5);
+        
+        if ($data['code'] == 403){
+            $this->session->unset_userdata('userData');
+            $this->session->unset_userdata('authKey');
+            $this->session->sess_destroy();
+            redirect('login','refresh');
+        }else{
+            echo json_encode(array(
+                'code' => $status,
+                'data' => $output
+            ));
+        }
+    }
 
-        echo json_encode($output, TRUE);
+    public function Collections()
+    {
+        error_reporting(0);
+        $auth = $this->session->userdata('authKey');
+        $data = $this->curl_request->curl_get($this->API.'timeline/Timelines/allCollections', '', $auth);
+        $output = array_slice($data['data'], 0, 4);
+
+        if ($data['code'] == 403){
+            $this->session->unset_userdata('userData');
+            $this->session->unset_userdata('authKey');
+            $this->session->sess_destroy();
+            redirect('login','refresh');
+        }else{
+            echo json_encode(array(
+                'code' => $data['code'],
+                'data' => $output
+            ));
+        }
+    }
+
+
+    public function allBookmark()
+    {
+        error_reporting(0);
+        $auth = $this->session->userdata('authKey');
+        $data = $this->curl_request->curl_get($this->API.'timeline/Timelines/allBookmark', '', $auth);
+
+        if ($data['code'] == 403){
+            $this->session->unset_userdata('userData');
+            $this->session->unset_userdata('authKey');
+            $this->session->sess_destroy();
+            redirect('login','refresh');
+        }else{
+            if ($this->agent->is_mobile()) {
+                $datas['book'] = $data['data'];
+                $datas['title'] = "Semua Bookmark Buku | Baboo.id";
+                $datas['css'][] = "public/css/bootstrap.min.css";
+                $datas['css'][] = "public/css/font-awesome.min.css";
+                $datas['css'][] = "public/css/baboo-responsive.css";
+                $datas['css'][] = "public/css/custom-margin-padding.css";
+
+                $datas['js'][] = "public/js/jquery.min.js";
+                $datas['js'][] = "public/js/tether.min.js";
+                $datas['js'][] = "public/js/umd/popper.min.js";
+                $datas['js'][] = "public/js/bootstrap.min.js";
+                $datas['js'][] = "public/js/menupage.js";
+
+                $this->load->view('all/bookmark', $datas);
+            }else{
+                redirect('timeline','refresh');
+            }
+        }
+    }
+    public function allLatestRead()
+    {
+        error_reporting(0);
+        $auth = $this->session->userdata('authKey');
+        $data = $this->curl_request->curl_get($this->API.'book/Books/all_latestRead', '', $auth);
+
+        if ($data['code'] == 403){
+            $this->session->unset_userdata('userData');
+            $this->session->unset_userdata('authKey');
+            $this->session->sess_destroy();
+            redirect('login','refresh');
+        }else{
+            if ($this->agent->is_mobile()) {
+                $datas['book'] = $data['data'];
+                $datas['title'] = "Semua Buku yang Terakhir di Baca | Baboo.id";
+                $datas['css'][] = "public/css/bootstrap.min.css";
+                $datas['css'][] = "public/css/font-awesome.min.css";
+                $datas['css'][] = "public/css/baboo-responsive.css";
+                $datas['css'][] = "public/css/custom-margin-padding.css";
+
+                $datas['js'][] = "public/js/jquery.min.js";
+                $datas['js'][] = "public/js/tether.min.js";
+                $datas['js'][] = "public/js/umd/popper.min.js";
+                $datas['js'][] = "public/js/bootstrap.min.js";
+                $datas['js'][] = "public/js/menupage.js";
+
+                $this->load->view('all/lastread', $datas);
+            }else{
+                redirect('timeline','refresh');
+            }
+        }
+    }
+    public function allCollection()
+    {
+        error_reporting(0);
+        $auth = $this->session->userdata('authKey');
+        $data = $this->curl_request->curl_get($this->API.'timeline/Timelines/allCollections', '', $auth);
+
+        if ($data['code'] == 403){
+            $this->session->unset_userdata('userData');
+            $this->session->unset_userdata('authKey');
+            $this->session->sess_destroy();
+            redirect('login','refresh');
+        }else{
+            if ($this->agent->is_mobile()) {
+                $datas['book'] = $data['data'];
+                $datas['title'] = "Semua Koleksi Buku Mu | Baboo.id";
+                $datas['css'][] = "public/css/bootstrap.min.css";
+                $datas['css'][] = "public/css/font-awesome.min.css";
+                $datas['css'][] = "public/css/baboo-responsive.css";
+                $datas['css'][] = "public/css/custom-margin-padding.css";
+
+                $datas['js'][] = "public/js/jquery.min.js";
+                $datas['js'][] = "public/js/tether.min.js";
+                $datas['js'][] = "public/js/umd/popper.min.js";
+                $datas['js'][] = "public/js/bootstrap.min.js";
+                $datas['js'][] = "public/js/menupage.js";
+
+                $this->load->view('all/collection', $datas);
+            }else{
+                redirect('timeline','refresh');
+            }
+        }
     }
 }
