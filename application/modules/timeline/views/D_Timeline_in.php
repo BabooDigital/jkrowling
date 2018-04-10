@@ -58,7 +58,7 @@
 											</form>
 										</div> -->
 										<a href="<?php echo base_url('event') ?>">
-											<img src="<?php echo base_url('public/img/event/event1.svg') ?>" style="width:100%;height: 100%;">
+											<img src="https://s3-us-west-2.amazonaws.com/s3.baboo.id/baboo-cover/banner-web.png" style="width:100%;height: 100%;">
 										</a>
 									</div>
 									<!-- Card Widget -->
