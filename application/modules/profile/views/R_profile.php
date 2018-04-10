@@ -73,15 +73,15 @@
 			<div class="profile">
 				<div class="p-10 mt-10">
 					<div class="profile_avatar">
-					<div class="btn-setting" style="z-index: 9999;position: absolute;right: 15px;">
+					<div class="btn-setting" style="z-index: 1100;position: absolute;right: 15px;">
 						<a href="<?php echo site_url(); ?>account/setting"><img src="<?php echo base_url('') ?>public/img/icon-tab/group_15.svg" width="23"></a>
 					</div>
 					<div class="w-100 text-center">
 						<div id="profile-container" class="mx-auto mb-10">
-							<image id="profileImage" src="<?php if($userdata['prof_pict'] == null) {echo base_url('public/img/profile/blank-photo.jpg');}else{echo $userdata['prof_pict'];} ?>" />
+							<img id="profileImage" src="<?php if($userdata['prof_pict'] == null) {echo base_url('public/img/profile/blank-photo.jpg');}else{echo $userdata['prof_pict'];} ?>" style="object-fit: cover;" />
 							</div>
 							<input id="imageUpload" type="file" 
-							name="profile_photo" placeholder="Photo" required="" capture>
+							name="profile_photo" placeholder="Photo" required="">
 						</div>
 						<p class="label_name"><?php echo $userdata['fullname']; ?></p>
 						<p class="profile_location"><?php echo $userdata['address']; ?></p>

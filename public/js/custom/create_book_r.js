@@ -10,7 +10,6 @@ $(function(){
   addChapter();
   publishChapter();
   publishBook();
-  getCategory();
   uploadCoverMr();
 
 });
@@ -445,7 +444,7 @@ function saveEditChapter() {
   });
 }
 
-function check_book() {
+function check_sell() {
   var formData = new FormData();
   formData.append("book_id", $("#uri").val());
 
@@ -519,6 +518,51 @@ function check_book() {
     console.log("error");
   })
   .always(function() {
-    console.log("complete");
+  });
+}
+
+function check_book() {
+  var formData = new FormData();
+  formData.append("book_id", $("#uri").val());
+
+  $.ajax({
+    url: base_url+'bookCheck',
+    type: 'POST',
+    dataType: 'JSON',
+    contentType: false,
+    processData: false,
+    data: formData,
+    beforeSend: function() {
+      swal({
+        text: 'Harap tunggu...',
+        onOpen: () => {
+          swal.showLoading();
+        }
+      });
+    }
+  })
+  .done(function(data) {
+    console.log(data);
+    if (data.code == 200) {
+      swal({
+        onOpen: () => {
+          swal.hideLoading();
+        }
+      });
+      $('#previews').attr('src', data.data.book_info.cover_url);
+      $('#category_ids').val(data.data.category.category_id).change();
+      if (data.data.book_info.is_free == false) {
+            $('.switch').show();
+            $('#showOpt').prop('checked', true);
+            $('#priceSet').addClass('show');
+        check_sell();
+      }else{
+      }
+    }
+  })
+  .fail(function() {
+    console.log("error");
+  })
+  .always(function() {
   });
 }

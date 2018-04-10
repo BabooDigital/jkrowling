@@ -637,35 +637,51 @@ class C_createbook extends MX_Controller
 
 	public function cover_v()
 	{
-		$data['title'] = "Buat Sebuah Cerita - Baboo";
+		error_reporting(0);
+		$auth = $this->session->userdata('authKey');
+		$book    = $this->uri->segment(2);
+		$send = array('book_id' => $book);
+		$dataCat = $this->curl_request->curl_get($this->API.'book/Books/allCategory', '', $auth);
+		$data = $this->curl_request->curl_post($this->API.'book/Books/detailBook', $send, $auth);
 
-		$data['css'][] = "public/css/bootstrap.min.css";
-		$data['css'][] = "public/css/custom-margin-padding.css";
-		$data['css'][] = "public/css/font-awesome.min.css";
-		$data['css'][] = "public/css/baboo-responsive.css";
-		$data['css'][] = "public/css/baboo.css";
-		$data['css'][] = "public/css/sweetalert2.min.css";
-		$data['css'][] = "public/plugins/holdOn/css/HoldOn.css";
-
-		$data['css'][] = "public/plugins/froala/css/froala_editor.css";
-		$data['css'][] = "public/plugins/froala/css/froala_style.css";
-
-
-		$data['js'][] = "public/js/jquery.min.js";
-		$data['js'][] = "public/js/umd/popper.min.js";
-		$data['js'][] = "public/js/bootstrap.min.js";
-		$data['js'][] = "public/plugins/froala/js/froala_editor.min.js";
-		$data['js'][] = "public/js/jquery.number.js";
-		$data['js'][] = "public/js/custom/create_book_r.js";
-		$data['js'][] = "public/js/sweetalert2.all.min.js";
-
-		$data['book_id'] = $this->uri->segment(2);
-		if ($this->agent->mobile()) {
-			$this->load->view('include/head', $data);
-			$this->load->view('R_cover');
+		if ($data['code'] == 403){
+			$this->session->unset_userdata('userData');
+			$this->session->unset_userdata('authKey');
+			$this->session->sess_destroy();
+			redirect('login','refresh');
 		}else{
-			redirect('timeline','refresh');
-		}
+			$data['title'] = "Buat Sebuah Cerita - Baboo";
+
+			$data['css'][] = "public/css/bootstrap.min.css";
+			$data['css'][] = "public/css/custom-margin-padding.css";
+			$data['css'][] = "public/css/font-awesome.min.css";
+			$data['css'][] = "public/css/baboo-responsive.css";
+			$data['css'][] = "public/css/baboo.css";
+			$data['css'][] = "public/css/sweetalert2.min.css";
+			$data['css'][] = "public/plugins/holdOn/css/HoldOn.css";
+
+			$data['css'][] = "public/plugins/froala/css/froala_editor.css";
+			$data['css'][] = "public/plugins/froala/css/froala_style.css";
+
+
+			$data['js'][] = "public/js/jquery.min.js";
+			$data['js'][] = "public/js/umd/popper.min.js";
+			$data['js'][] = "public/js/bootstrap.min.js";
+			$data['js'][] = "public/plugins/froala/js/froala_editor.min.js";
+			$data['js'][] = "public/js/jquery.number.js";
+			$data['js'][] = "public/js/custom/create_book_r.js";
+			$data['js'][] = "public/js/sweetalert2.all.min.js";
+
+			$data['book_id'] = $this->uri->segment(2);
+			$data['category'] = $dataCat['data'];
+			$data['book'] = $data['data'];
+			if ($this->agent->mobile()) {
+				$this->load->view('include/head', $data);
+				$this->load->view('R_cover');
+			}else{
+				redirect('timeline','refresh');
+			}
+		}	
 
 	}
 
@@ -1732,5 +1748,25 @@ class C_createbook extends MX_Controller
 			'code' => $resval['code'],
 			'data' => $resval['data']
 		));
+	}
+
+	public function checkBook() {
+		error_reporting(0);
+		$auth = $this->session->userdata('authKey');
+		$book    = $this->input->post('book_id');
+		$send = array('book_id' => $book);
+		$data = $this->curl_request->curl_post($this->API.'book/Books/detailBook', $send, $auth);
+
+		if ($data['code'] == 403){
+			$this->session->unset_userdata('userData');
+			$this->session->unset_userdata('authKey');
+			$this->session->sess_destroy();
+			redirect('login','refresh');
+		}else{
+			echo json_encode(array(
+				'code' => $data['code'],
+				'data' => $data['data']
+			));
+		}
 	}
 }

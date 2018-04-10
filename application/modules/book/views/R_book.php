@@ -55,6 +55,9 @@
 	position: absolute;
 	right: 35px;
 }
+.list-group-item.disabled, .list-group-item:disabled {
+	background: none;
+}
 </style>
 <?php 
 $base = (isset($_SERVER['HTTPS']) ? "https://" : "http://").$_SERVER['HTTP_HOST'];

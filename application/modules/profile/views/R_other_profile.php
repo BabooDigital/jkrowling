@@ -333,7 +333,13 @@ echo "<script>(function(d, s, id) {
 									<div class='media-body mt-5'>
 										<h5 class='card-title nametitle2'><a href='javascript:void(0);' class="author_name"><?php echo $book['author_name']; ?></a></h5>
 										<p class='text-muted' style='margin-top:-10px;'><small>
-											<span><?php echo $book['publish_date']; ?></span></small></p>
+											<span><?php echo $book['publish_date']; ?></span>
+											<?php if ($book['latest_update'] == $book['publish_date']) { ?>
+												<span></span>
+											<?php }else{ ?>
+												<span> • Diperbarui <?php echo $book['latest_update']; ?></span>
+											<?php } ?>
+										</small></p>
 										</div>
 									</div>
 								</div>
