@@ -126,6 +126,23 @@ input:checked + .slider:before {
 	color: #fff;
 }
 </style>
+<?php
+error_reporting(0);
+$actual_link = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+$parts = parse_url($actual_link);
+$uri = $this->uri->segment(2);
+$string = preg_replace('/\s+/', '', $uri);
+parse_str($parts['query'], $query);
+$dat = array(
+	'bid' => $string,
+	'param' => $query['stat']
+);
+if (!empty($query['stat'])) {	
+	$this->session->set_userdata('editPub', $dat);
+}else {		
+
+}	
+?>
 <body id="pageContent">
 	<input type="checkbox" id="toggle-right">
 	<div class="page-wrap">
@@ -147,12 +164,21 @@ input:checked + .slider:before {
 		<div class="text-center">
 			<div class="coverprev" align="center" style="height: 230px;">
 				<input type="hidden" id="uri" value="<?php echo $this->uri->segment(2); ?>">
+				<?php $sess = $this->session->userdata('editPub'); if (!empty($sess)) { ?>
+				<p><img width="160" height="222" id="previews" src="<?php $src = $book['book_info']['cover_url']; if(!empty($src)){  echo $src; }else{
+					echo base_url()."public/img/assets/def_prev.png";
+				} ?>" style="object-fit: cover;"></p>
+				<input type="hidden" name="cover_name" id="cover_name" accept="image/*"  value="<?php $src = $book['book_info']['cover_url']; if($src != NULL){  echo $src; }else{ echo ""; } ?>">
+				<input type="hidden" name="cover_file" id="cover_file" accept="image/*" value="<?php $src = $book['book_info']['cover_url']; if($src != NULL){  echo $src; }else{ echo ""; } ?>">
+				<input type="file" id="file_cover" accept="image/*" onchange="tampilkanPreview(this,'previews')" name="file_cover" value="<?php $src = $book['book_info']['cover_url']; if(!empty($src)){  echo $src; }else{ echo ""; } ?>">
+				<?php }else{ ?>
 				<p><img width="160" height="222" id="previews" src="<?php $src = $this->session->userdata('dataCover'); if(!empty($src)){  echo $src['asset_url']; }else{
 					echo base_url()."public/img/assets/def_prev.png";
 				} ?>" style="object-fit: cover;"></p>
 				<input type="hidden" name="cover_name" id="cover_name" accept="image/*"  value="<?php $src = $this->session->userdata('dataCover'); if($src != NULL){  echo $src['asset_url']; }else{ echo ""; } ?>">
 				<input type="hidden" name="cover_file" id="cover_file" accept="image/*">
 				<input type="file" id="file_cover" accept="image/*" onchange="tampilkanPreview(this,'previews')" name="file_cover" value="<?php $src = $this->session->userdata('dataCover'); if(!empty($src)){  echo $src['asset_url']; }else{ echo ""; } ?>">
+				<?php } ?>
 			</div>
 			<div class="min_padding">
 				<p style="font-size: 16px;">Atau
@@ -162,9 +188,21 @@ input:checked + .slider:before {
 			</div>
 			<div class="mt-40">
 				<div class="form-group">
+					<?php $sess = $this->session->userdata('editPub'); if (!empty($sess)) { ?>
+					<select class="form-control catselect" id="category_ids" name="category_id" required>
+						<option value="<?php echo $book['category']['category_id']; ?>">-- <?php echo $book['category']['category_name']; ?> --</option>
+						<?php foreach ($category as $cat) { ?>
+						<option value="<?php echo $cat['category_id'] ?>"><?php echo $cat['category_name'] ?></option>
+						<?php } ?>
+					</select>
+					<?php }else{ ?>
 					<select class="form-control catselect" id="category_ids" name="category_id" required>
 						<option value="">Kategori Buku</option>
+						<?php foreach ($category as $cat) { ?>
+						<option value="<?php echo $cat['category_id'] ?>"><?php echo $cat['category_name'] ?></option>
+						<?php } ?>
 					</select>
+					<?php } ?>
 				</div>
 			</div>
 			<div class="mt-20">
@@ -249,7 +287,7 @@ input:checked + .slider:before {
 			<?php echo get_js($js) ?>
 		<?php endif ?>
 		<script>
-			check_book();
+			check_sell();
 			$(document).on('click','.tncModal',function(){
 				$('#tnc-modal').modal('show');
 				$(document).on('click', '.btn-acc', function() {

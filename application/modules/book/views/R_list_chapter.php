@@ -1,4 +1,20 @@
+<?php
+error_reporting(0);
+$actual_link = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+$parts = parse_url($actual_link);
+$uri = $this->uri->segment(2);
+$string = preg_replace('/\s+/', '', $uri);
+parse_str($parts['query'], $query);
+$dat = array(
+	'bid' => $string,
+	'param' => $query['stat']
+);
+if (!empty($query['stat'])) {	
+	$this->session->set_userdata('editPub', $dat);
+}else{		
 
+}	
+?>
 <body id="pageContent">
 	<input type="checkbox" id="toggle-right">
 	<div class="page-wrap">

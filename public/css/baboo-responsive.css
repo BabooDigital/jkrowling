@@ -583,7 +583,8 @@ a:hover {
                     }
                     .margin_cover {
                       margin-top: 80px;
-                      height: 700px;
+                      margin-bottom: 80px;
+                      height: auto;
                     }
                     .colordiv {
                       background-color:white;
@@ -1150,4 +1151,10 @@ a:hover {
                       border-radius: 35px;
                       padding: 5px;
                       font-size: 20px;
+                    }
+                    .btn-no-fill {
+                      border: 1px #7554bd solid;
+                      border-radius: 25px;
+                      padding: 0px 10px;
+                      color: #7554bd;
                     }

@@ -146,6 +146,7 @@ $route['cover/:num'] = 'book/C_createbook/cover_v';
 $route['detaileditchapt'] = 'book/C_createbook/getDataChapter';
 
 $route['validateSell'] = 'book/C_createbook/validatePublish';
+$route['bookCheck'] = 'book/C_createbook/checkBook';
 
 $route['book/:any/preview'] = 'book/C_book_out';
 

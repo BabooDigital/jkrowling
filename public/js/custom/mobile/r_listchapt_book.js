@@ -12,7 +12,7 @@ $(document).ready(function() {
 			confirmButtonText: 'Ya, Kembali'
 		}).then((result) => {
 			if (result.value) {
-				window.location = base_url+"timeline";
+				window.location = base_url+"yourdraft";
 			}
 		})
 	});

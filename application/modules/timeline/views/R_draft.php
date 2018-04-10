@@ -44,7 +44,13 @@
 						foreach ($datadraft as $data) {  ?>
 						<div class='card mb-20'>
 							<div class='card-header bg-white'>
-								<span><img src='public/img/assets/icon_clock.svg' width='20'> <?php echo $data['latest_update']; ?></span> <span class='float-right' style='color: red;'>Draft</span>
+								<?php if ($data['status_publish']['status_id'] == 1 ) { ?>
+								<span><img src='public/img/assets/icon_clock.svg' width='20'> <?php echo $data['latest_update']; ?></span> 
+								<span class='float-right'><img src="<?php echo base_url('public/img/assets/icon_stat_draft.png'); ?>"></span>
+								<?php }else if ($data['status_publish']['status_id'] == 3) { ?>
+								<span><img src='public/img/assets/icon_clock.svg' width='20'> Terbit <?php echo date("d M Y", strtotime($data['publish_date'])); ?></span> 
+								<span class='float-right'><img src="<?php echo base_url('public/img/assets/icon_stat_revisi.png'); ?>"></span>
+								<?php } ?>
 							</div>
 							<div class='card-body'>
 								<?php if (!empty($data['image_url'])) { ?>
@@ -56,7 +62,13 @@
 							</div>
 							<div class='card-footer text-muted bg-white' style='font-size: 0.8em;font-weight: bold;'>
 								<div class='pull-right' style="margin-top: 3px;">
-									<a class='mr-10 fs-14px mb-5' href='<?php echo site_url('listchapter/'. $data['book_id']); ?>' style='border: 1px #333 solid;border-radius: 40px;padding: 8px 25px;'><img src='public/img/assets/icon_pen.svg' width='23'> Edit</a> <a href='<?php echo site_url('cover/'. $data['book_id']); ?>' style='border: 1px #7554bd solid;border-radius: 40px;padding: 8px 20px;color: #7554bd;'><img class='mr-10 fs-14px mb-5' src='public/img/assets/icon_publish.svg' width='20'> Publish</a>
+								<?php if ($data['status_publish']['status_id'] == 1 ) { ?>
+									<a class='mr-10 fs-14px mb-5' href='<?php echo site_url('listchapter/'. $data['book_id']); ?>?stat=draft' style='border: 1px #333 solid;border-radius: 40px;padding: 8px 25px;'><img src='public/img/assets/icon_pen.svg' width='23'> Edit</a> 
+									<a href='<?php echo site_url('cover/'. $data['book_id']); ?>?stat=draft' style='border: 1px #7554bd solid;border-radius: 40px;padding: 8px 20px;color: #7554bd;'><img class='mr-10 fs-14px mb-5' src='public/img/assets/icon_publish.svg' width='20'> Publish</a>
+								<?php }else if ($data['status_publish']['status_id'] == 3) { ?>
+									<a class='mr-10 fs-14px mb-5' href='<?php echo site_url('listchapter/'. urlencode($data['book_id'])); ?>?stat=revision' style='border: 1px #333 solid;border-radius: 40px;padding: 8px 25px;'><img src='public/img/assets/icon_pen.svg' width='23'> Edit</a> 
+									<a href='<?php echo site_url('cover/'. $data['book_id']); ?>?stat=revision' style='border: 1px #7554bd solid;border-radius: 40px;padding: 8px 20px;color: #7554bd;'><img class='mr-10 fs-14px mb-5' src='public/img/assets/icon_publish.svg' width='20'> Publish</a>
+								<?php } ?>
 								</div>
 								<div>
 									<button type="button" class="clear-btn deldraft" draft-id="<?php echo $data['book_id']; ?>"><img src='public/img/icon-tab/dustbin.svg' width='20'></button>
