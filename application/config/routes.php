@@ -205,3 +205,13 @@ $route['event/sea_all'] = 'event/C_event/seeAll';
 
 $route['bestBookEventSeeAll'] = 'event/C_event/bestBookEventSeeAll';
 $route['bestBookEvent'] = 'event/C_event/getBestBookEvent';
+
+// PIN AUTH ROUTES
+$route['pin_dompet'] = 'pin/C_pin_auth';
+$route['pin_dompet/first'] = 'pin/C_pin_auth';
+$route['pin_dompet/second'] = 'pin/C_pin_auth/second';
+$route['pin_dompet/third'] = 'pin/C_pin_auth/third';
+$route['pin_dompet/fourth'] = 'pin/C_pin_auth/fourth';
+$route['pin_dompet/fifth'] = 'pin/C_pin_auth/fifth';
+$route['pin_dompet/sixth'] = 'pin/C_pin_auth/sixth';
+$route['pin_dompet/seventh'] = 'pin/C_pin_auth/seventh';
