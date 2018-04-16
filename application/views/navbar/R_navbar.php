@@ -1,6 +1,6 @@
 <?php if ($this->session->userdata('isLogin')): ?>
 	
-<nav class="navbar navbar-expand-lg fixed-top-message bg-white" style="position: fixed;width: 100%;z-index: 1300;top: 0;">
+<nav class="navbar navbar-expand-lg fixed-top-message bg-white" style="position: fixed;width: 100%;z-index: 1000;top: 0;">
 	<div class="container">
 		<a class="navbar-brand" href="<?php echo site_url(); ?>"><img alt="" class="img-fluid" src="<?php echo base_url(); ?>public/img/new_logo.svg" width="80"></a>
 		<!-- <form class="form-inline srcform pull-right">

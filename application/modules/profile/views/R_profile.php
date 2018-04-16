@@ -32,6 +32,16 @@
 	position: absolute;
 	right: 30px;
 }
+.pininput {
+    color: #fff;
+	background: none;
+    border: 2px #fff solid;
+    border-radius: 50%;
+    -webkit-text-security: disc;
+}
+.pininput:focus {
+    border-color: #6450b3;
+}
 </style>
 <?php 
 	$base = (isset($_SERVER['HTTPS']) ? "https://" : "http://").$_SERVER['HTTP_HOST'];
@@ -73,7 +83,7 @@
 			<div class="profile">
 				<div class="p-10 mt-10">
 					<div class="profile_avatar">
-					<div class="btn-setting" style="z-index: 1100;position: absolute;right: 15px;">
+					<div class="btn-setting" style="z-index: 500;position: absolute;right: 15px;">
 						<a href="<?php echo site_url(); ?>account/setting"><img src="<?php echo base_url('') ?>public/img/icon-tab/group_15.svg" width="23"></a>
 					</div>
 					<div class="w-100 text-center">
@@ -86,6 +96,9 @@
 						<p class="label_name"><?php echo $userdata['fullname']; ?></p>
 						<p class="profile_location"><?php echo $userdata['address']; ?></p>
 						<p class="fs-14px quote"><?php echo $userdata['about_me']; ?></p>
+						<?php $name = $this->session->userdata('userData'); if ($name['user_id'] == $userdata['user_id']): ?>
+							<p class="fs-14px">( <?php echo $userdata['email']; ?> )</p>
+						<?php endif ?>
 						<hr>
 						<div class="info">
 							<img src="<?php echo base_url('') ?>public/img/icon-tab/book.svg"><b class="label_info">
@@ -113,13 +126,25 @@
 							</div>
 							<br>
 							<br>
+						</div>
+					</div>
+				</div>
+				<div class="bg-white pb-20">
+					<div class="container">
+						<div class="row">
+							<div class="col-12">
+								<div class="pt-5 pb-5 pl-10 pr-10" style="background-color: #7661ca;border-radius: 10px;">
+										<!-- <p class="text-left"><img src="<?php echo base_url('public/img/assets/icon_wallet_white.png'); ?>" class="img-fluid" width="20"> <span class="text-white">Dompet</span></p>
+										<p class="text-left mt-30"><button class="btn-transparant text-white btnActive activeDompet" style="font-size: 18px;">Aktifkan Sekarang ></button></p> -->
+
+										<p class="text-left"><img src="<?php echo base_url('public/img/assets/icon_wallet_white.png'); ?>" class="img-fluid" width="20"> <span class="text-white">Dompet</span> <button type="button" class="float-right btn-detdomp" data-toggle="modal" data-target="pinauth-modal" style="width: 20%;font-size: 13px;">Detail</button></p>
+										<p class="text-left mt-15"><button class="btn-transparant text-white btnActive" style="font-size: 20px;font-weight: 800;">Rp 5.100.000</button></p>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>
 	<br>
 	<div class="babooid mb-60" style="overflow-y: hidden;overflow-x: hidden;">
 		<div class="row">
@@ -136,11 +161,51 @@
 	</div>
 </div>
 </div>
-
+<?php $this->load->view('include/modal_pin'); ?>
 <!-- JS -->
 
 <?php if (isset($js)): ?>
 	<?php echo get_js($js) ?>
 <?php endif ?>
+<script>
+	$(document).ready(function () {
+		$(document).on('click', '.btn-detdomp', function() {
+			event.preventDefault();
+			/* Act on the event */
+			$('#pinauth-modal').modal('show')
+			$("#firstdigit").focus();
+		});
+		$(document).on('click', '.activeDompet', function() {
+			event.preventDefault();
+			/* Act on the event */
+			window.location = base_url+'pin_dompet';
+		});
+
+		$(":input[type='number']").keyup(function(event){
+			var a = $( "#firstdigit" );
+			var b = $( "#secondtdigit" );
+			var c = $( "#thirddigit" );
+			var d = $( "#fourthdigit" );
+			var e = $( "#fifthdigit" );
+			var f = $( "#sixthdigit" );
+
+			if ($(this).next('[type="number"]').length > 0){
+				$(this).next('[type="number"]')[0].focus();
+			}else{
+				if ($(this).parent().next().find('[type="number"]').length > 0){
+					$(this).parent().next().find('[type="number"]')[0].focus();
+
+				}
+			}
+
+			if (a.val().length > 0 && b.val().length > 0 && c.val().length > 0 && d.val().length > 0 && e.val().length > 0 && f.val().length > 0)
+			{
+			    // $('#formPin').submit();
+			    window.location = base_url+'dompet';
+			}
+		});
+
+	});
+</script>
 </body>
 </html>
