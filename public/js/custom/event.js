@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	getBestBook();
+	// getBestBook();
 	participantEventAll();
 	followEvent();
 	validateEvent();
