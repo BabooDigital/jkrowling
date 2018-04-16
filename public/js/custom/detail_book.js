@@ -308,8 +308,50 @@ $(document).ready(function() {
 	progressScroll();
 	getChapter();
 	getmenuChapter(); - 1 != document.URL.indexOf("#comment") && getCommentBook()
+	buyBook();
+	$("#notifpayment").modal('show');
 });
+function buyBook() {
+	$("#buy-btn").click(function(event) {
+		event.preventDefault();
+		$(this).attr("disabled", "disabled");
+		console.log("clicked");
 
+			$.ajax({
+				url: base_url+'pay_book/token',
+				type: "POST",
+				data:{id_book:$("#iaidubi").val(), url_redirect:window.location.href},
+				cache: false,
+				success: function(data) {
+		        var resultType = document.getElementById('result-type');
+		        var resultData = document.getElementById('result-data');
+		        function changeResult(type,data){
+		        	$("#result-type").val(type);
+		        	$("#result-data").val(JSON.stringify(data));
+		      }
+		      snap.pay(data, {
+
+		      	onSuccess: function(result){
+		      		changeResult('success', result);
+		      		console.log(result.status_message);
+		      		console.log(result);
+		      		$("#payment-form").submit();
+		      	},
+		      	onPending: function(result){
+		      		changeResult('pending', result);
+		      		console.log(result.status_message);
+		      		$("#payment-form").submit();
+		      	},
+		      	onError: function(result){
+		      		changeResult('error', result);
+		      		console.log(result.status_message);
+		      		$("#payment-form").submit();
+		      	}
+		      });
+		  }
+		});
+	});
+}
 function progressScroll() {
 	var d = function() {
 		return $(document).height() - $(window).height()
@@ -394,9 +436,15 @@ function getmenuChapter() {
 		var c = "";
 		$("#loader_chapter").hide();
 		$.each(d, function(d, a) {
-			"false" != a.chapter_free ? (c += '<li class="list-group-item ', 0 == d && (c += "chapter_active "), c += '" id="list_chapters"><a href="' + base_url + "book/" + segment + "/chapter/" + a.chapter_id + '" class="id_chapter', c += '" id="' + d + '">' + a.chapter_title + "</a></li>") : (c += '<li class="list-group-item ',
+			if (d != 'pay') {
+
+			false != a.chapter_free ? (c += '<li class="list-group-item ', 0 == d && (c += "chapter_active "), c += '" id="list_chapters"><a href="' + base_url + "book/" + segment + "/chapter/" + a.chapter_id + '" class="id_chapter', c += '" id="' + d + '">' + a.chapter_title + "</a></li>") : (c += '<li class="list-group-item ',
 				c += "chapter_disabled ", c += '" id="list_chapters" style="cursor: not-allowed;"><span class="id_chapter', c += '" id="' + d + '">' + a.chapter_title + "</span></li>")
+			}
 		});
+		if (d.pay.is_free == false) {
+			 c += '<li class="list-group-item" ></li><li class="list-group-item ', c += '" id="list_chapters"><a class="', c += '" id="' + d + '"><p style="font-size:10px;">' + 'Versi buku full' + "</p><span style='color:#7554bd'>Rp "+ d.pay.book_price +"</span></a><button style='float:right;' class='btn-buy'  data-toggle='modal' data-target='#buymodal'>Beli</button></li>";
+		}
 		$("#list_chapter").html(c);
 		$(".id_chapter").on("click", function(c) {
 			var a = $(this).attr("id");

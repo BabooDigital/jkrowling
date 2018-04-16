@@ -26,16 +26,41 @@
 <?php $this->load->view('navbar/D_navbar'); ?>
 <div class="container">
     <!-- <div class="row"> -->
-        <div class="paddingslide" align="center">
-            <div class="col-md-10">
-                <h4 align="left"><b>Terakhir Dibaca</b></h4>
-                <div class="your-class">
-                    <?php $this->load->view('include/slide'); ?>
+        <div class="paddingslide">
+            <div class="row">
+                <div class="col-md-9">
+                    <h4 align="left"><b>Terakhir Dibaca</b></h4>
+                    <div class="your-class">
+                        <?php $this->load->view('include/slide'); ?>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <h4 align="left"><b>Pembelian</b></h4>
+                    <div class="">
+                        <a href="<?php echo site_url('') ?>">
+                            <div class="statuspembelian" style="height: 245px;">
+                                <div class="textpembelian">
+                                    <span class="">Pembelian</span>
+                                    <span class="" style="float: right;"><img src="<?php echo base_url('public/img/assets/shape.svg') ?>"></span>
+                                </div>
+                                <br><br>
+                                <div class="textpembelian">
+                                    <span class="" style="font-size: 20px;font-weight: bold;">Dont Make Me think</span>
+                                    <br>
+                                    <p class="fontkecil">Menunggu proses pembayaran</p>
+                                    <br><br><br>
+                                    <p class="" style="float: right;">More</p>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="loader mx-auto mt-10" style="display: none;"></div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="paddingslide" align="center">
-            <div class="col-md-10">
+        
+        <div class="paddingslide">
+            <div class="col-md-9">
                 <h4 align="left"><b>Bookmark Buku</b></h4>
                 <div class="container" align="center">
                     <div class="row">

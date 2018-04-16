@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="236" height="195" viewBox="0 0 236 195">
+    <defs>
+        <linearGradient id="c" x1="103.457%" x2="26.879%" y1="19.531%" y2="60.619%">
+            <stop offset="0%" stop-color="#7DB6D0"/>
+            <stop offset="100%" stop-color="#5B9AB7"/>
+        </linearGradient>
+        <rect id="a" width="220" height="179.309" x=".35" y=".691" rx="5"/>
+        <filter id="b" width="111.8%" height="114.5%" x="-5.9%" y="-6.1%" filterUnits="objectBoundingBox">
+            <feOffset dy="2" in="SourceAlpha" result="shadowOffsetOuter1"/>
+            <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="4"/>
+            <feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0.227628162 0 0 0 0 0.512254271 0 0 0 0 0.627816752 0 0 0 0.342362998 0"/>
+        </filter>
+        <linearGradient id="e" x1="-36.516%" x2="84.109%" y1="0%" y2="66.528%">
+            <stop offset="0%" stop-color="#7DB6D0"/>
+            <stop offset="100%" stop-color="#0384B8"/>
+        </linearGradient>
+        <linearGradient id="f" x1="-29.345%" x2="106.252%" y1="17.342%" y2="89.619%">
+            <stop offset="0%" stop-color="#7DB6D0"/>
+            <stop offset="100%" stop-color="#1994C6"/>
+        </linearGradient>
+    </defs>
+    <g fill="none" fill-rule="evenodd" transform="translate(7.794 4.872)">
+        <mask id="d" fill="#fff">
+            <use xlink:href="#a"/>
+        </mask>
+        <use fill="#000" filter="url(#b)" xlink:href="#a"/>
+        <use fill="url(#c)" xlink:href="#a"/>
+        <g mask="url(#d)" style="mix-blend-mode:lighten">
+            <g transform="translate(56.423 -54.803)">
+                <ellipse cx="86.5" cy="148.665" fill="url(#e)" rx="85.965" ry="89.067"/>
+                <ellipse cx="160.112" cy="85.085" fill="url(#f)" fill-opacity=".8" rx="81.736" ry="84.685"/>
+            </g>
+        </g>
+        <path fill="#FFF" stroke="#FFF" stroke-width=".5" d="M203.568 16.734h-5.508l-2.228-3.502a1.91 1.91 0 0 0 .521-1.308A1.926 1.926 0 0 0 194.43 10a1.926 1.926 0 0 0-1.924 1.924c0 1.06.863 1.924 1.924 1.924.207 0 .403-.042.59-.102l1.9 2.988h-9.79l1.901-2.988c.187.06.383.102.59.102a1.926 1.926 0 0 0 1.923-1.924A1.926 1.926 0 0 0 189.62 10a1.926 1.926 0 0 0-1.923 1.924c0 .506.2.964.52 1.308l-2.228 3.502h-5.507a.48.48 0 1 0 0 .962h.54l1.392 10.755c.09.997.914 1.75 1.916 1.75h15.39a1.909 1.909 0 0 0 1.915-1.732l1.394-10.773h.54a.48.48 0 1 0 0-.962zm-10.149-4.81a1.01 1.01 0 1 1 2.022.001 1.01 1.01 0 0 1-2.022-.001zm-3.8-1.01a1.01 1.01 0 1 1-.001 2.022 1.01 1.01 0 0 1 .001-2.022zm-1.424 6.782l.189 4.81h-2.195l-.378-4.81h2.384zm3.348 4.81h-2.197l-.188-4.81h2.385v4.81zm.962-4.81h2.386l-.189 4.81h-2.197v-4.81zm-4.084 5.771l.227 5.772h-1.932l-.452-5.772h2.157zm.963 0h2.16v5.772h-1.934l-.226-5.772zm3.121 0h2.16l-.227 5.772h-1.933v-5.772zm3.122 0h2.157l-.452 5.772H195.4l.227-5.772zm.038-.962l.188-4.81h2.385l-.378 4.81h-2.195zm-10.82-4.81l.378 4.81h-2.61l-.623-4.81h2.856zm-1.476 10.651l-.631-4.879h2.56l.453 5.772h-1.422a.962.962 0 0 1-.96-.893zm17.308.018a.957.957 0 0 1-.957.875h-1.422l.452-5.772h2.56l-.633 4.897zm.759-5.859h-2.61l.376-4.81h2.856l-.622 4.81z" mask="url(#d)"/>
+    </g>
+</svg>

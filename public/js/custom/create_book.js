@@ -387,18 +387,35 @@ function getChapter() {
 		if (data.chapter == null || data.chapter.length == 0) {
 			title += '<input type="text" name="title_book" id="title_book" class="w-100" placeholder="Masukan Judul buku" required> <input type="text" name="title_chapter" style="display: none;" id="title_chapter" value="Description" class="w-100" placeholder="Masukan Chapter">';
 		}else{
+			var str_desc = data.chapter[0].desc;
 			title += '<input type="text" name="title_chapter" id="title_chapter" class="w-100" placeholder="Masukan Chapter" required>';
-			title_book = data.book_info.title_book; 
-			$.each(data.chapter, function(index, val) {
-				chapter += '<a class="btn w-100 mb-10 chapterdata0 editsubchapt1 addsubchapt_on withanimation" book="2016" chapter="1326" id="editchapt" href="'+uri_segment+'/chapter/'+val.chapter_id+'" onclick="showLoading()">'+val.chapter_title+'</a>';
-			});
+			title_book = data.book_info.title_book;
+			title += '<input type="hidden" name="title_book" id="title_book" value="'+title_book+'" class="w-100" placeholder="Masukan Judul" required>';
+			// console.log();
+			if (data.chapter[0]) {
+				chapter += '<div id="accordion"> <div class="card"> <div class="card-header" id="headingOne"> <h5 class="mb-0"> <button class="btn btn-transparent" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"> Daftar Chapter <span class="caret"></span> </button> </h5> </div> <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion"> ';
+				$.each(data.chapter, function(index, val) {
+					if (index != 0) {
+						chapter += '<div class=""><a style="border-bottom:solid 1px #DDD;" class="btn w-100 chapterdata0 editsubchapt1 addsubchapt_on " book="2016" chapter="1326" id="editchapt" href="'+base_url+'my_book/'+uri_segment+'/chapter/'+val.chapter_id+'" onclick="showLoading()"><img src="'+base_url+'/public/img/icon-tab/chapter.svg" class="pr-10">  '+val.chapter_title+'</a> </div>';
+					}
+				});
+				chapter += '</div> </div> </div><br>';
+			}
 			$(".title_book_txt").html(title_book);
+			$(".desc_book_txt").html(str_desc);
 		}
 		if (data.book_info.cover_url != "") {
 			$("#preview").attr('src', data.book_info.cover_url);
 			$("#cover_name").val(data.book_info.cover_url);
 		}else{
 			$("#preview").attr('src', base_url+'public/img/assets/def_prev.png');
+		}
+		if (data.chapter.length >= 3) {
+			$("#sell_book").show();
+			// console.log("show jual buku");
+		}else{
+			// console.log("hide jual buku");
+			$("#sell_book").hide();
 		}
 		$(".tulisjudul").html(title);
 		$("#btn_chapter").html(chapter);
@@ -429,13 +446,16 @@ function sellBook() {
 		var payment_fee = 6000;
 		var nominal = $(this).val().split(".").join("");
 		var ppn = 10 * nominal / 100;
-		var rp_total = id - (ppn + payment_fee);
+		var rp_total = ppn + payment_fee;
+		var total = parseInt(rp_total) + parseInt(id);
 		$("#rp").show();
 		$("#rp_fee").show();
 		$("#rp_total").show();
 		$('#ppn').number(ppn);
 		$('#payment_fee').number(payment_fee);
-		$('#total').number(rp_total);
+		$('#total').number(total);
+		$("#sell_nominal").show();
+		$("#sell_nominal").html("<input type='text' name='price' value='"+nominal+"'><input type='text' name='total_price' value='"+total+"'>");
 	});
 	$('.input-range').number(true);
 }

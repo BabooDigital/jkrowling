@@ -472,8 +472,11 @@ class C_createbook extends MX_Controller
 		}
 
 		$auth    = $this->session->userdata('authKey');
-		
-		$chapter_id    = $this->input->post('chapter_id');
+		if ($this->uri->segment(4)) {
+			$chapter_id    = $this->uri->segment(4);		
+		}else{
+			$chapter_id    = $this->input->post('chapter_id');
+		}
 		$ch = explode(',', $chapter_id);
 		$chapterData = array(
 			'chapter_id' => $ch
@@ -515,9 +518,12 @@ class C_createbook extends MX_Controller
 		} else {
 			$status = $resval['code'];
 		}
-		// if ($resval['code'] == 200) {
-		echo json_encode($resval);
-		// }
+		if ($this->agent->mobile()) {
+			echo json_encode($resval);
+		}else{
+				// echo json_encode($resval);
+			redirect('my_book/'.$this->uri->segment(2),'refresh');	
+		}	
 	}
 
 	public function deletePublishBook()
@@ -1088,6 +1094,9 @@ class C_createbook extends MX_Controller
 		$cat     = $this->input->post('category_id');
 		$user    = $this->input->post('user_id');
 		$parap   = $this->input->post('book_paragraph');
+		$price   = $this->input->post('price');
+		$total_price = $this->input->post('total_price');
+		$start_chapter = $this->input->post('start_chapter');
 
 		$output   = preg_replace("/(<[^>]+) style='.*?'/i", "$1", $parap);
 
@@ -1146,16 +1155,33 @@ class C_createbook extends MX_Controller
 	    }else{
 	    	$covers = $cover;
 	    }
-	    $bookData = array(
-	    	'book_id' => $book_id,
-	    	'title_book' => $title,
-	    	'file_cover' => $covers,
-	    	'category' => $cat,
-	    	'status_publish' => 'publish',
-	    	'user_id' => $user,
-	    	'chapter_title' => $chapter,
-	    	'paragraph' => $output
-	    );
+	    if (!empty($price)) {
+	    	$bookData = array(
+	    		'book_id' => $book_id,
+	    		'title_book' => $title,
+	    		'file_cover' => $covers,
+	    		'category' => $cat,
+	    		'status_publish' => 'publish',
+	    		'user_id' => $user,
+	    		'chapter_title' => $chapter,
+	    		'paragraph' => $output,
+	    		'is_paid' => true,
+	    		'price' => $price,
+	    		'total_price' => $total_price,
+	    		'chapter_start' => $start_chapter
+	    	);
+	    }else{
+	    	$bookData = array(
+	    		'book_id' => $book_id,
+	    		'title_book' => $title,
+	    		'file_cover' => $covers,
+	    		'category' => $cat,
+	    		'status_publish' => 'publish',
+	    		'user_id' => $user,
+	    		'chapter_title' => $chapter,
+	    		'paragraph' => $output
+	    	);
+	    }
 	    if (!empty($this->input->post('id_books'))) {
 	    	$bookData['book_id'] = $this->input->post('id_books');
 	    }
@@ -1442,7 +1468,7 @@ class C_createbook extends MX_Controller
 		}
 		
 		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, $this->API . 'book/Books/detailBook');
+		curl_setopt($ch, CURLOPT_URL, $this->API . 'book/Books/editBook');
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		// curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 		
@@ -1535,8 +1561,8 @@ class C_createbook extends MX_Controller
 		$data['js'][] = "public/plugins/froala/js/plugins/url.min.js";
 		// $data['js'][] = "public/plugins/froala/js/plugins/video.min.js";
 		
-		$data['js'][] = "public/js/custom/create_book_r.js";
 		if ($this->agent->mobile()) {
+			$data['js'][] = "public/js/custom/create_book_r.js";
 			$this->load->view('include/head', $data);
 			$this->load->view('R_createbook');
 		} else {
