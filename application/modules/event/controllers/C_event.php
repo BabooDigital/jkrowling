@@ -55,7 +55,7 @@ class C_Event extends MX_Controller
             }
         }
         $data = json_decode(end($datas), true);
-        return $data['data'][0];
+        return $data['data'];
     }
     public function followEvent()
     {
