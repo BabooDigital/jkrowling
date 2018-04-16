@@ -220,3 +220,12 @@ $route['pin_dompet/fourth'] = 'pin/C_pin_auth/fourth';
 $route['pin_dompet/fifth'] = 'pin/C_pin_auth/fifth';
 $route['pin_dompet/sixth'] = 'pin/C_pin_auth/sixth';
 $route['pin_dompet/seventh'] = 'pin/C_pin_auth/seventh';
+
+// CASHOUT AUTH ROUTES
+$route['dompet'] = 'cashout/C_cashout';
+$route['cashout'] = 'cashout/C_cashout/first_';
+$route['cashout/first'] = 'cashout/C_cashout/first_';
+$route['cashout/second'] = 'cashout/C_cashout/second_';
+$route['cashout/third'] = 'cashout/C_cashout/third_';
+$route['cashout/fourth'] = 'cashout/C_cashout/fourth_';
+$route['cashout/fifth'] = 'cashout/C_cashout/fifth_';

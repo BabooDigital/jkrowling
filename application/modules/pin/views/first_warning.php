@@ -1,4 +1,7 @@
 <body class="color-layer">
+	<nav class="navbar color-layer">
+		<a class="navbar-brand backcheck" href="javascript:void(0);"><i class="fa fa-arrow-left text-white"></i></a>
+	</nav>
 	<div class="container h-100">
 		<div class="text-center layer-center">
 			<div class="row">
@@ -36,6 +39,9 @@
 		$(document).ready(function () {
 			$(document).on('click',".btn-ok", function() {
 				window.location = base_url+'pin_dompet/second';
+			});
+			$('.backcheck').click(function () {
+				window.history.back();
 			});
 		});
 	</script>
