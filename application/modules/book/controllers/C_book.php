@@ -392,7 +392,11 @@ class C_book extends MX_Controller
         } else {
             $status = $data_before_chapter['chapter']['code'];
         }
-        // print_r($data_before_chapter['chapter']['data']['chapter']['chapter']);
+        $data_price = $data_before_chapter['chapter']['data']['book_info']['book_price'];
+        $is_free = $data_before_chapter['chapter']['data']['book_info']['is_free'];
+
+        $data_before_chapter['chapter']['data']['chapter']['pay']['book_price'] = number_format($data_price);
+        $data_before_chapter['chapter']['data']['chapter']['pay']['is_free'] = $is_free;
         if ($data_before_chapter['chapter']['code'] == 403) {
             $this->session->unset_userdata('userData');
             $this->session->unset_userdata('authKey');
@@ -780,32 +784,32 @@ class C_book extends MX_Controller
     	$auth = $this->session->userdata('authKey');
     	$book_id = $this->input->post('book_id');
 
-      $sendData = array(
-         'book_id' => $book_id
-     );
+        $sendData = array(
+            'book_id' => $book_id
+        );
 
-      $ch = curl_init();
-      curl_setopt($ch, CURLOPT_URL, $url);
-      curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 
-      curl_setopt($ch, CURLOPT_POST, 1);
-      curl_setopt($ch, CURLOPT_POSTFIELDS, $sendData);
-      curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-      curl_setopt($ch, CURLOPT_HEADER, 1);
-      curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key: ' . $auth));
-      $result = curl_exec($ch);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $sendData);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+        curl_setopt($ch, CURLOPT_HEADER, 1);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key: ' . $auth));
+        $result = curl_exec($ch);
 
 
-      $headers = array();
+        $headers = array();
 
-      $data = explode("\n", $result);
+        $data = explode("\n", $result);
 
 
-      array_shift($data);
-      $middle = array();
-      $moddle = array();
-      foreach ($data as $part) {
+        array_shift($data);
+        $middle = array();
+        $moddle = array();
+        foreach ($data as $part) {
           $middle = explode(":", $part);
           $moddle = explode("{", $part);
 
@@ -822,13 +826,78 @@ class C_book extends MX_Controller
 
      $this->session->set_userdata('authKey', $auth);
      $status = $resval['code'];
-     if ($status == 403) {
-      $this->session->unset_userdata('userData');
-      $this->session->unset_userdata('authKey');
-      $this->session->sess_destroy();
-      redirect('login', 'refresh');
-  } else {
-   echo json_encode(array("code"=>$status));  
+    if ($status == 403) {
+        $this->session->unset_userdata('userData');
+        $this->session->unset_userdata('authKey');
+        $this->session->sess_destroy();
+        redirect('login', 'refresh');
+      } else {
+        echo json_encode(array("code"=>$status));  
+    }
 }
+public function token_pay()
+{
+    $params = array('server_key' => 'SB-Mid-server-4bmgeo85fTsjFQccrdZt6T6E', 'production' => false);
+    $this->load->library('midtrans');
+    $this->midtrans->config($params);        
+
+    $id_book = $this->input->post('id_book');
+    $url_redirect = $this->input->post('url_redirect');
+
+    $auth = $this->session->userdata('authKey');
+    $sendData = array('book_id'=>$id_book);
+    $data = $this->curl_request->curl_post($this->API.'book/Books/detailBook/', $sendData, $auth);
+    if ($data['code'] == 200) {
+        $array = array(
+            'book_id' => $id_book,
+            'url_redirect' => $url_redirect
+        );
+
+        $this->session->set_userdata($array);
+        $transaction_details = array(
+          'order_id' => rand(),
+          'gross_amount' => $data['data']['book_info']['book_price'],
+      );
+        $transaction = array(
+          'transaction_details' => $transaction_details
+      );
+        $snapToken = $this->midtrans->getSnapToken($transaction);
+        error_log($snapToken);
+        echo $snapToken;
+    }
+}
+public function finish_pay()
+{
+    error_reporting(0);
+    $result_data = $this->input->post('result_data');
+
+    $data_midtrans = (array)json_decode($result_data);
+
+    $transaction_id = $data_midtrans['transaction_id'];
+    $order_id = $data_midtrans['order_id'];
+    $book_id = $this->session->userdata('book_id');
+    $url_redirect = $this->session->userdata('url_redirect');
+    $user_id = $this->session->userdata('userData')['user_id'];
+
+    $sendData = array(
+        "transaction_id" => $transaction_id,
+        "order_id"       => $order_id,
+        "book_id"       => $book_id,
+        "user_id"       => $user_id,
+        "pdf_url"       => $data_midtrans['pdf_url']
+    );
+    $data_update = $this->curl_request->curl_post($this->API.'payment/Payment/UpdateTrans', $sendData);
+    if ($data_update['code'] == 200) {
+
+        if ($data_midtrans['payment_type'] == 'bank_transfer' && $data_midtrans['transaction_status'] == 'pending') {
+            $this->session->set_userdata('popup_status_payment', 2);
+            $this->session->set_userdata('pdf_url', $data_midtrans['pdf_url']);
+            redirect($url_redirect,'refresh');
+        }if ($data_midtrans['payment_type'] == 'credit_card') {
+            $this->session->unset_userdata('popup_status_payment');
+            $this->session->set_userdata('popup_status_payment', 1);
+            redirect($url_redirect,'refresh');
+        }
+    }
 }
 }

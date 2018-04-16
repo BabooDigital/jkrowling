@@ -139,6 +139,7 @@ $route['chapter/:num'] = 'book/C_createbook/editChapter';
 $route['savechapter'] = 'book/C_createbook/saveChapter';
 $route['saveeditchapter'] = 'book/C_createbook/saveEditChapter';
 $route['delchapter'] = 'book/C_createbook/deleteChapter';
+$route['my_book/:num/delchapter/:num'] = 'book/C_createbook/deleteChapter';
 $route['delpublish'] = 'book/C_createbook/deletePublishBook';
 $route['listchapter/:num'] = 'book/C_createbook/listChapter';
 $route['cover'] = 'book/C_createbook/cover';
@@ -160,6 +161,9 @@ $route['updatechapter'] = 'book/C_createbook/updateChapter';
 $route['publishbook'] = 'book/C_createbook/publishBookMr';
 
 $route['getdetailchapter'] = 'book/C_book/chapter';
+
+$route['pay_book/token'] = 'book/C_book/token_pay';
+$route['pay_book/finish'] = 'book/C_book/finish_pay';
 
 $route['getcommentbook'] = 'book/C_book/getCommentBook';
 $route['commentbook'] = 'book/C_book/postCommentBook';

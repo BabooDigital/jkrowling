@@ -228,10 +228,8 @@ function getCategory() {
     }).fail(function() {
         console.log("error")
     }).always(function() {
-        console.log("complete")
     })
 }
-
 function showLoading() {
     HoldOn.open({
         theme: "sk-cube-grid",
@@ -251,7 +249,7 @@ function getChapter() {
         dataType: "json"
     }).done(function(a) {
         var b = "";
-        console.log(a);
+        // console.log(a);
         $.each(a, function(a, d) {
             b += '<a class="btn w-100 mb-10 chapterdata0 editsubchapt1 addsubchapt_on withanimation" book="2016" chapter="1326" id="editchapt" href="' + uri_segment + "/chapter/" + d.chapter_id + '" onclick="showLoading()">' + d.chapter_title + "</a>"
         });
@@ -259,7 +257,6 @@ function getChapter() {
     }).fail(function() {
         console.log("error")
     }).always(function() {
-        console.log("complete")
     })
 }
 $(function() {

@@ -39,7 +39,10 @@
 							<div class="alert alert-success" id="success" style="display: none;">
 							  <strong>Success!</strong> Subchapter telah ditambahkan.
 							</div>
-							<span style="font-size: 18px;font-weight: 600;color: #141414;" class="title_book_txt">Judul Buku</span>
+							<div align="center">
+								<p style="font-size: 18px;font-weight: 600;color: #141414;" class="title_book_txt"></p>
+								<p style="font-size: 15px;" class="desc_book_txt"></p>
+							</div>
 							<hr>
 							<div id="subchapter">
 								<a style="display: none;" class="btn w-100 mb-10 chapterdata0 editsubchapt1 btnsavedraft" id="btnsavedraft" id="editchapt" href="#"></a>
@@ -55,12 +58,15 @@
 									</select>
 								</div>
 							</div>
-							<div class="mt-20">
+							<div class="mt-20" id="sell_book" style="display: none;">
 								<div class="form-group">
 									<span class="text-left">Jual Buku ?</span>
 									<span style="float: right;">
 										<label class="switch">
 										  <input type="checkbox" id="is_free">
+										  <div id="sell_nominal" style="display: none;">
+										  	
+										  </div>
 										  <span class="slider round"></span>
 										</label>
 									</span>
@@ -89,7 +95,7 @@
 									</div>
 									<div class="form-group">
 										<label class="text-muted">Mulai Jual Pada Chapter</label>
-										<input type="number" value="3" min="3" class="input-range" id="font-size" style="width: 40%;">
+										<input type="number" value="3" min="3" name="start_chapter" class="input-range" id="font-size" style="width: 40%;">
 										<a class="ml-20 btn-transparant value-control addmin" data-action="minus" data-target="font-size"><img src="<?php echo base_url('public/img/assets/icon_minch_active.png'); ?>" width="35"></a>
 										<a class="ml-10 btn-transparant value-control addplus" data-action="plus" data-target="font-size"><img src="<?php echo base_url('public/img/assets/icon_plusch_active.png'); ?>" width="35"></a>
 									</div>
