@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	getBestBook();
+	// getBestBook();
 	participantEventAll();
 	followEvent();
 	validateEvent();
@@ -38,71 +38,71 @@ function loadMoreData(page) {
 		console.log('server not responding...');
 	});
 }
-function getBestBook() {
-	$.ajax({
-	    url: base_url+"bestBookEvent",
-	    type: 'GET',
-	    dataType: 'json',
-	  })
-	  .done(function(data) {
-	    var best_book = '';
-	    // console.log
-	    $.each(data, function(index, val) {
-	      var cover;
-	      var title;
-	      var txt = val.popular_book_title;
-	      if (txt != null) {
-			title = txt.substring(0, 17) + '...';
-	      }
-	      if (val.popular_cover_url == null || val.popular_cover_url == '' || val.popular_cover_url == 'Kosong') {
-	        cover = 'https://assets.dev-baboo.co.id/baboo-cover/default3.png';
-	      }else{
-	        cover = val.popular_cover_url;
-	      }
-	      best_book += '<div class="col-md-3 col-xs-6 mb-20"> <div class="thumbnail"> <img alt="'+val.popular_book_title+' by '+val.popular_author_name+'" src="'+cover+'" class="img-fluid rounded img-peserta"> <div class="caption mt-10"> <span class="txtTitleBook">'+title+'</span> <span class="txtAuthor text-muted">'+val.popular_author_name+'</span> </div> </div> </div>';
-	    });
-	    $(".participant_event").html(best_book);
-	  })
-	  .fail(function() {
-	    console.log("error");
-	  })
-	  .always(function() {
-	  });
-}
-function participantEventAll() {
-	$.ajax({
-	    url: base_url+"bestBookEventSeeAll",
-	    type: 'GET',
-	    dataType: 'json',
-	  })
-	  .done(function(data) {
-	    var best_book = '';
-	    // console.log
-	    $.each(data, function(index, val) {
-	      var cover;
-	      var title;
-	      // console.log(val);
-	      var txt = val.title_book;
-	      if (txt.length > 17) {
-	      	title = txt.substring(0, 17) + '...';
-	      }else{
-	      	title = txt;
-	      }
-	      if (val.popular_cover_url == null || val.popular_cover_url == '' || val.popular_cover_url == 'Kosong') {
-	        cover = base_url+'public/img/icon-tab/empty-set.png';
-	      }else{
-	        cover = val.popular_cover_url;
-	      }
-	      best_book += '<div class="col-md-3 col-xs-6 mb-20"> <div class="thumbnail"> <img alt="'+val.title_book+' by '+val.author_name+'" src="'+cover+'" class="img-fluid rounded img-peserta"> <div class="caption mt-10"> <span class="txtTitleBook">'+title+'</span> <span class="txtAuthor text-muted">'+val.author_name+'</span> </div> </div> </div>';
-	    });
-	    $(".participant_event_all").html(best_book);
-	  })
-	  .fail(function() {
-	    console.log("error");
-	  })
-	  .always(function() {
-	  });
-}
+// function getBestBook() {
+// 	$.ajax({
+// 	    url: base_url+"bestBookEvent",
+// 	    type: 'GET',
+// 	    dataType: 'json',
+// 	  })
+// 	  .done(function(data) {
+// 	    var best_book = '';
+// 	    // console.log
+// 	    $.each(data, function(index, val) {
+// 	      var cover;
+// 	      var title;
+// 	      var txt = val.popular_book_title;
+// 	      if (txt != null) {
+// 			title = txt.substring(0, 17) + '...';
+// 	      }
+// 	      if (val.popular_cover_url == null || val.popular_cover_url == '' || val.popular_cover_url == 'Kosong') {
+// 	        cover = 'https://assets.dev-baboo.co.id/baboo-cover/default3.png';
+// 	      }else{
+// 	        cover = val.popular_cover_url;
+// 	      }
+// 	      best_book += '<div class="col-md-3 col-xs-6 mb-20"> <div class="thumbnail"> <img alt="'+val.popular_book_title+' by '+val.popular_author_name+'" src="'+cover+'" class="img-fluid rounded img-peserta"> <div class="caption mt-10"> <span class="txtTitleBook">'+title+'</span> <span class="txtAuthor text-muted">'+val.popular_author_name+'</span> </div> </div> </div>';
+// 	    });
+// 	    $(".participant_event").html(best_book);
+// 	  })
+// 	  .fail(function() {
+// 	    console.log("error");
+// 	  })
+// 	  .always(function() {
+// 	  });
+// }
+// function participantEventAll() {
+// 	$.ajax({
+// 	    url: base_url+"bestBookEventSeeAll",
+// 	    type: 'GET',
+// 	    dataType: 'json',
+// 	  })
+// 	  .done(function(data) {
+// 	    var best_book = '';
+// 	    // console.log
+// 	    $.each(data, function(index, val) {
+// 	      var cover;
+// 	      var title;
+// 	      // console.log(val);
+// 	      var txt = val.title_book;
+// 	      if (txt.length > 17) {
+// 	      	title = txt.substring(0, 17) + '...';
+// 	      }else{
+// 	      	title = txt;
+// 	      }
+// 	      if (val.popular_cover_url == null || val.popular_cover_url == '' || val.popular_cover_url == 'Kosong') {
+// 	        cover = base_url+'public/img/icon-tab/empty-set.png';
+// 	      }else{
+// 	        cover = val.popular_cover_url;
+// 	      }
+// 	      best_book += '<div class="col-md-3 col-xs-6 mb-20"> <div class="thumbnail"> <img alt="'+val.title_book+' by '+val.author_name+'" src="'+cover+'" class="img-fluid rounded img-peserta"> <div class="caption mt-10"> <span class="txtTitleBook">'+title+'</span> <span class="txtAuthor text-muted">'+val.author_name+'</span> </div> </div> </div>';
+// 	    });
+// 	    $(".participant_event_all").html(best_book);
+// 	  })
+// 	  .fail(function() {
+// 	    console.log("error");
+// 	  })
+// 	  .always(function() {
+// 	  });
+// }
 function followEvent() {
 	$(document).on('click', '.follow_event', function(event) {
         event.preventDefault();
