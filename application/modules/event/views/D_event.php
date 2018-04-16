@@ -17,7 +17,7 @@ if ($this->agent->mobile()) {
 				<img src="<?php echo $event['event_banner']; ?>" class="img-fluid img-event" alt="Event Banner" style="width: 55%;">
 			</div>
 			<br>
-			<div class="row">
+			<!-- <div class="row">
 					<div class="col-md-2 hidden-sm-down"></div>
 					<div class="col-md-8 col-sm-12">
 						<p class="title_ mt-40">Peserta Lomba</p>
@@ -32,7 +32,7 @@ if ($this->agent->mobile()) {
 						</p>
 					</div>
 					<div class="col-md-2 hidden-sm-down"></div>
-				</div>
+				</div> -->
 				<?php if ($winner['code'] != 404): ?>
 						
 					<div class="row">
