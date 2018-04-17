@@ -83,10 +83,19 @@ class C_Library extends MX_Controller
         $resval1 = (array)json_decode(end($slider), true);
         $resval2 = (array)json_decode(end($book), true);
         
+        
+        $resval3 = $this->curl_request->curl_post($this->API.'payment/Payment/reminderPay', '', $auth);
+
+        $resval4 = $this->curl_request->curl_post($this->API.'timeline/Timelines/listCollections', '', $auth);
+
         $datas['slide'] = $resval1;
         $datas['bookmark'] = $resval2;
+        $datas['transaction'] = $resval3;
+        $datas['collection'] = $resval4;
+
         $this->session->set_userdata('authKey', $auth);
         $datas['js'][]   = "public/js/custom/notification.js";
+        $datas['js'][] = "public/js/custom/transaction.js";
         if ($this->agent->is_mobile()) {
             $data['js'][] = "public/js/jquery.min.js";
             $data['js'][] = "public/js/umd/popper.min.js";

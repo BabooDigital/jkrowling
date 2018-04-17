@@ -211,6 +211,8 @@ $route['event/sea_all'] = 'event/C_event/seeAll';
 $route['bestBookEventSeeAll'] = 'event/C_event/bestBookEventSeeAll';
 $route['bestBookEvent'] = 'event/C_event/getBestBookEvent';
 
+//Transaction
+$route['transaction_counter'] = 'transaction/C_transaction/count_transaction';
 // PIN AUTH ROUTES
 $route['pin_dompet'] = 'pin/C_pin_auth';
 $route['pin_dompet/first'] = 'pin/C_pin_auth';
