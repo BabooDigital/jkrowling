@@ -37,10 +37,10 @@
                 <div class="col-md-3">
                     <h4 align="left"><b>Pembelian</b></h4>
                     <div class="">
-                        <a href="<?php echo site_url('') ?>">
+                        <a data-toggle="modal" href="#list_trans">
                             <div class="statuspembelian" style="height: 245px;">
                                 <div class="textpembelian">
-                                    <span class="">Pembelian</span>
+                                    <span class="">Pembelian</span><span id="transaction_box_counter"></span>
                                     <span class="" style="float: right;"><img src="<?php echo base_url('public/img/assets/shape.svg') ?>"></span>
                                 </div>
                                 <br><br>
@@ -70,8 +70,60 @@
 
             </div>
         </div>
-        <br>
+        <div class="paddingslide">
+            <div class="col-md-9">
+                <h4 align="left"><b>Koleksi Buku</b></h4>
+                <div class="container" align="center">
+                    <div class="row">
+                        <?php $this->load->view('include/collection'); ?>
+                    </div>
+                </div>
+
+            </div>
+        </div>
         <!-- </div> -->
+    </div>
+    <div class="modal fade" id="list_trans" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content" style="width: 105% !important;">
+            <div class="">
+            </div>
+            <div class="modal-header">
+                <b>Daftar Pembelian</b>
+                <button type="button" data-dismiss="modal" class="close-btn">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="col-12 text-justify mb-50" style="color: #000;">
+                        <div class="col-md-12">
+                            <?php foreach ($transaction['data'] as $trans): ?>
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="media">
+                                        <img class="align-self-start mr-3" src="<?php echo $trans['cover_url'] ?>" width="100" height="130" alt="Generic placeholder image">
+                                        <div class="media-body">
+                                            <h3 class="mt-0"><a class="book_link" href="<?php echo $trans['book_id']; ?>"><?php echo $trans['title_book']; ?></a></h3>
+
+                                            <h5 class="mt-0"><a class="book_link" href="<?php echo $trans['book_id']; ?>">Rp <?php echo number_format($trans['gross_amount'],0,",","."); ?></a></h5>
+                                            </div>
+                                        </div>
+                                        <?php if ($trans['payment_type'] == "bank_transfer"): ?>
+                                            <b>
+                                                <p>Bank Transfer:</p>
+                                                <p style="text-transform: uppercase;"><?php echo $trans['bank'] ?> - <?php echo $trans['va_numbers']; ?></p>
+                                            </b>
+                                            <p>Menunggu proses pembayaran</p>
+                                        <?php endif ?>
+                                        <p></p>
+                                        <hr>
+                                    </div>
+                            <?php endforeach ?>
+                            </div>
+                            </div>
+                        </div>
+                    </div>                  
+                </div>
+            </div>
     </div>
     <!-- JS -->
     <!-- Javascript -->
