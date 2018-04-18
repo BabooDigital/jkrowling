@@ -30,7 +30,7 @@
 	<script type="text/javascript" src="<?php echo base_url();?>public/js/bootstrap.min.js"></script>
 	<script>
 		$(document).ready(function () {
-			$('.btn-ok-pur').click(function () {
+			$('.btn-ok-purp').click(function () {
 				window.location = base_url+'timeline';
 			});
 		});

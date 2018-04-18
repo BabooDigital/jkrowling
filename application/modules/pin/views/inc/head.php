@@ -18,6 +18,7 @@
 	<!-- CSS -->
 	<link href="<?php echo base_url();?>public/css/bootstrap.min.css" rel="stylesheet">
 	<link href="<?php echo base_url();?>public/css/custom/pin-auth.css" rel="stylesheet" type="text/css">
+	<link href="<?php echo base_url();?>public/css/sweetalert2.min.css" rel="stylesheet" type="text/css">
 	<link href="<?php echo base_url();?>public/css/custom-margin-padding.css" rel="stylesheet" type="text/css">
 	<link href="<?php echo base_url();?>public/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 

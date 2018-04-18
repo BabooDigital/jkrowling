@@ -50,33 +50,12 @@
 	<!-- JS -->
 	<script type="text/javascript" src="<?php echo base_url();?>public/js/umd/popper.min.js"></script>
 	<script type="text/javascript" src="<?php echo base_url();?>public/js/bootstrap.min.js"></script>
+	<script src="<?php echo base_url();?>public/js/sweetalert2.all.min.js"></script>
+	<script src="<?php echo base_url();?>public/js/custom/pin_auth.js"></script>
 	<script>
 		$(document).ready(function () {
 			$("#firstdigit").focus();
-
-			$(":input[type='number']").keyup(function(event){
-				var a = $( "#firstdigit" );
-				var b = $( "#secondtdigit" );
-				var c = $( "#thirddigit" );
-				var d = $( "#fourthdigit" );
-				var e = $( "#fifthdigit" );
-				var f = $( "#sixthdigit" );
-
-				if ($(this).next('[type="number"]').length > 0){
-					$(this).next('[type="number"]')[0].focus();
-				}else{
-					if ($(this).parent().next().find('[type="number"]').length > 0){
-						$(this).parent().next().find('[type="number"]')[0].focus();
-
-					}
-				}
-
-				if (a.val().length > 0 && b.val().length > 0 && c.val().length > 0 && d.val().length > 0 && e.val().length > 0 && f.val().length > 0)
-				{
-			    // $('#formPin').submit();
-			    window.location = base_url+'pin_dompet/sixth';
-			}
-		});
+			keyupConfirmPIN();
 		});
 	</script>
 </body>

@@ -276,8 +276,10 @@ if (!empty($query['stat'])) {
 			</div>
 		</div>
 		<footer class="navbar navbar-expand-lg fixed-bottom" style="height:60px;background: #f3f5f7;">
+			<input type="hidden" id="what" value="<?php $pin = $this->session->userdata('hasPIN'); if ($pin == 1) {echo 'true';}else{echo 'false';}  ?>">
 			<div class="container">
-				<button class="btn-publish" id="publish_book">Publish</button> 
+				<button type='button' class='btn-publish' id='publish_book'>Publish</button>
+				<button type='button' class='btn-publish' id='setpin_publish' style="display: none;">Publish</button>
 			</div>
 		</footer>
 
@@ -288,6 +290,7 @@ if (!empty($query['stat'])) {
 		<?php endif ?>
 		<script>
 			check_sell();
+			checkingPIN();
 			$(document).on('click','.tncModal',function(){
 				$('#tnc-modal').modal('show');
 				$(document).on('click', '.btn-acc', function() {

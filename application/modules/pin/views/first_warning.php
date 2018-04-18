@@ -38,7 +38,7 @@
 	<script>
 		$(document).ready(function () {
 			$(document).on('click',".btn-ok", function() {
-				window.location = base_url+'pin_dompet/second';
+				window.location = base_url+'pin-dompet/second';
 			});
 			$('.backcheck').click(function () {
 				window.history.back();

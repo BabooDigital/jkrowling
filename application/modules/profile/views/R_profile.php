@@ -134,11 +134,13 @@
 						<div class="row">
 							<div class="col-12">
 								<div class="pt-5 pb-5 pl-10 pr-10" style="background-color: #7661ca;border-radius: 10px;">
-										<!-- <p class="text-left"><img src="<?php echo base_url('public/img/assets/icon_wallet_white.png'); ?>" class="img-fluid" width="20"> <span class="text-white">Dompet</span></p>
-										<p class="text-left mt-30"><button class="btn-transparant text-white btnActive activeDompet" style="font-size: 18px;">Aktifkan Sekarang ></button></p> -->
-
-										<p class="text-left"><img src="<?php echo base_url('public/img/assets/icon_wallet_white.png'); ?>" class="img-fluid" width="20"> <span class="text-white">Dompet</span> <button type="button" class="float-right btn-detdomp" data-toggle="modal" data-target="pinauth-modal" style="width: 20%;font-size: 13px;">Detail</button></p>
-										<p class="text-left mt-15"><button class="btn-transparant text-white btnActive" style="font-size: 20px;font-weight: 800;">Rp 5.100.000</button></p>
+									<?php $pin = $this->session->userdata('hasPIN'); if ($pin == 1) { ?>
+									<p class="text-left"><img src="<?php echo base_url('public/img/assets/icon_wallet_white.png'); ?>" class="img-fluid" width="20"> <span class="text-white">Dompet</span> <button type="button" class="float-right btn-detdomp" data-toggle="modal" data-target="pinauth-modal" style="width: 20%;font-size: 13px;">Detail</button></p>
+									<p class="text-left mt-15"><button class="btn-transparant text-white btnActive" style="font-size: 20px;font-weight: 800;">Rp 5.100.000</button></p>
+									<?php }else{ ?>
+									<p class="text-left"><img src="<?php echo base_url('public/img/assets/icon_wallet_white.png'); ?>" class="img-fluid" width="20"> <span class="text-white">Dompet</span></p>
+									<p class="text-left mt-30"><button class="btn-transparant text-white btnActive activeDompet" style="font-size: 18px;">Aktifkan Sekarang ></button></p>
+									<?php } ?>
 								</div>
 							</div>
 						</div>
@@ -178,7 +180,7 @@
 		$(document).on('click', '.activeDompet', function() {
 			event.preventDefault();
 			/* Act on the event */
-			window.location = base_url+'pin_dompet';
+			window.location = base_url+'pin-dompet';
 		});
 
 		$(":input[type='number']").keyup(function(event){
