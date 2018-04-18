@@ -112,7 +112,24 @@ class C_Library extends MX_Controller
             $this->load->view('D_library');
         }
     }
+    public function getBestBookLibrary()
+    {
+        error_reporting(0);
+        $auth = $this->session->userdata('authKey');
+        $datas = $this->curl_request->curl_get($this->API.'timeline/Timelines/bestBook', '', $auth);
 
+        $data['home'] = $datas;
+        $data_best = $data['home']['data'];
+
+        if ($datas['home']['code'] == 403){
+            $this->session->unset_userdata('userData');
+            $this->session->unset_userdata('authKey');
+            $this->session->sess_destroy();
+            redirect('login','refresh');
+        }else{
+            echo json_encode(array_splice($data_best, 2), true);
+        }
+    }
     public function bookmark()
     {
         error_reporting(0);

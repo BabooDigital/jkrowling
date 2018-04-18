@@ -159,6 +159,7 @@ class C_book extends MX_Controller
         $data['js'][] = "public/js/bootstrap.min.js";
         $data['js'][] = "public/js/jquery.sticky-kit.min.js";
         $data['js'][] = "public/plugins/holdOn/js/HoldOn.js";
+        $data['js'][] = "public/js/custom/transaction.js";
 
         $data['id_chapter'] = $this->input->get("chapter");
 
@@ -394,9 +395,11 @@ class C_book extends MX_Controller
         }
         $data_price = $data_before_chapter['chapter']['data']['book_info']['book_price'];
         $is_free = $data_before_chapter['chapter']['data']['book_info']['is_free'];
+        $author_id = $data_before_chapter['chapter']['data']['author']['author_id'];
 
         $data_before_chapter['chapter']['data']['chapter']['pay']['book_price'] = number_format($data_price);
         $data_before_chapter['chapter']['data']['chapter']['pay']['is_free'] = $is_free;
+        $data_before_chapter['chapter']['data']['chapter']['pay']['author_id'] = $author_id;
         if ($data_before_chapter['chapter']['code'] == 403) {
             $this->session->unset_userdata('userData');
             $this->session->unset_userdata('authKey');
@@ -857,10 +860,14 @@ public function token_pay()
         $transaction_details = array(
           'order_id' => rand(),
           'gross_amount' => $data['data']['book_info']['book_price'],
-      );
+        );
+        $customer_details = array(
+            'email'            => $this->session->userdata('userData')['email']
+        );
         $transaction = array(
-          'transaction_details' => $transaction_details
-      );
+          'transaction_details' => $transaction_details,
+          'customer_details' => $customer_details
+        );
         $snapToken = $this->midtrans->getSnapToken($transaction);
         error_log($snapToken);
         echo $snapToken;
@@ -889,12 +896,14 @@ public function finish_pay()
     $data_update = $this->curl_request->curl_post($this->API.'payment/Payment/UpdateTrans', $sendData);
     if ($data_update['code'] == 200) {
 
-        if ($data_midtrans['payment_type'] == 'bank_transfer' && $data_midtrans['transaction_status'] == 'pending') {
+        if ($data_midtrans['payment_type'] == 'bank_transfer' || $data_midtrans['payment_type'] == 'echannel' && $data_midtrans['transaction_status'] == 'pending') {
+            $this->session->set_flashdata('popup_status_payment', 2);
             $this->session->set_userdata('popup_status_payment', 2);
-            $this->session->set_userdata('pdf_url', $data_midtrans['pdf_url']);
+            $this->session->set_flashdata('pdf_url', $data_midtrans['pdf_url']);
             redirect($url_redirect,'refresh');
         }if ($data_midtrans['payment_type'] == 'credit_card') {
             $this->session->unset_userdata('popup_status_payment');
+            $this->session->set_flashdata('popup_status_payment', 1);
             $this->session->set_userdata('popup_status_payment', 1);
             redirect($url_redirect,'refresh');
         }

@@ -89,6 +89,7 @@ $route['deldraft'] = 'book/C_book/deleteDraftBook';
 $route['writter'] = 'timeline/C_timeline/getWritter';
 $route['writters'] = 'timeline/C_home/getWritter';
 $route['bestBook'] = 'timeline/C_timeline/getBestBook';
+$route['bestBookLib'] = 'library/C_library/getBestBookLibrary';
 // $route['bestBookHome'] = 'timeline/C_home/getBestBookEvent';
 $route['slide'] = 'timeline/C_home/getSlide';
 

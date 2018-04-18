@@ -94,9 +94,9 @@ echo "<script>(function(d, s, id) {
 </style>
 <div class="container pt-100 mb-80">
 	<div class="row">
-		<div class="col-md-4 dtlbok" style="padding: 0 40px;">
+		<div class="col-md-4 dtlbok">
 			<?php if (!empty($detail_book)) { ?>
-			<div class="card pb-20">
+			<div class="card pb-20" style="background: #F5F8FA;">
 				<div class="text-center pr-30 pl-30 pt-20">
 					<img class="cover_image" src="<?php echo ($detail_book['data']['book_info']['cover_url'] != 'Kosong') ? ($detail_book['data']['book_info']['cover_url'] != null ? $detail_book['data']['book_info']['cover_url'] : base_url('public/img/profile/blank-photo.jpg')) : base_url('public/img/profile/blank-photo.jpg'); ?>" width="150" height="200">
 					<div class="card-body">
@@ -120,7 +120,7 @@ echo "<script>(function(d, s, id) {
 				</div>
 				<div class="pr-20 pl-20 subchapter">
 					<ul class="list-group list-group-flush">
-						<li class="list-group-item"><small>Bagian Cerita</small></li>
+						<li class="list-group-item" style="background: transparent;border-bottom: 1px #eeeeee;"><small>Bagian Cerita</small></li>
 						<center>
 							<!-- <div class="loader" id="loader_chapter"></div> -->
 						</center>
@@ -135,8 +135,8 @@ echo "<script>(function(d, s, id) {
 			} ?>
 		</div>
 
-		<div class="col-md-7"">
-			<div class="card pt-10 pl-20 pr-20 book-content">
+		<div class="col-md-7" style="background: #fff;border-radius: 10px;">
+			<div class="card pb-20 pt-10 pl-20 pr-20 book-content">
 				<div class="card-body">
 					<div class="media">
 						<img class="d-flex align-self-start mr-20 rounded-circle" width="50" height="50" src="
@@ -167,7 +167,7 @@ echo "<script>(function(d, s, id) {
 				</center>
 			</div>
 			<div class="col-md-1">
-				<div class="card stickymenu">
+				<div class="card stickymenu" style="background: #F5F8FA;">
 					<div class="text-center">
 						<?php echo $detail_book['data']['title_book']; ?>
 						<a onclick="showLoading()" href="<?php echo site_url(); ?>book/<?php
@@ -304,7 +304,7 @@ echo "<script>(function(d, s, id) {
 				</div><!-- modal-content -->
 			</div><!-- modal-dialog -->
 		</div><!-- modal -->
-		<?php if ($this->session->userdata('popup_status_payment')): ?>
+		<?php if ($this->session->flashdata('popup_status_payment')): ?>
 			<div class="modal fade" id="notifpayment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 				<?php $this->load->view('data/D_notifpayment'); ?>
 			</div>
@@ -312,6 +312,8 @@ echo "<script>(function(d, s, id) {
 		<script type="text/javascript">
 			var segment = '<?php echo $this->uri->segment(2); ?>';
 			var count_data = '<?php echo $detailChapter; ?>';
+			var userdata = '<?php echo $this->session->userdata('userData')['user_id']; ?>';
+			var userbook = '<?php echo $detail_book['data']['author']['author_id']; ?>';
 		</script>
 		<?php if (isset($js)): ?>
 			<?php echo get_js($js) ?>
