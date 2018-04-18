@@ -215,14 +215,23 @@ $route['bestBookEvent'] = 'event/C_event/getBestBookEvent';
 //Transaction
 $route['transaction_counter'] = 'transaction/C_transaction/count_transaction';
 // PIN AUTH ROUTES
-$route['pin_dompet'] = 'pin/C_pin_auth';
-$route['pin_dompet/first'] = 'pin/C_pin_auth';
-$route['pin_dompet/second'] = 'pin/C_pin_auth/second';
-$route['pin_dompet/third'] = 'pin/C_pin_auth/third';
-$route['pin_dompet/fourth'] = 'pin/C_pin_auth/fourth';
-$route['pin_dompet/fifth'] = 'pin/C_pin_auth/fifth';
-$route['pin_dompet/sixth'] = 'pin/C_pin_auth/sixth';
-$route['pin_dompet/seventh'] = 'pin/C_pin_auth/seventh';
+$route['pin-dompet'] = 'pin/C_pin_auth';
+$route['pin-dompet/first'] = 'pin/C_pin_auth';
+$route['pin-dompet/second'] = 'pin/C_pin_auth/second';
+$route['pin-dompet/third'] = 'pin/C_pin_auth/third';
+$route['pin-dompet/fourth'] = 'pin/C_pin_auth/fourth';
+$route['pin-dompet/fifth'] = 'pin/C_pin_auth/fifth';
+$route['pin-dompet/sixth'] = 'pin/C_pin_auth/sixth';
+$route['pin-dompet/seventh'] = 'pin/C_pin_auth/seventh';
+
+// POST PIN AUTH ROUTES
+$route['auth/confirm_acc'] = 'pin/C_pin_auth/confirmAccountForPin';
+$route['auth/confirm_otp'] = 'pin/C_pin_auth/confirmOTP';
+$route['auth/resend_otp'] = 'pin/C_pin_auth/resendOTP';
+$route['auth/new_pin'] = 'pin/C_pin_auth/createNewPin';
+$route['auth/confirm_pin'] = 'pin/C_pin_auth/confirmNewPin';
+$route['auth/set_question'] = 'pin/C_pin_auth/setQuestionSecure';
+
 
 // CASHOUT AUTH ROUTES
 $route['dompet'] = 'cashout/C_cashout';

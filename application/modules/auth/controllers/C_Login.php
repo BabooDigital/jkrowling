@@ -113,8 +113,10 @@ class C_Login extends MX_Controller
                 $this->session->set_userdata('isLogin', $status);
                 $this->session->set_userdata('authKey', $auth);
                 $this->session->set_userdata('userData', $user);
+                $this->session->set_userdata('hasPIN', $user['has_pin']);
                 if ($this->session->userdata('event') == 1) {
                     $this->session->set_userdata('userData', $user);
+                    $this->session->set_userdata('hasPIN', $user['has_pin']);
                     redirect('follow_event');
                 }else{
                     if ($this->agent->is_mobile()) {
@@ -200,8 +202,10 @@ class C_Login extends MX_Controller
             $this->session->set_userdata('isLogin', $status);
             $this->session->set_userdata('authKey', $auth);
             $this->session->set_userdata('userData', $user);
+            $this->session->set_userdata('hasPIN', $user['has_pin']);
             if ($this->session->userdata('event') == 1) {
                 $this->session->set_userdata('userData', $user);
+                $this->session->set_userdata('hasPIN', $user['has_pin']);
                 redirect('follow_event');
             }else{
                 if ($this->agent->is_mobile()) {
@@ -286,6 +290,7 @@ class C_Login extends MX_Controller
                 $status = $resval['code'];
 
                 $this->session->set_userdata('userData', $user);
+                $this->session->set_userdata('hasPIN', $user['has_pin']);
                 $this->session->set_userdata('authKey', $auth);
                 $this->session->set_userdata('isLogin', $status);
                 
@@ -369,6 +374,7 @@ class C_Login extends MX_Controller
                 $status = $resval['code'];
 
                 $this->session->set_userdata('userData', $user);
+                $this->session->set_userdata('hasPIN', $user['has_pin']);
                 $this->session->set_userdata('authKey', $auth);
                 $this->session->set_userdata('isLogin', $status);
                 
@@ -377,6 +383,7 @@ class C_Login extends MX_Controller
                     redirect('book/'.$bsession);
                 }else{
                     $this->session->set_userdata('userData', $user);
+                    $this->session->set_userdata('hasPIN', $user['has_pin']);
                     redirect('follow_event');
                 }
             }
@@ -454,6 +461,7 @@ class C_Login extends MX_Controller
             // $status = $resval['code'];
 
             $this->session->set_userdata('userData', $user);
+            $this->session->set_userdata('hasPIN', $user['has_pin']);
             $this->session->set_userdata('authKey', $auth);
             $this->session->set_userdata('isLogin', $status);
             

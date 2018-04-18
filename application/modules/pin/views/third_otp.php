@@ -1,3 +1,31 @@
+
+<style>
+.timer, .timer-done, .timer-loop {
+	font-size: 13px;
+	color: #fff;
+    position: relative;
+    left: 30%;
+}
+.jst-hours {
+	float: left;
+	display: none;
+}
+.jst-minutes {
+	float: left;
+}
+.jst-seconds {
+	float: left;
+}
+.jst-timeout {
+	color: #fff;
+	font-weight: bold;
+}
+.disabled>small{
+	color: #d2d2d2 !important;
+	font-weight: bold;
+	font-size: 12px !important;
+}
+</style>
 <body class="color-layer">
 	<nav class="navbar color-layer">
 		<a class="navbar-brand backcheck" href="javascript:void(0);" style="margin-right: -17px !important;"><i class="fa fa-arrow-left text-white"></i></a>
@@ -13,13 +41,13 @@
 			<div class="row mt-30">
 				<div class="col-1"></div>
 				<div class="col-10">
-					<span class="text-white text-p">Masukkan Kode Verifikasi yang dikirim ke <b>0859-4599-2394</b></span>
+					<span class="text-white text-p">Masukkan Kode Verifikasi yang dikirim ke <b class="phoneNum"></b></span>
 				</div>
 				<div class="col-1"></div>
 			</div>
 			<div class="row mt-15">
 				<div class="col-12">
-					<a href="#" class="text-white text-p"><small><u>No. HP salah?</u></small></a>
+					<a href="<?php echo site_url('pin-dompet/second'); ?>" class="text-white text-p"><small><u>No. HP salah?</u></small></a>
 				</div>
 			</div>
 			<div class="row mt-20">
@@ -46,7 +74,7 @@
 			</div>
 			<div class="row mt-15">
 				<div class="col-12">
-					<p class="text-white text-p"><small>05:00</small> <a href="#" class="text-white ml-20"><small>Kirim Ulang</small></a></p>
+					<div class="text-white text-p text-center"><div class='timer' data-minutes-left=5></div><button class="btn-transparant ml-20 btn-senda disabled" disabled><small style="color:#fff;font-size: 15px;">Kirim Ulang</small></button></div>
 				</div>
 			</div>
 		</div>
@@ -56,32 +84,15 @@
 	<!-- JS -->
 	<script type="text/javascript" src="<?php echo base_url();?>public/js/umd/popper.min.js"></script>
 	<script type="text/javascript" src="<?php echo base_url();?>public/js/bootstrap.min.js"></script>
+	<script src="<?php echo base_url();?>public/js/sweetalert2.all.min.js"></script>
+	<script src="<?php echo base_url();?>public/plugins/simple_timer/jquery.simple.timer.js"></script>
+	<script src="<?php echo base_url();?>public/js/custom/pin_auth.js"></script>
 	<script>
 		$(document).ready(function() {
-			$('.backcheck').click(function () {
-				window.history.back();
-			});
 			$("#firstdigit").focus();
+			resendOTP();
+			keyupOTP();
 
-			$(":input[type='number']").keyup(function(event){
-				var a = $( "#firstdigit" );
-				var b = $( "#secondtdigit" );
-				var c = $( "#thirddigit" );
-				var d = $( "#fourthdigit" );
-
-				if ($(this).next('[type="number"]').length > 0){
-					$(this).next('[type="number"]')[0].focus();
-				}else{
-					if ($(this).parent().next().find('[type="number"]').length > 0){
-						$(this).parent().next().find('[type="number"]')[0].focus();
-					}
-				}
-				if (a.val().length > 0 && b.val().length > 0 && c.val().length > 0 && d.val().length > 0)
-				{
-			    // $('#formOTP').submit();
-			    window.location = base_url+'pin_dompet/fourth';
-			}
-		});
 		});
 	</script>
 </body>

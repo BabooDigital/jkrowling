@@ -20,7 +20,7 @@
 					</div>
 					<div class="form-group">
 						<label for="numbImportant" class="text-white">Nomor KTP</label>
-						<input type="number" name="numbKTP" class="form-control text-white pin-form-text" id="numbImportant" required>
+						<input type="number" onKeyPress="if(this.value.length==16) return false;" name="numbKTP" class="form-control text-white pin-form-text" id="numbImportant" required>
 					</div>
 					<div class="form-group">
 						<label for="fileImportant" class="text-white">Upload KTP</label>
@@ -31,7 +31,7 @@
 					</div>
 					<div class="form-group">
 						<label for="hpImportant" class="text-white">Nomor HP</label>
-						<input type="number" name="numbHP" class="form-control text-white pin-form-text" id="hpImportant" placeholder="( Contoh : +6289123456789 )" maxlength="15" required>
+						<input type="number" name="numbHP" onKeyPress="if(this.value.length==13) return false;" class="form-control text-white pin-form-text" id="hpImportant" placeholder="( Contoh : +6289123456789 )" maxlength="15" required>
 					</div>
 				</div>
 			</div>
@@ -58,61 +58,14 @@
 	<!-- JS -->
 	<script type="text/javascript" src="<?php echo base_url();?>public/js/umd/popper.min.js"></script>
 	<script type="text/javascript" src="<?php echo base_url();?>public/js/bootstrap.min.js"></script>
+	<script src="<?php echo base_url();?>public/js/sweetalert2.all.min.js"></script>
 	<script src="<?php echo base_url();?>public/js/jquery.validate.js"></script>
 	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+	<script src="<?php echo base_url();?>public/js/custom/pin_auth.js"></script>
+	<?php echo $this->session->flashdata('fail_alert');?>
 	<script>
 		$(document).ready(function() {
-			$('.backcheck').click(function () {
-				window.history.back();
-			});
-			$('#fileImportant').change(function () {
-				var a = $('#fileImportant').val().toString().split('\\');
-				$('.txtFile').text(a[a.length -1]);
-			});
-			$("#activationForm").validate({
-				ignore: [],
-				rules: {
-					nameKTP: {
-						required: true
-					},
-					numbKTP: {
-						required: true,
-						number: true,
-						minlength: 15
-					},
-					fileKTP: {
-						required: true,
-						extension: "jpg|png|jpeg|gif"
-					},
-					numbHP: {
-						required: true,
-						number: true,
-						minlength: 10
-					}
-				},
-				messages: {
-					nameKTP: {
-						required: 'Nama lengkap harus di isi.'
-					},
-					numbKTP: {
-						required: 'Email sangat diperlukan.',
-						number   : 'Nomor KTP harus valid',
-						minlength: 'Nomor KTP Kurang dari 16 Digit'
-					},
-					fileKTP: {
-						required: 'Foto KTP sangat diperlukan.',
-						extension: 'File foto harus berformat .jpg / .png untuk diterima.'
-					},
-					numbHP: {
-						required: 'Nomor Handphone sangat diperlukan.',
-						number : 'Nomor Handphone Harus Valid',
-						minlength: 'Nomor Handphone tidak valid'
-					}
-				},
-				submitHandler: function(form) {
-					window.location = base_url+'pin_dompet/third';
-				}
-			});
+			validateFormActivation();
 		});
 	</script>
 </body>

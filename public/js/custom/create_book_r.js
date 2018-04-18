@@ -487,6 +487,12 @@ function check_sell() {
         }).then((result) => {
           if (result.value) {
             $('#showOpt').prop('checked', true);
+            var sellbtn = $('#showOpt:checkbox:checked');
+            var pin = $('#what').val();
+            if (sellbtn.length != 0 && pin == 'false') {
+              $('#publish_book').hide();
+              $('#setpin_publish').show();
+            }
             $('#priceSet').addClass('show');
           }else{
 
@@ -507,6 +513,19 @@ function check_sell() {
               $('#payment_fee').number(payment_fee);
               $('#total').number(rp_total);
             });
+
+        $(document).on('click',"#showOpt", function() {
+          var sellbtn = $('#showOpt:checkbox:checked');
+          var pin = $('#what').val();
+          if (sellbtn.length == 0 && pin == 'false') {
+            $('#publish_book').show();
+            $('#setpin_publish').hide();
+          }else{
+            $('#publish_book').hide();
+            $('#setpin_publish').show();
+          }
+        });
+
       }else{
 
       }
@@ -521,48 +540,21 @@ function check_sell() {
   });
 }
 
-function check_book() {
-  var formData = new FormData();
-  formData.append("book_id", $("#uri").val());
-
-  $.ajax({
-    url: base_url+'bookCheck',
-    type: 'POST',
-    dataType: 'JSON',
-    contentType: false,
-    processData: false,
-    data: formData,
-    beforeSend: function() {
-      swal({
-        text: 'Harap tunggu...',
-        onOpen: () => {
-          swal.showLoading();
-        }
-      });
-    }
-  })
-  .done(function(data) {
-    console.log(data);
-    if (data.code == 200) {
-      swal({
-        onOpen: () => {
-          swal.hideLoading();
-        }
-      });
-      $('#previews').attr('src', data.data.book_info.cover_url);
-      $('#category_ids').val(data.data.category.category_id).change();
-      if (data.data.book_info.is_free == false) {
-            $('.switch').show();
-            $('#showOpt').prop('checked', true);
-            $('#priceSet').addClass('show');
-        check_sell();
-      }else{
+function checkingPIN(){
+  $(document).on('click', '#setpin_publish', function() {
+    swal({
+      title: 'Perhatian',
+      text: "Untuk menjual sebuah buku, anda harus mengaktifkan Dompet Baboo terlebih dahulu.",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#7661ca',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Ya, aktifkan',
+      cancelButtonText: 'Jual nanti',
+    }).then((result) => {
+      if (result.value) {
+        window.location = base_url+'pin-dompet';
       }
-    }
-  })
-  .fail(function() {
-    console.log("error");
-  })
-  .always(function() {
+    })
   });
 }
