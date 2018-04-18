@@ -167,7 +167,7 @@ a:hover {
       width:100%;
       height:auto;
       /*background-color: #F5F8FA;*/
-      overflow-x: scroll;
+      /*overflow-x: scroll;*/
       overflow-y: hidden;
     }
     #myWorkContent #tes {

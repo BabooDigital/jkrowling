@@ -5,7 +5,7 @@ button {
 }
 
 body {
-	background-color: #f3f5f7;
+	background-color: #edf0f3;
 }
 
 p {
@@ -1494,13 +1494,13 @@ input.formsearch:focus {
 	}
 
 	.chapter_active a {
-		color: white;
+		color: #7554bd;
 	}
 	.chapter_disabled {
-		background: #333;
+		background: transparent;
 	}
 	.chapter_disabled span {
-		color: white;
+		color: #8b8b8b;
 	}
 
 	.bornone {

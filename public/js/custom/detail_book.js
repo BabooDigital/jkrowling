@@ -434,17 +434,25 @@ function getmenuChapter() {
 		}
 	}).done(function(d) {
 		var c = "";
+		console.log(d.pay.author_id);
 		$("#loader_chapter").hide();
-		$.each(d, function(d, a) {
-			if (d != 'pay') {
-
-			false != a.chapter_free ? (c += '<li class="list-group-item ', 0 == d && (c += "chapter_active "), c += '" id="list_chapters"><a href="' + base_url + "book/" + segment + "/chapter/" + a.chapter_id + '" class="id_chapter', c += '" id="' + d + '">' + a.chapter_title + "</a></li>") : (c += '<li class="list-group-item ',
-				c += "chapter_disabled ", c += '" id="list_chapters" style="cursor: not-allowed;"><span class="id_chapter', c += '" id="' + d + '">' + a.chapter_title + "</span></li>")
+		// if (userbook == userdata) {
+		// 	$.each(d, function(d, a) {
+		// 		if (d != 'pay') {
+		// 		c += '<li style="background:transparent;border-bottom: 0.5px #f2f2f2;" class="list-group-item ', c += '" id="list_chapters"><a href="' + base_url + "book/" + segment + "/chapter/" + a.chapter_id + '" class="id_chapter', c += '" id="' + d + '">' + a.chapter_title + "</a>";
+		// 		}
+		// 	});
+		// }else{
+			$.each(d, function(d, a) {
+				if (d != 'pay') {
+				false != a.chapter_free ? (c += '<li style="background:transparent;border-bottom: 0.5px #f2f2f2;" class="list-group-item ', 0 == d && (c += "chapter_active "), c += '" id="list_chapters"><a href="' + base_url + "book/" + segment + "/chapter/" + a.chapter_id + '" class="id_chapter', c += '" id="' + d + '">' + a.chapter_title + "</a>", 0 == d && (c += "<img class='float-right' src='"+base_url+"public/img/assets/frame_active.svg'></li>")) : (c += '<li class="list-group-item ',
+					c += "chapter_disabled ", c += '" id="list_chapters" style="cursor: not-allowed;"><span class="id_chapter', c += '" id="' + d + '">' + a.chapter_title + "</span><img class='float-right' src='"+base_url+"public/img/assets/sale_active.svg'></li>")
+				}
+			});
+			if (d.pay.is_free == false) {
+				 c += '<li class="list-group-item"  style="background:transparent;border-bottom: 1px #f2f2f2;"></li><li style="background:transparent;border-bottom: 1px #eeeeee;" class="list-group-item ', c += '" id="list_chapters"><a class="', c += '" id="' + d + '"><p style="font-size:10px;">' + 'Versi buku full' + "</p><span style='color:#7554bd'>Rp "+ d.pay.book_price +"</span></a><button style='float:right;' class='btn-buy'  data-toggle='modal' data-target='#buymodal'>Beli</button></li>";
 			}
-		});
-		if (d.pay.is_free == false) {
-			 c += '<li class="list-group-item" ></li><li class="list-group-item ', c += '" id="list_chapters"><a class="', c += '" id="' + d + '"><p style="font-size:10px;">' + 'Versi buku full' + "</p><span style='color:#7554bd'>Rp "+ d.pay.book_price +"</span></a><button style='float:right;' class='btn-buy'  data-toggle='modal' data-target='#buymodal'>Beli</button></li>";
-		}
+		// }
 		$("#list_chapter").html(c);
 		$(".id_chapter").on("click", function(c) {
 			var a = $(this).attr("id");

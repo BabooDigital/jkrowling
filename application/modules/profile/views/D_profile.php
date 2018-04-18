@@ -68,6 +68,12 @@
 							<hr>
 							<?php if (!$this->uri->segment(2)): ?>
 								<div class="penghargaan">
+									<span class="text-left">Balance</span>
+									<button class="float-right btn-edprof fs-12px">Top Up</button>
+									<p></p>
+									<p class="text-left"><b><?php echo 'Rp. '.number_format($userdata['balance'], 0, ',', '.'); ?></b></p>
+								</div>
+								<div class="penghargaan">
 									<label><b>Statistik</b></label>
 								</div>
 								<div class="dbooksociallist">
@@ -86,10 +92,10 @@
 												<a href="#"><img src="<?php echo base_url(); ?>public/img/assets/icon_soldbook.svg" width="27">
 													<p class="mt-5"><?php echo $userdata['book_sold']; ?></p></a>
 												</div><br>
-							<!-- <div class="mt-100 mb-20" style="background: #fcfbff;padding: 15px;">
+							<div class="mt-100 mb-20" style="background: #fcfbff;padding: 15px;">
 								<p><small>Buku Terjual</small></p>
-								<p style="font-size: 25px;color: #7a5abf;font-weight: 700;">Rp. 25.500.000</p>
-							</div> -->
+								<p style="font-size: 25px;color: #7a5abf;font-weight: 700;"><?php echo 'Rp. '.number_format($userdata['balance'], 0, ',', '.'); ?></p>
+							</div>
 						<?php endif ?>
 					</div>
 				</div>
