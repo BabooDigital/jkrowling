@@ -61,10 +61,24 @@ if (!empty($query['b'])) {
 										</div>
 									</div>
 									<div class="" style="padding-top: 15px">
-										<img src="<?php echo base_url('public/img/slide/child.png') ?>" width="auto" height="350">
+										<img src="<?php echo base_url('public/img/slide/child2.svg') ?>" width="auto" height="350">
 										<div class="" style="padding: 5% 0;color:black;">
-											<p class="nulis">Nulis dan Baca Buku Jadi Lebih Asik</p>
-											<p class="bisa">Sekarang kamu bisa nulis dan baca buku dengan smartphone kesayangan kamu</p>
+											<p class="nulis">Hobi Nulismu Bisa Jadi Penghasilan</p>
+											<p class="bisa">Kini saatnya kamu bisa mewujudkan mimpimu untuk menjadi penulis dan menghasilkan rewards</p>
+										</div>
+									</div>
+									<div class="" style="padding-top: 15px">
+										<img src="<?php echo base_url('public/img/slide/library.svg') ?>" width="auto" height="350">
+										<div class="" style="padding: 5% 0;color:black;">
+											<p class="nulis">Buat Perpustakaan Pribadi </p>
+											<p class="bisa">Gak perlu lagi bingung ngatur buku dikamar, cukup di Baboo kamu bisa buat perpustakaan sendiri</p>
+										</div>
+									</div>
+									<div class="" style="padding-top: 15px">
+										<img src="<?php echo base_url('public/img/slide/status.svg') ?>" width="auto" height="350">
+										<div class="" style="padding: 5% 0;color:black;">
+											<p class="nulis">Udah Siap?</p>
+											<p class="bisa">Udah gak jaman update status doang, sekarang kamu bisa berkarya lewat cerita dan imajinasi kreatifmu</p>
 										</div>
 									</div>
 								</div>
@@ -385,16 +399,18 @@ if (!empty($query['b'])) {
 	</div>
 	<!-- END Modal Login -->
 	<!-- Footer -->
-	<div class="container">
-		<ul style="position: absolute; bottom: 10px; left:20px;">
-			<li class="footer-link"><a href="<?php echo site_url(); ?>login" class="footer-link">Masuk</a></li>
-			<li class="footer-link m-l-20"><a data-toggle="modal" data-target="#register-modal" href="#" class="footer-link">Daftar</a></li>
-			<li class="footer-link m-l-20"><a href="https://www.baboo.id/about.html" target="_blank" class="footer-link">Tentang Baboo</a></li>
-			<li class="footer-link m-l-20"><a href="#" class="footer-link">Terms of Use</a></li>
-			<li class="footer-link m-l-20"><a href="https://www.baboo.id/kebijakan.html" target="_blank" class="footer-link">Privacy &amp; Policy</a></li>
-			<li class="footer-link m-l-20"><a href="#" class="footer-link">Baboo Carrier</a></li>
-		</ul>
-	</div>
+	<footer style="bottom: 0;padding: 0;margin: 0;"> 
+		<div class="container">
+			<ul style="position: absolute; left:20px;">
+				<li class="footer-link"><a href="<?php echo site_url(); ?>login" class="footer-link">Masuk</a></li>
+				<li class="footer-link m-l-20"><a data-toggle="modal" data-target="#register-modal" href="#" class="footer-link">Daftar</a></li>
+				<li class="footer-link m-l-20"><a href="https://www.baboo.id/about.html" target="_blank" class="footer-link">Tentang Baboo</a></li>
+				<li class="footer-link m-l-20"><a href="#" class="footer-link">Terms of Use</a></li>
+				<li class="footer-link m-l-20"><a href="https://www.baboo.id/kebijakan.html" target="_blank" class="footer-link">Privacy &amp; Policy</a></li>
+				<li class="footer-link m-l-20"><a href="#" class="footer-link">Baboo Carrier</a></li>
+			</ul>
+		</div>
+	</footer>
 	<!-- End Footer -->
 
 	<!-- Javascript -->
