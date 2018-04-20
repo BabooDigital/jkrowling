@@ -115,7 +115,7 @@
 										</div>
 									</div>
 									<br>
-									<input type="button" class="btn w-100 mb-10 chapterdata0 addsubchapt" value="Tambah Sub Cerita" />
+									<a onclick="showLoading()" href="<?php echo site_url('my_book/'.$this->uri->segment(2)); ?>" class="btn w-100 mb-10 btn-default" style="background: #f3f3f3;padding: 15px;">Tambah Sub Cerita</a>
 								</div>
 
 								<div class="mt-40">

@@ -272,6 +272,13 @@ $(function() {
     })
 });
 $(function() {
+    $("#updateChapter").hide();
+    $("#title_chapter").keyup(function() {
+        $("#updateChapter").show();
+    });
+    $("#book_paragraph").on('froalaEditor.keyup', function (e, editor, keyupEvent) {
+        $("#updateChapter").show();
+    });
     $.FroalaEditor.DefineIcon("imageInfo", {
         NAME: "info"
     });
