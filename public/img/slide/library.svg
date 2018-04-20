@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="260" height="265" viewBox="0 0 260 265">
+    <defs>
+        <path id="a" d="M0 0h135.164v173.21H0z"/>
+        <path id="d" d="M12.09.451h99.712c6.627 0 12 5.373 12 12v174.405H.089V12.45c0-6.627 5.373-12 12-12z"/>
+        <filter id="c" width="110.5%" height="107%" x="-5.3%" y="-3%" filterUnits="objectBoundingBox">
+            <feOffset dy="1" in="SourceAlpha" result="shadowOffsetOuter1"/>
+            <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="2"/>
+            <feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.230610281 0"/>
+        </filter>
+        <path id="f" d="M0 38.479h110.643v2.875H0z"/>
+        <filter id="e" width="116.3%" height="726%" x="-8.1%" y="-208.7%" filterUnits="objectBoundingBox">
+            <feOffset dy="3" in="SourceAlpha" result="shadowOffsetOuter1"/>
+            <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="2.5"/>
+            <feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0.72679823 0 0 0 0 0.794597426 0 0 0 0 0.828497024 0 0 0 0.459975091 0"/>
+        </filter>
+        <path id="h" d="M0 38.479h110.643v2.875H0z"/>
+        <filter id="g" width="116.3%" height="726%" x="-8.1%" y="-208.7%" filterUnits="objectBoundingBox">
+            <feOffset dy="3" in="SourceAlpha" result="shadowOffsetOuter1"/>
+            <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="2.5"/>
+            <feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0.72679823 0 0 0 0 0.794597426 0 0 0 0 0.828497024 0 0 0 0.459975091 0"/>
+        </filter>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <g transform="matrix(-1 0 0 1 261 1)">
+            <g transform="translate(.629)">
+                <rect width="222.223" height="25.97" x=".684" y="237.52" fill="#EFEFEF" rx="12.985"/>
+                <rect width="231.052" height="25.97" x="29.117" y="185.579" fill="#EFEFEF" rx="12.985"/>
+                <rect width="208.765" height="25.97" x="51.405" y="107.669" fill="#EFEFEF" rx="12.985"/>
+                <circle cx="70.886" cy="24.177" r="9.552" fill="#FED5A8"/>
+                <circle cx="89.172" cy="67.73" r="3.65" stroke="#F4C9BE" stroke-width="3"/>
+                <circle cx="132.845" cy="63.674" r="2.599" stroke="#F4C9BE" stroke-width="3"/>
+                <circle cx="126.18" cy="28.189" r="1.788" stroke="#F4C9BE" stroke-width="2"/>
+                <circle cx="41.602" cy="86.708" r="1.788" stroke="#F4C9BE" stroke-width="2"/>
+                <path stroke="#FED5A8" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M70.886 1.649v6.368M56.18 9.609l4.517 4.49M56.18 40.649l4.517-4.49M82.139 36.16l4.515 4.489M82.139 14.098l4.515-4.49M70.886 41.131V47.5"/>
+                <path fill="#EFEFEF" d="M209.871 211.55c-7.171 0-12.985 5.813-12.985 12.985 0 7.171 5.814 12.985 12.985 12.985H51.106c7.171 0 12.985-5.814 12.985-12.985 0-7.172-5.814-12.985-12.985-12.985H209.87zM199.639 133.64c-7.172 0-12.985 5.813-12.985 12.984 0 7.172 5.813 12.985 12.985 12.985H21.285c-7.171 0-12.985-5.813-12.985-12.985 0-7.171 5.814-12.985 12.985-12.985H199.64zM44.025 159.61h177.008c7.172 0 12.985 5.813 12.985 12.984 0 7.172-5.813 12.985-12.985 12.985H44.025c7.171 0 12.985-5.813 12.985-12.985 0-7.171-5.814-12.985-12.985-12.985z"/>
+            </g>
+            <g stroke="#C5EBF2" stroke-linecap="round" stroke-linejoin="round" stroke-width="4">
+                <path d="M67.73 89.405v9.158M63.151 93.984h9.158"/>
+            </g>
+            <g stroke="#C5EBF2" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+                <path d="M111.667 45.417v5.77M108.783 48.302h5.769"/>
+            </g>
+            <g stroke="#C5EBF2" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                <path d="M56.724 67.044v3.964M54.742 69.026h3.963"/>
+            </g>
+            <circle cx="213.024" cy="58.96" r="30.248" fill="#EDB6C1"/>
+            <g fill="#ED1C24" stroke="#ED1C24" stroke-linecap="round" stroke-width="1.2">
+                <path d="M213.12 56.167c-2.941-4.715-5.89-5.763-8.845-3.145-1.584 1.403-2.094 3.703-1.271 5.756.95 2.37 6.204 8.32 10.116 10.73"/>
+                <path stroke-linejoin="round" d="M213.117 56.167c2.94-4.715 5.89-5.763 8.845-3.145 1.584 1.403 2.094 3.703 1.27 5.756-.949 2.37-6.204 8.32-10.115 10.73-3.222-3.877-4.625-7.84-4.209-11.888l1.194-2.649c1.593-.098 2.638.265 3.135 1.092"/>
+            </g>
+            <path stroke="#FED5A8" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M86.834 23.937h6.368M49.568 23.937h6.368"/>
+        </g>
+        <g transform="translate(64 91.395)">
+            <mask id="b" fill="#fff">
+                <use xlink:href="#a"/>
+            </mask>
+            <g mask="url(#b)">
+                <g transform="translate(5.528 4.607)">
+                    <use fill="#000" filter="url(#c)" xlink:href="#d"/>
+                    <use fill="#FFF" xlink:href="#d"/>
+                </g>
+                <path fill="#F5F8FA" stroke="#DDD" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5" d="M10.701 25.438h113.48v165.619H10.701z"/>
+                <text fill="#7C7474" font-family="SourceSansPro-SemiBold, Source Sans Pro" font-size="10" font-weight="500" transform="translate(5.528 4.607)">
+                    <tspan x="43.413" y="41.468">LIBRARY</tspan>
+                </text>
+                <g transform="translate(11.854 60.18)">
+                    <use fill="#000" filter="url(#e)" xlink:href="#f"/>
+                    <use fill="#FFF" xlink:href="#f"/>
+                    <path fill="#ECF0F4" d="M3.142 36.147l104.719-.03 2.782 2.355H0z"/>
+                    <rect width="25.447" height="37.139" x="6.635" fill="#81D4E8" rx="1"/>
+                    <path stroke="#FFF" stroke-linecap="square" stroke-width="3" d="M10.719 7.577h11.056"/>
+                    <path stroke="#FFF" stroke-linecap="square" stroke-width="2" d="M10.232 11.833h11.056"/>
+                    <rect width="25.447" height="37.139" x="42.845" fill="#AB9CE8" rx="1"/>
+                    <path stroke="#FFF" stroke-linecap="square" stroke-width="3" d="M47.352 7.577h11.056"/>
+                    <path stroke="#FFF" stroke-linecap="square" stroke-width="2" d="M46.865 11.833h11.056"/>
+                    <rect width="25.447" height="37.139" x="78.961" fill="#EDB6C1" rx="1"/>
+                    <path stroke="#FFF" stroke-linecap="square" stroke-width="3" d="M83.09 7.577h11.056"/>
+                    <path stroke="#FFF" stroke-linecap="square" stroke-width="2" d="M82.603 11.833H93.66"/>
+                </g>
+                <g transform="translate(11.854 116.432)">
+                    <use fill="#000" filter="url(#g)" xlink:href="#h"/>
+                    <use fill="#FFF" xlink:href="#h"/>
+                    <path fill="#ECF0F4" d="M3.142 36.147l104.719-.03 2.782 2.355H0z"/>
+                    <rect width="25.447" height="37.139" x="6.635" fill="#3CB7AF" rx="1"/>
+                    <rect width="25.447" height="37.139" x="42.845" fill="#FFD83C" rx="1"/>
+                    <rect width="25.447" height="37.139" x="78.961" fill="#23587E" rx="1"/>
+                    <path stroke="#FFF" stroke-linecap="square" stroke-width="3" d="M10.719 5.384h11.056"/>
+                    <path stroke="#FFF" stroke-linecap="square" stroke-width="2" d="M10.232 9.64h11.056"/>
+                    <path stroke="#FFF" stroke-linecap="square" stroke-width="3" d="M47.352 5.384h11.056"/>
+                    <path stroke="#FFF" stroke-linecap="square" stroke-width="2" d="M46.865 9.64h11.056"/>
+                    <path stroke="#FFF" stroke-linecap="square" stroke-width="3" d="M83.09 5.384h11.056"/>
+                    <path stroke="#FFF" stroke-linecap="square" stroke-width="2" d="M82.603 9.64H93.66"/>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

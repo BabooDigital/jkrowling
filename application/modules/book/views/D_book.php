@@ -121,9 +121,9 @@ echo "<script>(function(d, s, id) {
 				<div class="pr-20 pl-20 subchapter">
 					<ul class="list-group list-group-flush">
 						<li class="list-group-item" style="background: transparent;border-bottom: 1px #eeeeee;"><small>Bagian Cerita</small></li>
-						<center>
-							<!-- <div class="loader" id="loader_chapter"></div> -->
-						</center>
+						<div id="loader_chapter">
+							<div class="loads-css ng-scope"><div style="width:20px;height:20px" class="lds-flickr"><div></div><div></div><div></div></div></div>
+						</div>
 						<div id="list_chapter">
 							
 						</div>
