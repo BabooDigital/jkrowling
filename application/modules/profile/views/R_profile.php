@@ -136,7 +136,7 @@
 								<div class="pt-5 pb-5 pl-10 pr-10" style="background-color: #7661ca;border-radius: 10px;">
 									<?php $pin = $this->session->userdata('hasPIN'); if ($pin == 1) { ?>
 									<p class="text-left"><img src="<?php echo base_url('public/img/assets/icon_wallet_white.png'); ?>" class="img-fluid" width="20"> <span class="text-white">Dompet</span> <button type="button" class="float-right btn-detdomp" data-toggle="modal" data-target="pinauth-modal" style="width: 20%;font-size: 13px;">Detail</button></p>
-									<p class="text-left mt-15"><button class="btn-transparant text-white btnActive" style="font-size: 20px;font-weight: 800;">Rp 5.100.000</button></p>
+									<p class="text-left mt-15"><button class="btn-transparant text-white btnActive" style="font-size: 20px;font-weight: 800;">Rp <?php echo number_format($userdata['balance'] , 0, ',', '.'); ?></button></p>
 									<?php }else{ ?>
 									<p class="text-left"><img src="<?php echo base_url('public/img/assets/icon_wallet_white.png'); ?>" class="img-fluid" width="20"> <span class="text-white">Dompet</span></p>
 									<p class="text-left mt-30"><button class="btn-transparant text-white btnActive activeDompet" style="font-size: 18px;">Aktifkan Sekarang ></button></p>
@@ -163,51 +163,24 @@
 	</div>
 </div>
 </div>
+<?php $pin = $this->session->userdata('hasPIN'); if ($pin == 1) { ?>
 <?php $this->load->view('include/modal_pin'); ?>
+<?php }else{ ?>
+<?php } ?>
 <!-- JS -->
 
 <?php if (isset($js)): ?>
 	<?php echo get_js($js) ?>
 <?php endif ?>
 <script>
+	var getHashDaft = window.location.hash;
+	if (getHashDaft != "" && getHashDaft == "#PINauth") {
+		$('#pinauth-modal').modal('toggle');
+	}
 	$(document).ready(function () {
-		$(document).on('click', '.btn-detdomp', function() {
-			event.preventDefault();
-			/* Act on the event */
-			$('#pinauth-modal').modal('show')
-			$("#firstdigit").focus();
-		});
-		$(document).on('click', '.activeDompet', function() {
-			event.preventDefault();
-			/* Act on the event */
-			window.location = base_url+'pin-dompet';
-		});
-
-		$(":input[type='number']").keyup(function(event){
-			var a = $( "#firstdigit" );
-			var b = $( "#secondtdigit" );
-			var c = $( "#thirddigit" );
-			var d = $( "#fourthdigit" );
-			var e = $( "#fifthdigit" );
-			var f = $( "#sixthdigit" );
-
-			if ($(this).next('[type="number"]').length > 0){
-				$(this).next('[type="number"]')[0].focus();
-			}else{
-				if ($(this).parent().next().find('[type="number"]').length > 0){
-					$(this).parent().next().find('[type="number"]')[0].focus();
-
-				}
-			}
-
-			if (a.val().length > 0 && b.val().length > 0 && c.val().length > 0 && d.val().length > 0 && e.val().length > 0 && f.val().length > 0)
-			{
-			    // $('#formPin').submit();
-			    window.location = base_url+'dompet';
-			}
-		});
-
+		keyupPIN();
 	});
 </script>
+	<?php echo $this->session->flashdata('fail_alert'); ?>
 </body>
 </html>

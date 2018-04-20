@@ -4,7 +4,7 @@
 		<div class="modal-content" style="height:100%; border-radius:0; color:#333; overflow:auto;border:none;">
 			<div class="modal-body bg-purp p-0">
 				<nav class="navbar color-layer">
-					<a class="navbar-brand backcheck" href="javascript:void(0);" data-dismiss="modal" aria-label="Close"><i class="fa fa-arrow-left text-white"></i></a>
+					<a class="navbar-brand" href="javascript:void(0);" data-dismiss="modal" aria-label="Close"><i class="fa fa-arrow-left text-white"></i></a>
 					<a href="#" class="text-white">Lupa PIN?</a>
 				</nav>
 				<div class="container mb-30">

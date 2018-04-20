@@ -19,6 +19,7 @@
 	<link href="<?php echo base_url();?>public/css/bootstrap.min.css" rel="stylesheet">
 	<link href="<?php echo base_url();?>public/css/baboo-responsive.css" rel="stylesheet" type="text/css">
 	<link href="<?php echo base_url();?>public/css/custom/cashout-auth.css" rel="stylesheet" type="text/css">
+	<link href="<?php echo base_url();?>public/css/sweetalert2.min.css" rel="stylesheet" type="text/css">
 	<link href="<?php echo base_url();?>public/css/custom-margin-padding.css" rel="stylesheet" type="text/css">
 	<link href="<?php echo base_url();?>public/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 

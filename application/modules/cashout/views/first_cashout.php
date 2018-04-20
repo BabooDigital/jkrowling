@@ -35,31 +35,27 @@
 				<div class="input-group">
 					<input type="number" class="form-control fs17pxfw600 txtInpRek" placeholder="Nomor Rekening Penerima" aria-label="Nomor Rekening Penerima" aria-describedby="basic-addon2" id="noRekInput">
 					<div class="input-group-append">
-						<button class="btn btn-outline-secondary btnNextd" type="button" onclick="location.href=base_url+'cashout/second';" disabled>LANJUT</button>
+						<button class="btn btn-outline-secondary btnNextd" type="button" disabled>LANJUT</button>
 					</div>
 				</div>
 			</div>
 		</div>
+		<?php if (!empty($bank)) { ?>
 		<div class="row mt-20">
 			<div class="col-12">
 				<span>Riwayat Tarik Dana</span>
 				<div class="list-group">
-					<a href="#" class="list-group-item list-group-item-action flex-column align-items-start border-top-0 border-left-0 border-right-0">
+				<?php foreach ($bank as $b) { ?>
+					<a href="javascript:void(0);" class="list-group-item list-group-item-action flex-column align-items-start border-top-0 border-left-0 border-right-0 nextActCash" datacc="<?php echo $b['account_number']; ?>">
 						<div class="d-flex w-100 justify-content-between">
-							<h5 class="mb-1">Sweta Kartika</h5>
-							<!-- <span class="badge text-dark">></span> -->
+							<h5 class="mb-1 nameAcc"><?php echo $b['account_name']; ?></h5>
+							<span class="badge text-dark"><i class="fa fa-chevron-right"></i></span>
 						</div>
-						<p class="mb-1"><span>999812172128</span> - <span>Bank Central Asia</span></p>
+						<p class="mb-1"><span class="numAcc"><?php echo $b['account_number']; ?></span> - <span class="bankAcc"><?php echo $b['bank_name']; ?></span></p>
 					</a>
-				</div>
-				<div class="list-group">
-					<a href="#" class="list-group-item list-group-item-action flex-column align-items-start border-top-0 border-left-0 border-right-0">
-						<div class="d-flex w-100 justify-content-between">
-							<h5 class="mb-1">Sweta Kartika</h5>
-							<!-- <span class="badge text-dark">></span> -->
-						</div>
-						<p class="mb-1"><span>999812172128</span> - <span>Bank Mandiri</span></p>
-					</a>
+				<?php } }else{ ?>
+
+				<?php } ?>
 				</div>
 			</div>
 		</div>
@@ -68,18 +64,13 @@
 	<!-- JS -->
 	<script type="text/javascript" src="<?php echo base_url();?>public/js/umd/popper.min.js"></script>
 	<script type="text/javascript" src="<?php echo base_url();?>public/js/bootstrap.min.js"></script>
+	<script src="<?php echo base_url();?>public/js/sweetalert2.all.min.js"></script>
+	<script src="<?php echo base_url();?>public/js/custom/cashout_auth.js"></script>
 	<script>
 		$(document).ready(function () {
-			$('.backcheck').click(function () {
-				window.history.back();
-			});
-			$('#noRekInput').keyup(function(){
-				if ($('#noRekInput').val() > 0) {
-					$('.btnNextd').prop('disabled', false);
-				}else{
-					$('.btnNextd').prop('disabled', true);
-				}    
-			});
+			keyupInputRek();
+			checkAccount();
+			selectAccount();
 		});
 	</script>
 </body>

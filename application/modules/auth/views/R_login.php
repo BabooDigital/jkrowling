@@ -199,67 +199,8 @@ if (!empty($query['b'])) {
 				</div>
 			</div>
 		</div>
-		<div class="modal fade" id="event-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog" role="document" style="width: 100%; height: 100%; padding: 0; margin:0;">
-				<div class="modal-content" style="height:100%; border-radius:0; color:#333; overflow:auto;">
-					<div class="modal-body">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true" style="font-size:13px; 	font-family: 'Proxima Nova', Georgia, sans-serif; ">Daftar Nanti </span>
-						</button>
-						<div class="row">
-							<div class="col-lg-12 col-xl-12">
-								<img  src="<?php echo base_url();?>public/img/logo_purple.png" style="height:54px; margin-top:30px;" class="animated slideInDown">
-								<p class="text-img animated slideInDown" style="margin-top:2px; color:#222; font-size:15px;">Selamat datang di baboo</6p>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-lg-12 col-xl-12">
-									<div class="row">
-										<div class="col-lg-12">
-											<p class="right-text">Lanjutkan dengan</p>
-										</div>
-
-										<div class="col-lg-6 col-md-12 col-xl-6">
-											<button class="btn btn-block btn-sosmed" id="login_fb_event">
-												<img src="<?php echo base_url();?>public/img/assets/fb-icon.svg" class="btn-img-sosmed"> <span class="btn-text-sosmed">Facebook</span>
-											</button>
-										</div>
-
-										<div class="col-lg-6 col-md-12 col-xl-6">
-											<button class="btn btn-block btn-sosmed" id="login_google_event">	
-												<img src="<?php echo base_url();?>public/img/assets/google-icon.svg" class="btn-img-sosmed"> <span class="btn-text-sosmed">Google</span>
-											</button>
-										</div>
-
-										<div class="col-lg-12" style="margin-top:55.1px;">
-											<p style="font-size:15px;">Atau login menggunakan email</p>
-										</div>
-
-										<div class="col-lg-12">
-											<form id="login-form" action="<?php echo site_url(); ?>auth/C_Login/postloginevent" method="POST">
-												<div class="form-group">
-													<input type="email" class="form-control login-input" id="yourEmail" name="emails" placeholder="Alamat Email">
-												</div>
-
-												<div class="form-group">
-													<input type="password" class="required password error  form-control login-input" id="yourPassword" name="passwords" placeholder="Password">
-												</div>
-												<p class="text-right text-daftar">Belum punya akun ? <a  data-toggle="modal" data-target="#register-modal" href="#" class="link-daftar">Daftar disini</a></p>
-												<div class="pull-right">
-													<button type="submit" name="submit" class="btn btn-primary pull-right btn-login"><i class="icon-arrow-right"></i></button>	
-												</form>
-											</div>
-
-										</div>
-									</div>
-								</div>
-							</div>
-
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+	</div>
+</div>
 		<?php $this->load->view('include/modal_tnc'); ?>
 
 		<!-- Javascript -->
