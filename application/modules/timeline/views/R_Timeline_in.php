@@ -79,5 +79,6 @@
 			swal("Maaf..", "Kamu Sudah Mengikuti Event!", "warning");
 		</script>
 	<?php endif ?>
+	<?php echo $this->session->flashdata('fail_alert'); ?>
 </body>
 </html>

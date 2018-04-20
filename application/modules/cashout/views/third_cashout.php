@@ -69,26 +69,22 @@
 						<div class="list-group">
 							<a href="javascript:void(0);" class="list-group-item list-group-item-action flex-column align-items-start tfRek" data-toggle="modal" data-target="#selectNoRek">
 								<div class="d-flex w-100 justify-content-between">
-									<h5 class="mb-1" id="namaRek">Sweta Kartika</h5>
-									<!-- <span class="badge text-dark">></span> -->
+									<h5 class="mb-1" id="namaRek">Memuat..</h5>
+									<span class="badge text-dark"><i class="fa fa-chevron-right"></i></span>
 								</div>
-								<p class="mb-0"><span id="nomRek">999812172128</span> - <span id="namaBank">Bank Central Asia</span></p>
+								<p class="mb-0"><span id="nomRek">Memuat..</span> - <span id="namaBank">Memuat..</span></p>
 							</a>
 						</div>
 					</div>
 					<div class="row mt-40">
 						<div class="col-12">
 							<div style="background:  #f7f5fa;padding: 15px 0 1px 0;border: 1px #ededed solid;">
-								<div style="
-								text-align:  center;
+								<div style="text-align:  center;
 								">
-								<span style="
-								font-weight:  600;
+								<span style="font-weight:  600;
 								">Dana yang tersedia</span>
-								<p><span style="
-								font-size: 27px;
-								font-weight: 900;
-								">Rp 900.000</span></p>
+								<p style="font-size: 27px;font-weight: 900;
+								">Rp <span class="amount">-</span></p>
 							</div>
 						</div>
 					</div>
@@ -99,7 +95,7 @@
 						<div class="input-group-prepend">
 							<div class="input-group-text">Rp</div>
 						</div>
-						<input type="number" class="form-control fs17pxfw600" id="inpJumSal" name="inpJumSal" placeholder="250000">
+						<input type="text" class="form-control fs17pxfw600" id="inpJumSal" name="inpJumSal" placeholder="500.000">
 					</div>
 				</div>
 			</div>
@@ -120,27 +116,20 @@
 		<div class="modal-content">
 			<div class="modal-body">
 				<div class="list-group">
-					<a href="#" class="list-group-item list-group-item-action flex-column align-items-start border-top-0 border-left-0 border-right-0">
+					<?php if (!empty($bank)) { ?>
+					<?php foreach ($bank as $b) { ?>
+					<a href="#" class="list-group-item list-group-item-action flex-column align-items-start border-top-0 border-left-0 border-right-0 modList" rekdata="<?php echo $b['account_number']; ?>" accid="<?php echo $b['id_acc']; ?>">
 						<div class="d-flex w-100 justify-content-between">
-							<h5 class="mb-1" id="">Sweta Kartika</h5>
-							<!-- <span class="badge text-dark">></span> -->
+							<h5 class="mb-1 nameAcc"><?php echo $b['account_name']; ?></h5>
 						</div>
-						<p class="mb-1"><span id="">999812172128</span> - <span id="">Bank Central Asia</span></p>
+						<p class="mb-1"><span class="numAcc"><?php echo $b['account_number']; ?></span> - <span class="bankAcc"><?php echo $b['bank_name']; ?></span></p>
 					</a>
-				</div>
-				<div class="list-group">
-					<a href="#" class="list-group-item list-group-item-action flex-column align-items-start border-top-0 border-left-0 border-right-0">
-						<div class="d-flex w-100 justify-content-between">
-							<h5 class="mb-1" id="">Sweta Kartika</h5>
-							<!-- <span class="badge text-dark">></span> -->
-						</div>
-						<p class="mb-1"><span id="">999812172128</span> - <span id="">Bank Mandiri</span></p>
-					</a>
-				</div>
-				<div class="list-group">
+					<?php } }else{ ?>
+					<a href="#" class="list-group-item list-group-item-action flex-column align-items-start border-top-0 border-left-0 border-right-0">Data tidak didapatkan.</a>
+					<?php } ?>
 					<a href="<?php echo site_url('cashout/second'); ?>" class="list-group-item list-group-item-action flex-column align-items-start border-top-0 border-left-0 border-right-0">
 						<div class="d-flex w-100 justify-content-between">
-							<h5 class="mb-1">Rekening Baru</h5>
+							<h5 class="mb-1 text-muted"><strong>Rekening Baru</strong></h5>
 						</div>
 					</a>
 				</div>
@@ -154,32 +143,16 @@
 <script type="text/javascript" src="<?php echo base_url();?>public/js/bootstrap.min.js"></script>
 <script src="<?php echo base_url();?>public/js/jquery.validate.js"></script>
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+<script src="<?php echo base_url();?>public/js/sweetalert2.all.min.js"></script>
+<script src="<?php echo base_url();?>public/js/custom/cashout_auth.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>public/js/jquery.number.js"></script>
 <script>
 	$(document).ready(function () {
-		$('.backcheck').click(function () {
-			window.history.back();
-		});
-		$('.tfrek').click(function () {
-			$('#selectNoRek').modal('show');
-		});
-		$("#formDataCashOut").validate({
-			ignore: [],
-			rules: {
-				inpJumSal: {
-					required: true,
-					min: 200000
-				}
-			},
-			messages: {
-				inpJumSal: {
-					required: 'Masukan saldo yang ingin ditarik.',
-					min : 'Minimum penarikan sebesar Rp 200.000'
-				}
-			},
-			submitHandler: function(form) {
-				window.location = base_url+'cashout/fourth';
-			}
-		});
+		// selectRekData();
+		rekValidation();
+		validationFormCashout();
+		selectRekModal();
+		$('#inpJumSal').number(true);
 	});
 </script>
 </body>

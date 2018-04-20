@@ -37,10 +37,12 @@ body {
 						<label for="inpNamaBank">Nama Bank</label>
 						<select class="form-control fs17pxfw600" id="inpNamaBank" name="inpNamaBank">
 							<option value="">Pilih Bank</option>
-							<option value="1">BCA</option>
-							<option value="2">Mandiri</option>
-							<option value="3">OCBC</option>
-							<option value="4">BRI</option>
+							<?php if (!empty($bank)) {
+									foreach ($bank as $b) { ?>
+									<option value="<?php echo $b['bank_code']; ?>"><?php echo $b['bank_name']; ?></option>
+									<?php } }else { ?>
+									<option>Data gagal diterima</option>
+									<?php } ?>
 						</select>
 					</div>
 					<div class="form-group">
@@ -64,40 +66,12 @@ body {
 	<script type="text/javascript" src="<?php echo base_url();?>public/js/bootstrap.min.js"></script>
 	<script src="<?php echo base_url();?>public/js/jquery.validate.js"></script>
 	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+	<script src="<?php echo base_url();?>public/js/sweetalert2.all.min.js"></script>
+	<script src="<?php echo base_url();?>public/js/custom/cashout_auth.js"></script>
 	<script>
 		$(document).ready(function () {
-			$('.backcheck').click(function () {
-				window.history.back();
-			});
-
-			$("#formBankData").validate({
-				ignore: [],
-				rules: {
-					inpNoRek: {
-						required: true
-					},
-					inpNamaBank: {
-						required: true
-					},
-					inpNamaRek: {
-						required: true
-					}
-				},
-				messages: {
-					inpNoRek: {
-						required: 'Masukan nomor rekening.'
-					},
-					inpNamaBank: {
-						required: 'Pilih Nama Bank Terlebih dahulu.'
-					},
-					inpNamaRek: {
-						required: 'Nama Penerima Bank Sangat di Perlukan.'
-					}
-				},
-				submitHandler: function(form) {
-					window.location = base_url+'cashout/third';
-				}
-			});
+			getRek();
+			validationFormBank();
 		});
 	</script>
 </body>

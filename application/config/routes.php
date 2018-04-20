@@ -214,7 +214,7 @@ $route['bestBookEvent'] = 'event/C_event/getBestBookEvent';
 
 //Transaction
 $route['transaction_counter'] = 'transaction/C_transaction/count_transaction';
-// PIN AUTH ROUTES
+// PIN VIEW ROUTES
 $route['pin-dompet'] = 'pin/C_pin_auth';
 $route['pin-dompet/first'] = 'pin/C_pin_auth';
 $route['pin-dompet/second'] = 'pin/C_pin_auth/second';
@@ -233,11 +233,17 @@ $route['auth/confirm_pin'] = 'pin/C_pin_auth/confirmNewPin';
 $route['auth/set_question'] = 'pin/C_pin_auth/setQuestionSecure';
 
 
-// CASHOUT AUTH ROUTES
+// CASHOUT VIEW ROUTES
 $route['dompet'] = 'cashout/C_cashout';
+$route['cashout/stat/(:any)'] = 'cashout/C_cashout/viewStatusPending';
 $route['cashout'] = 'cashout/C_cashout/first_';
 $route['cashout/first'] = 'cashout/C_cashout/first_';
 $route['cashout/second'] = 'cashout/C_cashout/second_';
 $route['cashout/third'] = 'cashout/C_cashout/third_';
 $route['cashout/fourth'] = 'cashout/C_cashout/fourth_';
 $route['cashout/fifth'] = 'cashout/C_cashout/fifth_';
+
+// POST CASHOUT AUTH ROUTES
+$route['auth/check_acc'] = 'cashout/C_cashout/checkAccountBank';
+$route['auth/create_acc'] = 'cashout/C_cashout/createAccBank';
+$route['auth/create_payout'] = 'cashout/C_cashout/createCashout';
