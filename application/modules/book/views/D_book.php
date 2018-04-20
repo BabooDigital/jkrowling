@@ -98,47 +98,6 @@ echo "<script>(function(d, s, id) {
     }
 </style>
 <div class="container pt-100 mb-80">
-	<div class="row">
-		<div class="col-md-4 dtlbok">
-			<?php if (!empty($detail_book)) { ?>
-			<div class="card pb-20" style="background: #F5F8FA;">
-				<div class="text-center pr-30 pl-30 pt-20">
-					<img class="cover_image" src="<?php echo ($detail_book['data']['book_info']['cover_url'] != 'Kosong') ? ($detail_book['data']['book_info']['cover_url'] != null ? $detail_book['data']['book_info']['cover_url'] : base_url('public/img/profile/blank-photo.jpg')) : base_url('public/img/profile/blank-photo.jpg'); ?>" width="150" height="200">
-					<div class="card-body">
-						<input type="hidden" name="iaidubi" id="iaidubi" value="<?php echo $detail_book['data']['book_info']['book_id']; ?>">
-						<a href="#">
-							<h3 class="dbooktitle"><?php echo $detail_book['data']['book_info']['title_book']; ?></h3>
-						</a>
-						<div class="dbooksociallist">
-							<a href="#"><span class=".fs-13"><img src="<?php echo base_url(); ?>public/img/assets/icon_view.svg" width="27"> <span id="viewcount"><?php echo $detail_book['data']['book_info']['view_count']; ?></span></span></a>
-						</div>
-						<div class="dbooksociallist">
-							<a href="#"><span class=".fs-13"><img src="<?php echo base_url(); ?>public/img/assets/icon_comment.svg" width="14"> <span id="commentcount"><?php echo $detail_book['data']['book_info']['book_comment_count']; ?></span></span></a>
-						</div>
-						<div class="dbooksociallist">
-							<a href="#"><span class=".fs-13"><img src="<?php echo base_url(); ?>public/img/assets/icon_love.svg" width="16"> <span id="likecount"><?php echo $detail_book['data']['book_info']['like_count']; ?></span></span></a>
-						</div>
-						<div class="dbooksociallist">
-							<a href="#"><span class=".fs-13"><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg" width="14"> <span id="sharecount"><?php echo $detail_book['data']['book_info']['share_count']; ?></span></span></a>
-						</div>
-					</div>
-				</div>
-				<div class="pr-20 pl-20 subchapter">
-					<ul class="list-group list-group-flush">
-						<li class="list-group-item" style="background: transparent;border-bottom: 1px #eeeeee;"><small>Bagian Cerita</small></li>
-						<div id="loader_chapter">
-							<div class="loads-css ng-scope"><div style="width:20px;height:20px" class="lds-flickr"><div></div><div></div><div></div></div></div>
-						</div>
-						<div id="list_chapter">
-							
-						</div>
-					</ul>
-				</div>
-			</div>
-			<?php  }else {
-				echo "kosong";
-			} ?>
-		</div>
     <div class="row">
         <div class="col-md-4 dtlbok">
             <?php if (!empty($detail_book)) { ?>
