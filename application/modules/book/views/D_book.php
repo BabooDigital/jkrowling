@@ -134,6 +134,18 @@ echo "<script>(function(d, s, id) {
 						</div>
 					</ul>
 				</div>
+                <br>
+                <div>
+                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <!-- Disamping -->
+                    <ins class="adsbygoogle"
+                         style="display:inline-block;width:300px;height:250px"
+                         data-ad-client="ca-pub-4994852796413443"
+                         data-ad-slot="7276054409"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
 			</div>
 			<?php  }else {
 				echo "kosong";
