@@ -147,5 +147,6 @@
 	<?php if (isset($js)): ?>
 		<?php echo get_js($js) ?>
 	<?php endif ?>
+	<?php echo $this->session->flashdata('limit_character'); ?>
 </body>
 </html>

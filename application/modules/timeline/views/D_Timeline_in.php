@@ -75,6 +75,7 @@ echo "<script>(function(d, s, id) {
 <?php if (isset($js)): ?>
 	<?php echo get_js($js) ?>
 <?php endif ?>
+<?php echo $this->session->flashdata('success_publish'); ?>
 <?php if ($this->session->flashdata('is_follow_event')): ?>
 	<script type="text/javascript">
 		swal("Good job!", "Kamu Sukses Mengikuti Event!", "success");
