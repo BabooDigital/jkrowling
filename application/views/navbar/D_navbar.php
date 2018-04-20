@@ -39,11 +39,11 @@
 					<li class="nav-item mt-7 noti_Container">
 						<div id="noti_Counter" style="top: -10px;"></div>
 						<a id="noti_Button" class="nav-link <?php if ($this->uri->segment('1') == 'notification') { echo 'boo-menu-des-active'; }else { echo 'boo-menu-des'; } ?>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#"><img src="<?php echo site_url(); ?>public/img/icon-tab/notif_icon.svg" height="27"><p class="fs-12px">Activity</p></a>
-						<!-- <div id="noti_Counter2" style="display: none;">7</div> -->
 						<div id="notifications">
 							<h5>Notifications</h5>
 							<div class="loader mt-10 mb-10" id="loader_notif" style="margin-left: auto;margin-right: auto;"></div>
 							<div class="list-group" id="notification">
+								<div class="loads-css ng-scope"><div style="width:20px;height:20px" class="lds-flickr"><div></div><div></div><div></div></div></div>
 							</div>
 						</div>
 					</li>			
