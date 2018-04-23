@@ -1103,6 +1103,10 @@ class C_createbook extends MX_Controller
 		$cover   = $this->input->post('cover_name');
 
 		$send = array('book_id' => $book_id);
+		if ($this->input->post('count_chapter') == 0) {
+			$send['paragraph'] = $output;
+		}
+
 		$validate_publish = $this->curl_request->curl_post($this->API.'book/Books/validatePublish', $send, $auths);
 		if ($validate_publish['data']['is_publishable'] == true) {
 			// print_r();
@@ -1239,6 +1243,8 @@ class C_createbook extends MX_Controller
 		    	$status = $resval['code'];
 		    }
 		}else{
+			print_r($send);
+			print_r($this->input->post());
 			$this->session->set_flashdata('limit_character', '<script>
                   $(window).on("load", function(){
                     swal("Gagal", "Harus minimal 150 Karakter", "error");
