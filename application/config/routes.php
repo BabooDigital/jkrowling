@@ -50,7 +50,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['default_controller'] = 'timeline/C_home';
-$route['404_override'] = '';
+$route['404_override'] = 'notfound/C_notfound';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['login'] = 'auth/C_Login';
