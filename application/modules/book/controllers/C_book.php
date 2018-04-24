@@ -159,7 +159,6 @@ class C_book extends MX_Controller
         $data['js'][] = "public/js/bootstrap.min.js";
         $data['js'][] = "public/js/jquery.sticky-kit.min.js";
         $data['js'][] = "public/plugins/holdOn/js/HoldOn.js";
-        $data['js'][] = "public/js/custom/transaction.js";
 
         $data['id_chapter'] = $this->input->get("chapter");
 
@@ -170,6 +169,7 @@ class C_book extends MX_Controller
             $this->load->view('R_book', $data);
         } else {
             $data['js'][] = "public/js/custom/notification.js";
+            $data['js'][] = "public/js/custom/transaction.js";
             if ($this->input->get("chapter")) {
                 if ($data_before_chapter['chapter']['data']['chapter'][$this->input->get("chapter")] == null || $data_before_chapter['chapter']['data']['chapter'][$this->input->get("chapter")] == '') {
                     // print_r("kosong chapter");

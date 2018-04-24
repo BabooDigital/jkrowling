@@ -1,6 +1,6 @@
 <?php if ($this->session->userdata('isLogin')): ?>
 	
-<nav class="navbar navbar-expand-lg fixed-top-message bg-white" style="position: fixed;width: 100%;z-index: 1000;top: 0;">
+<nav class="navbar navbar-expand-lg fixed-top-message bg-white rfirstnav" style="position: fixed;width: 100%;z-index: 1000;top: 0;">
 	<div class="container">
 		<a class="navbar-brand" href="<?php echo site_url(); ?>"><img alt="" class="img-fluid" src="<?php echo base_url(); ?>public/img/new_logo.svg" width="80"></a>
 		<!-- <form class="form-inline srcform pull-right">
@@ -13,7 +13,7 @@
 		</form>
 	</div>
 </nav>
-<nav class="navbar navbar-expand-lg fixed-top" style="height:auto;box-shadow: none;">
+<nav class="navbar navbar-expand-lg fixed-top rsecnav" style="height:auto;box-shadow: none;">
 	<div class="rnavbarin">
 		<div class="container">
 			<div class="row" style="">
@@ -25,6 +25,7 @@
 				</div>
 				<div class="col-2 mt-5 mb-1">
 					<center>
+						<div id="transaction_counter" style="top:-20px;right: 20px;"></div>
 						<a class="menu-page <?php if ($this->uri->segment('1') == 'library') { echo 'boo-menu-active'; }else { echo 'boo-menu'; } ?>" href="<?php echo site_url('library'); ?>" id="tab_page" dat-title="Library"><img height="25" src="<?php if ($this->uri->segment('1') == 'library') { echo base_url('public/img/icon-tab/library_icon_active.svg'); }else { echo base_url('public/img/icon-tab/library_icon.svg'); } ?>" width="25">
 						<p>Library</p></a>
 					</center>

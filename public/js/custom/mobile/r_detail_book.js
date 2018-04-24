@@ -294,28 +294,49 @@ function getRMenuChapter() {
         }
     }).done(function(b) {
         var data_chapter = "";
-        $.each(b, function(b, val) {
-            id = val['chapter_id'];
-            if (val['chapter_free'] != false) {
-              data_chapter += '<a href="' + base_url + 'book/' + segment + '/' +val['chapter_id'] + '" class="borbot bornone bg-none list-group-item list-group-item-action ';
-              if (active == id) {
-                data_chapter += 'active';
-            }
-            data_chapter += '" >' + val['chapter_title'] + '</a>';
-        } else {
-          data_chapter += '<a class="borbot bornone bg-none list-group-item list-group-item-action text-muted';
+        if (userbook == userdata) {
+            $.each(b, function(ba, val) {
+                if (ba != 'pay') {
+                    id = val['chapter_id'];
+                    if (val.status_publish.status_id == 2) {
+                        data_chapter += '<a href="' + base_url + 'book/' + segment + '/' +val['chapter_id'] + '" class="borbot bornone font-weight-bold bg-none list-group-item list-group-item-action ';
+                        if (active == id) {
+                            data_chapter += 'active';
+                        }
+                        data_chapter += '" >' + val['chapter_title'] + '</a>';
+                    }else {
+                        data_chapter += '<a href="' + base_url + 'book/' + segment + '/' +val['chapter_id'] + '" class="borbot text-muted font-weight-bold bornone bg-none list-group-item list-group-item-action ';
+                        if (active == id) {
+                            data_chapter += 'active';
+                        }
+                        data_chapter += '" >' + val['chapter_title'] + '<img src="'+base_url+'public/img/assets/icon_draft_pub.png" width="45" class="img-fluid float-right"></a>';
+                    }
+                }
+                $(".detailbook").children().attr("data-id");
+            });
+        }else{
+            $.each(b, function(ba, val) {
+                if (ba != 'pay') {
+                    id = val['chapter_id'];
+                    if (val['chapter_free'] == true) {
+                      data_chapter += '<a href="' + base_url + 'book/' + segment + '/' +val['chapter_id'] + '" class="borbot bornone bg-none font-weight-bold list-group-item list-group-item-action ';
+                      if (active == id) {
+                        data_chapter += 'active';
+                    }
+                    data_chapter += '" >' + val['chapter_title'] + '</a>';
+                } else {
+                  data_chapter += '<a class="borbot bornone font-weight-bold bg-none list-group-item list-group-item-action text-muted';
           // if (index == 0) {
               data_chapter += ' disabled ';
           // }
           data_chapter += '>';
           data_chapter += '" title="Beli untuk membaca chapter ini."><img src="'+base_url+'public/img/assets/icon_sell.png" width="20" class="mt-5 float-right">' + val['chapter_title'] + '</a>';
       }
-            // "<a href='http://localhost/jkrowling/book/1256-folk/967' class='borbot bornone bg-borr list-group-item list-group-item-action '>Never Folk</a>"
-            // "false" != e.chapter_free ? (a += '<a href="' + base_url + "book/" + segment + "/" + e.chapter_id + '" class="borbot bornone bg-borr list-group-item list-group-item-action ', active == id && (a += "active")) : (a += '<a class="borbot bornone bg-borr list-group-item list-group-item-action', a += "disabled ", a += ">");
-            // a += '" >' + e.chapter_title + "</a>";
-            $(".detailbook").children().attr("data-id")
-        });
-        $("#list_Rchapter").html(data_chapter)
+      $(".detailbook").children().attr("data-id");
+  }
+});
+        }
+        $("#list_Rchapter").html(data_chapter);
     }).fail(function() {
         console.log("error")
     }).always(function() {})
@@ -346,6 +367,52 @@ function getRCommentBook() {
     }).fail(function() {
         console.log("error")
     }).always(function() {})
+}
+
+function buyBook() {
+    $(document).on("click", "#buy-btn", function(event) {
+        event.preventDefault();
+        $(this).attr("disabled", "disabled");
+        // console.log("clicked");
+
+        $.ajax({
+            url: base_url+'pay_book/token',
+            type: "POST",
+            data:{id_book:$("#iaidubi").val(), url_redirect:window.location.href},
+            cache: false,
+            beforeSend: function() {
+                $(".lds-css").show();
+            },
+            success: function(data) {
+                var resultType = document.getElementById('result-type');
+                var resultData = document.getElementById('result-data');
+                function changeResult(type,data){
+                    $("#result-type").val(type);
+                    $("#result-data").val(JSON.stringify(data));
+                }
+                snap.pay(data, {
+
+                    onSuccess: function(result){
+                        changeResult('success', result);
+                        console.log(result.status_message);
+                        console.log(result);
+                        $("#payment-form").submit();
+                    },
+                    onPending: function(result){
+                        changeResult('pending', result);
+                        console.log(result.status_message);
+                        $("#payment-form").submit();
+                    },
+                    onError: function(result){
+                        changeResult('error', result);
+                        console.log(result.status_message);
+                        $("#payment-form").submit();
+                    }
+                });
+                $(".lds-css").hide();
+            }
+        });
+    });
 }
 
 function convertToSlug(b) {
