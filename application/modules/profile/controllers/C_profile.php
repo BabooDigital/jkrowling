@@ -55,6 +55,7 @@ class C_profile extends MX_Controller {
 		$data['js'][] = "public/js/bootstrap.min.js";
 		$data['js'][] = "public/js/jquery.sticky-kit.min.js";
 		$data['js'][] = "public/js/custom/notification.js";
+        $data['js'][] = "public/js/custom/transaction.js";
 		$data['js'][] = "public/js/jquery.validate.js";
 		$data['js'][] = "public/js/sweetalert2.all.min.js";
 		
@@ -72,7 +73,7 @@ class C_profile extends MX_Controller {
 				$data['js'][] = "public/js/custom/cashout_auth.js";
 				$data['js'][] = "public/js/menupage.js";
 				$this->load->view('include/head', $data);
-				$this->load->view('R_profile', $data);
+				$this->load->view('R_profile');
 			}else{
 				$data['css'][] = "public/css/baboo.css";
 				$data['js'][] = "public/js/custom/profile_page.js";

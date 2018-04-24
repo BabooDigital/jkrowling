@@ -1,6 +1,16 @@
 <div class="modal fade" id="modal-checkout" tabindex="-1" role="dialog" aria-labelledby="modal-checkoutLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
+        <div class="lds-css ng-scope" style="display: none;">
+          <div class="lds-eclipse" style="width:100%;height:100%">
+            <img class="img-loading" src="<?php echo base_url('public/img/splash_.png'); ?>" width="90">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </div>
       <div class="modal-header">
         <button type="button" class="closes" data-dismiss="modal" aria-label="Close" style="height: 45px;left: 0;right: none;">
           <span aria-hidden="true" style="font-size: 20px;"><i class="fa fa-arrow-left"></i></span>
@@ -60,7 +70,11 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn-publish" id="nextcheck" b-id="">Lanjutkan Bayar</button>
+          <button type="button" class="btn-publish" id="buy-btn" b-id="">Lanjutkan Bayar</button>
+            <form id="payment-form" method="post" action="<?=site_url()?>pay_book/finish" style="display: none;">
+              <input type="hidden" name="result_type" id="result-type" value=""></div>
+              <input type="hidden" name="result_data" id="result-data" value=""></div>
+            </form>
         </div>
       </div>
     </div>

@@ -97,12 +97,14 @@ class C_Library extends MX_Controller
         $datas['js'][]   = "public/js/custom/notification.js";
         $datas['js'][] = "public/js/custom/transaction.js";
         if ($this->agent->is_mobile()) {
+            $data['transaction'] = $resval3;
             $data['js'][] = "public/js/jquery.min.js";
             $data['js'][] = "public/js/umd/popper.min.js";
             $data['js'][] = "public/js/bootstrap.min.js";
             $data['js'][] = "public/js/custom/mobile/library.js";
             $data['js'][] = "public/js/menupage.js";
             $data['js'][] = "public/js/custom/notification.js";
+            $data['js'][] = "public/js/custom/transaction.js";
 
             $this->load->view('include/head', $data);
             $this->load->view('R_library');

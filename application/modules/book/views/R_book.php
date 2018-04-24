@@ -1,3 +1,4 @@
+<script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-FbaqZneHUk1HWy6m"></script>
 <style>
 .list-group-item.active {
 	z-index: 2;
@@ -5,7 +6,7 @@
 	background-color: #7661ca;
 }
 .bgboo {
-	background: #f3f5f7;
+	background: #edf0f3;
 }
 .title_out {
 	font-weight: 900;
@@ -105,9 +106,9 @@ echo "<script>(function(d, s, id) {
 		</div>
 		<div class="mt-20">
 			<p class="text-muted ml-20">Daftar Chapter</p>
-			<div class="list-group mt-10 mb-50 pl-10 pr-10" id="list_Rchapter"></div>
+			<div class="list-group mt-10 mb-90 pl-10 pr-10" id="list_Rchapter"></div>
 		</div>
-		<?php if ($detail_book['data']['book_info']['is_free'] == true) { ?>
+		<?php if ($detail_book['data']['book_info']['is_free'] == true || $this->session->userdata('userData')['user_id'] == $detail_book['data']['author']['author_id']) { ?>
 		<div></div>
 		<?php }else{ ?>
 		<div class="bg-white" style="width: 250px;height: auto;position: fixed;bottom: 0;padding: 5px 15px;">
@@ -179,7 +180,7 @@ echo "<script>(function(d, s, id) {
 		</div>
 		<?php } ?>
 		<input id="iaidubi" name="iaidubi" type="hidden" value="<?php echo $detail_book['data']['book_info']['book_id']; ?>"> <input id="iaiduui" name="iaiduui" type="hidden" value="<?php $dat = $this->session->userdata('userData'); echo $dat['user_id']; ?>">
-		<?php if ($detail_book['data']['chapter']['chapter_free'] == true) { ?>
+		<?php if ($detail_book['data']['chapter']['chapter_free'] == true  || $this->session->userdata('userData')['user_id'] == $detail_book['data']['author']['author_id']) { ?>
 		<div class="row">
 			<div class="col-12 text-center mt-10">
 				<h5 style="font-weight: 900;"><?php echo $detail_book['data']['chapter']['chapter_title']; ?></h5>
@@ -289,6 +290,10 @@ echo "<script>(function(d, s, id) {
 		</div><!-- modal-content -->
 	</div><!-- modal-dialog -->
 </div><!-- modal -->
+<?php if ($this->session->flashdata('popup_status_payment')): ?>
+	<div class="modal fade" id="notifpayment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<?php $this->load->view('include/modal_pending'); ?>
+<?php endif ?>
 
 <?php $this->load->view('include/modal_checkout'); ?>
 
@@ -298,11 +303,17 @@ echo "<script>(function(d, s, id) {
 <script type="text/javascript">
 	$(document).ready(function() {
 		showPopUpBanner();
-	});
+		<?php if ($detail_book['data']['book_info']['is_free'] == false) { ?>
+		$("#notifpayment").modal('show');
+			buyBook();
+			<?php } ?>
+		});
 
 	var segment = '<?php echo $this->uri->segment(2); ?>';
 	var active = '<?php echo $this->uri->segment(3); ?>';
 	var count_data = '<?php echo $detailChapter; ?>';
+	var userdata = '<?php echo $this->session->userdata('userData')['user_id']; ?>';
+	var userbook = '<?php echo $detail_book['data']['author']['author_id']; ?>';
 
 	var banner_height = $("#navscroll, #navscrollf").height();
 	var lastScrollTop = 0;
