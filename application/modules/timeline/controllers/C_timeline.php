@@ -77,7 +77,7 @@ class C_timeline extends MX_Controller {
 			
 			$datas['css'][] = "public/plugins/holdOn/css/HoldOn.css";
 
-			if ($this->session->flashdata('is_follow_event') == 200 || $this->session->flashdata('is_not_follow_event') == 403 || $this->session->flashdata('success_publish')) {
+			if ($this->session->flashdata('is_follow_event') == 200 || $this->session->flashdata('is_not_follow_event') == 403) {
 				$datas['css'][] = "public/css/sweetalert2.min.css";
 				$datas['js'][] = "public/js/sweetalert2.all.min.js";
 			}
@@ -88,7 +88,6 @@ class C_timeline extends MX_Controller {
 			$datas['js'][]   = "public/js/jquery.sticky-kit.min.js";
 			$datas['js'][] = "public/plugins/holdOn/js/HoldOn.js";
 			$datas['js'][]   = "public/js/custom/notification.js";
-			$datas['js'][]   = "public/js/custom/transaction.js";
 			$datas['js'][]   = "public/js/custom/follow.js";
 			$this->simple_cache->cache_item('key', $datas);
 		} else {
@@ -115,7 +114,6 @@ class C_timeline extends MX_Controller {
 			}
 			else
 			{
-				$datas['js'][]   = "public/js/custom/search.js";
 				$datas['js'][]   = "public/js/custom/D_timeline_in.js";
 				if (!empty($this->input->get("page"))) {
 					

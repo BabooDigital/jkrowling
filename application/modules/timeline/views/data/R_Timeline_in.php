@@ -15,12 +15,7 @@
 								<h5 class="card-title nametitle2"><a href="<?php echo site_url('profile/'.$s_book['author_id'].'-'.url_title($s_book['author_name'], 'dash', true)); ?>" class="author_name menu-page" id="tab-page"><?php
 								echo $s_book['author_name']; ?></a></h5>
 								<p class="text-muted" style="margin-top:-10px;"><small>
-									<span><?php echo $s_book['publish_date']; ?></span>
-									<?php if ($s_book['latest_update'] == $s_book['publish_date']) { ?>
-									<span></span>
-									<?php }else{ ?>
-									<span> • Diperbarui <?php echo $s_book['latest_update']; ?></span>
-									<?php } ?></small></p>
+									<span><?php echo $s_book['publish_date']; ?></span></small></p>
 								</div>
 							</div>
 						</div>
@@ -73,12 +68,7 @@
 											<h5 class="card-title nametitle2"><a href="<?php echo site_url('profile/'.$s_book['author_id'].'-'.url_title($s_book['author_name'], 'dash', true)); ?>" class="author_name menu-page" id="tab-page"><?php
 											echo $s_book['author_name']; ?></a></h5>
 											<p class="text-muted" style="margin-top:-10px;"><small>
-												<span><?php echo $s_book['publish_date']; ?></span>
-												<?php if ($s_book['latest_update'] == $s_book['publish_date']) { ?>
-												<span></span>
-												<?php }else{ ?>
-												<span> • Diperbarui <?php echo $s_book['latest_update']; ?></span>
-												<?php } ?></small></p>
+												<span><?php echo $s_book['publish_date']; ?></span></small></p>
 											</div>
 										</div>
 									</div>

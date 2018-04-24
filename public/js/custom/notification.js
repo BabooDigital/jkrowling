@@ -1,7 +1,7 @@
 $(document).ready(function () {
   load_notification();
   count_notif();
-  setInterval(count_notif,10000);
+  setInterval(count_notif,5000);
   $("#btn_notif_comment").on('click', function(event) {
     // console.log($(this).attr('ntf'));
     var ntf = $(this).attr('ntf');
