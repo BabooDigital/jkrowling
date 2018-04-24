@@ -21,6 +21,21 @@
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
     width: 100%;
 }
+
+.modal.right.fade .modal-dialog {
+    -webkit-transition: opacity 0.3s linear, right 0.3s ease-out;
+    -moz-transition: opacity 0.3s linear, right 0.3s ease-out;
+    -o-transition: opacity 0.3s linear, right 0.3s ease-out;
+    transition: opacity 0.3s linear, right 0.3s ease-out;
+}
+
+.modal.right.fade.in .modal-dialog {
+    right: 0;
+}
+.modal-backdrop
+{
+    opacity:0.5 !important;
+}
 </style>
 <body>
     <?php $this->load->view('navbar/D_navbar'); ?>
@@ -84,30 +99,30 @@
             <div class="<?php echo $paddingslide; ?>">
                 <div class="row">
                     <div class="col-md-9">
-                    <h4 align="left"><b>Koleksi Buku</b></h4>
-                    <div class="container" align="center">
-                        <div class="row">
-                            <?php $this->load->view('include/collection'); ?>
+                        <h4 align="left"><b>Koleksi Buku</b></h4>
+                        <div class="container" align="center">
+                            <div class="row">
+                                <?php $this->load->view('include/collection'); ?>
+                            </div>
                         </div>
+
                     </div>
+                    <?php if ($transaction['code'] == 200): ?>
+                        <div class="col-md-3">
+                            <div class="">
+                                <div class="card mb-15">
+                                    <div class="card-header">
+                                        Buku Populer
+                                    </div>
+                                    <div class="card-body p-0">
+                                        <ul class="list-group list-group-flush" id="best_book_library">
 
-                </div>
-                <?php if ($transaction['code'] == 200): ?>
-                    <div class="col-md-3">
-                        <div class="">
-                            <div class="card mb-15">
-                                <div class="card-header">
-                                    Buku Populer
-                                </div>
-                                <div class="card-body p-0">
-                                    <ul class="list-group list-group-flush" id="best_book_library">
-
-                                    </ul>
-                                </div>
-                            </div><!-- Buku Populer -->
+                                        </ul>
+                                    </div>
+                                </div><!-- Buku Populer -->
+                            </div>
                         </div>
-                    </div>
-                <?php endif ?>
+                    <?php endif ?>
                 </div>
             </div>
             <div class="paddingslide">
@@ -121,7 +136,7 @@
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="list_trans" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="list_trans" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="">
             <div class="modal-dialog" role="document">
                 <div class="modal-content" style="width: 105% !important;">
                     <div class="">
@@ -147,7 +162,7 @@
                                                 </div>
                                                 <?php if ($trans['payment_type'] == "bank_transfer"): ?>
                                                     <b>
-                                                        <p>Bank Transfer:</p>
+                                                        <span>Bank Transfer:</span><p class="float-right"><a style="color:#7554bd;" data-toggle="modal" data-target="#detail_transaction" data-id="<?php echo $trans['book_id'] ?>">Details</a></p>
                                                         <p style="text-transform: uppercase;"><?php echo $trans['bank'] ?> - <?php echo $trans['va_numbers']; ?></p>
                                                     </b>
                                                     <p>Menunggu proses pembayaran</p>
@@ -164,54 +179,71 @@
                 </div>
             </div>
         </div>
-            <!-- JS -->
-            <!-- Javascript -->
-            <script type="text/javascript" src="<?php echo base_url(); ?>public/js/jquery.min.js"></script>
-            <script type="text/javascript" src="<?php echo base_url(); ?>public/js/tether.min.js"></script>
-            <script type="text/javascript" src="<?php echo base_url(); ?>public/js/umd/popper.min.js"></script>
-            <script type="text/javascript" src="<?php echo base_url(); ?>public/js/bootstrap.min.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.12/jquery.bxslider.min.js">
-            </script>
-            <script src="https://cdn.rawgit.com/leafo/sticky-kit/v1.1.2/jquery.sticky-kit.js">
-            </script>
-            <script src="<?php echo base_url(); ?>public/js/baboo.js">
-            </script>
-            <script src="<?php echo base_url(); ?>public/js/slick.js">
-            </script>
-            <script type="text/javascript">
-                var user = '<?php echo $this->session->userdata('userData')['user_id']; ?>';
-            </script>
-            <?php if (isset($js)): ?>
-                <?php echo get_js($js) ?>
-            <?php endif ?>
-            <script type="text/javascript">
-                $('.your-class').slick({
-                    centerMode: true,
-                    centerPadding: '200px',
-                    slidesToShow: 1,
-                    responsive: [
-                    {
-                        breakpoint: 768,
-                        settings: {
-                            arrows: true,
-                            centerMode: true,
-                            centerPadding: '110px',
-                            slidesToShow: 1
-                        }
-                    },
-                    {
-                        breakpoint: 480,
-                        settings: {
-                            arrows: true,
-                            centerMode: true,
-                            centerPadding: '40px',
-                            slidesToShow: 1,
-                        }
+        <div class="modal fade" id="detail_transaction" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" style="width: 105% !important;">
+                    <div class="">
+                    </div>
+                    <div class="modal-header">
+                        <b>Daftar Pembelian</b>
+                        <button type="button" data-dismiss="modal" class="close-btn">×</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container">
+                            ai
+                        </div>                  
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- JS -->
+        <!-- Javascript -->
+        <script type="text/javascript" src="<?php echo base_url(); ?>public/js/jquery.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>public/js/tether.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>public/js/umd/popper.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>public/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.12/jquery.bxslider.min.js">
+        </script>
+        <script src="https://cdn.rawgit.com/leafo/sticky-kit/v1.1.2/jquery.sticky-kit.js">
+        </script>
+        <script src="<?php echo base_url(); ?>public/js/baboo.js">
+        </script>
+        <script src="<?php echo base_url(); ?>public/js/slick.js">
+        </script>
+        <script type="text/javascript">
+            var user = '<?php echo $this->session->userdata('userData')['user_id']; ?>';
+        </script>
+        <?php if (isset($js)): ?>
+            <?php echo get_js($js) ?>
+        <?php endif ?>
+        <script type="text/javascript">
+            $('.your-class').slick({
+                centerMode: true,
+                centerPadding: '200px',
+                slidesToShow: 1,
+                responsive: [
+                {
+                    breakpoint: 768,
+                    settings: {
+                        arrows: true,
+                        centerMode: true,
+                        centerPadding: '110px',
+                        slidesToShow: 1
                     }
-                    ]
-                });
+                },
+                {
+                    breakpoint: 480,
+                    settings: {
+                        arrows: true,
+                        centerMode: true,
+                        centerPadding: '40px',
+                        slidesToShow: 1,
+                    }
+                }
+                ]
+            });
 
 
-            </script>
-        </body>
-        </html>
+        </script>
+    </body>
+    </html>

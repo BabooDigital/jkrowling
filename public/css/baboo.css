@@ -1496,6 +1496,8 @@ input.formsearch:focus {
 
 	.chapter_active a {
 		color: #7554bd;
+		width: 100%;
+		background: url('../img/assets/frame_active.svg');
 	}
 	.chapter_disabled {
 		background: transparent;
@@ -1971,3 +1973,8 @@ input.formsearch:focus {
 		-ms-transform: translateX(26px);
 		transform: translateX(26px);
 	}
+
+
+.drpdwn-caret {
+	padding: 10px;
+}
