@@ -9,14 +9,7 @@ if(!function_exists("checkBase")){
 	function checkBase(){
 		$base = (isset($_SERVER['HTTPS']) ? "https://" : "http://").$_SERVER['HTTP_HOST'];
 		$CI =& get_instance();
-		$api_current = Curl_Request::dev_url;
-		if (strpos($base, Curl_Request::staging) !== false) {
-			$api_current = Curl_Request::staging_url;
-		} elseif (strpos($base, Curl_Request::local) !== false || strpos($base, Curl_Request::dev) !== false) {
-			$api_current = Curl_Request::dev_url;
-		} elseif (strpos($base, Curl_Request::production) !== false) {
-			$api_current = Curl_Request::production_url;
-		}
+		$api_current = 'api.staging.baboo.id/v1/';
 		return $api_current;
 	}
 }
