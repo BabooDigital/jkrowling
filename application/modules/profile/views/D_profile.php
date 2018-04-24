@@ -40,6 +40,9 @@
 		border: solid 1px #797979;
 		padding: 5px 20px;
 	}
+	.dropdown-toggle::after {
+	    display:none
+	}
 </style>
 <div class="container babooidin">	
 	<div class="row">
