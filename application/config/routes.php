@@ -243,6 +243,7 @@ $route['cashout/second'] = 'cashout/C_cashout/second_';
 $route['cashout/third'] = 'cashout/C_cashout/third_';
 $route['cashout/fourth'] = 'cashout/C_cashout/fourth_';
 $route['cashout/fifth'] = 'cashout/C_cashout/fifth_';
+$route['auth/check_pin'] = 'cashout/C_cashout/confirmPinExist';
 
 // POST CASHOUT AUTH ROUTES
 $route['auth/check_acc'] = 'cashout/C_cashout/checkAccountBank';

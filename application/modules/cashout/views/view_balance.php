@@ -31,9 +31,7 @@
 		<div class="row mt-30">
 			<div class="col-12">
 				<div class="mx-auto text-center">
-					<?php foreach ($pay_pending as $pay) { ?>
-					<a href="<?php echo site_url('cashout/stat/'.$pay['reference_number']); ?>" class="statPro">Status Penarikan Dana ( <span>1</span> )</a>
-					<?php } ?>
+					<a href="<?php $pend = end($pay_pending); echo site_url('cashout/stat/'.$pend['reference_number']); ?>" class="statPro">Status Penarikan Dana ( <span><?php $pend = $pay_pending; echo count($pend) ?></span> )</a>
 				</div>
 			</div>
 		</div>
@@ -76,7 +74,7 @@
 							<div class="col-5">
 								<div class="float-right">
 									<span class="mt-0 d-block text-right"><small><?php echo $his['transaction_time']; ?></small></span>
-									<span class="txt-selling">Rp 45.000</span>
+									<span class="txt-selling">Rp <?php echo number_format($his['transaction_amount'] , 0, ',', '.'); ?></span>
 								</div>
 							</div>
 						</div>					

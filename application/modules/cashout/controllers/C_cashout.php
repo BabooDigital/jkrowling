@@ -22,25 +22,32 @@ class C_cashout extends MX_Controller {
 
 	public function index()
 	{
-		error_reporting(0);
-		$auth = $this->session->userdata('authKey');
-		$datas = $this->curl_request->curl_get($this->API.'payment/Iris/historyPayout', '', $auth);
+		if ($this->session->userdata('dompet') == 200) {
+			error_reporting(0);
+			$auth = $this->session->userdata('authKey');
+			$datas = $this->curl_request->curl_get($this->API.'payment/Iris/historyPayout', '', $auth);
 
-		if ($datas['code'] == 403){
-			$this->session->sess_destroy();
-			redirect('login','refresh');
-		}else{
-			$data['balance'] = $datas['data']['balance_info'];
-			$data['pay_pending'] = $datas['data']['payout_pending'];
-			$data['history'] = $datas['data']['transaction_history'];
-			$data['title'] = 'Saldo Dompet Baboo Anda | Baboo.id';
+			if ($datas['code'] == 403){
+				$this->session->sess_destroy();
+				redirect('login','refresh');
+			}else{
+				$data['balance'] = $datas['data']['balance_info'];
+				$data['pay_pending'] = $datas['data']['payout_pending'];
+				$data['history'] = $datas['data']['transaction_history'];
+				$data['title'] = 'Saldo Dompet Baboo Anda | Baboo.id';
 
-			if ($this->agent->is_mobile()) {
-				$this->load->view('inc/head', $data, FALSE);
-				$this->load->view('view_balance');
-			}else {
-				redirect('timeline','refresh');
+				if ($this->agent->is_mobile()) {
+					$this->load->view('inc/head', $data, FALSE);
+					$this->load->view('view_balance');
+				}else {
+					redirect('timeline','refresh');
+				}
 			}
+		}else{
+			$this->session->set_flashdata('fail_alert', '<script>
+					swal("Gagal", "Maaf, Perlu verifikasi PIN / Daftar PIN", "warning");
+				</script>');
+			redirect('profile#PINauth', 'refresh');
 		}
 	}
 
@@ -268,6 +275,31 @@ class C_cashout extends MX_Controller {
 		}else{
 			echo "terjadi kesalahan";
 		}
+	}
+
+
+	public function confirmPinExist()
+	{
+		error_reporting(0);
+		$auth = $this->session->userdata('authKey');
+		$pin    = $this->input->post('confirmpin');
+
+		$send = array('pin' => $pin);
+		$datas = $this->curl_request->curl_post($this->API.'auth/OAuth/confirmPIN', $send, $auth);
+
+		if ($datas['code'] == 200) {
+			$this->session->set_userdata('dompet', $datas['code']);
+		}else {
+			$this->session->set_flashdata('fail_alert', '<script>
+				$(window).on("load", function(){
+					swal("Gagal", "Maaf, terjadi sebuah kesalahan", "error");
+				});
+				</script>');
+			redirect('pin-dompet/second','refresh');
+		}
+		echo json_encode(array(
+			'code' => $datas['code']
+		));
 	}
 
 }
