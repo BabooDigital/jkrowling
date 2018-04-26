@@ -59,7 +59,7 @@ $(document).ready(function() {
   });
   var page = 2;
   $(window).scroll(function() {
-    if  ($(window).scrollTop() == $(document).height() - $(window).height() ){
+    if  ($(window).scrollTop() + $(window).height() >= $(document).height() - 100){
      loadMoreData(page)
      page++;
    }
