@@ -1,6 +1,5 @@
 <?php if (!empty($home)) {
 	foreach ($home['data'] as $s_book) { ?>
-
 	<?php if ($s_book['image_url'] == "" || $s_book['image_url'] == null || $s_book['image_url'] == "Kosong"){ ?>
 	<a href="<?php echo site_url(); ?>book/<?php echo $s_book['book_id']; ?>">
 		<div class="card mb-15" style="padding: 0 00px;">
@@ -15,7 +14,7 @@
 								<h5 class="card-title nametitle2"><a href="<?php echo site_url('profile/'.$s_book['author_id'].''); ?>"><?php
 								echo $s_book['author_name']; ?></a></h5>
 								<p class="text-muted" style="margin-top:-10px;"><small>
-									<span class="ml-10"><?php echo $s_book['publish_date']; ?></span></small></p>
+									<span class="ml-10"><?php echo $s_book['publish_date']; ?></span></small></p>  	
 								</div>
 							</div>
 						</div>
