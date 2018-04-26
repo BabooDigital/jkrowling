@@ -214,6 +214,7 @@ $route['bestBookEvent'] = 'event/C_event/getBestBookEvent';
 
 //Transaction
 $route['transaction_counter'] = 'transaction/C_transaction/count_transaction';
+$route['detail_transaction'] = 'transaction/C_transaction/detail_transaction';
 // PIN VIEW ROUTES
 $route['pin-dompet'] = 'pin/C_pin_auth';
 $route['pin-dompet/first'] = 'pin/C_pin_auth';

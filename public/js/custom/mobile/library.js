@@ -2,8 +2,8 @@ $(document).ready(function () {
     getBookmark();
     getLastRead();
     getCollection();
+    detailTransaction();
 });
-
 function convertToSlug(Text) {return Text.toString().toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-');}
 
 function getLastRead() {

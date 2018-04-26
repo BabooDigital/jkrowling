@@ -17,20 +17,10 @@
 |  facebook_auth_on_load         boolean  Set to TRUE to check for valid access token on every page load.
 */
 
-	$CI =& get_instance();
-	$base = (isset($_SERVER['HTTPS']) ? "https://" : "http://").$_SERVER['HTTP_HOST'];
-	$appid = '196429547790304';
-	$secret = '51d446946c5024034b06b66a18e70a81';
-	if (strpos($base, Curl_Request::staging) !== false) {
-		$appid = '1677083049033942';
-		$secret = '72bfed7ed3b202de2797977e5d1ce09b';
-	} elseif (strpos($base, Curl_Request::local) !== false || strpos($base, Curl_Request::dev) !== false) {
-		$appid = '196429547790304';
-		$secret = '51d446946c5024034b06b66a18e70a81';
-	} elseif (strpos($base, Curl_Request::production) !== false) {
-		$appid = '2093513617332249';
-		$secret = '39ee66409a3d976689d7db1fc48e842f';
-	}
+$CI =& get_instance();
+$base = (isset($_SERVER['HTTPS']) ? "https://" : "http://").$_SERVER['HTTP_HOST'];
+$appid = '196429547790304';
+$secret = '51d446946c5024034b06b66a18e70a81';
 
 
 $config['facebook_app_id']              = $appid;

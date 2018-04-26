@@ -162,7 +162,7 @@
                                                 </div>
                                                 <?php if ($trans['payment_type'] == "bank_transfer"): ?>
                                                     <b>
-                                                        <span>Bank Transfer:</span><p class="float-right"><a style="color:#7554bd;" data-toggle="modal" data-target="#detail_transaction" data-id="<?php echo $trans['book_id'] ?>">Details</a></p>
+                                                        <span>Bank Transfer:</span><p class="float-right"><a style="color:#7554bd;" data-toggle="modal" data-target="#detail_transaction" class="btn_detail_transaction" id="btn_detail_transaction" data-id="<?php echo $trans['book_id'] ?>">Details</a></p>
                                                         <p style="text-transform: uppercase;"><?php echo $trans['bank'] ?> - <?php echo $trans['va_numbers']; ?></p>
                                                     </b>
                                                     <p>Menunggu proses pembayaran</p>
@@ -181,69 +181,77 @@
         </div>
         <div class="modal fade" id="detail_transaction" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="">
             <div class="modal-dialog" role="document">
-                <div class="modal-content" style="width: 105% !important;">
+                <div class="modal-content" style="width: 150% !important;right: 25%;">
                     <div class="">
                     </div>
                     <div class="modal-header">
-                        <b>Daftar Pembelian</b>
+                        <b>Menunggu Pembayaran</b>
                         <button type="button" data-dismiss="modal" class="close-btn">×</button>
                     </div>
                     <div class="modal-body">
                         <div class="container">
-                            ai
-                        </div>                  
+                            <div class="row">
+
+                                <div class="col-12 text-justify mb-50" style="color: #000;">
+                                    <p>Mohon segera selesaikan pembayaran sebelum batas waktu dengan detail berikut</p>
+                                    <br>
+                                    <div class="countdown pdf_url" style="height: 500px;">
+                                    </div>
+                                    </div>
+                                </div>                  
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- JS -->
-        <!-- Javascript -->
-        <script type="text/javascript" src="<?php echo base_url(); ?>public/js/jquery.min.js"></script>
-        <script type="text/javascript" src="<?php echo base_url(); ?>public/js/tether.min.js"></script>
-        <script type="text/javascript" src="<?php echo base_url(); ?>public/js/umd/popper.min.js"></script>
-        <script type="text/javascript" src="<?php echo base_url(); ?>public/js/bootstrap.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.12/jquery.bxslider.min.js">
-        </script>
-        <script src="https://cdn.rawgit.com/leafo/sticky-kit/v1.1.2/jquery.sticky-kit.js">
-        </script>
-        <script src="<?php echo base_url(); ?>public/js/baboo.js">
-        </script>
-        <script src="<?php echo base_url(); ?>public/js/slick.js">
-        </script>
-        <script type="text/javascript">
-            var user = '<?php echo $this->session->userdata('userData')['user_id']; ?>';
-        </script>
-        <?php if (isset($js)): ?>
-            <?php echo get_js($js) ?>
-        <?php endif ?>
-        <script type="text/javascript">
-            $('.your-class').slick({
-                centerMode: true,
-                centerPadding: '200px',
-                slidesToShow: 1,
-                responsive: [
-                {
-                    breakpoint: 768,
-                    settings: {
-                        arrows: true,
-                        centerMode: true,
-                        centerPadding: '110px',
-                        slidesToShow: 1
+            <!-- JS -->
+            <!-- Javascript -->
+            <script type="text/javascript" src="<?php echo base_url(); ?>public/js/jquery.min.js"></script>
+            <script type="text/javascript" src="<?php echo base_url(); ?>public/js/tether.min.js"></script>
+            <script type="text/javascript" src="<?php echo base_url(); ?>public/js/umd/popper.min.js"></script>
+            <script type="text/javascript" src="<?php echo base_url(); ?>public/js/bootstrap.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.12/jquery.bxslider.min.js">
+            </script>
+            <script src="https://cdn.rawgit.com/leafo/sticky-kit/v1.1.2/jquery.sticky-kit.js">
+            </script>
+            <script src="<?php echo base_url(); ?>public/js/baboo.js">
+            </script>
+            <script src="<?php echo base_url(); ?>public/js/slick.js">
+            </script>
+            <script type="text/javascript">
+                var user = '<?php echo $this->session->userdata('userData')['user_id']; ?>';
+            </script>
+            <?php if (isset($js)): ?>
+                <?php echo get_js($js) ?>
+            <?php endif ?>
+            <script type="text/javascript">
+                $('.your-class').slick({
+                    centerMode: true,
+                    centerPadding: '200px',
+                    slidesToShow: 1,
+                    responsive: [
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            arrows: true,
+                            centerMode: true,
+                            centerPadding: '110px',
+                            slidesToShow: 1
+                        }
+                    },
+                    {
+                        breakpoint: 480,
+                        settings: {
+                            arrows: true,
+                            centerMode: true,
+                            centerPadding: '40px',
+                            slidesToShow: 1,
+                        }
                     }
-                },
-                {
-                    breakpoint: 480,
-                    settings: {
-                        arrows: true,
-                        centerMode: true,
-                        centerPadding: '40px',
-                        slidesToShow: 1,
-                    }
-                }
-                ]
-            });
+                    ]
+                });
 
 
-        </script>
-    </body>
-    </html>
+            </script>
+        </body>
+        </html>

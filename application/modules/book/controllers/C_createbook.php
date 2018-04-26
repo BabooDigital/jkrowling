@@ -1243,7 +1243,7 @@ class C_createbook extends MX_Controller
 		    	$status = $resval['code'];
 		    }
 		}else{
-			print_r($send);
+			// print_r($send);
 			print_r($this->input->post());
 			$this->session->set_flashdata('limit_character', '<script>
                   $(window).on("load", function(){

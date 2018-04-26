@@ -1,6 +1,7 @@
 $(document).ready(function() {
 	transaction_counter();
 	popular_book();
+	detail_transaction();
 });
 function popular_book() {
     $.ajax({
@@ -54,4 +55,30 @@ function transaction_counter() {
     })
 	.always(function() {
 	});
+}
+function detail_transaction() {
+    $(".btn_detail_transaction").on("click", function(e) {
+        var id = $(this).attr('data-id');
+        
+        $.ajax({
+        	url: base_url+'detail_transaction',
+        	type: 'POST',
+        	dataType: 'json',
+        	data: {transaction_id: id},
+        })
+        .done(function(data) {
+        	var html = '';
+        	$.each(data, function(index, val) {
+        		html = '<object data="'+val.pdf_url+'" type="application/pdf" width="100%" height="100%"> <iframe src="'+val.pdf_url+'" width="100%" height="100%" style="border: none;"> </iframe> </object>';
+        	});
+        	$(".pdf_url").html(html);
+        })
+        .fail(function() {
+        	console.log("error");
+        })
+        .always(function() {
+        	console.log("complete");
+        });
+        
+    });
 }
