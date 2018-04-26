@@ -9,7 +9,7 @@ if(!function_exists("checkBase")){
 	function checkBase(){
 		$base = (isset($_SERVER['HTTPS']) ? "https://" : "http://").$_SERVER['HTTP_HOST'];
 		$CI =& get_instance();
-		$api_current = 'api.staging.baboo.id/v1/';
+		$api_current = 'https://api.staging.baboo.id/v1/';
 		return $api_current;
 	}
 }
