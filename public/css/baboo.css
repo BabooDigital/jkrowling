@@ -1491,13 +1491,22 @@ input.formsearch:focus {
 	.chapter_active {
 		background: #7554bd;
 		/*color: white;*/
-		/*color: #7554bd;*/
+		/*color: #7554bd;*//*
+		background: url('../public/img/assets/frame_active.svg') no-repeat;
+		background-position: right;*/
+	}
+	.icon_active {
+		background: url('../public/img/assets/frame_active.svg') no-repeat;
+		background-position: right;
+	}
+	#list_chapters{
+		background: url('../public/img/assets/frame_active.svg') no-repeat;
+		background-position: right;
 	}
 
 	.chapter_active a {
 		color: #7554bd;
 		width: 100%;
-		background: url('../img/assets/frame_active.svg');
 	}
 	.chapter_disabled {
 		background: transparent;
