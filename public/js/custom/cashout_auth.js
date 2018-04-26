@@ -44,7 +44,48 @@ function keyupPIN() {
 		{
 			var str = as.val()+b.val()+c.val()+d.val()+e.val()+f.val();
 			var fix = str.replace(/\s/g, '');
-			window.location = base_url+'dompet';
+			var a = new FormData();
+			a.append("confirmpin", fix);
+			$.ajax({
+				url: base_url+'auth/check_pin',
+				type: 'POST',
+				dataType: 'json',
+				cache: false,
+				contentType: false,
+				processData: false,
+				data: a,
+				beforeSend: function () {
+					swal({
+						title: 'Mohon tunggu...',
+						onOpen: () => {
+							swal.showLoading()
+						}
+					});
+				}
+			})
+			.done(function(data) {
+				if (data.code != 200) {
+					window.location = base_url+'profile';
+				}else {
+					window.location = base_url+'dompet';
+				}
+			})
+			.fail(function() {
+				as.val('');
+				b.val('');
+				c.val('');
+				d.val('');
+				e.val('');
+				f.val('');
+				$("#firstdigit").focus();
+				swal(
+					'Maaf',
+					'Kode PIN yang anda masukan berbeda.',
+					'warning'
+					);
+			})
+			.always(function() {
+			});
 		}
 	});
 }

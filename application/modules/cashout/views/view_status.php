@@ -38,11 +38,11 @@
 								<div class="pt-5 pb-5">Status <span class="float-right">:</span></div>
 							</td>
 							<td style="border:none;">
-								<div class="pt-5 pb-5"><?php echo 'Rp. '.number_format($pend[0]['amount'], 0, ',', '.'); ?></div>
-								<div class="pt-5 pb-5"><?php echo $pend[0]['bank_name']; ?></div>
-								<div class="pt-5 pb-5"><?php echo $pend[0]['account_name']; ?></div>
-								<div class="pt-5 pb-5"><?php echo $pend[0]['account_number']; ?></div>
-								<div class="pt-5 pb-5" style="font-weight: bold"><?php echo $pend[0]['payment_type']; ?></div>
+								<div class="pt-5 pb-5"><span style="color: #f5f8fa;">-</span><?php echo 'Rp. '.number_format($pend[0]['amount'], 0, ',', '.'); ?></div>
+								<div class="pt-5 pb-5"><span style="color: #f5f8fa;">-</span><?php echo $pend[0]['bank_name']; ?></div>
+								<div class="pt-5 pb-5"><span style="color: #f5f8fa;">-</span><?php echo $pend[0]['account_name']; ?></div>
+								<div class="pt-5 pb-5"><span style="color: #f5f8fa;">-</span><?php echo $pend[0]['account_number']; ?></div>
+								<div class="pt-5 pb-5" style="font-weight: bold"><span style="color: #f5f8fa;">-</span><?php echo $pend[0]['payment_type']; ?></div>
 							</td>
 						</tr>
 					</tbody>
