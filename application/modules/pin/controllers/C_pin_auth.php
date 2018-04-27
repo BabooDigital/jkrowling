@@ -327,10 +327,10 @@ class C_pin_auth extends MX_Controller {
 		$send = array('question1' => $q1,'answer1' => $a1,'question2' => $q2,'answer2' => $a2);
 		$datas = $this->curl_request->curl_post($this->API.'auth/OAuth/insertQuestion', $send, $auth);
 
-		if ($datas['code'] == 403){
-			$this->session->sess_destroy();
-			redirect('login','refresh');
-		}else{
+		// if ($datas['code'] == 403){
+		// 	$this->session->sess_destroy();
+		// 	redirect('login','refresh');
+		// }else{
 			if ($datas['code'] == 200) {
 				$this->session->unset_userdata('5Pin_step');
 				$this->session->set_userdata('hasPIN', 1);
@@ -346,7 +346,7 @@ class C_pin_auth extends MX_Controller {
 			echo json_encode(array(
 				'code' => $datas['code']
 			));
-		}
+		// }
 	}
 
 }

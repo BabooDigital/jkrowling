@@ -113,7 +113,7 @@ function keyupOTP() {
 	var storedNames = JSON.parse(localStorage.getItem("OTPs"));
 	var num = storedNames['telp'];
 	var f_val = num.replace(/\D[^\.]/g, "");
-    if (num.length > 12) {
+    if (num.length > 13) {
     	var az = f_val.slice(0,4)+"-"+f_val.slice(4,8)+"-"+f_val.slice(8,12);
     }else{
     	var az = f_val.slice(0,4)+"-"+f_val.slice(4,8)+"-"+f_val.slice(8,12)+"-"+f_val.slice(12,14);

@@ -31,7 +31,7 @@
 					</div>
 					<div class="form-group">
 						<label for="hpImportant" class="text-white">Nomor HP</label>
-						<input type="number" name="numbHP" onKeyPress="if(this.value.length==13) return false;" class="form-control text-white pin-form-text" id="hpImportant" placeholder="( Contoh : +6289123456789 )" maxlength="15" required>
+						<input type="number" name="numbHP" onKeyPress="if(this.value.length==14) return false;" class="form-control text-white pin-form-text" id="hpImportant" placeholder="( Contoh : +6289123456789 )" maxlength="15" required>
 					</div>
 				</div>
 			</div>
