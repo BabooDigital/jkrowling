@@ -40,9 +40,9 @@
                 <a class="menu-page <?php if ($this->uri->segment('1') == 'timeline') { echo 'boo-menu-active'; }else { echo 'boo-menu'; } ?>" href="<?php echo site_url('timeline'); ?>" id="tab_page" dat-title="Timeline"><i class="fa fa-arrow-left fa-2x"></i></a>
 
                 <div class="paddingbook search_message absopos">
-                    <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-2 form-searchs search_message_form" id="searchss" type="search" placeholder="Cari apapun disini" aria-label="Search" style="border: none;border-bottom: 1px #efefef solid;width: 230px;">
-                    </form>
+                    <!-- <form class="form-inline my-2 my-lg-0"> -->
+                        <input class="form-control mr-sm-2 form-searchs search_message_form" id="searchss" type="search" placeholder="Cari apapun disini..." aria-label="Search" style="border: none;border-bottom: 1px #efefef solid;width: 230px;">
+                    <!-- </form> -->
                 </div>
             </div>
         </nav>
