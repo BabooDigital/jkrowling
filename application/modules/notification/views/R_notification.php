@@ -2,6 +2,9 @@
 .bg-read {
 	background: #f7f7f7 !important;
 }
+img {
+	object-fit: cover;
+}
 </style>
 <body id="pageContent">
 	<!-- BANNER POPUP BUTTON PLAYSTORE MOBILE -->
@@ -16,7 +19,7 @@
 	<div class="mt-130">
 		<div class="">
 			<?php if (!empty($notification)) { ?>
-			<ul class="list-unstyled">
+			<ul class="list-unstyled mb-70">
 				<?php foreach ($notification as $val_notif){ 
 					if ($val_notif->notif_type->notif_type_id == 1){ ?>
 					<li class="media <?php if($val_notif->notif_status == 'unread'){echo "bg-white";}else{ echo "bg-read";} ?> p-15" style="align-items: center;border-bottom: 1px #efefef solid;">
@@ -34,7 +37,7 @@
 							<a class="notifclick" href="<?php echo site_url(); ?>book/<?php echo $val_notif->notif_book->book_id; ?>-<?php echo url_title($val_notif->notif_book->title_book, 'dash', true); ?>" style="display: flex;" notifid="<?php echo $val_notif->notif_id; ?>">
 								<div class="container">
 									<div class="row mb-10">
-										<img alt="Follow you" class="mr-3 mt-10" height="30" src="<?php echo base_url('public/img/assets/notif_comment.png'); ?>" width="30"> <img alt="<?php echo $val_notif->notif_user->fullname; ?>" class="mr-3 rounded-circle" height="50" src="<?php if ($val_notif->notif_user->prof_pict == null) {echo base_url('public/img/profile/blank-photo.jpg'); }else{echo $val_notif->notif_user->prof_pict; } ?>" width="50">
+										<img alt="Comment you" class="mr-3 mt-10" height="30" src="<?php echo base_url('public/img/assets/notif_comment.png'); ?>" width="30"> <img alt="<?php echo $val_notif->notif_user->fullname; ?>" class="mr-3 rounded-circle" height="50" src="<?php if ($val_notif->notif_user->prof_pict == null) {echo base_url('public/img/profile/blank-photo.jpg'); }else{echo $val_notif->notif_user->prof_pict; } ?>" width="50">
 										<div class="media-body">
 											<p><b><?php echo $val_notif->notif_user->fullname; ?></b> <span class="text-muted"><?php echo $val_notif->notif_text; ?></span></p>
 										</div>
@@ -53,7 +56,7 @@
 								<a class="notifclick" href="<?php echo site_url(); ?>book/<?php echo $val_notif->notif_book->book_id; ?>-<?php echo url_title($val_notif->notif_book->title_book, 'dash', true); ?>" style="display: flex;" notifid="<?php echo $val_notif->notif_id; ?>">
 									<div class="container">
 										<div class="row mb-10">
-											<img alt="Follow you" class="mr-3 mt-10" height="30" src="<?php echo base_url('public/img/assets/notif_like.png'); ?>" width="30"> <img alt="<?php echo $val_notif->notif_user->fullname; ?>" class="mr-3 rounded-circle" height="50" src="<?php if ($val_notif->notif_user->prof_pict == null) {echo base_url('public/img/profile/blank-photo.jpg'); }else{echo $val_notif->notif_user->prof_pict; } ?>" width="50">
+											<img alt="Like your book" class="mr-3 mt-10" height="30" src="<?php echo base_url('public/img/assets/notif_like.png'); ?>" width="30"> <img alt="<?php echo $val_notif->notif_user->fullname; ?>" class="mr-3 rounded-circle" height="50" src="<?php if ($val_notif->notif_user->prof_pict == null) {echo base_url('public/img/profile/blank-photo.jpg'); }else{echo $val_notif->notif_user->prof_pict; } ?>" width="50">
 											<div class="media-body">
 												<p><b><?php echo $val_notif->notif_user->fullname; ?> </b> <span class="text-muted"> <?php echo $val_notif->notif_text; ?></span></p>
 											</div>
@@ -75,6 +78,15 @@
 										<!-- <img class="mr-3 rounded-circle" src="<?php echo base_url('public/img/profile/blank-photo.jpg'); ?>" width="50" height="50" alt="<?php echo $val_notif->notif_user->fullname; ?>"> -->
 										<div class="media-body">
 											<p>Buku anda <b><?php echo $val_notif->notif_book->title_book; ?></b> <span class="text-muted"><?php echo $val_notif->notif_text; ?></span></p>
+											<p class="text-muted" style="font-size: 11px;"><?php echo $val_notif->notif_time; ?></p>
+										</div></a>
+									</li>
+									<?php }elseif ($val_notif->notif_type->notif_type_id == 5) { ?>
+									<li class="media <?php if($val_notif->notif_status == 'unread'){echo "bg-white";}else{ echo "bg-read";} ?> p-15" style="align-items: center;border-bottom: 1px #efefef solid;">
+									<a class="notifclick" href="<?php echo site_url('dompet'); ?>" style="display: flex;" notifid="<?php echo $val_notif->notif_id; ?>">
+										<!-- <img class="mr-3 rounded-circle" src="<?php echo base_url('public/img/profile/blank-photo.jpg'); ?>" width="50" height="50" alt="<?php echo $val_notif->notif_user->fullname; ?>"> -->
+										<div class="media-body">
+											<p><span class="text-muted"><?php echo ucfirst($val_notif->notif_text); ?></span></p>
 											<p class="text-muted" style="font-size: 11px;"><?php echo $val_notif->notif_time; ?></p>
 										</div></a>
 									</li>
