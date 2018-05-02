@@ -445,3 +445,312 @@ function resendOTP() {
 				}
 			});
 	}
+
+
+
+	// FORGOT PIN
+	// STEP ONE
+	function validateAnswerQ() {
+		$('#ansQuestions').keyup(function() {
+			$('#ansQuestions').removeClass('error');
+			$('#ansQuestions-error').detach();
+		});
+		$("#qForgotForm").validate({
+			ignore: [],
+			rules: {
+				ansQuestion: {
+					required: true
+				}
+			},
+			messages: {
+				ansQuestion: {
+					required: 'Jawaban harus diisi..'
+				}
+			},
+			submitHandler: function(form) {
+				var que = $(".randQ").attr('q-id');
+				var ans = $("#ansQuestions").val();
+
+				var a = new FormData();
+				a.append("questionQ", que);
+				a.append("answerQ", ans);
+				$.ajax({
+					url: base_url+'auth/answer_check',
+					type: 'POST',
+					dataType: 'json',
+					cache: false,
+					contentType: false,
+					processData: false,
+					data: a
+				})
+				.done(function(data) {
+					if (data.code == 200) {
+						localStorage.setItem("OTPs", data.data.OTP);
+						window.location = base_url+'pin-dompet/forgot-two';
+					}else {
+						var label = "<label id='ansQuestions-error' class='error' for='ansQuestions'>Jawaban anda salah</label>";
+						var textlink = "<a href='#' class='text-dark reld' onclick='window.location.reload(true);' style='font-size: 14pt;font-weight: 600;'><u>Coba Pertanyaan Lain?</u></a>";
+						$('#ansQuestions').addClass('error');
+						$('.form-group').append(label);
+						$('.tryanother').html(textlink);
+					}
+				})
+				.fail(function() {
+					console.log("error");
+				})
+				.always(function() {
+				});
+			}
+		});
+	}
+
+	// STEP TWO
+	function keyupOTPs() {
+		$('body').on('keyup', 'input.digit', function(event){
+
+			var as = $( "#firstdigit" );
+			var b = $( "#secondtdigit" );
+			var c = $( "#thirddigit" );
+			var d = $( "#fourthdigit" );
+			var inputs = $("input.digit");
+
+			if(event.keyCode == 8 || event.keyCode == 46){
+				var index = inputs.index(this);
+				if (index != 0)
+					inputs.eq(index - 1).val('').focus();    
+			}
+			else{
+				if($(this).val().length === this.size){
+					inputs.eq(inputs.index(this) + 1).focus();
+				}
+			}
+
+			if (as.val().length > 0 && b.val().length > 0 && c.val().length > 0 && d.val().length > 0)
+			{
+				var str = as.val()+b.val()+c.val()+d.val();
+				var fix = str.replace(/\s/g, '');
+			   		// window.location = base_url+'pin-dompet/fourth';
+			   		if (localStorage.getItem("OTPs") == fix) {
+			   			var a = new FormData();
+			   			a.append("otp", fix);
+			   			$.ajax({
+			   				url: base_url+'auth/confirm_otp_forgot',
+			   				type: 'POST',
+			   				dataType: 'json',
+			   				cache: false,
+			   				contentType: false,
+			   				processData: false,
+			   				data: a,
+			   				beforeSend: function () {
+			   					swal({
+			   						title: 'Mohon tunggu...',
+			   						onOpen: () => {
+			   							swal.showLoading()
+			   						}
+			   					});
+			   				}
+			   			})
+			   			.done(function(data) {
+			   				if (data.code == 200) {
+			   					window.localStorage.removeItem('OTPs');
+			   					window.location = base_url+'pin-dompet/forgot-three';
+			   				}else {
+			   				}
+			   			})
+			   			.fail(function() {
+			   				console.log("error");
+			   			})
+			   			.always(function() {
+			   			});
+
+			   		}else{
+			   			as.val('');
+			   			b.val('');
+			   			c.val('');
+			   			d.val('');
+			   			$("#firstdigit").focus();
+			   			swal(
+			   				'Maaf',
+			   				'Kode OTP yang anda masukan, salah.',
+			   				'warning'
+			   				);
+			   		}
+			   	}
+			   });
+	}
+	function resendOTPs() {
+		$('.timer').startTimer({
+			onComplete: function(){
+				$('.btn-senda').removeAttr('disabled');
+				$('.btn-senda').removeClass('disabled');
+			}
+		});
+		$(document).on('click', '.btn-senda', function() {
+			$.ajax({
+				url: base_url+'auth/resend_otp_forgot',
+				type: 'POST',
+				dataType: 'json'
+			})
+			.done(function(data) {
+				if (data.code == 200) {
+					localStorage.setItem("OTPs", data.data.OTP);
+					location.reload();
+				}else{
+					window.location = base_url+'pin-dompet/forgot-one';
+				}
+			})
+			.fail(function() {
+				console.log("error");
+			})
+			.always(function() {
+			});
+
+		});
+	}
+
+
+	// STEP THREE
+	function keyupPINs() {
+		$('body').on('keyup', 'input.pininput', function(event){
+			var as = $( "#firstdigit" );
+			var b = $( "#secondtdigit" );
+			var c = $( "#thirddigit" );
+			var d = $( "#fourthdigit" );
+			var e = $( "#fifthdigit" );
+			var f = $( "#sixthdigit" );
+			var inputs = $("input.pininput");
+
+			if(event.keyCode == 8 || event.keyCode == 46){
+				var index = inputs.index(this);
+				if (index != 0)
+					inputs.eq(index - 1).val('').focus();    
+			}
+			else{
+				if($(this).val().length === this.size){
+					inputs.eq(inputs.index(this) + 1).focus();
+				}
+			}
+
+			if (as.val().length > 0 && b.val().length > 0 && c.val().length > 0 && d.val().length > 0 && e.val().length > 0 && f.val().length > 0)
+			{
+				var str = as.val()+b.val()+c.val()+d.val()+e.val()+f.val();
+				var fix = str.replace(/\s/g, '');
+				var a = new FormData();
+				a.append("newpin", fix);
+				$.ajax({
+					url: base_url+'auth/update_pin',
+					type: 'POST',
+					dataType: 'json',
+					cache: false,
+					contentType: false,
+					processData: false,
+					data: a,
+					beforeSend: function () {
+						swal({
+							title: 'Mohon tunggu...',
+							onOpen: () => {
+								swal.showLoading()
+							}
+						});
+					}
+				})
+				.done(function(data) {
+					console.log(data);
+					if (data.code == 200) {
+						window.location = base_url+'pin-dompet/forgot-four';
+					}else {
+						window.location = base_url+'pin-dompet/forgot-one';
+					}
+				})
+				.fail(function() {
+					console.log("error");
+				})
+				.always(function() {
+				});
+			}
+		});
+	}
+
+	// STEP FOUR
+	function keyupConfirmPINs() {
+		$('body').on('keyup', 'input.pininput', function(event){
+			var as = $( "#firstdigit" );
+			var b = $( "#secondtdigit" );
+			var c = $( "#thirddigit" );
+			var d = $( "#fourthdigit" );
+			var e = $( "#fifthdigit" );
+			var f = $( "#sixthdigit" );
+			var inputs = $("input.pininput");
+
+			if(event.keyCode == 8 || event.keyCode == 46){
+				var index = inputs.index(this);
+				if (index != 0)
+					inputs.eq(index - 1).val('').focus();    
+			}
+			else{
+				if($(this).val().length === this.size){
+					inputs.eq(inputs.index(this) + 1).focus();
+				}
+			}
+
+			if (as.val().length > 0 && b.val().length > 0 && c.val().length > 0 && d.val().length > 0 && e.val().length > 0 && f.val().length > 0)
+			{
+				var str = as.val()+b.val()+c.val()+d.val()+e.val()+f.val();
+				var fix = str.replace(/\s/g, '');
+				var a = new FormData();
+				a.append("confirmpin", fix);
+				$.ajax({
+					url: base_url+'auth/confirm_upd_pin',
+					type: 'POST',
+					dataType: 'json',
+					cache: false,
+					contentType: false,
+					processData: false,
+					data: a,
+					beforeSend: function () {
+						swal({
+							title: 'Mohon tunggu...',
+							onOpen: () => {
+								swal.showLoading()
+							}
+						});
+					}
+				})
+				.done(function(data) {
+					if (data.code == 200) {
+						window.location = base_url+'dompet';
+					}else {
+						as.val('');
+						b.val('');
+						c.val('');
+						d.val('');
+						e.val('');
+						f.val('');
+						$("#firstdigit").focus();
+						swal(
+							'Maaf',
+							'Kode PIN yang anda masukan berbeda.',
+							'warning'
+							);
+					}
+				})
+				.fail(function() {
+					as.val('');
+					b.val('');
+					c.val('');
+					d.val('');
+					e.val('');
+					f.val('');
+					$("#firstdigit").focus();
+					swal(
+						'Maaf',
+						'Kode PIN yang anda masukan berbeda.',
+						'warning'
+						);
+					window.location = base_url+'pin-dompet/forgot-one';
+				})
+				.always(function() {
+				});
+			}
+		});
+	}

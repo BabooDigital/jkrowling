@@ -1,4 +1,3 @@
-
 <style>
 .timer, .timer-done, .timer-loop {
 	font-size: 13px;
@@ -29,7 +28,7 @@
 <body class="color-layer">
 	<nav class="navbar color-layer">
 		<a class="navbar-brand backcheck" href="javascript:void(0);" style="margin-right: -17px !important;"><i class="fa fa-arrow-left text-white"></i></a>
-		<span class="mx-auto title-nav">Keamanan Jual Beli</span>
+		<span class="mx-auto title-nav">Lupa PIN</span>
 	</nav>
 	<div class="container mb-30">
 		<div class="text-center">
@@ -41,16 +40,11 @@
 			<div class="row mt-30">
 				<div class="col-1"></div>
 				<div class="col-10">
-					<span class="text-white text-p">Masukkan Kode Verifikasi yang dikirim ke <b class="phoneNum"></b></span>
+					<span class="text-white text-p">Masukkan Kode Verifikasi yang dikirim ke <b class="phoneNum"><?php if (substr($phone, 0, 1) === '0') {echo '+62'.ltrim($phone, '0');}elseif (substr($phone, 0, 2) === '62') {echo $phone;}elseif (substr($phone, 0, 1) === '8') {echo '+62'.$phone;} ?></b></span>
 				</div>
 				<div class="col-1"></div>
 			</div>
-			<div class="row mt-15">
-				<div class="col-12">
-					<a href="<?php echo site_url('pin-dompet/second'); ?>" class="text-white text-p"><small><u>No. HP salah?</u></small></a>
-				</div>
-			</div>
-			<div class="row mt-20">
+			<div class="row mt-30">
 				<div class="col-2"></div>
 				<div class="col-8">
 					<div class="row">
@@ -90,9 +84,9 @@
 	<script>
 		$(document).ready(function() {
 			$("#firstdigit").focus();
-			resendOTP();
-			keyupOTP();
-
+			keyupOTPs();
+			resendOTPs();
+			console.log(localStorage.getItem("OTPs"));
 		});
 	</script>
 </body>

@@ -233,6 +233,17 @@ $route['auth/new_pin'] = 'pin/C_pin_auth/createNewPin';
 $route['auth/confirm_pin'] = 'pin/C_pin_auth/confirmNewPin';
 $route['auth/set_question'] = 'pin/C_pin_auth/setQuestionSecure';
 
+// FORGOT PIN VIEW ROUTES
+$route['pin-dompet/forgot-one'] = 'pin/C_forgot_pin';
+$route['pin-dompet/forgot-two'] = 'pin/C_forgot_pin/secondOTP';
+$route['pin-dompet/forgot-three'] = 'pin/C_forgot_pin/threePIN';
+$route['pin-dompet/forgot-four'] = 'pin/C_forgot_pin/fourConfirmPIN';
+// POST DATA FORGOT PIN ROUTES
+$route['auth/answer_check'] = 'pin/C_forgot_pin/answerQuestion';
+$route['auth/confirm_otp_forgot'] = 'pin/C_forgot_pin/confirmOTPforgot';
+$route['auth/resend_otp_forgot'] = 'pin/C_forgot_pin/resendOTPforgot';
+$route['auth/update_pin'] = 'pin/C_forgot_pin/createNewPinForgot';
+$route['auth/confirm_upd_pin'] = 'pin/C_forgot_pin/confirmNewPinForgot';
 
 // CASHOUT VIEW ROUTES
 $route['dompet'] = 'cashout/C_cashout';
