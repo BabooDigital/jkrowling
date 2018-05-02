@@ -1,3 +1,9 @@
+<style>
+	.txtred {
+		color: #d0021b;
+		font-weight: 600;
+	}
+</style>
 <body>
 	<nav class="navbar bg-greyboo">
 		<a class="navbar-brand backcheck" href="javascript:void(0);"><i class="fa fa-arrow-left text-dark"></i></a>
@@ -74,7 +80,14 @@
 							<div class="col-5">
 								<div class="float-right">
 									<span class="mt-0 d-block text-right"><small><?php echo $his['transaction_time']; ?></small></span>
-									<span class="txt-selling">Rp <?php echo number_format($his['transaction_amount'] , 0, ',', '.'); ?></span>
+									<?php if ($his['payment_type'] == 'penarikan') {
+										echo "<span class='txt-cashout'>- Rp ".number_format($his['transaction_amount'] , 0, ',', '.')."</span>";
+									}else if ($his['payment_type'] == 'penjualan') {
+										echo "<span class='txt-selling'>Rp ".number_format($his['transaction_amount'] , 0, ',', '.')."</span>";
+									}else if ($his['payment_type'] == 'pembelian') {
+										echo "<span class='txt-buying'>- Rp ".number_format($his['transaction_amount'] , 0, ',', '.')."</span>";
+									} ?>
+									
 								</div>
 							</div>
 						</div>					
@@ -93,6 +106,8 @@
 		</div>
 		<?php } ?>
 	</div>
+
+	<div id="snackbarpin">PIN berhasil dirubah</div>
 	<!-- JS -->
 	<script type="text/javascript" src="<?php echo base_url();?>public/js/umd/popper.min.js"></script>
 	<script type="text/javascript" src="<?php echo base_url();?>public/js/bootstrap.min.js"></script>
@@ -102,6 +117,7 @@
 			window.location = base_url+'profile';
 		});
 	</script>
-	<?php $this->session->flashdata('fail_alert'); ?>
+	<?php echo $this->session->flashdata('fail_alert'); 
+	echo $this->session->flashdata('success_change_pin'); ?>
 </body>
 </html>

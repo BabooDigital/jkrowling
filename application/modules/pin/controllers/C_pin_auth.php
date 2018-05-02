@@ -123,7 +123,7 @@ class C_pin_auth extends MX_Controller {
 				</script>');
 			redirect('pin-dompet/second','refresh');
 		}else{
-			if ($datas['code'] == 403){
+			if (http_response_code() == 403){
 				$this->session->unset_userdata('userData');
 				$this->session->unset_userdata('authKey');
 				$this->session->sess_destroy();
@@ -182,10 +182,14 @@ class C_pin_auth extends MX_Controller {
 		$send = array('fullname' => $name,'phone' => $phone,'ktp_no' => $ktpno,'ktp_image' => $cFile);
 		$datas = $this->curl_request->curl_post($this->API.'auth/OAuth/confirmAccount', $send, $auth);
 
-		if ($datas['code'] == 403){
+		if (http_response_code() == 403){
 			$this->session->sess_destroy();
 			redirect('login','refresh');
 		}else{
+			echo json_encode(array(
+				'code' => $datas['code'],
+				'data' => $datas['data'],
+			));
 			if ($datas['code'] == 200) {
 				$this->session->set_userdata('2Pin_step', $datas['code']);
 			}else {
@@ -196,10 +200,6 @@ class C_pin_auth extends MX_Controller {
 					</script>');
 				redirect('pin-dompet/second','refresh');
 			}
-			echo json_encode(array(
-				'code' => $datas['code'],
-				'data' => $datas['data'],
-			));
 		}
 	}
 	public function confirmOTP()
@@ -211,10 +211,14 @@ class C_pin_auth extends MX_Controller {
 		$send = array('otp' => $otp);
 		$datas = $this->curl_request->curl_post($this->API.'auth/OAuth/confirmOTP', $send, $auth);
 
-		if ($datas['code'] == 403){
+		if (http_response_code() == 403){
 			$this->session->sess_destroy();
 			redirect('login','refresh');
 		}else{
+			echo json_encode(array(
+				'code' => $datas['code'],
+				'data' => $datas['data'],
+			));
 			if ($datas['code'] == 200) {
 				$this->session->unset_userdata('2Pin_step');
 				$this->session->set_userdata('3Pin_step', $datas['code']);
@@ -226,10 +230,6 @@ class C_pin_auth extends MX_Controller {
 					</script>');
 				redirect('pin-dompet/second','refresh');
 			}
-			echo json_encode(array(
-				'code' => $datas['code'],
-				'data' => $datas['data'],
-			));
 		}
 	}
 	public function resendOTP()
@@ -239,10 +239,14 @@ class C_pin_auth extends MX_Controller {
 
 		$datas = $this->curl_request->curl_get($this->API.'auth/OAuth/resendOTP', '', $auth);
 		
-		if ($datas['code'] == 403){
+		if (http_response_code() == 403){
 			$this->session->sess_destroy();
 			redirect('login','refresh');
 		}else{
+			echo json_encode(array(
+				'code' => $datas['code'],
+				'data' => $datas['data'],
+			));
 			if ($datas['code'] != 200) {
 				$this->session->set_flashdata('fail_alert', '<script>
 					$(window).on("load", function(){
@@ -251,10 +255,6 @@ class C_pin_auth extends MX_Controller {
 					</script>');
 				redirect('pin-dompet/second','refresh');
 			}
-			echo json_encode(array(
-				'code' => $datas['code'],
-				'data' => $datas['data'],
-			));
 		}
 	}
 	public function createNewPin()
@@ -266,10 +266,13 @@ class C_pin_auth extends MX_Controller {
 		$send = array('pin' => $pin);
 		$datas = $this->curl_request->curl_post($this->API.'auth/OAuth/insertPIN', $send, $auth);
 
-		if ($datas['code'] == 403){
+		if (http_response_code() == 403){
 			$this->session->sess_destroy();
 			redirect('login','refresh');
 		}else{
+			echo json_encode(array(
+				'code' => $datas['code']
+			));
 			if ($datas['code'] == 200) {
 				$this->session->unset_userdata('3Pin_step');
 				$this->session->set_userdata('4Pin_step', $datas['code']);
@@ -281,9 +284,6 @@ class C_pin_auth extends MX_Controller {
 					</script>');
 				redirect('pin-dompet/second','refresh');
 			}
-			echo json_encode(array(
-				'code' => $datas['code']
-			));
 		}
 	}
 	public function confirmNewPin()
@@ -295,10 +295,13 @@ class C_pin_auth extends MX_Controller {
 		$send = array('pin' => $pin);
 		$datas = $this->curl_request->curl_post($this->API.'auth/OAuth/confirmPIN', $send, $auth);
 
-		if ($datas['code'] == 403){
+		if (http_response_code() == 403){
 			$this->session->sess_destroy();
 			redirect('login','refresh');
 		}else{
+			echo json_encode(array(
+				'code' => $datas['code']
+			));
 			if ($datas['code'] == 200) {
 				$this->session->unset_userdata('4Pin_step');
 				$this->session->set_userdata('5Pin_step', $datas['code']);
@@ -310,9 +313,6 @@ class C_pin_auth extends MX_Controller {
 					</script>');
 				redirect('pin-dompet/second','refresh');
 			}
-			echo json_encode(array(
-				'code' => $datas['code']
-			));
 		}
 	}
 	public function setQuestionSecure()
@@ -327,10 +327,13 @@ class C_pin_auth extends MX_Controller {
 		$send = array('question1' => $q1,'answer1' => $a1,'question2' => $q2,'answer2' => $a2);
 		$datas = $this->curl_request->curl_post($this->API.'auth/OAuth/insertQuestion', $send, $auth);
 
-		// if ($datas['code'] == 403){
-		// 	$this->session->sess_destroy();
-		// 	redirect('login','refresh');
-		// }else{
+		if (http_response_code() == 403){
+			$this->session->sess_destroy();
+			redirect('login','refresh');
+		}else{
+			echo json_encode(array(
+				'code' => $datas['code']
+			));
 			if ($datas['code'] == 200) {
 				$this->session->unset_userdata('5Pin_step');
 				$this->session->set_userdata('hasPIN', 1);
@@ -343,10 +346,7 @@ class C_pin_auth extends MX_Controller {
 					</script>');
 				redirect('pin-dompet/second','refresh');
 			}
-			echo json_encode(array(
-				'code' => $datas['code']
-			));
-		// }
+		}
 	}
 
 }

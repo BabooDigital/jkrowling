@@ -95,7 +95,7 @@
 						</div>
 						<p class="label_name"><?php echo $userdata['fullname']; ?></p>
 						<p class="profile_location"><?php echo $userdata['address']; ?></p>
-						<p class="fs-14px quote"><?php echo $userdata['about_me']; ?></p>
+						<p class="fs-14px quote p-0"><?php echo $userdata['about_me']; ?></p>
 						<?php $name = $this->session->userdata('userData'); if ($name['user_id'] == $userdata['user_id']): ?>
 							<p class="fs-14px">( <?php echo $userdata['email']; ?> )</p>
 						<?php endif ?>
