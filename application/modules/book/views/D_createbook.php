@@ -95,7 +95,7 @@
 									</div>
 									<div class="form-group">
 										<label class="text-muted">Mulai Jual Pada Chapter</label>
-										<input type="number" value="3" min="3" name="start_chapter" class="input-range" id="font-size" style="width: 40%;">
+										<input type="number" name="start_chapter" class="input-range start_chapter" id="font-size" style="width: 40%;">
 										<a class="ml-20 btn-transparant value-control addmin" data-action="minus" data-target="font-size"><img src="<?php echo base_url('public/img/assets/icon_minch_active.png'); ?>" width="35"></a>
 										<a class="ml-10 btn-transparant value-control addplus" data-action="plus" data-target="font-size"><img src="<?php echo base_url('public/img/assets/icon_plusch_active.png'); ?>" width="35"></a>
 									</div>
@@ -119,7 +119,6 @@
 									<input type="hidden" id="cover_url" accept="image/*" onchange="tampilkanPreview(this,'preview')" name="cover_url" value="<?php $src = $this->session->userdata('dataCover'); if($src != NULL){  echo $src['asset_url']; }else{ echo " "; } ?>">
 									<div id="books_id"></div>
 								<h5 class="mt-0 mb-1 nametitle"><?php $uri = $this->session->userdata('userData'); echo $uri['fullname'] ?></h5>
-								<!-- <small>Fiksi</small> -->
 							</div>
 						</div>
 

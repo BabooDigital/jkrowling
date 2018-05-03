@@ -5,10 +5,10 @@
 	<meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
 	<title><?php echo $title; ?></title>
 	<?php if (isset($css)): ?><?php echo get_css($css) ?><?php endif ?>
-
 	<script type="text/javascript">
 		var base_url = '<?php echo base_url() ?>';
 	</script>
+	<script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-FbaqZneHUk1HWy6m"></script>
 </head>
 <body>
 	<div class="container-fluid mb-40">
@@ -20,20 +20,23 @@
 						<div class="card-body" style="padding-bottom:200px;">
 							<div class="media">
 							<img class="d-flex align-self-start mr-20 rounded-circle" width="50" height="50" src="
-							<?php if($detail_book['data']['author']['avatar'] == NULL){
-								echo base_url('public/img/profile/blank-photo.jpg');
+							<?php if($detail_book['data']['author']['avatar'] == NULL){ 
 							}else{
 								echo $detail_book['data']['author']['avatar']; } ?>" alt="<?php echo $detail_book['data']['author']['author_name']; ?>">
 								<div class="media-body">
 									<h5 class="nametitle2 author_name"><?php echo $detail_book['data']['author']['author_name']; ?></h5>
 									<p><small><span>Jakarta, Indonesia</span></small></p>
-									<a href="#" data-follow="<?php echo $detail_book['data']['book_info']['book_id']; ?>" class="btn-no-fill dbookfollowbtn ml-20 <?php if ($detail_book['data']['author']['isFollow'] == false) { echo "follow-u"; }else{ echo "unfollow-u"; } ?>"><span class="nametitle2 txtfollow"><?php if ($detail_book['data']['author']['isFollow'] == false) { echo "Follow"; }else{ echo "Unfollow"; } ?></span></a>
+									<!-- <a href="#" data-follow="<?php echo $detail_book['data']['book_info']['book_id']; ?>" class="btn-no-fill dbookfollowbtn ml-20 <?php if ($detail_book['data']['author']['isFollow'] == false) { echo "follow-u"; }else{ echo "unfollow-u"; } ?>"><span class="nametitle2 txtfollow"><?php if ($detail_book['data']['author']['isFollow'] == false) { echo "Follow"; }else{ echo "Unfollow"; } ?></span></a> -->
 								</div>
 							</div>
+							<input type="hidden" name="iaidubi" id="iaidubi" value="<?php echo $detail_book['data']['book_info']['book_id']; ?>">
+
 							<div id="post-data">
 									<?php $this->load->view('data/D_readingmode'); ?>
 							</div>
-							<div class="loader" style="display: none;margin-left: auto;margin-right: auto;"></div>
+							<div class="loader" style="display:none;margin-left: auto;margin-right: auto;">
+								<img style="margin-left: auto;margin-right: auto;" src="<?php echo base_url('public/img/spinner.gif') ?>" style='width:150px;height: 150px;'>
+							</div>
 							
 							<div class="mt-10">
 								<div class="bg-white p-10">
@@ -58,8 +61,8 @@
 								</ul>
 								<ul class="navbar-nav">
 									<li class="nav-item">
-										<a data-id="<?php echo $detail_book['data']['book_info']['book_id']; ?>" href="javascript:void(0);" id="loveboo" class="fs-14px <?php if($detail_book['data']['book_info']['is_like'] == 'false'){ echo 'like'; }else{ echo 'unlike'; } ?>">
-											<img src="<?php if($detail_book['data']['book_info']['is_like'] == 'false'){ echo base_url('public/img/assets/icon_love.svg'); }else{ echo base_url('public/img/assets/love_active.svg'); } ?>" class="loveicon" width="30">
+										<a data-id="<?php echo $detail_book['data']['book_info']['book_id']; ?>" href="javascript:void(0);" id="loveboo" class="fs-14px <?php if($detail_book['data']['book_info']['is_like'] == false){ echo 'like'; }else{ echo 'unlike'; } ?>">
+											<img src="<?php if($detail_book['data']['book_info']['is_like'] == false){ echo base_url('public/img/assets/icon_love.svg'); }else{ echo base_url('public/img/assets/love_active.svg'); } ?>" class="loveicon" width="30">
 										</a>
 									</li>
 									<li class="nav-item ml-20">
@@ -89,6 +92,9 @@
 				</div>
 			</div>
 		</div>
+	</div>
+	<div class="modal fade" id="buymodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<?php $this->load->view('data/D_paybook'); ?>
 	</div>
 </body>
 </html>

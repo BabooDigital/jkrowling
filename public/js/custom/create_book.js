@@ -387,13 +387,14 @@ function getChapter() {
 		if (data.chapter == null || data.chapter.length == 0) {
 			title += '<input type="text" name="title_book" id="title_book" class="w-100" placeholder="Masukan Judul buku" required> <input type="text" name="title_chapter" style="display: none;" id="title_chapter" value="Description" class="w-100" placeholder="Masukan Chapter">';
 			title += '<input type="hidden" name="count_chapter" id="count_chapter" value="0" class="w-100" placeholder="Count Chapter" required>';
+
 		}else{
 			var str_desc = data.chapter[0].desc;
 			title += '<input type="text" name="title_chapter" id="title_chapter" class="w-100" placeholder="Masukan Chapter" required>';
 			title_book = data.book_info.title_book;
 			title += '<input type="hidden" name="title_book" id="title_book" value="'+title_book+'" class="w-100" placeholder="Masukan Judul" required>';
 			title += '<input type="hidden" name="count_chapter" id="count_chapter" value="1" class="w-100" placeholder="Count Chapter" required>';
-			// console.log();
+			title += '<input type="hidden" name="count_chapter_plus_minus" id="count_chapter_plus_minus" value="'+data.chapter.length+'" class="w-100" placeholder="Count Chapter" required>';
 			if (data.chapter[0]) {
 				chapter += '<div id="accordion"> <div class="card"> <div class="card-header" id="headingOne"> <h5 class="mb-0"> <button class="btn btn-transparent" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"> Daftar Chapter <span class="caret"></span> </button> </h5> </div> <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion"> ';
 				$.each(data.chapter, function(index, val) {
@@ -410,16 +411,14 @@ function getChapter() {
 			$("#preview").attr('src', data.book_info.cover_url);
 			$("#cover_name").val(data.book_info.cover_url);
 		}else{
-			$("#preview").attr('src', base_url+'public/img/assets/def_prev.png');
 		}
-		if (data.chapter.length >= 3) {
+		if (data.chapter.length >= 1) {
 			$("#sell_book").show();
-			// console.log("show jual buku");
 		}else{
-			// console.log("hide jual buku");
 			$("#sell_book").hide();
 		}
 		$(".tulisjudul").html(title);
+		$(".start_chapter").val(data.chapter.length);
 		$("#btn_chapter").html(chapter);
 	})
 	.fail(function() {
@@ -466,11 +465,21 @@ function addMinusPlus() {
 		var action = $(this).attr('data-action')
 		var target = $(this).attr('data-target')
 		var value  = parseFloat($('[id="'+target+'"]').val());
-		if ( action == "plus" ) {
-			value++;
+		if ( action == "plus") {
+			if (value == $("#count_chapter_plus_minus").val()) {
+				value;
+			}else{
+				value++;
+			}
 		}
-		if ( action == "minus" ) {
-			value--;
+		if ( action == "minus") {
+			if (value <= $("#count_chapter_plus_minus").val()) {
+				if (value < 2) {
+					value;
+				}else{
+					value--;
+				}
+			}
 		}
 		$('[id="'+target+'"]').val(value);
 	});

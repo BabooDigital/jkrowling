@@ -155,6 +155,7 @@ class C_book extends MX_Controller
         $data['css'][] = "public/plugins/holdOn/css/HoldOn.css";
 
         $data['js'][] = "public/js/jquery.min.js";
+        $data['js'][] = "public/js/custom/search.js";
         $data['js'][] = "public/js/umd/popper.min.js";
         $data['js'][] = "public/js/bootstrap.min.js";
         $data['js'][] = "public/js/jquery.sticky-kit.min.js";
@@ -546,7 +547,7 @@ class C_book extends MX_Controller
 
             $data['detailBook'] = json_decode(end($data), true);
             $data['menuChapter'] = $data_before_chapter['chapter'];
-            if ($data_before_chapter['chapter']['data']['chapter'][3]['chapter_free'] != "false") {
+            if ($data_before_chapter['chapter']['data']['chapter'][3]['chapter_free'] != false) {
                 $data['detailChapter'] = count($data_before_chapter['chapter']['data']['chapter']);
             } else {
                 $data['detailChapter'] = 2 + 1;

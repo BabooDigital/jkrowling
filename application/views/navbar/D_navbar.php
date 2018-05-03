@@ -2,7 +2,7 @@
 	<div class="container">
 		<a class="navbar-brand" href="<?php echo site_url(); ?>"><img alt="Baboo Main Logo" src="<?php echo base_url(); ?>public/img/logo_purple.png" width="100"></a>
 		<form class="form-inline my-2 my-lg-0">
-			<input aria-label="Search" class="search-form form-control search_bbo" placeholder="Cari di baboo" type="search">
+			<input aria-label="Search" class="search-form form-control search_bbo" placeholder="Cari di baboo" type="search" style="background: url('<?php echo base_url('public/img/search.png') ?>') no-repeat right;background-size: 18px;background-position: 95% 50%;">
 			<div class="dropdown-menu search_result_bbo" style="margin-left: 18%;overflow: scroll;overflow-x: scroll;overflow-y: scroll;width: 20%;">
 			</div>
 		</form>
