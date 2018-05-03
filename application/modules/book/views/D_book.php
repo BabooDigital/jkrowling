@@ -145,7 +145,9 @@ echo "<script>(function(d, s, id) {
 						}else{
 							echo $detail_book['data']['author']['avatar']; } ?>" alt="<?php echo $detail_book['data']['author']['author_name']; ?>">
 							<div class="media-body">
-								<h5 class="nametitle2 author_name"><?php echo $detail_book['data']['author']['author_name']; ?></h5>
+								<a data-usr-prf="<?php echo $detail_book['data']['author']['author_id']; ?>" data-usr-name="<?php echo $detail_book['data']['author']['author_name'] ?>" href="<?php echo site_url('profile/'.url_title($detail_book['data']['author']['author_name'])) ?>" class="profile"><h5 class="card-title nametitle2 profile"><?php
+							echo $detail_book['data']['author']['author_name']; ?></h5></a>
+								<!-- <h5 class="nametitle2 author_name"><?php echo $detail_book['data']['author']['author_name']; ?></h5> -->
 								<p><small><span>Jakarta, Indonesia</span></small></p>
 								<a href="#" data-follow="<?php echo $detail_book['data']['book_info']['book_id']; ?>" class="btn-no-fill dbookfollowbtn ml-20 <?php if ($detail_book['data']['author']['isFollow'] == false) { echo "follow-u"; }else{ echo "unfollow-u"; } ?>"><span class="nametitle2 txtfollow"><?php if ($detail_book['data']['author']['isFollow'] == false) { echo "Follow"; }else{ echo "Unfollow"; } ?></span></a>
 							</div>

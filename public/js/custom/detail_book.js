@@ -2,6 +2,22 @@ function funcDropdown() {
 	document.getElementById("myDropdown").classList.toggle("showss")
 }
 $(document).ready(function() {
+	$(document).on('click', '.profile', function() {
+        event.preventDefault();
+        var boo = $(this);
+        var usr_prf = boo.attr("data-usr-prf");
+        var usr_name = boo.attr("data-usr-name");
+        var formdata = new FormData();
+
+        formdata.append("user_prf", usr_prf);
+        var url = base_url+'profile/'+usr_name;
+        var form = $('<form action="' + url + '" method="post">' +
+          '<input type="hidden" name="usr_prf" value="' + usr_prf + '" />' +
+          '<input type="hidden" name="usr_name" value="' + usr_name + '" />' +
+          '</form>');
+        $(boo).append(form);
+        form.submit();
+    });
 	$(document).on("click", ".bookmark", function() {
 		var b = $(this),
 		a = new FormData;
@@ -464,7 +480,7 @@ function getmenuChapter() {
 			});
 			var b = $(this).attr("href");
 			$(this).parent().siblings().removeClass("chapter_active").end().addClass("chapter_active");
-			$(this).parent().siblings().removeAttr("style").end().attr("style", "background:transparent;border-bottom: 0.5px #eeeeee;background: url(../public/img/assets/frame_active.svg) no-repeat; background-position: right;");
+			$(this).parent().siblings().removeAttr("style").end().attr("style", "background:transparent;border-bottom: 0.5px #eeeeee;background: url(../public/img/assets/frame_active.svg) no-repeat; background-position: right;");	
 			getContent(b, a);
 			c.preventDefault()
 		})

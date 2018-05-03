@@ -224,6 +224,7 @@ function convertSearch(Text) {
   .replace(/ +/g, '+');
 }
     $(document).on('keyup', '.search_bbo', function(event) {
+        $(this).siblings().removeAttr("style").end().attr("style", "background: url('"+base_url+"public/img/spinner.gif') no-repeat right;background-size: 75px;background-position: 110% 50%;");
         var search = $(this).val();
         var formdata = new FormData();
 
@@ -238,6 +239,7 @@ function convertSearch(Text) {
             data: formdata,
         })
         .done(function(data) {
+            $(this).siblings().removeAttr("style").end().attr("style", "background: url('"+base_url+"public/img/search.png') no-repeat right;background-size: 18px;background-position: 95% 50%;");
             if (search.length >=3) {
                 $(".search_result_bbo").addClass('show');
                 var list_book = '',

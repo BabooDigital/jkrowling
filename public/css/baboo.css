@@ -81,9 +81,9 @@ a:hover {
 	font-size: 13px;
 	width: 250px !important;
 	color: #888 !important;
-	background: url("../img/search.png") no-repeat right;
+	/*background: url("../img/search.png") no-repeat right;
 	background-size: 18px;
-	background-position: 95% 50%;
+	background-position: 95% 50%;*/
 }
 .search-msg {
 	border-radius: 50px;
