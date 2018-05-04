@@ -68,8 +68,8 @@ function validateFormActivation() {
 			var a = new FormData();
 			/* Act on the event */
 			a.append("fullname", $("#nameImportant").val());
-			a.append("phone", $("#numbImportant").val());
-			a.append("ktp_no", $("#hpImportant").val());
+			a.append("phone", $("#hpImportant").val());
+			a.append("ktp_no", $("#numbImportant").val());
 			a.append("ktp_image", $("#fileImportant")[0].files[0]);
 			$.ajax({
 				url: base_url+'auth/confirm_acc',
@@ -90,9 +90,7 @@ function validateFormActivation() {
 			})
 			.done(function(data) {
 				if (data.code == 200) {
-					var OTPs = {'otp':data.data.OTP,'telp':$("#hpImportant").val()};
-					localStorage.setItem("OTPs", JSON.stringify(OTPs));
-					$('#what').val('true');
+					localStorage.setItem("OTPs", data.data.OTP);
 					window.location = base_url+'pin-dompet/third';
 				}else {
 					location.reload();
@@ -110,15 +108,7 @@ function validateFormActivation() {
 
 // Third
 function keyupOTP() {
-	var storedNames = JSON.parse(localStorage.getItem("OTPs"));
-	var num = storedNames['telp'];
-	var f_val = num.replace(/\D[^\.]/g, "");
-    if (num.length > 13) {
-    	var az = f_val.slice(0,4)+"-"+f_val.slice(4,8)+"-"+f_val.slice(8,12);
-    }else{
-    	var az = f_val.slice(0,4)+"-"+f_val.slice(4,8)+"-"+f_val.slice(8,12)+"-"+f_val.slice(12,14);
-    }
-	$('.phoneNum').text(az);
+	var storedNames = localStorage.getItem("OTPs");
 	$('body').on('keyup', 'input.digit', function(event){
 
 		var as = $( "#firstdigit" );
@@ -143,7 +133,7 @@ function keyupOTP() {
 			var str = as.val()+b.val()+c.val()+d.val();
 			var fix = str.replace(/\s/g, '');
 			   		// window.location = base_url+'pin-dompet/fourth';
-			   		if (storedNames['otp'] == fix) {
+			   		if (storedNames == fix) {
 			   			var a = new FormData();
 			   			a.append("otp", fix);
 			   			$.ajax({
@@ -164,11 +154,11 @@ function keyupOTP() {
 			   				}
 			   			})
 			   			.done(function(data) {
-			   				if (data.code != 200) {
-			   					window.location = base_url+'pin-dompet/second';
-			   				}else {
+			   				if (data.code == 200) {
 			   					window.localStorage.removeItem('OTPs');
 			   					window.location = base_url+'pin-dompet/fourth';
+			   				}else {
+			   					window.location = base_url+'pin-dompet/second';
 			   				}
 			   			})
 			   			.fail(function() {
@@ -655,7 +645,6 @@ function resendOTP() {
 					}
 				})
 				.done(function(data) {
-					console.log(data);
 					if (data.code == 200) {
 						window.location = base_url+'pin-dompet/forgot-four';
 					}else {

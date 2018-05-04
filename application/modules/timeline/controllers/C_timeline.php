@@ -77,11 +77,12 @@ class C_timeline extends MX_Controller {
 			
 			$datas['css'][] = "public/plugins/holdOn/css/HoldOn.css";
 
-			if ($this->session->flashdata('is_follow_event') == 200 || $this->session->flashdata('is_not_follow_event') == 403 || $this->session->flashdata('success_publish')) {
-				$datas['css'][] = "public/css/sweetalert2.min.css";
-				$datas['js'][] = "public/js/sweetalert2.all.min.js";
-			}
-
+			// if ($this->session->flashdata('is_follow_event') == 200 || $this->session->flashdata('is_not_follow_event') == 403 || $this->session->flashdata('success_publish')) {
+			// 	$datas['css'][] = "public/css/sweetalert2.min.css";
+			// 	$datas['js'][] = "public/js/sweetalert2.all.min.js";
+			// }
+			$datas['css'][] = "public/css/sweetalert2.min.css";
+			$datas['js'][] = "public/js/sweetalert2.all.min.js";
 			$datas['js'][]   = "public/js/jquery.min.js";
 			$datas['js'][]   = "public/js/umd/popper.min.js";
 			$datas['js'][]   = "public/js/bootstrap.min.js";

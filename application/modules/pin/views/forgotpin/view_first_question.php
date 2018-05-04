@@ -5,7 +5,7 @@
 </style>
 <body>
 	<nav class="navbar bg-white">
-		<a class="navbar-brand" href="#"><i class="fa fa-arrow-left text-dark"></i></a>
+		<a class="navbar-brand backcheck" href="#"><i class="fa fa-arrow-left text-dark"></i></a>
 	</nav>
 	<form id="qForgotForm">
 		<div class="container mb-50">

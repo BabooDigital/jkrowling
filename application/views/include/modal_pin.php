@@ -5,7 +5,7 @@
 			<div class="modal-body bg-purp p-0">
 				<nav class="navbar color-layer">
 					<a class="navbar-brand" href="javascript:void(0);" data-dismiss="modal" aria-label="Close"><i class="fa fa-arrow-left text-white"></i></a>
-					<a href="#" class="text-white">Lupa PIN?</a>
+					<a href="<?php echo site_url('pin-dompet/forgot-one'); ?>" class="text-white">Lupa PIN?</a>
 				</nav>
 				<div class="container mb-30">
 					<div class="text-center">

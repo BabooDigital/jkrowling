@@ -31,7 +31,7 @@
 					</div>
 					<div class="form-group">
 						<label for="hpImportant" class="text-white">Nomor HP</label>
-						<input type="number" name="numbHP" onKeyPress="if(this.value.length==14) return false;" class="form-control text-white pin-form-text" id="hpImportant" placeholder="( Contoh : +6289123456789 )" maxlength="15" required>
+						<input type="number" name="numbHP" onKeyPress="if(this.value.length==14) return false;" class="form-control text-white pin-form-text" id="hpImportant" placeholder="( Contoh : 6289123456789 )" maxlength="15" required>
 					</div>
 				</div>
 			</div>
@@ -39,7 +39,7 @@
 				<div class="col-1"></div>
 				<div class="col-10">
 					<img src="<?php echo base_url('public/img/assets/icon_check_shield.png'); ?>" width="25" class="float-left mr-10">
-					<p class="text-white text-w-last">Kami jamin data anda aman dan tidak akan disalahgunakan</p>
+					<p class="text-white text-w-last">Kami jamin data anda aman dan tidak akan disalah gunakan</p>
 				</div>
 				<div class="col-1"></div>
 			</div>

@@ -86,7 +86,6 @@
 			$("#firstdigit").focus();
 			keyupOTPs();
 			resendOTPs();
-			console.log(localStorage.getItem("OTPs"));
 		});
 	</script>
 </body>
