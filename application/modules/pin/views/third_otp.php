@@ -41,7 +41,7 @@
 			<div class="row mt-30">
 				<div class="col-1"></div>
 				<div class="col-10">
-					<span class="text-white text-p">Masukkan Kode Verifikasi yang dikirim ke <b class="phoneNum"></b></span>
+					<span class="text-white text-p">Masukkan Kode Verifikasi yang dikirim ke <b class="phoneNum"><?php echo $this->session->userdata('hasPhone'); ?></b></span>
 				</div>
 				<div class="col-1"></div>
 			</div>

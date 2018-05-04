@@ -219,7 +219,8 @@ if (!empty($query['b'])) {
 
 			$(function(){
 			    $(window).scrollTop($(".form-group").offset().top);
-			    $("input").focus();
+			    // $("input").focus();
+	$('#inputemail').focus();
 			});
 			
 			$("#login_fb").on("click",function() {

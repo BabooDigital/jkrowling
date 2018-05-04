@@ -36,7 +36,6 @@ body, html {
 	background: #7554bd;color: #fff;border: none;border-radius: 35px;width: 70%;height: 40px;box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.32);
 }
 .bg {
-	background-image: url("public/img/404_notfound.svg");
 	height: 100%; 
 	background-position: center;
 	background-repeat: no-repeat;
@@ -44,7 +43,7 @@ body, html {
 }
 </style>
 <body>
-	<div class="bg"></div>
+	<div style="background-image: url(<?php echo base_url('public/img/404_notfound.svg'); ?>);" class="bg"></div>
 	<div class="container">
 		<div class="row">
 			<div class="col-8 layout_layer">

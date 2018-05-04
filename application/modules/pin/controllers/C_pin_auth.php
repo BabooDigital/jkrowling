@@ -172,16 +172,22 @@ class C_pin_auth extends MX_Controller {
 		$phone    = $this->input->post('phone');
 		$ktpno    = $this->input->post('ktp_no');
 		$ktpimg    = $_FILES["ktp_image"]["tmp_name"];
-
+		if (substr($phone, 0, 1) === '0') {
+			$phones = '+62'.ltrim($phone, '0');
+		}elseif (substr($phone, 0, 2) === '62') {
+			$phones = '+'.$phone;
+		}elseif (substr($phone, 0, 1) === '8') {
+			$phones = '+62'.$phone;
+		}
 		if (function_exists('curl_file_create')) {
 			$cFile = curl_file_create($ktpimg, $_FILES["ktp_image"]["type"],$_FILES["ktp_image"]["name"]);
 		} else { 
 			$cFile = '@' . realpath($ktpimg);
 		}
 
-		$send = array('fullname' => $name,'phone' => $phone,'ktp_no' => $ktpno,'ktp_image' => $cFile);
+		$send = array('fullname' => $name,'phone' => $phones,'ktp_no' => $ktpno,'ktp_image' => $cFile);
 		$datas = $this->curl_request->curl_post($this->API.'auth/OAuth/confirmAccount', $send, $auth);
-
+		
 		if (http_response_code() == 403){
 			$this->session->sess_destroy();
 			redirect('login','refresh');
@@ -192,6 +198,7 @@ class C_pin_auth extends MX_Controller {
 			));
 			if ($datas['code'] == 200) {
 				$this->session->set_userdata('2Pin_step', $datas['code']);
+				$this->session->set_userdata('hasPhone', $phones);
 			}else {
 				$this->session->set_flashdata('fail_alert', '<script>
 					$(window).on("load", function(){
