@@ -15,6 +15,10 @@ $(document).ready(function() {
 		/* Act on the event */
 		window.location = base_url+'pin-dompet';
 	});
+	$(document).on('click', '.activeWallet', function() {
+		event.preventDefault();
+		$('#wallet-modal').modal({backdrop: 'static', keyboard: false});
+	});
 
 });
 

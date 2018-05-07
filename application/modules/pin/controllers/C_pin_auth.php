@@ -28,7 +28,8 @@ class C_pin_auth extends MX_Controller {
 			$this->load->view('inc/head', $data, FALSE);
 			$this->load->view('first_warning');
 		}else {
-			redirect('timeline','refresh');
+			$this->load->view('inc/head', $data, FALSE);
+			$this->load->view('first_warning');
 		}
 	}
 
@@ -40,7 +41,8 @@ class C_pin_auth extends MX_Controller {
 			$this->load->view('inc/head', $data, FALSE);
 			$this->load->view('second_activation');
 		}else {
-			redirect('timeline','refresh');
+			$this->load->view('inc/head', $data, FALSE);
+			$this->load->view('second_activation');
 		}
 	}
 
@@ -60,7 +62,8 @@ class C_pin_auth extends MX_Controller {
 				$this->load->view('inc/head', $data, FALSE);
 				$this->load->view('third_otp');
 			}else {
-				redirect('timeline','refresh');
+				$this->load->view('inc/head', $data, FALSE);
+				$this->load->view('third_otp');
 			}
 		}
 	}
@@ -82,7 +85,8 @@ class C_pin_auth extends MX_Controller {
 				$this->load->view('inc/head', $data, FALSE);
 				$this->load->view('fourth_createpin');
 			}else {
-				redirect('timeline','refresh');
+				$this->load->view('inc/head', $data, FALSE);
+				$this->load->view('fourth_createpin');
 			}
 		}
 	}
@@ -104,7 +108,8 @@ class C_pin_auth extends MX_Controller {
 				$this->load->view('inc/head', $data, FALSE);
 				$this->load->view('fifth_confirmpin');
 			}else {
-				redirect('timeline','refresh');
+				$this->load->view('inc/head', $data, FALSE);
+				$this->load->view('fifth_confirmpin');
 			}
 		}
 	}
@@ -136,7 +141,8 @@ class C_pin_auth extends MX_Controller {
 					$this->load->view('inc/head', $data, FALSE);
 					$this->load->view('sixth_questionselect');
 				}else {
-					redirect('timeline','refresh');
+					$this->load->view('inc/head', $data, FALSE);
+					$this->load->view('sixth_questionselect');
 				}
 			}
 		}
@@ -158,7 +164,8 @@ class C_pin_auth extends MX_Controller {
 				$this->load->view('inc/head', $data, FALSE);
 				$this->load->view('seventh_done');
 			}else {
-				redirect('timeline','refresh');
+				$this->load->view('inc/head', $data, FALSE);
+				$this->load->view('seventh_done');
 			}
 		}
 	}

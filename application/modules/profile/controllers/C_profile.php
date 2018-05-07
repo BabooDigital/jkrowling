@@ -77,6 +77,7 @@ class C_profile extends MX_Controller {
 			}else{
 				$data['css'][] = "public/css/baboo.css";
 				$data['js'][] = "public/js/custom/profile_page.js";
+				$data['js'][] = "public/js/custom/cashout_auth.js";
 				$this->load->view('include/head', $data);
 				$this->load->view('D_profile');
 			// $this->load->view('timeline/include/foot');
