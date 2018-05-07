@@ -40,7 +40,7 @@
 			<div class="row mt-30">
 				<div class="col-1"></div>
 				<div class="col-10">
-					<span class="text-white text-p">Masukkan Kode Verifikasi yang dikirim ke <b class="phoneNum"><?php if (substr($phone, 0, 1) === '0') {echo '+62'.ltrim($phone, '0');}elseif (substr($phone, 0, 2) === '62') {echo $phone;}elseif (substr($phone, 0, 1) === '8') {echo '+62'.$phone;} ?></b></span>
+					<span class="text-white text-p">Masukkan Kode Verifikasi yang dikirim ke <b class="phoneNum"><?php echo $phone; ?></b></span>
 				</div>
 				<div class="col-1"></div>
 			</div>
