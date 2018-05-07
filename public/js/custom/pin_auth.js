@@ -90,7 +90,6 @@ function validateFormActivation() {
 			})
 			.done(function(data) {
 				if (data.code == 200) {
-					localStorage.setItem("OTPs", data.data.OTP);
 					window.location = base_url+'pin-dompet/third';
 				}else {
 					location.reload();
@@ -108,7 +107,6 @@ function validateFormActivation() {
 
 // Third
 function keyupOTP() {
-	var storedNames = localStorage.getItem("OTPs");
 	$('body').on('keyup', 'input.digit', function(event){
 
 		var as = $( "#firstdigit" );
@@ -133,52 +131,53 @@ function keyupOTP() {
 			var str = as.val()+b.val()+c.val()+d.val();
 			var fix = str.replace(/\s/g, '');
 			   		// window.location = base_url+'pin-dompet/fourth';
-			   		if (storedNames == fix) {
-			   			var a = new FormData();
-			   			a.append("otp", fix);
-			   			$.ajax({
-			   				url: base_url+'auth/confirm_otp',
-			   				type: 'POST',
-			   				dataType: 'json',
-			   				cache: false,
-			   				contentType: false,
-			   				processData: false,
-			   				data: a,
-			   				beforeSend: function () {
-			   					swal({
-			   						title: 'Mohon tunggu...',
-			   						onOpen: () => {
-			   							swal.showLoading()
-			   						}
-			   					});
-			   				}
-			   			})
-			   			.done(function(data) {
-			   				if (data.code == 200) {
-			   					window.localStorage.removeItem('OTPs');
-			   					window.location = base_url+'pin-dompet/fourth';
-			   				}else {
-			   					window.location = base_url+'pin-dompet/second';
-			   				}
-			   			})
-			   			.fail(function() {
-			   				console.log("error");
-			   			})
-			   			.always(function() {
-			   			});
-
-			   		}else{
-			   			as.val('');
-			   			b.val('');
-			   			c.val('');
-			   			d.val('');
-			   			$("#firstdigit").focus();
+			   		var a = new FormData();
+			   		a.append("otp", fix);
+			   		$.ajax({
+			   			url: base_url+'auth/confirm_otp',
+			   			type: 'POST',
+			   			dataType: 'json',
+			   			cache: false,
+			   			contentType: false,
+			   			processData: false,
+			   			data: a,
+			   			beforeSend: function () {
+			   				swal({
+			   					title: 'Mohon tunggu...',
+			   					onOpen: () => {
+			   						swal.showLoading()
+			   					}
+			   				});
+			   			}
+			   		})
+			   		.done(function(data) {
+			   			if (data.code == 200) {
+			   				window.location = base_url+'pin-dompet/fourth';
+			   			}else if (data.code == 400) {
+			   				as.val('');
+			   				b.val('');
+			   				c.val('');
+			   				d.val('');
+			   				$("#firstdigit").focus();
+			   				swal(
+			   					'Maaf',
+			   					'Kode OTP yang anda masukan, salah.',
+			   					'warning'
+			   					);
+			   			}else {
+			   				window.location = base_url+'pin-dompet/second';
+			   			}
+			   		})
+			   		.fail(function() {
 			   			swal(
 			   				'Maaf',
-			   				'Kode OTP yang anda masukan, salah.',
+			   				'Terjadi kesalahan...',
 			   				'warning'
 			   				);
-			   		}
+			   			window.location = base_url+'pin-dompet/second';
+			   		})
+			   		.always(function() {
+			   		});
 			   	}
 			   });
 }
@@ -197,15 +196,13 @@ function resendOTP() {
 		})
 		.done(function(data) {
 			if (data.code == 200) {
-				var telps = $(".phoneNum").text();
-				var OTPs = {'otp':data.data.OTP,'telp':telps.replace(/-/g, '')};
-				localStorage.setItem("OTPs", JSON.stringify(OTPs));
-				$(".phoneNum").text(telps);
 				location.reload();
+			}else{
+				window.location = base_url+'pin-dompet/second';
 			}
 		})
 		.fail(function() {
-			console.log("error");
+			window.location = base_url+'pin-dompet/second';
 		})
 		.always(function() {
 		});
@@ -259,14 +256,14 @@ function resendOTP() {
 					}
 				})
 				.done(function(data) {
-					if (data.code != 200) {
-						window.location = base_url+'pin-dompet/second';
-					}else {
+					if (data.code == 200) {
 						window.location = base_url+'pin-dompet/fifth';
+					}else {
+						window.location = base_url+'pin-dompet/second';
 					}
 				})
 				.fail(function() {
-					console.log("error");
+					window.location = base_url+'pin-dompet/second';
 				})
 				.always(function() {
 				});
@@ -320,25 +317,27 @@ function resendOTP() {
 					}
 				})
 				.done(function(data) {
-					if (data.code != 200) {
-						window.location = base_url+'pin-dompet/second';
-					}else {
+					if (data.code == 200) {
 						window.location = base_url+'pin-dompet/sixth';
+					}else if(data.code == 202){
+						as.val('');
+						b.val('');
+						c.val('');
+						d.val('');
+						e.val('');
+						f.val('');
+						$("#firstdigit").focus();
+						swal(
+							'Maaf',
+							'Kode PIN yang anda masukan berbeda.',
+							'warning'
+							);
+					}else{
+						window.location = base_url+'pin-dompet/second';
 					}
 				})
 				.fail(function() {
-					as.val('');
-					b.val('');
-					c.val('');
-					d.val('');
-					e.val('');
-					f.val('');
-					$("#firstdigit").focus();
-					swal(
-						'Maaf',
-						'Kode PIN yang anda masukan berbeda.',
-						'warning'
-						);
+					window.location = base_url+'pin-dompet/second';
 				})
 				.always(function() {
 				});
@@ -475,7 +474,6 @@ function resendOTP() {
 				})
 				.done(function(data) {
 					if (data.code == 200) {
-						localStorage.setItem("OTPs", data.data.OTP);
 						window.location = base_url+'pin-dompet/forgot-two';
 					}else {
 						var label = "<label id='ansQuestions-error' class='error' for='ansQuestions'>Jawaban anda salah</label>";
@@ -520,51 +518,48 @@ function resendOTP() {
 				var str = as.val()+b.val()+c.val()+d.val();
 				var fix = str.replace(/\s/g, '');
 			   		// window.location = base_url+'pin-dompet/fourth';
-			   		if (localStorage.getItem("OTPs") == fix) {
-			   			var a = new FormData();
-			   			a.append("otp", fix);
-			   			$.ajax({
-			   				url: base_url+'auth/confirm_otp_forgot',
-			   				type: 'POST',
-			   				dataType: 'json',
-			   				cache: false,
-			   				contentType: false,
-			   				processData: false,
-			   				data: a,
-			   				beforeSend: function () {
-			   					swal({
-			   						title: 'Mohon tunggu...',
-			   						onOpen: () => {
-			   							swal.showLoading()
-			   						}
-			   					});
-			   				}
-			   			})
-			   			.done(function(data) {
-			   				if (data.code == 200) {
-			   					window.localStorage.removeItem('OTPs');
-			   					window.location = base_url+'pin-dompet/forgot-three';
-			   				}else {
-			   				}
-			   			})
-			   			.fail(function() {
-			   				console.log("error");
-			   			})
-			   			.always(function() {
-			   			});
-
-			   		}else{
-			   			as.val('');
-			   			b.val('');
-			   			c.val('');
-			   			d.val('');
-			   			$("#firstdigit").focus();
-			   			swal(
-			   				'Maaf',
-			   				'Kode OTP yang anda masukan, salah.',
-			   				'warning'
-			   				);
-			   		}
+			   		var a = new FormData();
+			   		a.append("otp", fix);
+			   		$.ajax({
+			   			url: base_url+'auth/confirm_otp_forgot',
+			   			type: 'POST',
+			   			dataType: 'json',
+			   			cache: false,
+			   			contentType: false,
+			   			processData: false,
+			   			data: a,
+			   			beforeSend: function () {
+			   				swal({
+			   					title: 'Mohon tunggu...',
+			   					onOpen: () => {
+			   						swal.showLoading()
+			   					}
+			   				});
+			   			}
+			   		})
+			   		.done(function(data) {
+			   			if (data.code == 200) {
+			   				window.location = base_url+'pin-dompet/forgot-three';
+			   			}else if (data.code == 400) {
+			   				as.val();
+			   				b.val('');
+			   				c.val('');
+			   				d.val('');
+			   				$("#firstdigit").focus();
+			   				swal(
+			   					'Maaf',
+			   					'Kode OTP yang anda masukan, salah.',
+			   					'warning'
+			   					);
+			   			}else{
+			   				window.location = base_url+'pin-dompet/forgot-one';
+			   			}
+			   		})
+			   		.fail(function() {
+			   			// window.location = base_url+'pin-dompet/forgot-one';
+			   		})
+			   		.always(function() {
+			   		});
 			   	}
 			   });
 	}
@@ -583,7 +578,6 @@ function resendOTP() {
 			})
 			.done(function(data) {
 				if (data.code == 200) {
-					localStorage.setItem("OTPs", data.data.OTP);
 					location.reload();
 				}else{
 					window.location = base_url+'pin-dompet/forgot-one';
@@ -708,7 +702,7 @@ function resendOTP() {
 				.done(function(data) {
 					if (data.code == 200) {
 						window.location = base_url+'dompet';
-					}else {
+					}else if(data.code == 202){
 						as.val('');
 						b.val('');
 						c.val('');
@@ -721,22 +715,22 @@ function resendOTP() {
 							'Kode PIN yang anda masukan berbeda.',
 							'warning'
 							);
+					}else{
+						swal(
+							'Maaf',
+							'Terjadi kesalahan...',
+							'warning'
+							);
+						window.location = base_url+'pin-dompet/forgot-one';
 					}
 				})
 				.fail(function() {
-					as.val('');
-					b.val('');
-					c.val('');
-					d.val('');
-					e.val('');
-					f.val('');
-					$("#firstdigit").focus();
-					swal(
-						'Maaf',
-						'Kode PIN yang anda masukan berbeda.',
-						'warning'
-						);
-					window.location = base_url+'pin-dompet/forgot-one';
+						swal(
+							'Maaf',
+							'Terjadi kesalahan...',
+							'warning'
+							);
+						window.location = base_url+'pin-dompet/forgot-one';
 				})
 				.always(function() {
 				});

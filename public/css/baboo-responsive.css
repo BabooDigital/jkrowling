@@ -1269,3 +1269,8 @@ a:hover {
                       from {bottom: 30px; opacity: 1;}
                       to {bottom: 0; opacity: 0;}
                     }
+
+                    /**/
+                    .top0i {
+                      top: 0px !important;
+                    }

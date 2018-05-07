@@ -3,15 +3,17 @@
 $(document).ready(function() {
 	showPopUpBanner();
 
-	var banner_height = $(".rsecnav").height();
+	var banner_height = $(".rfirstnav").height();
 	var lastScrollTop = 0;
 	$(window).scroll(function() {
 		var scroll = $(window).scrollTop();
 		var currScrollTop = $(this).scrollTop();
 		if (scroll >= banner_height && currScrollTop > lastScrollTop) {
-			$(".rsecnav").hide();
+			$(".rfirstnav").hide();
+			$(".rnavbarin").addClass('top0i');
 		} else {
-			$(".rsecnav").show();
+			$(".rfirstnav").show();
+			$(".rnavbarin").removeClass('top0i');
 		}
 		lastScrollTop = currScrollTop;
 	});
