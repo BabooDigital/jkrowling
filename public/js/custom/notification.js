@@ -1,7 +1,7 @@
 $(document).ready(function () {
   load_notification();
   count_notif();
-  setInterval(count_notif,10000);
+  // setInterval(count_notif,10000);
   $("#btn_notif_comment").on('click', function(event) {
     // console.log($(this).attr('ntf'));
     var ntf = $(this).attr('ntf');
@@ -49,7 +49,7 @@ $("#btn_notif_comment").on('click', function(event) {
 });
 function count_notif() {
   $.ajax({
-    url: base_url+'notification',
+    url: base_url+'notifications',
     type: 'POST',
     dataType: 'json',
   })
@@ -85,7 +85,7 @@ function load_notification() {
     $("#notifications").show();
     $('#notifications').show('slow/400/fast', function () {
       $.ajax({
-        url: base_url+'notification',
+        url: base_url+'notifications',
         type: 'POST',
         dataType: 'json',
       })

@@ -51,3 +51,10 @@
 		</div>
 	</div>
 </div>
+<div class="modal fade" id="pinauthdes-modal" tabindex="-1" role="dialog" aria-labelledby="PINmodal" aria-hidden="true">
+	<div class="modal-dialog" role="document" style="width: 100%; height: 100%; padding: 0; margin:0;">
+		<div class="modal-content" style="height:100%; border-radius:0; color:#333; overflow:auto;border:none;">
+			<iframe id="targetFrame" width="100%" height="100%" scrolling="NO" frameborder="0" src="<?php echo site_url('pin-wallet');?>">></iframe>
+		</div>
+	</div>
+</div>

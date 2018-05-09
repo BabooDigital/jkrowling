@@ -40,7 +40,8 @@ class C_cashout extends MX_Controller {
 					$this->load->view('inc/head', $data, FALSE);
 					$this->load->view('view_balance');
 				}else {
-					redirect('timeline','refresh');
+					$this->load->view('inc/head', $data, FALSE);
+					$this->load->view('view_balance');
 				}
 			}
 		}else{
@@ -94,7 +95,8 @@ class C_cashout extends MX_Controller {
 				$this->load->view('inc/head', $data, FALSE);
 				$this->load->view('first_cashout');
 			}else {
-				redirect('timeline','refresh');
+				$this->load->view('inc/head', $data, FALSE);
+				$this->load->view('first_cashout');
 			}
 		}
 	}
@@ -116,7 +118,8 @@ class C_cashout extends MX_Controller {
 					$this->load->view('inc/head', $data, FALSE);
 					$this->load->view('second_cashout');
 				}else {
-					redirect('timeline','refresh');
+					$this->load->view('inc/head', $data, FALSE);
+					$this->load->view('first_cashout');
 				}
 			}
 		// }else{
@@ -146,7 +149,8 @@ class C_cashout extends MX_Controller {
 					$this->load->view('inc/head', $data, FALSE);
 					$this->load->view('third_cashout');
 				}else {
-					redirect('timeline','refresh');
+					$this->load->view('inc/head', $data, FALSE);
+					$this->load->view('third_cashout');
 				}
 			}
 		}else{
@@ -168,7 +172,8 @@ class C_cashout extends MX_Controller {
 				$this->load->view('inc/head', $data, FALSE);
 				$this->load->view('fourth_cashout');
 			}else {
-				redirect('timeline','refresh');
+				$this->load->view('inc/head', $data, FALSE);
+				$this->load->view('fourth_cashout');
 			}
 		}else{
 			$this->session->set_flashdata('fail_alert', '<script>
@@ -305,6 +310,22 @@ class C_cashout extends MX_Controller {
 		echo json_encode(array(
 			'code' => $datas['code']
 		));
+	}
+	public function pinWallet()
+	{
+		$data['css'][] = "public/css/baboo.css";
+		
+		$data['css'][] = "public/css/sweetalert2.min.css";
+
+		$data['js'][] = "public/js/jquery.min.js";
+
+		$data['js'][] = "public/js/jquery.validate.js";
+		$data['js'][] = "public/js/sweetalert2.all.min.js";
+		$data['js'][] = "public/js/custom/profile_page.js";
+		$data['js'][] = "public/js/custom/cashout_auth.js";
+
+		$this->load->view('inc/head', $data);
+		$this->load->view('pin/pin_wallet');
 	}
 
 }

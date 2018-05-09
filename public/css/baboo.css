@@ -1992,6 +1992,12 @@ input.formsearch:focus {
   border: 1px #fff solid;
   border-radius: 35px;
   color: #fff;
+}
+.detail-wallet {
+  background: none;
+  border: 1px #fff solid;
+  border-radius: 35px;
+  color: #fff;
 } 
 .modal.right.fade .modal-dialog {
     -webkit-transition: opacity 0.3s linear, right 0.3s ease-out;

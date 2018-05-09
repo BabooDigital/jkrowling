@@ -93,7 +93,6 @@ class C_pin_auth extends MX_Controller {
 
 	public function fifth()
 	{
-
 		if ($this->session->userdata('4Pin_step') != 200){
 			$this->session->set_flashdata('fail_alert', '<script>
 				$(window).on("load", function(){
@@ -362,7 +361,6 @@ class C_pin_auth extends MX_Controller {
 			}
 		}
 	}
-
 }
 
 /* End of file C_pin_auth.php */
