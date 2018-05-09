@@ -22,11 +22,10 @@ class C_Event extends MX_Controller
             $data['css'][] = "public/css/sweetalert2.min.css";
             $data['js'][] = "public/js/sweetalert2.all.min.js";
             $data['js'][] = "public/js/custom/notification.js";
+            $data['js'][] = "public/js/custom/notification.js";
         }
         $data['js'][] = "public/js/jquery.validate.js";
         $data['js'][] = "public/js/custom/event.js";
-        $data['js'][] = "public/js/custom/notification.js";
-
         $data['event'] = $this->getEvent();
         $data['winner'] = $this->bestWinner();
         $this->load->view('include/head', $data);

@@ -86,9 +86,9 @@ $route['popular_writers'] = 'timeline/C_timeline/AllPopularWriters';
 $route['yourdraft'] = 'timeline/C_timeline/draftListView';
 $route['deldraft'] = 'book/C_book/deleteDraftBook';
 
-$route['writter'] = 'timeline/C_timeline/getWritter';
+$route['writters_afer_login'] = 'timeline/C_timeline/getWritter';
 $route['writters'] = 'timeline/C_home/getWritter';
-$route['bestBook'] = 'timeline/C_timeline/getBestBook';
+$route['bestBooks'] = 'timeline/C_timeline/getBestBook';
 $route['bestBookLib'] = 'library/C_library/getBestBookLibrary';
 // $route['bestBookHome'] = 'timeline/C_home/getBestBookEvent';
 $route['slide'] = 'timeline/C_home/getSlide';
@@ -108,7 +108,7 @@ $route['sendbookmark'] = 'timeline/C_timeline/postBookmark';
 $route['activity'] = 'notification/C_notification/activity';
 
 // Explore
-$route['notification'] = 'notification/C_notification';
+$route['notifications'] = 'notification/C_notification';
 $route['more'] = 'more/C_more';
 $route['updatentf'] = 'notification/C_notification/updateNtf';
 
@@ -169,7 +169,7 @@ $route['pay_book/finish'] = 'book/C_book/finish_pay';
 
 $route['getcommentbook'] = 'book/C_book/getCommentBook';
 $route['commentbook'] = 'book/C_book/postCommentBook';
-$route['notification'] = 'notification/C_notification/getNotification';
+$route['notifications'] = 'notification/C_notification/getNotification';
 $route['example'] = 'notification/C_notification/example';
 $route['example/trigger_event'] = 'notification/C_notification/trigger_event';
 // Cover
@@ -248,6 +248,7 @@ $route['auth/confirm_upd_pin'] = 'pin/C_forgot_pin/confirmNewPinForgot';
 
 // CASHOUT VIEW ROUTES
 $route['dompet'] = 'cashout/C_cashout';
+$route['pin-wallet'] = 'cashout/C_cashout/pinWallet';
 $route['cashout/stat/(:any)'] = 'cashout/C_cashout/viewStatusPending';
 $route['cashout'] = 'cashout/C_cashout/first_';
 $route['cashout/first'] = 'cashout/C_cashout/first_';

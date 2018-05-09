@@ -79,7 +79,7 @@
 								<div class="penghargaan">
 									<div class="pt-5 pb-5 pl-10 pr-10" style="background-color: #7661ca;border-radius: 10px;width: 110%;">
 										<?php $pin = $userdata['has_pin']; if ($pin == 1 || $pin != false) { ?>
-										<p class="text-left"><img src="<?php echo base_url('public/img/assets/icon_wallet_white.png'); ?>" class="img-fluid" width="20"> <span class="text-white">Dompet</span> <button type="button" class="float-right btn-detdomp" data-toggle="modal" data-target="pinauth-modal" style="width: 20%;font-size: 13px;">Detail</button></p>
+										<p class="text-left"><img src="<?php echo base_url('public/img/assets/icon_wallet_white.png'); ?>" class="img-fluid" width="20"> <span class="text-white">Dompet</span> <button type="button" class="float-right detail-wallet" data-toggle="modal" data-target="pinauth-modal" style="width: 30%;font-size: 13px;">Detail</button></p>
 										<p class="text-left mt-15"><button class="btn-transparant text-white btnActive" style="font-size: 20px;font-weight: 800;">Rp <?php echo number_format($userdata['balance'] , 0, ',', '.'); ?></button></p>
 										<?php }else{ ?>
 										<p class="text-left"><img src="<?php echo base_url('public/img/assets/icon_wallet_white.png'); ?>" class="img-fluid" width="20"> <span class="text-white">Dompet</span></p>
@@ -292,12 +292,18 @@
 			</div>
 			<div class="modal fade" id="wallet-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 				<div class="modal-dialog" role="document" style="height: ">
-					<div class="modal-content" style="width: 130% !important;right: 15%;">
-						<div class="modal-body" style="height: 700px;">
+					<div class="modal-content" style="width: 440px !important; left: 10%;">
+						<div class="modal-body" style="height: 670px;">
 							<iframe id="targetFrame" width="100%" height="100%" scrolling="NO" frameborder="0" src="<?php echo site_url('pin-dompet');?>">></iframe>
 						</div>
 					</div>
 				</div>
+			</div>
+			<?php echo $this->session->userdata('hasPIN'); ?>
+			<?php $pin = $userdata['has_pin']; if ($pin == 1) { ?>
+			<?php $this->load->view('include/modal_pin'); ?>
+			<?php }else{ ?>
+			<?php } ?>
 				<?php if (isset($js)): ?><?php echo get_js($js) ?><?php endif ?>
 			</body>
 			</html>
