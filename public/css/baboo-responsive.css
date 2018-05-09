@@ -904,10 +904,12 @@ a:hover {
                     .btnupdate-prof {
                       border-radius: 100px;
                       background: #7554bd;
-                      padding: 10px 110px;
-                      font-size: 15pt;
+                      font-size: 13pt;
                       color: #fff;
                       border: none;
+                      width: 100%;
+                      height: 40px;
+                      box-shadow: 0px 2px 4px #51000000;
                     }
 
                     .btnupdate-prof:hover {
@@ -1273,4 +1275,49 @@ a:hover {
                     /**/
                     .top0i {
                       top: 0px !important;
+                    }
+
+                    /**/
+                     /**/
+                     #snackbarpass {
+                      visibility: hidden;
+                      position: fixed;
+                      font-weight: 600;
+                      bottom: 78px;
+                      left: 14%;
+                      width: 70%;
+                      margin: auto;
+                      background-color: #f7f5ff;
+                      color: #000;
+                      text-align: center;
+                      border-radius: 35px;
+                      padding: 16px;
+                      z-index: 9999;
+                      font-size: 17px;
+                    }
+
+                    #snackbarpass.show {
+                      visibility: visible;
+                      -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+                      animation: fadein 0.5s, fadeout 0.5s 2.5s;
+                    }
+
+                    @-webkit-keyframes fadein {
+                      from {bottom: 0; opacity: 0;} 
+                      to {bottom: 30px; opacity: 1;}
+                    }
+
+                    @keyframes fadein {
+                      from {bottom: 0; opacity: 0;}
+                      to {bottom: 30px; opacity: 1;}
+                    }
+
+                    @-webkit-keyframes fadeout {
+                      from {bottom: 30px; opacity: 1;} 
+                      to {bottom: 0; opacity: 0;}
+                    }
+
+                    @keyframes fadeout {
+                      from {bottom: 30px; opacity: 1;}
+                      to {bottom: 0; opacity: 0;}
                     }
