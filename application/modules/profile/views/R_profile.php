@@ -148,13 +148,17 @@
 				</div>
 			</div>
 	<br>
-	<div class="babooid mb-60" style="overflow-y: hidden;overflow-x: hidden;">
+	<div class="babooid" style="overflow-y: hidden;overflow-x: hidden;">
 		<div class="row">
 			<div class="col-md-9">
 				<div class="row">
 					<div id="r_publishdata" class="w-100">
+						<?php echo $this->load->view('data/R_profile', $bookdata); 
+						if ($bookdata == null || $bookdata == [] || empty($bookdata)) {
+							echo "<div class='container first_login mt-30'> <div class='row'> <div class='mx-auto' style='width: 85%;'> <div class='text-center mb-10'><img src='".base_url('public/img/icon_draft_blank.png')."' width='190'></div> <div class='text-center'> <h4><b>Tentukan konten yang kamu suka!</b></h4> <p style='font-size: 12pt;'>Belum ada buku yg kamu publish</p> </div> </div> </div> </div>";
+						}
+						?>
 						<div class="loaderpubl mx-auto" style="display: none;"></div>
-
 					</div>
 					<div class="loader" style="display: none;margin-left: auto;margin-right: auto;"></div>
 				</div>

@@ -1,9 +1,44 @@
 $(document).ready(function() {
 
+  var page = 2;
+  $(window).scroll(function() {
+    if  ($(window).scrollTop() + $(window).height() >= $(document).height() - 100){
+     loadMoreData(page)
+     page++;
+   }
+ });
+
+  function loadMoreData(page) {
+    $.ajax({
+      url: '?page=' + page,
+      type: "get",
+      beforeSend: function() {
+        $('.loader').show();
+      }
+    })
+    .done(function(data) {
+      if (data == "" || data == null) {
+        $('.loader').html("No more records found");
+        return;
+
+      };
+      $('.loader').hide();
+      $("#r_publishdatas").append(data);
+      
+    })
+    .fail(function(jqXHR, ajaxOptions, thrownError) {
+      console.log('server not responding...');
+    });
+  }
+
+
+  var id = $('#thisUsr').val();
+
   $(document).on('click', '.like', function() {
     var aww = $(this);
     var formData = new FormData();
 
+    var txt = + aww.parents(".card").find(".like_countys").text() + 1;
     aww.children('.loveicon').attr("src", "../public/img/assets/love_active.svg");
     formData.append("user_id", $("#iaiduui").val());
     formData.append("book_id", aww.attr("data-id"));
@@ -22,6 +57,7 @@ $(document).ready(function() {
           aww.children('.loveicon').attr("src", "../public/img/assets/icon_love.svg");
         } else {
           aww.removeClass('like');
+          aww.parents(".card").find(".like_countys").text(txt);
           aww.addClass('unlike');
           aww.children('.loveicon').attr("src", "../public/img/assets/love_active.svg");
         }
@@ -39,6 +75,7 @@ $(document).ready(function() {
     var aww = $(this);
     var formData = new FormData();
 
+    var txt = + aww.parents(".card").find(".like_countys").text() - 1;
     aww.children('.loveicon').attr("src", "../public/img/assets/icon_love.svg");
     formData.append("user_id", $("#iaiduui").val());
     formData.append("book_id", aww.attr("data-id"));
@@ -60,6 +97,7 @@ $(document).ready(function() {
         } else {
           aww.removeClass('unlike');
           aww.addClass('like');
+          aww.parents(".card").find(".like_countys").text(txt);
           aww.children('.txtlike').text('Suka');
           aww.children('.loveicon').attr("src", "../public/img/assets/icon_love.svg");
         }
@@ -75,6 +113,9 @@ $(document).ready(function() {
 
     var aww = $(this);
     var formData = new FormData();
+
+    var txt = + aww.parents(".card").find(".share_countys").text() + 1;
+
     var blink = aww.parents(".card").find(".dbooktitle").text();
     var desc = aww.parents(".card").find(".textp").attr('data-text')+'.. - Baca buku lebih lengkap disini.. | Baboo.id';
     var img = aww.parents(".card").find('.cover_image').attr('src');
@@ -111,6 +152,7 @@ $(document).ready(function() {
               // }
             })
           .done(function(data) {
+            aww.parents(".card").find(".share_countys").text(txt);
               // $('.loader').hide();
               // console.log("ke share");
             })
