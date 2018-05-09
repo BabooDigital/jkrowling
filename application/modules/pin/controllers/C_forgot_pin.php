@@ -110,6 +110,7 @@ class C_forgot_pin extends MX_Controller {
 			$this->session->sess_destroy();
 			redirect('login','refresh');
 		}else{
+			$this->session->set_userdata('authKey', $auth);
 			echo json_encode(array(
 				'code' => $datas['code'],
 				'data' => $datas['data']
@@ -140,6 +141,7 @@ class C_forgot_pin extends MX_Controller {
 			$this->session->sess_destroy();
 			redirect('login','refresh');
 		}else{
+			$this->session->set_userdata('authKey', $auth);
 			echo json_encode(array(
 				'code' => $datas['code'],
 				'data' => $datas['data'],
@@ -168,6 +170,7 @@ class C_forgot_pin extends MX_Controller {
 			$this->session->sess_destroy();
 			redirect('login','refresh');
 		}else{
+			$this->session->set_userdata('authKey', $auth);
 			echo json_encode(array(
 				'code' => $datas['code'],
 				'data' => $datas['data'],
@@ -195,6 +198,7 @@ class C_forgot_pin extends MX_Controller {
 			$this->session->sess_destroy();
 			redirect('login','refresh');
 		}else{
+			$this->session->set_userdata('authKey', $auth);
 			echo json_encode(array(
 				'code' => $datas['code']
 			));
@@ -224,6 +228,7 @@ class C_forgot_pin extends MX_Controller {
 			$this->session->sess_destroy();
 			redirect('login','refresh');
 		}else{
+			$this->session->set_userdata('authKey', $auth);
 			echo json_encode(array(
 				'code' => $datas['code']
 			));

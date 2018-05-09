@@ -261,3 +261,8 @@ $route['auth/check_pin'] = 'cashout/C_cashout/confirmPinExist';
 $route['auth/check_acc'] = 'cashout/C_cashout/checkAccountBank';
 $route['auth/create_acc'] = 'cashout/C_cashout/createAccBank';
 $route['auth/create_payout'] = 'cashout/C_cashout/createCashout';
+
+// AUTH CHANGE PASSWORD VIEW
+$route['forgot-pass'] = 'profile/C_edit_profile/changePasswordView';
+// AUTH CHANGE PASSWORD POST
+$route['auth/changepass'] = 'profile/C_edit_profile/changePasswordPost';
