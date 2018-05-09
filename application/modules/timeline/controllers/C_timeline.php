@@ -23,23 +23,19 @@ class C_timeline extends MX_Controller {
 		$auth = $this->session->userdata('authKey');
 		$userdata = $this->session->userdata('userData');
 
-
-		$ch = curl_init();
 		if (!empty($this->input->get("page"))) {
-			$id = $this->input->get("page");
+			$idpage = $this->input->get("page");
 		}else{
-			$id = "";
+			$idpage = "";
 		}
-		$uid = array(
-			// 'user_id' => $userdata['user_id'],
-			'count' => $id
-		);
+		$sendData = array('count' => $idpage );
+
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $this->API.'timeline/Timelines/home');
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
 		curl_setopt($ch, CURLOPT_POST, 1);
-		curl_setopt($ch, CURLOPT_POSTFIELDS, $uid);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $sendData);
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 		curl_setopt($ch, CURLOPT_HEADER, 1);
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key: '.$auth));

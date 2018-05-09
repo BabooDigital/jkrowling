@@ -185,6 +185,7 @@ $route['account/edit'] = 'profile/C_edit_profile';
 $route['account/edit_profile'] = 'profile/C_edit_profile/postEditProfile';
 $route['account/setting'] = 'profile/C_profile/settingProfile';
 $route['getpublishbook'] = 'profile/C_profile/getPublishBook';
+$route['getpublishbookother'] = 'profile/C_profile/getPublishBookOther';
 $route['getdraftbook'] = 'profile/C_profile/getDraftBook';
 $route['getlatestread'] = 'profile/C_profile/getLatestRead';
 
