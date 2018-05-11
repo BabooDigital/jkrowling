@@ -121,39 +121,43 @@ $(document).ready(function() {
         "" != e && null != e ? ($(".loader").hide(), $("#post-data").append(e)) : $(".loader").html("No more records found")
     }).fail(function(e, a, t) {
         console.log("server not responding...")
-    }), $.ajax({
-        url: base_url + "writter",
-        type: "GET",
-        dataType: "json"
-    }).done(function(e) {
-        $(".loader").hide();
-        // var a = $.parseJSON(e),
-           var t = "";
-        $.each(e, function(e, a) {
-            var o;
-            var follow = '';
-            if (a.isFollow == false) {
-                follow += "<a href='#' data-follow='"+a.author_id+"' class='addbutton followprofile'><img src='public/img/assets/icon_plus_purple.svg' width='20' class='mt-img'></a>"; 
-            }else{
-                follow += ""; 
-            }
-            null != a.avatar && (o = a.avatar), "" == a.avatar ? o = "public/img/profile/blank-photo.jpg" : null == a.avatar && (o = "public/img/profile/blank-photo.jpg"), t += "<li class='media baboocontent'><img alt='" + a.author_name + "' class='d-flex mr-3 rounded-circle' src='" + o + "' width='50' height='50'><div class='media-body mt-7'><a class='profile' data-usr-prf='"+a.author_id+"' data-usr-name='"+convertToSlug(a.author_name)+"' href='profile/"+convertToSlug(a.author_name) + "'><h5 class='mt-0 mb-1 nametitle'>" + a.author_name + "</h5></a><div class='pull-right baboocolor'>"+follow+"</div></div></li>"
-        }), $("#author_this_week").html(t)
-    }).fail(function() {
-        console.log("error")
-    }).always(function() {}), $.ajax({
-        url: base_url + "bestBook",
-        type: "GET",
-        dataType: "json"
-    }).done(function(e) {
-        var a = "";
-        $.each(e, function(e, t) {
-            var o;
-            o = null == t.popular_cover_url || "" == t.popular_cover_url || "Kosong" == t.popular_cover_url ? base_url + "public/img/blank_cover.png" : t.popular_cover_url, a += '<a><li class="list-group-item"> <div class="media"> <div class="media-left mr-10"> <a href="#"><img class="media-object" src="' + o + '" width="60" height="80"></a> </div> <div class="media-body"> <div> <h4 class="media-heading bold mt-10"><a href="book/' + t.popular_book_id + "-" + convertToSlug(t.popular_book_title) + '">' + t.popular_book_title + '</a></h4> <p style="font-size: 10pt;">by <a class="profile" data-usr-prf="'+t.popular_author_id+'" data-usr-name="'+convertToSlug(t.popular_author_name)+'" id="' + t.popular_author_id + '" href="' + base_url + "profile/" + convertToSlug(t.popular_author_name) + '">' + t.popular_author_name + "</a></p> </div> </div> </div> </li>"
-        }), $("#best_book").html(a)
-    }).fail(function() {
-        console.log("error")
-    }).always(function() {});
+    })
+    // ,
+    //  $.ajax({
+    //     url: base_url + "writters_afer_login",
+    //     type: "GET",
+    //     dataType: "json"
+    // }).done(function(e) {
+    //     $(".loader").hide();
+    //     // var a = $.parseJSON(e),
+    //        var t = "";
+    //     $.each(e, function(e, a) {
+    //         var o;
+    //         var follow = '';
+    //         if (a.isFollow == false) {
+    //             follow += "<a href='#' data-follow='"+a.author_id+"' class='addbutton followprofile'><img src='public/img/assets/icon_plus_purple.svg' width='20' class='mt-img'></a>"; 
+    //         }else{
+    //             follow += ""; 
+    //         }
+    //         null != a.avatar && (o = a.avatar), "" == a.avatar ? o = "public/img/profile/blank-photo.jpg" : null == a.avatar && (o = "public/img/profile/blank-photo.jpg"), t += "<li class='media baboocontent'><img alt='" + a.author_name + "' class='d-flex mr-3 rounded-circle' src='" + o + "' width='50' height='50'><div class='media-body mt-7'><a class='profile' data-usr-prf='"+a.author_id+"' data-usr-name='"+convertToSlug(a.author_name)+"' href='profile/"+convertToSlug(a.author_name) + "'><h5 class='mt-0 mb-1 nametitle'>" + a.author_name + "</h5></a><div class='pull-right baboocolor'>"+follow+"</div></div></li>"
+    //     }), $("#author_this_week").html(t)
+    // }).fail(function() {
+    //     console.log("error")
+    // }).always(function() {})
+    // ,
+    //  $.ajax({
+    //     url: base_url + "bestBooks",
+    //     type: "GET",
+    //     dataType: "json"
+    // }).done(function(e) {
+    //     var a = "";
+    //     $.each(e, function(e, t) {
+    //         var o;
+    //         o = null == t.popular_cover_url || "" == t.popular_cover_url || "Kosong" == t.popular_cover_url ? base_url + "public/img/blank_cover.png" : t.popular_cover_url, a += '<a><li class="list-group-item"> <div class="media"> <div class="media-left mr-10"> <a href="#"><img class="media-object" src="' + o + '" width="60" height="80"></a> </div> <div class="media-body"> <div> <h4 class="media-heading bold mt-10"><a href="book/' + t.popular_book_id + "-" + convertToSlug(t.popular_book_title) + '">' + t.popular_book_title + '</a></h4> <p style="font-size: 10pt;">by <a class="profile" data-usr-prf="'+t.popular_author_id+'" data-usr-name="'+convertToSlug(t.popular_author_name)+'" id="' + t.popular_author_id + '" href="' + base_url + "profile/" + convertToSlug(t.popular_author_name) + '">' + t.popular_author_name + "</a></p> </div> </div> </div> </li>"
+    //     }), $("#best_book").html(a)
+    // }).fail(function() {
+    //     console.log("error")
+    // }).always(function() {});
     var a = $(window).width();
 
     function t() {

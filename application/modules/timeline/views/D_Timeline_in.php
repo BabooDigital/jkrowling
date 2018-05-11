@@ -29,11 +29,29 @@ echo "<script>(function(d, s, id) {
 					</div>
 					<div class="card-body p-0">
 						<ul class="list-group list-group-flush" id="author_this_week">
-							<div class="loads-css ng-scope"><div style="width:20px;height:20px" class="lds-flickr"><div></div><div></div><div></div></div></div>
+							<?php foreach ($writter as $best_writter): ?>
+							<?php if ($best_writter['avatar'] == "" || $best_writter == null): ?>
+								<?php $img =  base_url().'public/img/profile/blank-photo.jpg'; ?>
+							<?php else: ?>
+								<?php $img = $best_writter['avatar']; ?>
+							<?php endif ?>
+							<?php if ($best_writter['isFollow'] == false): ?>
+								<?php $follow = "<a href='#' data-follow='".$best_writter['author_id']."' class='addbutton followprofile'><img src='public/img/assets/icon_plus_purple.svg' width='20' class='mt-img'></a>"; ?>
+							<?php else: ?>
+								<?php $follow = ""; ?>
+							<?php endif ?>
+							<li class='media baboocontent'>
+								<img class='d-flex mr-3 rounded-circle' src='<?php echo $img; ?>' width='50' height='50'><div class='media-body mt-7'>
+									<a class='profile' data-usr-prf='<?php echo $best_writter['author_id']; ?>' data-usr-name='<?php echo url_title($best_writter['author_name']); ?>' href='profile/<?php echo url_title($best_writter['author_name']); ?>'>
+										<h5 class='mt-0 mb-1 nametitle'><?php echo $best_writter['author_name']; ?></h5>
+									</a>
+									<div class='pull-right baboocolor'><?php echo $follow; ?></div>
+								</div>
+							</li>
+							<?php endforeach ?>
 						</ul>
 					</div>
 				</div>
-				<!-- Trending -->
 			</div>
 		</div>
 
@@ -42,20 +60,16 @@ echo "<script>(function(d, s, id) {
 			<?php 
 			$this->load->view('data/D_timeline_in', $home);
 			?>
-			<!-- <span class="loader" style="display: none;margin-left: auto;margin-right: auto;"></span> -->
 		</div>
 
 		<!-- Right Side -->
 		<div class="col-md-3 tmlin">
 			<div class="stickymenu">
-				<!-- Card Widget -->
 				<div class="card card-widget mb-15">
 					<a href="<?php echo base_url('event') ?>">
 						<img src="https://s3-us-west-2.amazonaws.com/s3.baboo.id/baboo-cover/hasil-web.png" style="width:100%;height: 100%;">
 					</a>
 				</div>
-				<!-- Card Widget -->
-
 				<!-- Buku Populer -->
 				<div class="side-card mb-15">
 					<div class="card-header">
@@ -63,7 +77,31 @@ echo "<script>(function(d, s, id) {
 					</div>
 					<div class="card-body p-0">
 						<ul class="list-group list-group-flush" id="best_book">
-							<div class="loads-css ng-scope"><div style="width:20px;height:20px" class="lds-flickr"><div></div><div></div><div></div></div></div>
+							<?php foreach ($best as $best_book): ?>
+							<?php if ($best_book['popular_cover_url'] == null || $best_book['popular_cover_url'] == "Kosong" || $best_book['popular_cover_url'] == ""): ?>
+								<?php $cover =  base_url()."public/img/blank_cover.png"; ?>
+							<?php else: ?>
+								<?php $cover =  $best_book['popular_cover_url']; ?>
+							<?php endif ?>
+							<li class="list-group-item"> 
+								<div class="media"> 
+									<div class="media-left mr-10"> 
+										<a href="#"><img class="media-object" src="<?php echo $cover; ?>" width="60" height="80"></a> 
+									</div> 
+									<div class="media-body"> 
+										<div> 
+											<h4 class="media-heading bold mt-10">
+												<a href="book/<?php
+								echo $best_book['popular_book_id']; ?>
+								-<?php echo url_title($best_book['popular_book_title'], 'dash', true); ?>"><?php echo $best_book['popular_book_title'] ?></a>
+											</h4> 
+											<p style="font-size: 10pt;">by <a class="profile" data-usr-prf="<?php echo $best_book['popular_author_id']; ?>" data-usr-name="<?php echo url_title($best_book['popular_author_name']); ?>" href="profile/<?php echo url_title($best_book['popular_author_name']); ?>"><?php echo $best_book['popular_author_name']; ?></a></p> 
+										</div> 
+									</div> 
+								</div> 
+							</li>
+
+							<?php endforeach ?>
 						</ul>
 					</div>
 				</div>

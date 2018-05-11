@@ -19,10 +19,15 @@ $(document).ready(function() {
 		event.preventDefault();
 		$('#wallet-modal').modal({backdrop: 'static', keyboard: false});
 	});
-
+	$(document).on('click', '.detail-wallet', function() {
+		event.preventDefault();
+		$('#pinauthdes-modal').modal({backdrop: 'static', keyboard: false});
+		$("#firstdigit").focus();
+	});
+	keyupPIN();
 });
 
-// MODAL PIN
+// MODAL 
 function keyupPIN() {
 	$('body').on('keyup', 'input.pininput', function(event){
 		var as = $( "#firstdigit" );

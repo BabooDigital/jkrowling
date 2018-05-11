@@ -1,6 +1,6 @@
 $(document).ready(function() {
-	transaction_counter();
-	popular_book();
+	// transaction_counter();
+	// popular_book();
 	detail_transaction();
 });
 function popular_book() {

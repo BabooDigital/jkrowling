@@ -21,7 +21,7 @@ class C_notification extends MX_Controller
 		$data['js'][] = "public/js/jquery.min.js";
         $data['js'][] = "public/js/umd/popper.min.js";
         $data['js'][] = "public/js/bootstrap.min.js";
-        $data['js'][] = "public/js/custom/notification.js";
+        // $data['js'][] = "public/js/custom/notification.js";
         $data['js'][] = "public/js/menupage.js";
 		if ($this->agent->is_mobile()){
 
@@ -81,7 +81,7 @@ class C_notification extends MX_Controller
 		$data['js'][] = "public/js/jquery.min.js";
 		$data['js'][] = "public/js/umd/popper.min.js";
 		$data['js'][] = "public/js/bootstrap.min.js";
-        $data['js'][] = "public/js/custom/notification.js";
+        // $data['js'][] = "public/js/custom/notification.js";
 		$data['js'][] = "public/js/menupage.js";
 		echo json_encode($notif);
 	}
@@ -134,7 +134,7 @@ class C_notification extends MX_Controller
 		$data['js'][] = "public/js/jquery.min.js";
 		$data['js'][] = "public/js/umd/popper.min.js";
 		$data['js'][] = "public/js/bootstrap.min.js";
-        $data['js'][] = "public/js/custom/notification.js";
+        // $data['js'][] = "public/js/custom/notification.js";
          $data['js'][] = "public/js/custom/transaction.js";
 		$data['js'][] = "public/js/menupage.js";
 		if ($this->agent->is_mobile()){
