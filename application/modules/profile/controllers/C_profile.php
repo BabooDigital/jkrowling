@@ -15,38 +15,20 @@ class C_profile extends MX_Controller {
 		error_reporting(0);
 		$auth = $this->session->userdata('authKey');
 		$userdata = $this->session->userdata('userData');
-		$sendData = array(
-			'user_id' => $userdata['user_id']
-		);
-		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, $this->API.'auth/OAuth/profile');
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($ch, CURLOPT_POST, 1);
-		curl_setopt($ch, CURLOPT_POSTFIELDS, $sendData);
-		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-		curl_setopt($ch, CURLOPT_HEADER, 1);
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key: '.$auth));
-		$result = curl_exec($ch);
-		$headers=array();
-		$data=explode("\n",$result);
-		array_shift($data);
-		$middle = array();
-		$moddle = array();
-		foreach($data as $part){
-			$middle=explode(":",$part);
-			$moddle=explode("{",$part);
-			if (error_reporting() == 0) {
-				$headers[trim($middle[0])] = trim($middle[1]);
-			}
+
+		$datas = $this->curl_request->curl_post($this->API.'auth/OAuth/profile', '', $auth);
+
+		if (!empty($this->input->get("page"))) {
+			$idpage = $this->input->get("page");
+		}else{
+			$idpage = "";
 		}
-		$getdata = end($data);
-		$resval =  json_decode($getdata, TRUE);
-		$psn = $resval['message'];
-		$userdetail = $resval['data'];
-		$auth = $headers['BABOO-AUTH-KEY'];
-		
-		$status = $resval['code'];
-		$data['userdata'] = $userdetail;
+		$sendData = array('count' => $idpage);
+
+		$datas2 = $this->curl_request->curl_post($this->API.'timeline/Timelines/publish', $sendData, $auth);
+
+		$data['userdata'] = $datas['data'];
+		$data['bookdata'] = $datas2['data'];
 		$data['title'] = "Profile Page - Baboo";
 		$data['css'][] = "public/css/sweetalert2.min.css";
 
@@ -55,32 +37,47 @@ class C_profile extends MX_Controller {
 		$data['js'][] = "public/js/bootstrap.min.js";
 		$data['js'][] = "public/js/jquery.sticky-kit.min.js";
 		$data['js'][] = "public/js/custom/notification.js";
-        $data['js'][] = "public/js/custom/transaction.js";
+		$data['js'][] = "public/js/custom/transaction.js";
 		$data['js'][] = "public/js/jquery.validate.js";
 		$data['js'][] = "public/js/sweetalert2.all.min.js";
 		
-		if ($status == 403){
+		if (http_response_code() == 403){
 			$this->session->unset_userdata('userData');
 			$this->session->unset_userdata('authKey');
 			$this->session->sess_destroy();
 			redirect('login','refresh');
 		}else{
 			$this->session->set_userdata('authKey', $auth);
-			if ($this->agent->mobile()) {
-				$data['css'][] = "public/css/baboo-responsive.css";
-				$data['js'][] = "public/js/custom/mobile/r_profile_page.js";
-				$data['js'][] = "public/js/custom/mobile/r_first_login.js";
-				$data['js'][] = "public/js/custom/cashout_auth.js";
-				$data['js'][] = "public/js/menupage.js";
-				$this->load->view('include/head', $data);
-				$this->load->view('R_profile');
-			}else{
-				$data['css'][] = "public/css/baboo.css";
-				$data['js'][] = "public/js/custom/profile_page.js";
-				$data['js'][] = "public/js/custom/cashout_auth.js";
-				$this->load->view('include/head', $data);
-				$this->load->view('D_profile');
-			// $this->load->view('timeline/include/foot');
+
+			if ($datas['code'] == 200) {
+				if ($this->agent->mobile()) {
+					$data['css'][] = "public/css/baboo-responsive.css";
+					$data['js'][] = "public/js/custom/mobile/r_profile_page.js";
+					$data['js'][] = "public/js/custom/mobile/r_first_login.js";
+					$data['js'][] = "public/js/custom/cashout_auth.js";
+					$data['js'][] = "public/js/menupage.js";
+
+					if (!empty($this->input->get("page"))) {
+						$result = $this->load->view('data/R_profile', $data);
+					}else{
+						$this->load->view('include/head', $data);
+						$this->load->view('R_profile');
+					}
+				}else{
+					$data['css'][] = "public/css/baboo.css";
+					$data['js'][] = "public/js/custom/profile_page.js";
+					$data['js'][] = "public/js/custom/cashout_auth.js";
+
+					$this->load->view('include/head', $data);
+					$this->load->view('D_profile');
+				}
+			}else {
+				$this->session->set_flashdata('fail_alert', '<script>
+					$(window).on("load", function(){
+						swal("Gagal", "Maaf, terjadi sebuah kesalahan", "error");
+						});
+						</script>');
+				redirect('timeline','refresh');
 			}
 		}
 	}
@@ -88,53 +85,32 @@ class C_profile extends MX_Controller {
 	{
 		error_reporting(0);
 		$auth = $this->session->userdata('authKey');
-		$userdata = $this->session->userdata('userData');
 		$id_user = $this->input->post('usr_prf');
+
+		if (!empty($this->input->get("page"))) {
+			$idpage = $this->input->get("page");
+		}else{
+			$idpage = "";
+		}
 		
 		$iduser = $this->uri->segment(2);
-        $ids = explode('-', $iduser, 2);
-        if (is_array($ids)) ;
+		$ids = explode('-', $iduser, 2);
+		if (is_array($ids)) ;
 
-        if ($id_user != NULL || $id_user != "") {
-        	$idfix = $id_user;
-        }else {
-        	$idfix = $ids[0];
-        }
-		$sendData = array(
-			'user_id' => $userdata['user_id'], 
-			'user_profile' => $idfix 
-		);
-		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, $this->API.'auth/OAuth/otherProfile');
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($ch, CURLOPT_POST, 1);
-		curl_setopt($ch, CURLOPT_POSTFIELDS, $sendData);
-		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-		curl_setopt($ch, CURLOPT_HEADER, 1);
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key: '.$auth));
-		$result = curl_exec($ch);
-		$headers=array();
-		$data=explode("\n",$result);
-		array_shift($data);
-		$middle = array();
-		$moddle = array();
-		foreach($data as $part){
-			$middle=explode(":",$part);
-			$moddle=explode("{",$part);
-			if (error_reporting() == 0) {
-				$headers[trim($middle[0])] = trim($middle[1]);
-			}
+		if ($id_user != NULL || $id_user != "") {
+			$idfix = $id_user;
+		}else {
+			$idfix = $ids[0];
 		}
-		$getdata = end($data);
-		$resval =  json_decode($getdata, TRUE);
-		$psn = $resval['message'];
-		$userdetail = $resval['data'];
-		$status = $resval['code'];
-		$auth = $headers['BABOO-AUTH-KEY'];
+		$sendData = array(
+			'user_profile' => $idfix,
+			'count' => $idpage
+		);
+		$datas = $this->curl_request->curl_post($this->API.'auth/OAuth/otherProfile', $sendData, $auth);
 
-		$data['userdata'] = $userdetail['user_info'];
-		$data['bookdata'] = $userdetail['book_published'];
-		// $data['bookprofile'] = $userbook;
+		$data['userdata'] = $datas['data']['user_info'];
+		$data['bookdata'] = $datas['data']['book_published'];
+
 		$data['title'] = "Profile Page - Baboo";
 		$data['js'][] = "public/js/jquery.min.js";
 		$data['js'][] = "public/js/umd/popper.min.js";
@@ -143,7 +119,7 @@ class C_profile extends MX_Controller {
 		$data['js'][] = "public/js/custom/follow.js";
 		$data['js'][] = "public/js/custom/notification.js";
 
-		if ($status == 403){
+		if (http_response_code() == 403){
 			$this->session->unset_userdata('userData');
 			$this->session->unset_userdata('authKey');
 			$this->session->sess_destroy();
@@ -151,28 +127,38 @@ class C_profile extends MX_Controller {
 		}else{
 			$this->session->set_userdata('authKey', $auth);
 
-			if ($this->agent->mobile()) {
+			if ($datas['code'] == 200) {
+				if ($this->agent->mobile()) {
 
-				$data['css'][] = "public/css/sweetalert2.min.css";
-				$data['css'][] = "public/css/baboo-responsive.css";
-				$data['js'][] = "public/js/sweetalert2.all.min.js";
-				$data['js'][] = "public/js/menupage.js";
-				$data['js'][] = "public/js/custom/mobile/r_other_profile.js";
+					$data['css'][] = "public/css/sweetalert2.min.css";
+					$data['css'][] = "public/css/baboo-responsive.css";
+					$data['js'][] = "public/js/sweetalert2.all.min.js";
+					$data['js'][] = "public/js/menupage.js";
+					$data['js'][] = "public/js/custom/mobile/r_other_profile.js";
 
-				$this->load->view('include/head', $data);
-				$this->load->view('R_other_profile');
+					if (!empty($this->input->get("page"))) {
+						$result = $this->load->view('data/R_other_profile', $data);
+					}else{
 
-			}else{
-				$data['js'][] = "public/js/custom/profile_page.js";
+						$this->load->view('include/head', $data);
+						$this->load->view('R_other_profile');
+					}
+				}else{
+					$data['js'][] = "public/js/custom/profile_page.js";
 
-				$this->load->view('include/head', $data);
-				$this->load->view('D_profile');
-			// $this->load->view('timeline/include/foot');
+					$this->load->view('include/head', $data);
+					$this->load->view('D_profile');
 
+				}
+			}else {
+				$this->session->set_flashdata('fail_alert', '<script>
+					$(window).on("load", function(){
+						swal("Gagal", "Maaf, terjadi sebuah kesalahan", "error");
+						});
+						</script>');
+				redirect('timeline','refresh');
 			}
 		}
-		// print_r($result_books);
-		// print_r($data['userdata']);
 	}
 	public function getPublishBook() {
 		error_reporting(0);
@@ -324,5 +310,25 @@ class C_profile extends MX_Controller {
 		$data['js'][] = "public/js/umd/popper.min.js";
 		$data['js'][] = "public/js/bootstrap.min.js";
 		$this->load->view('R_setting_profile', $data);
+	}
+
+	public function getPublishBookOther()
+	{
+		error_reporting(0);
+		$auth = $this->session->userdata('authKey');
+		$user = $this->input->post('user_profile');
+		$sendData = array('user_profile' => $user );
+		$datas = $this->curl_request->curl_post($this->API.'auth/OAuth/otherProfile', $sendData, $auth);
+
+		if (http_response_code() == 403){
+			$this->session->unset_userdata('userData');
+			$this->session->unset_userdata('authKey');
+			$this->session->sess_destroy();
+			redirect('login','refresh');
+		}else{
+			if ($datas['code'] == 200) {
+				echo json_encode(array('code' => $datas['code'], 'data' => $datas['data']['book_published']));
+			}
+		}
 	}
 }

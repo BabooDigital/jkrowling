@@ -67,6 +67,9 @@
 		</div>
 		<input type="hidden" id="iaiduui" name="iaiduui" value="<?php $name = $this->session->userdata('userData'); echo $name['user_id']; ?>">
 	</div>
+	<?php if (!empty($this->session->flashdata('success_change_pass'))) {
+		echo "<div id='snackbarpass'>Password Berhasil Dirubah</div>";
+	} ?>
 	<!-- JS -->
 	<?php if (isset($js)): ?><?php echo get_js($js) ?><?php endif ?>
 	<?php if ($this->session->flashdata('is_follow_event')): ?>
@@ -79,6 +82,7 @@
 			swal("Maaf..", "Kamu Sudah Mengikuti Event!", "warning");
 		</script>
 	<?php endif ?>
-	<?php echo $this->session->flashdata('fail_alert'); ?>
+	<?php echo $this->session->flashdata('fail_alert');
+		echo $this->session->flashdata('success_change_pass'); ?>
 </body>
 </html>

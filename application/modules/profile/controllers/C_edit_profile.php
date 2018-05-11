@@ -406,4 +406,66 @@ class C_edit_profile extends MX_Controller {
 	    	}
 
 	    }
+
+	    public function changePasswordView()
+	    {
+	    	$data['title'] = 'Ubah Password Kamu - Baboo.id';
+
+	    	$data['css'][] = "public/css/bootstrap.min.css";
+	    	$data['css'][] = "public/css/custom-margin-padding.css";
+	    	$data['css'][] = "public/css/font-awesome.min.css";
+	    	$data['css'][] = "public/css/baboo-responsive.css";
+	    	$data['css'][] = "public/css/sweetalert2.min.css";
+
+
+	    	$data['js'][] = "public/js/jquery.min.js";
+	    	$data['js'][] = "public/js/tether.min.js";
+	    	$data['js'][] = "public/js/umd/popper.min.js";
+	    	$data['js'][] = "public/js/bootstrap.min.js";
+	    	$data['js'][] = "public/js/sweetalert2.all.min.js";
+	    	$data['js'][] = "public/js/jquery.validate.js";
+
+	    	$this->load->view('R_change_password', $data);
+	    }
+
+	    public function changePasswordPost()
+	    {
+	    	error_reporting(0);
+	    	$auth = $this->session->userdata('authKey');
+	    	$old    = $this->input->post('old_password');
+	    	$new    = $this->input->post('new_password');
+
+	    	$send = array('old_password' => $old, 'new_password' => $new);
+	    	$datas = $this->curl_request->curl_post($this->API.'auth/OAuth/changePassword', $send, $auth);
+
+	    	if (http_response_code() == 403){
+	    		$this->session->sess_destroy();
+	    		redirect('login','refresh');
+	    	}else{
+	    		$this->session->set_userdata('authKey', $auth);
+	    		echo json_encode(array(
+	    			'code' => $datas['code'],
+	    			'msg' => $datas['message'],
+	    		));
+	    		if ($datas['code'] == 200) {
+	    			$this->session->set_flashdata('success_change_pass', "<script>
+	    				var x = document.getElementById('snackbarpass');
+	    				x.className = 'show';
+	    				setTimeout(function(){ x.className = x.className.replace('show', ''); }, 3000);
+	    				</script>");
+	    		}elseif ($datas['code'] == 202) {
+	    			$this->session->set_flashdata('fail_alert', '<script>
+	    				$(window).on("load", function(){
+	    					swal("Gagal", "Maaf, password lama yang anda masukan tidak benar..", "error");
+	    					});
+	    					</script>');
+	    		}else {
+	    			$this->session->set_flashdata('fail_alert', '<script>
+	    				$(window).on("load", function(){
+	    					swal("Gagal", "Maaf, terjadi sebuah kesalahan..", "error");
+	    					});
+	    					</script>');
+	    		}
+	    	}
+	    }
 	}

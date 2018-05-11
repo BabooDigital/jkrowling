@@ -23,17 +23,14 @@ class C_timeline extends MX_Controller {
 		$auth = $this->session->userdata('authKey');
 		$userdata = $this->session->userdata('userData');
 
-		$ch = curl_init();
 		if (!empty($this->input->get("page"))) {
-			$id = $this->input->get("page");
+			$idpage = $this->input->get("page");
 		}else{
-			$id = "";
+			$idpage = "";
 		}
-		$uid = array(
-			'count' => $id
-		);
+		$sendData = array('count' => $idpage );
 
-		$resval = $this->curl_request->curl_post_auth($this->API.'timeline/Timelines/index', $uid, $auth);
+		$resval = $this->curl_request->curl_post_auth($this->API.'timeline/Timelines/index', $sendData, $auth);
 		$best_writter = $this->curl_request->curl_get($this->API.'timeline/Home/bestWriter', '', $auth);
 		$best_book = $this->curl_request->curl_get($this->API.'timeline/Timelines/bestBook', '', $auth);
 

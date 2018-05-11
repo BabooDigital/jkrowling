@@ -185,6 +185,7 @@ $route['account/edit'] = 'profile/C_edit_profile';
 $route['account/edit_profile'] = 'profile/C_edit_profile/postEditProfile';
 $route['account/setting'] = 'profile/C_profile/settingProfile';
 $route['getpublishbook'] = 'profile/C_profile/getPublishBook';
+$route['getpublishbookother'] = 'profile/C_profile/getPublishBookOther';
 $route['getdraftbook'] = 'profile/C_profile/getDraftBook';
 $route['getlatestread'] = 'profile/C_profile/getLatestRead';
 
@@ -261,3 +262,8 @@ $route['auth/check_pin'] = 'cashout/C_cashout/confirmPinExist';
 $route['auth/check_acc'] = 'cashout/C_cashout/checkAccountBank';
 $route['auth/create_acc'] = 'cashout/C_cashout/createAccBank';
 $route['auth/create_payout'] = 'cashout/C_cashout/createCashout';
+
+// AUTH CHANGE PASSWORD VIEW
+$route['forgot-pass'] = 'profile/C_edit_profile/changePasswordView';
+// AUTH CHANGE PASSWORD POST
+$route['auth/changepass'] = 'profile/C_edit_profile/changePasswordPost';

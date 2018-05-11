@@ -59,6 +59,7 @@ class C_cashout extends MX_Controller {
 		$datas = $this->curl_request->curl_get($this->API.'payment/Iris/pendingPayout', '', $auth);
 		
 		if (http_response_code() == 200) {
+			$this->session->set_userdata('authKey', $auth);
 			if ($datas['code'] == 403){
 				$this->session->sess_destroy();
 				redirect('login','refresh');
@@ -198,6 +199,7 @@ class C_cashout extends MX_Controller {
 		$datas = $this->curl_request->curl_post($this->API.'payment/Iris/checkAccount', $send, $auth);
 
 		if (http_response_code() == 200) {
+			$this->session->set_userdata('authKey', $auth);
 			echo json_encode(array(
 				'code' => $datas['code'],
 				'data' => $datas['data']
@@ -230,6 +232,7 @@ class C_cashout extends MX_Controller {
 		$datas = $this->curl_request->curl_post($this->API.'payment/Iris/createBeneficiaries', $send, $auth);
 
 		if (http_response_code() == 200) {
+			$this->session->set_userdata('authKey', $auth);
 			echo json_encode(array(
 				'code' => $datas['code'],
 				'data' => $datas['data'],
@@ -261,6 +264,7 @@ class C_cashout extends MX_Controller {
 		$datas = $this->curl_request->curl_post($this->API.'payment/Iris/createPayout', $send, $auth);
 
 		if (http_response_code() == 200) {
+			$this->session->set_userdata('authKey', $auth);
 			echo json_encode(array(
 				'code' => $datas['code'],
 				'data' => $datas['data'],
@@ -293,6 +297,7 @@ class C_cashout extends MX_Controller {
 		$datas = $this->curl_request->curl_post($this->API.'auth/OAuth/confirmPIN', $send, $auth);
 
 		if ($datas['code'] == 200) {
+			$this->session->set_userdata('authKey', $auth);
 			$this->session->set_userdata('dompet', $datas['code']);
 		}else {
 			$this->session->set_flashdata('fail_alert', '<script>
