@@ -23,7 +23,6 @@ class C_timeline extends MX_Controller {
 		$auth = $this->session->userdata('authKey');
 		$userdata = $this->session->userdata('userData');
 
-
 		$ch = curl_init();
 		if (!empty($this->input->get("page"))) {
 			$id = $this->input->get("page");
@@ -31,56 +30,30 @@ class C_timeline extends MX_Controller {
 			$id = "";
 		}
 		$uid = array(
-			// 'user_id' => $userdata['user_id'],
 			'count' => $id
 		);
-		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, $this->API.'timeline/Timelines/home');
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-		curl_setopt($ch, CURLOPT_POST, 1);
-		curl_setopt($ch, CURLOPT_POSTFIELDS, $uid);
-		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-		curl_setopt($ch, CURLOPT_HEADER, 1);
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key: '.$auth));
-		$result = curl_exec($ch);
-
-
-		$headers=array();
-
-		$data=explode("\n",$result);
-
-
-		array_shift($data);
-
-		foreach($data as $part){
-			$middle=explode(":",$part);
-
-			if (error_reporting() == 0) {
-				$headers[trim($middle[0])] = trim($middle[1]);
-			}
-		}
-		$resval = (array)json_decode(end($data), true);
+		$resval = $this->curl_request->curl_post_auth($this->API.'timeline/Timelines/index', $uid, $auth);
+		$best_writter = $this->curl_request->curl_get($this->API.'timeline/Home/bestWriter', '', $auth);
+		$best_book = $this->curl_request->curl_get($this->API.'timeline/Timelines/bestBook', '', $auth);
 
 		$psn = $resval['message'];
-		$book = $resval['data'];
-		$auth = $headers['BABOO-AUTH-KEY'];
-		
+		$book = $resval['data']['data'];
+		$auth = $resval['bbo_auth'];
 		$this->session->set_userdata('authKey', $auth);
-		$status = $resval['code'];
+		$status = $resval['data']['code'];
 		
 		if (!$this->simple_cache->is_cached('key'))
 		{
 			$datas['home'] = $book;
 
+			$datas['writter'] = $best_writter['data'];
+			$datas['best'] = $best_book['data'];
+
 			$datas['title'] = "Baboo.id";
 			
 			$datas['css'][] = "public/plugins/holdOn/css/HoldOn.css";
 
-			// if ($this->session->flashdata('is_follow_event') == 200 || $this->session->flashdata('is_not_follow_event') == 403 || $this->session->flashdata('success_publish')) {
-			// 	$datas['css'][] = "public/css/sweetalert2.min.css";
-			// 	$datas['js'][] = "public/js/sweetalert2.all.min.js";
-			// }
 			$datas['css'][] = "public/css/sweetalert2.min.css";
 			$datas['js'][] = "public/js/sweetalert2.all.min.js";
 			$datas['js'][]   = "public/js/jquery.min.js";
@@ -125,11 +98,9 @@ class C_timeline extends MX_Controller {
 
 					$this->load->view('include/head',$datas);
 					$this->load->view('D_Timeline_in', $datas);
-					// print_r($this->session->userdata());
 				}
 			}
 		}
-		// print_r($data);
 	}
 	public function getBestBookEvent()
 	{

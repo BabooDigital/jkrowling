@@ -74,4 +74,39 @@ class Curl_Request
 		$resval = (array)json_decode(end($data), true);
         return $resval;
 	}
+	public function curl_post_auth($url, $sendData = array(), $auth = '')
+	{
+		$ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $sendData);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+        curl_setopt($ch, CURLOPT_HEADER, 1);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key: '.$auth));
+        $result = curl_exec($ch);
+        
+        $headers=array();
+
+        $data=explode("\n",$result);
+
+
+        array_shift($data);
+
+        foreach($data as $part){
+            $middle=explode(":",$part);
+            if (error_reporting() == 0) {
+                $headers[trim($middle[0])] = trim($middle[1]);
+            }
+        }
+        
+        
+        $resval = (array)json_decode(end($data), true);
+
+        $data_return['data'] = $resval;
+        $data_return['bbo_auth'] = $headers['BABOO-AUTH-KEY'];
+
+        return $data_return;
+	}
 }
