@@ -527,7 +527,9 @@ function check_sell() {
         });
 
       }else{
-
+        swal({text:'Maaf, buku anda tidak dapat di publish. Karakter kurang dari 150.'});
+        $('#publish_book').attr('disabled', 'disabled');
+        $('#publish_book').css('background', '#b6a4ff');
       }
     }else{
       window.location = base_url+'yourdraft';
