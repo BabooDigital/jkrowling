@@ -2,7 +2,7 @@ $(document).ready(function () {
     getBookmark();
     getLastRead();
     getCollection();
-    detailTransaction();
+    detail_transaction();
 });
 function convertToSlug(Text) {return Text.toString().toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-');}
 

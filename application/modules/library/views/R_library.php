@@ -8,8 +8,8 @@
 		<a class="floating-btn" href="<?php echo site_url(); ?>create_mybook"><img src="<?php echo base_url(); ?>public/img/assets/icon_tulis.svg"></a>
 	</div>
 	<div class="container pr-5 pl-5">
-		<?php if (!empty($transaction['data'])){
-			$end = end($transaction['data']);
+		<?php if (!empty($transaction)){
+			$end = end($transaction);
 		 ?>
 			<div class="paddingbook m-0 mt-130">
 				<a data-toggle="modal" href="#list_trans" style="outline: none;">
@@ -17,7 +17,7 @@
 						<img class="img-fluid" src="<?php echo base_url('public/img/bg_pending.png'); ?>">
 						<div class="lefttop-inf">
 							<div class="text-left">
-								<span class="text-white fs18px">Pembelian <span class="badge badge-pill badge-light"><?php echo count($transaction['data']); ?></span></span>
+								<span class="text-white fs18px">Pembelian <span class="badge badge-pill badge-light"><?php echo count($transaction); ?></span></span>
 							</div>
 						</div>
 						<div class="leftbot-inf">

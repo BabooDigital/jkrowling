@@ -21,8 +21,13 @@ class C_home extends MX_Controller {
 
 		// Data Timeline
 		$ch = curl_init();
+		if (!empty($this->input->get("page"))) {
+			$id = '/'.$this->input->get("page");
+		}else{
+			$id = "";
+		}
 		$api_url = checkBase();
-		curl_setopt($ch, CURLOPT_URL, $this->API.'timeline/Home/index');
+		curl_setopt($ch, CURLOPT_URL, $this->API.'timeline/Home/index'.$id);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
 		curl_setopt($ch, CURLOPT_POST, false);
@@ -112,7 +117,7 @@ class C_home extends MX_Controller {
 		$data['home'] = json_decode(end($timeline), true);
 		$data['slide'] = $resval2;
 		$data['event'] = $resval3;
-		$data['title'] = "Baboo.id";
+		$data['title'] = "Baboo - Make Money From Writing";
 		$data['js'][]   = "public/js/jquery.min.js";
 		$data['js'][]   = "public/plugins/infinite_scroll/jquery.jscroll.js";
 		$data['js'][]   = "public/js/jquery.bxslider.min.js";

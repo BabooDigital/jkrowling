@@ -1,10 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html lang='id-ID' prefix='og: http://ogp.me/ns# fb: http://www.facebook.com/2008/fbml'>
 <head>
 	<meta charset="utf-8">
 	<meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
-	<title>Timeline Baboo - Baca buku online</title><!-- CSS -->
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet">
+	<meta http-equiv="x-ua-compatible" content="ie=edge" />
+	<meta data-n-head="true" content="yes" data-hid="mobile-web-app-capable" name="mobile-web-app-capable">
+	<meta data-n-head="true" content="#7661ca" data-hid="theme-color" name="theme-color">
+	<meta data-n-head="true" content="#7661ca" data-hid="msapplication-navbutton-color" name="masapplication-navbutton-color">
+
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="mobile-web-app-capable" content="yes">
+
+	<link rel="icon" href="<?php echo base_url(); ?>public/img/favicon.ico" sizes="16x16">
+
+	<title><?php echo $title; ?></title>
+
+	<meta name="description" content="Situs untuk para pembaca dan pembuat buku dimana mereka dapat menghasilkan uang hanya dengan menulis ceritanya. Ayo buat bukumu sekarang!" />
+	<meta property="og:url" content="https://www.baboo.id/" />
+	<meta property="og:site_name" content="Baboo" />
+	<meta property="og:title" content="Babooo - Make Money From Writing" />
+	<meta property="og:description" content="Situs untuk para pembaca dan pembuat buku dimana mereka dapat menghasilkan uang hanya dengan menulis ceritanya. Ayo buat bukumu sekarang!" />
+	<!-- CSS -->
+	<link href="<?php echo base_url();?>public/css/bootstrap.css" rel="stylesheet">
 	<link href="<?php echo base_url();?>public/css/baboo.css" rel="stylesheet" type="text/css">
 	<link href="<?php echo base_url();?>public/css/slick.css" rel="stylesheet" type="text/css">
 	<link href="<?php echo base_url();?>public/css/slick-theme.css" rel="stylesheet" type="text/css">
@@ -70,13 +87,13 @@ a:hover {
 				<div class="row">
 					<div class="col-md-6" id="post-data">
 						<?php if (!empty($event['data']['image']) || !empty($event['data']['redirect'])) { ?>
-						<div class="card mb-15 bg-transparent" style="box-shadow: none;">
-							<div class="card-body pt-5 pb-5 pr-10 pl-10">
-								<a href="<?php echo $event['data']['redirect']; ?>">
-									<img src="<?php echo $event['data']['image']; ?>" class="img-fluid">
-								</a>
+							<div class="card mb-15 bg-transparent" style="box-shadow: none;">
+								<div class="card-body pt-5 pb-5 pr-10 pl-10">
+									<a href="<?php echo $event['data']['redirect']; ?>">
+										<img src="<?php echo $event['data']['image']; ?>" class="img-fluid">
+									</a>
+								</div>
 							</div>
-						</div>
 						<?php } else { } ?>
 						<?php 
 						$this->load->view('data/R_timeline_out', $home);
@@ -88,84 +105,16 @@ a:hover {
 					<div class="loader" style="display: none;margin-left: auto;margin-right: auto;"></div>
 				</div>
 			</div>
-			<!-- JS -->
+
 			<!-- Javascript -->
 			<script type="text/javascript" src="<?php echo base_url();?>public/js/jquery.min.js"></script>
-			<script type="text/javascript" src="<?php echo base_url();?>public/plugins/infinite_scroll/jquery.jscroll.js"></script>
 			<script type="text/javascript" src="<?php echo base_url();?>public/js/tether.min.js"></script>
 			<script type="text/javascript" src="<?php echo base_url();?>public/js/umd/popper.min.js"></script>
 			<script type="text/javascript" src="<?php echo base_url();?>public/js/bootstrap.min.js"></script>
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.12/jquery.bxslider.min.js">
-			</script> 
-			<script src="https://cdn.rawgit.com/leafo/sticky-kit/v1.1.2/jquery.sticky-kit.js">
-			</script> 
-			<script src="<?php echo base_url(); ?>public/js/baboo.js">
-			</script>
 			<script src="<?php echo base_url(); ?>public/js/menupage.js">
 			</script>
 			<script src="<?php echo base_url(); ?>public/js/slick.js">
+			</script><script src="<?php echo base_url(); ?>public/js/custom/mobile/r_timeline_out.js">
 			</script>
-			<script type="text/javascript">
-				var page = 2;
-				$(window).scroll(function() {
-					if  ($(window).scrollTop() + $(window).height() >= $(document).height() - 100){
-						loadMoreData(page)
-						page++;
-					}
-				});
-
-				function loadMoreData(page) {
-					$.ajax({
-						url: '?page=' + page,
-						type: "get",
-						beforeSend: function() {
-							$('.loader').show();
-						}
-					})
-					.done(function(data) {
-						if (data == "" || data == null) {
-							$('.loader').html("No more records found");
-							return;
-
-						};
-						$('.loader').hide();
-						$("#post-data").append(data);
-
-					})
-					.fail(function(jqXHR, ajaxOptions, thrownError) {
-						console.log('server not responding...');
-					});
-				}
-
-				$('.your-class').slick({
-					centerMode: true,
-					centerPadding: '30px',
-					slidesToShow: 1,
-					arrows: true,
-					prevArrow:"<i class='fa fa-chevron-left contslider slidebtn prevbtn'></i>",
-					nextArrow:"<i class='fa fa-chevron-right contslider slidebtn nextbtn'></i>",
-					responsive: [
-					{
-						breakpoint: 768,
-						settings: {
-							arrows: true,
-							centerMode: true,
-							centerPadding: '166px',
-							slidesToShow: 1
-						}
-					},
-					{
-						breakpoint: 480,
-						settings: {
-							arrows: true,
-							centerMode: true,
-							centerPadding: '40px',
-							slidesToShow: 1,
-						}
-					}
-					],
-				});
-
-			</script>
-</body>
-</html>
+		</body>
+		</html>

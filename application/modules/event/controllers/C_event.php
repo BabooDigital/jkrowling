@@ -21,11 +21,13 @@ class C_Event extends MX_Controller
         if (!$this->session->userdata('isLogin')) {
             $data['css'][] = "public/css/sweetalert2.min.css";
             $data['js'][] = "public/js/sweetalert2.all.min.js";
+        }else{
             $data['js'][] = "public/js/custom/notification.js";
             $data['js'][] = "public/js/custom/notification.js";
         }
         $data['js'][] = "public/js/jquery.validate.js";
         $data['js'][] = "public/js/custom/event.js";
+        
         $data['event'] = $this->getEvent();
         $data['winner'] = $this->bestWinner();
         $this->load->view('include/head', $data);
@@ -167,10 +169,11 @@ class C_Event extends MX_Controller
         $data['js'][] = "public/js/jquery.min.js";
         $data['js'][]   = "public/js/umd/popper.min.js";
         $data['js'][] = "public/js/bootstrap.min.js";
-        $data['js'][] = "public/js/custom/notification.js";
         if (!$this->session->userdata('isLogin')) {
             $data['css'][] = "public/css/sweetalert2.min.css";
             $data['js'][] = "public/js/sweetalert2.all.min.js";
+        }else{
+            $data['js'][] = "public/js/custom/notification.js";
         }
         $data['js'][] = "public/js/jquery.validate.js";
         $data['js'][] = "public/js/custom/event.js";
