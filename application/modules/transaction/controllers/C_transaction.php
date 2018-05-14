@@ -24,7 +24,7 @@ class C_transaction extends MX_Controller
 			$this->session->sess_destroy();
 			redirect('login','refresh');
 		}else{
-			echo json_encode($datas['transaction']['data'], true);
+			echo json_encode($datas['transaction'], true);
 		}
 	}
 	public function detail_transaction()

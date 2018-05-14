@@ -82,7 +82,7 @@ class C_timeline extends MX_Controller {
 				}else{
 
 					$this->load->view('include/head', $datas);
-					$this->load->view('R_Timeline_in', $datas);
+					$this->load->view('R_Timeline_in');
 				}
 			}
 			else

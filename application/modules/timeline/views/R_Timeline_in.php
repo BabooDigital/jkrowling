@@ -62,7 +62,7 @@
 					}
 					?>
 				</div>
-				<div class="loader" style="display: none;margin-left: auto;margin-right: auto;"></div>
+				<div class="loader mb-20" style="display: none;margin-left: auto;margin-right: auto;"></div>
 			</div>
 		</div>
 		<input type="hidden" id="iaiduui" name="iaiduui" value="<?php $name = $this->session->userdata('userData'); echo $name['user_id']; ?>">
