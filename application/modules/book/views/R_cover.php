@@ -125,6 +125,9 @@ input:checked + .slider:before {
 	background: #7661ca;
 	color: #fff;
 }
+.swal2-contentwrapper {
+	margin-top: 15px;
+}
 </style>
 <?php
 error_reporting(0);
@@ -188,7 +191,7 @@ if (!empty($query['stat'])) {
 			</div>
 			<div class="mt-40">
 				<div class="form-group">
-					<?php $sess = $this->session->userdata('editPub'); if (!empty($sess)) { ?>
+					<?php $sess = $this->session->userdata('editPub'); if (empty($sess)) { ?>
 					<select class="form-control catselect" id="category_ids" name="category_id" required>
 						<option value="<?php echo $book['category']['category_id']; ?>">-- <?php echo $book['category']['category_name']; ?> --</option>
 						<?php foreach ($category as $cat) { ?>
@@ -207,7 +210,7 @@ if (!empty($query['stat'])) {
 			</div>
 			<div class="mt-20">
 				<div class="form-group">
-					<label style="font-size: 14pt;">Jual Buku? <a href="#" class="ainfo ml-15">Info Lengkap</a></label>
+					<label style="font-size: 14pt;">Jual Buku? <a href="javascript:void(0);" class="ainfo ml-15">Info Lengkap</a></label>
 					<label class="switch float-right" style="display: none;">
 						<input type="checkbox" id="showOpt" data-toggle='collapse' data-target='#priceSet' class="priceCheck">
 						<span class="slider round"></span>
@@ -313,6 +316,21 @@ if (!empty($query['stat'])) {
 					value--;
 				}
 				$('[id="'+target+'"]').val(value);
+			});
+			$(document).on('click','.ainfo',function(){
+				swal({
+					title: 'Info Penjualan Buku',
+					html:
+					'<div class="text-left" style="font-size:12pt;"><span class="mb-5">Fitur penjualan buku akan aktif jika tulisan anda sudah memenuhi kriteria dibawah ini</span>' +
+					'<ul>' +
+					'<li>Buku bisa dijual apabila penulis sudah menulis 5 chapter dan memenuhi 6000 karakter</li>' +
+					'<li>Minimal chapter yang dijual adalah 3 chapter dan minimal chapter yang digratiskan adalah 2 chapter</li>' +
+					'<li>Penulis bisa menjual di chapter ke 3 dari total 5 chapter, dengan kata lain 2 chapter pertama adalah gratis dan 3 chapter berikut yang dijual/berbayar. Misal : Penulis sudah menulis 5 chapter dengan 6000 karakter, maka penulis bisa menjual buku tersebut dari chapter ke 3 (chapter yang dijual adalah chapter 3, 4 dan 5) dan chapter 1 dan 2 adalah chapter yang gratis.</li>' +
+					'<ul><div>',
+					showCloseButton: true,
+					showCancelButton: false, // There won't be any cancel button
+					showConfirmButton: false // There won't be any confirm button
+				})
 			});
 		</script>
 	</body>
