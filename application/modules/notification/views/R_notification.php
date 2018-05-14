@@ -76,6 +76,7 @@ img {
 								<li class="media <?php if($val_notif->notif_status == 'unread'){echo "bg-white";}else{ echo "bg-read";} ?> p-15" style="align-items: center;border-bottom: 1px #efefef solid;">
 									<a class="notifclick" href="<?php echo site_url(); ?>book/<?php echo $val_notif->notif_book->book_id; ?>-<?php echo url_title($val_notif->notif_book->title_book, 'dash', true); ?>" style="display: flex;" notifid="<?php echo $val_notif->notif_id; ?>">
 										<!-- <img class="mr-3 rounded-circle" src="<?php echo base_url('public/img/profile/blank-photo.jpg'); ?>" width="50" height="50" alt="<?php echo $val_notif->notif_user->fullname; ?>"> -->
+										<i class="fa fa-bell mr-15" style="position: relative;top: 15px;font-size: 15pt;"></i>
 										<div class="media-body">
 											<p>Buku anda <b><?php echo $val_notif->notif_book->title_book; ?></b> <span class="text-muted"><?php echo $val_notif->notif_text; ?></span></p>
 											<p class="text-muted" style="font-size: 11px;"><?php echo $val_notif->notif_time; ?></p>
@@ -85,6 +86,7 @@ img {
 									<li class="media <?php if($val_notif->notif_status == 'unread'){echo "bg-white";}else{ echo "bg-read";} ?> p-15" style="align-items: center;border-bottom: 1px #efefef solid;">
 									<a class="notifclick" href="<?php echo site_url('dompet'); ?>" style="display: flex;" notifid="<?php echo $val_notif->notif_id; ?>">
 										<!-- <img class="mr-3 rounded-circle" src="<?php echo base_url('public/img/profile/blank-photo.jpg'); ?>" width="50" height="50" alt="<?php echo $val_notif->notif_user->fullname; ?>"> -->
+										<i class="fa fa-money mr-15" style="position: relative;top: 15px;font-size: 15pt;"></i>
 										<div class="media-body">
 											<p><span class="text-muted"><?php echo ucfirst($val_notif->notif_text); ?></span></p>
 											<p class="text-muted" style="font-size: 11px;"><?php echo $val_notif->notif_time; ?></p>
