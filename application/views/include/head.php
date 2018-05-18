@@ -28,7 +28,14 @@
 	var base_url = "<?php echo base_url(''); ?>";
 </script>
 <script src="https://js.pusher.com/4.2/pusher.min.js"></script>
-
+<!--    Auto Ads-->
+<!--<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>-->
+<!--<script>-->
+<!--  (adsbygoogle = window.adsbygoogle || []).push({-->
+<!--    google_ad_client: "ca-pub-4994852796413443",-->
+<!--    enable_page_level_ads: true-->
+<!--  });-->
+<!--</script>-->
 </head>
 <style>
 .nav-link {
