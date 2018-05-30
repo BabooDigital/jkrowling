@@ -111,7 +111,11 @@ if (!empty($query['b'])) {
 							</div>
 
 							<div class="col-lg-12">
-								<form id="form-login" action="<?php echo site_url(); ?>auth/C_Login/postloginuser" method="post" novalidate="novalidate">
+								<?php 
+									$atrr = array('id' => 'form-login', 'novalidate' => 'novalidate');
+									echo form_open('auth/C_Login/postloginuser', $attr);
+								?>
+								
 									<div class="form-group">
 										<input type="email" class="form-control login-input" id="inputemail" name="emails" aria-describedby="emailHelp" placeholder="Masukan alamat email" required>
 									</div>
@@ -123,7 +127,7 @@ if (!empty($query['b'])) {
 									<p class="text-right text-daftar">Belum punya akun ? <a  data-toggle="modal" data-target="#register-modal" href="#" class="link-daftar">Daftar disini</a></p>
 									<div class="pull-right">
 										<button type="submit" class="btn btn-primary pull-right btn-login"><i class="icon-arrow-right"></i></button>	
-									</form>
+									<?php echo form_close(); ?>
 								</div>
 
 							</div>
