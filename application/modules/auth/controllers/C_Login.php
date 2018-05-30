@@ -243,8 +243,8 @@ class C_Login extends MX_Controller
     public function postloginuser()
     {
         error_reporting(0);
-        $email = $this->input->post('emails');
-        $password = $this->input->post('passwords');
+        $email = $this->input->post('emails', TRUE);
+        $password = $this->input->post('passwords', TRUE);
 
         $userData = array(
             'username' => $email,
@@ -328,8 +328,8 @@ class C_Login extends MX_Controller
     public function postloginevent()
     {
         error_reporting(0);
-        $email = $this->input->post('emails');
-        $password = $this->input->post('passwords');
+        $email = $this->input->post('emails', TRUE);
+        $password = $this->input->post('passwords', TRUE);
 
         $userData = array(
             'username' => $email,
@@ -414,11 +414,11 @@ class C_Login extends MX_Controller
     public function postregisteruser()
     {
         error_reporting(0);
-        $name = $this->input->post('name');
-        $email = $this->input->post('email');
-        $pass = $this->input->post('password');
-        $tgl = $this->input->post('tgl_lahir');
-        $jk = $this->input->post('j_kelamin');
+        $name = $this->input->post('name', TRUE);
+        $email = $this->input->post('email', TRUE);
+        $pass = $this->input->post('password', TRUE);
+        $tgl = $this->input->post('tgl_lahir', TRUE);
+        $jk = $this->input->post('j_kelamin', TRUE);
 
         $userData = array(
             'fullname' => $name, 

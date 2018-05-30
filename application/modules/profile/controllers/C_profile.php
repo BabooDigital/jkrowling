@@ -85,7 +85,7 @@ class C_profile extends MX_Controller {
 	{
 		error_reporting(0);
 		$auth = $this->session->userdata('authKey');
-		$id_user = $this->input->post('usr_prf');
+		$id_user = $this->input->post('usr_prf', TRUE);
 
 		if (!empty($this->input->get("page"))) {
 			$idpage = $this->input->get("page");
@@ -163,7 +163,7 @@ class C_profile extends MX_Controller {
 	public function getPublishBook() {
 		error_reporting(0);
 		$auth = $this->session->userdata('authKey');
-		$userdata = $this->input->post('user_id');
+		$userdata = $this->input->post('user_id', TRUE);
 		$sendData = array(
 			'user_id' => $userdata
 		);
@@ -208,7 +208,7 @@ class C_profile extends MX_Controller {
 	public function getDraftBook() {
 		error_reporting(0);
 		$auth = $this->session->userdata('authKey');
-		$userdata = $this->input->post('user_id');
+		$userdata = $this->input->post('user_id', TRUE);
 		$sendData = array(
 			'user_id' => $userdata
 		);
@@ -255,7 +255,7 @@ class C_profile extends MX_Controller {
 	{
 		error_reporting(0);
 		$auth = $this->session->userdata('authKey');
-		$userdata = $this->input->post('user_id');
+		$userdata = $this->input->post('user_id', TRUE);
 		$sendData = array(
 			'user_id' => $userdata
 		);
@@ -316,7 +316,7 @@ class C_profile extends MX_Controller {
 	{
 		error_reporting(0);
 		$auth = $this->session->userdata('authKey');
-		$user = $this->input->post('user_profile');
+		$user = $this->input->post('user_profile', TRUE);
 		$sendData = array('user_profile' => $user );
 		$datas = $this->curl_request->curl_post($this->API.'auth/OAuth/otherProfile', $sendData, $auth);
 

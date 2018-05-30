@@ -100,8 +100,8 @@ class C_forgot_pin extends MX_Controller {
 	{
 		error_reporting(0);
 		$auth = $this->session->userdata('authKey');
-		$que    = $this->input->post('questionQ');
-		$ans    = $this->input->post('answerQ');
+		$que    = $this->input->post('questionQ', TRUE);
+		$ans    = $this->input->post('answerQ', TRUE);
 
 		$send = array('question' => $que, 'answer' => $ans);
 		$datas = $this->curl_request->curl_post($this->API.'auth/OAuth/checkQuestion', $send, $auth);
@@ -132,7 +132,7 @@ class C_forgot_pin extends MX_Controller {
 	{
 		error_reporting(0);
 		$auth = $this->session->userdata('authKey');
-		$otp    = $this->input->post('otp');
+		$otp    = $this->input->post('otp', TRUE);
 
 		$send = array('otp' => $otp);
 		$datas = $this->curl_request->curl_post($this->API.'auth/OAuth/confirmOTP', $send, $auth);
@@ -189,7 +189,7 @@ class C_forgot_pin extends MX_Controller {
 	{
 		error_reporting(0);
 		$auth = $this->session->userdata('authKey');
-		$pin    = $this->input->post('newpin');
+		$pin    = $this->input->post('newpin', TRUE);
 
 		$send = array('pin' => $pin);
 		$datas = $this->curl_request->curl_post($this->API.'auth/OAuth/updatePIN', $send, $auth);
@@ -219,7 +219,7 @@ class C_forgot_pin extends MX_Controller {
 	{
 		error_reporting(0);
 		$auth = $this->session->userdata('authKey');
-		$pin    = $this->input->post('confirmpin');
+		$pin    = $this->input->post('confirmpin', TRUE);
 
 		$send = array('pin' => $pin);
 		$datas = $this->curl_request->curl_post($this->API.'auth/OAuth/confirmPIN', $send, $auth);

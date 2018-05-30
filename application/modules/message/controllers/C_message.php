@@ -100,8 +100,8 @@ class C_message extends MX_Controller
         error_reporting(0);
         $url = $this->API . '/message';
         $auth = $this->session->userdata('authKey');
-        $user_to = $this->input->post('user_to');
-        $message = $this->input->post('message');
+        $user_to = $this->input->post('user_to', TRUE);
+        $message = $this->input->post('message', TRUE);
 
         $sendData = array(
                 'user_to' => $user_to,
@@ -163,7 +163,7 @@ class C_message extends MX_Controller
         error_reporting(0);
         $auth = $this->session->userdata('authKey');
         if ($this->input->post()) {
-        	$params = $this->input->post('usr_msg');
+        	$params = $this->input->post('usr_msg', TRUE);
         }else{
 			$params = $this->uri->segment(2);
         }

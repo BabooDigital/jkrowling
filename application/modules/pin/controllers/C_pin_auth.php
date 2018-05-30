@@ -174,9 +174,9 @@ class C_pin_auth extends MX_Controller {
 	{
 		error_reporting(0);
 		$auth = $this->session->userdata('authKey');
-		$name    = $this->input->post('fullname');
-		$phone    = $this->input->post('phone');
-		$ktpno    = $this->input->post('ktp_no');
+		$name    = $this->input->post('fullname', TRUE);
+		$phone    = $this->input->post('phone', TRUE);
+		$ktpno    = $this->input->post('ktp_no', TRUE);
 		$ktpimg    = $_FILES["ktp_image"]["tmp_name"];
 		if (substr($phone, 0, 1) === '0') {
 			$phones = '+62'.ltrim($phone, '0');
@@ -219,7 +219,7 @@ class C_pin_auth extends MX_Controller {
 	{
 		error_reporting(0);
 		$auth = $this->session->userdata('authKey');
-		$otp    = $this->input->post('otp');
+		$otp    = $this->input->post('otp', TRUE);
 
 		$send = array('otp' => $otp);
 		$datas = $this->curl_request->curl_post($this->API.'auth/OAuth/confirmOTP', $send, $auth);
@@ -274,7 +274,7 @@ class C_pin_auth extends MX_Controller {
 	{
 		error_reporting(0);
 		$auth = $this->session->userdata('authKey');
-		$pin    = $this->input->post('newpin');
+		$pin    = $this->input->post('newpin', TRUE);
 
 		$send = array('pin' => $pin);
 		$datas = $this->curl_request->curl_post($this->API.'auth/OAuth/insertPIN', $send, $auth);
@@ -303,7 +303,7 @@ class C_pin_auth extends MX_Controller {
 	{
 		error_reporting(0);
 		$auth = $this->session->userdata('authKey');
-		$pin    = $this->input->post('confirmpin');
+		$pin    = $this->input->post('confirmpin', TRUE);
 
 		$send = array('pin' => $pin);
 		$datas = $this->curl_request->curl_post($this->API.'auth/OAuth/confirmPIN', $send, $auth);
@@ -332,10 +332,10 @@ class C_pin_auth extends MX_Controller {
 	{
 		error_reporting(0);
 		$auth = $this->session->userdata('authKey');
-		$q1    = $this->input->post('question1');
-		$a1    = $this->input->post('answer1');
-		$q2    = $this->input->post('question2');
-		$a2    = $this->input->post('answer2');
+		$q1    = $this->input->post('question1', TRUE);
+		$a1    = $this->input->post('answer1', TRUE);
+		$q2    = $this->input->post('question2', TRUE);
+		$a2    = $this->input->post('answer2', TRUE);
 
 		$send = array('question1' => $q1,'answer1' => $a1,'question2' => $q2,'answer2' => $a2);
 		$datas = $this->curl_request->curl_post($this->API.'auth/OAuth/insertQuestion', $send, $auth);

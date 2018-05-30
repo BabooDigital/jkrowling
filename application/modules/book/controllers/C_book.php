@@ -350,10 +350,10 @@ class C_book extends MX_Controller
         $user = $this->session->userdata('userData');
         $auth = $this->session->userdata('authKey');
 
-        $id_book = $this->input->post("id_book");
+        $id_book = $this->input->post("id_book", TRUE);
         $idb = explode('-', $id_book, 2);
         if (is_array($idb)) ;
-        $id_chapter = $this->input->post("id_chapter");
+        $id_chapter = $this->input->post("id_chapter", TRUE);
 
         $data_book = array(
             'book_id' => $idb[0],
@@ -592,10 +592,10 @@ class C_book extends MX_Controller
         error_reporting(0);
         $url = $this->API . 'book/Books/addComment';
         $auth = $this->session->userdata('authKey');
-        $book_id = $this->input->post('book_id');
-        $parap_id = $this->input->post('paragraph_id');
-        $user_id = $this->input->post('user_id');
-        $comment = $this->input->post('comments');
+        $book_id = $this->input->post('book_id', TRUE);
+        $parap_id = $this->input->post('paragraph_id', TRUE);
+        $user_id = $this->input->post('user_id', TRUE);
+        $comment = $this->input->post('comments', TRUE);
 
         if (!empty($book_id)) {
             $sendData = array(
@@ -667,10 +667,10 @@ class C_book extends MX_Controller
 
 
         $auth = $this->session->userdata('authKey');
-        $book_id = $this->input->post('book_id');
+        $book_id = $this->input->post('book_id', TRUE);
         $idb = explode('-', $book_id, 2);
         if (is_array($idb)) ;
-        $parap_id = $this->input->post('paragraph_id');
+        $parap_id = $this->input->post('paragraph_id', TRUE);
         if (!empty($book_id)) {
             $sendData = array(
                 'book_id' => $idb[0]
@@ -786,7 +786,7 @@ class C_book extends MX_Controller
     	$url = $this->API . 'book/Books/draftDelete';
 
     	$auth = $this->session->userdata('authKey');
-    	$book_id = $this->input->post('book_id');
+    	$book_id = $this->input->post('book_id', TRUE);
 
         $sendData = array(
             'book_id' => $book_id
@@ -845,8 +845,8 @@ public function token_pay()
     $this->load->library('midtrans');
     $this->midtrans->config($params);        
 
-    $id_book = $this->input->post('id_book');
-    $url_redirect = $this->input->post('url_redirect');
+    $id_book = $this->input->post('id_book', TRUE);
+    $url_redirect = $this->input->post('url_redirect', TRUE);
 
     $auth = $this->session->userdata('authKey');
     $sendData = array('book_id'=>$id_book);
@@ -877,7 +877,7 @@ public function token_pay()
 public function finish_pay()
 {
     error_reporting(0);
-    $result_data = $this->input->post('result_data');
+    $result_data = $this->input->post('result_data', TRUE);
 
     $data_midtrans = (array)json_decode($result_data);
 

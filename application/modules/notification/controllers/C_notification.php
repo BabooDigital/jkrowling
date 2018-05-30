@@ -150,7 +150,7 @@ class C_notification extends MX_Controller
 	public function updateNtf()
 	{
 		$auth = $this->session->userdata('authKey');
-		$id_notif = $this->input->post('ntf');
+		$id_notif = $this->input->post('ntf', TRUE);
 
 		$updateNtf = array(
 			'notif_id' => $id_notif,

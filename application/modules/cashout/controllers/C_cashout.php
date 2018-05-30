@@ -193,7 +193,7 @@ class C_cashout extends MX_Controller {
 		error_reporting(0);
 		$auth = $this->session->userdata('authKey');
 		// $idacc    = $this->input->post('id_acc');
-		$acc = $this->input->post('account_number');
+		$acc = $this->input->post('account_number', TRUE);
 
 		$send = array('account_number' => $acc);
 		$datas = $this->curl_request->curl_post($this->API.'payment/Iris/checkAccount', $send, $auth);
@@ -224,9 +224,9 @@ class C_cashout extends MX_Controller {
 	{
 		error_reporting(0);
 		$auth = $this->session->userdata('authKey');
-		$anumb = $this->input->post('numb');
-		$aname = $this->input->post('name');
-		$bcode = $this->input->post('code');
+		$anumb = $this->input->post('numb', TRUE);
+		$aname = $this->input->post('name', TRUE);
+		$bcode = $this->input->post('code', TRUE);
 
 		$send = array('account_number' => $anumb,'account_name' => $aname,'bank_code' => $bcode);
 		$datas = $this->curl_request->curl_post($this->API.'payment/Iris/createBeneficiaries', $send, $auth);
@@ -257,8 +257,8 @@ class C_cashout extends MX_Controller {
 	{
 		error_reporting(0);
 		$auth = $this->session->userdata('authKey');
-		$aname = $this->input->post('accnum');
-		$amount = $this->input->post('amount');
+		$aname = $this->input->post('accnum', TRUE);
+		$amount = $this->input->post('amount', TRUE);
 
 		$send = array('account_number' => $aname,'amount' => $amount);
 		$datas = $this->curl_request->curl_post($this->API.'payment/Iris/createPayout', $send, $auth);
@@ -291,7 +291,7 @@ class C_cashout extends MX_Controller {
 	{
 		error_reporting(0);
 		$auth = $this->session->userdata('authKey');
-		$pin    = $this->input->post('confirmpin');
+		$pin    = $this->input->post('confirmpin', TRUE);
 
 		$send = array('pin' => $pin);
 		$datas = $this->curl_request->curl_post($this->API.'auth/OAuth/confirmPIN', $send, $auth);

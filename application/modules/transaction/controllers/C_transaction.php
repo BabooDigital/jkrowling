@@ -30,7 +30,7 @@ class C_transaction extends MX_Controller
 	public function detail_transaction()
 	{
 		$auth = $this->session->userdata('authKey');
-		$transaction_id = $this->input->post('transaction_id');
+		$transaction_id = $this->input->post('transaction_id', TRUE);
 		$sendData = array('book_id' => $transaction_id);
 		$data = $this->curl_request->curl_post($this->API.'payment/Payment/reminderPay', $sendData, $auth);
 
