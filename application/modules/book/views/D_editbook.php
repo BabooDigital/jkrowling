@@ -40,7 +40,8 @@
 	var uri_segment = '<?php echo $this->uri->segment(2) ?>';
 </script>
 <body>
-	<form action="<?php echo site_url(); ?>my_book/create_book/publish" id="form_book" method="POST" enctype="multipart/form-data">
+	<?php  $attr = array('id' => 'form_book'); echo form_open_multipart('my_book/create_book/publish'); ?>
+	
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-3 bg-white pt-10 cleftmenu">
@@ -173,7 +174,7 @@
 					</div>
 				</div>
 			</div>
-		</form>
+		<?php echo form_close(); ?>
 
 		<?php if (isset($js)): ?>
 			<?php echo get_js($js) ?>

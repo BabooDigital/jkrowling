@@ -120,7 +120,10 @@ if (!empty($query['b'])) {
 							</div>
 
 							<div class="col-lg-12">
-								<form id="login-form" action="<?php echo site_url(); ?>auth/C_Login/postloginuser" method="POST">
+								<?php 
+									$attr= array('id' => 'login-form'); 
+									echo form_open('auth/C_Login/postloginuser', $attr);
+								?>
 									<div class="form-group">
 										<input type="email" class="form-control login-input" id="yourEmail" name="emails" placeholder="Alamat Email">
 									</div>
@@ -131,7 +134,7 @@ if (!empty($query['b'])) {
 									<p class="text-right text-daftar">Belum punya akun ? <a  data-toggle="modal" data-target="#register-modal" href="#" class="link-daftar">Daftar disini</a></p>
 									<div class="pull-right">
 										<button type="submit" name="submit" class="btn btn-primary pull-right btn-login"><i class="icon-arrow-right"></i></button>	
-									</form>
+									<?php echo form_close(); ?>
 								</div>
 
 							</div>
@@ -165,7 +168,11 @@ if (!empty($query['b'])) {
 
 								<p class="text-img-modal">Selamat datang di Baboo</p>
 
-								<form id="form-register" action="<?php echo site_url(); ?>auth/C_Login/postregisteruser" method="POST">
+								<?php 
+									$attr = array('id' => 'form-register'); 
+									echo form_open('auth/C_Login/postregisteruser', $attr);
+								?>
+								
 									<div class="form-group">
 										<input type="text" class="form-control login-input" placeholder="Nama Lengkap" name="name">
 									</div>
@@ -210,7 +217,7 @@ if (!empty($query['b'])) {
 									</center>
 									<button type="submit" class="btn btn-signup btn-block"><b>Daftar</b></button>
 								</div> 
-							</form>
+							<?php echo form_close(); ?>
 						</div>
 					</div>
 				</div>
@@ -237,7 +244,7 @@ if (!empty($query['b'])) {
 
 							<p class="text-img-modal">Selamat datang di Baboo</p>
 
-							<!-- <form id="form-login" action="<?php echo site_url(); ?>auth/C_Login/postloginevent" method="POST"> -->
+							
 								<div class="row">
 									<div class="col-lg-12">
 										<p class="right-text">Lanjutkan dengan</p>
@@ -260,7 +267,11 @@ if (!empty($query['b'])) {
 									</div>
 
 									<div class="col-lg-12">
-										<form id="login-formevent" action="<?php echo site_url(); ?>auth/C_Login/postloginevent" method="POST">
+										<?php 
+											$attr = array('id' => 'login-formevent');
+											echo form_open('auth/C_Login/postloginevent', $attr);
+										?>
+										
 											<div class="form-group">
 												<input type="email" class="form-control login-input" id="yourEmailRe" name="emails" placeholder="Alamat Email">
 											</div>
@@ -271,7 +282,7 @@ if (!empty($query['b'])) {
 											<p class="text-right text-daftar">Belum punya akun ? <a  data-toggle="modal" data-target="#register-modal" href="#" class="link-daftar">Daftar disini</a></p>
 											<div class="pull-right">
 												<button type="submit" name="submit" class="btn btn-primary pull-right btn-login"><i class="icon-arrow-right"></i></button>	
-											</form>
+										<?php echo form_close(); ?>
 										</div>
 
 									</div>
