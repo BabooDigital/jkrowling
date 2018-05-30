@@ -55,8 +55,8 @@ class C_cover extends MX_Controller {
 		error_reporting(0);
 		$auth = $this->session->userdata('authKey');
 
-		$id = $this->input->post('book_id');
-		$img = $this->input->post('cover_url');
+		$id = $this->input->post('book_id', TRUE);
+		$img = $this->input->post('cover_url', TRUE);
 
 		$file_name_with_full_path = $_FILES["cover_url"]["tmp_name"];
             if (function_exists('curl_file_create')) { // php 5.5+

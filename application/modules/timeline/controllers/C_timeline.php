@@ -152,7 +152,7 @@ class C_timeline extends MX_Controller {
 		}
 		error_reporting(0);
 		$auth = $this->session->userdata('authKey');
-		$id = $this->input->post('iaiduui');
+		$id = $this->input->post('iaiduui', TRUE);
 		$bookData = array(
 			'user_id' => $id
 		);
@@ -289,8 +289,8 @@ class C_timeline extends MX_Controller {
 	{
 		error_reporting(0);
 		$auth = $this->session->userdata('authKey');
-		$userid = $this->input->post('user_id');
-		$bookid = $this->input->post('book_id');
+		$userid = $this->input->post('user_id', TRUE);
+		$bookid = $this->input->post('book_id', TRUE);
 
 		$sendData = array(
 			'user_id' => $userid,
@@ -346,8 +346,8 @@ class C_timeline extends MX_Controller {
 	{
 		error_reporting(0);
 		$auth = $this->session->userdata('authKey');
-		$userid = $this->input->post('user_id');
-		$bookid = $this->input->post('book_id');
+		$userid = $this->input->post('user_id', TRUE);
+		$bookid = $this->input->post('book_id', TRUE);
 
 		$sendData = array(
 			'user_id' => $userid,
@@ -402,8 +402,8 @@ class C_timeline extends MX_Controller {
 	{
 		error_reporting(0);
 		$auth = $this->session->userdata('authKey');
-		$fuserid = $this->input->post('fuser_id');
-		$userid = $this->input->post('user_id');
+		$fuserid = $this->input->post('fuser_id', TRUE);
+		$userid = $this->input->post('user_id', TRUE);
 		if (empty($userid)) {
 			$id_user = $userid;
 		}else{
@@ -463,8 +463,8 @@ class C_timeline extends MX_Controller {
 	{
 		error_reporting(0);
 		$auth = $this->session->userdata('authKey');
-		$userid = $this->input->post('user_id');
-		$bookid = $this->input->post('book_id');
+		$userid = $this->input->post('user_id', TRUE);
+		$bookid = $this->input->post('book_id', TRUE);
 
 		$sendData = array(
 			'user_id' => $userid,
@@ -519,7 +519,7 @@ class C_timeline extends MX_Controller {
 	{
 		error_reporting(0);
 		$auth = $this->session->userdata('authKey');
-		$userid = $this->input->post('user_id');
+		$userid = $this->input->post('user_id', TRUE);
 
 		$sendData = array(
 			'user_id' => $userid

@@ -66,7 +66,7 @@ class C_Event extends MX_Controller
         if ($data['code'] == 200) {
             // echo "belum terdaftar";
             if ($this->input->post()) {
-                $nohp = $this->input->post('nohp');
+                $nohp = $this->input->post('nohp', TRUE);
 
                 $sendData = array('email'=>$email, 'phone'=>$nohp);
 

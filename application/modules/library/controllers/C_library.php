@@ -136,7 +136,7 @@ class C_Library extends MX_Controller
     {
         error_reporting(0);
         $auth = $this->session->userdata('authKey');
-        $userid = $this->input->post('user');
+        $userid = $this->input->post('user', TRUE);
         $sendData = array(
             'user_id' => $userid
         );
@@ -194,7 +194,7 @@ class C_Library extends MX_Controller
     {
         error_reporting(0);
         $auth = $this->session->userdata('authKey');
-        $userid = $this->input->post('user');
+        $userid = $this->input->post('user', TRUE);
 
         $sendData = array(
             'user_id' => $userid

@@ -10,10 +10,11 @@
 			<div class="container">
 				<div class="col-12 text-justify mb-50" style="color: #000;">
 					<p>Kamu baru saja selesai membaca batas gratis buku ini, untuk membaca cerita selanjutnya silahkan lakukan pembelian buku.</p>
-					<form id="payment-form" method="post" action="<?=site_url()?>pay_book/finish">
+					<?php $attr = array('id' => 'payment-form'); echo form_open('pay_book/finish', $attr); ?>
+					
 						<input type="hidden" name="result_type" id="result-type" value=""></div>
 						<input type="hidden" name="result_data" id="result-data" value=""></div>
-					</form>
+					<?php echo form_close(); ?>
 					<div class="col-md-12">
 						<div class="card">
 							<div class="card-body">

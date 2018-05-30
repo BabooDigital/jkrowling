@@ -124,11 +124,11 @@ class C_createbook extends MX_Controller
 	
 	public function chapter()
 	{
-		if ($this->input->post('book_id')) {
+		if ($this->input->post('book_id', TRUE)) {
 			
 		} else {
 			$auth       = $this->session->userdata('authKey');
-			$title_book = $this->input->post('title_book');
+			$title_book = $this->input->post('title_book', TRUE);
 			$id_user    = $this->session->userdata('userData');
 			
 			$chapterData = array(
@@ -225,7 +225,7 @@ class C_createbook extends MX_Controller
 			$data['js'][] = "public/plugins/froala/js/plugins/url.min.js";
 		// $data['js'][] = "public/plugins/froala/js/plugins/video.min.js";
 			if ($this->input->post('book_id')) {
-				$data['book_id'] = $this->input->post('book_id');
+				$data['book_id'] = $this->input->post('book_id', TRUE);
 			} else {
 				$data['book_id'] = $book_id['book_id'];
 			}
@@ -331,7 +331,7 @@ class C_createbook extends MX_Controller
 		$data['js'][] = "public/plugins/froala/js/plugins/url.min.js";
 		// $data['js'][] = "public/plugins/froala/js/plugins/video.min.js";
 		if ($this->input->post('book_id')) {
-			$data['book_id'] = $this->input->post('book_id');
+			$data['book_id'] = $this->input->post('book_id', TRUE);
 		} else {
 			$data['book_id'] = $book_id['book_id'];
 		}
@@ -346,10 +346,10 @@ class C_createbook extends MX_Controller
 		$auth    = $this->session->userdata('authKey');
 		$id_user = $this->session->userdata('userData');
 		
-		$book_id       = $this->input->post('book_id');
-		$chapter_id    = $this->input->post('chapter_id');
-		$chapter_title = $this->input->post('chapter_title');
-		$paragraph     = $this->input->post('paragraph_book');
+		$book_id       = $this->input->post('book_id', TRUE);
+		$chapter_id    = $this->input->post('chapter_id', TRUE);
+		$chapter_title = $this->input->post('chapter_title', TRUE);
+		$paragraph     = $this->input->post('paragraph_book', TRUE);
 
 		$chapterData = array(
 			'book_id' => $book_id,
@@ -403,10 +403,10 @@ class C_createbook extends MX_Controller
 	{
 		$auth    = $this->session->userdata('authKey');
 		
-		$book_id       = $this->input->post('book_id');
-		$chapter_id    = $this->input->post('chapter_id');
-		$chapter_title = $this->input->post('chapter_title');
-		$paragraph     = $this->input->post('paragraph_book');
+		$book_id       = $this->input->post('book_id', TRUE);
+		$chapter_id    = $this->input->post('chapter_id', TRUE);
+		$chapter_title = $this->input->post('chapter_title', TRUE);
+		$paragraph     = $this->input->post('paragraph_book', TRUE);
 		
 		$chapterData = array(
 			'book_id' => $book_id,
@@ -475,7 +475,7 @@ class C_createbook extends MX_Controller
 		if ($this->uri->segment(4)) {
 			$chapter_id    = $this->uri->segment(4);		
 		}else{
-			$chapter_id    = $this->input->post('chapter_id');
+			$chapter_id    = $this->input->post('chapter_id', TRUE);
 		}
 		$ch = explode(',', $chapter_id);
 		$chapterData = array(
@@ -530,7 +530,7 @@ class C_createbook extends MX_Controller
 	{
 		$auth    = $this->session->userdata('authKey');
 		
-		$bid    = $this->input->post('book_id');
+		$bid    = $this->input->post('book_id', TRUE);
 		$bookData = array(
 			'book_id' => $bid
 		);
@@ -697,9 +697,9 @@ class C_createbook extends MX_Controller
 		$auth    = $this->session->userdata('authKey');
 		$id_user = $this->session->userdata('userData');
 
-		$book_id       = $this->input->post('book_id');
-		$chapter_title = $this->input->post('chapter_title');
-		$paragraph     = $this->input->post('paragraph');
+		$book_id       = $this->input->post('book_id', TRUE);
+		$chapter_title = $this->input->post('chapter_title', TRUE);
+		$paragraph     = $this->input->post('paragraph', TRUE);
 		$chapterData   = array(
 			'book_id' => $book_id,
 			'chapter_title' => $chapter_title,
@@ -898,22 +898,22 @@ class C_createbook extends MX_Controller
 		$auth  = $this->session->userdata('authKey');
 		$bData = $this->session->userdata('dataBook');
 		
-		$title   = $this->input->post('title_book');
-		$chapter = $this->input->post('chapter_title');
+		$title   = $this->input->post('title_book', TRUE);
+		$chapter = $this->input->post('chapter_title', TRUE);
 		if (!empty($bData)) {
-			$chapter = $this->input->post('chapter_title');
+			$chapter = $this->input->post('chapter_title', TRUE);
 			$title   = $bData['title_book'];
 		}
-		$cover = $this->input->post('cover_name');
+		$cover = $this->input->post('cover_name', TRUE);
 		if ($cover != null) {
 			$covers = $cover;
 		} else {
 			$covers = $cover;
 		}
-		$book_id  = $this->input->post('book_id');
-		$cat      = $this->input->post('category_id');
-		$user     = $this->input->post('user_id');
-		$parap    = $this->input->post('book_paragraph');
+		$book_id  = $this->input->post('book_id', TRUE);
+		$cat      = $this->input->post('category_id', TRUE);
+		$user     = $this->input->post('user_id', TRUE);
+		$parap    = $this->input->post('book_paragraph', TRUE);
 		$output   = preg_replace("/(<[^>]+) style='.*?'/i", "$1", $parap);
 
 		$bookData = array(
@@ -927,7 +927,7 @@ class C_createbook extends MX_Controller
 			'paragraph' => $output
 		);
 		if (!empty($this->input->post('id_books'))) {
-			$bookData['book_id'] = $this->input->post('id_books');
+			$bookData['book_id'] = $this->input->post('id_books', TRUE);
 		}
 		// print_r($bookData);
 		
@@ -990,23 +990,23 @@ class C_createbook extends MX_Controller
 		$auth  = $this->session->userdata('authKey');
 		$bData = $this->session->userdata('dataBook');
 		
-		$title   = $this->input->post('title_book');
-		$chapter = $this->input->post('title_chapter');
+		$title   = $this->input->post('title_book', TRUE);
+		$chapter = $this->input->post('title_chapter', TRUE);
 		if (!empty($bData)) {
-			$chapter = $this->input->post('title_chapter');
+			$chapter = $this->input->post('title_chapter', TRUE);
 			$title   = $bData['title_book'];
 		}
-		$cover = $this->input->post('cover_name');
+		$cover = $this->input->post('cover_name', TRUE);
 		if ($cover != null) {
 			$covers = $cover;
 		} else {
 			$covers = "";
 		}
-		$book_id    = $this->input->post('book_id');
-		$cat        = $this->input->post('category_id');
-		$user       = $this->input->post('user_id');
-		$parap      = $this->input->post('book_paragraph');
-		$chapter_id = $this->input->post('chapter_id');
+		$book_id    = $this->input->post('book_id', TRUE);
+		$cat        = $this->input->post('category_id', TRUE);
+		$user       = $this->input->post('user_id', TRUE);
+		$parap      = $this->input->post('book_paragraph', TRUE);
+		$chapter_id = $this->input->post('chapter_id', TRUE);
 		$bookData   = array(
 			'book_id' => $book_id,
 			'title_book' => $title,
@@ -1019,7 +1019,7 @@ class C_createbook extends MX_Controller
 			'chapter_id' => $chapter_id
 		);
 		if (!empty($this->input->post('id_books'))) {
-			$bookData['book_id'] = $this->input->post('id_books');
+			$bookData['book_id'] = $this->input->post('id_books', TRUE);
 		}
 		// print_r($bookData);
 		
@@ -1082,25 +1082,25 @@ class C_createbook extends MX_Controller
 		$auths = $this->session->userdata('authKey');
 		$bData = $this->session->userdata('dataBook');
 		
-		$title = $this->input->post('title_book');
+		$title = $this->input->post('title_book', TRUE);
 		// $chapter = $this->input->post('chapter_title');
 		if (!empty($bData)) {
-			$chapter = $this->input->post('title_chapter');
+			$chapter = $this->input->post('title_chapter', TRUE);
 			$title   = $bData['title_book'];
 		} else {
-			$chapter = $this->input->post('title_chapter');
+			$chapter = $this->input->post('title_chapter', TRUE);
 		}
-		$book_id = $this->input->post('book_id');
-		$cat     = $this->input->post('category_id');
-		$user    = $this->input->post('user_id');
-		$parap   = $this->input->post('book_paragraph');
+		$book_id = $this->input->post('book_id', TRUE);
+		$cat     = $this->input->post('category_id', TRUE);
+		$user    = $this->input->post('user_id', TRUE);
+		$parap   = $this->input->post('book_paragraph', TRUE);
 		$price   = $this->input->post('price');
-		$total_price = $this->input->post('total_price');
-		$start_chapter = $this->input->post('start_chapter');
+		$total_price = $this->input->post('total_price', TRUE);
+		$start_chapter = $this->input->post('start_chapter', TRUE);
 
 		$output   = preg_replace("/(<[^>]+) style='.*?'/i", "$1", $parap);
 
-		$cover   = $this->input->post('cover_name');
+		$cover   = $this->input->post('cover_name', TRUE);
 
 		$send = array('book_id' => $book_id);
 		if ($this->input->post('count_chapter') == 0) {
@@ -1118,7 +1118,7 @@ class C_createbook extends MX_Controller
 		        } else { //
 		        	$cFile = '@' . realpath($file_name_with_full_path);
 		        }
-		        $id = $this->input->post('book_id');
+		        $id = $this->input->post('book_id', TRUE);
 		        $coverData = array(
 		        	'book_id' => $id,
 		        	'is_cover' => 'true',
@@ -1192,10 +1192,10 @@ class C_createbook extends MX_Controller
 		    	);
 		    }
 		    if (!empty($this->input->post('id_books'))) {
-		    	$bookData['book_id'] = $this->input->post('id_books');
+		    	$bookData['book_id'] = $this->input->post('id_books', TRUE);
 		    }
 		    $ch = curl_init();
-		    curl_setopt($ch, CURLOPT_URL, $this->API . 'book/Books/saveBook');
+		    curl_setopt($ch, CURLOPT_URL, $this->API . 'book/Books/saveBook', TRUE);
 		    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			// curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 
@@ -1260,11 +1260,11 @@ class C_createbook extends MX_Controller
 		$auth    = $this->session->userdata('authKey');
 		$id_user = $this->session->userdata('userData');
 		
-		$book_id    = $this->input->post('book_id');
-		$file_cover = $this->input->post('file_cover');
-		$category   = $this->input->post('category');
-		$is_paid   = $this->input->post('is_paid');
-		$price   = $this->input->post('price');
+		$book_id    = $this->input->post('book_id', TRUE);
+		$file_cover = $this->input->post('file_cover', TRUE);
+		$category   = $this->input->post('category', TRUE);
+		$is_paid   = $this->input->post('is_paid', TRUE);
+		$price   = $this->input->post('price', TRUE);
 
 		$bookData   = array(
 			'book_id' => $book_id,
@@ -1328,8 +1328,8 @@ class C_createbook extends MX_Controller
 	{
 		error_reporting(0);
 		$auth = $this->session->userdata('authKey');
-		$id_book = $this->input->post('book_id');
-		$user = $this->input->post('user_id');
+		$id_book = $this->input->post('book_id', TRUE);
+		$user = $this->input->post('user_id', TRUE);
 
 		if(isset($_FILES["file_cover"]["tmp_name"]))  
 		{  
@@ -1410,9 +1410,9 @@ class C_createbook extends MX_Controller
 
 	public function createchapter_id()
 	{
-		$book  = $this->input->post('id_book');
-		$title = $this->input->post('title_book');
-		$desc  = $this->input->post('description');
+		$book  = $this->input->post('id_book', TRUE);
+		$title = $this->input->post('title_book', TRUE);
+		$desc  = $this->input->post('description', TRUE);
 		
 		$chapter = array(
 			'id_book' => $book
@@ -1638,7 +1638,7 @@ class C_createbook extends MX_Controller
 		error_reporting(0);
 		$auth    = $this->session->userdata('authKey');
 		$user    = $this->session->userdata('userData');
-		$id_book = $this->input->post('book_id');
+		$id_book = $this->input->post('book_id', TRUE);
 		// print_r($data_book);
 		
 		// START GET CHAPTER
@@ -1695,8 +1695,8 @@ class C_createbook extends MX_Controller
 		$auth = $this->session->userdata('authKey');
 		
 		$user    = $this->session->userdata('userData');
-		$book    = $this->input->post('book_id');
-		$chapter = $this->input->post('chapter');
+		$book    = $this->input->post('book_id', TRUE);
+		$chapter = $this->input->post('chapter', TRUE);
 		
 		$dataChapter = array(
 			'book_id' => $book,
@@ -1748,7 +1748,7 @@ class C_createbook extends MX_Controller
 		error_reporting(0);
 		$auth = $this->session->userdata('authKey');
 		
-		$book    = $this->input->post('book_id');
+		$book    = $this->input->post('book_id', TRUE);
 		
 		$bookData = array(
 			'book_id' => $book
@@ -1800,7 +1800,7 @@ class C_createbook extends MX_Controller
 	public function checkBook() {
 		error_reporting(0);
 		$auth = $this->session->userdata('authKey');
-		$book    = $this->input->post('book_id');
+		$book    = $this->input->post('book_id', TRUE);
 		$send = array('book_id' => $book);
 		$data = $this->curl_request->curl_post($this->API.'book/Books/detailBook', $send, $auth);
 

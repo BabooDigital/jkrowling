@@ -68,7 +68,7 @@
 					</div>
 					<div class="card-header">
 						<form id="submit_msg" name="submit_msg">
-							<input class="form-msg input_usr" name="input_usr" placeholder="Tulis pesan disini" type="hidden" value="<?php echo $this->input->post('usr_msg'); ?>"> <input class="form-msg input_msg" name="input_msg" placeholder="Tulis pesan disini" type="text"> <button name="submit" type="submit" value="submit" style="background: none;border: none;"><img src="<?php echo base_url('public/img/assets/icon_sendcomm.png'); ?>" width="46" height="46"></button>
+							<input class="form-msg input_usr" name="input_usr" placeholder="Tulis pesan disini" type="hidden" value="<?php echo html_escape($this->input->post('usr_msg')); ?>"> <input class="form-msg input_msg" name="input_msg" placeholder="Tulis pesan disini" type="text"> <button name="submit" type="submit" value="submit" style="background: none;border: none;"><img src="<?php echo base_url('public/img/assets/icon_sendcomm.png'); ?>" width="46" height="46"></button>
 						</form>
 					</div>
 				</div>
