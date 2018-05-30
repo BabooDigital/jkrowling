@@ -24,6 +24,16 @@
 		<div class="row">
 			<div class="col-md-3 outleft">
 				<div class="stickymenu">
+                    <ul class="list-group list-group-flush">
+                        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                        <ins class="adsbygoogle"
+                             style="display:inline-block;width:300px;height:250px"
+                             data-ad-client="ca-pub-4994852796413443"
+                             data-ad-slot="7276054409"></ins>
+                        <script>
+                            (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
+                    </ul>
 					<!-- Penulis Minggu Ini -->
 					<div class="card mb-15" style="background-color: transparent;border: none;">
 						<div class="card-header" style="border: none;">

@@ -1,4 +1,4 @@
-<?php 
+<?php
 $base = (isset($_SERVER['HTTPS']) ? "https://" : "http://").$_SERVER['HTTP_HOST'];
 $appid = '196429547790304';
 if (strpos($base, 'stg.baboo.id') !== false) {
@@ -16,7 +16,7 @@ echo "<script>(function(d, s, id) {
 	fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>";
 ?>
-<?php $this->load->view('navbar/D_navbar'); ?>	
+<?php $this->load->view('navbar/D_navbar'); ?>
 <div class="container babooidin">
 	<div class="row">
 		<!-- Left Side -->
@@ -52,12 +52,24 @@ echo "<script>(function(d, s, id) {
 						</ul>
 					</div>
 				</div>
+                <div class="side-card mb-15" style="background: transparent;">
+                    <div class="card-body p-0">
+                        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                        <ins class="adsbygoogle"
+                             style="display:inline-block;width:300px;height:250px"
+                             data-ad-client="ca-pub-4994852796413443"
+                             data-ad-slot="7276054409"></ins>
+                        <script>
+                            (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
+                    </div>
+                </div>
 			</div>
 		</div>
 
 		<!-- Mid Side -->
 		<div class="col-md-6" id="post-data">
-			<?php 
+			<?php
 			$this->load->view('data/D_timeline_in', $home);
 			?>
 		</div>
@@ -83,22 +95,22 @@ echo "<script>(function(d, s, id) {
 							<?php else: ?>
 								<?php $cover =  $best_book['popular_cover_url']; ?>
 							<?php endif ?>
-							<li class="list-group-item"> 
-								<div class="media"> 
-									<div class="media-left mr-10"> 
-										<a href="#"><img class="media-object" src="<?php echo $cover; ?>" width="60" height="80"></a> 
-									</div> 
-									<div class="media-body"> 
-										<div> 
+							<li class="list-group-item">
+								<div class="media">
+									<div class="media-left mr-10">
+										<a href="#"><img class="media-object" src="<?php echo $cover; ?>" width="60" height="80"></a>
+									</div>
+									<div class="media-body">
+										<div>
 											<h4 class="media-heading bold mt-10">
 												<a href="book/<?php
 								echo $best_book['popular_book_id']; ?>
 								-<?php echo url_title($best_book['popular_book_title'], 'dash', true); ?>"><?php echo $best_book['popular_book_title'] ?></a>
-											</h4> 
-											<p style="font-size: 10pt;">by <a class="profile" data-usr-prf="<?php echo $best_book['popular_author_id']; ?>" data-usr-name="<?php echo url_title($best_book['popular_author_name']); ?>" href="profile/<?php echo url_title($best_book['popular_author_name']); ?>"><?php echo $best_book['popular_author_name']; ?></a></p> 
-										</div> 
-									</div> 
-								</div> 
+											</h4>
+											<p style="font-size: 10pt;">by <a class="profile" data-usr-prf="<?php echo $best_book['popular_author_id']; ?>" data-usr-name="<?php echo url_title($best_book['popular_author_name']); ?>" href="profile/<?php echo url_title($best_book['popular_author_name']); ?>"><?php echo $best_book['popular_author_name']; ?></a></p>
+										</div>
+									</div>
+								</div>
 							</li>
 
 							<?php endforeach ?>
