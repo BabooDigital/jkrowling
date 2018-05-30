@@ -1,14 +1,14 @@
-	
+
 	<!-- BANNER POPUP BUTTON PLAYSTORE DESKTOP -->
-	<!-- <div class="popUpBannerBox" style="display: block;"> 
-		<div class="popUpBannerInner"> 
+	<!-- <div class="popUpBannerBox" style="display: block;">
+		<div class="popUpBannerInner">
 			<div class="popUpBannerContent">
 				<a href="https://play.google.com/store/apps/details?id=id.android.baboo"><span style="background:  #482d8e;padding: 15px 100px;border-radius:  35px;color:  #fff;font-size: 15pt;">Download App</span></a><a href="#" class="closeButton">X</a>
 
 			</div>
 		</div>
 	</div> -->
-	<?php $this->load->view('navbar/D_navbar'); ?>	
+	<?php $this->load->view('navbar/D_navbar'); ?>
 <div class="mt-50 hidden-sm hidden-xs">
 	<div class="slideboo">
 		<div class="leftboo"></div>
@@ -24,6 +24,16 @@
 		<div class="row">
 			<div class="col-md-3 outleft">
 				<div class="stickymenu">
+                    <ul class="list-group list-group-flush">
+                        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                        <ins class="adsbygoogle"
+                             style="display:inline-block;width:300px;height:250px"
+                             data-ad-client="ca-pub-4994852796413443"
+                             data-ad-slot="7276054409"></ins>
+                        <script>
+                            (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
+                    </ul>
 					<!-- Penulis Minggu Ini -->
 					<div class="card mb-15" style="background-color: transparent;border: none;">
 						<div class="card-header" style="border: none;">
@@ -36,14 +46,14 @@
 						</div>
 					</div>
 					<!-- Penulis Minggu Ini -->
-					
+
 					<!-- Buku Populer -->
 					<!-- <div class="card mb-15" style="background-color: transparent;border: none;">
 						<div class="card-header" style="border: none;">
 							Buku Populer
 						</div>
 						<div class="card-body p-0">
-							<ul class="list-group list-group-flush">	
+							<ul class="list-group list-group-flush">
 								<li class="list-group-item" style="background-color: transparent;border: none;">
 									<div class="media">
 										<div class="media-left mr-10">

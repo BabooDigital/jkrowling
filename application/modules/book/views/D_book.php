@@ -1,4 +1,4 @@
-<?php 
+<?php
 $base = (isset($_SERVER['HTTPS']) ? "https://" : "http://").$_SERVER['HTTP_HOST'];
 $appid = '196429547790304';
 if (strpos($base, 'stg.baboo.id') !== false) {
@@ -17,7 +17,7 @@ echo "<script>(function(d, s, id) {
 }(document, 'script', 'facebook-jssdk'));</script>";
 ?>
 
-<?php $this->load->view('navbar/D_navbar'); ?>	
+<?php $this->load->view('navbar/D_navbar'); ?>
 <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-FbaqZneHUk1HWy6m"></script>
 
 <style type="text/css">
@@ -129,6 +129,18 @@ echo "<script>(function(d, s, id) {
 						</div>
 					</ul>
 				</div>
+                <br>
+                <div>
+                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <!-- Disamping -->
+                    <ins class="adsbygoogle"
+                         style="display:inline-block;width:300px;height:250px"
+                         data-ad-client="ca-pub-4994852796413443"
+                         data-ad-slot="7276054409"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
 			</div>
 			<?php  }else {
 				echo "kosong";
@@ -160,7 +172,7 @@ echo "<script>(function(d, s, id) {
 							</div>
 						</div>
 						<div id="appendContent">
-							
+
 						</div>
 					</div>
 				</div>
@@ -266,7 +278,7 @@ echo "<script>(function(d, s, id) {
 								</div>
 								<div class="col-md-3">
 									<div>
-										<button class="btn post-comment">Kirim</button>	
+										<button class="btn post-comment">Kirim</button>
 									</div>
 								</div>
 							</div>
