@@ -48,5 +48,4 @@
 			</div>
 		</div>
 		<?php } }else{
-			echo "tak ada";
-		} ?>
+					} ?>

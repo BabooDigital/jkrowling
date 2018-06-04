@@ -537,6 +537,7 @@ a:hover {
                     .detailbook {
                       width: 100%;
                       height: auto;
+                      text-align: justify;
                       margin-top: 10px; 
                       margin-left: auto;
                       font-size: 21px;
@@ -555,7 +556,7 @@ a:hover {
                       width: 90%;
                       height: 30px;
                       border:solid 1px #626262;
-                      color: #DDD;
+                      color: #595959;
                       outline: 0;
                       padding: 10px;
                       border-radius: 35px;
@@ -1320,4 +1321,20 @@ a:hover {
                     @keyframes fadeout {
                       from {bottom: 30px; opacity: 1;}
                       to {bottom: 0; opacity: 0;}
+                    }
+                    .btn-clear {
+                      background: none;
+                      border: none;
+                    }
+                    .right-posi {
+                      position: absolute;
+                      right: 30px;
+                    }
+                    .fitcover {
+                      object-fit: cover !important;
+                    }
+                    .commenttxt {
+                      font-size: 11pt;
+                      line-height: 18px;
+                      color: #6b6b6b;
                     }

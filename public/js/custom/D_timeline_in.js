@@ -108,20 +108,43 @@ $(document).ready(function() {
             }).always(function() {}))
         })
     });
-    var e = 2;
+    
+    loaded = true;
+    var page = 2;
     $(window).scroll(function() {
-        $(window).scrollTop() == $(document).height() - $(window).height() && (loadMoreData(e), e++)
-    }), $.ajax({
-        url: "?page=" + e,
-        type: "get",
-        beforeSend: function() {
-            $(".loader").show()
+        if  ($(window).scrollTop() + $(window).height() >= $(document).height() - 100 && loaded){
+          loadMoreData(page)
+          page++;
+      }
+  });
+
+    function loadMoreData(page) {
+        loaded = false;
+        $.ajax({
+          url: '?page=' + page,
+          type: "get",
+          beforeSend: function() {
+            $('.loader').show();
         }
-    }).done(function(e) {
-        "" != e && null != e ? ($(".loader").hide(), $("#post-data").append(e)) : $(".loader").html("No more records found")
-    }).fail(function(e, a, t) {
-        console.log("server not responding...")
     })
+        .done(function(data) {
+          if (!$.trim(data)) {
+            $('.loader').hide();
+            $('#post-data').append("<div class='mb-30 text-center'>Tidak ada data lagi..</div>");
+            return;
+
+        };
+        $('.loader').hide();
+        $("#post-data").append(data);
+        loaded = true;
+    })
+        .fail(function(jqXHR, ajaxOptions, thrownError) {
+          console.log('server not responding...');
+          loaded = true;
+          location.reload();
+      });
+    }
+  
     // ,
     //  $.ajax({
     //     url: base_url + "writters_afer_login",

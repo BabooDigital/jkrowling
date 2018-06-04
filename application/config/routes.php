@@ -169,6 +169,9 @@ $route['pay_book/finish'] = 'book/C_book/finish_pay';
 
 $route['getcommentbook'] = 'book/C_book/getCommentBook';
 $route['commentbook'] = 'book/C_book/postCommentBook';
+$route['replycom'] = 'book/C_book/postReplyComment';
+$route['editcom'] = 'book/C_book/postEditComment';
+$route['delcom'] = 'book/C_book/postDeleteComment';
 $route['notifications'] = 'notification/C_notification/getNotification';
 $route['example'] = 'notification/C_notification/example';
 $route['example/trigger_event'] = 'notification/C_notification/trigger_event';
@@ -267,3 +270,6 @@ $route['auth/create_payout'] = 'cashout/C_cashout/createCashout';
 $route['forgot-pass'] = 'profile/C_edit_profile/changePasswordView';
 // AUTH CHANGE PASSWORD POST
 $route['auth/changepass'] = 'profile/C_edit_profile/changePasswordPost';
+
+
+$route['user_all'] = 'profile/C_profile/getMentionPeople';

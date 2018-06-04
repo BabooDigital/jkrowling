@@ -24,14 +24,6 @@
 	width: 100px;
 	height: 100px;
 }
-.btn-clear {
-	background: none;
-	border: none;
-}
-.right-posi {
-	position: absolute;
-	right: 30px;
-}
 .pininput {
     color: #fff;
 	background: none;

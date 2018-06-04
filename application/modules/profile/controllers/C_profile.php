@@ -331,4 +331,26 @@ class C_profile extends MX_Controller {
 			}
 		}
 	}
+	
+	public function getMentionPeople()
+	{
+		error_reporting(0);
+		$auth = $this->session->userdata('authKey');
+
+		$resval = $this->curl_request->curl_get_auth($this->API.'auth/Users/allUsers', '', $auth);
+
+		$comm_data = $resval['data']['data'];
+
+		$auth = $resval['bbo_auth'];
+		$this->session->set_userdata('authKey', $auth);
+		$status = $resval['data']['code'];
+		if ($status == 403) {
+			$this->session->unset_userdata('userData');
+			$this->session->unset_userdata('authKey');
+			$this->session->sess_destroy();
+			redirect('login', 'refresh');
+		} else {
+			echo json_encode($comm_data);
+		}
+	}
 }

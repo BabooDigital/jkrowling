@@ -22,6 +22,7 @@ class Curl_Request
         curl_setopt($ch, CURLOPT_HEADER, 1);
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key: '.$auth));
         $result = curl_exec($ch);
+        curl_close($ch);
         
         $headers=array();
 
@@ -86,6 +87,7 @@ class Curl_Request
         curl_setopt($ch, CURLOPT_HEADER, 1);
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key: '.$auth));
         $result = curl_exec($ch);
+        curl_close($ch);
         
         $headers=array();
 
@@ -107,6 +109,42 @@ class Curl_Request
         $data_return['data'] = $resval;
         $data_return['bbo_auth'] = $headers['BABOO-AUTH-KEY'];
 
+        return $data_return;
+	}
+	public function curl_get_auth($url, $sendData = array(), $auth = '')
+	{
+		error_reporting(0);
+		$ch = curl_init();
+		$options = array(
+			CURLOPT_URL			 => $url,
+			CURLOPT_RETURNTRANSFER => true,
+	          CURLOPT_CUSTOMREQUEST  =>"GET",
+	          CURLOPT_POST           =>false,
+	          CURLOPT_FOLLOWLOCATION => false,
+	          CURLOPT_SSL_VERIFYPEER => 0,
+	          CURLOPT_HEADER         => 1,
+	          CURLOPT_HTTPHEADER	 => array('baboo-auth-key: '.$auth)
+
+	      );
+		curl_setopt_array($ch, $options);
+		$content = curl_exec($ch);
+		curl_close($ch);
+		$headers=array();
+
+		$data=explode("\n",$content);
+		$headers['status']=$data[0];
+
+		array_shift($data);
+
+		foreach($data as $part){
+			$middle=explode(":",$part);
+			$headers[trim($middle[0])] = trim($middle[1]);
+		}
+		$resval = (array)json_decode(end($data), true);
+
+		$data_return['data'] = $resval;
+        $data_return['bbo_auth'] = $headers['BABOO-AUTH-KEY'];
+        
         return $data_return;
 	}
 }
