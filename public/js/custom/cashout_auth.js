@@ -369,7 +369,6 @@ function validationFormCashout() {
 				}
 			})
 			.done(function(data) {
-				console.log(data);
 				if (data.code == 200) {
 					window.location = base_url+'cashout/fourth';
 				}else{

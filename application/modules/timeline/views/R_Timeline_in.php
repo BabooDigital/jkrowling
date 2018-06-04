@@ -65,7 +65,6 @@
 				<div class="loader mb-20" style="display: none;margin-left: auto;margin-right: auto;"></div>
 			</div>
 		</div>
-		<input type="hidden" id="iaiduui" name="iaiduui" value="<?php $name = $this->session->userdata('userData'); echo $name['user_id']; ?>">
 	</div>
 	<?php if (!empty($this->session->flashdata('success_change_pass'))) {
 		echo "<div id='snackbarpass'>Password Berhasil Dirubah</div>";

@@ -115,11 +115,11 @@ class C_search extends MX_Controller
         error_reporting(0);
         $url = $this->API . '/search';
         $auth = $this->session->userdata('authKey');
-        $user = $this->session->userdata('userData');
+        
         $search = $this->input->post('search', TRUE);
 
+
         $sendData = array(
-            'user_id' => $user["user_id"],
             'search' => $search
         );
 

@@ -54,11 +54,169 @@
 	opacity: .5;
 	border: none;
 	position: absolute;
-	right: 35px;
+	right: 10px;
 }
 .list-group-item.disabled, .list-group-item:disabled {
 	background: none;
 }
+.right-posi {
+	right: 10px !important;
+}
+.show {
+	display: inline;
+}
+.textp > p {
+	/*margin-bottom: 0px;*/
+}
+.modal-backdrop ~ .modal-backdrop
+{
+	z-index : 1051 ;
+}
+.modal-backdrop ~ .modal-backdrop ~ .modal-backdrop
+{
+	z-index : 1052 ;
+}
+.modal-backdrop ~ .modal-backdrop ~ .modal-backdrop ~ .modal-backdrop
+{
+	z-index : 1053 ;
+}
+
+.mentions-input-box {
+  position: relative;
+  background: #fff;
+  width: 80%;
+  border-radius: 35px;
+  float: left;
+}
+
+.mentions-input-box textarea {
+  width: 80%;
+  display: block;
+  height: 18px;
+  padding: 9px;
+  overflow: hidden;
+  background: transparent;
+  position: relative;
+  outline: 0;
+  resize: none;
+
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.mentions-input-box .mentions-autocomplete-list {
+  display: none;
+  background: #fff;
+  border: 1px solid #b2b2b2;
+  position: absolute;
+  left: 0;
+  bottom: 40px;
+  right: 0;
+  z-index: 1070;
+
+  border-radius:5px;
+  border-top-right-radius:0;
+  border-top-left-radius:0;
+
+  -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.148438);
+     -moz-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.148438);
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.148438);
+}
+
+.mentions-input-box .mentions-autocomplete-list ul {
+    margin: 0;
+    padding: 0;
+}
+
+.mentions-input-box .mentions-autocomplete-list li {
+  background-color: #fff;
+  padding: 0 5px;
+  margin: 0;
+  width: auto;
+  border-bottom: 1px solid #eee;
+  height: 26px;
+  line-height: 26px;
+  overflow: hidden;
+  cursor: pointer;
+  list-style: none;
+  white-space: nowrap;
+}
+
+.mentions-input-box .mentions-autocomplete-list li:last-child {
+  border-radius:5px;
+}
+
+.mentions-input-box .mentions-autocomplete-list li > img,
+.mentions-input-box .mentions-autocomplete-list li > div.icon {
+  width: 16px;
+  height: 16px;
+  float: left;
+  margin-top:5px;
+  margin-right: 5px;
+  -moz-background-origin:3px;
+
+  border-radius:3px;
+}
+
+.mentions-input-box .mentions-autocomplete-list li em {
+  font-weight: bold;
+  font-style: none;
+}
+
+.mentions-input-box .mentions-autocomplete-list li:hover,
+.mentions-input-box .mentions-autocomplete-list li.active {
+  background-color: #f2f2f2;
+}
+
+.mentions-input-box .mentions-autocomplete-list li b {
+  background: #ffff99;
+  font-weight: normal;
+}
+
+.mentions-input-box .mentions {
+  position: absolute;
+  left: 1px;
+  right: 0;
+  top: 1px;
+  bottom: 0;
+  padding: 9px;
+  color: #fff;
+  overflow: hidden;
+
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.mentions-input-box .mentions > div {
+  color: #fff;
+  white-space: pre-wrap;
+  width: 100%;
+}
+
+.mentions-input-box .mentions > div > strong {
+  font-weight:normal;
+  background: #d8dfea;
+}
+
+.mentions-input-box .mentions > div > strong > span {
+  filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0);
+}
+
+.fix-comm {
+	display: none;
+	z-index: 1060;
+    background: #f5f8fa;
+}
+
+.mores {
+	display: none;
+}
+
+.coment_ {
+	border-bottom: 1px #dddddd solid;
+}
+
 </style>
 <?php 
 $base = (isset($_SERVER['HTTPS']) ? "https://" : "http://").$_SERVER['HTTP_HOST'];
@@ -108,7 +266,7 @@ echo "<script>(function(d, s, id) {
 			<p class="text-muted ml-20">Daftar Chapter</p>
 			<div class="list-group mt-10 mb-90 pl-10 pr-10" id="list_Rchapter"></div>
 		</div>
-		<?php if ($detail_book['data']['book_info']['is_free'] == true || $this->session->userdata('userData')['user_id'] == $detail_book['data']['author']['author_id']) { ?>
+		<?php $usDat = $this->session->userdata('userData'); if ($detail_book['data']['book_info']['is_free'] == true || $usDat['user_id'] == $detail_book['data']['author']['author_id']) { ?>
 		<div></div>
 		<?php }else{ ?>
 		<div class="bg-white" style="width: 250px;height: auto;position: fixed;bottom: 0;padding: 5px 15px;">
@@ -120,8 +278,8 @@ echo "<script>(function(d, s, id) {
 		<?php } ?>
 	</div><br>
 	<br>
-	<div class="container mt-30">
-		<?php if (empty($this->uri->segment(3))) { ?>
+	<div class="container mt-30 mb-50">
+		<?php if (!$this->uri->segment(3)) { ?>
 		<div class="row mb-30">
 			<div class="col-12">
 				<div class="text-center mb-15">
@@ -140,7 +298,7 @@ echo "<script>(function(d, s, id) {
 			</div>
 		</div>
 		<?php } ?>
-		<?php $sess = $this->session->userdata('userData'); if (empty($this->uri->segment(3))) { ?>
+		<?php $sess = $this->session->userdata('userData'); if (!$this->uri->segment(3)) { ?>
 		<div class="row">
 			<div class="col-12">
 				<div class="media mb-20">
@@ -180,7 +338,7 @@ echo "<script>(function(d, s, id) {
 		</div>
 		<?php } ?>
 		<input id="iaidubi" name="iaidubi" type="hidden" value="<?php echo $detail_book['data']['book_info']['book_id']; ?>"> <input id="iaiduui" name="iaiduui" type="hidden" value="<?php $dat = $this->session->userdata('userData'); echo $dat['user_id']; ?>">
-		<?php if ($detail_book['data']['chapter']['chapter_free'] == true  || $this->session->userdata('userData')['user_id'] == $detail_book['data']['author']['author_id']) { ?>
+		<?php $usDat = $this->session->userdata('userData'); if ($detail_book['data']['chapter']['chapter_free'] == true  || $usDat['user_id'] == $detail_book['data']['author']['author_id']) { ?>
 		<div class="row">
 			<div class="col-12 text-center mt-10">
 				<h5 style="font-weight: 900;"><?php echo $detail_book['data']['chapter']['chapter_title']; ?></h5>
@@ -217,27 +375,6 @@ echo "<script>(function(d, s, id) {
 		</div>
 	</div>
 	<?php } ?>
-	<hr class="mt-40 mb-10">
-	<div class="row">
-		<div class="col-12">
-			<div class="commentbook mb-60">
-				<p></p>
-				<h4>Komentar <span style="color: #797979;">(<?php echo $detail_book['data']['book_info']['book_comment_count']; ?>)</span></h4>
-				<p></p>
-				<div class="media">
-					<img alt="<?php $dat = $this->session->userdata('userData'); echo $dat['fullname']; ?>" class="d-flex align-self-start mr-20 rounded-circle" height="48" id="profpict" src="<?php $dat = $this->session->userdata('userData');  if($dat['prof_pict'] == NULL){ echo base_url('public/img/profile/blank-photo.jpg'); }else{ echo $dat['prof_pict']; } ?>" width="48">
-					<div class="media-body mt-5">
-						<div>
-							<span><input class="frmcomment commentform" id="comments" placeholder="Tulis sesuatu.." style="width: 70%;height: 45px;" type="text"> <button class="Rpost-comment" type="button" style="background: none;border: none;"><img src="<?php echo base_url('public/img/assets/icon_sendcomm.png'); ?>" width="45" height="45"></button></span>
-						</div>
-					</div>
-				</div><br>
-				<br>
-				<div id="Rbookcomment_list"></div>
-				<div class="loader mx-auto" style="display: none;"></div>
-			</div>
-		</div>
-	</div>
 </div>
 </div>
 <div id="footbanner">
@@ -247,7 +384,7 @@ echo "<script>(function(d, s, id) {
 				<a class="<?php if($detail_book['data']['book_info']['is_like'] == false){ echo 'like'; }else{ echo 'unlike'; } ?>" data-id="<?php echo $detail_book['data']['book_info']['book_id']; ?>" href="javascript:void(0);" id="loveboo"><img class="mr-5 loveicon" src="<?php if($detail_book['data']['book_info']['is_like'] == false){ echo base_url('public/img/assets/icon_love.svg'); }else{ echo base_url('public/img/assets/love_active.svg'); } ?>" width="24"> <span id="likecount"><?php echo $detail_book['data']['book_info']['like_count']; ?></span></a>
 			</div>
 			<div>
-				<a href="#comments"><img class="mr-5" src="<?php echo base_url(); ?>public/img/assets/icon_comment.svg" width="22"> <?php echo $detail_book['data']['book_info']['book_comment_count']; ?></a>
+				<a href="javascript:void(0);" class="comment_"><img class="mr-5" src="<?php echo base_url(); ?>public/img/assets/icon_comment.svg" width="22"> <?php echo $detail_book['data']['book_info']['book_comment_count']; ?></a>
 			</div>
 			<div>
 				<a class="share-fb" href="javascript:void(0);"><img class="mr-5" src="<?php echo base_url(); ?>public/img/assets/icon_share.svg" width="23"> <span class="boshare"><?php echo $detail_book['data']['book_info']['share_count']; ?></span></a>
@@ -261,6 +398,64 @@ echo "<script>(function(d, s, id) {
 		</div>
 	</nav>
 </div>
+<!-- Modal -->
+<div class="modal right fade" id="modComment" tabindex="-1" role="dialog" aria-labelledby="modComment2">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+
+			<div class="modal-header">
+				<button type="button" class="closes" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h5 class="modal-title" id="modComment2"><b>Komentar <?php if ($detail_book['data']['book_info']['book_comment_count'] != 0) {echo "(".$detail_book['data']['book_info']['book_comment_count'].")"; }else{echo ""; } ?></b></h5>
+			</div>
+
+			<div class="modal-body pt-5">
+				<div class="mb-50">
+					<div id="Rbookcomment_list">
+
+					</div>
+					<div class="loader mx-auto" style="display: none;"></div>
+				</div>
+				<nav class="pt-5 pb-5 navbar bg-boo fixed-bottom fix-comm">
+					<textarea class="frmcomment commentform mention" id="comments" placeholder="Tulis komentarmu disini..." type="text" style="width:100%;height: 45px;"></textarea>
+					<div id="btn-com"><button class="Rpost-comment" type="button" style="background: none;border: none;"><img src="<?php echo base_url('public/img/assets/icon_sendcomm.png'); ?>" width="43" height="43"></button></div>
+				</nav>
+			</div>
+
+		</div>
+	</div>
+</div>
+<!-- modal -->
+
+<!-- Modal -->
+<div class="modal right fade" id="modCommentRepl" tabindex="-1" role="dialog" aria-labelledby="modCommentRepl2">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+
+			<div class="modal-header">
+				<button type="button" class="closes" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h5 class="modal-title" id="modComment2"><b>Komentar <?php if ($detail_book['data']['book_info']['book_comment_count'] != 0) {echo "(".$detail_book['data']['book_info']['book_comment_count'].")"; }else{echo ""; } ?></b></h5>
+			</div>
+
+			<div class="modal-body pt-5">
+				<div class="mb-70">
+					<div id="Rbookcomment_list">
+
+					</div>
+					<div class="loader mx-auto" style="display: none;"></div>
+				</div>
+				<nav class="navbar navbar-light bg-boo fixed-bottom">
+					<span class="w-100">
+						<input class="frmcomment commentform" id="comments" placeholder="Tulis komentarmu disini..." type="text" style="width: 80%;height: 45px;">
+						<button class="Rpost-comment" type="button" style="background: none;border: none;"><img src="<?php echo base_url('public/img/assets/icon_sendcomm.png'); ?>" width="45" height="45"></button>
+					</span>
+				</nav>
+			</div>
+
+		</div>
+	</div>
+</div>
+<!-- modal -->
+
 <!-- Modal -->
 <div class="modal right fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
 	<div class="modal-dialog" role="document">
@@ -276,7 +471,7 @@ echo "<script>(function(d, s, id) {
 					<p style="padding: 10px 7px;background: #eceff2;"><span class="fs-14px mr-5">&#8220;</span><span class="fs-14px append_txt"> Paragraph </span><span class="fs-14px ml-5">&#8222;</span></p>
 				</div>
 				<br>
-				<div id="Rparagraphcomment_list">
+				<div id="Rparagraphcomment_list" class="mb-100">
 
 				</div>
 				<nav class="navbar navbar-light bg-light fixed-bottom">
@@ -287,32 +482,37 @@ echo "<script>(function(d, s, id) {
 				</nav>
 			</div>
 
-		</div><!-- modal-content -->
-	</div><!-- modal-dialog -->
-</div><!-- modal -->
+		</div>
+	</div>
+</div>
+<!-- modal -->
+
 <?php if ($this->session->flashdata('popup_status_payment')): ?>
 	<div class="modal fade" id="notifpayment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<?php $this->load->view('include/modal_pending'); ?>
+    </div>
 <?php endif ?>
 
 <?php $this->load->view('include/modal_checkout'); ?>
-
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/0.10.0/lodash.min.js"></script>
 <?php if (isset($js)): ?>
 	<?php echo get_js($js) ?>
 <?php endif ?>
+<script src='http://podio.github.io/jquery-mentions-input/lib/jquery.events.input.js' type='text/javascript'></script>
+<script src='http://podio.github.io/jquery-mentions-input/lib/jquery.elastic.js' type='text/javascript'></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		showPopUpBanner();
 		<?php if ($detail_book['data']['book_info']['is_free'] == false) { ?>
-		$("#notifpayment").modal('show');
+			$("#notifpayment").modal('show');
 			buyBook();
-			<?php } ?>
-		});
+		<?php } ?>
+
+	});
 
 	var segment = '<?php echo $this->uri->segment(2); ?>';
 	var active = '<?php echo $this->uri->segment(3); ?>';
-	var count_data = '<?php echo $detailChapter; ?>';
-	var userdata = '<?php echo $this->session->userdata('userData')['user_id']; ?>';
+	var userdata = '<?php $usDat = $this->session->userdata('userData'); echo $usDat['user_id']; ?>';
 	var userbook = '<?php echo $detail_book['data']['author']['author_id']; ?>';
 
 	var banner_height = $("#navscroll, #navscrollf").height();

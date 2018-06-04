@@ -35,31 +35,10 @@ class C_book extends MX_Controller
         // print_r($data_book);
 
         // START GET CHAPTER
-        $url = $this->API . 'book/Books/allChapters/';
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        $data_before_chapter = $this->curl_request->curl_post_auth($this->API.'book/Books/allChapters/', $data_book, $auth);
 
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data_book);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-        curl_setopt($ch, CURLOPT_HEADER, 1);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key: ' . $auth));
-        $content = curl_exec($ch);
-        $headers = array();
-        $data_before_chapter = explode("\n", $content);
-        $headers['status'] = $data_before_chapter[0];
-
-        array_shift($data_before_chapter);
-
-        foreach ($data_before_chapter as $part) {
-            $middle = explode(":", $part);
-            $headers[trim($middle[0])] = trim($middle[1]);
-        }
-
-        $data_before_chapter['chapter'] = json_decode(end($data_before_chapter), true);
-        $auth = $headers['BABOO-AUTH-KEY'];
+        $data_before_chapter['chapter'] = $data_before_chapter['data'];
+        $auth = $data_before_chapter['bbo_auth'];
         if (isset($data_before_chapter['chapter']['code']) && $data_before_chapter['chapter']['code'] == '200') {
             $status = $data_before_chapter['chapter']['code'];
             $this->session->set_userdata('authKey', $auth);
@@ -146,20 +125,18 @@ class C_book extends MX_Controller
 
         $data['detailBook'] = json_decode(end($data), true);
         $data['menuChapter'] = json_decode(end($data_before_chapter), true);
+        $data['comment'] = $comments;
         if ($data_before_chapter['chapter']['data']['chapter'][3]['chapter_free'] != "false") {
             $data['detailChapter'] = count($data_before_chapter['chapter']['data']['chapter']);
         } else {
             $data['detailChapter'] = 2;
         }
 
-        $data['css'][] = "public/plugins/holdOn/css/HoldOn.css";
 
         $data['js'][] = "public/js/jquery.min.js";
-        $data['js'][] = "public/js/custom/search.js";
         $data['js'][] = "public/js/umd/popper.min.js";
         $data['js'][] = "public/js/bootstrap.min.js";
-        $data['js'][] = "public/js/jquery.sticky-kit.min.js";
-        $data['js'][] = "public/plugins/holdOn/js/HoldOn.js";
+        $data['js'][] = "public/js/jquery.mentionsInput.js";
 
         $data['id_chapter'] = $this->input->get("chapter");
 
@@ -167,8 +144,12 @@ class C_book extends MX_Controller
         if ($this->agent->mobile()) {
             $data['js'][] = "public/js/custom/mobile/r_detail_book.js";
             $this->load->view('include/head', $data);
-            $this->load->view('R_book', $data);
+            $this->load->view('R_book');
         } else {
+            $data['css'][] = "public/plugins/holdOn/css/HoldOn.css";
+
+            $data['js'][] = "public/plugins/holdOn/js/HoldOn.js";
+            $data['js'][] = "public/js/jquery.sticky-kit.min.js";
             $data['js'][] = "public/js/custom/notification.js";
             $data['js'][] = "public/js/custom/transaction.js";
             if ($this->input->get("chapter")) {
@@ -180,9 +161,10 @@ class C_book extends MX_Controller
                 }
             } else {
                 // print_r($content);
+                $data['js'][] = "public/js/custom/search.js";
                 $data['js'][] = "public/js/custom/detail_book.js";
                 $this->load->view('include/head', $data);
-                $this->load->view('D_book', $data);
+                $this->load->view('D_book');
                 count($data_before_chapter['chapter']);
             }
         }
@@ -190,10 +172,8 @@ class C_book extends MX_Controller
 
     public function chapterBook()
     {
-
         error_reporting(0);
         $auth = $this->session->userdata('authKey');
-        $user = $this->session->userdata('userData');
         $id_book = $this->uri->segment(2);
         $id_chapter = $this->uri->segment(4);
         $idb = explode('-', $id_book, 2);
@@ -201,36 +181,13 @@ class C_book extends MX_Controller
 
         $data_book = array(
             'book_id' => $idb[0],
-            'chapter' => $id_chapter,
-            'user_id' => $user['user_id']
+            'chapter' => $id_chapter
         );
-        // print_r($data_book);
-        $ch = curl_init();
-        $url = $this->API . 'book/Books/detailBook/';
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data_book);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-        curl_setopt($ch, CURLOPT_HEADER, 1);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key: ' . $auth));
-        $content = curl_exec($ch);
-        $headers = array();
+        $resval = $this->curl_request->curl_post_auth($this->API.'book/Books/detailBook', $data_book, $auth);
 
-        $data = explode("\n", $content);
-        $headers['status'] = $data[0];
-
-        array_shift($data);
-
-        foreach ($data as $part) {
-            $middle = explode(":", $part);
-            $headers[trim($middle[0])] = trim($middle[1]);
-        }
-
-        $data['detail_book'] = json_decode(end($data), true);
-        $auth = $headers['BABOO-AUTH-KEY'];
+        $data['detail_book'] = $resval['data'];
+        $auth = $resval['bbo_auth'];
         if (isset($data['detail_book']['code']) && $data['detail_book']['code'] == '200') {
             $status = $data['detail_book']['code'];
             $this->session->set_userdata('authKey', $auth);
@@ -245,39 +202,11 @@ class C_book extends MX_Controller
         } else {
             echo json_encode($data['detail_book']['data']);
         }
-        // $data['js'][] = "public/js/jquery.min.js";
-        // $data['js'][] = "public/js/umd/popper.min.js";
-        // $data['js'][] = "public/js/bootstrap.min.js";
-        // $data['js'][] = "public/js/jquery.sticky-kit.min.js";
-        // $data['id_chapter'] = $this->input->get("chapter");
-
-        // $data['id_chapter_asli'] = $data['detailBook']['data']['chapter']['chapter_id'];
-        // if ($this->agent->mobile()) {
-        // 	$data['js'][] = "public/js/custom/mobile/r_detail_book.js";
-        // 	$this->load->view('include/head', $data);
-        // 	$this->load->view('R_book', $data);
-        // }else{
-        // 	if ($this->input->get("chapter")) {
-        // 		if ($data_before_chapter['chapter']['data']['chapter'][$this->input->get("chapter")] == null || $data_before_chapter['chapter']['data']['chapter'][$this->input->get("chapter")] == '') {
-        //         	// print_r("kosong chapter");
-        // 		}else{
-        // 			$data['js'][] = "public/js/custom/detail_book.js";
-        // 			$result = $this->load->view('data/D_book', $data);
-        // 		}
-        // 	}else{
-        // 		$data['js'][] = "public/js/custom/detail_book.js";
-        // 		$this->load->view('include/head', $data);
-        // 		$this->load->view('D_book', $data);
-        // 		// count($data_before_chapter['chapter']);
-        // 		// print_r($data['detailChapter']);
-        // 	}
-        // }
     }
 
     public function getChapterResponsive()
     {
         error_reporting(0);
-        $url = $this->API . 'book/Books/detailBook';
         $auth = $this->session->userdata('authKey');
         $bid = $this->uri->segment(2);
         $str = explode('-', $bid);
@@ -289,54 +218,27 @@ class C_book extends MX_Controller
             'chapter' => $idch,
         );
 
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        $resvaldat = $this->curl_request->curl_post_auth($this->API.'book/Books/detailBook', $sendData, $auth);
 
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $sendData);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-        curl_setopt($ch, CURLOPT_HEADER, 1);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key: ' . $auth));
-        $result = curl_exec($ch);
+        $resval = $resvaldat['data'];
 
-        $headers = array();
-
-        $data = explode("\n", $result);
-
-
-        array_shift($data);
-        $middle = array();
-        $moddle = array();
-        foreach ($data as $part) {
-            $middle = explode(":", $part);
-            $moddle = explode("{", $part);
-
-            if (error_reporting() == 0) {
-                $headers[trim($middle[0])] = trim($middle[1]);
-            }
-        }
-        $getdata = end($data);
-        $resval = json_decode($getdata, TRUE);
-
-        $auth = $headers['BABOO-AUTH-KEY'];
-
+        $auth = $resvaldat['bbo_auth'];
         $this->session->set_userdata('authKey', $auth);
-
-        $datas['detail_book'] = $resval;
-        $datas['title'] = $resval['data']['chapter']['chapter_title'] . " | " . $resval['data']['book_info']['title_book'] . " - Baboo";
-        $datas['js'][] = "public/js/jquery.min.js";
-        $datas['js'][] = "public/js/umd/popper.min.js";
-        $datas['js'][] = "public/js/bootstrap.min.js";
-        $datas['js'][] = "public/js/jquery.sticky-kit.min.js";
-        $datas['js'][] = "public/js/custom/mobile/r_detail_book.js";
-        if ($data['home']['code'] == 403) {
+        if ($resval['code'] == 403) {
             $this->session->unset_userdata('userData');
             $this->session->unset_userdata('authKey');
             $this->session->sess_destroy();
             redirect('login', 'refresh');
         } else {
+            $datas['detail_book'] = $resval;
+            $datas['title'] = $resval['data']['chapter']['chapter_title'] . " | " . $resval['data']['book_info']['title_book'] . " - Baboo";
+            $datas['js'][] = "public/js/jquery.min.js";
+            $datas['js'][] = "public/js/umd/popper.min.js";
+            $datas['js'][] = "public/js/bootstrap.min.js";
+            $datas['js'][] = "public/js/jquery.sticky-kit.min.js";
+            $datas['js'][] = "public/js/jquery.mentionsInput.js";
+            $datas['js'][] = "public/js/custom/mobile/r_detail_book.js";
+
             $this->load->view('include/head', $datas);
             $this->load->view('R_book');
         }
@@ -344,50 +246,22 @@ class C_book extends MX_Controller
 
     public function chapter()
     {
-
         error_reporting(0);
-
-        $user = $this->session->userdata('userData');
         $auth = $this->session->userdata('authKey');
 
         $id_book = $this->input->post("id_book", TRUE);
         $idb = explode('-', $id_book, 2);
         if (is_array($idb)) ;
-        $id_chapter = $this->input->post("id_chapter", TRUE);
 
         $data_book = array(
-            'book_id' => $idb[0],
-            'user_id' => $user['user_id']
+            'book_id' => $idb[0]
         );
-        // print_r($data_book);
 
-        // START GET CHAPTER
-        $url = $this->API . 'book/Books/allChapters/';
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        $resval = $this->curl_request->curl_post_auth($this->API.'book/Books/allChapters', $data_book, $auth);
 
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data_book);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-        curl_setopt($ch, CURLOPT_HEADER, 1);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key: ' . $auth));
-        $content = curl_exec($ch);
-        curl_close($ch);
-        $headers = array();
-        $data_before_chapter = explode("\n", $content);
-        $headers['status'] = $data_before_chapter[0];
+        $data_before_chapter['chapter'] = $resval['data'];
 
-        array_shift($data_before_chapter);
-
-        foreach ($data_before_chapter as $part) {
-            $middle = explode(":", $part);
-            $headers[trim($middle[0])] = trim($middle[1]);
-        }
-
-        $data_before_chapter['chapter'] = json_decode(end($data_before_chapter), true);
-        $auth = $headers['BABOO-AUTH-KEY'];
+        $auth = $resval['bbo_auth'];
         if (isset($data_before_chapter['chapter']['code']) && $data_before_chapter['chapter']['code'] == '200') {
             $status = $data_before_chapter['chapter']['code'];
             $this->session->set_userdata('authKey', $auth);
@@ -415,46 +289,19 @@ class C_book extends MX_Controller
     {
         error_reporting(0);
         $auth = $this->session->userdata('authKey');
-        $user = $this->session->userdata('userData');
         $id_book = $this->uri->segment(2);
         $idb = explode('-', $id_book, 2);
         if (is_array($idb)) ;
 
         $data_book = array(
-            'book_id' => $idb[0],
-            'user_id' => $user['user_id']
+            'book_id' => $idb[0]
         );
-        // print_r($data_book);
-        // print_r($data_book);
 
         // START GET CHAPTER
-        $url = $this->API . 'book/Books/allChapters/';
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        $resval = $this->curl_request->curl_post_auth($this->API.'book/Books/allChapters', $data_book, $auth);
 
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data_book);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-        curl_setopt($ch, CURLOPT_HEADER, 1);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key: ' . $auth));
-        $content = curl_exec($ch);
-        curl_close($ch);
-        $headers = array();
-
-        $data_before_chapter = explode("\n", $content);
-        $headers['status'] = $data_before_chapter[0];
-
-        array_shift($data_before_chapter);
-
-        foreach ($data_before_chapter as $part) {
-            $middle = explode(":", $part);
-            $headers[trim($middle[0])] = trim($middle[1]);
-        }
-
-        $data_before_chapter['chapter'] = json_decode(end($data_before_chapter), true);
-        $auth = $headers['BABOO-AUTH-KEY'];
+        $data_before_chapter['chapter'] = $resval['data'];
+        $auth = $resval['bbo_auth'];
         if (isset($data_before_chapter['chapter']['code']) && $data_before_chapter['chapter']['code'] == '200') {
             $status = $data_before_chapter['chapter']['code'];
             $this->session->set_userdata('authKey', $auth);
@@ -463,35 +310,12 @@ class C_book extends MX_Controller
         }
 
         // END GET CHAPTER
-        $ch = curl_init();
-        $url = $this->API . 'book/Books/detailBook/';
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        $resvals = $this->curl_request->curl_post_auth($this->API.'book/Books/detailBook', $data_book, $auth);
 
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data_book);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-        curl_setopt($ch, CURLOPT_HEADER, 1);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key: ' . $auth));
-        $content = curl_exec($ch);
-        $headers = array();
+        $data['detail_book'] = $resvals['data'];
 
-        $data = explode("\n", $content);
-        $headers['status'] = $data[0];
-
-        array_shift($data);
-
-        foreach ($data as $part) {
-            $middle = explode(":", $part);
-            $headers[trim($middle[0])] = trim($middle[1]);
-        }
-
-        $data['detail_book'] = json_decode(end($data), true);
-        $auth = $headers['BABOO-AUTH-KEY'];
-
+        $auth = $resval['bbo_auth'];
         $this->session->set_userdata('authKey', $auth);
-
         if ($data['detail_book']['code'] == 403) {
             $this->session->unset_userdata('userData');
             $this->session->unset_userdata('authKey');
@@ -503,38 +327,15 @@ class C_book extends MX_Controller
             } else {
                 $chapter_id = $data_before_chapter['chapter']['data']['chapter'][$this->input->get("chapter")]['chapter_id'];
 
-                $url = $this->API . 'book/Books/detailBook/';
                 $data_book = array(
                     'book_id' => $idb[0],
-                    'user_id' => $user,
                     'chapter' => $chapter_id
                 );
 
-                $ch = curl_init();
-                $url = $this->API . 'book/Books/detailBook/';
-                curl_setopt($ch, CURLOPT_URL, $url);
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+                $resvalss = $this->curl_request->curl_post_auth($this->API.'book/Books/detailBook/', $data_book, $auth);
 
-                curl_setopt($ch, CURLOPT_POST, 1);
-                curl_setopt($ch, CURLOPT_POSTFIELDS, $data_book);
-                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-                curl_setopt($ch, CURLOPT_HEADER, 1);
-                curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key: ' . $auth));
-                $content = curl_exec($ch);
-                $headers = array();
-                $data = explode("\n", $content);
-                $headers['status'] = $data[0];
-                // print_r($data);
-                array_shift($data);
-
-                foreach ($data as $part) {
-                    $middle = explode(":", $part);
-                    $headers[trim($middle[0])] = trim($middle[1]);
-                }
-
-                $data['detail_book'] = json_decode(end($data), true);
-                $auth = $headers['BABOO-AUTH-KEY'];
+                $data['detail_book'] = $resvalss['data'];
+                $auth = $resvalss['bbo_auth'];
                 if (isset($data['detail_book']['code']) && $data['detail_book']['code'] == '200') {
                     $status = $data['detail_book']['code'];
                     $this->session->set_userdata('authKey', $auth);
@@ -545,7 +346,7 @@ class C_book extends MX_Controller
 
             $data['title'] = $data['detail_book']['data']['book_info']['title_book'] . " - Baboo";
 
-            $data['detailBook'] = json_decode(end($data), true);
+            $data['detailBook'] = $resvalss['data'];
             $data['menuChapter'] = $data_before_chapter['chapter'];
             if ($data_before_chapter['chapter']['data']['chapter'][3]['chapter_free'] != false) {
                 $data['detailChapter'] = count($data_before_chapter['chapter']['data']['chapter']);
@@ -573,7 +374,6 @@ class C_book extends MX_Controller
             } else {
                 if ($this->input->get("chapter")) {
                     if ($data_before_chapter['chapter']['data']['chapter'][$this->input->get("chapter")] == null || $data_before_chapter['chapter']['data']['chapter'][$this->input->get("chapter")] == '') {
-                        // print_r("kosong chapter");
                     } else {
                         $data['css'][] = "public/css/baboo.css";
                         $result = $this->load->view('data/D_readingmode', $data);
@@ -584,71 +384,38 @@ class C_book extends MX_Controller
                 }
             }
         }
-        // print_r($data['menuChapter']);
     }
 
     public function postCommentBook()
     {
         error_reporting(0);
-        $url = $this->API . 'book/Books/addComment';
         $auth = $this->session->userdata('authKey');
+        
         $book_id = $this->input->post('book_id', TRUE);
         $parap_id = $this->input->post('paragraph_id', TRUE);
-        $user_id = $this->input->post('user_id', TRUE);
         $comment = $this->input->post('comments', TRUE);
+
 
         if (!empty($book_id)) {
             $sendData = array(
                 'book_id' => $book_id,
-                'user_id' => $user_id,
-                'comments' => $comment
+                'comments' => ' '.$comment
             );
         } else {
             $sendData = array(
                 'paragraph_id' => $parap_id,
-                'user_id' => $user_id,
-                'comments' => $comment
+                'comments' => ' '.$comment
             );
         }
 
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        $resval = $this->curl_request->curl_post_auth($this->API.'book/Books/addComment', $sendData, $auth);
 
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $sendData);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-        curl_setopt($ch, CURLOPT_HEADER, 1);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key: ' . $auth));
-        $result = curl_exec($ch);
+        $psn = $resval['data']['message'];
+        $userdetail = $resval['data']['data'];
 
-
-        $headers = array();
-
-        $data = explode("\n", $result);
-
-
-        array_shift($data);
-        $middle = array();
-        $moddle = array();
-        foreach ($data as $part) {
-            $middle = explode(":", $part);
-            $moddle = explode("{", $part);
-
-            if (error_reporting() == 0) {
-                $headers[trim($middle[0])] = trim($middle[1]);
-            }
-        }
-        $getdata = end($data);
-        $resval = json_decode($getdata, TRUE);
-
-        $psn = $resval['message'];
-        $userdetail = $resval['data'];
-        $auth = $headers['BABOO-AUTH-KEY'];
-
-        $this->session->set_userdata('authKey', $auth);
-        $status = $resval['code'];
+        // $auth = $resval['bbo_auth'];
+        // $this->session->set_userdata('authKey', $auth);
+        $status = $resval['data']['code'];
         if ($status == 403) {
             $this->session->unset_userdata('userData');
             $this->session->unset_userdata('authKey');
@@ -657,15 +424,11 @@ class C_book extends MX_Controller
         } else {
             echo json_encode($userdetail);
         }
-        // print_r($data);
     }
 
     public function getCommentBook()
     {
         error_reporting(0);
-        $url = $this->API . 'timeline/Timelines/getComment';
-
-
         $auth = $this->session->userdata('authKey');
         $book_id = $this->input->post('book_id', TRUE);
         $idb = explode('-', $book_id, 2);
@@ -681,44 +444,14 @@ class C_book extends MX_Controller
             );
         }
 
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        $resval = $this->curl_request->curl_post_auth($this->API.'timeline/Timelines/getComment', $sendData, $auth);
+        
+        $psn = $resval['data']['message'];
+        $userdetail = $resval['data']['data']['comments'];
 
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $sendData);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-        curl_setopt($ch, CURLOPT_HEADER, 1);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key: ' . $auth));
-        $result = curl_exec($ch);
-
-
-        $headers = array();
-
-        $data = explode("\n", $result);
-
-
-        array_shift($data);
-        $middle = array();
-        $moddle = array();
-        foreach ($data as $part) {
-            $middle = explode(":", $part);
-            $moddle = explode("{", $part);
-
-            if (error_reporting() == 0) {
-                $headers[trim($middle[0])] = trim($middle[1]);
-            }
-        }
-        $getdata = end($data);
-        $resval = json_decode($getdata, TRUE);
-
-        $psn = $resval['message'];
-        $userdetail = $resval['data']['comments'];
-        $auth = $headers['BABOO-AUTH-KEY'];
-
+        $auth = $resval['bbo_auth'];
         $this->session->set_userdata('authKey', $auth);
-        $status = $resval['code'];
+        $status = $resval['data']['code'];
         if ($status == 403) {
             $this->session->unset_userdata('userData');
             $this->session->unset_userdata('authKey');
@@ -727,43 +460,17 @@ class C_book extends MX_Controller
         } else {
             echo json_encode($userdetail);
         }
-        // echo $result;
     }
 
     public function getCategory()
     {
         error_reporting(0);
         $auth = $this->session->userdata('authKey');
-        $url = $this->API . 'book/Books/allCategory';
-        $ch = curl_init();
-        $options = array(
-            CURLOPT_URL => $url,
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_CUSTOMREQUEST => "GET",    // Atur type request
-            CURLOPT_POST => false,    // Atur menjadi GET
-            CURLOPT_FOLLOWLOCATION => false,    // Follow redirect aktif
-            CURLOPT_SSL_VERIFYPEER => 0,
-            CURLOPT_HEADER => 1,
-            CURLOPT_HTTPHEADER => array('baboo-auth-key: ' . $auth)
 
-        );
-        curl_setopt_array($ch, $options);
-        $content = curl_exec($ch);
-        curl_close($ch);
-        $headers = array();
+        $resval = $this->curl_request->curl_get_auth($this->API.'book/Books/allCategory', '', $auth);
 
-        $data = explode("\n", $content);
-        $headers['status'] = $data[0];
-
-        array_shift($data);
-
-        foreach ($data as $part) {
-            $middle = explode(":", $part);
-            $headers[trim($middle[0])] = trim($middle[1]);
-        }
-
-        $data['category'] = json_decode(end($data), true);
-        $auth = $headers['BABOO-AUTH-KEY'];
+        $data['category'] = $resval['data'];
+        $auth = $resval['BABOO-AUTH-KEY'];
         if (isset($data['category']['code']) && $data['category']['code'] == '200') {
             $status = $data['category']['code'];
             $this->session->set_userdata('authKey', $auth);
@@ -783,8 +490,6 @@ class C_book extends MX_Controller
     public function deleteDraftBook()
     {
     	error_reporting(0);
-    	$url = $this->API . 'book/Books/draftDelete';
-
     	$auth = $this->session->userdata('authKey');
     	$book_id = $this->input->post('book_id', TRUE);
 
@@ -792,53 +497,23 @@ class C_book extends MX_Controller
             'book_id' => $book_id
         );
 
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        $resval = $this->curl_request->curl_post_auth($this->API.'book/Books/draftDelete', $sendData, $auth);
 
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $sendData);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-        curl_setopt($ch, CURLOPT_HEADER, 1);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key: ' . $auth));
-        $result = curl_exec($ch);
+        $psn = $resval['data']['message'];
+        $datas = $resval['data']['data'];
 
-
-        $headers = array();
-
-        $data = explode("\n", $result);
-
-
-        array_shift($data);
-        $middle = array();
-        $moddle = array();
-        foreach ($data as $part) {
-          $middle = explode(":", $part);
-          $moddle = explode("{", $part);
-
-          if (error_reporting() == 0) {
-             $headers[trim($middle[0])] = trim($middle[1]);
-         }
-     }
-     $getdata = end($data);
-     $resval = json_decode($getdata, TRUE);
-
-     $psn = $resval['message'];
-     $datas = $resval['data'];
-     $auth = $headers['BABOO-AUTH-KEY'];
-
-     $this->session->set_userdata('authKey', $auth);
-     $status = $resval['code'];
-    if ($status == 403) {
-        $this->session->unset_userdata('userData');
-        $this->session->unset_userdata('authKey');
-        $this->session->sess_destroy();
-        redirect('login', 'refresh');
-      } else {
-        echo json_encode(array("code"=>$status));  
+        $auth = $resval['bbo_auth'];
+        $this->session->set_userdata('authKey', $auth);
+        $status = $resval['data']['code'];
+        if ($status == 403) {
+            $this->session->unset_userdata('userData');
+            $this->session->unset_userdata('authKey');
+            $this->session->sess_destroy();
+            redirect('login', 'refresh');
+        } else {
+            echo json_encode(array("code"=>$status));  
+        }
     }
-}
 public function token_pay()
 {
     $params = array('server_key' => 'SB-Mid-server-4bmgeo85fTsjFQccrdZt6T6E', 'production' => false);
@@ -908,6 +583,87 @@ public function finish_pay()
             $this->session->set_userdata('popup_status_payment', 1);
             redirect($url_redirect,'refresh');
         }
+    }
+}
+
+public function postReplyComment()
+{
+    error_reporting(0);
+    $auth = $this->session->userdata('authKey');
+    $com_id = $this->input->post('comment_id');
+    $comment = $this->input->post('comments');
+
+    $sendData = array(
+        'comment_id' => $com_id,
+        'comments' => ' '.$comment
+    );
+
+    $resval = $this->curl_request->curl_post_auth($this->API.'book/Books/addComment', $sendData, $auth);
+
+    $comm_data = $resval['data']['data'];
+
+    $auth = $resval['bbo_auth'];
+    $this->session->set_userdata('authKey', $auth);
+    $status = $resval['data']['code'];
+    if ($status == 403) {
+        $this->session->unset_userdata('userData');
+        $this->session->unset_userdata('authKey');
+        $this->session->sess_destroy();
+        redirect('login', 'refresh');
+    } else {
+        echo json_encode($comm_data);
+    }
+}
+public function postDeleteComment()
+{
+    error_reporting(0);
+    $auth = $this->session->userdata('authKey');
+    $com_id = $this->input->post('comment_id');
+
+    $sendData = array(
+        'comment_id' => $com_id
+    );
+
+    $resval = $this->curl_request->curl_post_auth($this->API.'book/Books/commentDelete', $sendData, $auth);
+
+    $comm_data = $resval['data']['code'];
+
+    $auth = $resval['bbo_auth'];
+    $this->session->set_userdata('authKey', $auth);
+    $status = $resval['data']['code'];
+    if ($status == 403) {
+        $this->session->unset_userdata('userData');
+        $this->session->unset_userdata('authKey');
+        $this->session->sess_destroy();
+        redirect('login', 'refresh');
+    } else {
+        echo json_encode($comm_data);
+    }
+}
+public function postEditComment()
+{
+    error_reporting(0);
+    $auth = $this->session->userdata('authKey');
+    $com_id = $this->input->post('comment_id');
+
+    $sendData = array(
+        'comment_id' => $com_id
+    );
+
+    $resval = $this->curl_request->curl_post_auth($this->API.'book/Books/addComment', $sendData, $auth);
+
+    $comm_data = $resval['data']['data'];
+
+    $auth = $resval['bbo_auth'];
+    $this->session->set_userdata('authKey', $auth);
+    $status = $resval['data']['code'];
+    if ($status == 403) {
+        $this->session->unset_userdata('userData');
+        $this->session->unset_userdata('authKey');
+        $this->session->sess_destroy();
+        redirect('login', 'refresh');
+    } else {
+        echo json_encode($comm_data);
     }
 }
 }

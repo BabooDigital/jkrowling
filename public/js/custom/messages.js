@@ -68,7 +68,7 @@ $(document).ready(function () {
                 $('#myModal2').find('.modal-header').html(bahtml);
                 var refreshId = setInterval(function () {
                     $("#myModal2").find('.modal-body').load(b);
-                }, 9000);
+                }, 10000);
                 $.ajaxSetup({cache: false});
             }
         });

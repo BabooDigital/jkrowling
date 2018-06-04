@@ -20,7 +20,7 @@ echo "<script>(function(d, s, id) {
 <div class="container babooidin">
 	<div class="row">
 		<!-- Left Side -->
-		<div class="col-md-3 tmlin">
+		<div class="col-3 tmlin">
 			<div class="stickymenu">
 				<!-- Penulis Minggu Ini -->
 				<div class="side-card mb-15">
@@ -68,14 +68,15 @@ echo "<script>(function(d, s, id) {
 		</div>
 
 		<!-- Mid Side -->
-		<div class="col-md-6" id="post-data">
-			<?php
-			$this->load->view('data/D_timeline_in', $home);
-			?>
+		<div class="col-6 mb-50">
+			<div id="post-data">
+				<?php $this->load->view('data/D_timeline_in', $home); ?>
+			</div>
+			<div class="loader" style="display: none;margin-left: auto;margin-right: auto;"></div>
 		</div>
 
 		<!-- Right Side -->
-		<div class="col-md-3 tmlin">
+		<div class="col-3 tmlin">
 			<div class="stickymenu">
 				<div class="card card-widget mb-15">
 					<a href="<?php echo base_url('event') ?>">
