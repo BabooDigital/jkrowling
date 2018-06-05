@@ -7,7 +7,7 @@
 	</div>
 </div>	
 <?php else: ?>
-<?php foreach ($collection['data']['timeline'] as $book) { ?>
+<?php foreach ($collection['data'] as $book) { ?>
 <div class="col-3">
 	<div id="myWorkContent">
 		<div id="insideDivTerakhirDilihat">

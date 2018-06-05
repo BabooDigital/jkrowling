@@ -331,7 +331,7 @@ function buyBook() {
 	$("#buy-btn").click(function(event) {
 		event.preventDefault();
 		$(this).attr("disabled", "disabled");
-		console.log("clicked");
+		// console.log("clicked");
 
 			$.ajax({
 				url: base_url+'pay_book/token',
@@ -450,7 +450,6 @@ function getmenuChapter() {
 		}
 	}).done(function(d) {
 		var c = "";
-		console.log(d.pay.author_id);
 		$("#loader_chapter").hide();
 		if (userbook == userdata) {
 			$.each(d, function(d, a) {

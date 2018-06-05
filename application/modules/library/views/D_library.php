@@ -71,12 +71,12 @@
                                 <a data-toggle="modal" href="#list_trans">
                                     <div class="statuspembelian" style="height: 245px;">
                                         <div class="textpembelian">
-                                            <span class="">Pembelian</span><span id="transaction_box_counter"></span>
+                                            <span class="">Pembelian</span><span id="transaction_box_counter"><?php echo count($transaction['data']); ?></span>
                                             <span class="" style="float: right;"><img src="<?php echo base_url('public/img/assets/shape.svg') ?>"></span>
                                         </div>
                                         <br><br>
                                         <div class="textpembelian">
-                                            <span class="" style="font-size: 20px;font-weight: bold;">Dont Make Me think</span>
+                                            <span class="" style="font-size: 20px;font-weight: bold;"><?php $end = end($transaction['data']); echo $end['title_book']; ?></span>
                                             <br>
                                             <p class="fontkecil">Menunggu proses pembayaran</p>
                                             <br><br><br>
@@ -155,9 +155,9 @@
                                                 <div class="media">
                                                     <img class="align-self-start mr-3" src="<?php echo $trans['cover_url'] ?>" width="100" height="130" alt="Generic placeholder image">
                                                     <div class="media-body">
-                                                        <h3 class="mt-0"><a class="book_link" href="<?php echo $trans['book_id']; ?>"><?php echo $trans['title_book']; ?></a></h3>
+                                                        <h3 class="mt-0"><a class="book_link" href="<?php echo site_url(); ?>book/<?php echo $trans['book_id']; ?>"><?php echo $trans['title_book']; ?></a></h3>
 
-                                                        <h5 class="mt-0"><a class="book_link" href="<?php echo $trans['book_id']; ?>">Rp <?php echo number_format($trans['gross_amount'],0,",","."); ?></a></h5>
+                                                        <h5 class="mt-0"><a class="book_link" href="<?php echo site_url(); ?>book/<?php echo $trans['book_id']; ?>">Rp <?php echo number_format($trans['gross_amount'],0,",","."); ?></a></h5>
                                                     </div>
                                                 </div>
                                                 <?php if ($trans['payment_type'] == "bank_transfer"): ?>

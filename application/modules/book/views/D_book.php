@@ -309,7 +309,7 @@ echo "<script>(function(d, s, id) {
 						</div>
 						<nav class="navbar navbar-light bg-light fixed-bottom">
 							<span class="w-100 mb-20">
-								<input id="pcomments" placeholder="Tulis sesuatu.." type="text"  class="frmcomment commentform" style="width: 80%;height: 45px;">
+								<input id="pcomments" placeholder="Tulis sesuatu.." type="text"  class="frmcomment commentform mention" style="width: 80%;height: 45px;">
 								<button class="btn post-comment-parap">Kirim</button>
 							</span>
 						</nav>
@@ -329,9 +329,12 @@ echo "<script>(function(d, s, id) {
 			var userdata = '<?php echo $this->session->userdata('userData')['user_id']; ?>';
 			var userbook = '<?php echo $detail_book['data']['author']['author_id']; ?>';
 		</script>
+		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/0.10.0/lodash.min.js"></script>
 		<?php if (isset($js)): ?>
 			<?php echo get_js($js) ?>
 		<?php endif ?>
+			<script src='http://podio.github.io/jquery-mentions-input/lib/jquery.events.input.js' type='text/javascript'></script>
+			<script src='http://podio.github.io/jquery-mentions-input/lib/jquery.elastic.js' type='text/javascript'></script>
 
 <!-- <script type="text/javascript">
 	var page = 0;

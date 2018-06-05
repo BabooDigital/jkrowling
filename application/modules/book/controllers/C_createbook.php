@@ -117,7 +117,13 @@ class C_createbook extends MX_Controller
 			$data['js'][] = "public/plugins/holdOn/js/HoldOn.js";
 			
 			$data['css'][] = "public/css/baboo.css";
-			$this->load->view('D_createbook', $data);
+			if (empty($this->session->userdata('authKey'))) {
+				$this->session->unset_userdata('userData');
+				$this->session->sess_destroy();
+				redirect('login', 'refresh');
+			} else {
+				$this->load->view('D_createbook', $data);
+			}
 		}
 	}
 
@@ -1646,7 +1652,7 @@ class C_createbook extends MX_Controller
 			'book_id' => $id_book,
 			'user_id' => $user['user_id']
 		);
-		// print_r($data_book);
+		print_r($data_book);
 		
 		// START GET CHAPTER
 		$url = $this->API . 'book/Books/allChapters/';
