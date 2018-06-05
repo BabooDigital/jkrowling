@@ -12,7 +12,7 @@
 							<h4>Daftar Pembelian</h4>
 						</div>
 					</div>
-					<?php foreach ($transaction['data'] as $trans): ?>
+					<?php foreach ($transaction as $trans): ?>
 					<div class="listpend mt-20" style="border-bottom: .5px #c3c3c3 solid;">
 						<div class="row mb-5">
 							<div class="col-12">

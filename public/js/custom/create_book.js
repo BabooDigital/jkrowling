@@ -64,7 +64,7 @@ function getContent(tab_page, book, chapter) {
 
 }
 $(document).ready(function() {
-	getCategory();
+	// getCategory();
 	getChapter();
 	sellBook();
 	addMinusPlus();
@@ -361,7 +361,6 @@ function getCategory() {
 		console.log("error");
 	})
 	.always(function() {
-		console.log("complete");
 	});
 	
 }
@@ -407,7 +406,7 @@ function getChapter() {
 			$(".title_book_txt").html(title_book);
 			$(".desc_book_txt").html(str_desc);
 		}
-		if (data.book_info.cover_url != "") {
+		if (data.book_info.cover_url != null) {
 			$("#preview").attr('src', data.book_info.cover_url);
 			$("#cover_name").val(data.book_info.cover_url);
 		}else{
@@ -425,7 +424,6 @@ function getChapter() {
 		console.log("error");
 	})
 	.always(function() {
-		console.log("complete");
 	});
 	
 }

@@ -21,83 +21,23 @@ class C_Library extends MX_Controller
 
         error_reporting(0);
         $auth = $this->session->userdata('authKey');
-        $seg = $this->session->userdata('userData');
-        $userid = $seg['user_id'];
 
-        $sendData = array(
-            'user_id' => $userid
-        );
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $this->API.'book/Books/latestRead');
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $resval1 = $this->curl_request->curl_post_auth($this->API.'book/Books/latestRead', '', $auth);
+        $resval2 = $this->curl_request->curl_post_auth($this->API.'timeline/Timelines/listBookmark', '', $auth);
+        $resval3 = $this->curl_request->curl_get_auth($this->API.'payment/Payment/reminderPay', '', $auth);
+        $resval4 = $this->curl_request->curl_get_auth($this->API.'timeline/Timelines/allCollections', '', $auth);
 
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $sendData);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-        curl_setopt($ch, CURLOPT_HEADER, 1);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key: '.$auth));
-        $result = curl_exec($ch);
+        $datas['slide'] = $resval1['data'];
+        $datas['bookmark'] = $resval2['data'];
+        $datas['transaction'] = $resval3['data'];
+        $datas['collection'] = $resval4['data'];
 
-        $headers=array();
-        
-        $slider=explode("\n",$result);
-        
-        array_shift($slider);
-        
-        foreach($slider as $part){
-            $middle=explode(":",$part);
-            if (error_reporting() == 0) {
-                $headers[trim($middle[0])] = trim($middle[1]);
-            }
-        }
-
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $this->API.'timeline/Timelines/listBookmark');
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $sendData);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-        curl_setopt($ch, CURLOPT_HEADER, 1);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key: '.$auth));
-        $result = curl_exec($ch);
-
-        $headers=array();
-
-        $book=explode("\n",$result);
-
-
-        array_shift($book);
-        $middle = array();
-        $moddle = array();
-        foreach($book as $part){
-            $middle=explode(":",$part);
-            $moddle=explode("{",$part);
-
-            if (error_reporting() == 0) {
-                $headers[trim($middle[0])] = trim($middle[1]);
-            }
-        }
-
-        $auth = $headers['BABOO-AUTH-KEY'];
-        $resval1 = (array)json_decode(end($slider), true);
-        $resval2 = (array)json_decode(end($book), true);
-        
-        
-        $resval3 = $this->curl_request->curl_post($this->API.'payment/Payment/reminderPay', '', $auth);
-
-        $resval4 = $this->curl_request->curl_post($this->API.'timeline/Timelines/listCollections', '', $auth);
-
-        $datas['slide'] = $resval1;
-        $datas['bookmark'] = $resval2;
-        $datas['transaction'] = $resval3;
-        $datas['collection'] = $resval4;
-
+        $auth = $resval4['bbo_auth'];
         $this->session->set_userdata('authKey', $auth);
         $datas['js'][]   = "public/js/custom/notification.js";
         $datas['js'][] = "public/js/custom/transaction.js";
         if ($this->agent->is_mobile()) {
-            $data['transaction'] = $resval3;
+            $data['transaction'] = $resval3['data']['data'];
             $data['js'][] = "public/js/jquery.min.js";
             $data['js'][] = "public/js/umd/popper.min.js";
             $data['js'][] = "public/js/bootstrap.min.js";

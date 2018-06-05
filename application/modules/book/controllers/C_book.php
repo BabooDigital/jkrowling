@@ -125,7 +125,7 @@ class C_book extends MX_Controller
 
         $data['detailBook'] = json_decode(end($data), true);
         $data['menuChapter'] = json_decode(end($data_before_chapter), true);
-        $data['comment'] = $comments;
+
         if ($data_before_chapter['chapter']['data']['chapter'][3]['chapter_free'] != "false") {
             $data['detailChapter'] = count($data_before_chapter['chapter']['data']['chapter']);
         } else {
@@ -258,8 +258,10 @@ class C_book extends MX_Controller
         );
 
         $resval = $this->curl_request->curl_post_auth($this->API.'book/Books/allChapters', $data_book, $auth);
+        $resval2 = $this->curl_request->curl_post_auth($this->API.'book/Books/detailBook', $data_book, $auth);
 
         $data_before_chapter['chapter'] = $resval['data'];
+        $data_author = $resval2['data']['data']['author'];
 
         $auth = $resval['bbo_auth'];
         if (isset($data_before_chapter['chapter']['code']) && $data_before_chapter['chapter']['code'] == '200') {
@@ -270,7 +272,7 @@ class C_book extends MX_Controller
         }
         $data_price = $data_before_chapter['chapter']['data']['book_info']['book_price'];
         $is_free = $data_before_chapter['chapter']['data']['book_info']['is_free'];
-        $author_id = $data_before_chapter['chapter']['data']['author']['author_id'];
+        $author_id = $data_author['author_id'];
 
         $data_before_chapter['chapter']['data']['chapter']['pay']['book_price'] = number_format($data_price);
         $data_before_chapter['chapter']['data']['chapter']['pay']['is_free'] = $is_free;
@@ -518,7 +520,8 @@ public function token_pay()
 {
     $params = array('server_key' => 'SB-Mid-server-4bmgeo85fTsjFQccrdZt6T6E', 'production' => false);
     $this->load->library('midtrans');
-    $this->midtrans->config($params);        
+    $this->midtrans->config($params);
+    $user = $this->session->userdata('userData');
 
     $id_book = $this->input->post('id_book', TRUE);
     $url_redirect = $this->input->post('url_redirect', TRUE);
@@ -538,7 +541,7 @@ public function token_pay()
           'gross_amount' => $data['data']['book_info']['book_price'],
         );
         $customer_details = array(
-            'email'            => $this->session->userdata('userData')['email']
+            'email'            => $user['email']
         );
         $transaction = array(
           'transaction_details' => $transaction_details,
@@ -560,13 +563,13 @@ public function finish_pay()
     $order_id = $data_midtrans['order_id'];
     $book_id = $this->session->userdata('book_id');
     $url_redirect = $this->session->userdata('url_redirect');
-    $user_id = $this->session->userdata('userData')['user_id'];
+    $user_id = $this->session->userdata('userData');
 
     $sendData = array(
         "transaction_id" => $transaction_id,
         "order_id"       => $order_id,
         "book_id"       => $book_id,
-        "user_id"       => $user_id,
+        "user_id"       => $user_id['user_id'],
         "pdf_url"       => $data_midtrans['pdf_url']
     );
     $data_update = $this->curl_request->curl_post($this->API.'payment/Payment/UpdateTrans', $sendData);
