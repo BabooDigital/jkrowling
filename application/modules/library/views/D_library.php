@@ -229,6 +229,11 @@
                     centerMode: true,
                     centerPadding: '200px',
                     slidesToShow: 1,
+                    nextSelector: '.nextbtn',
+                    prevSelector: '.prevbtn',
+
+                    prevArrow:"<i class='fa fa-chevron-left contslider slidebtn prevbtn mt-20' style='width:47px;'></i>",
+                    nextArrow:"<i class='fa fa-chevron-right contslider slidebtn nextbtn mt-20' style='width:47px;'></i>",
                     responsive: [
                     {
                         breakpoint: 768,

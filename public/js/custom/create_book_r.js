@@ -16,6 +16,7 @@ $(function(){
 function publishBook() {
   $("#publish_book").click(function() {
     var formData = new FormData();
+    var ch = $(".start_chapter").val();
     var slide = $('.priceCheck:checkbox:checked');
       if (slide.length == 0) {
       formData.append("book_id", $("#uri").val());
@@ -26,7 +27,11 @@ function publishBook() {
       formData.append("book_id", $("#uri").val());
       formData.append("file_cover", $("#cover_file").val());
       formData.append("category", $("#category_ids").val());
-      formData.append("price", $("#inputprice").val());
+      if (ch == '3' || ch >= '3' || ch > '3') {
+        formData.append("chapter_start", ch);
+      }else {
+        formData.append("chapter_start", $(".start_chapter").val('3'));
+      }
       formData.append("is_paid", true);
     }
       var cat = $("#category_ids").val();
@@ -472,64 +477,55 @@ function check_sell() {
         }
       });
       if (data.data.is_publishable == true) {
-        $('.switch').show();
-        swal({
-          title: 'Yeay...!',
-          text: 'Buku anda sudah layak untuk dijual. Mau dijual sekarang?',
-          imageUrl: base_url+'public/img/can_sell.png',
-          imageAlt: 'Congrats! You Can Sell your Book. :)',
-          animation: true,
-          showCancelButton: true,
-          confirmButtonColor: '#7661ca',
-          cancelButtonColor: '#979797',
-          confirmButtonText: 'Ya, Jual',
-          cancelButtonText: 'Nanti'
-        }).then((result) => {
-          if (result.value) {
-            $('#showOpt').prop('checked', true);
-            var sellbtn = $('#showOpt:checkbox:checked');
-            var pin = $('#what').val();
-            if (sellbtn.length != 0 && pin == 'false') {
-              $('#publish_book').hide();
-              $('#setpin_publish').show();
+        if (data.data.is_sellable == true) {
+          $(".start_chapter").val('3');
+          $("#count_chapter_plus_minus").val(data.data.total_chapter);
+          $('.switch').show();
+          swal({
+            title: 'Yeay...!',
+            text: 'Buku anda sudah layak untuk dijual. Mau dijual sekarang?',
+            imageUrl: base_url+'public/img/can_sell.png',
+            imageAlt: 'Congrats! You Can Sell your Book. :)',
+            animation: true,
+            showCancelButton: true,
+            confirmButtonColor: '#7661ca',
+            cancelButtonColor: '#979797',
+            confirmButtonText: 'Ya, Jual',
+            cancelButtonText: 'Nanti'
+          }).then((result) => {
+            if (result.value) {
+              $('#showOpt').prop('checked', true);
+              var sellbtn = $('#showOpt:checkbox:checked');
+              var pin = $('#what').val();
+              if (sellbtn.length != 0 && pin == 'false') {
+                $('#publish_book').hide();
+                $('#setpin_publish').show();
+              }
+              $('#priceSet').addClass('show');
+            }else{
+
             }
-            $('#priceSet').addClass('show');
-          }else{
+          });
+          $(document).on('keyup', '#inputprice', function(event) {
+            event.preventDefault();
+            var id = $(this).val();
+            var payment_fee = data.data.payment_fee;
+            var nominal = $(this).val().split(".").join("");
+            var ppn = data.data.ppn * nominal / 100;
+            var rp_total = parseFloat(id) + (ppn + payment_fee);
+            $("#rp").show();
+            $("#rp_fee").show();
+            $("#rp_total").show();
+            $('#ppn').number(ppn);
+            $('#payment_fee').number(payment_fee);
+            $('#total').number(rp_total);
+          });
 
-          }
-        });
+        }else{
 
-        $(document).on('keyup', '#inputprice', function(event) {
-              event.preventDefault();
-              var id = $(this).val();
-              var payment_fee = data.data.payment_fee;
-              var nominal = $(this).val().split(".").join("");
-              var ppn = data.data.ppn * nominal / 100;
-              var rp_total = parseFloat(id) + (ppn + payment_fee);
-              $("#rp").show();
-              $("#rp_fee").show();
-              $("#rp_total").show();
-              $('#ppn').number(ppn);
-              $('#payment_fee').number(payment_fee);
-              $('#total').number(rp_total);
-            });
-
-        $(document).on('click',"#showOpt", function() {
-          var sellbtn = $('#showOpt:checkbox:checked');
-          var pin = $('#what').val();
-          if (sellbtn.length == 0 && pin == 'false') {
-            $('#publish_book').show();
-            $('#setpin_publish').hide();
-          }else{
-            $('#publish_book').hide();
-            $('#setpin_publish').show();
-          }
-        });
-
+        }
       }else{
-        swal({text:'Maaf, buku anda tidak dapat di publish. Karakter kurang dari 150.'});
-        $('#publish_book').attr('disabled', 'disabled');
-        $('#publish_book').css('background', '#b6a4ff');
+        
       }
     }else{
       window.location = base_url+'yourdraft';

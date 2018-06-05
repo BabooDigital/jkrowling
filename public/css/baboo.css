@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Noto+Serif:400,700|Source+Sans+Pro:400,600,700,900');
 
-button {
-	outline: none !important;
+button:focus, a:focus {
+  outline: 0;
 }
 
 body {
@@ -440,14 +440,14 @@ input.formsearch:focus {
 
 .btn-newstory {
 	margin-top: 6px;
-	color: #7554bd;
-	font-size: 11pt;
-	font-weight: bold;
-	border-radius: 30px;
-	background-color: #faf7ff;
-	box-shadow: 0 1px 2px 0 rgba(227, 214, 255, 0.7);
-	border: solid 1px #7554bd;
-	text-align: center;
+    color: #ffffff;
+    font-size: 11pt;
+    font-weight: bold;
+    border-radius: 30px;
+    background-color: #7554bd;
+    box-shadow: 0 1px 2px 0 rgba(227, 214, 255, 0.7);
+    border: solid 1px #7554bd;
+    text-align: center;
 }
 .create-msg {
 	width: 125px;

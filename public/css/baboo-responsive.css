@@ -15,6 +15,10 @@ a:hover {
   width: device-width;
 }
 
+button:focus, a:focus {
+  outline: 0;
+}
+
 @media screen and (max-width: 350px) {
   /*.navbar-brand {
     margin: auto !important;
@@ -1223,6 +1227,7 @@ a:hover {
                     } 
                     .bg-purp {
                       background-color: #7661ca;
+                      height: inherit;
                     }
                     .pendtext-lib {
                       font-size: 9pt;

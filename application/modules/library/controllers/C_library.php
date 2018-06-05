@@ -25,7 +25,7 @@ class C_Library extends MX_Controller
         $resval1 = $this->curl_request->curl_post_auth($this->API.'book/Books/latestRead', '', $auth);
         $resval2 = $this->curl_request->curl_post_auth($this->API.'timeline/Timelines/listBookmark', '', $auth);
         $resval3 = $this->curl_request->curl_get_auth($this->API.'payment/Payment/reminderPay', '', $auth);
-        $resval4 = $this->curl_request->curl_get_auth($this->API.'timeline/Timelines/allCollections', '', $auth);
+        $resval4 = $this->curl_request->curl_get_auth($this->API.'timeline/Timelines/listCollections', '', $auth);
 
         $datas['slide'] = $resval1['data'];
         $datas['bookmark'] = $resval2['data'];
@@ -76,56 +76,22 @@ class C_Library extends MX_Controller
     {
         error_reporting(0);
         $auth = $this->session->userdata('authKey');
-        $userid = $this->input->post('user', TRUE);
-        $sendData = array(
-            'user_id' => $userid
-        );
 
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $this->API.'timeline/Timelines/listBookmark');
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $sendData);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-        curl_setopt($ch, CURLOPT_HEADER, 1);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key: '.$auth));
-        $result = curl_exec($ch);
-
-        $headers=array();
-
-        $data=explode("\n",$result);
-
-
-        array_shift($data);
-        $middle = array();
-        $moddle = array();
-        foreach($data as $part){
-            $middle=explode(":",$part);
-            $moddle=explode("{",$part);
-
-            if (error_reporting() == 0) {
-                $headers[trim($middle[0])] = trim($middle[1]);
-            }
-        }
-        $getdata = end($data);
-        $resval =  json_decode($getdata, TRUE);
-        $status = $resval['code'];
-        $pesan = $resval['message'];
-        $auth = $headers['BABOO-AUTH-KEY'];
+        $getdata = $this->curl_request->curl_post_auth($this->API.'timeline/Timelines/listBookmark', '', $auth);
         
-        $resval = (array)json_decode(end($data), true);
-        $bookmark = $resval['data'];
-        
-        if ($data['code'] == 403){
+        $resval =  $getdata['data'];
+
+        $auth = $getdata['bbo_auth'];
+        $this->session->set_userdata('authKey', $auth);
+        if ($resval['code'] == 403){
             $this->session->unset_userdata('userData');
             $this->session->unset_userdata('authKey');
             $this->session->sess_destroy();
             redirect('login','refresh');
         }else{
             echo json_encode(array(
-                'code' => $status,
-                'data' => $bookmark
+                'code' => $resval['code'],
+                'data' => $resval['data']
             ));
         }
     }
@@ -134,58 +100,24 @@ class C_Library extends MX_Controller
     {
         error_reporting(0);
         $auth = $this->session->userdata('authKey');
-        $userid = $this->input->post('user', TRUE);
 
-        $sendData = array(
-            'user_id' => $userid
-        );
+        $getdata = $this->curl_request->curl_post_auth($this->API.'book/Books/latestRead', '', $auth);
 
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $this->API.'book/Books/latestRead');
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $resval =  $getdata['data'];
 
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $sendData);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-        curl_setopt($ch, CURLOPT_HEADER, 1);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key: '.$auth));
-        $result = curl_exec($ch);
-
-        $headers=array();
-
-        $data=explode("\n",$result);
-
-
-        array_shift($data);
-        $middle = array();
-        $moddle = array();
-        foreach($data as $part){
-            $middle=explode(":",$part);
-            $moddle=explode("{",$part);
-
-            if (error_reporting() == 0) {
-                $headers[trim($middle[0])] = trim($middle[1]);
-            }
-        }
-        $getdata = end($data);
-        $resval =  json_decode($getdata, TRUE);
-        $status = $resval['code'];
-        $pesan = $resval['message'];
-        $auth = $headers['BABOO-AUTH-KEY'];
-        
-        $resval = (array)json_decode(end($data), true);
         $lastRead = $resval['data'];
-        
         $output = array_slice($lastRead, 0, 5);
         
-        if ($data['code'] == 403){
+        $auth = $getdata['bbo_auth'];
+        $this->session->set_userdata('authKey', $auth);
+        if ($resval['code'] == 403){
             $this->session->unset_userdata('userData');
             $this->session->unset_userdata('authKey');
             $this->session->sess_destroy();
             redirect('login','refresh');
         }else{
             echo json_encode(array(
-                'code' => $status,
+                'code' => $resval['code'],
                 'data' => $output
             ));
         }
@@ -195,7 +127,7 @@ class C_Library extends MX_Controller
     {
         error_reporting(0);
         $auth = $this->session->userdata('authKey');
-        $data = $this->curl_request->curl_get($this->API.'timeline/Timelines/allCollections', '', $auth);
+        $data = $this->curl_request->curl_get($this->API.'timeline/Timelines/listCollections', '', $auth);
         $output = array_slice($data['data'], 0, 4);
 
         if ($data['code'] == 403){
@@ -280,16 +212,17 @@ class C_Library extends MX_Controller
     {
         error_reporting(0);
         $auth = $this->session->userdata('authKey');
-        $data = $this->curl_request->curl_get($this->API.'timeline/Timelines/allCollections', '', $auth);
+        $data = $this->curl_request->curl_get_auth($this->API.'timeline/Timelines/allCollections', '', $auth);
+        $resval = $data['data'];
 
-        if ($data['code'] == 403){
+        if ($resval['code'] == 403){
             $this->session->unset_userdata('userData');
             $this->session->unset_userdata('authKey');
             $this->session->sess_destroy();
             redirect('login','refresh');
         }else{
             if ($this->agent->is_mobile()) {
-                $datas['book'] = $data['data'];
+                $datas['book'] = $resval['data'];
                 $datas['title'] = "Semua Koleksi Buku Mu | Baboo.id";
                 $datas['css'][] = "public/css/bootstrap.min.css";
                 $datas['css'][] = "public/css/font-awesome.min.css";

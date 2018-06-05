@@ -61,6 +61,14 @@
 									</select>
 								</div>
 							</div>
+							<div class="mt-20">
+								<div class="checkbox">
+									<label>
+										<input type="checkbox" value="" class="checktnc" name="ischecked">
+										<a href="javascript:void(0);" class="tncModal" style="color: #7554bd;">Term of Service</a>
+									</label>
+								</div>
+							</div>
 							<div class="mt-20" id="sell_book" style="display: none;">
 								<div class="form-group">
 									<span class="text-left">Jual Buku ?</span>
@@ -75,6 +83,7 @@
 									</span>
 								</div>
 							</div>
+							<input type="hidden" id="what" value="<?php $pin = $this->session->userdata('hasPIN'); if ($pin == 1) {echo 'true';}else{echo 'false';}  ?>">
 							<div class="container mt-20 rangebook" style="background: #DDDDDD;">
 								<div class="col-md-15">
 									<div class="form-group">
@@ -139,16 +148,31 @@
 
 					<div class="pull-right mb-10">
 						<input type="button" class="mr-30 saveasdraft" style="font-size: 18px;font-weight: bold;background: transparent; border: 0; cursor: pointer;" value="Simpan ke Draft" />
-						<button type="submit" class="btnbeliskrg" href="#" style="padding: 10px 50px;"><span class="txtbtnbeliskrg" ">Publish</span></button>
+						<button type="button" class="btnbeliskrg" id='publish_book' href="#" style="padding: 10px 50px;"><span class="txtbtnbeliskrg" ">Publish</span></button>
+						<button type='button' class='btnbeliskrg' id='setpin_publish' style="display: none;">Publish</button>
 					</div>
 				</div>
 			</div>
 		</div>
 	<?php echo form_close(); ?>
+	<?php $this->load->view('include/modal_tnc'); ?>
 
 	<?php if (isset($js)): ?>
 		<?php echo get_js($js) ?>
 	<?php endif ?>
+	<script>
+		$(document).on('click','.tncModal',function(){
+			$('#tnc-modal').modal('show');
+			$(document).on('click', '.btn-acc', function() {
+				$('.checktnc').prop('checked', true);
+				$('#tnc-modal').modal('hide');
+			});
+			$(document).on('click', '.btn-diss', function() {
+				$('.checktnc').prop('checked', false);
+				$('#tnc-modal').modal('hide');
+			});
+		});
+	</script>
 	<?php echo $this->session->flashdata('limit_character'); ?>
 </body>
 </html>

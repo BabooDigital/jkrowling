@@ -523,7 +523,7 @@ function getContent(d, c) {
 				var d = strip_tags(c.paragraph_text),
 				e = c.comment_count;
 				b += "<div class='mb-20 textp' data-id-p='" + c.paragraph_id + "' data-text='" + d + "'>" + c.paragraph_text +
-				"<button type='button' data-p-id='" + c.paragraph_id + "' data-toggle='modal' id='comm_p' data-target='#myModal2' class='btncompar comment-marker on-inline-comments-modal' for='toggle-right'><span class='num-comment'>" + (0 == e ? "+" : e) + "</span><span  aria-hidden='true'><img src='" + base_url + "public/img/assets/icon_comment.svg'></span></button></div>"
+				"</div>"
 			});
 			$("#parentparaph").html(b)
 		}
@@ -545,7 +545,6 @@ function getCommentBook() {
 		var c = "";
 		$.each(d, function(d, a) {
 			var b;
-			console.log(a.comment_user_avatar);
 			"" != a.comment_user_avatar ? b = a.comment_user_avatar : "" == a.comment_user_avatar && (b = base_url + "public/img/profile/blank-photo.jpg");
 			c += "<div class='commentview'><div class='media'> <img class='d-flex align-self-start mr-20 rounded-circle' width='50' height='50' src='" +
 			b + "'> <div class='media-body'> <h5 class='nametitle2 mb-5'>" + a.comment_user_name + "</h5> <small><span>Jakarta, Indonesia</span></small> </div> </div> <div class='mt-10'> <p class='fs-14px' id='" + a.comment_id + "'>" + a.comment_text + "</p> </div> <hr></div>"
