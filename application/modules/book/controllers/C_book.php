@@ -472,7 +472,7 @@ class C_book extends MX_Controller
         $resval = $this->curl_request->curl_get_auth($this->API.'book/Books/allCategory', '', $auth);
 
         $data['category'] = $resval['data'];
-        $auth = $resval['BABOO-AUTH-KEY'];
+        $auth = $resval['bbo_auth'];
         if (isset($data['category']['code']) && $data['category']['code'] == '200') {
             $status = $data['category']['code'];
             $this->session->set_userdata('authKey', $auth);

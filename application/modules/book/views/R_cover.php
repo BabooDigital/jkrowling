@@ -191,7 +191,7 @@ if (!empty($query['stat'])) {
 			</div>
 			<div class="mt-40">
 				<div class="form-group">
-					<?php $sess = $this->session->userdata('editPub'); if (empty($sess)) { ?>
+					<?php $sess = $this->session->userdata('editPub'); if (!empty($sess) || $sess != null) { ?>
 					<select class="form-control catselect" id="category_ids" name="category_id" required>
 						<option value="<?php echo $book['category']['category_id']; ?>">-- <?php echo $book['category']['category_name']; ?> --</option>
 						<?php foreach ($category as $cat) { ?>
@@ -254,20 +254,25 @@ if (!empty($query['stat'])) {
 						<div class="row mt-20" style="width: 110%;">
 							<div class="form-group col-8">
 								<label class="text-muted">Mulai Jual Pada Chapter</label>
-								<input type="number" value="6" min="3" class="form-control chaptermin" id="font-size">
+								<!-- <input type="number" value="6" min="3" class="form-control chaptermin" id="font-size"> -->
+								<input type="number" name="start_chapter" class="input-range start_chapter" id="addormin" style="width: 100%;background: none;">
 							</div>
 							<div class="col-2" style="margin-left: -15px;">
 								<label style="color: #fff;">min</label>
-								<span class="input-group-btn"><button class="btn-transparant value-control addmin" data-action="minus" data-target="font-size"><img src="<?php echo base_url('public/img/assets/icon_minch_active.png'); ?>" width="35"></button></span>
+								<button type="button" class="btn-transparant value-control addmin" data-action="minus" data-targets="addormin"><img src="<?php echo base_url('public/img/assets/icon_minch_active.png'); ?>" width="35"></button>
+								<!-- <span class="input-group-btn"><button class="btn-transparant value-control addmin" data-action="minus" data-targets="font-size"><img src="<?php echo base_url('public/img/assets/icon_minch_active.png'); ?>" width="35"></button></span> -->
 							</div>
 							<div class="col-2">
 								<label style="color: #fff;">min</label>
-								<span class="input-group-btn"><button class="btn-transparant value-control addplus" data-action="plus" data-target="font-size"><img src="<?php echo base_url('public/img/assets/icon_plusch_active.png'); ?>" width="35"></button></span>
+								<button type="button" class="btn-transparant value-control addplus" data-action="plus" data-targets="addormin"><img src="<?php echo base_url('public/img/assets/icon_plusch_active.png'); ?>" width="35"></button>
+								<!-- <span class="input-group-btn"><button class="btn-transparant value-control addplus" data-action="plus" data-targets="font-size"><img src="<?php echo base_url('public/img/assets/icon_plusch_active.png'); ?>" width="35"></button></span> -->
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+			<input type="hidden" name="count_chapter" id="count_chapter" value="" class="w-100" placeholder="Count Chapter" required="">
+			<input type="hidden" name="count_chapter_plus_minus" id="count_chapter_plus_minus" value="" class="w-100" placeholder="Count Chapter" required="">
 			<div class="mt-20">
 				<div class="checkbox">
 					<label>
@@ -305,15 +310,42 @@ if (!empty($query['stat'])) {
 					$('#tnc-modal').modal('hide');
 				});
 			});
-			$(document).on('click','.value-control',function(){
-				var action = $(this).attr('data-action')
-				var target = $(this).attr('data-target')
-				var value  = parseFloat($('[id="'+target+'"]').val());
-				if ( action == "plus" ) {
-					value++;
+			$(document).on('click', '#showOpt', function() {
+				var sellbtn = $('#showOpt:checkbox:checked');
+				var pin = $('#what').val();
+				if (sellbtn.length == 0 && pin == 'false') {
+					$('#publish_book').show();
+					$('#setpin_publish').hide();
+				}else if (sellbtn.length == 1 && pin == 'true'){
+					$('#publish_book').show();
+					$('#setpin_publish').hide();
+				}else if (sellbtn.length == 0 && pin == 'true'){
+					$('#publish_book').show();
+					$('#setpin_publish').hide();
+				}else{
+					$('#publish_book').hide();
+					$('#setpin_publish').show();
 				}
-				if ( action == "minus" ) {
-					value--;
+			});
+			$(document).on('click','.value-control',function(){
+				var action = $(this).attr('data-action');
+				var target = $(this).attr('data-targets');
+				var value  = parseFloat($('[id="'+target+'"]').val());
+				if ( action == "plus") {
+					if (value == $("#count_chapter_plus_minus").val()) {
+						value;
+					}else{
+						value++;
+					}
+				}
+				if ( action == "minus") {
+					if (value <= $("#count_chapter_plus_minus").val()) {
+						if (value < 2) {
+							value;
+						}else{
+							value--;
+						}
+					}
 				}
 				$('[id="'+target+'"]').val(value);
 			});

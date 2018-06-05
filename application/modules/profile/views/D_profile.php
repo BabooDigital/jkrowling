@@ -70,12 +70,12 @@
 							</div>
 							<hr>
 							<?php if (!$this->uri->segment(2)): ?>
-								<div class="penghargaan">
+								<!-- <div class="penghargaan">
 									<span class="text-left">Balance</span>
 									<button class="float-right btn-edprof fs-12px">Top Up</button>
 									<p></p>
 									<p class="text-left"><b><?php echo 'Rp. '.number_format($userdata['balance'], 0, ',', '.'); ?></b></p>
-								</div>
+								</div> -->
 								<div class="penghargaan">
 									<div class="pt-5 pb-5 pl-10 pr-10" style="background-color: #7661ca;border-radius: 10px;width: 110%;">
 										<?php $pin = $userdata['has_pin']; if ($pin == 1 || $pin != false) { ?>
