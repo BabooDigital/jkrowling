@@ -8,6 +8,7 @@ $(document).on('click', '.follow-u', function() {
 
   formData.append("user_id", $("#iaiduui").val());
   formData.append("fuser_id", boo.attr("user-d"));
+  formData.append("csrf_test_name", csrf_value);
   $.ajax({
     url: base_url + 'follows',
     type: 'POST',
@@ -39,6 +40,7 @@ $(document).on('click', '.follow-u', function() {
 
     formData.append("user_id", $("#iaiduui").val());
     formData.append("fuser_id", boo.attr("user-d"));
+    formData.append("csrf_test_name", csrf_value);
     $.ajax({
       url: base_url + 'follows',
       type: 'POST',

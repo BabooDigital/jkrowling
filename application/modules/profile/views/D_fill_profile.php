@@ -35,6 +35,7 @@
 </head>
 <script>
 	var base_url = '<?php echo base_url(''); ?>';
+	var csrf_value = '<?php echo $this->security->get_csrf_hash(); ?>';
 </script>
 <body class="bg-borr">
 	<div class="wrapper">

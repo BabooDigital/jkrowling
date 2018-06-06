@@ -3,6 +3,7 @@ $(document).ready(function() {
 		var formData = new FormData();
 
 		formData.append("book_id", $(this).attr("draft-id"));
+		formData.append("csrf_test_name", csrf_value);
 
 		swal({
 			title: 'Hapus draft buku?',

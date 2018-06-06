@@ -47,6 +47,7 @@ loaded = true;
     aww.children('.loveicon').attr("src", "../public/img/assets/love_active.svg");
     formData.append("user_id", $("#iaiduui").val());
     formData.append("book_id", aww.attr("data-id"));
+    formData.append("csrf_test_name", csrf_value);
     $.ajax({
       url: base_url + 'like',
       type: 'POST',
@@ -84,6 +85,7 @@ loaded = true;
     aww.children('.loveicon').attr("src", "../public/img/assets/icon_love.svg");
     formData.append("user_id", $("#iaiduui").val());
     formData.append("book_id", aww.attr("data-id"));
+    formData.append("csrf_test_name", csrf_value);
     $.ajax({
       url: base_url + 'like',
       type: 'POST',
@@ -144,6 +146,7 @@ loaded = true;
 
           formData.append("user_id", $("#iaiduui").val());
           formData.append("book_id", aww.attr('data-share'));
+          formData.append("csrf_test_name", csrf_value);
 
           $.ajax({
             url: base_url + 'shares',
@@ -185,6 +188,7 @@ loaded = true;
     $(".chat").append(c);
     b.append("user_to", $("#iuswithid").val());
     b.append("message", ab.siblings("#pmessageas").val());
+    b.append("csrf_test_name", csrf_value);
     $.ajax({
       url: base_url + "send_message",
       type: "POST",
@@ -247,13 +251,14 @@ loaded = true;
     var formdata = new FormData();
     formdata.append('message', msg);
     formdata.append('user_to', usr_input);
+    formdata.append("csrf_test_name", csrf_value);
     $.ajax({
       url: base_url+'send_message',
       cache: false,
       type: "POST",
       contentType: false,
       processData: false,
-      data: formdata
+      data: formdata,
     })
     .done(function() {
       console.log("success");
@@ -278,7 +283,8 @@ function loadMessage() {
   $.ajax({
     url: base_url + "detailMessage",
     type: "POST",
-    dataType: "json"
+    dataType: "json",
+    data: {csrf_test_name: csrf_value}
   }).done(function (b) {
     var d = 0;
     $.each(b, function (f, g) {

@@ -103,7 +103,8 @@ function getContent(a, b, c) {
         cache: !1,
         data: {
             book_id: b,
-            chapter_id: c
+            chapter_id: c,
+            csrf_test_name: csrf_value
         },
         success: function(a) {
             HoldOn.close();
@@ -141,6 +142,7 @@ $(document).ready(function() {
         a.append("user_id", $("#user_id").val());
         a.append("tag_book", $("#tag_book").val());
         a.append("book_paragraph", $("#book_paragraph").val());
+        a.append("csrf_test_name", csrf_value);
         if (null != $("#book_id").val()) {
             a.append("book_id",
                 $("#book_id").val());
@@ -189,6 +191,7 @@ $(document).ready(function() {
         a.append("user_id", $("input:hidden[name=user_id]").val());
         a.append("tag_book", $("#tag_book").val());
         a.append("book_paragraph", $("#book_paragraph").val());
+        a.append("csrf_test_name", csrf_value);
         if (null != $("#book_id").val()) {
             a.append("book_id", $("#book_id").val());
             for (var d = $jscomp.makeIterator(a.entries()), e = d.next(); !e.done; e = d.next()) e = e.value, console.log(e[0] + ", " + e[1])
@@ -218,7 +221,8 @@ function getCategory() {
     $.ajax({
         url: base_url + "getCategory",
         type: "POST",
-        dataType: "json"
+        dataType: "json",
+        data: {csrf_test_name: csrf_value}
     }).done(function(a) {
         var b = "<option value=''>Pilih Category Buku</option>";
         $.each(a, function(a, d) {
@@ -243,7 +247,8 @@ function getChapter() {
     $.ajax({
         url: base_url + "getChapter",
         data: {
-            book_id: uri_segment
+            book_id: uri_segment,
+            csrf_test_name: csrf_value
         },
         type: "POST",
         dataType: "json"
@@ -309,6 +314,7 @@ $(function() {
         a.append("user_id", $("input:hidden[name=user_id]").val());
         a.append("tag_book", $("#tag_book").val());
         a.append("book_paragraph", $("#book_paragraph").val());
+        a.append("csrf_test_name", csrf_value);
         if (null != $("#book_id").val()) {
             a.append("book_id", $("input:hidden[name=books_id]").val());
             for (var b = $jscomp.makeIterator(a.entries()), c = b.next(); !c.done; c = b.next()) c = c.value, console.log(c[0] + ", " + c[1])

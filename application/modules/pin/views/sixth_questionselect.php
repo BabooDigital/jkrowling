@@ -19,6 +19,7 @@
 			</div>
 		</div>
 		<form id="questionForm">
+			<input type="hidden" name="<?php echo $this->security->get_csrf_token_name();?>" value="<?php echo $this->security->get_csrf_hash();?>">
 			<div class="row mt-20">
 				<div class="col-12">
 					<div class="form-group">

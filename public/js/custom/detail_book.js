@@ -25,6 +25,7 @@ $(document).ready(function() {
 			base_url + "public/img/assets/icon_bookmark_active.svg");
 		a.append("user_id", $("#iaiduui").val());
 		a.append("book_id", b.attr("data-id"));
+		a.append("csrf_test_name", csrf_value);
 		$.ajax({
 			url: base_url + "sendbookmark",
 			type: "POST",
@@ -47,6 +48,7 @@ $(document).ready(function() {
 		$(".bookmarkicon").attr("src", base_url + "public/img/assets/icon_bookmark.svg");
 		a.append("user_id", $("#iaiduui").val());
 		a.append("book_id", b.attr("data-id"));
+		a.append("csrf_test_name", csrf_value);
 		$.ajax({
 			url: base_url + "sendbookmark",
 			type: "POST",
@@ -92,6 +94,7 @@ $(document).ready(function() {
 				a.append("user_id", $("#iaiduui").val());
 				a.append("book_id", $("#iaidubi").val());
 				a.append("comments", $("#comments").val());
+				a.append("csrf_test_name", csrf_value);
 				$.ajax({
 					url: base_url + "commentbook",
 					type: "POST",
@@ -121,6 +124,7 @@ $(document).ready(function() {
 		b.append("user_id", $("#iaiduui").val());
 		b.append("paragraph_id", a.attr("data-p-id"));
 		b.append("comments", $("#pcomments").val());
+		b.append("csrf_test_name", csrf_value);
 		$.ajax({
 			url: base_url + "commentbook",
 			type: "POST",
@@ -144,6 +148,7 @@ $(document).ready(function() {
 		$(".loveicon").attr("src", "../public/img/assets/love_active.svg");
 		b.append("user_id", $("#iaiduui").val());
 		b.append("book_id", a.attr("data-id"));
+		b.append("csrf_test_name", csrf_value);
 		$.ajax({
 			url: base_url + "like",
 			type: "POST",
@@ -167,6 +172,7 @@ $(document).ready(function() {
 		$(".loveicon").attr("src", "../public/img/assets/icon_love.svg");
 		b.append("user_id", $("#iaiduui").val());
 		b.append("book_id", a.attr("data-id"));
+		b.append("csrf_test_name", csrf_value);
 		$.ajax({
 			url: base_url + "like",
 			type: "POST",
@@ -188,6 +194,7 @@ $(document).ready(function() {
 		b = new FormData;
 		b.append("user_id", $("#iaiduui").val());
 		b.append("fuser_id", a.attr("data-follow"));
+		b.append("csrf_test_name", csrf_value);
 		$.ajax({
 			url: base_url + "follows",
 			type: "POST",
@@ -209,6 +216,7 @@ $(document).ready(function() {
 		b = new FormData;
 		b.append("user_id", $("#iaiduui").val());
 		b.append("fuser_id", a.attr("data-follow"));
+		b.append("csrf_test_name", csrf_value);
 		$.ajax({
 			url: base_url + "follows",
 			type: "POST",
@@ -245,6 +253,7 @@ $(document).ready(function() {
 		window.open(b, "Tweet", "height=300,width=700");
 		a.append("user_id", $("#iaiduui").val());
 		a.append("book_id", $("#iaidubi").val());
+		a.append("csrf_test_name", csrf_value);
 		$.ajax({
 			url: base_url + "shares",
 			type: "POST",
@@ -262,6 +271,7 @@ $(document).ready(function() {
 	$(document).on("click", ".share-fb", function() {
 		$(this);
 		var a = new FormData;
+		a.append("csrf_test_name", csrf_value);
 		$("#iaidubi").val();
 		var b = $(".dbooktitle").text();
 		c = +$("#sharecount").text() + 1;
@@ -299,6 +309,7 @@ $(document).ready(function() {
 		var a = $(this),
 		b = new FormData;
 		b.append("paragraph_id", a.attr("data-p-id"));
+		b.append("csrf_test_name", csrf_value);
 		$.ajax({
 			url: base_url + "getcommentbook",
 			type: "POST",
@@ -336,7 +347,7 @@ function buyBook() {
 			$.ajax({
 				url: base_url+'pay_book/token',
 				type: "POST",
-				data:{id_book:$("#iaidubi").val(), url_redirect:window.location.href},
+				data:{id_book:$("#iaidubi").val(), url_redirect:window.location.href, csrf_test_name: csrf_value},
 				cache: false,
 				success: function(data) {
 		        var resultType = document.getElementById('result-type');
@@ -420,7 +431,8 @@ function getChapter() {
 			dataType: "json",
 			data: {
 				id_chapter: d,
-				id_book: c
+				id_book: c,
+				csrf_test_name: csrf_value
 			}
 		}).done(function(c) {
 			var a = "";
@@ -443,7 +455,8 @@ function getmenuChapter() {
 		type: "POST",
 		dataType: "json",
 		data: {
-			id_book: segment
+			id_book: segment,
+			csrf_test_name: csrf_value
 		},
 		beforeSend: function() {
 			$("#loader_chapter").show()
@@ -536,7 +549,8 @@ function getCommentBook() {
 		type: "POST",
 		dataType: "json",
 		data: {
-			book_id: segment
+			book_id: segment,
+			csrf_test_name: csrf_value
 		},
 		beforeSend: function() {
 			$(".loader").show()

@@ -5,6 +5,9 @@
 	<title><?php echo $title; ?></title>
 
 	<?php if (isset($css)): ?> <?php echo get_css($css) ?> <?php endif ?>
+	<script>
+		var csrf_value = '<?php echo $this->security->get_csrf_hash(); ?>';
+	</script>
 </head>
 <style type="text/css">
 .btnfollow-f {

@@ -22,6 +22,7 @@ if (!empty($query['stat'])) {
 			<div class="container">
 				<a href="javascript:void(0);" class="clear-btn backlink" id="backlinks" ><i class="fa fa-arrow-left"></i> </a>
 				<form class="form-inline" method="post" action="<?php echo site_url('cover/'.$this->uri->segment(2).'') ?>">
+					<input type="hidden" name="<?php echo $this->security->get_csrf_token_name();?>" value="<?php echo $this->security->get_csrf_hash();?>">
 					<button type="submit" class="btn-transparant" id="publish_chapter"><img src="<?php echo base_url() ?>public/img/assets/icon_publish.png" width="25"> <span style="color: #7554bd;font-size: 14px;">Publish</span></button>
 				</form>
 			</div>

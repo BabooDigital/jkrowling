@@ -7,6 +7,7 @@ $(document).ready(function() {
 		a.children(".txtfollow").text("Diikuti");
 		b.append("user_id", $("#iaiduui").val());
 		b.append("fuser_id", a.attr("data-follow"));
+		b.append("csrf_test_name", csrf_value);
 		$.ajax({
 			url: base_url + "follows",
 			type: "POST",
@@ -28,6 +29,7 @@ $(document).ready(function() {
 			a.children(".txtfollow").text("Ikuti");
 		b.append("user_id", $("#iaiduui").val());
 		b.append("fuser_id", a.attr("data-follow"));
+		b.append("csrf_test_name", csrf_value);
 		$.ajax({
 			url: base_url + "follows",
 			type: "POST",

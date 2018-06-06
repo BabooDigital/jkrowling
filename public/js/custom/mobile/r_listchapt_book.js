@@ -28,6 +28,7 @@ $(document).ready(function() {
 
 		formData.append("book_id", $("#book_id").val());
 		formData.append("chapter", $(this).attr("chid"));
+		formData.append("csrf_test_name", csrf_value);
 
 		$.ajax({
 			url: base_url+'detaileditchapt',
@@ -35,7 +36,7 @@ $(document).ready(function() {
 			dataType: 'JSON',
 			contentType: false,
 			processData: false,
-			data:formData,
+			data: formData,
 		})
 		.done(function(data) {
 			$.each(data, function(i, item) {
@@ -61,6 +62,7 @@ $(document).ready(function() {
 		var formData = new FormData();
 
 		formData.append("chapter_id", $(this).attr("chid"));
+		formData.append("csrf_test_name", csrf_value);
 
 		$.ajax({
 			url: base_url+'delchapter',

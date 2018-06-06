@@ -57,7 +57,7 @@ function getContent(tab_page, book, chapter) {
 		url: tab_page,
 		type: 'POST',
 		cache: false,
-		data: { book_id: book, chapter_id: chapter},
+		data: { book_id: book, chapter_id: chapter, csrf_test_name: csrf_value },
 		success: function(data) {
 			HoldOn.close();
 			$(".loader").hide();
@@ -78,6 +78,7 @@ $(document).ready(function() {
 		var a = new FormData();
 		a.append("file_cover", $("#file_cover")[0].files[0]);
 		a.append("book_id", $("#uri").val());
+		a.append("csrf_test_name", csrf_value);
 		$.ajax({
 			url: base_url + "post_cover",
 			type: "POST",
@@ -230,7 +231,7 @@ $(document).ready(function() {
 						"type": "POST",
 						"contentType": false,
 						"processData": false,
-						"data": {formData}
+						"data": {formData, csrf_test_name: csrf_value}
 					})
 					.done(function(data) {
 						HoldOn.close();
@@ -274,6 +275,7 @@ $(document).ready(function() {
 				formData.append("user_id", $("#user_id").val());
 				// formData.append("tag_book", $("#tag_book").val());
 				formData.append("book_paragraph", $("#book_paragraph").val());
+				formData.append("csrf_test_name",  csrf_value)
 				if ($("#book_id").val() != null) {
 					formData.append("book_id", $("#book_id").val());
 					for (var pair of formData.entries()) {
@@ -289,7 +291,7 @@ $(document).ready(function() {
 						"type": "POST",
 						"contentType": false,
 						"processData": false,
-						"data": {formData}
+						"data": formData
 					})
 					.done(function(data) {
 						HoldOn.close();
@@ -330,6 +332,7 @@ $(document).ready(function() {
 		formData.append("cover_name", $('#cover_name').val());
 		formData.append("category_id", $("#category_id").val());
 		formData.append("user_id", $("input:hidden[name=user_id]").val());
+		formData.append("csrf_test_name",  csrf_value)
 		// formData.append("tag_book", $("#tag_book").val());
 		formData.append("book_paragraph", $("#book_paragraph").val());
 		if ($("#book_id").val() != null) {
@@ -353,7 +356,7 @@ $(document).ready(function() {
 					"type": "POST",
 					"contentType": false,
 					"processData": false,
-					"data": {formData}
+					"data": formData
 				})
 				.done(function(data) {
 					HoldOn.close();
@@ -395,7 +398,7 @@ $(document).ready(function() {
 					"type": "POST",
 					"contentType": false,
 					"processData": false,
-					"data": {formData}
+					"data": formData
 				})
 				.done(function(data) {
 					HoldOn.close();
@@ -429,6 +432,7 @@ function getCategory() {
 		url: base_url+'getCategory',
 		type: 'POST',
 		dataType: 'json',
+		data: {csrf_test_name: csrf_value}
 	})
 	.done(function(data) {
 		var category = "<option value=''>Pilih Category Buku</option>"; 
@@ -459,6 +463,7 @@ function getChapter() {
 		data: {book_id: uri_segment},
 		type: 'POST',
 		dataType: 'json',
+		data: {csrf_test_name: csrf_value}
 	})
 	.done(function(data) {
 		var chapter = "";

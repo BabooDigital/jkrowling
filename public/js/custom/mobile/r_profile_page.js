@@ -46,6 +46,7 @@ loaded = true;
     aww.children('.loveicon').attr("src", base_url+"public/img/assets/love_active.svg");
     formData.append("user_id", $("#iaiduui").val());
     formData.append("book_id", aww.attr("data-id"));
+    formData.append("csrf_test_name", csrf_value);
     $.ajax({
       url: base_url + 'like',
       type: 'POST',
@@ -53,7 +54,7 @@ loaded = true;
       cache: false,
       contentType: false,
       processData: false,
-      data: formData,
+      data: formData
     })
     .done(function(data) {
         // $('.loader').hide();
@@ -83,6 +84,7 @@ loaded = true;
     aww.children('.loveicon').attr("src", base_url+"public/img/assets/icon_love.svg");
     formData.append("user_id", $("#iaiduui").val());
     formData.append("book_id", aww.attr("data-id"));
+    formData.append("csrf_test_name", csrf_value);
     $.ajax({
       url: base_url + 'like',
       type: 'POST',
@@ -143,6 +145,7 @@ loaded = true;
 
           formData.append("user_id", $("#iaiduui").val());
           formData.append("book_id", aww.attr('data-share'));
+          formData.append("csrf_test_name", csrf_value);
 
           $.ajax({
             url: base_url + 'shares',
@@ -151,7 +154,7 @@ loaded = true;
             cache: false,
             contentType: false,
             processData: false,
-            data: formData,
+            data: formData
               // beforeSend: function() {
               // }
             })
@@ -187,6 +190,7 @@ loaded = true;
 		formData.append('date_of_birth', $('#yourBirth').val());
 		formData.append('address', $('#yourLoc').val());
 		formData.append('about_me', $('#yourBio').val());
+    formData.append("csrf_test_name", csrf_value);
 
 		$.ajax({
 			url: 'edit_profile',
@@ -195,7 +199,7 @@ loaded = true;
 			cache: false,
 		    contentType: false,
 		    processData: false,
-			data: formData,
+			data: formData
 		})
 		.done(function(data) {
 			if (data.code == 200) {
@@ -216,6 +220,7 @@ loaded = true;
     var formData = new FormData();
 
     formData.append("book_id", $(this).attr("datadel"));
+    formData.append("csrf_test_name", csrf_value);
 
     swal({
       title: 'Hapus buku mu yang telah diterbitkan?',

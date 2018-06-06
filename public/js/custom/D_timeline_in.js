@@ -56,6 +56,7 @@ $(document).ready(function() {
         a.hide(); 
         b.append("user_id", $("#iaiduui").val());
         b.append("fuser_id", a.attr("data-follow"));
+        b.append("csrf_test_name", csrf_value);
         $.ajax({
             url: base_url + "follows",
             type: "POST",
@@ -81,7 +82,7 @@ $(document).ready(function() {
             coverimg = aww.parents('.card').find(".effect-img").attr("src"),
             authname = aww.parents('.card').find(".nametitle2").text(),
             links = aww.parents('.card').find(".segment").attr("data-href");
-            
+            e.append("csrf_test_name", csrf_value);
         FB.ui({
             method: "share_open_graph",
             action_type: "og.shares",
@@ -192,6 +193,7 @@ $(document).ready(function() {
         var e = $(this),
             a = new FormData,
             t = e.children(".txtlike");
+            a.append("csrf_test_name", csrf_value);
         e.children(".loveicon").attr("src", "public/img/assets/love_active.svg"), a.append("user_id", $("#iaiduui").val()), a.append("book_id", e.attr("data-id")), $.ajax({
             url: base_url + "like",
             type: "POST",
@@ -209,40 +211,7 @@ $(document).ready(function() {
         var e = $(this),
             a = new FormData,
             t = e.children(".txtunlike");
-        e.children(".loveicon").attr("src", "public/img/assets/icon_love.svg"), a.append("user_id", $("#iaiduui").val()), a.append("book_id", e.attr("data-id")), $.ajax({
-            url: base_url + "like",
-            type: "POST",
-            dataType: "JSON",
-            cache: !1,
-            contentType: !1,
-            processData: !1,
-            data: a
-        }).done(function(a) {
-            null == a.code ? e.children(".loveicon").attr("src", "public/img/assets/love_active.svg") : (e.removeClass("unlike"), e.addClass("like"), t.removeClass("txtunlike"), t.addClass("txtlike"), e.children(".txtlike").text("Suka"), e.children(".loveicon").attr("src", "public/img/assets/icon_love.svg"))
-        }).fail(function() {
-            console.log("Failure")
-        }).always(function() {})
-    }), $(document).on("click", ".like", function() {
-        var e = $(this),
-            a = new FormData,
-            t = e.children(".txtlike");
-        e.children(".loveicon").attr("src", "public/img/assets/love_active.svg"), a.append("user_id", $("#iaiduui").val()), a.append("book_id", e.attr("data-id")), $.ajax({
-            url: base_url + "like",
-            type: "POST",
-            dataType: "JSON",
-            cache: !1,
-            contentType: !1,
-            processData: !1,
-            data: a
-        }).done(function(a) {
-            null == a.code ? e.children(".loveicon").attr("src", "public/img/assets/icon_love.svg") : (e.removeClass("like"), e.addClass("unlike"), t.removeClass("txtlike"), t.addClass("txtunlike"), e.children(".txtunlike").text("Batal Suka"), e.children(".loveicon").attr("src", "public/img/assets/love_active.svg"))
-        }).fail(function() {
-            console.log("Failure")
-        }).always(function() {})
-    }), $(document).on("click", ".unlike", function() {
-        var e = $(this),
-            a = new FormData,
-            t = e.children(".txtunlike");
+            a.append("csrf_test_name", csrf_value);
         e.children(".loveicon").attr("src", "public/img/assets/icon_love.svg"), a.append("user_id", $("#iaiduui").val()), a.append("book_id", e.attr("data-id")), $.ajax({
             url: base_url + "like",
             type: "POST",

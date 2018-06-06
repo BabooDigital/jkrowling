@@ -236,6 +236,7 @@
 
 					formData.append("book_id", $("input:hidden[name=iaiduui]").val());
 					formData.append('cover_url', file, aws + '.png');
+					formData.append("csrf_test_name", csrf_value);
 
 					swal({
 						title: 'Ingin menggunakan cover ini?',
@@ -367,6 +368,7 @@
 
 					formData.append("book_id", $("input:hidden[name=iaiduui]").val());
 					formData.append('cover_url', file, aws + '.png');
+					formData.append("csrf_test_name", csrf_value);
 					$.ajax({
 						async: true,
 						crossDomain: true,
