@@ -16,6 +16,7 @@ $(function(){
 function publishBook() {
   $("#publish_book").click(function() {
     var formData = new FormData();
+    formData.append("csrf_test_name", csrf_value);
     var ch = $(".start_chapter").val();
     var slide = $('.priceCheck:checkbox:checked');
       if (slide.length == 0) {
@@ -27,6 +28,7 @@ function publishBook() {
       formData.append("book_id", $("#uri").val());
       formData.append("file_cover", $("#cover_file").val());
       formData.append("category", $("#category_ids").val());
+      formData.append("price", $("#inputprice").val());
       if (ch == '3' || ch >= '3' || ch > '3') {
         formData.append("chapter_start", ch);
       }else {
@@ -78,6 +80,7 @@ function uploadCoverMr() {
     var a = new FormData();
     a.append("file_cover", $("#file_cover")[0].files[0]);
     a.append("book_id", $("#uri").val());
+    a.append("csrf_test_name", csrf_value);
     $.ajax({
       url: base_url + "post_cover",
       type: "POST",
@@ -109,7 +112,7 @@ function publishChapter() {
       url: base_url+'cover',
       type: 'POST',
       dataType: 'json',
-      data: {book_id: book_id, chapter_title: title, paragraph: paragraph}
+      data: {book_id: book_id, chapter_title: title, paragraph: paragraph, csrf_test_name: csrf_value}
     })
     .done(function(data) {
       if (data.code == 200) {
@@ -237,7 +240,7 @@ function backLink() {
             $.ajax({
               type:"POST",
               url:url,
-              data: { 'book_id' : book_id, 'chapter_title' : chapter_title, 'paragraph_book' : paragraph_book, 'chapter_id' : chapter_id},
+              data: { 'book_id' : book_id, 'chapter_title' : chapter_title, 'paragraph_book' : paragraph_book, 'chapter_id' : chapter_id, 'csrf_test_name': csrf_value},
               dataType: 'json',
               beforeSend: function () {
                 swal({
@@ -291,7 +294,7 @@ function saveDraft() {
       $.ajax({
         type:"POST",
         url:url,
-        data: { 'book_id' : book_id, 'chapter_title' : chapter_title, 'paragraph_book' : paragraph_book, 'chapter_id' : chapter_id},
+        data: { 'book_id' : book_id, 'chapter_title' : chapter_title, 'paragraph_book' : paragraph_book, 'chapter_id' : chapter_id, 'csrf_test_name' : csrf_value},
         dataType: 'json',
         beforeSend: function () {
           swal({
@@ -349,7 +352,7 @@ function addChapter() {
           $.ajax({
             type:"POST",
             url:url,
-            data: { 'book_id' : book_id, 'chapter_title' : chapter_title, 'paragraph_book' : paragraph_book, 'chapter_id' : chapter_id},
+            data: { 'book_id' : book_id, 'chapter_title' : chapter_title, 'paragraph_book' : paragraph_book, 'chapter_id' : chapter_id, 'csrf_test_name' : csrf_value},
             dataType: 'json',
             beforeSend: function () {
               swal({
@@ -381,7 +384,8 @@ function getCategory() {
   $.ajax({
     url: base_url+'getCategory',
     type: 'POST',
-    dataType: 'json'
+    dataType: 'json',
+    data:{csrf_test_name: csrf_value}
   })
   .done(function(data) {
     var category = "<option value=''>Kategori Buku</option>"; 
@@ -427,7 +431,7 @@ function saveEditChapter() {
       $.ajax({
         type:"POST",
         url:url,
-        data: { 'book_id' : book_id, 'chapter_title' : chapter_title, 'paragraph_book' : paragraph_book, 'chapter_id' : chid},
+        data: { 'book_id' : book_id, 'chapter_title' : chapter_title, 'paragraph_book' : paragraph_book, 'chapter_id' : chid, 'csrf_test_name' : csrf_value},
         dataType: 'json',
         beforeSend: function () {
           swal({
@@ -452,6 +456,7 @@ function saveEditChapter() {
 function check_sell() {
   var formData = new FormData();
   formData.append("book_id", $("#uri").val());
+  formData.append("csrf_test_name", csrf_value);
 
   $.ajax({
     url: base_url+'validateSell',

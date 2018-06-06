@@ -57,6 +57,7 @@
 	</nav>
 	<div class="container mb-30">
 		<form id="formDataCashOut">
+			<input type="hidden" name="<?php echo $this->security->get_csrf_token_name();?>" value="<?php echo $this->security->get_csrf_hash();?>">
 			<div class="row">
 				<div class="col-12">
 					<h3 style="font-weight: 800;">Tarik Dana</h3>
@@ -95,7 +96,7 @@
 						<div class="input-group-prepend">
 							<div class="input-group-text">Rp</div>
 						</div>
-						<input type="text" class="form-control fs17pxfw600" id="inpJumSal" name="inpJumSal" placeholder="500.000">
+						<input type="text" class="form-control fs17pxfw600" id="inpJumSal" name="inpJumSal" placeholder="200.000">
 					</div>
 				</div>
 			</div>

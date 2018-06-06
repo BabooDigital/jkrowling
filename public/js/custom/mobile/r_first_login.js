@@ -7,7 +7,7 @@ $(document).ready(function() {
         $(this);
         var a = new FormData;
         a.append("prof_pict", $("#imageUpload")[0].files[0]);
-        a.append("user_id", $("#dat-id").val());
+        a.append("csrf_test_name", csrf_value);
         $.ajax({
             url: base_url + "upload_pict",
             type: "POST",
@@ -17,7 +17,6 @@ $(document).ready(function() {
             processData: false,
             data: a
         }).done(function() {
-            console.log("wew mantab")
         }).fail(function() {
             console.log("error")
         }).always(function() {})
@@ -30,6 +29,7 @@ $(document).ready(function() {
     	formData.append("user_id", boo.attr("dat-id"));
     	formData.append("location", $("#yourDomisili").val());
     	formData.append("about_me", $("#yourBio").val());
+        a.append("csrf_test_name", csrf_value);
 
     	$.ajax({
     		url: base_url + 'firstedit',

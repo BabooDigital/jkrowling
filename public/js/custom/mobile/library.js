@@ -11,7 +11,7 @@ function getLastRead() {
         url: base_url+'lastread',
         type: 'POST',
         dataType: 'json',
-        data: {user: iaiduui},
+        data: {user: iaiduui, csrf_test_name: csrf_value},
         beforeSend: function()
         {
             $(".loader").show();
@@ -50,7 +50,7 @@ function getBookmark() {
         url: base_url+'bookmark',
         type: 'POST',
         dataType: 'json',
-        data: {user: iaiduui},
+        data: {user: iaiduui, csrf_test_name: csrf_value},
         beforeSend: function() {
             $(".loader").show();
         }

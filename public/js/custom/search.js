@@ -119,6 +119,7 @@ $(document).on("click", ".like", function() {
             a = new FormData;
         $(".loveicon").attr("src", base_url + "public/img/assets/love_active.svg");
         a.append("book_id", b.attr("data-id"));
+        a.append("csrf_test_name", csrf_value);
         $.ajax({
             url: base_url + "like",
             type: "POST",

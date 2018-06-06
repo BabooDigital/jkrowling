@@ -457,7 +457,44 @@ $config['global_xss_filtering'] = FALSE;
 | 'csrf_regenerate' = Regenerate token on every submission
 | 'csrf_exclude_uris' = Array of URIs which ignore CSRF checks
 */
-$config['csrf_protection'] = TRUE;
+
+if (stripos($_SERVER["REQUEST_URI"],'/createidbook') === FALSE 
+  AND stripos($_SERVER["REQUEST_URI"],'/chapter') === FALSE 
+  AND stripos($_SERVER["REQUEST_URI"],'/cover') === FALSE 
+  AND stripos($_SERVER["REQUEST_URI"],'/post_cover') === FALSE 
+  AND stripos($_SERVER["REQUEST_URI"],'/validateSell') === FALSE 
+  AND stripos($_SERVER["REQUEST_URI"],'/publishbook') === FALSE 
+  AND stripos($_SERVER["REQUEST_URI"],'/savechapter') === FALSE 
+	AND stripos($_SERVER["REQUEST_URI"],'/like') === FALSE 
+	AND stripos($_SERVER["REQUEST_URI"],'/commentbook') === FALSE 
+	AND stripos($_SERVER["REQUEST_URI"],'/getcommentbook') === FALSE 
+	AND stripos($_SERVER["REQUEST_URI"],'/sendbookmark') === FALSE  
+	AND stripos($_SERVER["REQUEST_URI"],'/follows') === FALSE 
+	AND stripos($_SERVER["REQUEST_URI"],'/getmenuchapter') === FALSE
+	AND stripos($_SERVER["REQUEST_URI"],'/pay_book/token') === FALSE
+	AND stripos($_SERVER["REQUEST_URI"],'/pay_book/finish') === FALSE
+	AND stripos($_SERVER["REQUEST_URI"],'/notifications') === FALSE
+	AND stripos($_SERVER["REQUEST_URI"],'/shares') === FALSE
+	AND stripos($_SERVER["REQUEST_URI"],'/replycom') === FALSE
+	AND stripos($_SERVER["REQUEST_URI"],'/updatentf') === FALSE
+	AND stripos($_SERVER["REQUEST_URI"],'/upload_pict') === FALSE
+	AND stripos($_SERVER["REQUEST_URI"],'/delpublish') === FALSE
+	AND stripos($_SERVER["REQUEST_URI"],'/auth/check_pin') === FALSE
+	AND stripos($_SERVER["REQUEST_URI"],'/auth/create_payout') === FALSE
+	AND stripos($_SERVER["REQUEST_URI"],'/auth/check_acc') === FALSE
+	AND stripos($_SERVER["REQUEST_URI"],'/auth/changepass') === FALSE
+	AND stripos($_SERVER["REQUEST_URI"],'/auth/confirm_acc') === FALSE
+	AND stripos($_SERVER["REQUEST_URI"],'/auth/confirm_otp') === FALSE
+	AND stripos($_SERVER["REQUEST_URI"],'/auth/new_pin') === FALSE
+	AND stripos($_SERVER["REQUEST_URI"],'/auth/confirm_pin') === FALSE
+	AND stripos($_SERVER["REQUEST_URI"],'/auth/set_question') === FALSE
+	AND stripos($_SERVER["REQUEST_URI"],'/searching') === FALSE)
+{
+	$config['csrf_protection'] 	= TRUE;
+}else{ 
+	$config['csrf_protection'] 	= FALSE; 
+}
+
 $config['csrf_token_name'] = 'csrf_test_name';
 $config['csrf_cookie_name'] = 'csrf_cookie_name';
 $config['csrf_expire'] = 7200;

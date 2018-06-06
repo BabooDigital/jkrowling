@@ -55,6 +55,7 @@ function keyupPIN() {
 			var fix = str.replace(/\s/g, '');
 			var a = new FormData();
 			a.append("confirmpin", fix);
+			a.append("csrf_test_name", csrf_value);
 			$.ajax({
 				url: base_url+'auth/check_pin',
 				type: 'POST',
@@ -105,6 +106,7 @@ function checkAccount() {
 		var as = $( ".txtInpRek" ).val();
 		var a = new FormData();
 		a.append("account_number", as);
+		a.append("csrf_test_name", csrf_value);
 		$.ajax({
 			url: base_url+'auth/check_acc',
 			type: 'POST',
@@ -145,6 +147,7 @@ function selectAccount() {
 		var as = $(this).attr('datacc');
 		var a = new FormData();
 		a.append("account_number", as);
+		a.append("csrf_test_name", csrf_value);
 		$.ajax({
 			url: base_url+'auth/check_acc',
 			type: 'POST',
@@ -235,6 +238,7 @@ function validationFormBank() {
 			a.append("numb", as);
 			a.append("name", bs);
 			a.append("code", cs);
+			a.append("csrf_test_name", csrf_value);
 			$.ajax({
 				url: base_url+'auth/create_acc',
 				type: 'POST',
@@ -285,6 +289,7 @@ function rekValidation() {
 	var storedNames = localStorage.getItem("rekInf");
 	var a = new FormData();
 	a.append("account_number", storedNames);
+	a.append("csrf_test_name", csrf_value);
 	$.ajax({
 		url: base_url+'auth/check_acc',
 		type: 'POST',
@@ -336,13 +341,13 @@ function validationFormCashout() {
 		rules: {
 			inpJumSal: {
 				required: true,
-				min: 500000
+				min: 200000
 			}
 		},
 		messages: {
 			inpJumSal: {
 				required: 'Masukan saldo yang ingin ditarik.',
-				min : 'Minimum penarikan sebesar Rp 500.000'
+				min : 'Minimum penarikan sebesar Rp 200.000'
 			}
 		},
 		submitHandler: function(form) {
@@ -351,6 +356,7 @@ function validationFormCashout() {
 			var a = new FormData();
 			a.append("accnum", as);
 			a.append("amount", bs);
+			a.append("csrf_test_name", csrf_value);
 			$.ajax({
 				url: base_url+'auth/create_payout',
 				type: 'POST',
@@ -397,6 +403,7 @@ function selectRekModal() {
 			var ag = $('.tfRek');
 			var a = new FormData();
 			a.append("account_number", ae);
+			a.append("csrf_test_name", csrf_value);
 			$.ajax({
 				url: base_url+'auth/check_acc',
 				type: 'POST',

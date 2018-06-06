@@ -52,6 +52,7 @@ function count_notif() {
     url: base_url+'notifications',
     type: 'POST',
     dataType: 'json',
+    data: {csrf_test_name: csrf_value},
   })
   .done(function(data) {
     var datas = "";
@@ -88,6 +89,7 @@ function load_notification() {
         url: base_url+'notifications',
         type: 'POST',
         dataType: 'json',
+        data: {csrf_test_name: csrf_value},
       })
       .done(function(data) {
         var datas = "";

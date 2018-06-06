@@ -29,6 +29,7 @@ $(document).ready(function() {
 
           formData.append("user_id", $("#iaiduui").val());
           formData.append("book_id", aww.attr('data-share'));
+          formData.append("csrf_test_name", csrf_value);
 
           $.ajax({
             url: base_url + 'shares',
@@ -37,7 +38,7 @@ $(document).ready(function() {
             cache: false,
             contentType: false,
             processData: false,
-            data: formData,
+            data: formData
               // beforeSend: function() {
               // }
             })
@@ -104,6 +105,7 @@ $(document).ready(function() {
     aww.children('.loveicon').attr("src", "public/img/assets/love_active.svg");
     formData.append("user_id", $("#iaiduui").val());
     formData.append("book_id", aww.attr("data-id"));
+    formData.append("csrf_test_name", csrf_value);
     $.ajax({
       url: base_url + 'like',
       type: 'POST',
@@ -111,7 +113,7 @@ $(document).ready(function() {
       cache: false,
       contentType: false,
       processData: false,
-      data: formData,
+      data: formData
     })
     .done(function(data) {
         // $('.loader').hide();
@@ -141,6 +143,7 @@ $(document).ready(function() {
     aww.children('.loveicon').attr("src", "public/img/assets/icon_love.svg");
     formData.append("user_id", $("#iaiduui").val());
     formData.append("book_id", aww.attr("data-id"));
+    formData.append("csrf_test_name", csrf_value);
     $.ajax({
       url: base_url + 'like',
       type: 'POST',
@@ -148,7 +151,7 @@ $(document).ready(function() {
       cache: false,
       contentType: false,
       processData: false,
-      data: formData,
+      data: formData
         // beforeSend: function() {
         // }
       })

@@ -32,6 +32,7 @@ $(document).ready(function () {
         $(".chat").append(c);
         b.append("user_to", $("#iuswithid").val());
         b.append("message", ab.siblings("#pmessageas").val());
+        b.append("csrf_test_name", csrf_value);
         $.ajax({
             url: base_url + "send_message",
             type: "POST",
@@ -66,9 +67,9 @@ $(document).ready(function () {
                 $('#myModal2').modal('show').find('.modal-body').load(b);
                 var bahtml = "<button type='button' class='closes' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'><i class='fa fa-arrow-left'></i></span></button><h4><b>" + boo.attr("data-usr-name") + "</b></h4>";
                 $('#myModal2').find('.modal-header').html(bahtml);
-                var refreshId = setInterval(function () {
-                    $("#myModal2").find('.modal-body').load(b);
-                }, 10000);
+                // var refreshId = setInterval(function () {
+                //     $("#myModal2").find('.modal-body').load(b);
+                // }, 10000);
                 $.ajaxSetup({cache: false});
             }
         });
@@ -98,6 +99,7 @@ $(document).ready(function () {
       var formdata = new FormData();
       formdata.append('message', msg);
       formdata.append('user_to', usr_input);
+      formdata.append("csrf_test_name", csrf_value);
       $.ajax({
         url: base_url+'send_message',
         cache: false,
@@ -122,7 +124,8 @@ function loadMessage() {
     $.ajax({
         url: base_url + "detailMessage",
         type: "POST",
-        dataType: "json"
+        dataType: "json",
+        data: {csrf_test_name: csrf_value}
     }).done(function (b) {
         var d = 0;
         $.each(b, function (f, g) {

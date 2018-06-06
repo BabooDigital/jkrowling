@@ -101,7 +101,8 @@ $(document).ready(function() {
 		type: 'POST',
 		dataType: 'json',
 		data: {
-			user_id: id
+			user_id: id,
+			csrf_test_name : csrf_value
 		},
 		beforeSend: function()
 		{
@@ -136,7 +137,8 @@ $(document).ready(function() {
 		type: 'POST',
 		dataType: 'json',
 		data: {
-			user_id: id
+			user_id: id,
+			csrf_test_name : csrf_value
 		},
 		beforeSend: function()
 		{
@@ -173,7 +175,8 @@ $(document).ready(function() {
 		type: 'POST',
 		dataType: 'json',
 		data: {
-			user_id: id
+			user_id: id,
+			csrf_test_name : csrf_value
 		},
 		beforeSend: function()
 		{

@@ -56,7 +56,7 @@ $(document).ready(function() {
             if(post_text != '')
             {
                 var post_text = text;
-                var post_data = "book_id="+$("#iaidubi").val()+"&comments="+post_text;
+                var post_data = "book_id="+$("#iaidubi").val()+"&comments="+post_text+"&csrf_test_name="+csrf_value;
                 $.ajax({
                     url: base_url + "commentbook",
                     type: "POST",
@@ -105,6 +105,7 @@ $(document).ready(function() {
         a.append("user_id", $("#iaiduui").val());
         a.append("paragraph_id", b.attr("data-p-id"));
         a.append("comments", $("#pcomments").val());
+        a.append("csrf_test_name", csrf_value);
         $.ajax({
             url: base_url + "commentbook",
             type: "POST",
@@ -112,7 +113,7 @@ $(document).ready(function() {
             cache: false,
             contentType: false,
             processData: false,
-            data: a
+            data: {a, csrf_test_name: csrf_value}
         }).done(function(a) {
             // null == a && ($(".rcommentviewnull").hide(), console.log("Koneksi Bermasalah"));
             // $("#pcomments").val("")
@@ -128,6 +129,7 @@ $(document).ready(function() {
             base_url + "public/img/assets/icon_bookmark_active.svg");
         a.append("user_id", $("#iaiduui").val());
         a.append("book_id", b.attr("data-id"));
+        a.append("csrf_test_name", csrf_value);
         $.ajax({
             url: base_url + "sendbookmark",
             type: "POST",
@@ -149,6 +151,7 @@ $(document).ready(function() {
         $(".bookmarkicon").attr("src", base_url + "public/img/assets/icon_bookmark.svg");
         a.append("user_id", $("#iaiduui").val());
         a.append("book_id", b.attr("data-id"));
+        a.append("csrf_test_name", csrf_value);
         $.ajax({
             url: base_url + "sendbookmark",
             type: "POST",
@@ -172,6 +175,7 @@ $(document).ready(function() {
         a.append("user_id",
             $("#iaiduui").val());
         a.append("book_id", b.attr("data-id"));
+        a.append("csrf_test_name", csrf_value);
         $.ajax({
             url: base_url + "like",
             type: "POST",
@@ -195,6 +199,7 @@ $(document).ready(function() {
         $(".loveicon").attr("src", base_url + "public/img/assets/icon_love.svg");
         a.append("user_id", $("#iaiduui").val());
         a.append("book_id", b.attr("data-id"));
+        a.append("csrf_test_name", csrf_value);
         $.ajax({
             url: base_url + "like",
             type: "POST",
@@ -216,6 +221,7 @@ $(document).ready(function() {
         a = new FormData;
         a.append("user_id", $("#iaiduui").val());
         a.append("fuser_id", b.attr("data-follow"));
+        a.append("csrf_test_name", csrf_value);
         $.ajax({
             url: base_url + "follows",
             type: "POST",
@@ -237,6 +243,7 @@ $(document).ready(function() {
         a = new FormData;
         a.append("user_id", $("#iaiduui").val());
         a.append("fuser_id", b.attr("data-follow"));
+        a.append("csrf_test_name", csrf_value);
         $.ajax({
             url: base_url + "follows",
             type: "POST",
@@ -257,6 +264,7 @@ $(document).ready(function() {
         var b = $(this),
         a = new FormData;
         a.append("paragraph_id", b.attr("data-p-id"));
+        a.append("csrf_test_name", csrf_value);
         $.ajax({
             url: base_url + "getcommentbook",
             type: "POST",
@@ -281,6 +289,7 @@ $(document).ready(function() {
     $(document).on("click", ".share-fb", function() {
         $(this);
         var b = new FormData;
+        b.append("csrf_test_name", csrf_value);
         $("#iaidubi").val();
         var a = $(".title_book").text(),
         c = +$("#sharecount").text() + 1,
@@ -349,7 +358,8 @@ function getRMenuChapter() {
         type: "POST",
         dataType: "json",
         data: {
-            id_book: segment
+            id_book: segment,
+            csrf_test_name: csrf_value
         }
     }).done(function(b) {
         var data_chapter = "";
@@ -408,7 +418,8 @@ function getRCommentBook() {
         type: "POST",
         dataType: "json",
         data: {
-            book_id: b
+            book_id: b,
+            csrf_test_name: csrf_value
         },
         beforeSend: function() {
             $(".loader").show()
@@ -460,7 +471,7 @@ function buyBook() {
         $.ajax({
             url: base_url+'pay_book/token',
             type: "POST",
-            data:{id_book:$("#iaidubi").val(), url_redirect:window.location.href},
+            data:{id_book:$("#iaidubi").val(), url_redirect:window.location.href, csrf_test_name: csrf_value},
             cache: false,
             beforeSend: function() {
                 $(".lds-css").show();
@@ -531,6 +542,7 @@ $(document).on('click', '.Rpost-comment-repl', function(event) {
     var formData = new FormData();
     formData.append('comment_id', comid_);
     formData.append('comments', $('#comments').val());
+    formData.append('csrf_test_name', csrf_value);
     $.ajax({
         url: base_url+'replycom',
         type: 'POST',
@@ -571,6 +583,7 @@ $(document).on('click', '.delcomm', function(event) {
     var boo = $(this);
     var formData = new FormData();
     formData.append('comment_id', boo.attr('datadel'));
+    formData.append("csrf_test_name", csrf_value);
     $.ajax({
         url: base_url+'delcom',
         type: 'POST',
