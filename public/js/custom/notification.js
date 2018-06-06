@@ -10,7 +10,7 @@ $(document).ready(function () {
       url: 'updatentf',
       type: 'POST',
       dataType: '',
-      data: {ntf: ntf},
+      data: {ntf: ntf, csrf_test_name: csrf_value},
     })
     .done(function(data) {
       // console.log("success");
@@ -33,7 +33,7 @@ $("#btn_notif_comment").on('click', function(event) {
     url: 'updatentf',
     type: 'POST',
     dataType: '',
-    data: {ntf: ntf},
+    data: {ntf: ntf, csrf_test_name: csrf_value},
   })
   .done(function(data) {
     // console.log("success");
@@ -52,6 +52,7 @@ function count_notif() {
     url: base_url+'notifications',
     type: 'POST',
     dataType: 'json',
+    data: {csrf_test_name: csrf_value},
   })
   .done(function(data) {
     var datas = "";
@@ -88,6 +89,7 @@ function load_notification() {
         url: base_url+'notifications',
         type: 'POST',
         dataType: 'json',
+        data: {csrf_test_name: csrf_value},
       })
       .done(function(data) {
         var datas = "";
@@ -186,7 +188,7 @@ function load_notification() {
           url: 'updatentf',
           type: 'POST',
           dataType: '',
-          data: {ntf: ntf},
+          data: {ntf: ntf, csrf_test_name: csrf_value},
         })
         .done(function(data) {
           // console.log("success");
@@ -207,7 +209,7 @@ function load_notification() {
           url: 'updatentf',
           type: 'POST',
           dataType: '',
-          data: {ntf: ntf},
+          data: {ntf: ntf, csrf_test_name: csrf_value},
         })
         .done(function(data) {
           window.location.href = slug;
@@ -227,7 +229,7 @@ function load_notification() {
           url: 'updatentf',
           type: 'POST',
           dataType: '',
-          data: {ntf: ntf},
+          data: {ntf: ntf, csrf_test_name: csrf_value},
         })
         .done(function(data) {
           window.location.href = slug;
@@ -247,7 +249,7 @@ function load_notification() {
           url: 'updatentf',
           type: 'POST',
           dataType: '',
-          data: {ntf: ntf},
+          data: {ntf: ntf, csrf_test_name: csrf_value},
         })
         .done(function(data) {
           window.location.href = slug;

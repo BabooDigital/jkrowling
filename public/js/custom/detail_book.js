@@ -32,7 +32,7 @@ $(document).ready(function() {
 			cache: false,
 			contentType: false,
 			processData: false,
-			data: a
+			data: {a, csrf_test_name: csrf_value}
 		}).done(function(data) {
 			console.log(data);
 			b.removeClass("bookmark");
@@ -54,7 +54,7 @@ $(document).ready(function() {
 			cache: false,
 			contentType: false,
 			processData: false,
-			data: a
+			data: {a, csrf_test_name: csrf_value}
 		}).done(function() {
 			b.removeClass("unbookmark");
 			b.addClass("bookmark")
@@ -99,7 +99,7 @@ $(document).ready(function() {
 					cache: !1,
 					contentType: !1,
 					processData: !1,
-					data: a
+					data:{a, csrf_test_name: csrf_value}
 				}).done(function(a) {
 					$("span[id='commentcount']").text(e);
 					null == a && ($(".commentviewnull").hide(), console.log("Koneksi Bermasalah"));
@@ -128,7 +128,7 @@ $(document).ready(function() {
 			cache: !1,
 			contentType: !1,
 			processData: !1,
-			data: b
+			data: {b, csrf_test_name: csrf_value}
 		}).done(function(a) {
 			null == a && ($(".pcommentviewnull").hide(),
 				console.log("Koneksi Bermasalah"));
@@ -151,7 +151,7 @@ $(document).ready(function() {
 			cache: !1,
 			contentType: !1,
 			processData: !1,
-			data: b
+			data: {b, csrf_test_name: csrf_value}
 		}).done(function() {
 			a.removeClass("like");
 			a.addClass("unlike");
@@ -174,7 +174,7 @@ $(document).ready(function() {
 			cache: !1,
 			contentType: !1,
 			processData: !1,
-			data: b
+			data: {b, csrf_test_name: csrf_value}
 		}).done(function() {
 			a.removeClass("unlike");
 			a.addClass("like");
@@ -195,7 +195,7 @@ $(document).ready(function() {
 			cache: !1,
 			contentType: !1,
 			processData: !1,
-			data: b
+			data: {b, csrf_test_name: csrf_value}
 		}).done(function() {
 			a.removeClass("follow-u");
 			a.addClass("unfollow-u");
@@ -216,7 +216,7 @@ $(document).ready(function() {
 			cache: !1,
 			contentType: !1,
 			processData: !1,
-			data: b
+			data: {b, csrf_test_name: csrf_value}
 		}).done(function() {
 			a.removeClass("unfollow-u");
 			a.addClass("follow-u");
@@ -252,7 +252,7 @@ $(document).ready(function() {
 			cache: !1,
 			contentType: !1,
 			processData: !1,
-			data: a
+			data: {a, csrf_test_name: csrf_value}
 		}).done(function(a) {
 			$("#sharecount").text(h)
 		}).fail(function() {
@@ -287,7 +287,7 @@ $(document).ready(function() {
 				cache: !1,
 				contentType: !1,
 				processData: !1,
-				data: a
+				data: {a, csrf_test_name: csrf_value}
 			}).done(function(a) {
 				$("#sharecount").text(c)
 			}).fail(function() {
@@ -306,7 +306,7 @@ $(document).ready(function() {
 			cache: !1,
 			contentType: !1,
 			processData: !1,
-			data: b
+			data: {b, csrf_test_name: csrf_value}
 		}).done(function(b) {
 			var c = "";
 			$.each(b, function(a, b) {
@@ -336,7 +336,7 @@ function buyBook() {
 			$.ajax({
 				url: base_url+'pay_book/token',
 				type: "POST",
-				data:{id_book:$("#iaidubi").val(), url_redirect:window.location.href},
+				data:{id_book:$("#iaidubi").val(), url_redirect:window.location.href, csrf_test_name: csrf_value},
 				cache: false,
 				success: function(data) {
 		        var resultType = document.getElementById('result-type');
@@ -420,7 +420,8 @@ function getChapter() {
 			dataType: "json",
 			data: {
 				id_chapter: d,
-				id_book: c
+				id_book: c,
+				csrf_test_name: csrf_value
 			}
 		}).done(function(c) {
 			var a = "";
@@ -443,7 +444,8 @@ function getmenuChapter() {
 		type: "POST",
 		dataType: "json",
 		data: {
-			id_book: segment
+			id_book: segment,
+			csrf_test_name: csrf_value
 		},
 		beforeSend: function() {
 			$("#loader_chapter").show()
@@ -511,6 +513,7 @@ function getContent(d, c) {
 		type: "GET",
 		cache: !1,
 		dataType: "json",
+		data: {csrf_test_name: csrf_value},
 		success: function(d) {
 			HoldOn.close();
 			var a = "";
@@ -536,7 +539,8 @@ function getCommentBook() {
 		type: "POST",
 		dataType: "json",
 		data: {
-			book_id: segment
+			book_id: segment,
+			csrf_test_name: csrf_value
 		},
 		beforeSend: function() {
 			$(".loader").show()

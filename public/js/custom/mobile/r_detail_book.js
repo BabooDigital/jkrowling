@@ -42,7 +42,7 @@ $(document).ready(function() {
                     url: base_url + "commentbook",
                     type: "POST",
                     dataType: "JSON",
-                    data: post_data,
+                    data: {post_data, csrf_test_name: csrf_value},
                     beforeSend: function() {
                         $(".loader").show()
                     }
@@ -93,7 +93,7 @@ $(document).ready(function() {
             cache: false,
             contentType: false,
             processData: false,
-            data: a
+            data: {a, csrf_test_name: csrf_value}
         }).done(function(a) {
             // null == a && ($(".rcommentviewnull").hide(), console.log("Koneksi Bermasalah"));
             // $("#pcomments").val("")
@@ -116,7 +116,7 @@ $(document).ready(function() {
             cache: false,
             contentType: false,
             processData: false,
-            data: a
+            data: {a, csrf_test_name: csrf_value}
         }).done(function(data) {
             b.removeClass("bookmark");
             b.addClass("unbookmark")
@@ -137,7 +137,7 @@ $(document).ready(function() {
             cache: false,
             contentType: false,
             processData: false,
-            data: a
+            data: {a, csrf_test_name: csrf_value}
         }).done(function() {
             b.removeClass("unbookmark");
             b.addClass("bookmark")
@@ -160,7 +160,7 @@ $(document).ready(function() {
             cache: false,
             contentType: false,
             processData: false,
-            data: a
+            data: {a, csrf_test_name: csrf_value}
         }).done(function() {
             b.removeClass("like");
             b.addClass("unlike");
@@ -183,7 +183,7 @@ $(document).ready(function() {
             cache: false,
             contentType: false,
             processData: false,
-            data: a
+            data: {a, csrf_test_name: csrf_value}
         }).done(function() {
             b.removeClass("unlike");
             b.addClass("like");
@@ -204,7 +204,7 @@ $(document).ready(function() {
             cache: false,
             contentType: false,
             processData: false,
-            data: a
+            data: {a, csrf_test_name: csrf_value}
         }).done(function() {
             b.removeClass("follow-u");
             b.addClass("unfollow-u");
@@ -225,7 +225,7 @@ $(document).ready(function() {
             cache: false,
             contentType: false,
             processData: false,
-            data: a
+            data: {a, csrf_test_name: csrf_value}
         }).done(function() {
             b.removeClass("unfollow-u");
             b.addClass("follow-u");
@@ -287,7 +287,7 @@ $(document).ready(function() {
                 cache: false,
                 contentType: false,
                 processData: false,
-                data: b
+                data: {b, csrf_test_name: csrf_value}
             }).done(function(a) {
                 $("#sharecount").text(c)
             }).fail(function() {
@@ -330,7 +330,8 @@ function getRMenuChapter() {
         type: "POST",
         dataType: "json",
         data: {
-            id_book: segment
+            id_book: segment,
+            csrf_test_name: csrf_value
         }
     }).done(function(b) {
         var data_chapter = "";
@@ -389,7 +390,8 @@ function getRCommentBook() {
         type: "POST",
         dataType: "json",
         data: {
-            book_id: b
+            book_id: b,
+            csrf_test_name: csrf_value
         },
         beforeSend: function() {
             $(".loader").show()
@@ -441,7 +443,7 @@ function buyBook() {
         $.ajax({
             url: base_url+'pay_book/token',
             type: "POST",
-            data:{id_book:$("#iaidubi").val(), url_redirect:window.location.href},
+            data:{id_book:$("#iaidubi").val(), url_redirect:window.location.href, csrf_test_name: csrf_value},
             cache: false,
             beforeSend: function() {
                 $(".lds-css").show();
@@ -519,7 +521,7 @@ $(document).on('click', '.Rpost-comment-repl', function(event) {
         cache: false,
         contentType: false,
         processData: false,
-        data: formData,
+        data: {formData, csrf_test_name: csrf_value},
         beforeSend: function() {
             $(".loader").show()
         }
@@ -559,7 +561,7 @@ $(document).on('click', '.delcomm', function(event) {
         cache: false,
         contentType: false,
         processData: false,
-        data: formData,
+        data: {formData, csrf_test_name: csrf_value},
         beforeSend: function() {
             $(".loader").show()
         }

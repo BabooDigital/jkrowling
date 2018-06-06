@@ -39,7 +39,7 @@ $(document).ready(function () {
             cache: !1,
             contentType: !1,
             processData: !1,
-            data: b
+            data: {b, csrf_test_name: csrf_value}
         }).done(function (a) {
             ab.siblings("#pmessageas").val("");
         }).fail(function () {
@@ -104,7 +104,7 @@ $(document).ready(function () {
         type: "POST",
         contentType: false,
         processData: false,
-        data: formdata
+        data: {formdata, csrf_test_name: csrf_value}
       })
       .done(function() {
           console.log("success");
@@ -123,6 +123,7 @@ function loadMessage() {
         url: base_url + "detailMessage",
         type: "POST",
         dataType: "json"
+        data: {csrf_test_name: csrf_value}
     }).done(function (b) {
         var d = 0;
         $.each(b, function (f, g) {

@@ -220,6 +220,7 @@ if (!empty($query['b'])) {
 		<script src="<?php echo base_url();?>public/js/custom/auth.js"></script>
 		<script> 
 			var base_url = '<?php echo base_url(); ?>';
+			var csrf_value = '<?php echo $this->security->get_csrf_hash(); ?>';
 
 			$(function(){
 			    $(window).scrollTop($(".form-group").offset().top);
