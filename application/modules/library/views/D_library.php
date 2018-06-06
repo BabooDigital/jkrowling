@@ -13,7 +13,9 @@
     <link href="<?php echo base_url(); ?>public/css/custom-margin-padding.css" rel="stylesheet" type="text/css">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
     type="text/css">
-
+    <script>
+        var csrf_value = '<?php echo $this->security->get_csrf_hash(); ?>';
+    </script>
 
 </head>
 <style type="text/css">

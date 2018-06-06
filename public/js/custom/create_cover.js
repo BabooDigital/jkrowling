@@ -261,7 +261,7 @@
 								contentType: false,
 								dataType: 'json',
 								mimeType: "multipart/form-data",
-								data: formData,
+								data: {formData, csrf_test_name: csrf_value},
 								success: function (data) {
 									HoldOn.close();
 									window.location.href = document.referrer;
@@ -376,7 +376,7 @@
 						contentType: false,
 						dataType: 'json',
 						mimeType: "multipart/form-data",
-						data: formData,
+						data: {formData, csrf_test_name: csrf_value},
 						success: function (data) {
 							window.history.go(-1);
 							if(IE){ //IE, bool var, has to be defined

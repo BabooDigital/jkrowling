@@ -106,6 +106,7 @@
 		</div>
 		<script type="text/javascript">
 			var base_url = '<?php echo base_url(); ?>';
+			var csrf_value = '<?php echo $this->security->get_csrf_hash(); ?>';
 		</script>
 		<?php if (isset($js)): ?><?php echo get_js($js) ?><?php endif ?>
 		<script type="text/javascript">

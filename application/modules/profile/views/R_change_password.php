@@ -16,6 +16,10 @@
 		color: red;
 	}
 </style>
+<script>
+	var base_url = '<?php echo base_url(); ?>';
+	var csrf_value = '<?php echo $this->security->get_csrf_hash(); ?>';
+</script>
 </head>
 <body class="bg-white">
 	<div class="wrapper">
@@ -61,8 +65,6 @@
 	<?php if (isset($js)): ?><?php echo get_js($js) ?><?php endif ?>
 	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
 	<script>
-		var base_url = '<?php echo base_url(); ?>';
-		
 		$("#changePassForm").validate({
 			ignore: [],
 			rules: {
