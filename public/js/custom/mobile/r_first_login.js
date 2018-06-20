@@ -15,7 +15,7 @@ $(document).ready(function() {
             cache: false,
             contentType: false,
             processData: false,
-            data: {a, csrf_test_name: csrf_value}
+            data: a
         }).done(function() {
             console.log("wew mantab")
         }).fail(function() {
@@ -38,7 +38,7 @@ $(document).ready(function() {
     		cache: false,
     		contentType: false,
     		processData: false,
-    		data: {formData, csrf_test_name: csrf_value},
+    		data: formData,
         // beforeSend: function() {
         // }
     })

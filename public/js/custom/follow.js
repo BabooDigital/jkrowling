@@ -14,7 +14,7 @@ $(document).ready(function() {
 			cache: !1,
 			contentType: !1,
 			processData: !1,
-			data: {b, csrf_test_name: csrf_value}
+			data: b
 		}).done(function() {
 		}).fail(function() {
 			console.log("error")
@@ -35,7 +35,7 @@ $(document).ready(function() {
 			cache: !1,
 			contentType: !1,
 			processData: !1,
-			data: {b, csrf_test_name: csrf_value}
+			data: b
 		}).done(function() {
 		}).fail(function() {
 			console.log("error")

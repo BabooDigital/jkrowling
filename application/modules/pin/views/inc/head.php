@@ -24,8 +24,5 @@
 
 	<!-- JS -->
 	<script type="text/javascript" src="<?php echo base_url();?>public/js/jquery.min.js"></script>
-	<script>
-		var base_url = '<?php echo base_url(); ?>';
-		var csrf_value = '<?php echo $this->security->get_csrf_hash(); ?>';
-	</script>
+	<script>var base_url = '<?php echo base_url(); ?>';</script>
 </head>

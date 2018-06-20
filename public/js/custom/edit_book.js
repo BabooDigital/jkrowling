@@ -103,8 +103,7 @@ function getContent(a, b, c) {
         cache: !1,
         data: {
             book_id: b,
-            chapter_id: c,
-            csrf_test_name: csrf_value
+            chapter_id: c
         },
         success: function(a) {
             HoldOn.close();
@@ -154,7 +153,7 @@ $(document).ready(function() {
             type: "POST",
             contentType: !1,
             processData: !1,
-            data: {a, csrf_test_name: csrf_value}
+            data: a
         }).done(function(b) {
             HoldOn.close();
             $("#success").show().delay(5E3).queue(function(a) {
@@ -201,7 +200,7 @@ $(document).ready(function() {
             type: "POST",
             contentType: !1,
             processData: !1,
-            data: {a, csrf_test_name: csrf_value}
+            data: a
         }).done(function(a) {
             HoldOn.close();
             $("#success").show().delay(5E3).queue(function(a) {
@@ -219,8 +218,7 @@ function getCategory() {
     $.ajax({
         url: base_url + "getCategory",
         type: "POST",
-        dataType: "json",
-        data: {csrf_test_name: csrf_value}
+        dataType: "json"
     }).done(function(a) {
         var b = "<option value=''>Pilih Category Buku</option>";
         $.each(a, function(a, d) {
@@ -245,8 +243,7 @@ function getChapter() {
     $.ajax({
         url: base_url + "getChapter",
         data: {
-            book_id: uri_segment,
-            csrf_test_name: csrf_value
+            book_id: uri_segment
         },
         type: "POST",
         dataType: "json"
@@ -326,7 +323,7 @@ $(function() {
             type: "POST",
             contentType: !1,
             processData: !1,
-            data: {a, csrf_test_name: csrf_value}
+            data: a
         }).done(function() {
             HoldOn.close();
             $("#success").show().delay(5E3).queue(function(a) {

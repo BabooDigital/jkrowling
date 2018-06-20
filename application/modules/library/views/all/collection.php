@@ -12,10 +12,6 @@
 	.titlebooks {font-size: 20pt;font-weight: 900;}
 	.card-footer {border-radius: none !important;}
 </style>
-<script>
-	var base_url = '<?php echo base_url(); ?>';
-	var csrf_value = '<?php echo $this->security->get_csrf_hash(); ?>';
-</script>
 </head>
 <body id="pageContent">
 	<div class="wrapper" style="background: #f5f8fa;">
@@ -57,5 +53,8 @@
 				</div>
 
 				<?php if (isset($js)): ?><?php echo get_js($js) ?><?php endif ?>
+				<script>
+					var base_url = '<?php echo base_url(); ?>';
+				</script>
 			</body>
 			</html>

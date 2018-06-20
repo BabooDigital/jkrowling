@@ -33,10 +33,6 @@
 		color:gray;
 	}
 </style>
-<script>
-	var base_url = '<?php echo base_url(); ?>';
-	var csrf_value = '<?php echo $this->security->get_csrf_hash(); ?>';
-</script>
 </head>
 <body class="bg-borr">
 	<div class="wrapper">
@@ -88,6 +84,8 @@
 		// $(function() {
 		// 	$('#yourBirth').pickadate();
 		// });
+			
+		var base_url = '<?php echo base_url(); ?>';
 	</script>
 </body>
 </html>

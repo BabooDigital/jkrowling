@@ -7,7 +7,6 @@
 	<?php if (isset($css)): ?><?php echo get_css($css) ?><?php endif ?>
 	<script type="text/javascript">
 		var base_url = '<?php echo base_url() ?>';
-		var csrf_value = '<?php echo $this->security->get_csrf_hash(); ?>';
 	</script>
 	<script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-FbaqZneHUk1HWy6m"></script>
 </head>

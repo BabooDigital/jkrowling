@@ -62,7 +62,7 @@ function keyupPIN() {
 				cache: false,
 				contentType: false,
 				processData: false,
-				data: {a, csrf_test_name: csrf_value},
+				data: a,
 				beforeSend: function () {
 					swal({
 						title: 'Mohon tunggu...',
@@ -112,7 +112,7 @@ function checkAccount() {
 			cache: false,
 			contentType: false,
 			processData: false,
-			data: {a, csrf_test_name: csrf_value},
+			data: a,
 			beforeSend: function () {
 				swal({
 					title: 'Mohon tunggu...',
@@ -152,7 +152,7 @@ function selectAccount() {
 			cache: false,
 			contentType: false,
 			processData: false,
-			data: {a, csrf_test_name: csrf_value},
+			data: a,
 			beforeSend: function () {
 				swal({
 					title: 'Mohon tunggu...',
@@ -242,7 +242,7 @@ function validationFormBank() {
 				cache: false,
 				contentType: false,
 				processData: false,
-				data: {a, csrf_test_name: csrf_value},
+				data: a,
 				beforeSend: function () {
 					swal({
 						title: 'Mohon tunggu...',
@@ -292,7 +292,7 @@ function rekValidation() {
 		cache: false,
 		contentType: false,
 		processData: false,
-		data: {a, csrf_test_name: csrf_value},
+		data: a,
 		beforeSend: function () {
 			swal({
 				title: 'Pengecekan...',
@@ -358,7 +358,7 @@ function validationFormCashout() {
 				cache: false,
 				contentType: false,
 				processData: false,
-				data: {a, csrf_test_name: csrf_value},
+				data: a,
 				beforeSend: function () {
 					swal({
 						title: 'Mohon tunggu...',
@@ -404,7 +404,7 @@ function selectRekModal() {
 				cache: false,
 				contentType: false,
 				processData: false,
-				data: {a, csrf_test_name: csrf_value},
+				data: a,
 				beforeSend: function () {
 					swal({
 						title: 'Pengecekan...',

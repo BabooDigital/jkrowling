@@ -137,6 +137,3 @@ echo "<script>(function(d, s, id) {
 		swal("Maaf..", "Kamu Sudah Mengikuti Event!", "warning");
 	</script>
 <?php endif ?>>
-
-</body>
-</html>

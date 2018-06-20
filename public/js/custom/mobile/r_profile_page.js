@@ -53,7 +53,7 @@ loaded = true;
       cache: false,
       contentType: false,
       processData: false,
-      data: {formData, csrf_test_name: csrf_value},
+      data: formData,
     })
     .done(function(data) {
         // $('.loader').hide();
@@ -90,7 +90,7 @@ loaded = true;
       cache: false,
       contentType: false,
       processData: false,
-      data: {formData, csrf_test_name: csrf_value},
+      data: formData,
         // beforeSend: function() {
         // }
       })
@@ -151,7 +151,7 @@ loaded = true;
             cache: false,
             contentType: false,
             processData: false,
-            data: {formData, csrf_test_name: csrf_value},
+            data: formData,
               // beforeSend: function() {
               // }
             })
@@ -195,7 +195,7 @@ loaded = true;
 			cache: false,
 		    contentType: false,
 		    processData: false,
-			data: {formData, csrf_test_name: csrf_value},
+			data: formData,
 		})
 		.done(function(data) {
 			if (data.code == 200) {

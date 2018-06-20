@@ -63,7 +63,7 @@ $(document).ready(function() {
             cache: !1,
             contentType: !1,
             processData: !1,
-            data: {b, csrf_test_name: csrf_value}
+            data: b
         }).done(function(data) {
             if (data.code == 200) {
             }
@@ -101,7 +101,7 @@ $(document).ready(function() {
                 cache: !1,
                 contentType: !1,
                 processData: !1,
-                data: {e, csrf_test_name: csrf_value}
+                data: e
             }).done(function(e) {
             }).fail(function() {
                 console.log("Failure")
@@ -199,7 +199,7 @@ $(document).ready(function() {
             cache: !1,
             contentType: !1,
             processData: !1,
-            data: {a, csrf_test_name: csrf_value}
+            data: a
         }).done(function(a) {
             null == a.code ? e.children(".loveicon").attr("src", "public/img/assets/icon_love.svg") : (e.removeClass("like"), e.addClass("unlike"), t.removeClass("txtlike"), t.addClass("txtunlike"), e.children(".txtunlike").text("Batal Suka"), e.children(".loveicon").attr("src", "public/img/assets/love_active.svg"))
         }).fail(function() {
@@ -216,7 +216,7 @@ $(document).ready(function() {
             cache: !1,
             contentType: !1,
             processData: !1,
-            data: {a, csrf_test_name: csrf_value}
+            data: a
         }).done(function(a) {
             null == a.code ? e.children(".loveicon").attr("src", "public/img/assets/love_active.svg") : (e.removeClass("unlike"), e.addClass("like"), t.removeClass("txtunlike"), t.addClass("txtlike"), e.children(".txtlike").text("Suka"), e.children(".loveicon").attr("src", "public/img/assets/icon_love.svg"))
         }).fail(function() {
@@ -233,7 +233,7 @@ $(document).ready(function() {
             cache: !1,
             contentType: !1,
             processData: !1,
-            data: {a, csrf_test_name: csrf_value}
+            data: a
         }).done(function(a) {
             null == a.code ? e.children(".loveicon").attr("src", "public/img/assets/icon_love.svg") : (e.removeClass("like"), e.addClass("unlike"), t.removeClass("txtlike"), t.addClass("txtunlike"), e.children(".txtunlike").text("Batal Suka"), e.children(".loveicon").attr("src", "public/img/assets/love_active.svg"))
         }).fail(function() {
@@ -250,7 +250,7 @@ $(document).ready(function() {
             cache: !1,
             contentType: !1,
             processData: !1,
-            data: {a, csrf_test_name: csrf_value}
+            data: a
         }).done(function(a) {
             null == a.code ? e.children(".loveicon").attr("src", "public/img/assets/love_active.svg") : (e.removeClass("unlike"), e.addClass("like"), t.removeClass("txtunlike"), t.addClass("txtlike"), e.children(".txtlike").text("Suka"), e.children(".loveicon").attr("src", "public/img/assets/icon_love.svg"))
         }).fail(function() {

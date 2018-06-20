@@ -57,7 +57,7 @@ function getContent(tab_page, book, chapter) {
 		url: tab_page,
 		type: 'POST',
 		cache: false,
-		data: { book_id: book, chapter_id: chapter, csrf_test_name: csrf_value },
+		data: { book_id: book, chapter_id: chapter },
 		success: function(data) {
 			HoldOn.close();
 			$(".loader").hide();
@@ -230,7 +230,7 @@ $(document).ready(function() {
 						"type": "POST",
 						"contentType": false,
 						"processData": false,
-						"data": {formData, csrf_test_name: csrf_value}
+						"data": formData
 					})
 					.done(function(data) {
 						HoldOn.close();
@@ -289,7 +289,7 @@ $(document).ready(function() {
 						"type": "POST",
 						"contentType": false,
 						"processData": false,
-						"data": {formData, csrf_test_name: csrf_value}
+						"data": formData
 					})
 					.done(function(data) {
 						HoldOn.close();
@@ -353,7 +353,7 @@ $(document).ready(function() {
 					"type": "POST",
 					"contentType": false,
 					"processData": false,
-					"data": {formData, csrf_test_name: csrf_value}
+					"data": formData
 				})
 				.done(function(data) {
 					HoldOn.close();
@@ -395,7 +395,7 @@ $(document).ready(function() {
 					"type": "POST",
 					"contentType": false,
 					"processData": false,
-					"data": {formData, csrf_test_name: csrf_value}
+					"data": formData
 				})
 				.done(function(data) {
 					HoldOn.close();
@@ -428,8 +428,7 @@ function getCategory() {
 	$.ajax({
 		url: base_url+'getCategory',
 		type: 'POST',
-		dataType: 'json',
-		data: {csrf_test_name: csrf_value},
+		dataType: 'json'
 	})
 	.done(function(data) {
 		var category = "<option value=''>Pilih Category Buku</option>"; 
@@ -459,8 +458,7 @@ function getChapter() {
 		url: base_url+'getChapter',
 		data: {book_id: uri_segment},
 		type: 'POST',
-		dataType: 'json',
-		data: {csrf_test_name: csrf_value},
+		dataType: 'json'
 	})
 	.done(function(data) {
 		var chapter = "";

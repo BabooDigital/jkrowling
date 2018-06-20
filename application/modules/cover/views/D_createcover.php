@@ -5,9 +5,6 @@
 	<meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
 	<title><?php echo $title; ?></title>
 	<?php if (isset($css)): ?><?php echo get_css($css) ?><?php endif ?>
-	<script>
-		var csrf_value = '<?php echo $this->security->get_csrf_hash(); ?>';
-	</script>
 </head>
 <body>
 	<div class="container-fluid">

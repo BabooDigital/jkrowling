@@ -35,7 +35,7 @@ $(document).ready(function() {
 			dataType: 'JSON',
 			contentType: false,
 			processData: false,
-			data:{formData, csrf_test_name: csrf_value},
+			data:formData,
 		})
 		.done(function(data) {
 			$.each(data, function(i, item) {
@@ -68,7 +68,7 @@ $(document).ready(function() {
 			dataType: 'JSON',
 			contentType: false,
 			processData: false,
-			data:{formData, csrf_test_name: csrf_value},
+			data:formData,
 			beforeSend: function () {
 				swal({
 					title: 'Menghapus Chapter',

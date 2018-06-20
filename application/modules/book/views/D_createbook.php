@@ -13,7 +13,6 @@
 <script type="text/javascript">
 		var base_url = '<?php echo base_url() ?>';
 		var uri_segment = '<?php echo $this->uri->segment(2) ?>';
-		var csrf_value = '<?php echo $this->security->get_csrf_hash(); ?>';
 </script>
 <body>
 	<?php $attr = array('id' => 'form_book'); 

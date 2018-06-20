@@ -54,7 +54,7 @@ loaded = true;
       cache: false,
       contentType: false,
       processData: false,
-      data: {formData, csrf_test_name: csrf_value},
+      data: formData,
     })
     .done(function(data) {
         // $('.loader').hide();
@@ -91,7 +91,7 @@ loaded = true;
       cache: false,
       contentType: false,
       processData: false,
-      data: {formData, csrf_test_name: csrf_value},
+      data: formData,
         // beforeSend: function() {
         // }
       })
@@ -152,7 +152,7 @@ loaded = true;
             cache: false,
             contentType: false,
             processData: false,
-            data: {formData, csrf_test_name: csrf_value},
+            data: formData,
               // beforeSend: function() {
               // }
             })
@@ -192,7 +192,7 @@ loaded = true;
       cache: !1,
       contentType: !1,
       processData: !1,
-      data: {b, csrf_test_name: csrf_value}
+      data: b
     }).done(function (a) {
       ab.siblings("#pmessageas").val("");
     }).fail(function () {
@@ -253,7 +253,7 @@ loaded = true;
       type: "POST",
       contentType: false,
       processData: false,
-      data: {formdata, csrf_test_name: csrf_value}
+      data: formdata
     })
     .done(function() {
       console.log("success");
@@ -278,8 +278,7 @@ function loadMessage() {
   $.ajax({
     url: base_url + "detailMessage",
     type: "POST",
-    dataType: "json",
-    data: {csrf_test_name: csrf_value}
+    dataType: "json"
   }).done(function (b) {
     var d = 0;
     $.each(b, function (f, g) {

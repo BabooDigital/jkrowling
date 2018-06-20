@@ -37,7 +37,7 @@ $(document).ready(function() {
             cache: false,
             contentType: false,
             processData: false,
-            data: {formData, csrf_test_name: csrf_value},
+            data: formData,
               // beforeSend: function() {
               // }
             })
@@ -111,7 +111,7 @@ $(document).ready(function() {
       cache: false,
       contentType: false,
       processData: false,
-      data: {formData, csrf_test_name: csrf_value},
+      data: formData,
     })
     .done(function(data) {
         // $('.loader').hide();
@@ -148,7 +148,7 @@ $(document).ready(function() {
       cache: false,
       contentType: false,
       processData: false,
-      data: {formData, csrf_test_name: csrf_value},
+      data: formData,
         // beforeSend: function() {
         // }
       })

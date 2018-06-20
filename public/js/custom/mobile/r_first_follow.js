@@ -15,7 +15,7 @@ $(document).on('click', '.follow-u', function() {
     cache: false,
     contentType: false,
     processData: false,
-    data: {formData, csrf_test_name: csrf_value},
+    data: formData,
         // beforeSend: function() {
         // }
       })
@@ -46,7 +46,7 @@ $(document).on('click', '.follow-u', function() {
       cache: false,
       contentType: false,
       processData: false,
-      data: {formData, csrf_test_name: csrf_value},
+      data: formData,
         // beforeSend: function() {
         // }
       })
