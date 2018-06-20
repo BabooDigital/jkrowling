@@ -43,6 +43,158 @@
 	.dropdown-toggle::after {
 		display:none
 	}
+	/* M E S S A G E S */
+
+	.chat {
+		list-style: none;
+		background: none;
+		margin: 0;
+		padding: 0 0 50px 0;
+		margin-bottom: 10px;
+	}
+	.chat li {
+		padding: 0.5rem;
+		overflow: hidden;
+		display: flex;
+	}
+	.chat .avatar {
+		width: 40px;
+		height: 40px;
+		position: relative;
+		display: block;
+		z-index: 2;
+		border-radius: 100%;
+		-webkit-border-radius: 100%;
+		-moz-border-radius: 100%;
+		-ms-border-radius: 100%;
+		background-color: rgba(255,255,255,0.9);
+	}
+	.chat .avatar img {
+		width: 40px;
+		height: 40px;
+		border-radius: 100%;
+		-webkit-border-radius: 100%;
+		-moz-border-radius: 100%;
+		-ms-border-radius: 100%;
+		background-color: rgba(255,255,255,0.9);
+		-webkit-touch-callout: none;
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+	}
+	.chat .day {
+		position: relative;
+		display: block;
+		text-align: center;
+		color: #c0c0c0;
+		height: 20px;
+		text-shadow: 7px 0px 0px #e5e5e5, 6px 0px 0px #e5e5e5, 5px 0px 0px #e5e5e5, 4px 0px 0px #e5e5e5, 3px 0px 0px #e5e5e5, 2px 0px 0px #e5e5e5, 1px 0px 0px #e5e5e5, 1px 0px 0px #e5e5e5, 0px 0px 0px #e5e5e5, -1px 0px 0px #e5e5e5, -2px 0px 0px #e5e5e5, -3px 0px 0px #e5e5e5, -4px 0px 0px #e5e5e5, -5px 0px 0px #e5e5e5, -6px 0px 0px #e5e5e5, -7px 0px 0px #e5e5e5;
+		box-shadow: inset 20px 0px 0px #e5e5e5, inset -20px 0px 0px #e5e5e5, inset 0px -2px 0px #d7d7d7;
+		line-height: 38px;
+		margin-top: 5px;
+		margin-bottom: 20px;
+		cursor: default;
+		-webkit-touch-callout: none;
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+	}
+
+	.other .msg .msg-self {
+		order: 1;
+		border-top-left-radius: 0px;
+		box-shadow: -1px 2px 0px #D4D4D4;
+	}
+	.other:before {
+		content: "";
+		position: relative;
+		top: 0px;
+		right: 0px;
+		left: 40px;
+		width: 0px;
+		height: 0px;
+		border: 5px solid #fff;
+		border-left-color: transparent;
+		border-bottom-color: transparent;
+	}
+
+	.self {
+		justify-content: flex-end;
+		align-items: flex-end;
+	}
+	.self .msg .msg-self {
+		order: 1;
+		border-bottom-right-radius: 0px;
+		box-shadow: 1px 2px 0px #D4D4D4;
+	}
+	.self .avatar {
+		order: 2;
+	}
+	.self .avatar:after {
+		content: "";
+		position: relative;
+		display: inline-block;
+		bottom: 19px;
+		right: 0px;
+		width: 0px;
+		height: 0px;
+		border: 5px solid #fff;
+		border-right-color: transparent;
+		border-top-color: transparent;
+		box-shadow: 0px 2px 0px #D4D4D4;
+	}
+
+	.msg {
+		background: #ebf2ff;
+		min-width: 50px;
+		padding: 10px;
+		border-radius: 2px;
+		box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.07);
+	}
+	.msg-self {
+
+		background: #f1f1f1f1;
+		min-width: 50px;
+		padding: 10px;
+		border-radius: 2px;
+		box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.07);
+	}
+	.msg .msg-self p {
+		font-size: 1rem;
+		margin: 0 0 0.2rem 0;
+		color: #333;
+	}
+	.msg .msg-self span {
+		font-size: 8pt;
+	}
+	.msg .msg-self img {
+		position: relative;
+		display: block;
+		width: 450px;
+		border-radius: 5px;
+		box-shadow: 0px 0px 3px #eee;
+		transition: all .4s cubic-bezier(0.565, -0.260, 0.255, 1.410);
+		cursor: default;
+		-webkit-touch-callout: none;
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+	}
+	@media screen and (max-width: 800px) {
+		.msg .msg-self img {
+			width: 300px;
+		}
+	}
+	@media screen and (max-width: 550px) {
+		.msg .msg-self img {
+			width: 200px;
+		}
+	}
+
+	@-webikt-keyframes pulse {
+		from { opacity: 0; }
+		to { opacity: 0.5; }
+	}
 </style>
 <div class="container babooidin">
 	<div class="row">
@@ -63,9 +215,10 @@
 								<?php if (!$this->uri->segment(2)): ?>
 									<a data-toggle="modal" data-target="#edit-profile" href="#" class="btn-edprof fs-12px mr-10">Edit Profile</a> <a href="<?php echo site_url('message'); ?>" class="btn-edprof fs-12px">Message</a>
 								<?php else: ?>
-									<a href="#" data-follow="<?php echo $userdata['user_id']; ?>" class="btn-edprof fs-12px mr-10 <?php if ($userdata['isFollow'] == false) { echo "follow-u"; }else{ echo "unfollow-u"; } ?>"><span class=" txtfollow"><?php if ($userdata['isFollow'] == false) { echo "Follow"; }else{ echo "Unfollow"; } ?></span></a>
+									<a href="javascript:void(0);" class="btn-edprof fs-12px mr-10 message-user" data-usr-msg="<?php echo $userdata["user_id"]; ?>" data-usr-name ="<?php echo $userdata["fullname"]; ?>">Kirim Pesan
+									</a>
+									<a href="#" data-follow="<?php echo $userdata['user_id']; ?>" class="btn-edprof fs-12px <?php if ($userdata['isFollow'] == false) { echo "follow-u"; }else{ echo "unfollow-u"; } ?>"><span class=" txtfollow"><?php if ($userdata['isFollow'] == false) { echo "Ikuti"; }else{ echo "Diikuti"; } ?></span></a>
 									<input type="hidden" name="iaiduui" id="iaiduui" value="<?php $dat = $this->session->userdata('userData'); echo $dat['user_id']; ?>">
-									<!-- <a href="#" data-follow="<?php echo $userdata['isFollow']; ?>" class="btn-edprof fs-12px mr-10 dbookfollowbtn <?php echo $userdata['isFollow']; ?> <?php if ($userdata['isFollow'] == false) { echo "follow-u"; }else{ echo "unfollow-u"; } ?>"><span class="nametitle2 txtfollow"><?php if ($userdata['isFollow'] == false) { echo "Follow"; }else{ echo "Unfollow"; } ?></span></a> -->
 								<?php endif ?>
 							</div>
 							<hr>
@@ -299,11 +452,150 @@
 					</div>
 				</div>
 			</div>
+			<div class="modal right fade" id="msgModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content" style="border:none !important;">
+
+						<div class="modal-header bg-white">
+							<button type="button" class="closes btn-clear" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fa fa-arrow-left"></i></span>
+							</button>
+						</div>
+
+						<div class="modal-body bg-white mb-10">
+							<div class="loader" style="display: none;margin-left: auto;margin-right: auto;"></div>
+						</div>
+						<div class="modal-footer navbar navbar-light fixed-bottom  bg-white">
+							<span class="w-100">
+								<input id="pmessageas" placeholder="Tulis sesuatu.." type="text" class="frmcomment commentform"
+								style="width: 80%;height: 45px;">
+								<a href="javascript:void(0)" id="postMessage" class="btn Rpost-message-parap"
+								data-p-id="390">Kirim</a>
+							</span>
+						</div>
+					</div><!-- modal-content -->
+				</div><!-- modal-dialog -->
+			</div><!-- modal -->
 			<?php echo $this->session->userdata('hasPIN'); ?>
 			<?php $pin = $userdata['has_pin']; if ($pin == 1) { ?>
 			<?php $this->load->view('include/modal_pin'); ?>
 			<?php }else{ ?>
 			<?php } ?>
 				<?php if (isset($js)): ?><?php echo get_js($js) ?><?php endif ?>
+				<script src="<?php echo base_url();?>public/js/jquery.validate.js"></script>
+				<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+				<script>
+					$(document).on("click", "#postMessage", function () {
+						var ab = $(this),
+						b = new FormData,
+						message = ab.siblings("#pmessageas").val(),
+						fullname = $("#paltui").attr("data-pname"),
+						prof_pict = $("#paltui").attr("data-pimage");
+						c = "<li class='self'> <div class='avatar'><img class='d-flex align-self-start mr-20 rounded-circle'src='" + prof_pict + "' width='48' height='48' alt='" + fullname + "' draggable='false'></div> <div class='msg msg-self'> <p>" + message + "</p> <span class='pull-right text-muted'>Just Now</span></small> </div> </li>";
+						$(".chat").append(c);
+						b.append("user_to", $("#iuswithid").val());
+						b.append("message", ab.siblings("#pmessageas").val());
+						$.ajax({
+							url: base_url + "send_message",
+							type: "POST",
+							dataType: "JSON",
+							cache: !1,
+							contentType: !1,
+							processData: !1,
+							data: b
+						}).done(function (a) {
+							ab.siblings("#pmessageas").val("");
+						}).fail(function () {
+							console.log("error")
+						}).always(function () {
+						})
+					});
+
+					$(document).on("click",
+						".message-user",
+						function (e) {
+							e.preventDefault();
+							var boo = $(this);
+							var usr_with = boo.attr("data-usr-msg");
+							var b = base_url + "detail_messages/" + usr_with;
+							if (null == usr_with || "" == usr_with){
+
+							}
+							else {
+								$('#msgModal').modal('show').find('.modal-body').load(b);
+								var bahtml = "<button type='button' class='closes btn-clear' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'><i class='fa fa-arrow-left'></i></span></button><h4><b>" + boo.attr("data-usr-name") + "</b></h4>";
+								$('#msgModal').find('.modal-header').html(bahtml);
+								$.ajaxSetup({cache: false});
+							}
+						});
+					$(document).on('click', '.btn_list_msg', function(event) {
+						event.preventDefault();
+						var boo = $(this);
+						var usr_with = boo.attr("data-usr-msg");
+						var usr_name = boo.attr("data-usr-name");
+						var formdata = new FormData();
+
+						formdata.append("user_msg", usr_with);
+						var url = base_url+'message/'+convertToSlug(usr_name);
+						var form = $('<form action="' + url + '" method="post">' +
+							'<input type="hidden" name="usr_msg" value="' + usr_with + '" />' +
+							'<input type="hidden" name="usr_name" value="' + usr_name + '" />' +
+							'</form>');
+						$(boo).append(form);
+						form.submit();
+					});
+					$( "#submit_msg" ).submit(function(event) {
+						event.preventDefault();
+						var msg = $(".input_msg").val();
+						var usr_input = $(".input_usr").val();
+						$(".msg_view").append('<div class="text-right p-10 chatright"> <p class="txtchatright msg_view">'+msg+'</p> </div>');
+						$(".input_msg").val('');
+
+						var formdata = new FormData();
+						formdata.append('message', msg);
+						formdata.append('user_to', usr_input);
+						$.ajax({
+							url: base_url+'send_message',
+							cache: false,
+							type: "POST",
+							contentType: false,
+							processData: false,
+							data: formdata
+						})
+						.done(function() {
+							console.log("success");
+						})
+						.fail(function() {
+							console.log("error");
+						})
+						.always(function() {
+							console.log("complete");
+						});
+					});
+
+					function loadMessage() {
+						$.ajax({
+							url: base_url + "detailMessage",
+							type: "POST",
+							dataType: "json",
+							beforeSend: function () {
+
+							},
+						}).done(function (b) {
+							var d = 0;
+							$.each(b, function (f, g) {
+								"unread" == g.notif_status && d++
+							});
+							$("#noti_Counter").css({
+								opacity: 0
+							}).text(d).css({
+								top: "-10px",
+								opacity: 1
+							})
+						}).fail(function () {
+							console.log("error")
+						}).always(function () {
+						})
+					}
+				</script>
 			</body>
 			</html>

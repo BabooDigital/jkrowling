@@ -218,39 +218,6 @@ echo "<script>(function(d, s, id) {
 	to { opacity: 0.5; }
 }
 
-::-webkit-scrollbar {
-	min-width: 12px;
-	width: 12px;
-	max-width: 12px;
-	min-height: 12px;
-	height: 12px;
-	max-height: 12px;
-	background: #e5e5e5;
-	box-shadow: inset 0px 50px 0px rgba(82,179,217,0.9), inset 0px -52px 0px #fafafa;
-}
-
-::-webkit-scrollbar-thumb {
-	background: #bbb;
-	border: none;
-	border-radius: 100px;
-	border: solid 3px #e5e5e5;
-	box-shadow: inset 0px 0px 3px #999;
-}
-
-::-webkit-scrollbar-thumb:hover {
-	background: #b0b0b0;
-	box-shadow: inset 0px 0px 3px #888;
-}
-
-::-webkit-scrollbar-thumb:active {
-	background: #aaa;
-	box-shadow: inset 0px 0px 3px #7f7f7f;
-}
-
-::-webkit-scrollbar-button {
-	display: block;
-	height: 26px;
-}
 </style>
 <body id="pageContent">
 	<div class="lds-css ng-scope" style="display: none;"><div style="width:100%;height:100%" class="lds-eclipse"><img src="<?php echo base_url('public/img/splash_.png'); ?>" width="90" class="img-loading"><div></div><div></div><div></div><div></div><div></div></div></div>

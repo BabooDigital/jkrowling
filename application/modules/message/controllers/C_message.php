@@ -7,7 +7,7 @@ class C_message extends MX_Controller
 	function __construct(){
 		parent::__construct();
         $api_url = checkBase();
-        $this->API = $api_url."timeline/Timelines";
+        $this->API = $api_url;
 
 		if ($this->session->userdata('isLogin') != 200) {
 			redirect('home');
@@ -30,35 +30,14 @@ class C_message extends MX_Controller
         $data_message = array(
             'user_id' => $user['user_id']
         );
-        $url = $this->API . '/listMessage/';
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data_message);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-        curl_setopt($ch, CURLOPT_HEADER, 1);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key: ' . $auth));
-        $content = curl_exec($ch);
-        $headers = array();
-
-        $data = explode("\n", $content);
-        $headers['status'] = $data[0];
-
-        array_shift($data);
-
-        foreach ($data as $part) {
-            $middle = explode(":", $part);
-            $headers[trim($middle[0])] = trim($middle[1]);
-        }
-        $data['list_message'] = json_decode(end($data), true);
-        $auth = $headers['BABOO-AUTH-KEY'];
+        $datas = $this->curl_request->curl_post_auth($this->API.'timeline/Timelines/listMessage', $data_message, $auth);
+        
+        $data['list_message'] = $datas['data'];
+        $auth = $datas['bbo_auth'];
 
         if(!empty($auth)) $this->session->set_userdata('authKey', $auth);
 
-        $resval = json_decode(end($data), TRUE);
+        $resval = $datas['data'];
 
         if ($resval['code'] == 403) {
             $this->session->unset_userdata('userData');
@@ -98,7 +77,7 @@ class C_message extends MX_Controller
     {
 		$data['js'][]   = "public/js/menupage.js";
         error_reporting(0);
-        $url = $this->API . '/message';
+
         $auth = $this->session->userdata('authKey');
         $user_to = $this->input->post('user_to', TRUE);
         $message = $this->input->post('message', TRUE);
@@ -108,42 +87,13 @@ class C_message extends MX_Controller
                 'message' => $message
         );
 
-        // print_r($sendData);
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $sendData);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-        curl_setopt($ch, CURLOPT_HEADER, 1);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key: ' . $auth));
-        $result = curl_exec($ch);
-
-
-        $headers = array();
-
-        $data = explode("\n", $result);
-
-
-        array_shift($data);
-        $middle = array();
-        $moddle = array();
-        foreach ($data as $part) {
-            $middle = explode(":", $part);
-            $moddle = explode("{", $part);
-
-            if (error_reporting() == 0) {
-                $headers[trim($middle[0])] = trim($middle[1]);
-            }
-        }
-        $getdata = end($data);
-        $resval = json_decode($getdata, TRUE);
+        $datas = $this->curl_request->curl_post_auth($this->API.'timeline/Timelines/message', $sendData, $auth);
+        
+        $resval = $datas['data'];
 
         $psn = $resval['message'];
         $userdetail = $resval['data'];
-        $auth = $headers['BABOO-AUTH-KEY'];
+        $auth = $datas['bbo_auth'];
 
         $this->session->set_userdata('authKey', $auth);
         $status = $resval['code'];
@@ -155,11 +105,9 @@ class C_message extends MX_Controller
         } else {
             echo json_encode($userdetail);
         }
-        // print_r($data);
     }
 
-
-    public function detailMessage(){
+    public function detailMessage() {
         error_reporting(0);
         $auth = $this->session->userdata('authKey');
         if ($this->input->post()) {
@@ -173,69 +121,20 @@ class C_message extends MX_Controller
             'user_id' => $user['user_id'],
             'user_with' => $user_with
         );
-        // print_r($data_book);
-        // print_r($data_book);
 
-        // START GET CHAPTER
-        $url = $this->API . '/detailMessage/';
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        $datas = $this->curl_request->curl_post($this->API.'timeline/Timelines/detailMessage', $data_message, $auth);
+        
+        $resval = $datas;
 
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data_message);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-        curl_setopt($ch, CURLOPT_HEADER, 1);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key: ' . $auth));
-        $content = curl_exec($ch);
-        $headers = array();
-
-        $data = explode("\n", $content);
-        $headers['status'] = $data[0];
-
-        array_shift($data);
-
-        foreach ($data as $part) {
-            $middle = explode(":", $part);
-            $headers[trim($middle[0])] = trim($middle[1]);
-        }
-        $resval = json_decode(end($data), TRUE);
-        $auth = $headers['BABOO-AUTH-KEY'];
-
-        if(!empty($auth)) $this->session->set_userdata('authKey', $auth);
-
-
-        $auth = $this->session->userdata('authKey');
-        $user = $this->session->userdata('userData');
 
         $data_message = array(
             'user_id' => $user['user_id']
         );
-        $url = $this->API . '/listMessage/';
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data_message);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-        curl_setopt($ch, CURLOPT_HEADER, 1);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('baboo-auth-key: ' . $auth));
-        $content = curl_exec($ch);
-        $headers = array();
-
-        $data = explode("\n", $content);
-        $headers['status'] = $data[0];
-
-        array_shift($data);
-
-        foreach ($data as $part) {
-            $middle = explode(":", $part);
-            $headers[trim($middle[0])] = trim($middle[1]);
-        }
-        $data['list_message'] = json_decode(end($data), true);
+        $datass = $this->curl_request->curl_post_auth($this->API.'timeline/Timelines/listMessage', $data_message, $auth);
+        
+        $data['list_message'] = $datass;
+        $auth = $datass['bbo_auth'];
+        if(!empty($auth)) $this->session->set_userdata('authKey', $auth);
 
         if ($resval['code'] == 403) {
             $this->session->unset_userdata('userData');
@@ -273,4 +172,59 @@ class C_message extends MX_Controller
             }
         }
     }
+
+    public function detailMessageDesktop() {
+        error_reporting(0);
+        $auth = $this->session->userdata('authKey');
+        if ($this->input->post()) {
+            $params = $this->input->post('usr_msg', TRUE);
+        }else{
+            $params = $this->uri->segment(2);
+        }
+        $user_with = ($params && !empty($params))? $params : 0;
+        $user = $this->session->userdata('userData');
+        $data_message = array(
+            'user_id' => $user['user_id'],
+            'user_with' => $user_with
+        );
+
+        $datas = $this->curl_request->curl_post($this->API.'timeline/Timelines/detailMessage', $data_message, $auth);
+        
+        $resval = $datas;
+
+
+        $data_message = array(
+            'user_id' => $user['user_id']
+        );
+        $datass = $this->curl_request->curl_post_auth($this->API.'timeline/Timelines/listMessage', $data_message, $auth);
+        
+        $data['list_message'] = $datass;
+        $auth = $datass['bbo_auth'];
+        if(!empty($auth)) $this->session->set_userdata('authKey', $auth);
+
+        if ($resval['code'] == 403) {
+            $this->session->unset_userdata('userData');
+            $this->session->unset_userdata('authKey');
+            $this->session->sess_destroy();
+            redirect('login', 'refresh');
+        } else {
+
+           $datas['title'] = "Detail Pesan - Baboo";
+           $lists = $resval['data'];
+           $datas["resval"] = $resval;
+           $datas['userWith'] = $lists["user_with"];
+           $datas['listMessage'] = $lists["messages"];
+           $datas['listMessageDetail'] = $data["list_message"]["data"];
+           $datas["user_iw"] = $user_with;
+           $datas['css'][] = "public/css/custom-margin-padding.css";
+
+           $datas['js'][] = "public/js/jquery.min.js";
+           $datas['js'][] = "public/js/umd/popper.min.js";
+           $datas['js'][] = "public/js/bootstrap.min.js";
+           $datas['js'][] = "public/js/custom/messages.js";
+
+           $this->load->view('include/head', $datas);
+           $this->load->view('data/R_Detail');
+       }
+   }
 }
