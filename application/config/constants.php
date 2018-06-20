@@ -83,3 +83,36 @@ defined('EXIT_USER_INPUT')     OR define('EXIT_USER_INPUT', 7); // invalid user 
 defined('EXIT_DATABASE')       OR define('EXIT_DATABASE', 8); // database error
 defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
+
+
+// CONFIG DB
+defined('DB_HOST')			OR define('DB_HOST', 'localhost');
+defined('DB_USERNAME')		OR define('DB_USERNAME', 'devbaboo_adit');
+defined('DB_USERPASSWORD')	OR define('DB_USERPASSWORD', 'goodgame001');
+defined('DB_NAME')			OR define('DB_NAME', 'devbaboo_book');
+
+// CONFIG API URL
+/*
+API DEV = 'api.dev-baboo.co.id/v1/'
+API STG = 'https://api.staging.baboo.id/v1/'
+API PRD = 'https://api.baboo.id/v1/'
+*/
+defined('API_URL')	OR	define('API_URL', 'api.dev-baboo.co.id/v1/');
+
+// CONFIG APP ID FACEBOOK
+/*
+APPID DEV = '196429547790304'	|	APPSEC DEV = '51d446946c5024034b06b66a18e70a81'
+APPID STG = '1677083049033942'	|	APPSEC STG = '72bfed7ed3b202de2797977e5d1ce09b'
+APPID PRD = '2093513617332249'	|	APPSEC PRD = '39ee66409a3d976689d7db1fc48e842f'
+*/
+defined('APPID_FB')	OR	define('APPID_FB', '196429547790304');
+defined('APPSEC_FB')	OR	define('APPSEC_FB', '51d446946c5024034b06b66a18e70a81');
+
+// CONFIG APP ID GOOGLE
+/*
+APPID DEV = '625200931795-v9j07677ch7drvplu5ohpph4u48b4277.apps.googleusercontent.com'	|	APPSEC DEV = '9a-ThTIiKvuELANSjq-HFn4g'
+APPID STG = '347878416490-7era9p9mn379qdod4vbd61s217ubk2co.apps.googleusercontent.com'	|	APPSEC STG = 'TnNCHFjM1d8g44fzBM0cV3eL'
+APPID PRD = '87855736095-9bo8c78nojsne31dj3vr3gf694itavoh.apps.googleusercontent.com'	|	APPSEC PRD = 'DHXnd3vSUDQI8C0YOLmLk4YO'
+*/
+defined('APPID_GOOGLE')	OR	define('APPID_GOOGLE', '625200931795-v9j07677ch7drvplu5ohpph4u48b4277.apps.googleusercontent.com');
+defined('APPSEC_GOOGLE')	OR	define('APPSEC_GOOGLE', '9a-ThTIiKvuELANSjq-HFn4g');

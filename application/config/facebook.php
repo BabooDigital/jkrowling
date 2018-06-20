@@ -17,14 +17,8 @@
 |  facebook_auth_on_load         boolean  Set to TRUE to check for valid access token on every page load.
 */
 
-$CI =& get_instance();
-$base = (isset($_SERVER['HTTPS']) ? "https://" : "http://").$_SERVER['HTTP_HOST'];
-$appid = '196429547790304';
-$secret = '51d446946c5024034b06b66a18e70a81';
-
-
-$config['facebook_app_id']              = $appid;
-$config['facebook_app_secret']          = $secret;
+$config['facebook_app_id']              = APPID_FB;
+$config['facebook_app_secret']          = APPSEC_FB;
 $config['facebook_login_type']          = 'web';
 $config['facebook_login_redirect_url']  = 'auth/C_Login/fb_login';
 $config['facebook_logout_redirect_url'] = 'auth/C_Login/fb_disconnect';

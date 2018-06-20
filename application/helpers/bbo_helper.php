@@ -7,9 +7,7 @@ if(!class_exists("Curl_Request")){
 
 if(!function_exists("checkBase")){
 	function checkBase(){
-		$base = (isset($_SERVER['HTTPS']) ? "https://" : "http://").$_SERVER['HTTP_HOST'];
-		$CI =& get_instance();
-		$api_current = 'api.dev-baboo.co.id/v1/';
+		$api_current = API_URL;
 		return $api_current;
 	}
 }
