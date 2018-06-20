@@ -72,6 +72,7 @@ $route['timeline/:any'] = 'timeline/C_timeline';
 $route['message'] = 'message/C_message';
 $route['message/:any'] = 'message/C_message/detailMessage';
 $route['detail_message/:num'] = 'message/C_message/detailMessage';
+$route['detail_messages/:num'] = 'message/C_message/detailMessageDesktop';
 $route['send_message'] = 'message/C_message/send_message';
 $route['search'] = 'search/C_search';
 $route['search/:any'] = 'search/C_search';
