@@ -219,20 +219,11 @@
 
 </style>
 <?php 
-$base = (isset($_SERVER['HTTPS']) ? "https://" : "http://").$_SERVER['HTTP_HOST'];
-$appid = '196429547790304';
-if (strpos($base, 'stg.baboo.id') !== false) {
-	$appid = '1677083049033942';
-} elseif (strpos($base, 'localhost/jkrowling') !== false || strpos($base, 'dev-baboo.co.id') !== false) {
-	$appid = '196429547790304';
-} elseif (strpos($base, 'baboo.id') !== false || strpos($base, 'www.baboo.id') !== false) {
-	$appid = '2093513617332249';
-}
 echo "<script>(function(d, s, id) {
 	var js, fjs = d.getElementsByTagName(s)[0];
 	if (d.getElementById(id)) return;
 	js = d.createElement(s); js.id = id;
-	js.src = 'https://connect.facebook.net/id_ID/sdk.js#xfbml=1&version=v2.12&appId=".$appid."';
+	js.src = 'https://connect.facebook.net/id_ID/sdk.js#xfbml=1&version=v2.12&appId=".APPID_FB."';
 	fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>";
 ?>
@@ -352,7 +343,7 @@ echo "<script>(function(d, s, id) {
 						$text = strip_tags($book['paragraph_text']);
 						$count = $book['comment_count'];
 						if ($count == 0) { $view_count = '+'; }else{ $view_count = $count;}
-						$data .= "<div  class='mb-20 textp' id='detailStyle' data-id-p='".$book['paragraph_id']."' data-text='".$text."'>".$book['paragraph_text']."<button type='button' data-p-id='".$book['paragraph_id']."' data-toggle='modal' data-target='#myModal2' class='btncompar comment-marker on-inline-comments-modal' for='toggle-right'><span class='num-comment'>". $view_count ."</span><span  aria-hidden='true' style='font-size:28px;'><img src='".base_url('public/img/assets/icon_comment.svg')."'></span></button></div>";
+						$data .= "<div  class='mb-20 textp' id='detailStyle' data-id-p='".$book['paragraph_id']."' data-text='".$text."'>".$book['paragraph_text']."";
 					}
 					echo $data;
 					?>
@@ -498,8 +489,8 @@ echo "<script>(function(d, s, id) {
 <?php if (isset($js)): ?>
 	<?php echo get_js($js) ?>
 <?php endif ?>
-<script src='http://podio.github.io/jquery-mentions-input/lib/jquery.events.input.js' type='text/javascript'></script>
-<script src='http://podio.github.io/jquery-mentions-input/lib/jquery.elastic.js' type='text/javascript'></script>
+<script src='https://podio.github.io/jquery-mentions-input/lib/jquery.events.input.js' type='text/javascript'></script>
+<script src='https://podio.github.io/jquery-mentions-input/lib/jquery.elastic.js' type='text/javascript'></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		showPopUpBanner();
