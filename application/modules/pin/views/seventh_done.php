@@ -1,5 +1,4 @@
 <body>
-	
 	<div class="container h-100">
 		<div class="text-center layer-center">
 			<div class="row">
@@ -19,7 +18,15 @@
 			</div>
 			<div class="row mt-10">
 				<div class="col-12">
-					<button type="button" class="btn-ok-purp">OK</button>
+					<?php
+					$ad = $this->session->userdata('pinPub');
+					if (empty($ad)) {
+					 	echo "<button type='button' class='btn-ok-purp'>OK</button>";
+					 }else{
+					 	echo "<a href='".site_url('cover/'.$ad['b'])."' class='btn-ok-purp pl-50 pr-50 pt-5 pb-5'>OK</a>";
+					 }
+					?>
+					
 				</div>
 			</div>
 		</div>

@@ -12,7 +12,7 @@ class C_pin_auth extends MX_Controller {
 		$this->API = $api_url;
 		
 		$usrPin = $this->session->userdata('hasPIN');
-		if ($this->session->userdata('isLogin') != 200 || $usrPin == 1) {
+		if ($this->session->userdata('isLogin') != 200) {
 			$this->session->set_flashdata('fail_alert', '<script>
 					swal("Gagal", "Maaf, sepertinya anda sudah membuat PIN", "warning");
 				</script>');
@@ -149,7 +149,7 @@ class C_pin_auth extends MX_Controller {
 
 	public function seventh()
 	{
-		if ($this->session->userdata('6Pin_step') != 200 || $this->session->set_userdata('hasPIN', 1)){
+		if ($this->session->userdata('6Pin_step') != 200){
 			$this->session->set_flashdata('fail_alert', '<script>
 				$(window).on("load", function(){
 					swal("Gagal", "Maaf, terjadi sebuah kesalahan", "error");
@@ -179,11 +179,11 @@ class C_pin_auth extends MX_Controller {
 		$ktpno    = $this->input->post('ktp_no', TRUE);
 		$ktpimg    = $_FILES["ktp_image"]["tmp_name"];
 		if (substr($phone, 0, 1) === '0') {
-			$phones = '+62'.ltrim($phone, '0');
+			$phones = '0'.ltrim($phone, '0');
 		}elseif (substr($phone, 0, 2) === '62') {
-			$phones = '+'.$phone;
+			$phones = '0'.$phone;
 		}elseif (substr($phone, 0, 1) === '8') {
-			$phones = '+62'.$phone;
+			$phones = '0'.$phone;
 		}
 		if (function_exists('curl_file_create')) {
 			$cFile = curl_file_create($ktpimg, $_FILES["ktp_image"]["type"],$_FILES["ktp_image"]["name"]);

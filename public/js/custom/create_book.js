@@ -57,7 +57,7 @@ function getContent(tab_page, book, chapter) {
 		url: tab_page,
 		type: 'POST',
 		cache: false,
-		data: { book_id: book, chapter_id: chapter },
+		data: { book_id: book, chapter_id: chapter},
 		success: function(data) {
 			HoldOn.close();
 			$(".loader").hide();
@@ -98,7 +98,7 @@ $(document).ready(function() {
     var slide = $('#is_free:checkbox:checked');
     if (slide.length == 0) {
     	formData.append("book_id", $("#uri").val());
-    	formData.append("file_cover", $("#cover_file").val());
+    	formData.append("file_cover", $("#cover_name").val());
     	formData.append("category", $("#category_ids").val());
     	formData.append("is_paid", false);
     }else{
@@ -213,7 +213,7 @@ $(document).ready(function() {
 				formData.append("cover_name", $('#cover_name').val());
 				formData.append("category_id", $("#category_id").val());
 				formData.append("user_id", $("#user_id").val());
-				formData.append("tag_book", $("#tag_book").val());
+				// formData.append("tag_book", $("#tag_book").val());
 				formData.append("book_paragraph", $("#book_paragraph").val());
 				if ($("#book_id").val() != null) {
 					formData.append("book_id", $("#book_id").val());
@@ -230,7 +230,7 @@ $(document).ready(function() {
 						"type": "POST",
 						"contentType": false,
 						"processData": false,
-						"data": formData
+						"data": {formData}
 					})
 					.done(function(data) {
 						HoldOn.close();
@@ -272,7 +272,7 @@ $(document).ready(function() {
 				formData.append("cover_name", $('#cover_name').val());
 				formData.append("category_id", $("#category_id").val());
 				formData.append("user_id", $("#user_id").val());
-				formData.append("tag_book", $("#tag_book").val());
+				// formData.append("tag_book", $("#tag_book").val());
 				formData.append("book_paragraph", $("#book_paragraph").val());
 				if ($("#book_id").val() != null) {
 					formData.append("book_id", $("#book_id").val());
@@ -289,7 +289,7 @@ $(document).ready(function() {
 						"type": "POST",
 						"contentType": false,
 						"processData": false,
-						"data": formData
+						"data": {formData}
 					})
 					.done(function(data) {
 						HoldOn.close();
@@ -330,7 +330,7 @@ $(document).ready(function() {
 		formData.append("cover_name", $('#cover_name').val());
 		formData.append("category_id", $("#category_id").val());
 		formData.append("user_id", $("input:hidden[name=user_id]").val());
-		formData.append("tag_book", $("#tag_book").val());
+		// formData.append("tag_book", $("#tag_book").val());
 		formData.append("book_paragraph", $("#book_paragraph").val());
 		if ($("#book_id").val() != null) {
 			formData.append("book_id", $("#book_id").val());
@@ -353,7 +353,7 @@ $(document).ready(function() {
 					"type": "POST",
 					"contentType": false,
 					"processData": false,
-					"data": formData
+					"data": {formData}
 				})
 				.done(function(data) {
 					HoldOn.close();
@@ -395,7 +395,7 @@ $(document).ready(function() {
 					"type": "POST",
 					"contentType": false,
 					"processData": false,
-					"data": formData
+					"data": {formData}
 				})
 				.done(function(data) {
 					HoldOn.close();
@@ -428,7 +428,7 @@ function getCategory() {
 	$.ajax({
 		url: base_url+'getCategory',
 		type: 'POST',
-		dataType: 'json'
+		dataType: 'json',
 	})
 	.done(function(data) {
 		var category = "<option value=''>Pilih Category Buku</option>"; 
@@ -458,7 +458,7 @@ function getChapter() {
 		url: base_url+'getChapter',
 		data: {book_id: uri_segment},
 		type: 'POST',
-		dataType: 'json'
+		dataType: 'json',
 	})
 	.done(function(data) {
 		var chapter = "";
@@ -508,14 +508,25 @@ function getChapter() {
 					cancelButtonText: 'Nanti'
 				}).then((result) => {
 					if (result.value) {
-						$('#is_free').prop('checked', true);
-						var sellbtn = $('#is_free:checkbox:checked');
-						var pin = $('#what').val();
-						if (sellbtn.length != 0 && pin == 'false') {
-							$('#publish_book').hide();
-							$('#setpin_publish').show();
-						}
-						$('.rangebook').addClass('show');
+						// $('#is_free').prop('checked', true);
+						$(document).on('click', '#is_free', function() {
+							var sellbtn = $('#is_free:checkbox:checked');
+							var pin = $('#what').val();
+							if (sellbtn.length == 0 && pin == 'false') {
+								$('#publish_book').show();
+								$('#setpin_publish').hide();
+							}else if (sellbtn.length == 1 && pin == 'true'){
+								$('#publish_book').show();
+								$('#setpin_publish').hide();
+							}else if (sellbtn.length == 0 && pin == 'true'){
+								$('#publish_book').show();
+								$('#setpin_publish').hide();
+							}else{
+								$('#publish_book').hide();
+								$('#setpin_publish').show();
+							}
+						});
+						// $('.rangebook').addClass('show');
 					}else{
 
 					}
@@ -544,8 +555,7 @@ function getChapter() {
 			}
 
 		}else{
-			$('#publish_book').disabled = true;
-			$('#publish_book').prop('disabled', true);
+			// $('#publish_book').prop('disabled', true);
 			$(document).on('click', '#publish_book', function() {
 				swal(
 					'Gagal!',
@@ -601,3 +611,20 @@ function addMinusPlus() {
 		$('[id="'+target+'"]').val(value);
 	});
 }
+
+$(document).on('click', '#setpin_publish', function() {
+    swal({
+      title: 'Perhatian',
+      text: "Untuk menjual sebuah buku, anda harus mengaktifkan Dompet Baboo terlebih dahulu.",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#7661ca',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Ya, aktifkan',
+      cancelButtonText: 'Jual nanti',
+    }).then((result) => {
+      if (result.value) {
+        $('#wallet-modal').modal('show');
+      }
+    })
+  });
