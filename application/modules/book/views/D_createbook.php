@@ -10,9 +10,31 @@
 		<?php echo get_css($css) ?>
 	<?php endif ?>
 </head>
+<style>
+.btntnc {
+	border: none;
+	border-radius: 35px;
+	padding: 10px 50px;
+	box-shadow: 0px 2px 5px 0px #999999;
+	font-weight: 600;
+}
+.btn-diss {
+	background: #dadada;
+	color: #333;
+}
+.btns {
+	background: none;
+	border: none;
+}
+.btn-acc {
+	background: #7661ca;
+	color: #fff;
+}
+</style>
 <script type="text/javascript">
 		var base_url = '<?php echo base_url() ?>';
 		var uri_segment = '<?php echo $this->uri->segment(2) ?>';
+		var csrf_value = '<?php echo $this->security->get_csrf_hash(); ?>';
 </script>
 <body>
 	<?php $attr = array('id' => 'form_book'); 
@@ -72,15 +94,10 @@
 							<div class="mt-20" id="sell_book" style="display: none;">
 								<div class="form-group">
 									<span class="text-left">Jual Buku ?</span>
-									<span style="float: right;">
-										<label class="switch">
-										  <input type="checkbox" id="is_free">
-										  <div id="sell_nominal" style="display: none;">
-										  	
-										  </div>
-										  <span class="slider round"></span>
-										</label>
-									</span>
+									<label class="switch float-right">
+										<input type="checkbox" id="is_free" data-toggle='collapse' class="priceCheck">
+										<span class="slider round"></span>
+									</label>
 								</div>
 							</div>
 							<input type="hidden" id="what" value="<?php $pin = $this->session->userdata('hasPIN'); if ($pin == 1) {echo 'true';}else{echo 'false';}  ?>">
@@ -148,15 +165,26 @@
 
 					<div class="pull-right mb-10">
 						<input type="button" class="mr-30 saveasdraft" style="font-size: 18px;font-weight: bold;background: transparent; border: 0; cursor: pointer;" value="Simpan ke Draft" />
-						<button type="button" class="btnbeliskrg" id='publish_book' href="#" style="padding: 10px 50px;"><span class="txtbtnbeliskrg" ">Publish</span></button>
-						<button type='button' class='btnbeliskrg' id='setpin_publish' style="display: none;">Publish</button>
+						<button type="button" class="btnbeliskrg" id='publish_book' href="#" style="padding: 10px 50px;"><span class="txtbtnbeliskrg">Publish</span></button>
+						<button type='button' class='btnbeliskrg activeWallet' id='setpin_publish' style="display: none;padding: 10px 50px;"><span class="txtbtnbeliskrg">Publish</span></button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="wallet-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document" style="height: ">
+				<div class="modal-content" style="width: 440px !important; left: 10%;">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="bottom: auto;right: -40px;">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<div class="modal-body" style="height: 670px;">
+						<iframe id="targetFrame" width="100%" height="100%" scrolling="NO" frameborder="0" src="<?php echo site_url('pin-dompet');?>">></iframe>
 					</div>
 				</div>
 			</div>
 		</div>
 	<?php echo form_close(); ?>
 	<?php $this->load->view('include/modal_tnc'); ?>
-
 	<?php if (isset($js)): ?>
 		<?php echo get_js($js) ?>
 	<?php endif ?>
@@ -171,6 +199,28 @@
 				$('.checktnc').prop('checked', false);
 				$('#tnc-modal').modal('hide');
 			});
+		});
+		$(document).on('click', '#is_free', function() {
+			var sellbtn = $('#is_free:checkbox:checked');
+			var pin = $('#what').val();
+			if (sellbtn.length == 0 && pin == 'false') {
+				$('#publish_book').show();
+				$('#setpin_publish').hide();
+			}else if (sellbtn.length == 1 && pin == 'true'){
+				$('#publish_book').show();
+				$('#setpin_publish').hide();
+			}else if (sellbtn.length == 0 && pin == 'true'){
+				$('#publish_book').show();
+				$('#setpin_publish').hide();
+			}else{
+				$('#publish_book').hide();
+				$('#setpin_publish').show();
+			}
+			if (sellbtn.length == 0) {
+				$('.rangebook').hide();
+			}else{
+				$('.rangebook').show();
+			}
 		});
 	</script>
 	<?php echo $this->session->flashdata('limit_character'); ?>

@@ -121,7 +121,7 @@
 			<br>
 			<div class="row">
 				<div class="col-12">
-					<div id='detailStyle' style="font-size: 21px;">
+					<div id='detailStyle' class="text-justify" style="font-size: 21px;">
 						<?php 
 						foreach ($desc as $book) {
 							$text = strip_tags($book['paragraph_text']);

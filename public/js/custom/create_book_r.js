@@ -539,6 +539,7 @@ function check_sell() {
 }
 
 function checkingPIN(){
+  var bid = $("#uri").val();
   $(document).on('click', '#setpin_publish', function() {
     swal({
       title: 'Perhatian',
@@ -551,7 +552,7 @@ function checkingPIN(){
       cancelButtonText: 'Jual nanti',
     }).then((result) => {
       if (result.value) {
-        window.location = base_url+'pin-dompet';
+        window.location = base_url+'pin-dompet?from=pub-book&b='+bid;
       }
     })
   });

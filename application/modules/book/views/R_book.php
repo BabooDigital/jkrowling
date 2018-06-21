@@ -337,7 +337,7 @@ echo "<script>(function(d, s, id) {
 		</div>
 		<div class="row">
 			<div class="col-12">
-				<div class="detailbook">
+				<div class="detailbook text-justify">
 					<?php
 					foreach ($detail_book['data']['chapter']['paragraphs'] as $book) {
 						$text = strip_tags($book['paragraph_text']);
