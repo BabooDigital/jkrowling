@@ -494,7 +494,7 @@ function getChapter() {
 			$("#preview").attr('src', base_url+'public/img/assets/def_prev.png');
 		}
 		if (data.is_publishable == true) {
-			if (data.is_sellable == true) {
+			if (data.is_sellable == true && data.book_info.is_free == true) {
 				swal({
 					title: 'Yeay...!',
 					text: 'Buku anda sudah layak untuk dijual. Mau dijual sekarang?',
