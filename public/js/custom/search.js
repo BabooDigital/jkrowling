@@ -240,6 +240,7 @@ function convertSearch(Text) {
         })
         .done(function(data) {
             $(this).siblings().removeAttr("style").end().attr("style", "background: url('"+base_url+"public/img/search.png') no-repeat right;background-size: 18px;background-position: 95% 50%;");
+                $(".search_result_bbo").css({ 'margin-left': '18%', 'overflow': 'scroll', 'width': '20%' });
             if (search.length >=3) {
                 $(".search_result_bbo").addClass('show');
                 var list_book = '',

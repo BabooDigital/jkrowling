@@ -25,10 +25,29 @@ $(document).ready(function() {
     // MENTION AND COMMENT
     $('textarea.mention').mentionsInput({
         onDataRequest:function (mode, query, callback) {
-           $.getJSON(base_url+"user_all", function(responseData) {
-               responseData = _.filter(responseData, function(item) { return item.fullname.toLowerCase().indexOf(query.toLowerCase()) > -1 });
-               callback.call(this, responseData);
-           });
+            // Search User with API Search..
+            var valnya = $(this).val();
+            var cut    = valnya.substr(1);
+            $.ajax({
+                url: base_url+"users",
+                type: 'POST',
+                dataType: 'JSON',
+                data: "search="+cut,
+            })
+            .done(function(responseData) {
+                responseData = _.filter(responseData, function(item) { return item.fullname.toLowerCase().indexOf(query.toLowerCase()) > -1 });
+             callback.call(this, responseData);
+            })
+            .fail(function() {
+                console.log("Something wrong..");
+            })
+            .always(function() {
+            });
+            
+            // $.getJSON(base_url+"user_all",{search: cut}, function(responseData) {
+            //    responseData = _.filter(responseData, function(item) { return item.fullname.toLowerCase().indexOf(query.toLowerCase()) > -1 });
+            //    callback.call(this, responseData);
+            // });
        }
    });
     $(document).on("click", ".Rpost-comment", function() {
