@@ -477,7 +477,7 @@ function check_sell() {
         }
       });
       if (data.data.is_publishable == true) {
-        if (data.data.is_sellable == true) {
+        if (data.data.is_sellable == true && data.data.price == "0") {
           $(".start_chapter").val('3');
           $("#count_chapter_plus_minus").val(data.data.total_chapter);
           $('.switch').show();
