@@ -53,7 +53,7 @@
 </style>
 <body>
 	<nav class="navbar navbar-light">
-		<a class="navbar-brand backcheck" href="javascript:void(0);"><i class="fa fa-arrow-left text-dark"></i></a>
+		<a class="navbar-brand backcheck" href="javascript:void(0);"><i class="fa fa-arrow-left text-dark asdsa"></i></a>
 	</nav>
 	<div class="container mb-30">
 		<form id="formDataCashOut">

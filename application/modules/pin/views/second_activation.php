@@ -1,6 +1,6 @@
 <body class="color-layer">
 	<nav class="navbar color-layer">
-		<a class="navbar-brand backcheck" href="javascript:void(0);" style="margin-right: -17px !important;"><i class="fa fa-arrow-left text-white"></i></a>
+		<a class="navbar-brand backcheck" href="javascript:void(0);" style="margin-right: -17px !important;"><i class="fa fa-arrow-left text-white asdsa"></i></a>
 		<span class="mx-auto title-nav">Keamanan Jual Beli</span>
 	</nav>
 	<div class="container mb-30">

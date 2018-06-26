@@ -6,7 +6,7 @@
 </style>
 <body>
 	<nav class="navbar bg-greyboo">
-		<a class="navbar-brand backcheck" href="javascript:void(0);"><i class="fa fa-arrow-left text-dark"></i></a>
+		<a class="navbar-brand backcheck" href="javascript:void(0);"><i class="fa fa-arrow-left text-dark asdsa"></i></a>
 		<a href="#"><img src="<?php echo base_url('') ?>public/img/icon-tab/group_15.svg" width="23"></a>
 	</nav>
 	<div class="container mb-30">
@@ -18,7 +18,7 @@
 					<p class="text-white fs30pxfw600">Rp <span id=""><?php echo number_format($balance , 0, ',', '.'); ?></span></p>
 				</div>
 				<div class="botrigth-inf">
-					<span class="text-white fs-12px">Powered by Veritrans</span>
+					<span class="text-white fs-12px">Powered by Midtrans</span>
 				</div>
 			</div>
 		</div>

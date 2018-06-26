@@ -6,7 +6,7 @@ echo "<script>(function(d, s, id) {
 	js.src = 'https://connect.facebook.net/id_ID/sdk.js#xfbml=1&version=v2.12&appId=".APPID_FB."';
 	fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>";
-echo "<script type='text/javascript' src='https://app.sandbox.midtrans.com/snap/snap.js' data-client-key='".MID_CLIENT."'></script>";
+echo "<script type='text/javascript' src='https://".MID_BASE_URL."/snap/snap.js' data-client-key='".MID_CLIENT."'></script>";
 echo "<script async src='//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'></script>";
 ?>
 
@@ -443,43 +443,7 @@ echo "<script async src='//pagead2.googlesyndication.com/pagead/js/adsbygoogle.j
 		<?php if (isset($js)): ?>
 			<?php echo get_js($js) ?>
 		<?php endif ?>
-			<script src='http://podio.github.io/jquery-mentions-input/lib/jquery.events.input.js' type='text/javascript'></script>
-			<script src='http://podio.github.io/jquery-mentions-input/lib/jquery.elastic.js' type='text/javascript'></script>
-
-<!-- <script type="text/javascript">
-	var page = 0;
-	$(window).scroll(function() {
-		if($(window).scrollTop() + $(window).height() > $(document).height() - 1000) {
-			if (page < count_data) {
-				page++;
-				loadMoreData(page);
-			}
-		}
-	});
-	function loadMoreData(page){
-		$.ajax(
-		{
-			url: '?chapter=' + page,
-			type: "get",
-			beforeSend: function()
-			{
-				$('#loader_scroll').show();
-			}
-		})
-		.done(function(data)
-		{
-			if(data == " "){
-				$('#loader_scroll').html("No more records found");
-				return;
-			}
-			$('#loader_scroll').hide();
-			$("#post-data").append(data);
-		})
-		.fail(function(jqXHR, ajaxOptions, thrownError)
-		{
-			console.log('server not responding...');
-		});
-	}
-</script> -->
+			<script src='https://podio.github.io/jquery-mentions-input/lib/jquery.events.input.js' type='text/javascript'></script>
+			<script src='https://podio.github.io/jquery-mentions-input/lib/jquery.elastic.js' type='text/javascript'></script>
 </body>
 </html>

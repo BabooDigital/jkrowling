@@ -39,6 +39,7 @@
 		$(document).ready(function () {
 			$('.btn-ok-purp').click(function () {
 				window.location = base_url+'timeline';
+				location.reload();
 			});
 		});
 

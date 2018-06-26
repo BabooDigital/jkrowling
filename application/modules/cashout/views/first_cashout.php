@@ -21,7 +21,7 @@
 </style>
 <body>
 	<nav class="navbar navbar-light">
-		<a class="navbar-brand backcheck" href="javascript:void(0);"><i class="fa fa-arrow-left text-dark"></i></a>
+		<a class="navbar-brand backcheck" href="javascript:void(0);"><i class="fa fa-arrow-left text-dark asdsa"></i></a>
 	</nav>
 	<div class="container mb-30">
 		<div class="row">
@@ -40,7 +40,7 @@
 				</div>
 			</div>
 		</div>
-		<?php if (!empty($bank)) { ?>
+		<!-- <?php if (!empty($bank)) { ?>
 		<div class="row mt-20">
 			<div class="col-12">
 				<span>Riwayat Tarik Dana</span>
@@ -55,7 +55,7 @@
 					</a>
 				<?php } }else{ ?>
 
-				<?php } ?>
+				<?php } ?> -->
 				</div>
 			</div>
 		</div>

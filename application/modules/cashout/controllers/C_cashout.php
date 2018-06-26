@@ -103,7 +103,7 @@ class C_cashout extends MX_Controller {
 
 	public function second_()
 	{
-		// if ($this->session->userdata('2PAY_step') == 200) {
+		if ($this->session->userdata('2PAY_step') == 200) {
 			error_reporting(0);
 			$auth = $this->session->userdata('authKey');
 			$datas = $this->curl_request->curl_get($this->API.'payment/Iris/listBank', '', $auth);
@@ -122,14 +122,14 @@ class C_cashout extends MX_Controller {
 					$this->load->view('first_cashout');
 				}
 			}
-		// }else{
-		// 	$this->session->set_flashdata('fail_alert', '<script>
-		// 		$(window).on("load", function(){
-		// 			swal("Gagal", "Maaf, terjadi sebuah kesalahan", "error");
-		// 		});
-		// 		</script>');
-		// 	redirect('dompet','refresh');
-		// }
+		}else{
+			$this->session->set_flashdata('fail_alert', '<script>
+				$(window).on("load", function(){
+					swal("Gagal", "Maaf, terjadi sebuah kesalahan", "error");
+				});
+				</script>');
+			redirect('dompet','refresh');
+		}
 	}
 
 	public function third_()
@@ -204,7 +204,7 @@ class C_cashout extends MX_Controller {
 				'code' => $datas['code'],
 				'data' => $datas['data']
 			));
-			if ($datas['code'] == 200) {
+			if ($datas['code'] != 403) {
 				$this->session->set_userdata('2PAY_step', 200);
 			}else {
 				$this->session->set_flashdata('fail_alert', '<script>

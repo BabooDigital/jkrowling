@@ -4,24 +4,25 @@ $(document).ready(function() {
 		window.history.back();
 	});
 
-	$(document).on('click', '.btn-detdomp', function() {
+	$(document).on('click', '.btn-detdomp', function(event) {
 		event.preventDefault();
 		/* Act on the event */
 		$('#pinauth-modal').modal('show')
 		$("#firstdigit").focus();
 	});
-	$(document).on('click', '.activeDompet', function() {
+	$(document).on('click', '.activeDompet', function(event) {
 		event.preventDefault();
 		/* Act on the event */
 		window.location = base_url+'pin-dompet';
 	});
-	$(document).on('click', '.activeWallet', function() {
+	$(document).on('click', '.activeWallet', function(event) {
 		event.preventDefault();
-		$('#wallet-modal').modal({backdrop: 'static', keyboard: false});
+		$('#wallet-modal').modal();
+		// window.location = base_url+'pin-dompet'
 	});
-	$(document).on('click', '.detail-wallet', function() {
+	$(document).on('click', '.detail-wallet', function(event) {
 		event.preventDefault();
-		$('#pinauthdes-modal').modal({backdrop: 'static', keyboard: false});
+		$('#pinauthdes-modal').modal();
 		$("#firstdigit").focus();
 	});
 	keyupPIN();
@@ -126,10 +127,10 @@ function checkAccount() {
 		})
 		.done(function(data) {
 			if (data.code != 200) {
-				localStorage.setItem("rekInf", as);
+				// localStorage.setItem("rekInf", as);
 				window.location = base_url+'cashout/second';
 			}else{
-				localStorage.setItem("rekInf", data.data.account.account_number);
+				// localStorage.setItem("rekInf", data.data.account.account_number);
 				window.location = base_url+'cashout/third';
 			}
 		})
