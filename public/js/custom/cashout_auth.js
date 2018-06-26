@@ -19,7 +19,7 @@ $(document).ready(function() {
 		event.preventDefault();
 		$('#wallet-modal').modal({backdrop: 'static', keyboard: false});
 	});
-	$(document).on('click', '.detail-wallet', function() {
+	$(document).on('click', '.detail-wallet', function(event) {
 		event.preventDefault();
 		$('#pinauthdes-modal').modal({backdrop: 'static', keyboard: false});
 		$("#firstdigit").focus();
