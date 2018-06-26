@@ -147,6 +147,16 @@ defined('MID_CLIENT')	 OR	define('MID_CLIENT', 'SB-Mid-client-FbaqZneHUk1HWy6m')
 defined('MID_SERVER')	 OR	define('MID_SERVER', 'SB-Mid-server-4bmgeo85fTsjFQccrdZt6T6E');
 defined('MID_STAT_PROD') OR	define('MID_STAT_PROD', false);
 
+// CONFIG BASE URL MIDTRANS
+/*
+@@@ PRODUCTION @@@
+URL = app.midtrans.com
+
+@@@ DEV/STG @@@ 
+URL = app.sandbox.midtrans.com
+*/
+defined('MID_BASE_URL')		 OR	define('MID_BASE_URL', 'app.sandbox.midtrans.com');
+
 // CONFIG ID GOOGLE ADSENSE
 /*
 @@@ PRODUCTION @@@

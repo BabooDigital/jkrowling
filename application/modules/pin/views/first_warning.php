@@ -11,7 +11,7 @@ if (!empty($query)) {
 ?>
 <body class="color-layer">
 	<nav class="navbar color-layer">
-		<a class="navbar-brand backcheck" href="javascript:void(0);"><i class="fa fa-arrow-left text-white"></i></a>
+		<a class="navbar-brand backcheck" href="javascript:void(0);"><i class="fa fa-arrow-left text-white asdsa"></i></a>
 	</nav>
 	<div class="container h-100">
 		<div class="text-center layer-center">

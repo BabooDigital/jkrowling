@@ -436,10 +436,10 @@ $this->load->view('navbar/D_navbar'); ?>
 			<div class="modal fade" id="wallet-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 				<div class="modal-dialog" role="document" style="height: ">
 					<div class="modal-content" style="width: 440px !important; left: 10%;">
-						<button type="button" class="closes btn-clear" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fa fa-arrow-left"></i></span>
+						<button type="button" class="closes btn-clear" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" style="position: absolute;right: -30px;color: #fff;font-size: 30px;"><i class="fa fa-times"></i></span>
 						</button>
 						<div class="modal-body" style="height: 670px;">
-							<iframe id="targetFrame" width="100%" height="100%" scrolling="NO" frameborder="0" src="<?php echo site_url('pin-dompet');?>">></iframe>
+							<iframe id="targetFrame" width="100%" height="100%" scrolling="NO" frameborder="0" src="<?php echo site_url('pin-dompet');?>"></iframe>
 						</div>
 					</div>
 				</div>

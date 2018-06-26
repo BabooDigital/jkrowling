@@ -1,4 +1,4 @@
-<?php echo "<script type='text/javascript' src='https://app.sandbox.midtrans.com/snap/snap.js' data-client-key='".MID_CLIENT."'></script>"; ?>
+<?php echo "<script type='text/javascript' src='https://".MID_BASE_URL."/snap/snap.js' data-client-key='".MID_CLIENT."'></script>"; ?>
 <style>
 .list-group-item.active {
 	z-index: 2;

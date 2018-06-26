@@ -23,6 +23,13 @@
  * Remove the margin in all browsers.
  */
 
+ @media (min-width: 992px) {  
+ body {
+    width: 35%;
+    margin: auto !important;
+ }
+}
+
  body {
  	margin: 0;
  }
@@ -517,4 +524,10 @@
 }
 .fieldStyle:focus {
     border-color: #7554bd;
+}
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }

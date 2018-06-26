@@ -1,6 +1,23 @@
 $(document).ready(function() {
 	buyBook();
+
+    loaded = true;
+    var d = 0;
+    $(window).scroll(function() {
+        $(window).scrollTop() +
+        $(window).height() > $(document).height() - 1 && d < count_data && (d++, console.log(count_data) && loaded, e(d));
+        $("#cobamenu").scrollTop();
+        var b = $(document).scrollTop();
+        $('#cobamenu input[type="hidden"]').each(function() {
+            var a = $(this),
+            c = $("#" + a.val());
+            c.position().top <= b && c.position().top + c.height() > b && (a = a.val().split("-"), a = parseInt(a[1]) + 1, $("#chapter_number").html(a))
+        })
+    });
+
     function e(b) {
+        var cls = $('.mauboleh').find('.stops');
+        loaded = false;
         $.ajax({
             url: "?chapter=" + b,
             type: "get",
@@ -8,11 +25,26 @@ $(document).ready(function() {
                 $(".loader").show()
             }
         }).done(function(a) {
-            " " == a ? $(".loader").html("No more records found") : ($(".loader").hide(), $("#post-data").append(a), $("#chapter_number").text(b), $("nav#cobamenu").append("<input type='hidden' value='post-" + b + "' />"))
+            // if (!$.trim(a)) {
+            //     $('.loader').hide();
+            //     $('#post-data').append("");
+            //     return;
+
+            // };
+            if (!$.trim(a)) {
+                $('.loader').hide();
+                cls.first().show();
+                loaded = false;
+            }
+            " " == a ? $(".loader").html("No more records found") : ($(".loader").hide(), $("#post-data").append(a), $("#chapter_number").text(b), $("nav#cobamenu").append("<input type='hidden' value='post-" + b + "' />"));
+            loaded = true;
         }).fail(function(a, b, d) {
-            console.log("server not responding...")
+            console.log("server not responding...");
+            loaded = true;
+            location.reload();
         })
     }
+
     $(".backbtn").on("click", function() {
         window.history.go(-1)
     });
@@ -64,18 +96,7 @@ $(document).ready(function() {
             console.log("error")
         }).always(function() {})
     });
-    var d = 0;
-    $(window).scroll(function() {
-        $(window).scrollTop() +
-            $(window).height() > $(document).height() - 1 && d < count_data && (d++, console.log(count_data), e(d));
-        $("#cobamenu").scrollTop();
-        var b = $(document).scrollTop();
-        $('#cobamenu input[type="hidden"]').each(function() {
-            var a = $(this),
-                c = $("#" + a.val());
-            c.position().top <= b && c.position().top + c.height() > b && (a = a.val().split("-"), a = parseInt(a[1]) + 1, $("#chapter_number").html(a))
-        })
-    })
+    
 });
 
 function showLoading() {
@@ -95,7 +116,7 @@ function buyBook() {
 			$.ajax({
 				url: base_url+'pay_book/token',
 				type: "POST",
-				data:{id_book:$("#iaidubi").val(), url_redirect:window.location.href},
+				data:{id_book:$("#iaidubi").val(), url_redirect:window.location.href,csrf_test_name: csrf_value},
 				cache: false,
 				success: function(data) {
 		        var resultType = document.getElementById('result-type');

@@ -9,7 +9,7 @@
 		var base_url = '<?php echo base_url() ?>';
 		var csrf_value = '<?php echo $this->security->get_csrf_hash(); ?>';
 	</script>
-	<?php echo "<script type='text/javascript' src='https://app.sandbox.midtrans.com/snap/snap.js' data-client-key='".MID_CLIENT."'></script>"; ?>
+	<?php echo "<script type='text/javascript' src='https://".MID_BASE_URL."/snap/snap.js' data-client-key='".MID_CLIENT."'></script>"; ?>
 </head>
 <body>
 	<div class="container-fluid mb-40">
@@ -35,8 +35,8 @@
 							<div id="post-data">
 									<?php $this->load->view('data/D_readingmode'); ?>
 							</div>
-							<div class="loader" style="display:none;margin-left: auto;margin-right: auto;">
-								<img style="margin-left: auto;margin-right: auto;" src="<?php echo base_url('public/img/spinner.gif') ?>" style='width:150px;height: 150px;'>
+							<div class="loader text-center" style="display:none;">
+								<img style="margin-left: auto;margin-right: auto;width:150px;height: 150px;" src="<?php echo base_url('public/img/spinner.gif') ?>">
 							</div>
 							
 							<div class="mt-10">
@@ -47,7 +47,6 @@
 										</div>
 									</div>
 								</div>
-							</div>
 							</div>
 						</div>
 					</div>

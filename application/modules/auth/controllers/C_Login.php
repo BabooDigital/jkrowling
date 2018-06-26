@@ -107,15 +107,15 @@ class C_Login extends MX_Controller
                 // }else{
 
                 // }
-                if ($user['is_newuser'] == false) {
-                    if ($this->agent->is_mobile()) {
-                        redirect("firstlogin");
-                    }else{
-                        redirect('complete_profile');
-                    }
-                }else{
+                // if ($user['is_newuser'] == false) {
+                //     if ($this->agent->is_mobile()) {
+                //         redirect("firstlogin");
+                //     }else{
+                //         redirect('complete_profile');
+                //     }
+                // }else{
                     redirect('timeline');
-                }
+                // }
             }else
             {
                 $status = $resval['code'];
@@ -185,15 +185,15 @@ class C_Login extends MX_Controller
             //     redirect('follow_event');
             // }else{
             // }
-                if ($user['is_newuser'] == false) {
-                    if ($this->agent->is_mobile()) {
-                        redirect("firstlogin");
-                    }else{
-                        redirect('complete_profile');
-                    }
-                }else{
+                // if ($user['is_newuser'] == false) {
+                //     if ($this->agent->is_mobile()) {
+                //         redirect("firstlogin");
+                //     }else{
+                //         redirect('complete_profile');
+                //     }
+                // }else{
                     redirect('timeline');
-                }
+                // }
         }else {
             $status = $resval['code'];
             $data = "Not Found";

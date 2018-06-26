@@ -358,6 +358,14 @@
  	-moz-osx-font-smoothing: grayscale
  }
 
+
+@media (min-width: 992px) {  
+ body {
+ 	width: 35%;
+    margin: auto;
+ }
+}
+
  * {
  	webkit-box-sizing: border-box;
  	-moz-box-sizing: border-box;

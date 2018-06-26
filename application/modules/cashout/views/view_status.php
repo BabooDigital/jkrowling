@@ -11,7 +11,7 @@
 </style>
 <body class="bg-greyboo">
 	<nav class="navbar bg-greyboo">
-		<a class="navbar-brand backcheck" href="javascript:void(0);"><i class="fa fa-arrow-left text-dark"></i></a>
+		<a class="navbar-brand backcheck" href="javascript:void(0);"><i class="fa fa-arrow-left text-dark asdsa"></i></a>
 	</nav>
 	<div class="container mb-30">
 		<div class="row">
