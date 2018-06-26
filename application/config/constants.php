@@ -96,7 +96,7 @@ URL = 'https://staging.baboo.id/'
 @@@ DEVELOPMENT @@@
 URL = 'https://dev-baboo.co.id/'
 */
-defined('BASE_URL_WEB')		OR define('BASE_URL_WEB', 'https://staging.baboo.id/');
+defined('BASE_URL_WEB')		OR define('BASE_URL_WEB', 'https://www.baboo.id/');
 
 // CONFIG DB
 /*
@@ -112,10 +112,10 @@ defined('BASE_URL_WEB')		OR define('BASE_URL_WEB', 'https://staging.baboo.id/');
 'password' => '',
 'database' => '',
 */
-defined('DB_HOST')			OR define('DB_HOST', 'dbnode0');
-defined('DB_USERNAME')		OR define('DB_USERNAME', 'baboo_dbusr');
-defined('DB_USERPASSWORD')	OR define('DB_USERPASSWORD', 'B4booAWs2018');
-defined('DB_NAME')			OR define('DB_NAME', 'baboo_dbstg');
+defined('DB_HOST')			OR define('DB_HOST', '');
+defined('DB_USERNAME')		OR define('DB_USERNAME', '');
+defined('DB_USERPASSWORD')	OR define('DB_USERPASSWORD', '');
+defined('DB_NAME')			OR define('DB_NAME', '');
 
 // CONFIG API URL
 /*
@@ -123,7 +123,7 @@ API DEV = 'api.dev-baboo.co.id/v1/'
 API STG = 'https://api.staging.baboo.id/v1/'
 API PRD = 'https://api.baboo.id/v1/'
 */
-defined('API_URL')	OR	define('API_URL', 'https://api.staging.baboo.id/v1/');
+defined('API_URL')	OR	define('API_URL', 'https://api.baboo.id/v1/');
 
 // CONFIG APP ID FACEBOOK
 /*
@@ -131,8 +131,8 @@ APPID DEV = '196429547790304'	|	APPSEC DEV = '51d446946c5024034b06b66a18e70a81'
 APPID STG = '1677083049033942'	|	APPSEC STG = '72bfed7ed3b202de2797977e5d1ce09b'
 APPID PRD = '2093513617332249'	|	APPSEC PRD = '39ee66409a3d976689d7db1fc48e842f'
 */
-defined('APPID_FB')		OR	define('APPID_FB', '1677083049033942');
-defined('APPSEC_FB')	OR	define('APPSEC_FB', '72bfed7ed3b202de2797977e5d1ce09b');
+defined('APPID_FB')		OR	define('APPID_FB', '2093513617332249');
+defined('APPSEC_FB')	OR	define('APPSEC_FB', '39ee66409a3d976689d7db1fc48e842f');
 
 // CONFIG APP ID GOOGLE
 /*
@@ -140,8 +140,8 @@ APPID DEV = '625200931795-v9j07677ch7drvplu5ohpph4u48b4277.apps.googleuserconten
 APPID STG = '347878416490-7era9p9mn379qdod4vbd61s217ubk2co.apps.googleusercontent.com'	|	APPSEC STG = 'TnNCHFjM1d8g44fzBM0cV3eL'
 APPID PRD = '87855736095-9bo8c78nojsne31dj3vr3gf694itavoh.apps.googleusercontent.com'	|	APPSEC PRD = 'DHXnd3vSUDQI8C0YOLmLk4YO'
 */
-defined('APPID_GOOGLE')		OR	define('APPID_GOOGLE', '347878416490-7era9p9mn379qdod4vbd61s217ubk2co.apps.googleusercontent.com');
-defined('APPSEC_GOOGLE')	OR	define('APPSEC_GOOGLE', 'TnNCHFjM1d8g44fzBM0cV3eL');
+defined('APPID_GOOGLE')		OR	define('APPID_GOOGLE', '87855736095-9bo8c78nojsne31dj3vr3gf694itavoh.apps.googleusercontent.com');
+defined('APPSEC_GOOGLE')	OR	define('APPSEC_GOOGLE', 'DHXnd3vSUDQI8C0YOLmLk4YO');
 
 // CONFIG Access Keys Midtrans
 /*
@@ -156,9 +156,9 @@ Client Key	= SB-Mid-client-FbaqZneHUk1HWy6m
 Server Key	= SB-Mid-server-4bmgeo85fTsjFQccrdZt6T6E
 */
 defined('MID_ID')		 OR	define('MID_ID', 'M127372');
-defined('MID_CLIENT')	 OR	define('MID_CLIENT', 'SB-Mid-client-FbaqZneHUk1HWy6m');
-defined('MID_SERVER')	 OR	define('MID_SERVER', 'SB-Mid-server-4bmgeo85fTsjFQccrdZt6T6E');
-defined('MID_STAT_PROD') OR	define('MID_STAT_PROD', false);
+defined('MID_CLIENT')	 OR	define('MID_CLIENT', 'Mid-client-JGAimn-rG7nf4PpW');
+defined('MID_SERVER')	 OR	define('MID_SERVER', 'Mid-server-OOqHX9vrFCfo5OrmJ7pgrWoQ');
+defined('MID_STAT_PROD') OR	define('MID_STAT_PROD', true);
 
 // CONFIG BASE URL MIDTRANS
 /*
@@ -168,7 +168,7 @@ URL = app.midtrans.com
 @@@ DEV/STG @@@ 
 URL = app.sandbox.midtrans.com
 */
-defined('MID_BASE_URL')		 OR	define('MID_BASE_URL', 'app.sandbox.midtrans.com');
+defined('MID_BASE_URL')		 OR	define('MID_BASE_URL', 'app.midtrans.com');
 
 // CONFIG ID GOOGLE ADSENSE
 /*
@@ -180,5 +180,5 @@ data-ad-slot	= ""
 data-ad-client	= "ca-pub-4994852796413443"
 data-ad-slot	= "7276054409"
 */
-defined('AD_CLIENT')	OR	define('AD_CLIENT', 'ca-pub-4994852796413443');
-defined('AD_SLOT')		OR	define('AD_SLOT', '7276054409');
+defined('AD_CLIENT')	OR	define('AD_CLIENT', 'ca-pub-3590496162921239');
+defined('AD_SLOT')		OR	define('AD_SLOT', '');
