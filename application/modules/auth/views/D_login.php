@@ -30,7 +30,6 @@ parse_str($parts['query'], $query);
 if (!empty($query['b'])) {
 	$this->session->set_userdata('bookRef', $query['b']);
 }else{	
-
 }
 ?>
 

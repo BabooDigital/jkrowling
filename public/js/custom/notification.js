@@ -10,7 +10,7 @@ $(document).ready(function () {
       url: 'updatentf',
       type: 'POST',
       dataType: '',
-      data: {ntf: ntf},
+      data: {ntf: ntf,csrf_test_name: csrf_value},
     })
     .done(function(data) {
       // console.log("success");
@@ -188,7 +188,7 @@ function load_notification() {
           url: 'updatentf',
           type: 'POST',
           dataType: '',
-          data: {ntf: ntf},
+          data: {ntf: ntf,csrf_test_name: csrf_value},
         })
         .done(function(data) {
           // console.log("success");
@@ -209,7 +209,7 @@ function load_notification() {
           url: 'updatentf',
           type: 'POST',
           dataType: '',
-          data: {ntf: ntf},
+          data: {ntf: ntf,csrf_test_name: csrf_value},
         })
         .done(function(data) {
           window.location.href = slug;
@@ -229,7 +229,7 @@ function load_notification() {
           url: 'updatentf',
           type: 'POST',
           dataType: '',
-          data: {ntf: ntf},
+          data: {ntf: ntf,csrf_test_name: csrf_value},
         })
         .done(function(data) {
           window.location.href = slug;
@@ -249,7 +249,7 @@ function load_notification() {
           url: 'updatentf',
           type: 'POST',
           dataType: '',
-          data: {ntf: ntf},
+          data: {ntf: ntf,csrf_test_name: csrf_value},
         })
         .done(function(data) {
           window.location.href = slug;

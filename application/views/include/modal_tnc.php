@@ -112,6 +112,7 @@
 					</nav>
 				<?php }else{ ?>
 				<form action="<?php echo site_url(); ?>auth/C_Login/postregisteruser" method="POST">
+					<input type="hidden" name="<?php echo $this->security->get_csrf_token_name();?>" value="<?php echo $this->security->get_csrf_hash();?>">
 					<input type="hidden" name="name" id="namess" value="">
 					<input type="hidden" name="email" id="emailss" value="">
 					<input type="hidden" name="password" id="passss" value="">

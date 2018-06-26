@@ -6,10 +6,11 @@ echo "<script>(function(d, s, id) {
 	js.src = 'https://connect.facebook.net/id_ID/sdk.js#xfbml=1&version=v2.12&appId=".APPID_FB."';
 	fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>";
+echo "<script type='text/javascript' src='https://app.sandbox.midtrans.com/snap/snap.js' data-client-key='".MID_CLIENT."'></script>";
+echo "<script async src='//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'></script>";
 ?>
 
 <?php $this->load->view('navbar/D_navbar'); ?>	
-<script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-FbaqZneHUk1HWy6m"></script>
 
 <style type="text/css">
 @media only screen and (min-width: 1200px) {
@@ -82,6 +83,138 @@ echo "<script>(function(d, s, id) {
 .comment-marker .num-comment{
 	top: 5px !important;
 }
+
+.mentions-input-box {
+  position: relative;
+  background: #fff;
+  width: 80%;
+  border-radius: 35px;
+  float: left;
+}
+
+.mentions-input-box textarea {
+  width: 80%;
+  display: block;
+  height: 18px;
+  padding: 9px;
+  overflow: hidden;
+  background: transparent;
+  position: relative;
+  outline: 0;
+  resize: none;
+
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.mentions-input-box .mentions-autocomplete-list {
+  display: none;
+  background: #fff;
+  border: 1px solid #b2b2b2;
+  position: absolute;
+  left: 0;
+  bottom: 40px;
+  right: 0;
+  z-index: 1070;
+
+  border-radius:5px;
+  border-top-right-radius:0;
+  border-top-left-radius:0;
+
+  -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.148438);
+     -moz-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.148438);
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.148438);
+}
+
+.mentions-input-box .mentions-autocomplete-list ul {
+    margin: 0;
+    padding: 0;
+}
+
+.mentions-input-box .mentions-autocomplete-list li {
+  background-color: #fff;
+  padding: 0 5px;
+  margin: 0;
+  width: auto;
+  border-bottom: 1px solid #eee;
+  height: 26px;
+  line-height: 26px;
+  overflow: hidden;
+  cursor: pointer;
+  list-style: none;
+  white-space: nowrap;
+}
+
+.mentions-input-box .mentions-autocomplete-list li:last-child {
+  border-radius:5px;
+}
+
+.mentions-input-box .mentions-autocomplete-list li > img,
+.mentions-input-box .mentions-autocomplete-list li > div.icon {
+  width: 16px;
+  height: 16px;
+  float: left;
+  margin-top:5px;
+  margin-right: 5px;
+  -moz-background-origin:3px;
+
+  border-radius:3px;
+}
+
+.mentions-input-box .mentions-autocomplete-list li em {
+  font-weight: bold;
+  font-style: none;
+}
+
+.mentions-input-box .mentions-autocomplete-list li:hover,
+.mentions-input-box .mentions-autocomplete-list li.active {
+  background-color: #f2f2f2;
+}
+
+.mentions-input-box .mentions-autocomplete-list li b {
+  background: #ffff99;
+  font-weight: normal;
+}
+
+.mentions-input-box .mentions {
+  position: absolute;
+  left: 1px;
+  right: 0;
+  top: 1px;
+  bottom: 0;
+  padding: 9px;
+  color: #fff;
+  overflow: hidden;
+
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.mentions-input-box .mentions > div {
+  color: #fff;
+  white-space: pre-wrap;
+  width: 100%;
+}
+
+.mentions-input-box .mentions > div > strong {
+  font-weight:normal;
+  background: #d8dfea;
+}
+
+.mentions-input-box .mentions > div > strong > span {
+  filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0);
+}
+
+.mores {
+	display: none;
+}
+
+.coment_ {
+	border-bottom: 1px #dddddd solid;
+}
+
+</style>
 </style>
 <div class="container pt-100 mb-80">
 	<div class="row">
@@ -120,16 +253,10 @@ echo "<script>(function(d, s, id) {
 					</ul>
 				</div>
                 <br>
-                <div>
-                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                    <!-- Disamping -->
-                    <ins class="adsbygoogle"
-                         style="display:inline-block;width:300px;height:250px"
-                         data-ad-client="ca-pub-4994852796413443"
-                         data-ad-slot="7276054409"></ins>
-                    <script>
-                        (adsbygoogle = window.adsbygoogle || []).push({});
-                    </script>
+                <div class="mx-auto">
+                	<!-- Disamping -->
+                	<?php echo "<ins class='adsbygoogle' style='display:inline-block;width:300px;height:250px' data-ad-client='".AD_CLIENT."' data-ad-slot='".AD_SLOT."'></ins>" ?>
+                	<script> (adsbygoogle = window.adsbygoogle || []).push({}); </script>
                 </div>
 			</div>
 			<?php  }else {
@@ -261,17 +388,9 @@ echo "<script>(function(d, s, id) {
 							</div>
 						</div>
 
-						<nav class="navbar navbar-expand-lg navbar-light fixed-bottom box-shadow-navbar bg-white">
-							<div class="container pb-10 pt-10">
-								<div class="col-md-9">
-									<textarea style="outline:0;" id="comments" class="commentform" placeholder="Tulis Komentar kamu..."></textarea>
-								</div>
-								<div class="col-md-3">
-									<div>
-										<button class="btn post-comment">Kirim</button>	
-									</div>
-								</div>
-							</div>
+						<nav class="pt-5 pb-5 navbar bg-boo fixed-bottom">
+							<textarea class="frmcomment commentform mention" id="comments" placeholder="Tulis komentarmu disini..." type="text" style="width:100%;height: 45px;"></textarea>
+							<div id="btn-com"><button class="post-comment" type="button" style="background: none;border: none;"><img src="<?php echo base_url('public/img/assets/icon_sendcomm.png'); ?>" width="43" height="43"></button></div>
 						</nav>
 					</div>
 
@@ -280,7 +399,7 @@ echo "<script>(function(d, s, id) {
 		</div><!-- modal -->
 
 		<!-- Modal -->
-		<div class="modal right fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
+		<!-- <div class="modal right fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 
@@ -305,9 +424,10 @@ echo "<script>(function(d, s, id) {
 						</nav>
 					</div>
 
-				</div><!-- modal-content -->
-			</div><!-- modal-dialog -->
-		</div><!-- modal -->
+				</div>
+			</div>
+		</div> -->
+		<!-- modal -->
 		<?php if ($this->session->flashdata('popup_status_payment')): ?>
 			<div class="modal fade" id="notifpayment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 				<?php $this->load->view('data/D_notifpayment'); ?>

@@ -83,6 +83,7 @@ $(document).ready(function () {
         formdata.append("user_msg", usr_with);
         var url = base_url+'message/'+convertToSlug(usr_name);
         var form = $('<form action="' + url + '" method="post">' +
+          '<input type="hidden" name="' + csrf_name + '" value="' + csrf_value + '" />' +
           '<input type="hidden" name="usr_msg" value="' + usr_with + '" />' +
           '<input type="hidden" name="usr_name" value="' + usr_name + '" />' +
           '</form>');

@@ -1,4 +1,4 @@
-<script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-FbaqZneHUk1HWy6m"></script>
+<?php echo "<script type='text/javascript' src='https://app.sandbox.midtrans.com/snap/snap.js' data-client-key='".MID_CLIENT."'></script>"; ?>
 <style>
 .list-group-item.active {
 	z-index: 2;
@@ -418,37 +418,7 @@ echo "<script>(function(d, s, id) {
 <!-- modal -->
 
 <!-- Modal -->
-<div class="modal right fade" id="modCommentRepl" tabindex="-1" role="dialog" aria-labelledby="modCommentRepl2">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-
-			<div class="modal-header">
-				<button type="button" class="closes" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h5 class="modal-title" id="modComment2"><b>Komentar <?php if ($detail_book['data']['book_info']['book_comment_count'] != 0) {echo "(".$detail_book['data']['book_info']['book_comment_count'].")"; }else{echo ""; } ?></b></h5>
-			</div>
-
-			<div class="modal-body pt-5">
-				<div class="mb-70">
-					<div id="Rbookcomment_list">
-
-					</div>
-					<div class="loader mx-auto" style="display: none;"></div>
-				</div>
-				<nav class="navbar navbar-light bg-boo fixed-bottom">
-					<span class="w-100">
-						<input class="frmcomment commentform" id="comments" placeholder="Tulis komentarmu disini..." type="text" style="width: 80%;height: 45px;">
-						<button class="Rpost-comment" type="button" style="background: none;border: none;"><img src="<?php echo base_url('public/img/assets/icon_sendcomm.png'); ?>" width="45" height="45"></button>
-					</span>
-				</nav>
-			</div>
-
-		</div>
-	</div>
-</div>
-<!-- modal -->
-
-<!-- Modal -->
-<div class="modal right fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
+<!-- <div class="modal right fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 
@@ -475,7 +445,7 @@ echo "<script>(function(d, s, id) {
 
 		</div>
 	</div>
-</div>
+</div> -->
 <!-- modal -->
 
 <?php if ($this->session->flashdata('popup_status_payment')): ?>

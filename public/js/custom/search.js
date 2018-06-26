@@ -7,8 +7,10 @@ $(document).ready(function () {
         // var formdata = new FormData();
 
         // formdata.append("user_prf", usr_prf);
+        // formdata.append("csrf_test_name", csrf_value);
         // var url = base_url+'profile/'+usr_name;
         // var form = $('<form action="' + url + '" method="post">' +
+          // '<input type="hidden" name="' + csrf_name + '" value="' + csrf_value + '" />' +
         //   '<input type="hidden" name="usr_prf" value="' + usr_prf + '" />' +
         //   '<input type="hidden" name="usr_name" value="' + usr_name + '" />' +
         //   '</form>');
@@ -25,6 +27,7 @@ $(document).ready(function () {
             var ab = $(this),
             b = new FormData;
             b.append("search", $(this).val());
+            b.append("csrf_test_name", csrf_value);
             ab.data('timer', setTimeout(function () {
                 $.ajax({
                     url: base_url + "searching",
@@ -184,6 +187,7 @@ $(document).on("click", ".like", function() {
 
           formData.append("user_id", $("#iaiduui").val());
           formData.append("book_id", aww.attr('data-share'));
+          formData.append("csrf_test_name", csrf_value);
 
           $.ajax({
             url: base_url + 'shares',
@@ -230,6 +234,7 @@ function convertSearch(Text) {
         var formdata = new FormData();
 
         formdata.append('search', search);
+        formdata.append("csrf_test_name", csrf_value);
         $.ajax({
             url: base_url + "searching",
             type: "POST",

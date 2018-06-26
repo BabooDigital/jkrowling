@@ -27,6 +27,7 @@
 <script type="text/javascript">
 	var base_url = "<?php echo base_url(''); ?>";
 	var csrf_value = '<?php echo $this->security->get_csrf_hash(); ?>';
+	var csrf_name = '<?php echo $this->security->get_csrf_hash(); ?>';
 </script>
 <!-- <script src="https://js.pusher.com/4.2/pusher.min.js"></script> -->
 

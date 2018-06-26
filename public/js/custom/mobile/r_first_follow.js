@@ -55,7 +55,7 @@ $(document).on('click', '.follow-u', function() {
     .done(function() {
       boo.removeClass('unfollow-u');
       boo.addClass('follow-u');
-      boo.html('<img src="public/img/icon-tab/add_follow.svg" width="80"> Follow');
+      boo.html('<img src="public/img/icon-tab/add_follow.svg" width="30"> Follow');
     })
     .fail(function() {
       console.log("error");

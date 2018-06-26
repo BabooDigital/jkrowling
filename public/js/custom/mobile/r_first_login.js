@@ -26,10 +26,9 @@ $(document).ready(function() {
     	var boo = $(this);
     	var formData = new FormData();
 
-    	formData.append("user_id", boo.attr("dat-id"));
     	formData.append("location", $("#yourDomisili").val());
     	formData.append("about_me", $("#yourBio").val());
-        a.append("csrf_test_name", csrf_value);
+        formData.append("csrf_test_name", csrf_value);
 
     	$.ajax({
     		url: base_url + 'firstedit',

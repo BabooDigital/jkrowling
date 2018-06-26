@@ -71,6 +71,7 @@ function validateFormActivation() {
 			a.append("phone", $("#hpImportant").val());
 			a.append("ktp_no", $("#numbImportant").val());
 			a.append("ktp_image", $("#fileImportant")[0].files[0]);
+    		a.append("csrf_test_name", csrf_value);
 			$.ajax({
 				url: base_url+'auth/confirm_acc',
 				type: 'POST',
@@ -133,6 +134,7 @@ function keyupOTP() {
 			   		// window.location = base_url+'pin-dompet/fourth';
 			   		var a = new FormData();
 			   		a.append("otp", fix);
+    				a.append("csrf_test_name", csrf_value);
 			   		$.ajax({
 			   			url: base_url+'auth/confirm_otp',
 			   			type: 'POST',
@@ -238,6 +240,7 @@ function resendOTP() {
 				var fix = str.replace(/\s/g, '');
 				var a = new FormData();
 				a.append("newpin", fix);
+    			a.append("csrf_test_name", csrf_value);
 				$.ajax({
 					url: base_url+'auth/new_pin',
 					type: 'POST',
@@ -299,6 +302,7 @@ function resendOTP() {
 				var fix = str.replace(/\s/g, '');
 				var a = new FormData();
 				a.append("confirmpin", fix);
+    			a.append("csrf_test_name", csrf_value);
 				$.ajax({
 					url: base_url+'auth/confirm_pin',
 					type: 'POST',
@@ -402,6 +406,7 @@ function resendOTP() {
 					a.append("answer1", kedu);
 					a.append("question2", keti);
 					a.append("answer2", keem);
+    				a.append("csrf_test_name", csrf_value);
 					$.ajax({
 						url: base_url+'auth/set_question',
 						type: 'POST',
@@ -463,6 +468,7 @@ function resendOTP() {
 				var a = new FormData();
 				a.append("questionQ", que);
 				a.append("answerQ", ans);
+				a.append("csrf_test_name", csrf_value);
 				$.ajax({
 					url: base_url+'auth/answer_check',
 					type: 'POST',
@@ -520,6 +526,7 @@ function resendOTP() {
 			   		// window.location = base_url+'pin-dompet/fourth';
 			   		var a = new FormData();
 			   		a.append("otp", fix);
+    				a.append("csrf_test_name", csrf_value);
 			   		$.ajax({
 			   			url: base_url+'auth/confirm_otp_forgot',
 			   			type: 'POST',
@@ -621,6 +628,7 @@ function resendOTP() {
 				var fix = str.replace(/\s/g, '');
 				var a = new FormData();
 				a.append("newpin", fix);
+    			a.append("csrf_test_name", csrf_value);
 				$.ajax({
 					url: base_url+'auth/update_pin',
 					type: 'POST',
@@ -682,6 +690,7 @@ function resendOTP() {
 				var fix = str.replace(/\s/g, '');
 				var a = new FormData();
 				a.append("confirmpin", fix);
+    			a.append("csrf_test_name", csrf_value);
 				$.ajax({
 					url: base_url+'auth/confirm_upd_pin',
 					type: 'POST',

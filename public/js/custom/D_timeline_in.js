@@ -41,8 +41,10 @@ $(document).ready(function() {
         var formdata = new FormData();
 
         formdata.append("user_prf", usr_prf);
+        formdata.append("csrf_test_name", csrf_value);
         var url = base_url+'profile/'+usr_name;
         var form = $('<form action="' + url + '" method="post">' +
+          '<input type="hidden" name="' + csrf_name + '" value="' + csrf_value + '" />' +
           '<input type="hidden" name="usr_prf" value="' + usr_prf + '" />' +
           '<input type="hidden" name="usr_name" value="' + usr_name + '" />' +
           '</form>');
@@ -82,7 +84,6 @@ $(document).ready(function() {
             coverimg = aww.parents('.card').find(".effect-img").attr("src"),
             authname = aww.parents('.card').find(".nametitle2").text(),
             links = aww.parents('.card').find(".segment").attr("data-href");
-            e.append("csrf_test_name", csrf_value);
         FB.ui({
             method: "share_open_graph",
             action_type: "og.shares",
@@ -95,7 +96,7 @@ $(document).ready(function() {
                 }
             })
         }, function(a) {
-            a && !a.error_message && (e.append("user_id", $("#iaiduui").val()), e.append("book_id", $("#iaidubi").val()), $.ajax({
+            a && !a.error_message && (e.append("csrf_test_name", csrf_value),e.append("user_id", $("#iaiduui").val()), e.append("book_id", $("#iaidubi").val()), $.ajax({
                 url: base_url + "shares",
                 type: "POST",
                 dataType: "JSON",
