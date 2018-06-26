@@ -39,7 +39,7 @@ function getLastRead() {
         $(".loader").hide();
     })
     .fail(function() {
-        console.log('asd');
+        
     })
     .always(function() {
     });
@@ -87,7 +87,7 @@ function getBookmark() {
         $(".loader").hide();
     })
     .fail(function() {
-        console.log("asd");
+        
     })
     .always(function() {
     });
@@ -134,7 +134,7 @@ function getCollection() {
         $(".loader").hide();
     })
     .fail(function() {
-        console.log("asd");
+        
     })
     .always(function() {
     });

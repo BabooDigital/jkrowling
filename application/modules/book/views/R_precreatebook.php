@@ -7,6 +7,7 @@
 			</form>
 			<form class="form-inline" action="<?php echo site_url('chapter') ?>" method="post">
 				<input type="hidden" name="title_book" id="title_book">
+				<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 				<button class="btn-transparant" type="submit"><img src="<?php echo base_url() ?>public/img/icon-nav/publish.png" width="18" class="mb-1"> &nbsp;<span style="color: #7554bd;">Next</span></button> 
 			</form>
 		</div>

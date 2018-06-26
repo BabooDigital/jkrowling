@@ -194,7 +194,8 @@ function resendOTP() {
 		$.ajax({
 			url: base_url+'auth/resend_otp',
 			type: 'POST',
-			dataType: 'json'
+			dataType: 'json',
+			data: {csrf_test_name:csrf_value}
 		})
 		.done(function(data) {
 			if (data.code == 200) {

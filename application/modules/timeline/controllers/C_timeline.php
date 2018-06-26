@@ -29,7 +29,7 @@ class C_timeline extends MX_Controller {
 		$this->curl_multiple->add_call("writter","get",$this->API.'timeline/Home/bestWriter','',array(CURLOPT_HTTPHEADER => array('baboo-auth-key: '.$auth)));
 		$this->curl_multiple->add_call("book","get",$this->API.'timeline/Timelines/bestBook','',array(CURLOPT_HTTPHEADER => array('baboo-auth-key: '.$auth)));
 		$resvals = $this->curl_multiple->execute();
-		$resval = $this->curl_request->curl_post_auth($this->API.'timeline/Timelines/index', $sendData, $auth);
+		$resval = $this->curl_request->curl_post_auth($this->API.'timeline/Timelines/home', $sendData, $auth);
 
 		$best_writter = json_decode($resvals['writter']['response'], TRUE);
 		$best_book = json_decode($resvals['book']['response'], TRUE);

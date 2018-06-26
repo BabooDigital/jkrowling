@@ -111,7 +111,7 @@ img {
 									url: 'updatentf',
 									type: 'POST',
 									dataType: '',
-									data: {ntf: ntf},
+									data: {ntf: ntf,csrf_test_name: csrf_value},
 								})
 								.done(function(data) {
 

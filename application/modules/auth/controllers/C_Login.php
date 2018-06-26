@@ -99,21 +99,22 @@ class C_Login extends MX_Controller
                 $this->session->set_userdata('userData', $user);
                 $this->session->set_userdata('hasPIN', $user['has_pin']);
                 $this->session->set_userdata('hasPhone', $user['phone_number']);
-                if ($this->session->userdata('event') == 1) {
-                    $this->session->set_userdata('userData', $user);
-                    $this->session->set_userdata('hasPIN', $user['has_pin']);
-                    $this->session->set_userdata('hasPhone', $user['phone_number']);
-                    redirect('follow_event');
-                }else{
+                // if ($this->session->userdata('event') == 1) {
+                //     $this->session->set_userdata('userData', $user);
+                //     $this->session->set_userdata('hasPIN', $user['has_pin']);
+                //     $this->session->set_userdata('hasPhone', $user['phone_number']);
+                //     redirect('follow_event');
+                // }else{
+
+                // }
+                if ($user['is_newuser'] == false) {
                     if ($this->agent->is_mobile()) {
-                        if ($user['is_newuser'] != false) {
-                            redirect("firstlogin");
-                        }else {
-                            redirect('complete_profile');
-                        }
-                    }else {
-                        redirect('timeline');
+                        redirect("firstlogin");
+                    }else{
+                        redirect('complete_profile');
                     }
+                }else{
+                    redirect('timeline');
                 }
             }else
             {
@@ -177,22 +178,22 @@ class C_Login extends MX_Controller
             $this->session->set_userdata('userData', $user);
             $this->session->set_userdata('hasPIN', $user['has_pin']);
             $this->session->set_userdata('hasPhone', $user['phone_number']);
-            if ($this->session->userdata('event') == 1) {
-                $this->session->set_userdata('userData', $user);
-                $this->session->set_userdata('hasPIN', $user['has_pin']);
-                $this->session->set_userdata('hasPhone', $user['phone_number']);
-                redirect('follow_event');
-            }else{
-                if ($this->agent->is_mobile()) {
-                    if ($user['is_newuser'] != false) {
+            // if ($this->session->userdata('event') == 1) {
+            //     $this->session->set_userdata('userData', $user);
+            //     $this->session->set_userdata('hasPIN', $user['has_pin']);
+            //     $this->session->set_userdata('hasPhone', $user['phone_number']);
+            //     redirect('follow_event');
+            // }else{
+            // }
+                if ($user['is_newuser'] == false) {
+                    if ($this->agent->is_mobile()) {
                         redirect("firstlogin");
-                    }else {
+                    }else{
                         redirect('complete_profile');
                     }
-                }else {
+                }else{
                     redirect('timeline');
                 }
-            }
         }else {
             $status = $resval['code'];
             $data = "Not Found";

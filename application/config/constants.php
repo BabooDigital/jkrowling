@@ -85,6 +85,19 @@ defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automat
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
 
 
+// CONFIG BASE URL CI
+/*
+@@@ PRODUCTION @@@
+URL = 'https://www.baboo.id/'
+
+@@@ STAGING @@@
+URL = 'https://staging.baboo.id/'
+
+@@@ DEVELOPMENT @@@
+URL = 'https://dev-baboo.co.id/'
+*/
+defined('BASE_URL_WEB')		OR define('BASE_URL_WEB', 'https://dev-baboo.co.id/');
+
 // CONFIG DB
 defined('DB_HOST')			OR define('DB_HOST', 'localhost');
 defined('DB_USERNAME')		OR define('DB_USERNAME', 'devbaboo_adit');
