@@ -247,7 +247,7 @@ $(document).ready(function() {
 						for (var pair of formData.entries()) {
 						    console.log(pair[0]+ ', ' + pair[1]); 
 						}
-						// location.reload();
+						location.reload();
 						$("#title_chapter").show();
 						$("#title_chapter").val();
 						$("#title_book").hide();
@@ -302,7 +302,7 @@ $(document).ready(function() {
 							$(this).hide();
 							n();
 						});
-						// location.reload();
+						location.reload();
 						$("#title_chapter").show();
 						$("#title_chapter").val();
 						$("#title_book").hide();
