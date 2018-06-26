@@ -399,30 +399,29 @@ $this->load->view('navbar/D_navbar'); ?>
 													<br>
 												</div>
 												<div class="col-lg-12">
-													<form id="profile-edit">
+													<!-- <form id="profile-edit"> -->
 														<div class="form-group">
 															<label>Nama Lengkap</label>
-															<input type="text" class="required fullname error form-control login-input" id="fullname" name="fullname" placeholder="Nama Lengkap">
+															<input type="text" class="w-100 frmProf" id="yourName" value="<?php echo $userdata['fullname'] ?>">
 														</div>
 														<div class="form-group">
 															<label>Tanggal Lahir</label>
-															<input type="date" class="required date_of_birth error form-control login-input" id="date_of_birth" name="date_of_birth" placeholder="Tanggal Lahir">
+															<input type="date" class="w-100 frmProf" id="yourBirth" value="<?php echo $userdata['date_of_birth'] ?>">
 														</div>
 														<div class="form-group">
 															<label>Alamat</label>
-															<textarea class="required address error form-control login-input" id="address" name="address" placeholder="Alamat"></textarea>
-															<!-- <input type="date" class="required date_of_birth error form-control login-input" id="date_of_birth" name="date_of_birth" placeholder="Tanggal Lahir"> -->
+															<input type="text" class="w-100 frmProf" id="yourLoc" value="<?php echo $userdata['address'] ?>">
 														</div>
 														<div class="form-group">
 															<label>Bio</label>
-															<input type="text" class="about_me error form-control login-input" id="about_me" name="about_me" placeholder="About Me">
+															<input type="text" class="w-100 frmProf" id="yourBio" value="<?php echo $userdata['about_me'] ?>">
 														</div>
 														<div class="form-group">
 															<div class="pull-left">
 																<button type="submit" name="submit" class="btn btn-primary pull-right btn-login ikuti-lomba"><i class="icon-arrow-right"></i>Update Profile</button>
 															</div>	
 														</div>
-													</form>
+													<!-- </form> -->
 												</div>
 											</div>
 										</div>
@@ -437,6 +436,8 @@ $this->load->view('navbar/D_navbar'); ?>
 			<div class="modal fade" id="wallet-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 				<div class="modal-dialog" role="document" style="height: ">
 					<div class="modal-content" style="width: 440px !important; left: 10%;">
+						<button type="button" class="closes btn-clear" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fa fa-arrow-left"></i></span>
+						</button>
 						<div class="modal-body" style="height: 670px;">
 							<iframe id="targetFrame" width="100%" height="100%" scrolling="NO" frameborder="0" src="<?php echo site_url('pin-dompet');?>">></iframe>
 						</div>

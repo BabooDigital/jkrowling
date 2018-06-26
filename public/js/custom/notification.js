@@ -33,7 +33,7 @@ $("#btn_notif_comment").on('click', function(event) {
     url: 'updatentf',
     type: 'POST',
     dataType: '',
-    data: {ntf: ntf},
+    data: {ntf: ntf,csrf_test_name: csrf_value},
   })
   .done(function(data) {
     // console.log("success");

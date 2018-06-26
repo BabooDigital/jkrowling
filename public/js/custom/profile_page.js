@@ -3,49 +3,84 @@ function funcDropdown() {
 }
 $(document).ready(function() {
 	// validateProfile();
-	$("#profile-edit").validate({
-		rules: {
-			fullname: {
-				required: true
-			},
-			dateofbirth: {
-				required: true
-			},
-			address : {
-				required: true
-			}
-		},
-		messages: {
-			fullname: {
-				required: 'Nama Lengkap harus di isi'
-			},
-			dateofbirth: {
-				required: 'Tanggal Harus Diisi'
-			},
-			address: {
-				required: 'Alamat Harus di isi'
-			}
-		},
-		submitHandler: function(form) {
-        $.ajax({
-            url: base_url+'edit_profile',
-            type: 'POST',
-            data: $(form).serialize(),
-            success: function(response) {
+	// $("#profile-edit").validate({
+	// 	rules: {
+	// 		fullname: {
+	// 			required: true
+	// 		},
+	// 		dateofbirth: {
+	// 			required: true
+	// 		},
+	// 		address : {
+	// 			required: true
+	// 		}
+	// 	},
+	// 	messages: {
+	// 		fullname: {
+	// 			required: 'Nama Lengkap harus di isi'
+	// 		},
+	// 		dateofbirth: {
+	// 			required: 'Tanggal Harus Diisi'
+	// 		},
+	// 		address: {
+	// 			required: 'Alamat Harus di isi'
+	// 		}
+	// 	},
+	// 	submitHandler: function(form) {
+		$(document).on('click', '.ikuti-lomba', function() {
+			var formData = new FormData();
+
+			formData.append('fullname', $('#yourName').val());
+			formData.append('date_of_birth', $('#yourBirth').val());
+			formData.append('address', $('#yourLoc').val());
+			formData.append('about_me', $('#yourBio').val());
+			formData.append("csrf_test_name", csrf_value);
+
+			$.ajax({
+				url: 'edit_profile',
+				type: 'POST',
+				dataType: 'JSON',
+				cache: false,
+				contentType: false,
+				processData: false,
+				data: formData
+			})
+			.done(function(data) {
+				if (data.code == 200) {
+					$('#alert_success').show('slow/400/fast', function() {
+						setTimeout(function() {
+							$('#edit-profile').modal('hide');
+						}, 300);
+					});
+				}else{
+					location.reload();
+				}
+			})
+			.fail(function() {
+				console.log("error");
+			})
+			.always(function() {
+			});
+			});
+     //    $.ajax({
+     //        url: base_url+'edit_profile',
+     //        type: 'POST',
+     //        data: $(form).serialize(),
+     //        success: function(response) {
      //        	if (response.code == 200) {
-				  $('#alert_success').show('slow/400/fast', function() {
-        			setTimeout(function() {
-						$('#edit-profile').modal('hide');
-					}, 300);
-				  });
-            	// }
-     			// console.log(response);
-            	// location.href = base_url+'';
-            }            
-        });
-    }
-	});
-	$(document).on('click', '.profile', function() {
+				 //  $('#alert_success').show('slow/400/fast', function() {
+     //    			setTimeout(function() {
+					// 	$('#edit-profile').modal('hide');
+					// }, 300);
+				 //  });
+     //        	}
+     // 			console.log(response);
+     //        	location.href = base_url+'';
+     //        }            
+     //    });
+    // }
+	// });
+	$(document).on('click', '.profile', function(event) {
         event.preventDefault();
         var boo = $(this);
         var usr_prf = boo.attr("data-usr-prf");

@@ -99,6 +99,7 @@
 				var a = new FormData();
 				/* Act on the event */
 				a.append("old_password", $("#oldpass").val());
+				a.append("csrf_test_name", csrf_value);
 				if ($("#newpass").val() === $("#confirmnewpass").val()) {
 					a.append("new_password", $("#newpass").val());
 				}
