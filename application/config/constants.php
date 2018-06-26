@@ -96,7 +96,7 @@ URL = 'https://staging.baboo.id/'
 @@@ DEVELOPMENT @@@
 URL = 'https://dev-baboo.co.id/'
 */
-defined('BASE_URL_WEB')		OR define('BASE_URL_WEB', 'https://dev-baboo.co.id/');
+defined('BASE_URL_WEB')		OR define('BASE_URL_WEB', 'https://staging.baboo.id/');
 defined('BASE_URL_DEEPLINK')		OR define('BASE_URL_DEEPLINK', 'www.baboo.id/');
 
 // CONFIG DB
@@ -182,7 +182,7 @@ data-ad-slot	= "7276054409"
 */
 defined('AD_CLIENT')	OR	define('AD_CLIENT', 'ca-pub-4994852796413443');
 defined('AD_SLOT')		OR	define('AD_SLOT', '7276054409');
-// CONFIG ID GOOGLE ANALYTICS / GOOGLE TAG MANAGER / FACEBOOK PIXEL
+// CONFIG ID GOOGLE ANALYTICS / GOOGLE TAG MANAGER
 /*
 @@@ PRODUCTION @@@
 ANALYTIS ID = 'UA-122661844-1'
