@@ -5,7 +5,6 @@ $(document).ready(function() {
 		a.removeClass("follow-u");
 		a.addClass("unfollow-u");
 		a.children(".txtfollow").text("Diikuti");
-		b.append("user_id", $("#iaiduui").val());
 		b.append("fuser_id", a.attr("data-follow"));
 		b.append("csrf_test_name", csrf_value);
 		$.ajax({
@@ -27,7 +26,6 @@ $(document).ready(function() {
 		a.removeClass("unfollow-u");
 			a.addClass("follow-u");
 			a.children(".txtfollow").text("Ikuti");
-		b.append("user_id", $("#iaiduui").val());
 		b.append("fuser_id", a.attr("data-follow"));
 		b.append("csrf_test_name", csrf_value);
 		$.ajax({

@@ -40,7 +40,7 @@
 	<?php $attr = array('id' => 'form_book'); 
 		form_open_multipart('my_book/create_book/publish', $attr);
 	?>
-	
+	<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-3 bg-white pt-10 cleftmenu">

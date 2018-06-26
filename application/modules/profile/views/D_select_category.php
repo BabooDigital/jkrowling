@@ -95,9 +95,9 @@
 
 						</div>
 						<div class="modal-footer">
-							<nav class=" navbar-light fixed-bottom p-10">
+							<!-- <nav class=" navbar-light fixed-bottom p-10"> -->
 								<button id="selectCat" class="mx-auto btnupdate-prof">Lanjutkan</button>
-							</nav>
+							<!-- </nav> -->
 
 						</div>
 					</div>

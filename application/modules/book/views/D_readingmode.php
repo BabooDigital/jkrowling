@@ -9,7 +9,7 @@
 		var base_url = '<?php echo base_url() ?>';
 		var csrf_value = '<?php echo $this->security->get_csrf_hash(); ?>';
 	</script>
-	<script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-FbaqZneHUk1HWy6m"></script>
+	<?php echo "<script type='text/javascript' src='https://app.sandbox.midtrans.com/snap/snap.js' data-client-key='".MID_CLIENT."'></script>"; ?>
 </head>
 <body>
 	<div class="container-fluid mb-40">

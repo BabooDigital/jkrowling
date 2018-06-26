@@ -22,7 +22,7 @@ class Snap extends MX_Controller {
 	public function __construct()
     {
         parent::__construct();
-        $params = array('server_key' => 'SB-Mid-server-4bmgeo85fTsjFQccrdZt6T6E', 'production' => false);
+        $params = array('server_key' => MID_SERVER, 'production' => MID_STAT_PROD);
 		$this->load->library('midtrans');
 		$this->midtrans->config($params);
 		$this->load->helper('url');	

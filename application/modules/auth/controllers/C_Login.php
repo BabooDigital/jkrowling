@@ -1,9 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
 class C_Login extends MX_Controller
 {
-
     var $API = "";
     
     function __construct()
@@ -17,7 +15,6 @@ class C_Login extends MX_Controller
         {
             redirect('timeline');
         }
-
     }
     
     public function index()
@@ -25,7 +22,6 @@ class C_Login extends MX_Controller
         $data['authUrl'] = $this->facebook->login_url();
         $data['authUrlG'] = $this->google->loginURL();
         $data['authUrlGEv'] = $this->google->loginURLEvent();
-
         if ($this->agent->is_mobile('ipad'))
         {
             $this->load->view('D_login', $data);
@@ -46,7 +42,6 @@ class C_Login extends MX_Controller
         );
         
         $this->session->set_userdata($array);
-
         redirect($this->google->loginURLEvent());
     }
     public function facebook_event()
@@ -74,16 +69,31 @@ class C_Login extends MX_Controller
                 'token' => $userProfile['id'],
                 'jk' => $userProfile['gender']
             );
-
-            $resval = $this->curl_request->curl_post_auth($this->API.'/login_fb', $userData, '');
-
-            $psn = $resval['data']['message'];
-            $user = $resval['data']['data'];
-            $auth = $resval['bbo_auth'];
-            if (isset($resval['data']['code']) && $resval['data']['code'] == 200)
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $this->API.'/login_fb');
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $userData);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+            curl_setopt($ch, CURLOPT_HEADER, 1);
+            $result = curl_exec($ch);
+            $headers=array();
+            $data=explode("\n",$result);
+            array_shift($data);
+            foreach($data as $part){
+                $middle=explode(":",$part);
+                if (error_reporting() == 0) {
+                    $headers[trim($middle[0])] = trim($middle[1]);
+                }
+            }
+            $resval = (array)json_decode(end($data), true);
+            $psn = $resval['message'];
+            $user = $resval['data'];
+            $auth = $headers['BABOO-AUTH-KEY'];
+            if (isset($resval['code']) && $resval['code'] == 200)
             {
-                $status = $resval['data']['code'];
-
+                $status = $resval['code'];
                 $this->session->set_userdata('isLogin', $status);
                 $this->session->set_userdata('authKey', $auth);
                 $this->session->set_userdata('userData', $user);
@@ -99,7 +109,7 @@ class C_Login extends MX_Controller
                         if ($user['is_newuser'] != false) {
                             redirect("firstlogin");
                         }else {
-                            redirect('timeline');
+                            redirect('complete_profile');
                         }
                     }else {
                         redirect('timeline');
@@ -107,17 +117,15 @@ class C_Login extends MX_Controller
                 }
             }else
             {
-                $status = $resval['data']['code'];
-
+                $status = $resval['code'];
                 $fbuser = '';
                 $this->session->set_flashdata('login_alert', '<script>
                   $(window).on("load", function(){
                     swal("Gagal", "'.$psn.'", "error");
-                    });
-                    </script>');
+                });
+                </script>');
                 redirect('login','refresh');
             }
-
             echo json_encode(array(
                 'status' => $status,
                 'data' => $user,
@@ -125,30 +133,45 @@ class C_Login extends MX_Controller
             ));
         }
     }
-
     public function google_login()
     {
         error_reporting(0);
         if(isset($_GET['code'])){
-
             $this->google->getAuthenticate();
             
             $gpInfo = $this->google->getUserInfo();
-
             $userData['oauth_provider'] = 'google';
             $userData['oauth_uid']      = $gpInfo['id'];
             $userData['fullname']       = $gpInfo['given_name'] . " " . $gpInfo['family_name'];
             $userData['email']          = $gpInfo['email'];
             $userData['token']          = $gpInfo['id'];
             $userData['prof_pict']      = $gpInfo['picture'];
-
-            $resval = $this->curl_request->curl_post_auth($this->API.'/login_google', $userData, '');
-
-            $psn = $resval['data']['message'];
-            $status = $resval['data']['code'];
-            $user = $resval['data']['data'];
-            $auth = $resval['bbo_auth'];
-
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $this->API.'/login_google');
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $userData);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+            curl_setopt($ch, CURLOPT_HEADER, 1);
+            $result = curl_exec($ch);
+            
+            $headers=array();
+            $data=explode("\n",$result);
+            array_shift($data);
+            foreach($data as $part){
+                $middle=explode(":",$part);
+                if (error_reporting() == 0) {
+                    $headers[trim($middle[0])] = trim($middle[1]);
+                }
+            }
+            
+            
+            $resval = (array)json_decode(end($data), true);
+            $psn = $resval['message'];
+            $status = $resval['code'];
+            $user = $resval['data'];
+            $auth = $headers['BABOO-AUTH-KEY'];
             $this->session->set_userdata('isLogin', $status);
             $this->session->set_userdata('authKey', $auth);
             $this->session->set_userdata('userData', $user);
@@ -164,22 +187,21 @@ class C_Login extends MX_Controller
                     if ($user['is_newuser'] != false) {
                         redirect("firstlogin");
                     }else {
-                        redirect('timeline');
+                        redirect('complete_profile');
                     }
                 }else {
                     redirect('timeline');
                 }
             }
         }else {
-            $status = $resval['data']['code'];
+            $status = $resval['code'];
             $data = "Not Found";
-
             $this->session->set_flashdata('login_alert', '<script>
-              $(window).on("load", function(){
-                swal("Gagal", "'.$psn.'", "error");
+                  $(window).on("load", function(){
+                    swal("Gagal", "'.$psn.'", "error");
                 });
                 </script>');
-            redirect('login','refresh');
+                redirect('login','refresh');
         }
         // echo json_encode(array(
         //     'status' => $status, 
@@ -187,35 +209,49 @@ class C_Login extends MX_Controller
         //     'message' => $psn
         // )); 
     }
-
     public function postloginuser()
     {
         error_reporting(0);
         $email = $this->input->post('emails', TRUE);
         $password = $this->input->post('passwords', TRUE);
-
         $userData = array(
             'username' => $email,
             'password' => $password
         );
-
         $this->form_validation->set_rules('emails', ' ', 'trim|required');
         $this->form_validation->set_rules('passwords', ' ', 'trim|required');
         $this->form_validation->set_error_delimiters('<div class="text-danger">', '</div>');
-
         if ($this->form_validation->run() == FALSE) {
             $this->index();
         }else{
-
-            $resval = $this->curl_request->curl_post_auth($this->API.'/login', $userData, '');
-
-            $psn = $resval['data']['message'];
-            $user = $resval['data']['data'];
-            $auth = $resval['bbo_auth'];
-            if (isset($resval['data']['code']) && $resval['data']['code'] == 200)
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $this->API.'/login');
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $userData);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+            curl_setopt($ch, CURLOPT_HEADER, 1);
+            $result = curl_exec($ch);
+            
+            $headers=array();
+            $data=explode("\n",$result);
+            array_shift($data);
+            foreach($data as $part){
+                $middle=explode(":",$part);
+                if (error_reporting() == 0) {
+                    $headers[trim($middle[0])] = trim($middle[1]);
+                }
+            }
+            
+            
+            $resval = (array)json_decode(end($data), true);
+            $psn = $resval['message'];
+            $user = $resval['data'];
+            $auth = $headers['BABOO-AUTH-KEY'];
+            if (isset($resval['code']) && $resval['code'] == 200)
             {
-                $status = $resval['data']['code'];
-
+                $status = $resval['code'];
                 $this->session->set_userdata('userData', $user);
                 $this->session->set_userdata('hasPIN', $user['has_pin']);
                 $this->session->set_userdata('hasPhone', $user['phone_number']);
@@ -232,15 +268,14 @@ class C_Login extends MX_Controller
             }
             else
             {
-                $status = $resval['data']['code'];
+                $status = $resval['code'];
                 $this->session->set_flashdata('login_alert', '<script>
                   $(window).on("load", function(){
                     swal("Gagal", "'.$psn.'", "error");
-                    });
-                    </script>');
+                });
+                </script>');
                 redirect('login','refresh');
             }
-
             echo json_encode(array(
                 'status' => $status,
                 'data' => $user,
@@ -253,28 +288,44 @@ class C_Login extends MX_Controller
         error_reporting(0);
         $email = $this->input->post('emails', TRUE);
         $password = $this->input->post('passwords', TRUE);
-
         $userData = array(
             'username' => $email,
             'password' => $password
         );
-
         $this->form_validation->set_rules('emails', ' ', 'trim|required');
         $this->form_validation->set_rules('passwords', ' ', 'trim|required');
         $this->form_validation->set_error_delimiters('<div class="text-danger">', '</div>');
-
         if ($this->form_validation->run() == FALSE) {
             $this->index();
         }else{
-            $resval = $this->curl_request->curl_post_auth($this->API.'/login', $userData, '');
-
-            $psn = $resval['data']['message'];
-            $user = $resval['data']['data'];
-            $auth = $resval['bbo_auth'];
-            if (isset($resval['data']['code']) && $resval['data']['code'] == 200)
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $this->API.'/login');
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $userData);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+            curl_setopt($ch, CURLOPT_HEADER, 1);
+            $result = curl_exec($ch);
+            
+            $headers=array();
+            $data=explode("\n",$result);
+            array_shift($data);
+            foreach($data as $part){
+                $middle=explode(":",$part);
+                if (error_reporting() == 0) {
+                    $headers[trim($middle[0])] = trim($middle[1]);
+                }
+            }
+            
+            
+            $resval = (array)json_decode(end($data), true);
+            $psn = $resval['message'];
+            $user = $resval['data'];
+            $auth = $headers['BABOO-AUTH-KEY'];
+            if (isset($resval['code']) && $resval['code'] == 200)
             {
-                $status = $resval['data']['code'];
-
+                $status = $resval['code'];
                 $this->session->set_userdata('userData', $user);
                 $this->session->set_userdata('hasPIN', $user['has_pin']);
                 $this->session->set_userdata('hasPhone', $user['phone_number']);
@@ -293,12 +344,12 @@ class C_Login extends MX_Controller
             }
             else
             {
-                $status = $resval['data']['code'];
+                $status = $resval['code'];
                 $this->session->set_flashdata('login_alert', '<script>
                   $(window).on("load", function(){
                     swal("Gagal", "'.$psn.'", "error");
-                    });
-                    </script>');
+                });
+                </script>');
                 redirect('login#event','refresh');
             }
             echo json_encode(array(
@@ -316,7 +367,6 @@ class C_Login extends MX_Controller
         $pass = $this->input->post('password', TRUE);
         $tgl = $this->input->post('tgl_lahir', TRUE);
         $jk = $this->input->post('j_kelamin', TRUE);
-
         $userData = array(
             'fullname' => $name, 
             'email' => $email, 
@@ -326,40 +376,61 @@ class C_Login extends MX_Controller
             'created' => date("Y-m-d H:i:s"), 
             'modify' => date("Y-m-d H:i:s") 
         );
-        $resval = $this->curl_request->curl_post_auth($this->API.'/register', $userData, '');
-
-        $psn = $resval['data']['message'];
-        $user = $resval['data']['data'];
-        $auth = $resval['bbo_auth'];
-        $status = $resval['data']['code'];
-        if (isset($resval['data']['code']) && $resval['data']['code'] == 200)
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $this->API.'/register');
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $userData);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+        curl_setopt($ch, CURLOPT_HEADER, 1);
+        $result = curl_exec($ch);
+        
+        $headers=array();
+        $data=explode("\n",$result);
+        array_shift($data);
+        foreach($data as $part){
+            $middle=explode(":",$part);
+            if (error_reporting() == 0) {
+                $headers[trim($middle[0])] = trim($middle[1]);
+            }
+        }
+        
+        
+        $resval = (array)json_decode(end($data), true);
+        $psn = $resval['message'];
+        $user = $resval['data'];
+        $auth = $headers['BABOO-AUTH-KEY'];
+        $status = $resval['code'];
+        if (isset($resval['code']) && $resval['code'] == 200)
         {
-            // $status = $resval['data']['code'];
-
+            // $status = $resval['code'];
             $this->session->set_userdata('userData', $user);
             $this->session->set_userdata('hasPIN', $user['has_pin']);
             $this->session->set_userdata('hasPhone', $user['phone_number']);
             $this->session->set_userdata('authKey', $auth);
             $this->session->set_userdata('isLogin', $status);
             
-            if ($this->agent->is_mobile()) {
-                redirect("firstlogin");
-            }else{
-                redirect("complete_profile");
+            if ($user['is_newuser'] == true || $user['is_newuser'] == 1) {
+                   if ($this->agent->is_mobile()) {
+                    redirect("firstlogin");
+                }else{
+                    redirect("complete_profile");
+                }
             }
         }else{
             $this->session->set_flashdata('isRegistered', '<script>
-              $(window).on("load", function(){
-                swal("Gagal", "'.$psn.'", "error");
+                  $(window).on("load", function(){
+                    swal("Gagal", "'.$psn.'", "error");
                 });
                 </script>');
             redirect('login#btndaftar');
         }
-
         echo json_encode(array(
             'status' => $status,
             'data' => $user,
             'message' => $psn
         ));
     }
+    
 }

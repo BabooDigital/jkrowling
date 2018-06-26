@@ -41,7 +41,7 @@
 								<a href="#" class="mb-10 list-group-item-action liststyle_">Pengaturan Aplikasi</a>
 								<a href="#" class="mb-10 list-group-item-action liststyle_">Bantuan</a> -->
 								<a href="<?php echo site_url('tnc'); ?>" class="mb-10 list-group-item-action liststyle_">Terms &amp; Condition</a>
-								<a href="<?php echo site_url(); ?>forgot-pass" class="mb-10 list-group-item-action liststyle_">Ubah Password</a>
+								<a href="<?php echo site_url(); ?>change-pass" class="mb-10 list-group-item-action liststyle_">Ubah Password</a>
 								<a href="<?php echo site_url(); ?>logout" class="mb-10 list-group-item-action liststyle_">Keluar</a>
 							</div>
 						</div>

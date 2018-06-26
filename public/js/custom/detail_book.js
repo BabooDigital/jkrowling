@@ -10,8 +10,10 @@ $(document).ready(function() {
         var formdata = new FormData();
 
         formdata.append("user_prf", usr_prf);
+        formdata.append("csrf_test_name", csrf_value);
         var url = base_url+'profile/'+usr_name;
         var form = $('<form action="' + url + '" method="post">' +
+          '<input type="hidden" name="' + csrf_name + '" value="' + csrf_value + '" />' +
           '<input type="hidden" name="usr_prf" value="' + usr_prf + '" />' +
           '<input type="hidden" name="usr_name" value="' + usr_name + '" />' +
           '</form>');
@@ -77,70 +79,101 @@ $(document).ready(function() {
 		var a = $(this).parents(".textp").attr("data-text");
 		$(".append_txt").text(a)
 	});
-	$(document).on("click",
-		".post-comment",
-		function() {
-			$(this);
-			var a = new FormData,
-			b = $("#comments").val();
-			if (null == b || "" == b) alert("Anda harus masukan karakter");
-			else {
-				var c = $("#profpict").attr("src"),
-				d = $("#profname").text(),
-				e = +$("#commentcount").text() + 1;
-				b = "<div class='commentviewnull'><div class='media'> <img class='d-flex align-self-start mr-20 rounded-circle' width='50' height='50' src='" + c + "'> <div class='media-body'> <h5 class='nametitle2 mb-5'>" + d + "</h5> <small><span>Jakarta, Indonesia</span></small> </div> </div> <div class='mt-10'> <p class='fs-14px' id='nullcomment'>" +
-				b + "</p> </div> <hr></div>";
-				$("#bookcomment_list").append(b);
-				a.append("user_id", $("#iaiduui").val());
-				a.append("book_id", $("#iaidubi").val());
-				a.append("comments", $("#comments").val());
-				a.append("csrf_test_name", csrf_value);
-				$.ajax({
-					url: base_url + "commentbook",
-					type: "POST",
-					dataType: "JSON",
-					cache: !1,
-					contentType: !1,
-					processData: !1,
-					data: a
-				}).done(function(a) {
-					$("span[id='commentcount']").text(e);
-					null == a && ($(".commentviewnull").hide(), console.log("Koneksi Bermasalah"));
-					$("#comments").val("")
-				}).fail(function() {
-					console.log("error")
-				}).always(function() {})
-			}
-		});
-	$(document).on("click", ".post-comment-parap", function() {
-		var a = $(this),
-		b = new FormData,
-		c = $("#pcomments").val(),
-		d = $("#profpict").attr("src"),
-		e = $("#profpict").attr("alt");
-		c = "<div class='pcommentviewnull'><div class='media'> <img class='d-flex align-self-start mr-20 rounded-circle' src='" + d + "' width='48' height='48' alt='" + e + "'> <div class='media-body mt-5'> <p><h5 class='card-title nametitle3'><a href='#'>" + e + "</a><small><span class='text-muted ml-10 timepost'>Just now</span></small></h5> <div class='text-muted' style='margin-top:-10px;'></div></p> <p style='font-size:16px; font-family: Roboto;'>" +
-		c + "</p></div> </div><hr></div>";
-		$("#paragraphcomment_list").append(c);
-		b.append("user_id", $("#iaiduui").val());
-		b.append("paragraph_id", a.attr("data-p-id"));
-		b.append("comments", $("#pcomments").val());
-		b.append("csrf_test_name", csrf_value);
-		$.ajax({
-			url: base_url + "commentbook",
-			type: "POST",
-			dataType: "JSON",
-			cache: !1,
-			contentType: !1,
-			processData: !1,
-			data: b
-		}).done(function(a) {
-			null == a && ($(".pcommentviewnull").hide(),
-				console.log("Koneksi Bermasalah"));
-			$("#pcomments").val("")
-		}).fail(function() {
-			console.log("error")
-		}).always(function() {})
-	});
+	$(document).on("click", ".post-comment", function() {
+        var boo = $(this);
+        $('textarea.mention').mentionsInput('val', function(text) {
+            if(post_text != '')
+            {
+                var post_text = text;
+                var post_data = "book_id="+$("#iaidubi").val()+"&comments="+post_text+"&csrf_test_name="+csrf_value;
+                $.ajax({
+                    url: base_url + "commentbook",
+                    type: "POST",
+                    dataType: "JSON",
+                    data: post_data,
+                    beforeSend: function() {
+                        $(".loader").show()
+                    }
+                }).done(function(a) {
+                    null == a && ($(".coment_").hide(), console.log("Koneksi Bermasalah"));
+                    $("textarea.mention").mentionsInput('reset');
+                    $(".loader").hide();
+                    var ava;
+                    if (a.comment_user_avatar == null || a.comment_user_avatar == "") {
+                        var ava = base_url+"public/img/profile/blank-photo.jpg";
+                    }else{
+                        var ava = a.comment_user_avatar;
+                    }
+                    dats = "<div class='media pb-15 mb-15 coment_'> <img class='d-flex align-self-start mr-15 rounded-circle' src='"+ava+"' width='40' height='40' alt='"+a.comment_user_name+"' style='object-fit:cover;'> <div class='media-body'> <a href='#'><span class='card-title' style='font-size: 12pt;font-weight: 800;'>"+a.comment_user_name+"</span></a><div class='dropdown right-posi'> <button aria-expanded='false' aria-haspopup='true' class='btn-clear' data-toggle='dropdown' id='dropEditComm' style='font-size:11pt;' type='button'>&#8226;&#8226;&#8226;</button> <div aria-labelledby='dropEditComm' class='dropdown-menu'> <a class='dropdown-item editcomm' href='javascript:void(0);' dataedit='"+a.comment_id+"' datacom='"+a.comment_text+"'><img src='"+base_url+"public/img/assets/icon_pen.svg'> Ubah Komentar</a> <hr style='margin-top: 10px !important;margin-bottom: 10px !important;'> <a class='dropdown-item delcomm' href='javascript:void(0);' datadel='"+a.comment_id+"'><img src='"+base_url+"public/img/icon-tab/dustbin.svg'> Hapus Komentar</a> </div></div> <p class='commenttxt' com-id='"+a.comment_id+"'>"+a.comment_text+"</p><div><small><span class='text-muted'>"+a.comment_time+"</span> <a href='javascript:void(0);' class='ml-20 replcom' com-id='"+a.comment_id+"' com-name='" + a.comment_user_name + "'>Balas</a></small></div></div></div>";
+                    $("#bookcomment_list").append(dats);
+                }).fail(function() {
+                    console.log("error")
+                }).always(function() {})
+            } else {
+
+            }
+        });
+        });
+	// $(document).on("click", ".post-comment-parap", function() {
+	// 	var a = $(this),
+	// 	b = new FormData,
+	// 	c = $("#pcomments").val(),
+	// 	d = $("#profpict").attr("src"),
+	// 	e = $("#profpict").attr("alt");
+	// 	c = "<div class='pcommentviewnull'><div class='media'> <img class='d-flex align-self-start mr-20 rounded-circle' src='" + d + "' width='48' height='48' alt='" + e + "'> <div class='media-body mt-5'> <p><h5 class='card-title nametitle3'><a href='#'>" + e + "</a><small><span class='text-muted ml-10 timepost'>Just now</span></small></h5> <div class='text-muted' style='margin-top:-10px;'></div></p> <p style='font-size:16px; font-family: Roboto;'>" +
+	// 	c + "</p></div> </div><hr></div>";
+	// 	$("#paragraphcomment_list").append(c);
+	// 	b.append("user_id", $("#iaiduui").val());
+	// 	b.append("paragraph_id", a.attr("data-p-id"));
+	// 	b.append("comments", $("#pcomments").val());
+	// 	b.append("csrf_test_name", csrf_value);
+	// 	$.ajax({
+	// 		url: base_url + "commentbook",
+	// 		type: "POST",
+	// 		dataType: "JSON",
+	// 		cache: !1,
+	// 		contentType: !1,
+	// 		processData: !1,
+	// 		data: b
+	// 	}).done(function(a) {
+	// 		null == a && ($(".pcommentviewnull").hide(),
+	// 			console.log("Koneksi Bermasalah"));
+	// 		$("#pcomments").val("")
+	// 	}).fail(function() {
+	// 		console.log("error")
+	// 	}).always(function() {})
+	// });
+
+	// MENTION AND COMMENT
+    $('textarea.mention').mentionsInput({
+        onDataRequest:function (mode, query, callback) {
+            // Search User with API Search..
+            var valnya = $(this).val();
+            var cut    = valnya.substr(1);
+            var post_data = "search="+cut+"&csrf_test_name="+csrf_value;
+            $.ajax({
+                url: base_url+"users",
+                type: 'POST',
+                dataType: 'JSON',
+                data: post_data,
+            })
+            .done(function(responseData) {
+                responseData = _.filter(responseData, function(item) { return item.fullname.toLowerCase().indexOf(query.toLowerCase()) > -1 });
+             callback.call(this, responseData);
+            })
+            .fail(function() {
+                console.log("Something wrong..");
+            })
+            .always(function() {
+            });
+            
+            // $.getJSON(base_url+"user_all",{search: cut}, function(responseData) {
+            //    responseData = _.filter(responseData, function(item) { return item.fullname.toLowerCase().indexOf(query.toLowerCase()) > -1 });
+            //    callback.call(this, responseData);
+            // });
+       }
+   });
+    
 	$(document).on("click", ".like", function() {
 		var a = $(this),
 		b = new FormData,
@@ -271,7 +304,6 @@ $(document).ready(function() {
 	$(document).on("click", ".share-fb", function() {
 		$(this);
 		var a = new FormData;
-		a.append("csrf_test_name", csrf_value);
 		$("#iaidubi").val();
 		var b = $(".dbooktitle").text();
 		c = +$("#sharecount").text() + 1;
@@ -290,7 +322,7 @@ $(document).ready(function() {
 				}
 			})
 		}, function(b) {
-			b && !b.error_message && (a.append("user_id", $("#iaiduui").val()), a.append("book_id", $("#iaidubi").val()), $.ajax({
+			b && !b.error_message && (a.append("csrf_test_name", csrf_value),a.append("user_id", $("#iaiduui").val()), a.append("book_id", $("#iaidubi").val()), $.ajax({
 				url: base_url + "shares",
 				type: "POST",
 				dataType: "JSON",
@@ -544,30 +576,44 @@ function getContent(d, c) {
 }
 
 function getCommentBook() {
-	$.ajax({
-		url: base_url + "getcommentbook",
-		type: "POST",
-		dataType: "json",
-		data: {
-			book_id: segment,
-			csrf_test_name: csrf_value
-		},
-		beforeSend: function() {
-			$(".loader").show()
-		}
-	}).done(function(d) {
-		var c = "";
-		$.each(d, function(d, a) {
-			var b;
-			"" != a.comment_user_avatar ? b = a.comment_user_avatar : "" == a.comment_user_avatar && (b = base_url + "public/img/profile/blank-photo.jpg");
-			c += "<div class='commentview'><div class='media'> <img class='d-flex align-self-start mr-20 rounded-circle' width='50' height='50' src='" +
-			b + "'> <div class='media-body'> <h5 class='nametitle2 mb-5'>" + a.comment_user_name + "</h5> <small><span>Jakarta, Indonesia</span></small> </div> </div> <div class='mt-10'> <p class='fs-14px' id='" + a.comment_id + "'>" + a.comment_text + "</p> </div> <hr></div>"
-		});
-		$(".loader").hide();
-		$("#bookcomment_list").html(c)
-	}).fail(function() {
-		console.log("error")
-	}).always(function() {})
+	    var b = $("#iaidubi").val();
+    $.ajax({
+        url: base_url + "getcommentbook",
+        type: "POST",
+        dataType: "json",
+        data: {
+            book_id: b,
+            csrf_test_name: csrf_value
+        },
+        beforeSend: function() {
+            $(".loader").show()
+        }
+    }).done(function(a) {
+        var b = "";
+        $.each(a, function(a, d) {
+            var c;
+            "" != d.comment_user_avatar ? c = d.comment_user_avatar : "" == d.comment_user_avatar && (c = base_url+"public/img/profile/blank-photo.jpg");
+            b += "<div class='media pb-15 mb-15 coment_' id='" + d.comment_id + "'> <img class='d-flex align-self-start mr-15 rounded-circle' src='" + c + "' width='40' height='40' alt='" + d.comment_user_name +
+            "' style='object-fit:cover;'> <div class='media-body'> <a href='#'><span class='card-title' style='font-size: 12pt;font-weight: 800;'>" + d.comment_user_name + "</span></a>"; 
+            if (d.comment_user_id == userdata) {
+                b += "<div class='dropdown right-posi'> <button aria-expanded='false' aria-haspopup='true' class='btn-clear' data-toggle='dropdown' id='dropEditComm' style='font-size:11pt;' type='button'>&#8226;&#8226;&#8226;</button> <div aria-labelledby='dropEditComm' class='dropdown-menu'> <a class='dropdown-item editcomm' href='javascript:void(0);' dataedit='"+d.comment_id+"' datacom='"+d.comment_text+"'><img src='"+base_url+"public/img/assets/icon_pen.svg'> Ubah Komentar</a> <hr style='margin-top: 10px !important;margin-bottom: 10px !important;'> <a class='dropdown-item delcomm' href='javascript:void(0);' datadel='"+d.comment_id+"'><img src='"+base_url+"public/img/icon-tab/dustbin.svg'> Hapus Komentar</a> </div></div> ";
+            }else{
+                b += "<div></div>";
+            }
+            b += "<p class='commenttxt' com-id='" + d.comment_id + "'>" + d.comment_text + "</p><div><small><span class='text-muted'>" + d.comment_date + "</span> <a href='javascript:void(0);' class='ml-20 replcom' com-id='" + d.comment_id + "' com-name='" + d.comment_user_name + "'>Balas</a></small></div><div class='data-reply' data-reply='" + d.comment_id + "'>";
+            $.each(d.comment_reply_data, function(d, repl) {
+                var names = repl.comment_user_name.substr(0,repl.comment_user_name.indexOf(' '));
+                b += "<div class='mt-5'> <img src='"+repl.comment_user_avatar+"' width='20' height='20' class='rounded-circle fitcover'><a src='#' class='ml-10' style='font-weight: 600;'>"+names+"</a><span class='ml-10 commenttxt'>"+repl.comment_text+"</span></div>";
+            });
+            b += "</div></div></div>";
+            // <a href='#' class='float-right'>Like</a>
+        });
+        $(".loader").hide();
+
+        $("#bookcomment_list").html(b);
+    }).fail(function() {
+        console.log("error")
+    }).always(function() {})
 }
 
 function ScrollToBottom(d) {
@@ -578,3 +624,133 @@ function ScrollToBottom(d) {
 function convertToSlug(d) {
 	return d.toLowerCase().replace(/[^\w ]+/g, "").replace(/ +/g, "-")
 };
+
+$(document).on('click', '.replcom', function() {
+    event.preventDefault();
+    /* Act on the event */
+    var boo = $(this);
+    var name = '@'+boo.attr('com-name').replace(/\s/g, '')+' ';
+    var comid = boo.attr("com-id");
+    $('#comments').val(name).focus();
+
+    $('.post-comment').hide();
+    var btn = "<button class='post-comment-repl' type='button' style='background: none;border: none;' com_id='"+comid+"'><img src='"+base_url+"public/img/assets/icon_sendcomm.png' width='43' height='43'></button>";
+    $('#btn-com').html(btn);
+});
+$(document).on('click', '.post-comment-repl', function(event) {
+    event.preventDefault();
+    /* Act on the event */
+    var boo = $(this);
+    var comid_ = boo.attr('com_id')
+    var formData = new FormData();
+    formData.append('comment_id', comid_);
+    formData.append('comments', $('#comments').val());
+    formData.append('csrf_test_name', csrf_value);
+    $.ajax({
+        url: base_url+'replycom',
+        type: 'POST',
+        dataType: 'JSON',
+        cache: false,
+        contentType: false,
+        processData: false,
+        data: formData,
+        beforeSend: function() {
+            $(".loader").show()
+        }
+    })
+    .done(function(a) {
+        // null == a && ($(".rcommentviewnull").hide(), console.log("Koneksi Bermasalah"));
+        $("#comments").val("");$("textarea.mention").mentionsInput('reset');
+        $(".loader").hide();
+        var names = a.comment_user_name.substr(0,a.comment_user_name.indexOf(' '));
+        dats = "<div class='mt-5'> <img src='"+a.comment_user_avatar+"' width='20' height='20' class='rounded-circle fitcover'><a src='#' class='ml-10' style='font-weight: 600;'>"+names+"</a><span class='ml-10 commenttxt'>"+a.comment_text+"</span> ";
+        if (a.comment_user_id == userdata) {
+            dats += "<div class='dropdown right-posi'> <button aria-expanded='false' aria-haspopup='true' class='btn-clear' data-toggle='dropdown' id='dropEditComm' style='font-size:11pt;' type='button'>&#8226;&#8226;&#8226;</button> <div aria-labelledby='dropEditComm' class='dropdown-menu'> <a class='dropdown-item editcomm' href='javascript:void(0);' dataedit='"+a.comment_id+"' datacom='"+a.comment_text+"'><img src='"+base_url+"public/img/assets/icon_pen.svg'> Ubah Komentar</a> <hr style='margin-top: 10px !important;margin-bottom: 10px !important;'> <a class='dropdown-item delcomm' href='javascript:void(0);' datadel='"+a.comment_id+"'><img src='"+base_url+"public/img/icon-tab/dustbin.svg'> Hapus Komentar</a> </div></div> ";
+        }else{
+            dats += "</div>";
+        }
+        $("#"+comid_).find(".data-reply").attr('data-reply', comid_).append(dats);
+        var btn = "<button class='post-comment' type='button' style='background: none;border: none;'><img src='"+base_url+"public/img/assets/icon_sendcomm.png' width='43' height='43'></button>";
+        $('#btn-com').html(btn);
+    })
+    .fail(function() {
+        console.log("error");
+    })
+    .always(function() {
+    });
+    
+});
+$(document).on('click', '.delcomm', function(event) {
+    event.preventDefault();
+    /* Act on the event */
+    var boo = $(this);
+    var formData = new FormData();
+    formData.append('comment_id', boo.attr('datadel'));
+    formData.append("csrf_test_name", csrf_value);
+    $.ajax({
+        url: base_url+'delcom',
+        type: 'POST',
+        dataType: 'JSON',
+        cache: false,
+        contentType: false,
+        processData: false,
+        data: formData,
+        beforeSend: function() {
+            $(".loader").show()
+        }
+    })
+    .done(function(data) {
+        if (data == 200) {
+            var idc = boo.attr('datadel');
+            boo.parents('.coment_').attr('id', idc).remove();
+            $(".loader").hide();
+        }
+    })
+    .fail(function() {
+        console.log("error");
+    })
+    .always(function() {
+    });
+    
+});
+$(document).on('click', '.editcomm', function(event) {
+    var txt = $(this).attr('datacom');
+    var dat = $(this).attr('dataedit');
+    $('.commentform').attr('id', 'commentsed');
+    $('#btn-com').children('button').removeClass('post-comment').addClass('post-editcomment').attr('dataedit', dat);
+    $('#commentsed').focus();
+    $('#commentsed').val(txt);
+});
+$(document).on('click', '.post-editcomment', function(event) {
+    event.preventDefault();
+    /* Act on the event */
+    var boo = $(this);
+    var formData = new FormData();
+    formData.append('commentupdate_id', boo.attr('dataedit'));
+    formData.append('comments', $('#commentsed').val());
+    formData.append("csrf_test_name", csrf_value);
+    $.ajax({
+        url: base_url+'editcom',
+        type: 'POST',
+        dataType: 'JSON',
+        cache: false,
+        contentType: false,
+        processData: false,
+        data: formData,
+        beforeSend: function() {
+            $(".loader").show();
+        }
+    })
+    .done(function(data) {
+        // if (data.code == 200) {
+            // $(".loader").hide();
+        // }else{
+            location.reload();
+        // }
+    })
+    .fail(function() {
+        console.log("error");
+    })
+    .always(function() {
+    });
+});

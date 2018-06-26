@@ -53,8 +53,10 @@ $(document).ready(function() {
         var formdata = new FormData();
 
         formdata.append("user_prf", usr_prf);
+        formdata.append("csrf_test_name", csrf_value);
         var url = base_url+'profile/'+usr_name;
         var form = $('<form action="' + url + '" method="post">' +
+          '<input type="hidden" name="' + csrf_name + '" value="' + csrf_value + '" />' +
           '<input type="hidden" name="usr_prf" value="' + usr_prf + '" />' +
           '<input type="hidden" name="usr_name" value="' + usr_name + '" />' +
           '</form>');
@@ -333,7 +335,7 @@ $(document).on("click", ".share-fb", function() {
             }
         })
     }, function(a) {
-        a && !a.error_message && (e.append("user_id", $("#iaiduui").val()), e.append("book_id", $("#iaidubi").val()), $.ajax({
+        a && !a.error_message && (e.append("csrf_test_name", csrf_value),e.append("user_id", $("#iaiduui").val()), e.append("book_id", $("#iaidubi").val()), $.ajax({
             url: base_url + "shares",
             type: "POST",
             dataType: "JSON",
@@ -347,3 +349,79 @@ $(document).on("click", ".share-fb", function() {
         }).always(function() {}))
     })
 });
+// LIKE BUTTON
+  $(document).on('click', '.like', function() {
+    var aww = $(this);
+    var formData = new FormData();
+    var txt = + aww.parents(".card").find(".like_countys").text() + 1;
+    aww.children('.loveicon').attr("src", base_url+"public/img/assets/love_active.svg");
+    formData.append("user_id", $("#iaiduui").val());
+    formData.append("book_id", aww.attr("data-id"));
+    formData.append("csrf_test_name", csrf_value);
+    $.ajax({
+      url: base_url + 'like',
+      type: 'POST',
+      dataType: 'JSON',
+      cache: false,
+      contentType: false,
+      processData: false,
+      data: formData
+    })
+    .done(function(data) {
+        // $('.loader').hide();
+        if (data.code == null || data.code == 403 || data.code == 404) {
+          aww.children('.loveicon').attr("src", base_url+"public/img/assets/icon_love.svg");
+        } else {
+          aww.parents(".card").find(".like_countys").text(txt);
+          aww.removeClass('like');
+          aww.addClass('unlike');
+          aww.children('.loveicon').attr("src", base_url+"public/img/assets/love_active.svg");
+        }
+      })
+    .fail(function() {
+      console.log("Failure");
+    })
+    .always(function() {});
+
+  });
+
+  // UNLIKE BUTTON
+  $(document).on('click', '.unlike', function() {
+
+    var aww = $(this);
+    var formData = new FormData();
+    var txt = + aww.parents(".card").find(".like_countys").text() - 1;
+
+    aww.children('.loveicon').attr("src", base_url+"public/img/assets/icon_love.svg");
+    formData.append("user_id", $("#iaiduui").val());
+    formData.append("book_id", aww.attr("data-id"));
+    formData.append("csrf_test_name", csrf_value);
+    $.ajax({
+      url: base_url + 'like',
+      type: 'POST',
+      dataType: 'JSON',
+      cache: false,
+      contentType: false,
+      processData: false,
+      data: formData,
+        // beforeSend: function() {
+        // }
+      })
+    .done(function(data) {
+        // $('.loader').hide();
+        if (data.code == null || data.code == 403 || data.code == 404) {
+          aww.children('.loveicon').attr("src", base_url+"public/img/assets/love_active.svg");
+        } else {
+          aww.removeClass('unlike');
+          aww.addClass('like');
+          aww.parents(".card").find(".like_countys").text(txt);
+          aww.children('.txtlike').text('Suka');
+          aww.children('.loveicon').attr("src", base_url+"public/img/assets/icon_love.svg");
+        }
+      })
+    .fail(function() {
+      console.log("Failure");
+    })
+    .always(function() {});
+
+  });

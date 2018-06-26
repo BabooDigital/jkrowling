@@ -11,7 +11,6 @@ class C_pin_auth extends MX_Controller {
 		$api_url = checkBase();
 		$this->API = $api_url;
 		
-		$usrPin = $this->session->userdata('hasPIN');
 		if ($this->session->userdata('isLogin') != 200) {
 			$this->session->set_flashdata('fail_alert', '<script>
 					swal("Gagal", "Maaf, sepertinya anda sudah membuat PIN", "warning");
@@ -35,15 +34,26 @@ class C_pin_auth extends MX_Controller {
 
 	public function second()
 	{
-		$data['title'] = 'Aktivasi Data Diri - Buka Dompet | Baboo.id';
+		$usrPin = $this->session->userdata('hasPIN');
+		if ($usrPin == 0) {
+			$data['title'] = 'Aktivasi Data Diri - Buka Dompet | Baboo.id';
 
-		if ($this->agent->is_mobile()) {
-			$this->load->view('inc/head', $data, FALSE);
-			$this->load->view('second_activation');
-		}else {
-			$this->load->view('inc/head', $data, FALSE);
-			$this->load->view('second_activation');
+			if ($this->agent->is_mobile()) {
+				$this->load->view('inc/head', $data, FALSE);
+				$this->load->view('second_activation');
+			}else {
+				$this->load->view('inc/head', $data, FALSE);
+				$this->load->view('second_activation');
+			}
+		}else{
+			$this->session->set_flashdata('fail_alert', '<script>
+				$(window).on("load", function(){
+					swal("Gagal", "Maaf, terjadi sebuah kesalahan", "error");
+					});
+					</script>');
+			redirect('profile','refresh');
 		}
+		
 	}
 
 	public function third()

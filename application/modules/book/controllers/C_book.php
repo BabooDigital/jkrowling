@@ -518,7 +518,7 @@ class C_book extends MX_Controller
     }
 public function token_pay()
 {
-    $params = array('server_key' => 'SB-Mid-server-4bmgeo85fTsjFQccrdZt6T6E', 'production' => false);
+    $params = array('server_key' => MID_SERVER, 'production' => MID_STAT_PROD);
     $this->load->library('midtrans');
     $this->midtrans->config($params);
     $user = $this->session->userdata('userData');
@@ -647,15 +647,17 @@ public function postEditComment()
 {
     error_reporting(0);
     $auth = $this->session->userdata('authKey');
-    $com_id = $this->input->post('comment_id');
+    $com_id = $this->input->post('commentupdate_id');
+    $comment = $this->input->post('comments');
 
     $sendData = array(
-        'comment_id' => $com_id
+        'commentupdate_id' => $com_id,
+        'comments' => ' '.$comment
     );
 
     $resval = $this->curl_request->curl_post_auth($this->API.'book/Books/addComment', $sendData, $auth);
 
-    $comm_data = $resval['data']['data'];
+    $comm_data = $resval['data'];
 
     $auth = $resval['bbo_auth'];
     $this->session->set_userdata('authKey', $auth);

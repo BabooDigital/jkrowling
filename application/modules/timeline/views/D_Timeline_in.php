@@ -6,6 +6,7 @@ echo "<script>(function(d, s, id) {
 	js.src = 'https://connect.facebook.net/id_ID/sdk.js#xfbml=1&version=v2.12&appId=".APPID_FB."';
 	fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>";
+echo "<script async src='//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'></script>";
 ?>
 <?php $this->load->view('navbar/D_navbar'); ?>
 <div class="container babooidin">
@@ -45,14 +46,9 @@ echo "<script>(function(d, s, id) {
 				</div>
                 <div class="side-card mb-15" style="background: transparent;">
                     <div class="card-body p-0">
-                        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                        <ins class="adsbygoogle"
-                             style="display:inline-block;width:300px;height:250px"
-                             data-ad-client="ca-pub-4994852796413443"
-                             data-ad-slot="7276054409"></ins>
-                        <script>
-                            (adsbygoogle = window.adsbygoogle || []).push({});
-                        </script>
+                    	<!-- Disamping -->
+                    	<?php echo "<ins class='adsbygoogle' style='display:inline-block;width:250px;height:250px' data-ad-client='".AD_CLIENT."' data-ad-slot='".AD_SLOT."'></ins>" ?>
+                    	<script> (adsbygoogle = window.adsbygoogle || []).push({}); </script>
                     </div>
                 </div>
 			</div>

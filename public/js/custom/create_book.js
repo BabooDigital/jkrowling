@@ -114,6 +114,8 @@ $(document).ready(function() {
     	}
     	formData.append("is_paid", true);
     }
+    	formData.append("csrf_test_name", csrf_value);
+
       var cat = $("#category_id").val();
       var tnc = $('.checktnc:checkbox:checked');
 
@@ -214,13 +216,14 @@ $(document).ready(function() {
 				formData.append("cover_name", $('#cover_name').val());
 				formData.append("category_id", $("#category_id").val());
 				formData.append("user_id", $("#user_id").val());
+				formData.append("csrf_test_name", csrf_value);
 				// formData.append("tag_book", $("#tag_book").val());
 				formData.append("book_paragraph", $("#book_paragraph").val());
 				if ($("#book_id").val() != null) {
 					formData.append("book_id", $("#book_id").val());
-					for (var pair of formData.entries()) {
+					// for (var pair of formData.entries()) {
 						// console.log(pair[0]+ ', ' + pair[1]); 
-					}
+					// }
 				} else {
 					console.log('tidak');
 				}
@@ -231,7 +234,7 @@ $(document).ready(function() {
 						"type": "POST",
 						"contentType": false,
 						"processData": false,
-						"data": {formData, csrf_test_name: csrf_value}
+						"data": formData
 					})
 					.done(function(data) {
 						HoldOn.close();
@@ -244,7 +247,7 @@ $(document).ready(function() {
 						for (var pair of formData.entries()) {
 						    console.log(pair[0]+ ', ' + pair[1]); 
 						}
-						location.reload();
+						// location.reload();
 						$("#title_chapter").show();
 						$("#title_chapter").val();
 						$("#title_book").hide();
@@ -299,7 +302,7 @@ $(document).ready(function() {
 							$(this).hide();
 							n();
 						});
-						location.reload();
+						// location.reload();
 						$("#title_chapter").show();
 						$("#title_chapter").val();
 						$("#title_book").hide();
@@ -364,7 +367,7 @@ $(document).ready(function() {
 						$(this).hide();
 						n();
 					});
-					location.reload();
+					// location.reload();
 					// var url = data['data']['book_id'] + '/chapter/' + data['data']['chapter_id'];
 					// url_redirect += 'create_book/' + data['data']['book_id'];
 					// aww.replaceWith('<a class="btn w-100 mb-10 chapterdata0 editsubchapt' + count + ' addsubchapt_on" book="' + data['data']['book_id'] + '" chapter="' + data['data']['chapter_id'] + '" id="editchapt" href="' + url + '">' + $("#title_book").val() + '</a>');
@@ -406,7 +409,7 @@ $(document).ready(function() {
 						$(this).hide();
 						n();
 					});
-					location.reload();
+					// location.reload();
 					// var url = data['data']['book_id'] + '/chapter/' + data['data']['chapter_id'];
 					// url_redirect += 'create_book/' + data['data']['book_id'];
 					// aww.replaceWith('<a class="btn w-100 mb-10 chapterdata0 editsubchapt' + count + ' addsubchapt_on" book="' + data['data']['book_id'] + '" chapter="' + data['data']['chapter_id'] + '" id="editchapt" href="' + url + '">' + $("#title_book").val() + '</a>');
@@ -460,10 +463,9 @@ function showLoading() {
 function getChapter() {
 	$.ajax({
 		url: base_url+'getChapter',
-		data: {book_id: uri_segment},
+		data: {book_id: uri_segment,csrf_test_name: csrf_value},
 		type: 'POST',
 		dataType: 'json',
-		data: {csrf_test_name: csrf_value}
 	})
 	.done(function(data) {
 		var chapter = "";

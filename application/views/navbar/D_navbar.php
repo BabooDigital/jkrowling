@@ -53,6 +53,7 @@
 					<li class="nav-item ml-100 mr-30">
 						<form action="<?php echo site_url(); ?>createidbook" method="POST" class="mt-10">
 							<input type="hidden" name="iaiduui" id="iaiduui" value="<?php $name = $this->session->userdata('userData'); echo $name['user_id']; ?>">
+							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 							<button type="submit" class="nav-link btn-newstory" style="cursor: pointer;height: 33px;"><span><i class="fa fa-pencil-square-o"></i> Tulis Buku</span></button>
 						</form>
 					</li>

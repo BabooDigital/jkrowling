@@ -194,11 +194,11 @@ $this->load->view('navbar/D_navbar'); ?>
 			<div class="">
 				<div class="card mb-15">
 					<div class="text-center pr-10 pl-10 pt-20">
-						<div class="card-body p-0">
+						<div class="card-body p-0 mb-20">
 							<input type="hidden" id="iaiduui" name="iaiduui" value="<?php $name = $this->session->userdata('userData'); echo $name['user_id']; ?>">
 							<img alt="<?php echo $userdata['name']; ?>" class="rounded-circle p-5" height="100" src="<?php if($userdata['prof_pict'] == NULL){ echo base_url('public/img/profile/blank-photo.jpg'); }else{ echo $userdata['prof_pict']; } ?>" style="border: .5px #7554bd solid;" width="100">
 							<p class="mt-10"><b><?php echo $userdata['fullname']; ?></b></p>
-							<p>Jakarta, Indonesia</p>
+							<p style="font-size: 15px;"><?php echo $userdata['address']; ?></p>
 							<div class="quote">
 								<p><?php echo $userdata['about_me']; ?></p>
 							</div>
@@ -250,11 +250,11 @@ $this->load->view('navbar/D_navbar'); ?>
 												<a href="#"><img src="<?php echo base_url(); ?>public/img/assets/icon_soldbook.svg" width="27">
 													<p class="mt-5"><?php echo $userdata['book_sold']; ?></p></a>
 												</div><br><br><br>
-												<div class="mt-100 mb-20" style="background: #fcfbff;">
+												<!-- <div class="mt-100 mb-20" style="background: #fcfbff;">
 													<br>
 													<p><small style="color:#fcfbff;">Buku Terjual</small></p>
 													<p style="font-size: 25px;color: #7a5abf;font-weight: 700;"><?php echo 'Rp. '.number_format($userdata['balance'], 0, ',', '.'); ?></p>
-												</div>
+												</div> -->
 											<?php endif ?>
 										</div>
 									</div>
@@ -485,6 +485,7 @@ $this->load->view('navbar/D_navbar'); ?>
 						$(".chat").append(c);
 						b.append("user_to", $("#iuswithid").val());
 						b.append("message", ab.siblings("#pmessageas").val());
+      					b.append("csrf_test_name", csrf_value);
 						$.ajax({
 							url: base_url + "send_message",
 							type: "POST",
@@ -526,8 +527,10 @@ $this->load->view('navbar/D_navbar'); ?>
 						var formdata = new FormData();
 
 						formdata.append("user_msg", usr_with);
+     					formdata.append("csrf_test_name", csrf_value);
 						var url = base_url+'message/'+convertToSlug(usr_name);
 						var form = $('<form action="' + url + '" method="post">' +
+							'<input type="hidden" name="' + csrf_name + '" value="' + csrf_value + '" />' +
 							'<input type="hidden" name="usr_msg" value="' + usr_with + '" />' +
 							'<input type="hidden" name="usr_name" value="' + usr_name + '" />' +
 							'</form>');
@@ -544,6 +547,7 @@ $this->load->view('navbar/D_navbar'); ?>
 						var formdata = new FormData();
 						formdata.append('message', msg);
 						formdata.append('user_to', usr_input);
+						formdata.append("csrf_test_name", csrf_value);
 						$.ajax({
 							url: base_url+'send_message',
 							cache: false,
@@ -568,6 +572,7 @@ $this->load->view('navbar/D_navbar'); ?>
 							url: base_url + "detailMessage",
 							type: "POST",
 							dataType: "json",
+        					data: {csrf_test_name: csrf_value},
 							beforeSend: function () {
 
 							},

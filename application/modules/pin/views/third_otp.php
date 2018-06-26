@@ -74,7 +74,7 @@
 			</div>
 			<div class="row mt-15">
 				<div class="col-12">
-					<div class="text-white text-p text-center"><div class='timer' data-minutes-left=5></div><button class="btn-transparant ml-20 btn-senda disabled" disabled><small style="color:#fff;font-size: 15px;">Kirim Ulang</small></button></div>
+					<div class="text-white text-p text-center"><div class='timer' data-minutes-left='2'></div><button class="btn-transparant ml-20 btn-senda disabled" disabled><small style="color:#fff;font-size: 15px;">Kirim Ulang</small></button></div>
 				</div>
 			</div>
 		</div>

@@ -61,6 +61,7 @@ if (!empty($query['stat'])) {
 				<div class="container">
 					<form style="width: 100%;" method="post" action="<?php echo site_url('chapter') ?>">
 						<input type="hidden" name="book_id" value="<?php echo $book_id; ?>">
+						<input type="hidden" name="<?php echo $this->security->get_csrf_token_name();?>" value="<?php echo $this->security->get_csrf_hash();?>">
 						<button class="btn-publish" type="submit">Tambah Cerita Baru</button> 
 					</form>
 				</div>
