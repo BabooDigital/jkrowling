@@ -180,5 +180,5 @@ data-ad-slot	= ""
 data-ad-client	= "ca-pub-4994852796413443"
 data-ad-slot	= "7276054409"
 */
-defined('AD_CLIENT')	OR	define('AD_CLIENT', 'ca-pub-4994852796413443');
-defined('AD_SLOT')		OR	define('AD_SLOT', '7276054409');
+defined('AD_CLIENT')	OR	define('AD_CLIENT', 'ca-pub-3590496162921239');
+defined('AD_SLOT')		OR	define('AD_SLOT', '');
