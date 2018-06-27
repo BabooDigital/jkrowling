@@ -49,7 +49,7 @@ $("#btn_notif_comment").on('click', function(event) {
 });
 function count_notif() {
   $.ajax({
-    url: base_url+'notifications',
+    url: base_url+'notifupdate',
     type: 'POST',
     dataType: 'json',
     data: {csrf_test_name: csrf_value},
@@ -86,7 +86,7 @@ function load_notification() {
     $("#notifications").show();
     $('#notifications').show('slow/400/fast', function () {
       $.ajax({
-        url: base_url+'notifications',
+        url: base_url+'notifupdate',
         type: 'POST',
         dataType: 'json',
         data: {csrf_test_name: csrf_value},

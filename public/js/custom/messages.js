@@ -81,6 +81,7 @@ $(document).ready(function () {
         var formdata = new FormData();
 
         formdata.append("user_msg", usr_with);
+        formdata.append("csrf_test_name", csrf_value);
         var url = base_url+'message/'+convertToSlug(usr_name);
         var form = $('<form action="' + url + '" method="post">' +
           '<input type="hidden" name="' + csrf_name + '" value="' + csrf_value + '" />' +

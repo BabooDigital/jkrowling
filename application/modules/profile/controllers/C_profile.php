@@ -67,6 +67,7 @@ class C_profile extends MX_Controller {
 					$data['css'][] = "public/css/baboo.css";
 					$data['js'][] = "public/js/custom/profile_page.js";
 					$data['js'][] = "public/js/custom/cashout_auth.js";
+                	$data['js'][]   = "public/js/custom/search.js";
 
 					$this->load->view('include/head', $data);
 					$this->load->view('D_profile');
@@ -145,6 +146,7 @@ class C_profile extends MX_Controller {
 					}
 				}else{
 					$data['js'][] = "public/js/custom/profile_page.js";
+                	$data['js'][]   = "public/js/custom/search.js";
 
 					$this->load->view('include/head', $data);
 					$this->load->view('D_profile');
