@@ -96,7 +96,7 @@ URL = 'https://staging.baboo.id/'
 @@@ DEVELOPMENT @@@
 URL = 'https://dev-baboo.co.id/'
 */
-defined('BASE_URL_WEB')		OR define('BASE_URL_WEB', 'https://dev-baboo.co.id/');
+defined('BASE_URL_WEB')		OR define('BASE_URL_WEB', 'https://staging.baboo.id/');
 
 // CONFIG DB
 /*
