@@ -98,6 +98,7 @@ URL = 'https://dev-baboo.co.id/'
 */
 defined('BASE_URL_WEB')		OR define('BASE_URL_WEB', 'https://staging.baboo.id/');
 defined('BASE_URL_DEEPLINK')		OR define('BASE_URL_DEEPLINK', 'www.baboo.id/');
+
 // CONFIG DB
 /*
 @@@ STAGING @@@
