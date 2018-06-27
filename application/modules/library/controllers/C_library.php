@@ -50,6 +50,7 @@ class C_Library extends MX_Controller
             $this->load->view('R_library');
 
         }else{
+            $datas['js'][]   = "public/js/custom/search.js";
             $this->load->view('include/head', $datas);
             $this->load->view('D_library');
         }

@@ -26,12 +26,15 @@ class C_home extends MX_Controller {
 		
 		$this->curl_multiple->add_call("timeline","get",$this->API.'timeline/Home/index'.$id);
 		$this->curl_multiple->add_call("slider","get",$this->API.'timeline/Home/slideBook');
-		$this->curl_multiple->add_call("event","get",$this->API.'event/Events/getEvent');
+		$this->curl_multiple->add_call("writters", "get",$this->API.'timeline/Home/bestWriter');
+		// $this->curl_multiple->add_call("event","get",$this->API.'event/Events/getEvent');
 		$resval = $this->curl_multiple->execute();
 
 		$data['home'] = json_decode($resval['timeline']['response'], TRUE);
 		$data['slide'] = json_decode($resval['slider']['response'], TRUE);
-		$data['event'] = json_decode($resval['event']['response'], TRUE);
+		$data['writter'] = json_decode($resval['writters']['response'], TRUE);
+		// $data['event'] = json_decode($resval['event']['response'], TRUE);
+
 		$data['title'] = "Baboo - Make Money From Writing";
 		$data['js'][]   = "public/js/jquery.min.js";
 		$data['js'][]   = "public/plugins/infinite_scroll/jquery.jscroll.js";
@@ -67,13 +70,6 @@ class C_home extends MX_Controller {
 				$this->load->view('D_Timeline_out');
 			}
 		}
-	}
-	public function getWritter()
-	{
-		error_reporting(0);
-		$datas = $this->curl_request->curl_get($this->API.'timeline/Home/bestWriter', '', '');
-		
-		echo json_encode($datas['data'], true);
 	}
 	public function getBestBookEvent()
 	{

@@ -57,18 +57,18 @@ $route['login'] = 'auth/C_Login';
 $route['logout'] = 'timeline/C_timeline/signout';
 
 $route['booRegis'] = 'auth/C_Login/postregisteruser';
-$route['google_event'] = 'auth/C_Login/google_event';
-$route['facebook_event'] = 'auth/C_Login/facebook_event';
+// $route['google_event'] = 'auth/C_Login/google_event';
+// $route['facebook_event'] = 'auth/C_Login/facebook_event';
 
 /*Timeline*/
 $route['home'] = 'timeline/C_home';
 // $route['event'] = 'timeline/C_home';
-$route['event'] = 'event/C_event';
-$route['follow_event'] = 'event/C_event/followEvent';
+// $route['event'] = 'event/C_event';
+// $route['follow_event'] = 'event/C_event/followEvent';
 
-$route['home/:num'] = 'timeline/C_home';
+// $route['home/:num'] = 'timeline/C_home';
 $route['timeline'] = 'timeline/C_timeline';
-$route['timeline/:any'] = 'timeline/C_timeline';
+// $route['timeline/:any'] = 'timeline/C_timeline';
 $route['message'] = 'message/C_message';
 $route['message/:any'] = 'message/C_message/detailMessage';
 $route['detail_message/:num'] = 'message/C_message/detailMessage';
@@ -89,7 +89,6 @@ $route['yourdraft'] = 'timeline/C_timeline/draftListView';
 $route['deldraft'] = 'book/C_book/deleteDraftBook';
 
 $route['writters_afer_login'] = 'timeline/C_timeline/getWritter';
-$route['writters'] = 'timeline/C_home/getWritter';
 $route['bestBooks'] = 'timeline/C_timeline/getBestBook';
 $route['bestBookLib'] = 'library/C_library/getBestBookLibrary';
 // $route['bestBookHome'] = 'timeline/C_home/getBestBookEvent';
@@ -110,7 +109,7 @@ $route['sendbookmark'] = 'timeline/C_timeline/postBookmark';
 $route['activity'] = 'notification/C_notification/activity';
 
 // Explore
-$route['notifications'] = 'notification/C_notification';
+$route['notifupdate'] = 'notification/C_notification';
 $route['more'] = 'more/C_more';
 $route['updatentf'] = 'notification/C_notification/updateNtf';
 
@@ -174,7 +173,7 @@ $route['commentbook'] = 'book/C_book/postCommentBook';
 $route['replycom'] = 'book/C_book/postReplyComment';
 $route['editcom'] = 'book/C_book/postEditComment';
 $route['delcom'] = 'book/C_book/postDeleteComment';
-$route['notifications'] = 'notification/C_notification/getNotification';
+$route['notifupdate'] = 'notification/C_notification/getNotification';
 $route['example'] = 'notification/C_notification/example';
 $route['example/trigger_event'] = 'notification/C_notification/trigger_event';
 // Cover

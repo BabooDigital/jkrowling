@@ -32,7 +32,26 @@
 						</div>
 						<div class="card-body p-0">
 							<ul class="list-group list-group-flush" id="author_this_week">
-								<div class="loads-css ng-scope"><div style="width:20px;height:20px" class="lds-flickr"><div></div><div></div><div></div></div></div>
+								<?php foreach ($writter['data'] as $wr) { ?>
+									<li class="media baboocontent">
+										<a href="<?php echo site_url('profile/'.$wr['author_id']); ?>">
+											<img alt="<?php echo $wr['author_name']; ?>" class="d-flex mr-3 rounded-circle" src="<?php echo $wr['avatar']; ?>" width="50" height="50">
+										</a>
+										<div class="media-body mt-7">
+											<a href="<?php echo site_url('profile/'.$wr['author_id']); ?>">
+												<h5 class="mt-0 mb-1 nametitle"><?php if(strlen($wr['author_name']) > 25){ $str =  substr($wr['author_name'], 0, 23).'...'; echo $str; }else { echo $wr['author_name']; }  ?>
+												</h5>
+												<small>Penulis</small>
+											</a>
+											<div class="pull-right baboocolor">
+												<a href="<?php echo site_url('profile/'.$wr['author_id']); ?>"></a>
+												<a href="<?php echo site_url('login'); ?>" class="addbutton">
+													<img src="<?php echo base_url('public/img/assets/icon_plus_purple.svg'); ?>" width="20" class="mt-img">
+												</a>
+											</div>
+										</div>
+									</li>
+								<?php } ?>
 							</ul>
 						</div>
 					</div>

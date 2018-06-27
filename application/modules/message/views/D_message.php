@@ -21,7 +21,7 @@
 							<a class="list-group-item list-group-item-action flex-column align-items-start btn_list_msg" data-usr-msg="<?php echo $messv['user_id']; ?>" data-usr-name="<?php echo $messv['fullname']; ?>" href="test" id="btn_list_msg">
 							<div class="row mb-10" style="padding: 0px 10px 0px 10px;text-align: left;">
 								<div class="media" style="width: 100%;">
-									<img alt="<?php echo $messv['fullname']; ?>" class="d-flex align-self-start mr-20 rounded-circle" height="48" src="<?php if (empty($messv['prof_pict'])) { echo base_url(); ?>public/img/profile/pp_wanita2.png <?php } else { echo $messv['prof_pict']; } ?>" width="48">
+									<img alt="<?php echo $messv['fullname']; ?>" class="d-flex align-self-start mr-20 rounded-circle" height="48" src="<?php if (empty($messv['prof_pict'])) { echo base_url(); ?>public/img/profile/blank-photo.jpg <?php } else { echo $messv['prof_pict']; } ?>" width="48">
 									<div class="media-body">
 										<span class="nametitle2"><?php echo $messv['fullname']; ?></span><br>
 										<span class="text-muted fontkecil"><?php echo (strlen($messv['user_latest_message']) >= 31) ? substr($messv['user_latest_message'], 0, 30) : $messv['user_latest_message'] . '...'; ?></span>
@@ -35,7 +35,7 @@
 							<a class="list-group-item list-group-item-action flex-column align-items-start btn_list_msg" data-usr-msg="<?php echo $messv['user_id']; ?>" data-usr-name="<?php echo $messv['fullname']; ?>" href="test" id="btn_list_msg">
 							<div class="row mb-10" style="padding: 0px 10px 0px 10px;text-align: left;">
 								<div class="media" style="width: 100%;">
-									<img alt="<?php echo $messv['fullname']; ?>" class="d-flex align-self-start mr-20 rounded-circle" src="<?php if (empty($messv['prof_pict'])) { echo base_url(); ?>public/img/profile/pp_wanita2.png<?php } else { echo $messv['prof_pict']; } ?>" width="48" height="48">
+									<img alt="<?php echo $messv['fullname']; ?>" class="d-flex align-self-start mr-20 rounded-circle" src="<?php if (empty($messv['prof_pict'])) { echo base_url(); ?>public/img/profile/blank-photo.jpg<?php } else { echo $messv['prof_pict']; } ?>" width="48" height="48">
 									<div class="media-body">
 										<span class="nametitle2"><?php echo $messv['fullname']; ?></span>
 												<p class="text-muted fontkecil"><?php echo (strlen($messv['user_latest_message']) >= 31) ? substr($messv['user_latest_message'], 0, 30) : $messv['user_latest_message'] . '...'; ?>

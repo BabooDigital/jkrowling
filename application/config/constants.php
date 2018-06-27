@@ -99,10 +99,10 @@ URL = 'https://dev-baboo.co.id/'
 defined('BASE_URL_WEB')		OR define('BASE_URL_WEB', 'https://dev-baboo.co.id/');
 
 // CONFIG DB
-defined('DB_HOST')			OR define('DB_HOST', 'localhost');
-defined('DB_USERNAME')		OR define('DB_USERNAME', 'devbaboo_adit');
-defined('DB_USERPASSWORD')	OR define('DB_USERPASSWORD', 'goodgame001');
-defined('DB_NAME')			OR define('DB_NAME', 'devbaboo_book');
+defined('DB_HOST')			OR define('DB_HOST', '');
+defined('DB_USERNAME')		OR define('DB_USERNAME', '');
+defined('DB_USERPASSWORD')	OR define('DB_USERPASSWORD', '');
+defined('DB_NAME')			OR define('DB_NAME', '');
 
 // CONFIG API URL
 /*
