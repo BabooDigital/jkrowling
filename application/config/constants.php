@@ -90,6 +90,7 @@ URL = 'https://dev-baboo.co.id/'
 */
 defined('BASE_URL_WEB')		OR define('BASE_URL_WEB', 'https://dev-baboo.co.id/');
 defined('BASE_URL_DEEPLINK')		OR define('BASE_URL_DEEPLINK', 'www.baboo.id/');
+
 // CONFIG DB
 defined('DB_HOST')			OR define('DB_HOST', '');
 defined('DB_USERNAME')		OR define('DB_USERNAME', '');
