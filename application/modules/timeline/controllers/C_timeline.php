@@ -10,7 +10,7 @@ class C_timeline extends MX_Controller {
 		if ($this->session->userdata('isLogin') != 200) {
 			redirect('home');
 		}
-		$this->load->library(array('simple_cache','thousand_to_k'));
+		$this->load->library(array('simple_cache'));
 	}
 	
 	public function index()

@@ -149,6 +149,9 @@
 									<div id="books_id"></div>
 								<h5 class="mt-0 mb-1 nametitle"><?php $uri = $this->session->userdata('userData'); echo $uri['fullname'] ?></h5>
 							</div>
+							<div class="pull-right mt-15">
+								<a href="<?php echo site_url('upload_mypdf'); ?>" style="background: #b54aca;color: #fff;border-radius: 35px;padding: 10px 30px;">Upload PDF</a>
+							</div>
 						</div>
 
 						<div>

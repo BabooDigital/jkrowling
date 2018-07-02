@@ -3,10 +3,9 @@
 	<div class="bannerPopUp"></div>
 	<!-- BANNER POPUP BUTTON PLAYSTORE MOBILE -->
 	<div class="lds-css ng-scope" style="display: none;"><div style="width:100%;height:100%" class="lds-eclipse"><img src="<?php echo base_url('public/img/splash_.png'); ?>" width="90" class="img-loading"><div></div><div></div><div></div><div></div><div></div></div></div>
+	<?php $this->load->view('include/btn_floating_create'); ?>
+
 	<?php $this->load->view('navbar/R_navbar'); ?>	
-	<div id="floating-btn">
-		<a class="floating-btn" href="<?php echo site_url(); ?>create_mybook"><img src="<?php echo base_url(); ?>public/img/assets/icon_tulis.svg"></a>
-	</div>
 	<div class="container pr-5 pl-5">
 		<?php if (!empty($transaction)){
 			$end = end($transaction);
@@ -66,11 +65,12 @@
 		<?php endif ?>
 
 		<!-- JS -->
-		<script type="text/javascript">
-			var iaiduui = '<?php echo $this->session->userdata('userData')['user_id']; ?>';
-		</script>
 		<?php if (isset($js)): ?>
 			<?php echo get_js($js) ?>
 		<?php endif ?>
+		<script type="text/javascript">
+			var iaiduui = '<?php echo $this->session->userdata('userData')['user_id']; ?>';
+			cancel_transaction();
+		</script>
 	</body>
 	</html>

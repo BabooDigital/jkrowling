@@ -56,6 +56,7 @@ $(document).ready(function() {
         $(".loveicon").attr("src", "" + base_url + "public/img/assets/love_active.svg");
         a.append("user_id", $("#iaiduui").val());
         a.append("book_id", b.attr("data-id"));
+        a.append("csrf_test_name", csrf_value);
         $.ajax({
             url: base_url + "like",
             type: "POST",
@@ -80,6 +81,7 @@ $(document).ready(function() {
         $(".loveicon").attr("src", "" + base_url + "/public/img/assets/icon_love.svg");
         a.append("user_id", $("#iaiduui").val());
         a.append("book_id", b.attr("data-id"));
+        a.append("csrf_test_name", csrf_value);
         $.ajax({
             url: base_url + "like",
             type: "POST",

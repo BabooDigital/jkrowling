@@ -29,9 +29,8 @@ echo "<script>(function(d, s, id) {
 				<div></div>
 			</div>
 		</div>
-		<div id="floating-btn">
-			<a class="floating-btn" href="<?php echo site_url(); ?>create_mybook"><img src="<?php echo base_url(); ?>public/img/assets/icon_tulis.svg"></a>
-		</div>
+		<?php $this->load->view('include/btn_floating_create'); ?>
+
 		<?php $this->load->view('navbar/R_navbar'); ?>
 		<div class="babooid" style="overflow-y: hidden;overflow-x: hidden;">
 			<div class="row">

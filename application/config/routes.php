@@ -128,7 +128,7 @@ $route['img_book'] = 'book/C_createbook/img_book';
 $route['video_book'] = 'book/C_createbook/video_book';
 
 $route['book/:any'] = 'book/C_book';
-$route['book/:any/:num'] = 'book/C_book/getChapterResponsive';
+$route['book/:any/:num'] = 'book/C_book';
 $route['book/:any/chapter/:num'] = 'book/C_book/chapterBook';
 $route['getmenuchapter'] = 'book/C_book/chapter';
 $route['getChapter'] = 'book/C_createbook/getChapter';
@@ -152,6 +152,7 @@ $route['validateSell'] = 'book/C_createbook/validatePublish';
 $route['bookCheck'] = 'book/C_createbook/checkBook';
 
 $route['book/:any/preview'] = 'book/C_book_out';
+$route['book/:any/preview/pdf'] = 'book/C_book_out';
 
 
 $route['my_book/editor_upload'] = 'book/C_createbook/editor_upload';
@@ -220,6 +221,7 @@ $route['bestBookEvent'] = 'event/C_event/getBestBookEvent';
 //Transaction
 $route['transaction_counter'] = 'transaction/C_transaction/count_transaction';
 $route['detail_transaction'] = 'transaction/C_transaction/detail_transaction';
+$route['cancel_transaction'] = 'transaction/C_transaction/cancel_transaction';
 // PIN VIEW ROUTES
 $route['pin-dompet'] = 'pin/C_pin_auth';
 $route['pin-dompet/first'] = 'pin/C_pin_auth';
@@ -274,3 +276,13 @@ $route['auth/changepass'] = 'profile/C_edit_profile/changePasswordPost';
 
 
 $route['user_all'] = 'profile/C_profile/getMentionPeople';
+
+// PDF VIEW PAGE
+$route['upload_mypdf'] = 'book/C_createpdf';
+$route['upload_mypdf/(:num)'] = 'book/C_createpdf/editDescPDFView';
+$route['yourpdf'] = 'book/C_createpdf/uploadPDFView';
+// PDF FUNCTION
+$route['preUploadAct'] = 'book/C_createpdf/preCreatePDFPost';
+$route['uploadAct'] = 'book/C_createpdf/uploadPDFPost';
+$route['checkingPDF'] = 'book/C_createpdf/checkDetailPDF';
+$route['detailBooks'] = 'book/C_book/getDetailPDFTest';

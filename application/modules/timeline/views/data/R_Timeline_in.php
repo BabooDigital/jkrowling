@@ -6,7 +6,7 @@
 			<div class="card-body pl-20 pr-20 pt-20 pb-10">
 				<div class="row mb-10 pl-10 pr-10">
 					<div class="media">
-						<img class="d-flex align-self-start mr-20 rounded-circle" src="<?php if($s_book['author_avatar'] == NULL){
+						<img class="d-flex align-self-start mr-10 rounded-circle" src="<?php if($s_book['author_avatar'] == NULL){
 							echo base_url('public/img/profile/blank-photo.jpg');
 						}else{
 							echo $s_book['author_avatar']; } ?>" width="50" height="50" alt="<?php
@@ -64,7 +64,7 @@
 						<div class="card-body pl-20 pr-20 pt-20 pb-10">
 							<div class="row mb-10 pl-10 pr-10">
 								<div class="media">
-									<img class="d-flex align-self-start mr-20 rounded-circle" src="<?php if($s_book['author_avatar'] == NULL){
+									<img class="d-flex align-self-start mr-10 rounded-circle" src="<?php if($s_book['author_avatar'] == NULL){
 										echo base_url('public/img/profile/blank-photo.jpg');
 									}else{
 										echo $s_book['author_avatar']; } ?>" width="50" height="50" alt="<?php
@@ -163,8 +163,8 @@
 									<a href="<?php echo site_url(); ?>popular_writers" style="margin: auto;padding: 10px 0px;box-shadow: 0px 1px 2px #a5a5a5;border-radius: 35px;width: 100%;text-align: center;">Lihat Semua</a>
 								</div>
 							</div>
-							<?php }else{ 
-								echo "<label class='ml-10'><b>".$s_book['populars']['desc']."</b></label>";
+							<?php }else{
+								if (!empty($s_book['populars']['desc'])) { echo "<label class='ml-10'><b>".$s_book['populars']['desc']."</b></label>"; }else{ echo "";} 
 								foreach ($s_book['populars'] as $populars){ ?>
 								<div id="myWorkContent" class="bg-white mb-20" style="margin-top: -10px;">
 									<?php error_reporting(0); foreach ($populars as $pop){ ?>

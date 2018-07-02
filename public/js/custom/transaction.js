@@ -82,3 +82,46 @@ function detail_transaction() {
         
     });
 }
+
+function cancel_transaction() {
+    $('.cancel-trans').on('click', function(event) {
+        event.preventDefault();
+        /* Act on the event */
+        swal({
+          title: 'Apa kamu yakin?',
+          text: "Transaksi yang dibatalkan tidak akan bisa di lanjutkan.",
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Ya, Batalkan!',
+          cancelButtonText: 'Tidak'
+      }).then((result) => {
+          if (result.value) {
+
+            var orid = $(this).attr('data-cancel');
+            $.ajax({
+                url: base_url+'cancel_transaction',
+                type: 'POST',
+                dataType: 'JSON',
+                data: {or_id:orid,csrf_test_name:csrf_value}
+            })
+            .done(function(data) {
+                if (data.code == 200) {
+                    swal(
+                        'Berhasil',
+                        'Transaksi ini berhasil dibatalkan.',
+                        'success'
+                        );
+                    location.reload();
+                }
+            })
+            .fail(function() {
+                console.log("error");
+            })
+            .always(function() {
+            });
+        }
+    })
+  });
+}

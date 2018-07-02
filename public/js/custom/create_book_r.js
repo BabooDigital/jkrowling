@@ -19,7 +19,8 @@ function publishBook() {
     formData.append("csrf_test_name", csrf_value);
     var ch = $(".start_chapter").val();
     var slide = $('.priceCheck:checkbox:checked');
-      if (slide.length == 0) {
+    var asd = slide.is(':empty');
+      if (slide.length == 0 || asd == false) {
       formData.append("book_id", $("#uri").val());
       formData.append("file_cover", $("#cover_file").val());
       formData.append("category", $("#category_ids").val());

@@ -150,31 +150,61 @@
                     <div class="modal-body">
                         <div class="container">
                             <div class="col-12 text-justify mb-50" style="color: #000;">
-                                <div class="col-md-12">
-                                    <?php foreach ($transaction['data'] as $trans): ?>
-                                        <div class="card">
-                                            <div class="card-body">
+                                <?php foreach ($transaction['data'] as $trans): ?>
+                                    <div class="listpend" style="border-bottom: .5px #c3c3c3 solid;">
+                                        <div class="row mb-5">
+                                            <div class="col-12">
                                                 <div class="media">
-                                                    <img class="align-self-start mr-3" src="<?php echo $trans['cover_url'] ?>" width="100" height="130" alt="Generic placeholder image">
+                                                    <img class="mr-3" src="<?php echo $trans['cover_url'] ?>" width="50" height="70" alt="<?php echo $trans['title_book']; ?>" style="object-fit: cover;">
                                                     <div class="media-body">
-                                                        <h3 class="mt-0"><a class="book_link" href="<?php echo site_url(); ?>book/<?php echo $trans['book_id']; ?>"><?php echo $trans['title_book']; ?></a></h3>
-
-                                                        <h5 class="mt-0"><a class="book_link" href="<?php echo site_url(); ?>book/<?php echo $trans['book_id']; ?>">Rp <?php echo number_format($trans['gross_amount'],0,",","."); ?></a></h5>
+                                                        <div class="pull-right">
+                                                            <div class="dropdown">
+                                                                <button class="share-btn dropbtn fs-14px" type="button" id="dropOption" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                    <i class="fa fa-ellipsis-v"></i>
+                                                                </button>
+                                                                <div class="dropdown-menu" aria-labelledby="dropOption">
+                                                                    <a class="dropdown-item cancel-trans" href="javascript:void(0);" data-cancel="<?php echo $trans['order_id']; ?>">Batalkan Transaksi</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <h5 class="mt-0" style="width: 90%;"><?php if(strlen($trans['title_book']) > 55){ $str =  substr($trans['title_book'], 0, 50).'...'; echo ucfirst(strtolower($str)); }else { echo ucfirst(strtolower($trans['title_book'])); }  ?></h5>
+                                                        <span style="font-size: 15pt;">Rp <?php echo number_format($trans['gross_amount'],0,",","."); ?></span>
                                                     </div>
                                                 </div>
-                                                <?php if ($trans['payment_type'] == "bank_transfer"): ?>
-                                                    <b>
-                                                        <span>Bank Transfer:</span><p class="float-right"><a style="color:#7554bd;" data-toggle="modal" data-target="#detail_transaction" class="btn_detail_transaction" id="btn_detail_transaction" data-id="<?php echo $trans['book_id'] ?>">Details</a></p>
-                                                        <p style="text-transform: uppercase;"><?php echo $trans['bank'] ?> - <?php echo $trans['va_numbers']; ?></p>
-                                                    </b>
-                                                    <p>Menunggu proses pembayaran</p>
-                                                <?php endif ?>
-                                                <p></p>
-                                                <hr>
                                             </div>
-                                        <?php endforeach ?>
+                                        </div>
+                                        <?php if ($trans['payment_type'] == "echannel"){ ?>
+                                            <div class="row">
+                                                <div class="col-8">
+                                                    <p><span>Bank Transfer:</span><span class="d-block font-weight-bold" style="text-transform: uppercase;"><?php echo $trans['bank'] ?> - <?php echo $trans['va_numbers']; ?></span></p>
+                                                </div>
+                                                <div class="col-4">
+                                                    <a href="<?php echo $trans['pdf_url']; ?>" target="_blank" class="float-right">Details ></a>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-10">
+                                                <div class="col-12">
+                                                    <span class="text-muted"><?php echo $trans['transaction_desc']; ?></span>
+                                                </div>
+                                            </div>
+                                        <?php }else if ($trans['payment_type'] == "credit_card") { ?>
+                                            <div class="row">
+                                                <div class="col-8">
+                                                    <p><span>Kartu Kredit:</span><span class="d-block font-weight-bold" style="text-transform: uppercase;"><?php echo $trans['bank'] ?></span></p>
+                                                </div>
+                                                <div class="col-4">
+                                                    <a href="#" class="float-right">Details ></a>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-10">
+                                                <div class="col-12">
+                                                    <span class="text-muted"><?php echo $trans['transaction_desc']; ?></span>
+                                                </div>
+                                            </div>
+                                        <?php } ?>
                                     </div>
-                                </div>
+                                <?php endforeach ?>
+                            </div>
                             </div>
                         </div>                  
                     </div>
@@ -227,6 +257,7 @@
                 <?php echo get_js($js) ?>
             <?php endif ?>
             <script type="text/javascript">
+                cancel_transaction();
                 $('.your-class').slick({
                     centerMode: true,
                     centerPadding: '200px',

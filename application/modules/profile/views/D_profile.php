@@ -331,7 +331,8 @@ $this->load->view('navbar/D_navbar'); ?>
 															" id="book-link<?php
 															echo $s_book['book_id']; ?>"><?php
 															echo $s_book['title_book']; ?></a></h5>
-															<p class="catbook"><a href="#" class="mr-20"><span class="btn-no-fill">FIKSI</span></a> <span class="mr-20"><img src="<?php echo base_url(); ?>public/img/assets/icon_view.svg"> <?php
+															<p class="catbook"><a href="#" class="mr-20"><span class="btn-no-fill"><?php
+															echo $s_book['category']; ?></span></a> <span class="mr-20"><img src="<?php echo base_url(); ?>public/img/assets/icon_view.svg"> <?php
 															echo $s_book['view_count']; ?></span> <span><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg"> <?php
 															echo $s_book['share_count']; ?></span></p>
 															<p class="text-desc-in desc<?php

@@ -17,7 +17,7 @@
 	<meta name="Keywords" content="baboo">
 
 	<!-- Facebook -->
-	<?php $u1= $this->uri->segment(2); echo "<meta property='og:url'                content='".base_url('book/'.$u1.'/preview')."' />"; ?>
+	<?php $u1= $this->uri->segment(2); if ((bool)$detailBook['book_info']['is_pdf'] == true) { echo "<meta property='og:url'                content='".base_url('book/'.$u1.'/preview/pdf')."' />"; }else { echo "<meta property='og:url'                content='".base_url('book/'.$u1.'/preview')."' />"; }  ?>
 	<meta property="og:type"               content="website" />
 	<meta property="og:title"              content="<?php echo $title; ?> | Baboo.id" />
 	<?php 
@@ -59,6 +59,9 @@
 		border-radius: 35px;
 		box-shadow: 0px 2px 3px #818181;
 	}
+	.textp > p {
+		/*text-indent: 10%;*/
+	}
 	a {
 		color: #333;
 	}
@@ -71,8 +74,17 @@
 	var csrf_value = '<?php echo $this->security->get_csrf_hash(); ?>';
 </script>
 </head>
+<?php 
+$u1= $this->uri->segment(2);
+$u12= $this->uri->segment(4);
+if (empty($u12) || $u12 != 'pdf') {
+	if ((bool)$detailBook['book_info']['is_pdf'] == true) {
+		redirect(site_url('book/'.$u1.'/preview/pdf'),'refresh');
+	}else{	
+	}
+}
+?>
 <body class="bgboo">
-	
 	<!-- BANNER POPUP BUTTON PLAYSTORE MOBILE -->
 	<div class="bannerPopUp"></div>
 	<!-- BANNER POPUP BUTTON PLAYSTORE MOBILE -->
@@ -83,10 +95,9 @@
 					<button type="button" class="clear-btn" onclick="history.go(-1)"><i class="fa fa-arrow-left"></i> &nbsp; </button>
 
 				</form>
-				<label class="btn-transparant">&nbsp;&nbsp;&nbsp;&nbsp;<img src="<?php echo base_url('') ?>/public/img/icon-tab/more_icon.svg"></label> 
+				<!-- <label class="btn-transparant">&nbsp;&nbsp;&nbsp;&nbsp;<img src="<?php echo base_url('') ?>/public/img/icon-tab/more_icon.svg"></label>  -->
 			</div>
 		</nav>
-
 		<div class="container mt-60">
 			<div class="row">
 				<div class="col-12">
@@ -119,10 +130,9 @@
 					</div>
 				</div>
 			</div>
-			<br>
 			<div class="row">
 				<div class="col-12">
-					<div id='detailStyle' class="text-justify" style="font-size: 21px;">
+					<div id='detailStyle' class="detailbook text-justify">
 						<?php 
 						foreach ($desc as $book) {
 							$text = strip_tags($book['paragraph_text']);
@@ -179,7 +189,7 @@
 			}
 		};
 		var bid = '<?php echo $this->uri->segment(2); ?>';
-		var link = "intent://www.baboo.id/book/"+bid+"#Intent;scheme=https;package=id.android.baboo;S.doctype=FRA;S.docno=FRA1234;S.browser_fallback_url=market://details?id=id.android.baboo;end";
+		var link = "intent://"+"<?php echo BASE_URL_WEB; ?>"+bid+"#Intent;scheme=https;package=id.android.baboo;S.doctype=FRA;S.docno=FRA1234;S.browser_fallback_url=market://details?id=id.android.baboo;end";
 		$('.bannerPopUp').html("<div class='popUpBannerBox'> <div class='popUpBannerInner'> <div class='popUpBannerContent'> <a href='"+link+"'><span class='popUpBannerSpan'>Baca di Aplikasi</span></a><a href='#' class='closeButton'>&#120;</a> </div> </div> </div>");
 
 		function showPopUpBanner() {

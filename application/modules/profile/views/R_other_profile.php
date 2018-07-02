@@ -213,9 +213,7 @@ echo "<script>(function(d, s, id) {
 <body id="pageContent">
 	<div class="lds-css ng-scope" style="display: none;"><div style="width:100%;height:100%" class="lds-eclipse"><img src="<?php echo base_url('public/img/splash_.png'); ?>" width="90" class="img-loading"><div></div><div></div><div></div><div></div><div></div></div></div>
 	<?php $this->load->view('navbar/R_navbar'); ?>
-	<div id="floating-btn">
-		<a href="<?php echo site_url(); ?>create_mybook" class="floating-btn"><img src="<?php echo base_url(); ?>public/img/assets/icon_tulis.svg"></a>
-	</div>
+	<?php $this->load->view('include/btn_floating_create'); ?>
 	<br>
 	<br>
 	<br>

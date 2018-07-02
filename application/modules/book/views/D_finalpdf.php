@@ -127,6 +127,11 @@ input:checked + .slider:before {
 }
 .swal2-contentwrapper {
 	margin-top: 15px;
+}input[type='file'] {
+  opacity:0    
+}
+button{
+	cursor: pointer;
 }
 </style>
 <?php
@@ -159,6 +164,11 @@ if (!empty($query['stat'])) {
 				<form class="form-inline">
 					<!-- <button class="btn-transparant"><span>Selesai</span> &nbsp;&nbsp;<img src="<?php echo base_url() ?>public/img/icon-nav/publish.png" width="30" height="30"></button>  -->
 					<!-- <label for="toggle-right" class="profile-toggle"><b>+</b></label> -->
+					<input type="hidden" id="what" value="<?php $pin = $this->session->userdata('hasPIN'); if ($pin == 1) {echo 'true';}else{echo 'false';}  ?>">
+			<div class="container">
+				<button type='button' class='btn-publish' id='publish_book'>Publish</button>
+				<button type='button' class='btn-publish' id='setpin_publish' style="display: none;">Publish</button>
+			</div>
 				</form>
 			</div>
 		</nav>
@@ -283,13 +293,9 @@ if (!empty($query['stat'])) {
 				</div>
 			</div>
 		</div>
-		<footer class="navbar navbar-expand-lg fixed-bottom" style="height:60px;background: #f3f5f7;">
-			<input type="hidden" id="what" value="<?php $pin = $this->session->userdata('hasPIN'); if ($pin == 1) {echo 'true';}else{echo 'false';}  ?>">
-			<div class="container">
-				<button type='button' class='btn-publish' id='publish_book'>Publish</button>
-				<button type='button' class='btn-publish' id='setpin_publish' style="display: none;">Publish</button>
-			</div>
-		</footer>
+		<!-- <footer class="navbar navbar-expand-lg fixed-bottom" style="height:60px;background: #f3f5f7;">
+			
+		</footer> -->
 
 		<?php $this->load->view('include/modal_tnc'); ?>
 
