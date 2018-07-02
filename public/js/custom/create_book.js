@@ -25,7 +25,7 @@ $(function() {
 });
 function tampilkanPreview(gambar, idpreview) {
 // membuat objek gambar
-	var gb = gambar.files;
+var gb = gambar.files;
 	// loop untuk merender gambar
 	for (var i = 0; i < gb.length; i++) {
 		// bikin variabel
@@ -93,69 +93,6 @@ $(document).ready(function() {
 		}).always(function() {})
 	});
 
-	$("#publish_book").click(function() {
-    var formData = new FormData();
-    var ch = $(".start_chapter").val();
-    var slide = $('#is_free:checkbox:checked');
-    if (slide.length == 0) {
-    	formData.append("book_id", $("#uri").val());
-    	formData.append("file_cover", $("#cover_name").val());
-    	formData.append("category", $("#category_ids").val());
-    	formData.append("is_paid", false);
-    }else{
-    	formData.append("book_id", $("#uri").val());
-    	formData.append("file_cover", $("#cover_name").val());
-    	formData.append("category", $("#category_id").val());
-    	formData.append("price", $(".input-range").val());
-    	if (ch == '3' || ch >= '3' || ch > '3') {
-    		formData.append("chapter_start", ch);
-    	}else {
-    		formData.append("chapter_start", $(".start_chapter").val('3'));
-    	}
-    	formData.append("is_paid", true);
-    }
-    	formData.append("csrf_test_name", csrf_value);
-
-      var cat = $("#category_id").val();
-      var tnc = $('.checktnc:checkbox:checked');
-
-      if (cat == null || cat == "") {
-        swal(
-          'Gagal!',
-          'Pilih kategori buku mu.',
-          'error'
-          );
-      }
-      else if(tnc.length == 0){
-        swal(
-          'Gagal!',
-          'Setujui Term of Service.',
-          'error'
-          );
-      }
-      else {
-        $.ajax({
-          url: base_url+'publishbook',
-          dataType: 'json',
-          type: 'POST',
-          contentType: false,
-          processData: false,
-          data: formData
-        })
-        .done(function(data) {
-          if (data.code == 200) {
-            window.location = base_url+'timeline';
-          }
-        })
-        .fail(function() {
-          console.log("errorss");
-        })
-        .always(function() {
-        });
-      }
-
-    });
-
 	var window_width = $(window).width();
 
 	if (window_width < 768) {
@@ -183,12 +120,12 @@ $(document).ready(function() {
 	
 	function showSpinner() {
 		var options = {
-             theme:"sk-cube-grid",
-             message:'Tunggu Sebentar ',
-             backgroundColor:"white",
-             textColor:"#7554bd" 
-        };
-        HoldOn.open(options);
+			theme:"sk-cube-grid",
+			message:'Tunggu Sebentar ',
+			backgroundColor:"white",
+			textColor:"#7554bd" 
+		};
+		HoldOn.open(options);
 	}
 	var count = 0;
 	$(document).on('click', '.addsubchapt', function() {
@@ -228,34 +165,34 @@ $(document).ready(function() {
 					console.log('tidak');
 				}
 				$.ajax({
-						"url": base_url+"my_book/create_book/save",
-						"dataType": 'json',
-						"cache": false,
-						"type": "POST",
-						"contentType": false,
-						"processData": false,
-						"data": formData
-					})
-					.done(function(data) {
-						HoldOn.close();
-						$("#success").show().delay(5000).queue(function(n) {
-							$(this).hide();
-							n();
-						});
+					"url": base_url+"my_book/create_book/save",
+					"dataType": 'json',
+					"cache": false,
+					"type": "POST",
+					"contentType": false,
+					"processData": false,
+					"data": formData
+				})
+				.done(function(data) {
+					HoldOn.close();
+					$("#success").show().delay(5000).queue(function(n) {
+						$(this).hide();
+						n();
+					});
 
 						// console.log(formData);
-						for (var pair of formData.entries()) {
-						    console.log(pair[0]+ ', ' + pair[1]); 
-						}
+						// for (var pair of formData.entries()) {
+						//     console.log(pair[0]+ ', ' + pair[1]); 
+						// }
 						location.reload();
 						$("#title_chapter").show();
 						$("#title_chapter").val();
 						$("#title_book").hide();
 					})
-					.fail(function() {
-						console.log("error");
-					})
-					.always(function() {});
+				.fail(function() {
+					console.log("error");
+				})
+				.always(function() {});
 			}
 		}else{
 			if (title_book.length == 0 || title_book.length == null) {
@@ -288,61 +225,61 @@ $(document).ready(function() {
 					console.log('tidak');
 				}
 				$.ajax({
-						"url": base_url+"my_book/create_book/save",
-						"dataType": 'json',
-						"cache": false,
-						"type": "POST",
-						"contentType": false,
-						"processData": false,
-						"data": formData
-					})
-					.done(function(data) {
-						HoldOn.close();
-						$("#success").show().delay(5000).queue(function(n) {
-							$(this).hide();
-							n();
-						});
-						location.reload();
-						$("#title_chapter").show();
-						$("#title_chapter").val();
-						$("#title_book").hide();
-					})
-					.fail(function() {
-						console.log("error");
-					})
-					.always(function() {});
+					"url": base_url+"my_book/create_book/save",
+					"dataType": 'json',
+					"cache": false,
+					"type": "POST",
+					"contentType": false,
+					"processData": false,
+					"data": formData
+				})
+				.done(function(data) {
+					HoldOn.close();
+					$("#success").show().delay(5000).queue(function(n) {
+						$(this).hide();
+						n();
+					});
+					location.reload();
+					$("#title_chapter").show();
+					$("#title_chapter").val();
+					$("#title_book").hide();
+				})
+				.fail(function() {
+					console.log("error");
+				})
+				.always(function() {});
 			}
 		}
 	});
-	var count = 0;
-	$(document).on('click', '.saveasdraft', function() {
-		HoldOn.open({
-			theme: 'sk-bounce',
-			message: "Tunggu sebentar."
-		});
+var count = 0;
+$(document).on('click', '.saveasdraft', function() {
+	HoldOn.open({
+		theme: 'sk-bounce',
+		message: "Tunggu sebentar."
+	});
 
-		var aww = $("#btnsavedraft");
-		var formData = new FormData();
+	var aww = $("#btnsavedraft");
+	var formData = new FormData();
 
-		var title_book = $("#title_book").val();
-		var chapter_title = $("#title_chapter").val();
-		
-		count++;
-		$(this).parents('#subchapter').append('<input type="button" class="btn w-100 mb-10 chapterdata0 addsubchapt" value="Tambah Sub Cerita" />');
+	var title_book = $("#title_book").val();
+	var chapter_title = $("#title_chapter").val();
 
-		formData.append("title_book", $("#title_book").val());
-		formData.append("chapter_title", $("#title_chapter").val());
-		formData.append("cover_name", $('#cover_name').val());
-		formData.append("category_id", $("#category_id").val());
-		formData.append("user_id", $("input:hidden[name=user_id]").val());
-		formData.append("csrf_test_name",  csrf_value)
+	count++;
+	$(this).parents('#subchapter').append('<input type="button" class="btn w-100 mb-10 chapterdata0 addsubchapt" value="Tambah Sub Cerita" />');
+
+	formData.append("title_book", $("#title_book").val());
+	formData.append("chapter_title", $("#title_chapter").val());
+	formData.append("cover_name", $('#cover_name').val());
+	formData.append("category_id", $("#category_id").val());
+	formData.append("user_id", $("input:hidden[name=user_id]").val());
+	formData.append("csrf_test_name",  csrf_value)
 		// formData.append("tag_book", $("#tag_book").val());
 		formData.append("book_paragraph", $("#book_paragraph").val());
 		if ($("#book_id").val() != null) {
 			formData.append("book_id", $("#book_id").val());
-			for (var pair of formData.entries()) {
-				console.log(pair[0] + ', ' + pair[1]);
-			}
+			// for (var pair of formData.entries()) {
+			// 	console.log(pair[0] + ', ' + pair[1]);
+			// }
 		} else {
 			console.log('tidak');
 		}
@@ -453,12 +390,12 @@ function getCategory() {
 }
 function showLoading() {
 	var options = {
-         theme:"sk-cube-grid",
-         message:'Tunggu Sebentar ',
-         backgroundColor:"white",
-         textColor:"#7554bd" 
-    };
-    HoldOn.open(options);
+		theme:"sk-cube-grid",
+		message:'Tunggu Sebentar ',
+		backgroundColor:"white",
+		textColor:"#7554bd" 
+	};
+	HoldOn.open(options);
 }
 function getChapter() {
 	$.ajax({
@@ -562,35 +499,127 @@ function getChapter() {
 			}
 
 		}else{
-			// $('#publish_book').prop('disabled', true);
 			$(document).on('click', '#publish_book', function() {
-				swal(
-					'Gagal!',
-					'Maaf, untuk mempublish bukumu, jumlah karakter dibukumu harus lebih dari 150',
-					'error'
-					);
-			});
+				if ($('.fr-counter').text() > 149) {
+					var cat = $("#category_id").val();
+					var tnc = $('.checktnc:checkbox:checked');
+
+					if (cat == null || cat == "") {
+						swal(
+							'Gagal!',
+							'Pilih kategori buku mu.',
+							'error'
+							);
+					}
+					else if(tnc.length == 0){
+						swal(
+							'Gagal!',
+							'Setujui Term of Service.',
+							'error'
+							);
+					}
+					else {
+						var formData = new FormData();
+
+						var title_book = $("#title_book").val();
+						var chapter_title = $("#title_chapter").val();
+
+						$(this).parents('#subchapter').append('<input type="button" class="btn w-100 mb-10 chapterdata0 addsubchapt" value="Tambah Sub Cerita" />');
+
+						formData.append("title_book", $("#title_book").val());
+						formData.append("chapter_title", $("#title_chapter").val());
+						formData.append("cover_name", $('#cover_name').val());
+						formData.append("category_id", $("#category_id").val());
+						formData.append("user_id", $("input:hidden[name=user_id]").val());
+						formData.append("csrf_test_name",  csrf_value)
+						formData.append("status", 'publish');
+						formData.append("book_paragraph", $("#book_paragraph").val());
+						if ($("#book_id").val() != null) {
+							formData.append("book_id", $("#book_id").val());
+			// for (var pair of formData.entries()) {
+			// 	console.log(pair[0] + ', ' + pair[1]);
+			// }
+		} else {
+			console.log('tidak');
+		}
+
+		if (title_book == null) {
+			if (chapter_title.length == 0 || chapter_title.length == null) {
+				// HoldOn.close();
+				swal("Maaf..", "Semua Field harus diisi", "warning");
+			}else{
+				$.ajax({
+					"url": "create_book/save",
+					"dataType": 'json',
+					"cache": false,
+					"type": "POST",
+					"contentType": false,
+					"processData": false,
+					"data": formData
+				})
+				.done(function(data) {
+					window.location = base_url+'timeline';
+				})
+				.fail(function() {
+					console.log("error");
+				})
+				.always(function() {});
+			}
+		}else{
+			if (title_book.length == 0 || title_book.length == null) {
+				swal("Maaf..", "Semua Field harus diisi", "warning");
+			}
+			else if (chapter_title.length == 0 || chapter_title.length == null) {
+				swal("Maaf..", "Semua Field harus diisi", "warning");
+			}else{
+				$.ajax({
+					"url": "create_book/save",
+					"dataType": 'json',
+					"cache": false,
+					"type": "POST",
+					"contentType": false,
+					"processData": false,
+					"data": formData
+				})
+				.done(function(data) {
+					window.location = base_url+'timeline';
+				})
+				.fail(function() {
+					console.log("error");
+				})
+				.always(function() {});
+			}
+		}
+	}
+	}else{
+		swal(
+			'Gagal!',
+			'Maaf, untuk mempublish bukumu, jumlah karakter dibukumu harus lebih dari 150',
+			'error'
+			);
+	}
+});
 		}
 		$(".tulisjudul").html(title);
 		$(".start_chapter").val(data.chapter.length);
 		$("#btn_chapter").html(chapter);
 	})
-	.fail(function() {
-		console.log("error");
-	})
-	.always(function() {
-	});
-	
+.fail(function() {
+	console.log("error");
+})
+.always(function() {
+});
+
 }
 $(function () {
 	$(".withanimation").click(function(event) {
 		event.preventDefault();
 		var url=$(this).attr("href");
 
-        setTimeout(function() {
-            setTimeout(function() {showSpinner();},30);
-            window.location=url;
-        },0);
+		setTimeout(function() {
+			setTimeout(function() {showSpinner();},30);
+			window.location=url;
+		},0);
 	});
 });
 
@@ -620,18 +649,81 @@ function addMinusPlus() {
 }
 
 $(document).on('click', '#setpin_publish', function() {
-    swal({
-      title: 'Perhatian',
-      text: "Untuk menjual sebuah buku, anda harus mengaktifkan Dompet Baboo terlebih dahulu.",
-      type: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#7661ca',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Ya, aktifkan',
-      cancelButtonText: 'Jual nanti',
-    }).then((result) => {
-      if (result.value) {
-        $('#wallet-modal').modal('show');
-      }
-    })
-  });
+	swal({
+		title: 'Perhatian',
+		text: "Untuk menjual sebuah buku, anda harus mengaktifkan Dompet Baboo terlebih dahulu.",
+		type: 'warning',
+		showCancelButton: true,
+		confirmButtonColor: '#7661ca',
+		cancelButtonColor: '#d33',
+		confirmButtonText: 'Ya, aktifkan',
+		cancelButtonText: 'Jual nanti',
+	}).then((result) => {
+		if (result.value) {
+			$('#wallet-modal').modal('show');
+		}
+	})
+});
+
+$("#publish_book").click(function() {
+	var formData = new FormData();
+	var ch = $(".start_chapter").val();
+	var slide = $('#is_free:checkbox:checked');
+	if (slide.length == 0) {
+		formData.append("book_id", $("#uri").val());
+		formData.append("file_cover", $("#cover_name").val());
+		formData.append("category", $("#category_id").val());
+		formData.append("is_paid", false);
+	}else{
+		formData.append("book_id", $("#uri").val());
+		formData.append("file_cover", $("#cover_name").val());
+		formData.append("category", $("#category_id").val());
+		formData.append("price", $(".input-range").val());
+		if (ch == '3' || ch >= '3' || ch > '3') {
+			formData.append("chapter_start", ch);
+		}else {
+			formData.append("chapter_start", $(".start_chapter").val('3'));
+		}
+		formData.append("is_paid", true);
+	}
+	formData.append("csrf_test_name", csrf_value);
+
+	var cat = $("#category_id").val();
+	var tnc = $('.checktnc:checkbox:checked');
+
+	if (cat == null || cat == "") {
+		swal(
+			'Gagal!',
+			'Pilih kategori buku mu.',
+			'error'
+			);
+	}
+	else if(tnc.length == 0){
+		swal(
+			'Gagal!',
+			'Setujui Term of Service.',
+			'error'
+			);
+	}
+	else {
+		$.ajax({
+			url: base_url+'publishbook',
+			dataType: 'json',
+			type: 'POST',
+			contentType: false,
+			processData: false,
+			data: formData
+		})
+		.done(function(data) {
+			if (data.code == 200) {
+				window.location = base_url+'timeline';
+			}
+		})
+		.fail(function() {
+			console.log("errorss");
+		})
+		.always(function() {
+		});
+	}
+
+});

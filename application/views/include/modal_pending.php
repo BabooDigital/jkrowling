@@ -1,4 +1,4 @@
-	<?php if ($this->session->userdata('popup_status_payment') == 2): ?>
+	<!-- <?php if ($this->session->userdata('popup_status_payment') == 2): ?> -->
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -18,11 +18,16 @@
 								<p class="mt-15" style="line-height: 20px;font-size: 15px;">Kamu baru Mohon segera selesaikan pembayaran sebelum batas waktu dengan detail berikut</p>
 							</div>
 						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<a href="<?php echo $this->session->userdata('pdf_url'); ?>" target="_blank" style="font-size: 15pt;font-weight: 600;color: #7661ca;">Klik disini untuk detailnya..</a>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<?php endif ?>
+		<!-- <?php endif ?>
 		<?php if ($this->session->userdata('popup_status_payment') == 1): ?>
 			<div class="modal-dialog" role="document">
 				<div class="modal-content" style="width: 105% !important;">
@@ -51,4 +56,4 @@
 					</div>
 				</div>
 			</div>
-		<?php endif ?>
+		<?php endif ?> -->

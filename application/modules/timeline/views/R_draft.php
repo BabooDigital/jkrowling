@@ -45,7 +45,7 @@
 			<div class="row">
 				<div class="w-100">
 					<?php if (!empty($datadraft)) { 
-						foreach ($datadraft as $data) {  ?>
+						foreach ($datadraft as $data) { ?>
 						<div class='card mb-20'>
 							<div class='card-header bg-white'>
 								<?php if ($data['status_publish']['status_id'] == 1 ) { ?>
@@ -67,7 +67,7 @@
 							<div class='card-footer text-muted bg-white' style='font-size: 0.8em;font-weight: bold;'>
 								<div class='pull-right' style="margin-top: 3px;">
 								<?php if ($data['status_publish']['status_id'] == 1 ) { ?>
-									<a class='mr-10 fs-14px mb-5' href='<?php echo site_url('listchapter/'. $data['book_id']); ?>?stat=draft' style='border: 1px #333 solid;border-radius: 40px;padding: 8px 25px;'><img src='public/img/assets/icon_pen.svg' width='23'> Edit</a> 
+									<a class='mr-10 fs-14px mb-5' href='<?php if ($data['is_pdf'] == 1) {echo site_url('upload_mypdf/'. $data['book_id'].'?stat=draft'); }else {echo site_url('listchapter/'. $data['book_id'].'?stat=draft'); } ?>' style='border: 1px #333 solid;border-radius: 40px;padding: 8px 25px;'><img src='public/img/assets/icon_pen.svg' width='23'> Edit</a> 
 									<a href='<?php echo site_url('cover/'. $data['book_id']); ?>?stat=draft' style='border: 1px #7554bd solid;border-radius: 40px;padding: 8px 20px;color: #7554bd;'><img class='mr-10 fs-14px mb-5' src='public/img/assets/icon_publish.svg' width='20'> Publish</a>
 								<?php }else if ($data['status_publish']['status_id'] == 3) { ?>
 									<a class='mr-10 fs-14px mb-5' href='<?php echo site_url('listchapter/'. urlencode($data['book_id'])); ?>?stat=revision' style='border: 1px #333 solid;border-radius: 40px;padding: 8px 25px;'><img src='public/img/assets/icon_pen.svg' width='23'> Edit</a> 

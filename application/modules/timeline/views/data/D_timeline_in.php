@@ -4,7 +4,7 @@
 		<div class="card-body p-0 p-20">
 			<div class="row mb-20 pb-10" style="border-bottom: 1px rgba(225, 225, 225, 0.28) solid;">
 				<div class="media">
-					<a href="#"><img class="d-flex align-self-start mr-20 rounded-circle" src="<?php if($s_book['author_avatar'] == NULL){
+					<a href="#"><img class="d-flex align-self-start mr-10 rounded-circle" src="<?php if($s_book['author_avatar'] == NULL){
 						echo base_url('public/img/profile/blank-photo.jpg');
 					}else{
 						echo $s_book['author_avatar']; } ?>" width="60" height="60" alt="<?php
@@ -39,7 +39,8 @@
 							" id="book-link<?php
 							echo $s_book['book_id']; ?>"><?php
 							echo $s_book['title_book']; ?></a></h5>
-							<p class="catbook"><a href="#" class="mr-20"><span class="btn-no-fill">FIKSI</span></a> <span class="mr-20"><img src="<?php echo base_url(); ?>public/img/assets/icon_view.svg"> <?php
+							<p class="catbook"><a href="#" class="mr-20"><span class="btn-no-fill"><?php
+							echo $s_book['category']; ?></span></a> <span class="mr-20"><img src="<?php echo base_url(); ?>public/img/assets/icon_view.svg"> <?php
 							echo $s_book['view_count']; ?></span> <span><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg"> <?php
 							echo $s_book['share_count']; ?></span></p>
 							<p class="text-desc-in desc<?php

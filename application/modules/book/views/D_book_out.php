@@ -16,7 +16,7 @@
 	<meta name="Keywords" content="baboo">
 
 	<!-- Facebook -->
-	<?php $u1= $this->uri->segment(2); echo "<meta property='og:url'                content='".base_url('book/'.$u1.'/preview')."' />"; ?>
+	<?php $u1= $this->uri->segment(2); if ($detailBook['book_info']['is_pdf'] == '1') { echo "<meta property='og:url'                content='".base_url('book/'.$u1.'/preview/pdf')."' />"; }else { echo "<meta property='og:url'                content='".base_url('book/'.$u1.'/preview')."' />"; }  ?>
 	<meta property="og:type"               content="website" />
 	<meta property="og:title"              content="<?php echo $title; ?> | Baboo.id" />
 	<?php 
@@ -45,6 +45,16 @@
 	</script>
 	<!-- <script src="https://js.pusher.com/4.2/pusher.min.js"></script> -->
 </head>
+<?php 
+$u1= $this->uri->segment(2);
+$u12= $this->uri->segment(4);
+if (empty($u12) || $u12 != 'pdf') {
+	if ($detailBook['book_info']['is_pdf'] == '1') {
+		redirect(site_url('book/'.$u1.'/preview/pdf'),'refresh');
+	}else{	
+	}
+}
+?>
 <style>
 .nav-link {
 	padding: 0px 0.3rem !important;

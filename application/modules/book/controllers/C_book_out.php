@@ -26,7 +26,7 @@ class C_book_out extends MX_Controller {
 			'book_id' => $id[0]
 		);
 
-		$datas = $this->curl_request->curl_post($this->API.'timeline/Home/detailBook', $sendData, $auth);
+		$datas = $this->curl_request->curl_post($this->API.'timeline/Home/detailBook', $sendData, '');
 
 		$book['css'][] = "public/plugins/holdOn/css/HoldOn.css"
 		;

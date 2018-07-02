@@ -1,6 +1,12 @@
-
-<div id="post-<?php echo (int)$id_chapter; ?>" class="mauboleh text-justify mt-20" style="line-height:30px;">
-	<?php if ($detail_book['data']['chapter']['chapter_free'] == 'true'): ?>
+<?php if ((bool) $detail_book['data']['book_info']['is_pdf'] == false) { ?>
+	<div id="post-<?php echo (int)$id_chapter; ?>" class="mauboleh text-justify mt-20" style="line-height:30px;">
+	<?php }else{ ?>
+		<div id="post-<?php echo (int)$id_chapter; ?>" class="mauboleh" style="">
+		<?php } ?>
+	<?php if ((bool) $detail_book['data']['book_info']['is_pdf'] == true) { ?>
+		<div id='pdf-viewer'> </div>
+	<?php }else{ ?>
+		<?php if ($detail_book['data']['chapter']['chapter_free'] == 'true'): ?>
 
 		<h4 class="dbooktitlebook" > <?php
 		if ($id_chapter == null || $id_chapter == '' || $id_chapter == 0) {
@@ -50,3 +56,4 @@
 				</div>
 			<?php  endif ?>
 			<?php endif ?>
+	<?php } ?>

@@ -34,8 +34,12 @@ class C_Library extends MX_Controller
 
         $auth = $resval4['bbo_auth'];
         $this->session->set_userdata('authKey', $auth);
+        $datas['css'][] = "public/css/sweetalert2.min.css";
+        $data['css'][] = "public/css/sweetalert2.min.css";
         $datas['js'][]   = "public/js/custom/notification.js";
         $datas['js'][] = "public/js/custom/transaction.js";
+        $datas['js'][]   = "public/js/sweetalert2.all.min.js";
+        $data['js'][]   = "public/js/sweetalert2.all.min.js";
         if ($this->agent->is_mobile()) {
             $data['transaction'] = $resval3['data']['data'];
             $data['js'][] = "public/js/jquery.min.js";

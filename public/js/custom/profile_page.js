@@ -166,7 +166,7 @@ $(document).ready(function() {
 					gambarLike = "public/img/assets/icon_love.svg";
 					kataLike = "Suka";
 				}
-				datas += "<div class='card mb-15'> <div class='card-body pt-20 pb-20 pl-30 pr-30'> <div class='row'> <div class='media w-100'> <div class='media-body'> <a href='book/"+ item.book_id+"-"+convertToSlug(item.title_book) +"'> <img class='d-flex align-self-start mr-10 float-left' src='"+cover+"' width='120' height='170' alt='"+item.title_book+"'> </a> <span class='card-title nametitle3'><a href='book/"+ item.book_id+"-"+convertToSlug(item.title_book) +"'>"+item.title_book+"</a></span> <div class='dropdown float-right'><button class='btn btn-transparent dropdown-toggle float-right' type='button' data-toggle='dropdown'><span class='float-right'><img src='"+base_url+"/public/img/assets/caret.svg'></span></button><ul class='dropdown-menu dropdown-menu-right'> <li class='drpdwn-caret'><a href='javascript:void(0);' onclick='editBook("+item.book_id+")'>Edit Buku</a></li> <li class='drpdwn-caret'><a href='javascript:void(0);' onclick='deleteBook("+item.book_id+")'>Hapus Buku</a></li></ul></div><br><br><p class='catbook'><a href='#' class='mr-20'><span class='btn-no-fill'>FIKSI</span></a> <span class='mr-20'><img src='public/img/assets/icon_view.svg'> "+item.view_count+"</span> <span><img src='public/img/assets/icon_share.svg'> "+item.share_count+"</span></p> <p class='text-desc-in'>"+item.desc+" <a href='#' class='readmore'>Lanjut</a> </p> </div> </div> </div> </div><div class='card-footer text-muted' style='font-size: 0.8em;font-weight: bold;'> <div class='pull-right'> <a class='fs-14px' href='#'><img class='mr-10' src='public/img/assets/icon_share.svg' width='23'> Bagikan</a> </div> <div> <a class='mr-30 fs-14px "+isLike+"' href='javascript:void(0);' id='loveboo'><img class='mr-10 loveicon' src='"+gambarLike+"' width='27'> "+kataLike+"</a> <a class='fs-14px' href='#' id='commentboo'><img class='mr-10' src='public/img/assets/icon_comment.svg' width='25'> Komentar</a> </div> </div> </div>";
+				datas += "<div class='card mb-15'> <div class='card-body pt-20 pb-20 pl-30 pr-30'> <div class='row'> <div class='media w-100'> <div class='media-body'> <a href='book/"+ item.book_id+"-"+convertToSlug(item.title_book) +"'> <img class='d-flex align-self-start mr-10 float-left' src='"+cover+"' width='120' height='170' alt='"+item.title_book+"'> </a> <span class='card-title nametitle3'><a href='book/"+ item.book_id+"-"+convertToSlug(item.title_book) +"'>"+item.title_book+"</a></span> <div class='dropdown float-right'><button class='btn btn-transparent dropdown-toggle float-right' type='button' data-toggle='dropdown'><span class='float-right'><img src='"+base_url+"/public/img/assets/caret.svg'></span></button><ul class='dropdown-menu dropdown-menu-right'> <li class='drpdwn-caret'><a href='javascript:void(0);' onclick='editBook("+item.book_id+")'>Edit Buku</a></li> <li class='drpdwn-caret'><a href='javascript:void(0);' onclick='deleteBook("+item.book_id+")'>Hapus Buku</a></li></ul></div><br><br><p class='catbook'><a href='#' class='mr-20'><span class='btn-no-fill'>"+item.category+"</span></a> <span class='mr-20'><img src='public/img/assets/icon_view.svg'> "+item.view_count+"</span> <span><img src='public/img/assets/icon_share.svg'> "+item.share_count+"</span></p> <p class='text-desc-in'>"+item.desc+" <a href='#' class='readmore'>Lanjut</a> </p> </div> </div> </div> </div><div class='card-footer text-muted' style='font-size: 0.8em;font-weight: bold;'> <div class='pull-right'> <a class='fs-14px' href='#'><img class='mr-10' src='public/img/assets/icon_share.svg' width='23'> Bagikan</a> </div> <div> <a class='mr-30 fs-14px "+isLike+"' href='javascript:void(0);' id='loveboo'><img class='mr-10 loveicon' src='"+gambarLike+"' width='27'> "+kataLike+"</a> <a class='fs-14px' href='#' id='commentboo'><img class='mr-10' src='public/img/assets/icon_comment.svg' width='25'> Komentar</a> </div> </div> </div>";
 			});
 		}
 		$('.loader').hide();
@@ -200,7 +200,13 @@ $(document).ready(function() {
 				}else {
 					cover = item.cover_url;
 				}
-				datas += "<div class='card mb-20'> <div class='card-header bg-white'> <span><img src='public/img/assets/icon_clock.svg' width='20'> "+item.latest_update+"</span> <span class='float-right' style='color: red;'>Draft</span> </div> <div class='card-body'> <img alt='"+item.category+"' class='d-flex align-self-start mr-10 float-left' height='170' src='"+cover+"' width='120'> <h4 class='card-title nametitle3'><span class='titlebooks'>"+item.title_book+"</span></h4> <p class='catbook mb-10'><span class='btn-no-fill'>"+item.category+"</span></p> <p class='text-desc-in'>"+item.desc+"</p> </div> <div class='card-footer text-muted bg-white' style='font-size: 0.8em;font-weight: bold;'> <div class='pull-right' style='margin-top: 3px;'> <a class='mr-10 fs-14px mb-5' href='"+base_url+"my_book/"+item.book_id+"' style='border: 1px #333 solid;border-radius: 40px;padding: 8px 25px;'><img src='public/img/assets/icon_pen.svg' width='23'> Edit</a> </div> <div> <button type='button' class='clear-btn deldraft' draft-id='"+item.book_id+"'><img src='public/img/icon-tab/dustbin.svg' width='20'></button> </div> </div> </div>";
+				datas += "<div class='card mb-20'> <div class='card-header bg-white'> <span><img src='public/img/assets/icon_clock.svg' width='20'> "+item.latest_update+"</span> <span class='float-right' style='color: red;'>Draft</span> </div> <div class='card-body'> <img alt='"+item.category+"' class='d-flex align-self-start mr-10 float-left' height='170' src='"+cover+"' width='120'> <h4 class='card-title nametitle3'><span class='titlebooks'>"+item.title_book+"</span></h4> <p class='catbook mb-10'><span class='btn-no-fill'>"+item.category+"</span></p> <p class='text-desc-in'>"+item.desc+"</p> </div> <div class='card-footer text-muted bg-white' style='font-size: 0.8em;font-weight: bold;'> <div class='pull-right' style='margin-top: 3px;'>";
+				if (item.is_pdf == true) {
+					datas += "<a class='mr-10 fs-14px mb-5' href='"+base_url+"upload_mypdf/"+item.book_id+"' style='border: 1px #333 solid;border-radius: 40px;padding: 8px 25px;'><img src='public/img/assets/icon_pen.svg' width='23'> Edit</a> </div>";
+				}else{	
+					datas += "<a class='mr-10 fs-14px mb-5' href='"+base_url+"my_book/"+item.book_id+"' style='border: 1px #333 solid;border-radius: 40px;padding: 8px 25px;'><img src='public/img/assets/icon_pen.svg' width='23'> Edit</a> </div>";
+				}
+				datas += "<div> <button type='button' class='clear-btn deldraft' draft-id='"+item.book_id+"'><img src='public/img/icon-tab/dustbin.svg' width='20'></button> </div> </div> </div>";
 			}); 
 		}else {
 			var datas = "";
@@ -257,6 +263,7 @@ $(document).on('click', '.deldraft', function() {
 	var formData = new FormData();
 
 	formData.append("book_id", $(this).attr("draft-id"));
+    formData.append("csrf_test_name", csrf_value);
 
 	swal({
 		title: 'Hapus draft buku?',
@@ -311,6 +318,7 @@ function validateProfile() {
 function deleteBook(id_book) {
 	var formData = new FormData();
 	formData.append("book_id", id_book);
+    formData.append("csrf_test_name", csrf_value);
 	swal({
 		title: 'Hapus Buku ?',
 		type: 'warning',

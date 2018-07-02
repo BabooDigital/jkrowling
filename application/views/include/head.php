@@ -4,6 +4,9 @@
 	<meta charset="utf-8">
 	<meta http-equiv="x-ua-compatible" content="ie=edge" />
 	<meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+	<meta data-n-head="true" content="yes" data-hid="mobile-web-app-capable" name="mobile-web-app-capable">
+	<meta data-n-head="true" content="#7661ca" data-hid="theme-color" name="theme-color">
+	<meta data-n-head="true" content="#7661ca" data-hid="msapplication-navbutton-color" name="masapplication-navbutton-color">
 
 	<link rel="icon" href="<?php echo base_url(); ?>public/img/favicon.ico" sizes="16x16">
 	

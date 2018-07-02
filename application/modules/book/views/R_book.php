@@ -66,7 +66,7 @@
 	display: inline;
 }
 .textp > p {
-	/*margin-bottom: 0px;*/
+	/*text-indent: 0*/
 }
 .modal-backdrop ~ .modal-backdrop
 {
@@ -217,6 +217,65 @@
 	border-bottom: 1px #dddddd solid;
 }
 
+#pdf-main-container {
+	width: 95%;
+	margin: 20px auto;
+}
+
+#pdf-loader {
+	display: none;
+	text-align: center;
+	color: #999999;
+	font-size: 13px;
+	line-height: 100px;
+	height: 100px;
+}
+#pdf-contents {
+	display: none;
+}
+
+#pdf-meta {
+	overflow: hidden;
+	margin: 0 0 20px 0;
+}
+
+#pdf-buttons {
+	float: left;
+}
+
+#page-count-container {
+	float: right;
+}
+
+#pdf-current-page {
+	display: inline;
+}
+
+#pdf-total-pages {
+	display: inline;
+}
+
+#pdf-canvas {
+	width: 100%;
+	border: 1px solid rgba(0,0,0,0.2);
+	box-sizing: border-box;
+}
+
+#page-loader {
+	height: 100px;
+	line-height: 100px;
+	text-align: center;
+	display: none;
+	color: #999999;
+	font-size: 13px;
+}
+
+.btn-nav-pdf {
+	background: #fcfcff;
+	border: 1px #c3c3c3 solid;
+	border-radius: 6px;
+}
+
 </style>
 <?php 
 echo "<script>(function(d, s, id) {
@@ -246,7 +305,16 @@ echo "<script>(function(d, s, id) {
 	<div class="profiles">
 		<label class="close" for="toggle-right" style="height: 45px;">&nbsp;&nbsp;&times;</label>
 		<div class="text-center">
-			<div class="mt-20">
+			<?php 
+			if ((bool)$detail_book['data']['book_info']['is_pdf'] != true) { ?>
+				<div class="mt-20 spadding">
+				<?php }else{
+					function incrementalHash($len = 5){$charset = "0123456789abcdefghijklmnopqrstuvwxyz"; $base = strlen($charset); $result = ''; $now = explode(' ', microtime())[1]; while ($now >= $base){$i = $now % $base; $result = $charset[$i] . $result; $now /= $base; } return substr($result, -5); }
+					$generateDate = $detail_book['data']['book_info']['epoch_time'];
+					$datapassword = 'ID#' . $detail_book['data']['book_info']['book_id'] . '#' . $detail_book['data']['book_info']['title_book'] . '#' . strtotime($generateDate);
+					$password = hash_hmac('sha512', $datapassword, strtotime($generateDate)).incrementalHash(); ?>
+					<div class="mt-20 spadding" dat-cpss="<?php echo $password; ?>">
+					<?php } ?>
 				<p><img class="cover_image rounded" height="180" src="<?php echo $detail_book['data']['book_info']['cover_url']; ?>" width="130"></p>
 			</div>
 			<div class="mt-15">
@@ -254,8 +322,19 @@ echo "<script>(function(d, s, id) {
 			</div>
 		</div>
 		<div class="mt-20">
-			<p class="text-muted ml-20">Daftar Chapter</p>
-			<div class="list-group mt-10 mb-90 pl-10 pr-10" id="list_Rchapter"></div>
+			<?php if ((bool)$detail_book['data']['book_info']['is_pdf'] == true) { ?>
+				<div class="mt-10 mb-100 pl-10 pr-10">
+					<?php echo $detail_book['data']['book_info']['desc']; ?>
+				</div>
+			<?php }else{ ?>
+				<p class="text-muted ml-20">Daftar Chapter</p>
+				<div class="list-group mt-10 mb-90 pl-10 pr-10" id="">
+					<?php $count = 0; $counts = 0; $countss = 0; $uri = $this->uri->segment(2); $uri2 = $this->uri->segment(3);
+					foreach ($chapt_data as $ch) { ?>
+						<a href="<?php echo site_url('book/'.$uri.'/'.$count++); ?>" class="borbot bornone font-weight-bold bg-none list-group-item list-group-item-action chpt <?php if ($uri2 == $countss++){echo 'active';} ?>" chapter-count="<?php echo $counts++; ?>"><?php echo $ch['chapter_title']; ?></a>
+					<?php } ?>
+				</div>
+			<?php } ?>
 		</div>
 		<?php $usDat = $this->session->userdata('userData'); if ($detail_book['data']['book_info']['is_free'] == true || $usDat['user_id'] == $detail_book['data']['author']['author_id']) { ?>
 		<div></div>
@@ -269,7 +348,7 @@ echo "<script>(function(d, s, id) {
 		<?php } ?>
 	</div><br>
 	<br>
-	<div class="container mt-30 mb-50">
+	<div class="container mt-30 mb-70">
 		<?php if (!$this->uri->segment(3)) { ?>
 		<div class="row mb-30">
 			<div class="col-12">
@@ -289,45 +368,32 @@ echo "<script>(function(d, s, id) {
 			</div>
 		</div>
 		<?php } ?>
-		<?php $sess = $this->session->userdata('userData'); if (!$this->uri->segment(3)) { ?>
-		<div class="row">
-			<div class="col-12">
-				<div class="media mb-20">
-					<img alt="<?php echo $detail_book['data']['author']['author_name']; ?>" class="d-flex align-self-start mr-20 rounded-circle authimg" height="55" src="<?php if($detail_book['data']['author']['avatar'] == NULL){ echo base_url('public/img/profile/blank-photo.jpg'); }else{ echo $detail_book['data']['author']['avatar']; } ?>" width="55">
-					<div class="media-body mt-5">
-						<div style="display: flex;"><h5 class="nametitle2 mr-20"><a href="<?php echo site_url('profile/'.$detail_book['data']['author']['author_id'].'-'.url_title($detail_book['data']['author']['author_name'], 'dash', true)); ?>" class="author_name"><?php echo $detail_book['data']['author']['author_name']; ?></a></h5>
-							<?php if ($sess['user_id'] == $detail_book['data']['author']['author_id']) { ?>
-							<div></div>
-							<?php }else{ ?>
-							<a data-follow="<?php echo $detail_book['data']['author']['author_id']; ?>" class="btn-topup <?php if ($detail_book['data']['author']['is_follow'] == false) { echo "follow-u"; }else{ echo "unfollow-u"; } ?>"><span class="nametitle2 txtfollow" style="font-size: 12px;"><?php if ($detail_book['data']['author']['is_follow'] == false) { echo "Ikuti"; }else{ echo "Diikuti"; } ?></span></a>
-							<?php } ?>
+		<?php if ((bool)$detail_book['data']['book_info']['is_pdf'] != true) { ?>
+			<?php $sess = $this->session->userdata('userData'); if (!$this->uri->segment(3)) { ?>
+				<div class="row">
+				<?php }else{ ?>
+					<div class="row" style="display: none;">
+					<?php } ?>
+					<div class="col-12">
+						<div class="media mb-20">
+							<img alt="<?php echo $detail_book['data']['author']['author_name']; ?>" class="d-flex align-self-start mr-10 rounded-circle authimg" height="55" src="<?php if($detail_book['data']['author']['avatar'] == NULL){ echo base_url('public/img/profile/blank-photo.jpg'); }else{ echo $detail_book['data']['author']['avatar']; } ?>" width="55">
+							<div class="media-body mt-5">
+								<div style="display: flex;"><h5 class="nametitle2 mr-10"><a href="<?php echo site_url('profile/'.$detail_book['data']['author']['author_id'].'-'.url_title($detail_book['data']['author']['author_name'], 'dash', true)); ?>" class="author_name"><?php echo $detail_book['data']['author']['author_name']; ?></a></h5>
+									<?php if ($sess['user_id'] == $detail_book['data']['author']['author_id']) { ?>
+										<div></div>
+									<?php }else{ ?>
+										<a data-follow="<?php echo $detail_book['data']['author']['author_id']; ?>" class="btn-topup <?php if ($detail_book['data']['author']['is_follow'] == false) { echo "follow-u"; }else{ echo "unfollow-u"; } ?>"><span class="nametitle2 txtfollow" style="font-size: 12px;"><?php if ($detail_book['data']['author']['is_follow'] == false) { echo "Ikuti"; }else{ echo "Diikuti"; } ?></span></a>
+									<?php } ?>
+								</div>
+								<p style="margin-top: -5px;"><span class="text-muted"><small><?php echo $detail_book['data']['book_info']['publish_date']; ?></small></span>
+								</p>
+							</div>
 						</div>
-						<p style="margin-top: -5px;"><span class="text-muted"><small><?php echo $detail_book['data']['book_info']['publish_date']; ?></small></span>
-						</p>
 					</div>
 				</div>
-			</div>
-		</div>
-		<?php }else{ ?>
-		<div class="row" style="display: none;">
-			<div class="col-12">
-				<div class="media mb-20">
-					<img alt="<?php echo $detail_book['data']['author']['author_name']; ?>" class="d-flex align-self-start mr-20 rounded-circle authimg" height="55" src="<?php if($detail_book['data']['author']['avatar'] == NULL){ echo base_url('public/img/profile/blank-photo.jpg'); }else{ echo $detail_book['data']['author']['avatar']; } ?>" width="55">
-					<div class="media-body mt-5">
-						<div style="display: flex;"><h5 class="nametitle2 mr-20"><a href="#" class="author_name"><?php echo $detail_book['data']['author']['author_name']; ?></a></h5>
-							<?php if ($sess['user_id'] == $detail_book['data']['author']['author_id']) { ?>
-							<div></div>
-							<?php }else{ ?>
-							<a data-follow="<?php echo $detail_book['data']['author']['author_id']; ?>" class="btn-topup <?php if ($detail_book['data']['author']['is_follow'] == false) { echo "follow-u"; }else{ echo "unfollow-u"; } ?>"><span class="nametitle2 txtfollow" style="font-size: 12px;"><?php if ($detail_book['data']['author']['is_follow'] == false) { echo "Ikuti"; }else{ echo "Diikuti"; } ?></span></a>
-							<?php } ?>
-						</div>
-						<p style="margin-top: -5px;"><span class="text-muted"><small><?php echo $detail_book['data']['book_info']['publish_date']; ?></small></span>
-						</p>
-					</div>
-				</div>
-			</div>
-		</div>
-		<?php } ?>
+			<?php }else{ ?>
+				<div></div>
+			<?php } ?>
 		<input id="iaidubi" name="iaidubi" type="hidden" value="<?php echo $detail_book['data']['book_info']['book_id']; ?>"> <input id="iaiduui" name="iaiduui" type="hidden" value="<?php $dat = $this->session->userdata('userData'); echo $dat['user_id']; ?>">
 		<?php $usDat = $this->session->userdata('userData'); if ($detail_book['data']['chapter']['chapter_free'] == true  || $usDat['user_id'] == $detail_book['data']['author']['author_id']) { ?>
 		<div class="row">
@@ -336,28 +402,90 @@ echo "<script>(function(d, s, id) {
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-12">
-				<div class="detailbook text-justify">
-					<?php
-					foreach ($detail_book['data']['chapter']['paragraphs'] as $book) {
-						$text = strip_tags($book['paragraph_text']);
-						$count = $book['comment_count'];
-						if ($count == 0) { $view_count = '+'; }else{ $view_count = $count;}
-						$data .= "<div  class='mb-20 textp' id='detailStyle' data-id-p='".$book['paragraph_id']."' data-text='".$text."'>".$book['paragraph_text']."";
-					}
-					echo $data;
-					?>
+			<?php if ((bool)$detail_book['data']['book_info']['is_pdf'] != true) { ?>
+				<div class="col-12">
+					<div class="detailbook">
+						<?php
+						foreach ($detail_book['data']['chapter']['paragraphs'] as $book) {
+							$text = strip_tags($book['paragraph_text']);
+							$count = $book['comment_count'];
+							if ($count == 0) { $view_count = '+'; }else{ $view_count = $count;}
+							$datas .= "<div  class='mb-15 textp' id='detailStyle' data-id-p='".$book['paragraph_id']."'>".ucfirst($book['paragraph_text'])."</div>";
+						}
+						echo $datas;
+						?>
+					</div>
 				</div>
+			<?php }else{ ?>
+				<div id="pdf-main-container" style="margin-top: -19px;">
+					<div id="pdf-loader">Mohon tunggu..</div>
+					<div id="pdf-contents">
+						<canvas id="pdf-canvas"></canvas>
+						<div id="page-loader">Loading page ...</div>
+						<div id="pdf-meta">
+							<div id="page-count-container">Halaman <div id="pdf-current-page"></div> dari <div id="pdf-total-pages"></div></div>
+						</div>
+					</div>
+				</div>
+			<?php } ?>
+		</div>
+			<div class="row" id="paging-chapter">
+				<?php if (!empty($chapt_count)) { ?>
+					<?php $uri = $this->uri->segment(2); $uri2 = $this->uri->segment(3); $ch_next = $uri2+1; $ch_prev = $uri2-1; if ($ch_prev==0 || $ch_prev <= 1) { $ch_prev = ""; } $fix = $chapt_count-1; 
+					if (empty($uri2) && $uri2 < $fix && $uri2 == 0) { ?>
+						<div class='col-4'>
+						</div> 
+						<div class='col-4'>
+							<span class='w-100'> </span> 
+						</div> 
+						<div class='col-4'> 
+							<a href="<?php echo site_url('book/'.$uri.'/'.$ch_next); ?>" class='pull-right btn-next-chapt'><i class="fa fa-chevron-right" aria-hidden="true"></i></a> 
+						</div>
+					<?php }else if (!empty($uri2) && $uri2 < $fix) { ?>
+						<div class='col-4'>
+							<a href="<?php echo site_url('book/'.$uri.'/'.$ch_prev); ?>" class='pull-left  btn-next-chapt'><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
+						</div>
+						<div class='col-4'>
+							<span class='w-100'> </span> 
+						</div> 
+						<div class='col-4'> 
+							<a href="<?php echo site_url('book/'.$uri.'/'.$ch_next); ?>" class='pull-right btn-next-chapt'><i class="fa fa-chevron-right" aria-hidden="true"></i></a> 
+						</div>
+					<?php }else if ($uri2 == $fix && $uri2 >= $fix) { ?>
+						<div class='col-4'>
+							<a href="<?php echo site_url('book/'.$uri.'/'.$ch_prev); ?>" class='pull-left  btn-next-chapt'><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
+						</div>
+						<div class='col-4'>
+							<span class='w-100'> </span> 
+						</div> 
+						<div class='col-4'> 
+						</div>
+					<?php }else{echo "";} ?>
+				<?php }else { echo ""; } ?>
 			</div>
 		</div>
+		
 		<?php }else{ ?>
 		<div class="container text-center">
-			<div class="row">
-				<div class="col-12">
-					<h3>Versi Buku Full</h3>
-					<img src="<?php echo site_url('public/img/assets/icon_sell.png'); ?>" width="20" class="mr-5"><span style="color: #7661ca;font-weight: 600;">Rp <span><?php echo number_format( $detail_book['data']['book_info']['book_price'], 0, ',', '.'); ?></span></span> 
+			<?php if ((bool)$detail_book['data']['book_info']['is_pdf'] != true) { ?>
+				<div class="row">
+					<div class="col-12">
+						<h3>Versi Buku Full</h3>
+						<img src="<?php echo site_url('public/img/assets/icon_sell.png'); ?>" width="20" class="mr-5"><span style="color: #7661ca;font-weight: 600;">Rp <span><?php echo number_format( $detail_book['data']['book_info']['book_price'], 0, ',', '.'); ?></span></span> 
+					</div>
 				</div>
-			</div>
+			<?php }else{ ?>
+				<div id="pdf-main-container" style="margin-top: -19px;">
+					<div id="pdf-loader">Mohon tunggu..</div>
+					<div id="pdf-contents">
+						<canvas id="pdf-canvas"></canvas>
+						<div id="page-loader">Loading page ...</div>
+						<div id="pdf-meta">
+							<div id="page-count-container">Halaman <div id="pdf-current-page"></div> dari <div id="pdf-total-pages"></div></div>
+						</div>
+					</div>
+				</div>
+			<?php } ?>
 			<div class="row mt-15">
 				<!-- <div class="col-12">
 					<button type="button" class="float-right btn-transparant buyfullbook w-100" style="margin-top: -10px;padding: 10px 30px;border-radius: 35px;background: #7661ca;color: #fff;">Beli</button>
@@ -372,19 +500,19 @@ echo "<script>(function(d, s, id) {
 	<nav class="navbar navbar-expand-lg fixed-bottom baboonav" id="navscrollf" style="height:60px;">
 		<div class="container-fluid">
 			<div>
-				<a class="<?php if($detail_book['data']['book_info']['is_like'] == false){ echo 'like'; }else{ echo 'unlike'; } ?>" data-id="<?php echo $detail_book['data']['book_info']['book_id']; ?>" href="javascript:void(0);" id="loveboo"><img class="mr-5 loveicon" src="<?php if($detail_book['data']['book_info']['is_like'] == false){ echo base_url('public/img/assets/icon_love.svg'); }else{ echo base_url('public/img/assets/love_active.svg'); } ?>" width="24"> <span id="likecount"><?php echo $detail_book['data']['book_info']['like_count']; ?></span></a>
+				<a class="<?php if($detail_book['data']['book_info']['is_like'] == false){ echo 'like'; }else{ echo 'unlike'; } ?>" data-id="<?php echo $detail_book['data']['book_info']['book_id']; ?>" href="javascript:void(0);" id="loveboo"><img class=" loveicon" src="<?php if($detail_book['data']['book_info']['is_like'] == false){ echo base_url('public/img/assets/icon_love.svg'); }else{ echo base_url('public/img/assets/love_active.svg'); } ?>" width="24"> <span id="likecount"><?php echo $this->thousand_to_k->ConvertToK($detail_book['data']['book_info']['like_count']); ?></span></a>
 			</div>
 			<div>
-				<a href="javascript:void(0);" class="comment_"><img class="mr-5" src="<?php echo base_url(); ?>public/img/assets/icon_comment.svg" width="22"> <?php echo $detail_book['data']['book_info']['book_comment_count']; ?></a>
+				<a href="javascript:void(0);" class="comment_"><img class="" src="<?php echo base_url(); ?>public/img/assets/icon_comment.svg" width="22"> <?php echo $this->thousand_to_k->ConvertToK($detail_book['data']['book_info']['book_comment_count']); ?></a>
 			</div>
 			<div>
-				<a class="share-fb" href="javascript:void(0);"><img class="mr-5" src="<?php echo base_url(); ?>public/img/assets/icon_share.svg" width="23"> <span class="boshare"><?php echo $detail_book['data']['book_info']['share_count']; ?></span></a>
+				<a class="share-fb" href="javascript:void(0);"><img class="" src="<?php echo base_url(); ?>public/img/assets/icon_share.svg" width="23"> <span class="boshare"><?php echo $this->thousand_to_k->ConvertToK($detail_book['data']['book_info']['share_count']); ?></span></a>
 			</div>
 			<div>
-				<a href="#"><img class="mr-5" src="<?php echo base_url(); ?>public/img/assets/icon_view.svg" width="35"> <?php echo $detail_book['data']['book_info']['view_count']; ?></a>
+				<a href="#"><img class="" src="<?php echo base_url(); ?>public/img/assets/icon_view.svg" width="35"> <?php echo $this->thousand_to_k->ConvertToK($detail_book['data']['book_info']['view_count']); ?></a>
 			</div>
 			<div>
-				<a class="<?php if($detail_book['data']['book_info']['is_bookmark'] == false){ echo 'bookmark'; }else{ echo 'unbookmark'; } ?>" data-id="<?php echo $detail_book['data']['book_info']['book_id']; ?>" href="javascript:void(0);" id="bookmarkboo"><img class="mr-5 bookmarkicon" src="<?php if($detail_book['data']['book_info']['is_bookmark'] == false){ echo base_url('public/img/assets/icon_bookmark.svg'); }else{ echo base_url('public/img/assets/icon_bookmark_active.svg'); } ?>" width="27"></a>
+				<a class="<?php if($detail_book['data']['book_info']['is_bookmark'] == false){ echo 'bookmark'; }else{ echo 'unbookmark'; } ?>" data-id="<?php echo $detail_book['data']['book_info']['book_id']; ?>" href="javascript:void(0);" id="bookmarkboo"><img class=" bookmarkicon" src="<?php if($detail_book['data']['book_info']['is_bookmark'] == false){ echo base_url('public/img/assets/icon_bookmark.svg'); }else{ echo base_url('public/img/assets/icon_bookmark_active.svg'); } ?>" width="27"></a>
 			</div>
 		</div>
 	</nav>
@@ -461,10 +589,17 @@ echo "<script>(function(d, s, id) {
 <?php endif ?>
 <script src='https://podio.github.io/jquery-mentions-input/lib/jquery.events.input.js' type='text/javascript'></script>
 <script src='https://podio.github.io/jquery-mentions-input/lib/jquery.elastic.js' type='text/javascript'></script>
+<?php if ((bool)$detail_book['data']['book_info']['is_pdf'] == true) { ?>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.87/pdf.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.87/pdf.worker.js"></script>
+<?php } ?>
 <script type="text/javascript">
 	$(document).ready(function() {
 		showPopUpBanner();
-		<?php if ($detail_book['data']['book_info']['is_free'] == false) { ?>
+		<?php if ((bool)$detail_book['data']['book_info']['is_pdf'] == true) { ?>
+			getBooks();
+		<?php } ?>
+		<?php if ((bool)$detail_book['data']['book_info']['is_free'] == false) { ?>
 			$("#notifpayment").modal('show');
 			buyBook();
 		<?php } ?>
@@ -511,7 +646,7 @@ echo "<script>(function(d, s, id) {
 		}
 	};
 	var bid = segment.split('-');
-	var link = "intent://www.baboo.id/book/"+bid[0]+"#Intent;scheme=https;package=id.android.baboo;S.doctype=FRA;S.docno=FRA1234;S.browser_fallback_url=market://details?id=id.android.baboo;end";
+	var link = "intent://"+"<?php echo BASE_URL_WEB; ?>"+bid[0]+"#Intent;scheme=https;package=id.android.baboo;S.doctype=FRA;S.docno=FRA1234;S.browser_fallback_url=market://details?id=id.android.baboo;end";
 	$('.bannerPopUp').html("<div class='popUpBannerBox'> <div class='popUpBannerInner'> <div class='popUpBannerContent'> <a href='"+link+"'><span class='popUpBannerSpan'>Baca di Aplikasi</span></a><a href='#' class='closeButton'>&#120;</a> </div> </div> </div>");
 
 	function showPopUpBanner() {
@@ -526,6 +661,11 @@ echo "<script>(function(d, s, id) {
 		$('.popUpBannerBox').fadeOut("2000");
 		return false;
 	});
+	// var id = $('.chpt').attr();
+	// console.log(id);
+    //   if (active == id) {
+    //     $('.chpt').addClass('active');
+    // }
 </script>
 </body>
 </html>

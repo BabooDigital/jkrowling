@@ -3,7 +3,9 @@
 button:focus, a:focus {
   outline: 0;
 }
-
+::-webkit-scrollbar {
+    display: none;
+}
 body {
 	background-color: #edf0f3;
 }
@@ -1270,7 +1272,7 @@ input.formsearch:focus {
 	}
 	.nav-pills .nav-link.active, .show>.nav-pills .nav-link {
 		background-color: #4d4c4c !important;
-		border-bottom: 2px solid #fff;	
+		/*border-bottom: 2px solid #fff;	*/
 	}
 
 	.creatcovermenu > .nav-link {

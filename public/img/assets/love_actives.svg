@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: sketchtool 49.1 (51147) - http://www.bohemiancoding.com/sketch -->
-    <title>5B906915-C275-458A-B0D2-4F519DBE6704</title>
+    <!-- Generator: sketchtool 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>41D9CB62-76DF-4C7D-9AB2-7ABBD0A76BFD</title>
     <desc>Created with sketchtool.</desc>
     <defs></defs>
     <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
-        <g id="love" stroke="#616770" stroke-width="1.5">
-            <g id="Group-11" transform="translate(2.000000, 3.000000)">
+        <g id="love-copy" fill="#D0021B" stroke="#D0021B" stroke-width="1.5">
+            <g id="Group-11" transform="translate(1.600000, 3.000000)">
                 <path d="M0,2.06460562 C0.483181571,1.44152378 2.27380152,-0.168071028 4.56623147,0.0143115094 C7.09733493,0.215682579 7.91619049,1.98486338 8.17711522,2.67688711 C8.68756396,4.03069764 8.36577748,5.57526845 7.91194658,6.70752305 C7.12046069,8.68218708 3.68061051,11.7525676 0,14.2234796" id="Path-3-Copy-3" transform="translate(4.218750, 7.111740) scale(-1, 1) translate(-4.218750, -7.111740) "></path>
-                <path d="M8.4375,2.06460562 C8.92068157,1.44152378 10.7113015,-0.168071028 13.0037315,0.0143115094 C15.5348349,0.215682579 16.3536905,1.98486338 16.6146152,2.67688711 C17.125064,4.03069764 16.8032775,5.57526845 16.3494466,6.70752305 C15.5579607,8.68218708 12.1181105,11.7525676 8.4375,14.2234796" id="Path-3-Copy-4"></path>
+                <path d="M8.4375,2.06460562 C8.92068157,1.44152378 10.7113015,-0.168071028 13.0037315,0.0143115094 C15.5348349,0.215682579 16.3536905,1.98486338 16.6146152,2.67688711 C17.125064,4.03069764 16.8032775,5.57526845 16.3494466,6.70752305 C15.5579607,8.68218708 12.1181105,11.7525676 8.4375,14.2234796 C8.50864884,10.3386606 6.69763535,5.30742762 8.4375,2.06460562 Z" id="Path-3-Copy-4" stroke-linejoin="round"></path>
             </g>
         </g>
     </g>

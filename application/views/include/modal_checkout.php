@@ -35,7 +35,7 @@
               <div class="card">
                 <div class="card-body pl-0 pr-0">
                   <div class="media">
-                    <img class="align-self-start mr-10" id="ccoverb" src="http://placehold.it/200x210" width="110" height="170" alt="" style="object-fit: cover;box-shadow: 0px 0px 4px #abababc7;">
+                    <img class="align-self-start mr-10" id="ccoverb" src="https://assets.dev-baboo.co.id/baboo-cover/default1.png" width="110" height="170" alt="" style="object-fit: cover;box-shadow: 0px 0px 4px #abababc7;">
                     <div class="media-body">
                       <div>
                         <h4 class="mt-0 font-weight-bold" id="ctitleb"></h4>

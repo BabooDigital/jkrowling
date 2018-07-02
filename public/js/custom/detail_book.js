@@ -114,36 +114,7 @@ $(document).ready(function() {
             }
         });
         });
-	// $(document).on("click", ".post-comment-parap", function() {
-	// 	var a = $(this),
-	// 	b = new FormData,
-	// 	c = $("#pcomments").val(),
-	// 	d = $("#profpict").attr("src"),
-	// 	e = $("#profpict").attr("alt");
-	// 	c = "<div class='pcommentviewnull'><div class='media'> <img class='d-flex align-self-start mr-20 rounded-circle' src='" + d + "' width='48' height='48' alt='" + e + "'> <div class='media-body mt-5'> <p><h5 class='card-title nametitle3'><a href='#'>" + e + "</a><small><span class='text-muted ml-10 timepost'>Just now</span></small></h5> <div class='text-muted' style='margin-top:-10px;'></div></p> <p style='font-size:16px; font-family: Roboto;'>" +
-	// 	c + "</p></div> </div><hr></div>";
-	// 	$("#paragraphcomment_list").append(c);
-	// 	b.append("user_id", $("#iaiduui").val());
-	// 	b.append("paragraph_id", a.attr("data-p-id"));
-	// 	b.append("comments", $("#pcomments").val());
-	// 	b.append("csrf_test_name", csrf_value);
-	// 	$.ajax({
-	// 		url: base_url + "commentbook",
-	// 		type: "POST",
-	// 		dataType: "JSON",
-	// 		cache: !1,
-	// 		contentType: !1,
-	// 		processData: !1,
-	// 		data: b
-	// 	}).done(function(a) {
-	// 		null == a && ($(".pcommentviewnull").hide(),
-	// 			console.log("Koneksi Bermasalah"));
-	// 		$("#pcomments").val("")
-	// 	}).fail(function() {
-	// 		console.log("error")
-	// 	}).always(function() {})
-	// });
-
+	// $(document).on("click", ".post-comment-parap", function() {// 	var a = $(this), // 	b = new FormData, // 	c = $("#pcomments").val(), // 	d = $("#profpict").attr("src"), // 	e = $("#profpict").attr("alt"); // 	c = "<div class='pcommentviewnull'><div class='media'> <img class='d-flex align-self-start mr-20 rounded-circle' src='" + d + "' width='48' height='48' alt='" + e + "'> <div class='media-body mt-5'> <p><h5 class='card-title nametitle3'><a href='#'>" + e + "</a><small><span class='text-muted ml-10 timepost'>Just now</span></small></h5> <div class='text-muted' style='margin-top:-10px;'></div></p> <p style='font-size:16px; font-family: Roboto;'>" + // 	c + "</p></div> </div><hr></div>"; // 	$("#paragraphcomment_list").append(c); // 	b.append("user_id", $("#iaiduui").val()); // 	b.append("paragraph_id", a.attr("data-p-id")); // 	b.append("comments", $("#pcomments").val()); // 	b.append("csrf_test_name", csrf_value); // 	$.ajax({// 		url: base_url + "commentbook", // 		type: "POST", // 		dataType: "JSON", // 		cache: !1, // 		contentType: !1, // 		processData: !1, // 		data: b // 	}).done(function(a) {// 		null == a && ($(".pcommentviewnull").hide(), // 			console.log("Koneksi Bermasalah")); // 		$("#pcomments").val("") // 	}).fail(function() {// 		console.log("error") // 	}).always(function() {}) // });
 	// MENTION AND COMMENT
     $('textarea.mention').mentionsInput({
         onDataRequest:function (mode, query, callback) {
@@ -754,3 +725,55 @@ $(document).on('click', '.post-editcomment', function(event) {
     .always(function() {
     });
 });
+function getBooks() {var id = $('#iaidubi').val(); var di = $('.spadding').attr('dat-cpss'); $.ajax({url: base_url+'detailBooks', type: 'POST', dataType: 'json', data: {book_id: id, csrf_test_name: csrf_value} }) .done(function(data) {if (data.c == 200) {showPDF(atob(data.dat.u), di.slice(0, -5)); } }) .fail(function() {}) .always(function() {}); 
+var __PDF_DOC,
+__CURRENT_PAGE,
+__TOTAL_PAGES,
+pdfFile,
+__PAGE_RENDERING_IN_PROGRESS = 0,
+__CANVAS = $('#pdf-canvas').get(0),
+pageElement = document.getElementById('pdf-viewer');
+
+function showPDF(pdf_url, password) {
+	PDFJS.disableStream = true;
+	PDFJS.getDocument({ url: pdf_url, password: password }).then(function(pdf_doc) {
+		__PDF_DOC = pdf_doc;
+		__TOTAL_PAGES = __PDF_DOC.numPages;
+
+		for(page = 1; page <= __TOTAL_PAGES; page++) {
+			canvas = document.createElement("canvas");    
+			canvas.className = 'pdf-page-canvas mb-10 w-100';      
+			pageElement.appendChild(canvas);            
+			showPage(page, canvas);
+		}
+
+        // showPage(1);
+    }).catch(function(error) { console.log(error)
+
+    	if(error.name == 'PasswordException') {
+    		$("#password-message").text(error.code == 2 ? error.message : '');
+    	}
+    	else {
+    		console.log(error.message);
+    	}
+    });
+}
+
+function showPage(page_no, canvas) {
+	__PAGE_RENDERING_IN_PROGRESS = 1;
+	__CURRENT_PAGE = page_no;
+
+	$("#pdf-canvas").hide();
+	$("#page-loader").show();
+
+	$("#pdf-current-page").text(page_no);
+
+	__PDF_DOC.getPage(page_no).then(function(page) {
+		var scale = 1;
+		viewport = page.getViewport(scale);
+		canvas.height = viewport.height;
+		canvas.width = viewport.width;        
+		page.render({canvasContext: canvas.getContext('2d'), viewport: viewport});
+	});
+}
+}
