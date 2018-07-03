@@ -1273,14 +1273,25 @@ class C_createbook extends MX_Controller
 		$start_chapter = $this->input->post('chapter_start', TRUE);
 		$price   = $this->input->post('price', TRUE);
 
-		$bookData   = array(
-			'book_id' => $book_id,
-			'file_cover' => $file_cover,
-			'category' => $category,
-			'is_paid' => $is_paid,
-			'chapter_start' => $start_chapter,
-			'price' => $price
-		);
+		if ($is_paid == 'TRUE') {
+			$bookData   = array(
+				'book_id' => $book_id,
+				'file_cover' => $file_cover,
+				'category' => $category,
+				'is_paid' => true,
+				// 'is_paid' => $is_paid,
+				'chapter_start' => $start_chapter,
+				'price' => $price
+			);
+		}else {
+			$bookData   = array(
+				'book_id' => $book_id,
+				'file_cover' => $file_cover,
+				'category' => $category,
+				'is_paid' => false
+				// 'is_paid' => $is_paid
+			);
+		}
 
 		$bData = $this->curl_request->curl_post_auth($this->API.'book/Books/savePublish', $bookData, $auth);
 		$resval  = $bData['data'];

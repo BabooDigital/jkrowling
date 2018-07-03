@@ -100,7 +100,7 @@ $(document).ready(function() {
     if (slide.length == 0) {
     	formData.append("book_id", $("#uri").val());
     	formData.append("file_cover", $("#cover_name").val());
-    	formData.append("category", $("#category_ids").val());
+    	formData.append("category", $("#category_id").val());
     	formData.append("is_paid", false);
     }else{
     	formData.append("book_id", $("#uri").val());

@@ -249,6 +249,7 @@ $(document).on('click', '.deldraft', function() {
 	var formData = new FormData();
 
 	formData.append("book_id", $(this).attr("draft-id"));
+	formData.append(csrf_name, csrf_value);
 
 	swal({
 		title: 'Hapus draft buku?',
@@ -303,6 +304,7 @@ function validateProfile() {
 function deleteBook(id_book) {
 	var formData = new FormData();
 	formData.append("book_id", id_book);
+	formData.append(csrf_name, csrf_value);
 	swal({
 		title: 'Hapus Buku ?',
 		type: 'warning',
