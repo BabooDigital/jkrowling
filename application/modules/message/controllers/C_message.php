@@ -149,7 +149,7 @@ class C_message extends MX_Controller
             $datas["resval"] = $resval;
             $datas['userWith'] = $lists["user_with"];
             $datas['listMessage'] = $lists["messages"];
-            $datas['listMessageDetail'] = $data["list_message"]["data"];
+            $datas['listMessageDetail'] = $data["list_message"]["data"]["data"];
             $datas["user_iw"] = $user_with;
             // $datas['css'][] = "public/css/bootstrap.min.css";
             $datas['css'][] = "public/css/custom-margin-padding.css";
@@ -171,6 +171,7 @@ class C_message extends MX_Controller
                 $this->load->view('include/head', $datas);
 	            $this->load->view('D_message', $data);
             }
+//            print_r($datas['listMessageDetail']);
         }
     }
 

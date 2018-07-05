@@ -157,7 +157,7 @@ function load_notification() {
           }else{
             var title = "";
             if (val.notif_book.title_book != null || val.notif_book.title_book != '' || val.notif_book.title_book != 'undefined') {
-              title += val.notif_book.title_book;
+              title += "";
             }else{
               title += "kosong";
             }

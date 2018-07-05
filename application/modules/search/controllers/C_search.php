@@ -31,7 +31,7 @@ class C_search extends MX_Controller
         $datas['js'][] = "public/js/umd/popper.min.js";
         $datas['js'][] = "public/js/bootstrap.min.js";
         $datas['js'][] = "public/plugins/holdOn/js/HoldOn.js";
-        $datas['js'][] = "public/js/custom/search.js";
+        $datas['js'][] = "public/js/custom/R_search.js";
         $datas['js'][] = "public/js/custom/follow.js";
         $datas['js'][]   = "public/js/menupage.js";
 

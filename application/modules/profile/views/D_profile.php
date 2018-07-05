@@ -288,7 +288,10 @@ $this->load->view('navbar/D_navbar'); ?>
 						<?php else: ?>
 							<div class="col-md-6" id="post-data">
 								<?php if (!empty($bookdata)) {
-									foreach ($bookdata as $s_book) {  ?>
+//								    print_r($bookdata);
+									foreach ($bookdata as $s_book) {
+//									    echo ((bool)$s_book['is_like'] == true) ? "like" : "unlike";
+									    ?>
 									<div class="card mb-15" style="padding: 0 10px 10px;">
 										<div class="card-body p-0 p-20">
 											<div class="row mb-20 pb-10" style="border-bottom: 1px rgba(225, 225, 225, 0.28) solid;">
@@ -352,7 +355,7 @@ $this->load->view('navbar/D_navbar'); ?>
 												</div>
 											</div>
 											<div>
-												<a data-id="<?php echo $s_book['book_id']; ?>" href="javascript:void(0);" id="loveboo<?php echo $s_book['book_id']; ?>" class="mr-30 fs-14px <?php if($s_book['is_like'] == false){ echo 'like'; }else{ echo 'unlike'; } ?>"><img src="<?php if($s_book['is_like'] == false){ echo base_url('public/img/assets/icon_love.svg'); }else{ echo base_url('public/img/assets/love_active.svg'); } ?>" class="mr-10 loveicon" width="27"> <span class="<?php if($s_book['is_like'] == false){ echo 'txtlike'; }else{ echo 'txtunlike'; } ?>"><?php if($s_book['is_like'] == false){ echo 'Suka'; }else{ echo 'Batal Suka'; } ?></span></a>
+												<a data-id="<?php echo $s_book['book_id']; ?>" href="javascript:void(0);" id="loveboo<?php echo $s_book['book_id']; ?>" class="mr-30 fs-14px <?php if((bool)$s_book['is_like'] == false){ echo 'like'; }else{ echo 'unlike'; } ?>"><img src="<?php if((bool)$s_book['is_like'] == false){ echo base_url('public/img/assets/icon_love.svg'); }else{ echo base_url('public/img/assets/love_active.svg'); } ?>" class="mr-10 loveicon" width="27"> <span class="<?php if((bool)$s_book['is_like'] == false){ echo 'txtlike'; }else{ echo 'txtunlike'; } ?>"><?php if((bool)$s_book['is_like'] == false){ echo 'Suka'; }else{ echo 'Batal Suka'; } ?></span></a>
 												<a onclick="showLoading()" href="<?php echo site_url(); ?>book/<?php
 												echo $s_book['book_id']; ?>
 												-<?php echo url_title($s_book['title_book'], 'dash', true); ?>#comment

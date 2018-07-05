@@ -158,7 +158,15 @@ $(document).ready(function() {
 				} else if (item.cover_url == null || item.cover_url == [] || item.cover_url == "") {
 					cover = 'public/img/blank_cover.png';
 				}
-				datas += "<div class='card mb-15'> <div class='card-body pt-20 pb-20 pl-30 pr-30'> <div class='row'> <div class='media w-100'> <div class='media-body'> <a href='book/"+ item.book_id+"-"+convertToSlug(item.title_book) +"'> <img class='d-flex align-self-start mr-10 float-left' src='"+cover+"' width='120' height='170' alt='"+item.title_book+"'> </a> <span class='card-title nametitle3'><a href='book/"+ item.book_id+"-"+convertToSlug(item.title_book) +"'>"+item.title_book+"</a></span> <div class='dropdown float-right'><button class='btn btn-transparent dropdown-toggle float-right' type='button' data-toggle='dropdown'><span class='float-right'><img src='"+base_url+"/public/img/assets/caret.svg'></span></button><ul class='dropdown-menu dropdown-menu-right'> <li class='drpdwn-caret'><a href='javascript:void(0);' onclick='editBook("+item.book_id+")'>Edit Buku</a></li> <li class='drpdwn-caret'><a href='javascript:void(0);' onclick='deleteBook("+item.book_id+")'>Hapus Buku</a></li></ul></div><br><br><p class='catbook'><a href='#' class='mr-20'><span class='btn-no-fill'>FIKSI</span></a> <span class='mr-20'><img src='public/img/assets/icon_view.svg'> "+item.view_count+"</span> <span><img src='public/img/assets/icon_share.svg'> "+item.share_count+"</span></p> <p class='text-desc-in'>"+item.desc+" <a href='#' class='readmore'>Lanjut</a> </p> </div> </div> </div> </div><div class='card-footer text-muted' style='font-size: 0.8em;font-weight: bold;'> <div class='pull-right'> <a class='fs-14px' href='#'><img class='mr-10' src='public/img/assets/icon_share.svg' width='23'> Bagikan</a> </div> <div> <a class='mr-30 fs-14px' href='javascript:void(0);' id='loveboo'><img class='mr-10' src='public/img/assets/icon_love.svg' width='27'> Suka</a> <a class='fs-14px' href='#' id='commentboo'><img class='mr-10' src='public/img/assets/icon_comment.svg' width='25'> Komentar</a> </div> </div> </div>"; 
+				var kataLike = "Batal Suka";
+				var isLike = "like";
+				var gambarLike = "public/img/assets/love_active.svg";
+				if(item.is_like == false){
+					isLike = "unlike";
+					gambarLike = "public/img/assets/icon_love.svg";
+					kataLike = "Suka";
+				}
+				datas += "<div class='card mb-15'> <div class='card-body pt-20 pb-20 pl-30 pr-30'> <div class='row'> <div class='media w-100'> <div class='media-body'> <a href='book/"+ item.book_id+"-"+convertToSlug(item.title_book) +"'> <img class='d-flex align-self-start mr-10 float-left' src='"+cover+"' width='120' height='170' alt='"+item.title_book+"'> </a> <span class='card-title nametitle3'><a href='book/"+ item.book_id+"-"+convertToSlug(item.title_book) +"'>"+item.title_book+"</a></span> <div class='dropdown float-right'><button class='btn btn-transparent dropdown-toggle float-right' type='button' data-toggle='dropdown'><span class='float-right'><img src='"+base_url+"/public/img/assets/caret.svg'></span></button><ul class='dropdown-menu dropdown-menu-right'> <li class='drpdwn-caret'><a href='javascript:void(0);' onclick='editBook("+item.book_id+")'>Edit Buku</a></li> <li class='drpdwn-caret'><a href='javascript:void(0);' onclick='deleteBook("+item.book_id+")'>Hapus Buku</a></li></ul></div><br><br><p class='catbook'><a href='#' class='mr-20'><span class='btn-no-fill'>FIKSI</span></a> <span class='mr-20'><img src='public/img/assets/icon_view.svg'> "+item.view_count+"</span> <span><img src='public/img/assets/icon_share.svg'> "+item.share_count+"</span></p> <p class='text-desc-in'>"+item.desc+" <a href='#' class='readmore'>Lanjut</a> </p> </div> </div> </div> </div><div class='card-footer text-muted' style='font-size: 0.8em;font-weight: bold;'> <div class='pull-right'> <a class='fs-14px' href='#'><img class='mr-10' src='public/img/assets/icon_share.svg' width='23'> Bagikan</a> </div> <div> <a class='mr-30 fs-14px "+isLike+"' href='javascript:void(0);' id='loveboo'><img class='mr-10 loveicon' src='"+gambarLike+"' width='27'> "+kataLike+"</a> <a class='fs-14px' href='#' id='commentboo'><img class='mr-10' src='public/img/assets/icon_comment.svg' width='25'> Komentar</a> </div> </div> </div>";
 			});
 		}
 		$('.loader').hide();
@@ -385,78 +393,43 @@ $(document).on("click", ".share-fb", function() {
     })
 });
 // LIKE BUTTON
-  $(document).on('click', '.like', function() {
-    var aww = $(this);
-    var formData = new FormData();
-    var txt = + aww.parents(".card").find(".like_countys").text() + 1;
-    aww.children('.loveicon').attr("src", base_url+"public/img/assets/love_active.svg");
-    formData.append("user_id", $("#iaiduui").val());
-    formData.append("book_id", aww.attr("data-id"));
-    formData.append("csrf_test_name", csrf_value);
-    $.ajax({
-      url: base_url + 'like',
-      type: 'POST',
-      dataType: 'JSON',
-      cache: false,
-      contentType: false,
-      processData: false,
-      data: formData
-    })
-    .done(function(data) {
-        // $('.loader').hide();
-        if (data.code == null || data.code == 403 || data.code == 404) {
-          aww.children('.loveicon').attr("src", base_url+"public/img/assets/icon_love.svg");
-        } else {
-          aww.parents(".card").find(".like_countys").text(txt);
-          aww.removeClass('like');
-          aww.addClass('unlike');
-          aww.children('.loveicon').attr("src", base_url+"public/img/assets/love_active.svg");
-        }
-      })
-    .fail(function() {
-      console.log("Failure");
-    })
-    .always(function() {});
-
-  });
+$(document).on("click", ".like", function() {
+    var e = $(this),
+        a = new FormData,
+        t = e.children(".txtlike");
+    a.append("csrf_test_name", csrf_value);
+    e.children(".loveicon").attr("src", base_url+"public/img/assets/love_active.svg"), a.append("user_id", $("#iaiduui").val()), a.append("book_id", e.attr("data-id")), $.ajax({
+        url: base_url + "like",
+        type: "POST",
+        dataType: "JSON",
+        cache: !1,
+        contentType: !1,
+        processData: !1,
+        data: a
+    }).done(function(a) {
+        null == a.code ? e.children(".loveicon").attr("src", base_url+"public/img/assets/icon_love.svg") : (e.removeClass("like"), e.addClass("unlike"), t.removeClass("txtlike"), t.addClass("txtunlike"), e.children(".txtunlike").text("Batal Suka"), e.children(".loveicon").attr("src", base_url+"public/img/assets/love_active.svg"))
+    }).fail(function() {
+        console.log("Failure")
+    }).always(function() {})
+});
 
   // UNLIKE BUTTON
-  $(document).on('click', '.unlike', function() {
-
-    var aww = $(this);
-    var formData = new FormData();
-    var txt = + aww.parents(".card").find(".like_countys").text() - 1;
-
-    aww.children('.loveicon').attr("src", base_url+"public/img/assets/icon_love.svg");
-    formData.append("user_id", $("#iaiduui").val());
-    formData.append("book_id", aww.attr("data-id"));
-    formData.append("csrf_test_name", csrf_value);
-    $.ajax({
-      url: base_url + 'like',
-      type: 'POST',
-      dataType: 'JSON',
-      cache: false,
-      contentType: false,
-      processData: false,
-      data: formData,
-        // beforeSend: function() {
-        // }
-      })
-    .done(function(data) {
-        // $('.loader').hide();
-        if (data.code == null || data.code == 403 || data.code == 404) {
-          aww.children('.loveicon').attr("src", base_url+"public/img/assets/love_active.svg");
-        } else {
-          aww.removeClass('unlike');
-          aww.addClass('like');
-          aww.parents(".card").find(".like_countys").text(txt);
-          aww.children('.txtlike').text('Suka');
-          aww.children('.loveicon').attr("src", base_url+"public/img/assets/icon_love.svg");
-        }
-      })
-    .fail(function() {
-      console.log("Failure");
-    })
-    .always(function() {});
-
-  });
+$(document).on("click", ".unlike", function() {
+    var e = $(this),
+        a = new FormData,
+        t = e.children(".txtunlike");
+    a.append("csrf_test_name", csrf_value);
+    e.children(".loveicon").attr("src", base_url+"public/img/assets/icon_love.svg"), a.append("user_id", $("#iaiduui").val()), a.append("book_id", e.attr("data-id")), $.ajax({
+        url: base_url + "like",
+        type: "POST",
+        dataType: "JSON",
+        cache: !1,
+        contentType: !1,
+        processData: !1,
+        data: a
+    }).done(function(a) {
+        null == a.code ? e.children(".loveicon").attr("src", base_url+"public/img/assets/love_active.svg") : (e.removeClass("unlike"), e.addClass("like"), t.removeClass("txtunlike"), t.addClass("txtlike"), e.children(".txtlike").text("Suka"), e.children(".loveicon").attr("src", base_url+"public/img/assets/icon_love.svg"))
+    }).fail(function() {
+        console.log("Failure")
+    }).always(function() {})
+});

@@ -92,7 +92,19 @@ img {
 											<p class="text-muted" style="font-size: 11px;"><?php echo $val_notif->notif_time; ?></p>
 										</div></a>
 									</li>
-									<?php } } ?>
+									<?php }elseif($val_notif->notif_type->notif_type_id == 6){
+                                        ?>
+                                        <li class="media <?php if($val_notif->notif_status == 'unread'){echo "bg-white";}else{ echo "bg-read";} ?> p-15" style="align-items: center;border-bottom: 1px #efefef solid;">
+                                            <a class="notifclick" href="javascript:void(0)" style="display: flex;" notifid="<?php echo $val_notif->notif_id; ?>">
+                                                <i class="fa fa-bell mr-15" style="position: relative;top: 15px;font-size: 15pt;"></i>
+                                                <img class="mr-3 rounded-circle" src="<?php echo base_url('public/img/profile/blank-photo.jpg'); ?>" width="50" height="50" alt="<?php echo $val_notif->notif_user->fullname; ?>">
+                                                <div class="media-body">
+                                                    <p><span class="text-muted"><?php echo $val_notif->notif_text; ?></span></p>
+                                                    <p class="text-muted" style="font-size: 11px;"><?php echo $val_notif->notif_time; ?></p>
+                                                </div></a>
+                                        </li>
+                                    <?php
+                                    } } ?>
 								</ul>
 								<?php }else{ ?>
 								<div class='container first_login mt-50'> <div class='row'> <div class='col-12 mx-auto' style='width: 85%;'> <div class='text-center mb-10 mr-50 mt-50'> <img src='<?php echo base_url('public/img/icon_notification.png'); ?>' width='190'> </div> <div class='text-center'> <h5><b>Tidak Aktivitas Pemberitahuan</b></h5> </div> </div> </div> </div>

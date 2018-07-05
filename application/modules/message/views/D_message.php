@@ -25,7 +25,7 @@
 									<div class="media-body">
 										<span class="nametitle2"><?php echo $messv['fullname']; ?></span><br>
 										<span class="text-muted fontkecil"><?php echo (strlen($messv['user_latest_message']) >= 31) ? substr($messv['user_latest_message'], 0, 30) : $messv['user_latest_message'] . '...'; ?></span>
-										<p class="text-muted fontkecil"><?php echo $messv['user_chat_time']; ?></p>
+										<p class="text-muted fontkecil "><?php echo $messv['user_chat_time']; ?></p>
 										<p></p>
 									</div>
 								</div>
@@ -40,7 +40,7 @@
 										<span class="nametitle2"><?php echo $messv['fullname']; ?></span>
 												<p class="text-muted fontkecil"><?php echo (strlen($messv['user_latest_message']) >= 31) ? substr($messv['user_latest_message'], 0, 30) : $messv['user_latest_message'] . '...'; ?>
 												</p>
-										<span class="text-muted fontkecil button_follow" style="margin-top: -25px;"><?php echo $messv['user_chat_time']; ?></span>
+										<span class="text-muted fontkecil" style="margin-top: -25px;"><?php echo $messv['user_chat_time']; ?></span>
 									</div>
 								</div>
 							</div></a>
