@@ -263,7 +263,6 @@ echo "<script async src='//pagead2.googlesyndication.com/pagead/js/adsbygoogle.j
 				echo "kosong";
 			} ?>
 		</div>
-
 		<div class="col-md-7" style="background: #fff;border-radius: 10px;">
 			<div class="card pb-20 pt-10 pl-20 pr-20 book-content">
 				<div class="card-body">
@@ -277,8 +276,8 @@ echo "<script async src='//pagead2.googlesyndication.com/pagead/js/adsbygoogle.j
 								<a data-usr-prf="<?php echo $detail_book['data']['author']['author_id']; ?>" data-usr-name="<?php echo $detail_book['data']['author']['author_name'] ?>" href="<?php echo site_url('profile/'.url_title($detail_book['data']['author']['author_name'])) ?>" class="profile"><h5 class="card-title nametitle2 profile"><?php
 							echo $detail_book['data']['author']['author_name']; ?></h5></a>
 								<!-- <h5 class="nametitle2 author_name"><?php echo $detail_book['data']['author']['author_name']; ?></h5> -->
-								<p><small><span>Jakarta, Indonesia</span></small></p>
-								<a href="#" data-follow="<?php echo $detail_book['data']['book_info']['book_id']; ?>" class="btn-no-fill dbookfollowbtn ml-20 <?php if ($detail_book['data']['author']['isFollow'] == false) { echo "follow-u"; }else{ echo "unfollow-u"; } ?>"><span class="nametitle2 txtfollow"><?php if ($detail_book['data']['author']['isFollow'] == false) { echo "Follow"; }else{ echo "Unfollow"; } ?></span></a>
+								<p><small><span>&nbsp;&nbsp;</span></small></p>
+								<a href="javascript:void(0)" data-follow="<?php echo $detail_book['data']['author']['author_id']; ?>" class="btn-no-fill dbookfollowbtn ml-20 <?php if ((bool)$detail_book['data']['author']['isFollow'] == false) { echo "follow-u"; }else{ echo "unfollow-u"; } ?>"><span class="nametitle2 txtfollow"><?php if ($detail_book['data']['author']['isFollow'] == false) { echo "Follow"; }else{ echo "Unfollow"; } ?></span></a>
 							</div>
 						</div>
 						<div id="appentoContent">
