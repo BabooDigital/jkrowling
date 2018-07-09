@@ -87,13 +87,12 @@ class C_profile extends MX_Controller {
 		error_reporting(0);
 		$auth = $this->session->userdata('authKey');
 		$id_user = $this->input->post('usr_prf', TRUE);
-
+        $id_session = $this->session->userdata('userData')['user_id'];
 		if (!empty($this->input->get("page"))) {
 			$idpage = $this->input->get("page");
 		}else{
 			$idpage = "";
 		}
-		
 		$iduser = $this->uri->segment(2);
 		$ids = explode('-', $iduser, 2);
 		if (is_array($ids)) ;
@@ -103,6 +102,11 @@ class C_profile extends MX_Controller {
 		}else {
 			$idfix = $ids[0];
 		}
+
+		if($idfix == $id_session){
+		    redirect(site_url("profile"), "location");
+        }
+
 		$sendData = array(
 			'user_profile' => $idfix,
 			'count' => $idpage
