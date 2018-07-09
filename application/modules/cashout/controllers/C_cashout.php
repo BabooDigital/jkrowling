@@ -119,7 +119,7 @@ class C_cashout extends MX_Controller {
 					$this->load->view('second_cashout');
 				}else {
 					$this->load->view('inc/head', $data, FALSE);
-					$this->load->view('first_cashout');
+					$this->load->view('second_cashout');
 				}
 			}
 		}else{

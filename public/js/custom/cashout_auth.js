@@ -127,10 +127,10 @@ function checkAccount() {
 		})
 		.done(function(data) {
 			if (data.code != 200) {
-				// localStorage.setItem("rekInf", as);
+				localStorage.setItem("rekInf", as);
 				window.location = base_url+'cashout/second';
 			}else{
-				// localStorage.setItem("rekInf", data.data.account.account_number);
+				localStorage.setItem("rekInf", data.data.account.account_number);
 				window.location = base_url+'cashout/third';
 			}
 		})
