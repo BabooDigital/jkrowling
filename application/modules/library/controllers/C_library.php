@@ -26,13 +26,15 @@ class C_Library extends MX_Controller
         $resval2 = $this->curl_request->curl_post_auth($this->API.'timeline/Timelines/listBookmark', '', $auth);
         $resval3 = $this->curl_request->curl_get_auth($this->API.'payment/Payment/reminderPay', '', $auth);
         $resval4 = $this->curl_request->curl_get_auth($this->API.'timeline/Timelines/listCollections', '', $auth);
+        $resval5 = $this->curl_request->curl_get_auth($this->API.'timeline/Timelines/bestBook', '', $auth);
 
         $datas['slide'] = $resval1['data'];
         $datas['bookmark'] = $resval2['data'];
         $datas['transaction'] = $resval3['data'];
         $datas['collection'] = $resval4['data'];
+        $datas['best'] = $resval5['data'];
 
-        $auth = $resval4['bbo_auth'];
+        $auth = $resval5['bbo_auth'];
         $this->session->set_userdata('authKey', $auth);
         $datas['css'][] = "public/css/sweetalert2.min.css";
         $data['css'][] = "public/css/sweetalert2.min.css";

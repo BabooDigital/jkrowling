@@ -35,7 +35,7 @@
 								</div>
 							</div>
 						</div>
-						<?php if ($trans['payment_type'] == "echannel"){ ?>
+						<?php if ($trans['payment_type'] == "echannel" || $trans['payment_type'] == "bank_transfer"){ ?>
 						<div class="row">
 							<div class="col-8">
 								<p><span>Bank Transfer:</span><span class="d-block font-weight-bold" style="text-transform: uppercase;"><?php echo $trans['bank'] ?> - <?php echo $trans['va_numbers']; ?></span></p>

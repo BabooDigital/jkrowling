@@ -59,9 +59,33 @@
                                         Buku Populer
                                     </div>
                                     <div class="card-body p-0">
-                                        <ul class="list-group list-group-flush" id="best_book_library">
+                                        <ul class="list-group list-group-flush" id="best_book">
+                                            <?php foreach ($best['data'] as $best_book): ?>
+                                                <?php if ($best_book['popular_cover_url'] == null || $best_book['popular_cover_url'] == "Kosong" || $best_book['popular_cover_url'] == ""): ?>
+                                                    <?php $cover =  base_url()."public/img/blank_cover.png"; ?>
+                                                    <?php else: ?>
+                                                        <?php $cover =  $best_book['popular_cover_url']; ?>
+                                                    <?php endif ?>
+                                                    <li class="list-group-item">
+                                                        <div class="media">
+                                                            <div class="media-left mr-10">
+                                                                <a href="#"><img class="media-object" src="<?php echo $cover; ?>" width="60" height="80"></a>
+                                                            </div>
+                                                            <div class="media-body">
+                                                                <div>
+                                                                    <h4 class="media-heading bold mt-10">
+                                                                        <a href="book/<?php
+                                                                        echo $best_book['popular_book_id']; ?>
+                                                                        -<?php echo url_title($best_book['popular_book_title'], 'dash', true); ?>"><?php echo $best_book['popular_book_title'] ?></a>
+                                                                    </h4>
+                                                                    <p style="font-size: 10pt;">by <a class="profile" data-usr-prf="<?php echo $best_book['popular_author_id']; ?>" data-usr-name="<?php echo url_title($best_book['popular_author_name']); ?>" href="profile/<?php echo url_title($best_book['popular_author_name']); ?>"><?php echo $best_book['popular_author_name']; ?></a></p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
 
-                                        </ul>
+                                                <?php endforeach ?>
+                                            </ul>
                                     </div>
                                 </div><!-- Buku Populer -->
                             </div>
@@ -173,7 +197,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <?php if ($trans['payment_type'] == "echannel"){ ?>
+                                        <?php if ($trans['payment_type'] == "echannel" || $trans['payment_type'] == "bank_transfer"){ ?>
                                             <div class="row">
                                                 <div class="col-8">
                                                     <p><span>Bank Transfer:</span><span class="d-block font-weight-bold" style="text-transform: uppercase;"><?php echo $trans['bank'] ?> - <?php echo $trans['va_numbers']; ?></span></p>
