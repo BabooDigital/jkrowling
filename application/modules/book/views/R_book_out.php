@@ -32,8 +32,11 @@
 	<meta property="og:image"              content="<?php echo $cover; ?>" />
 
 	<title><?php echo $title; ?> | Baboo.id</title>
+    <meta data-n-head="true" content="yes" data-hid="mobile-web-app-capable" name="mobile-web-app-capable">
+    <meta data-n-head="true" content="#7661ca" data-hid="theme-color" name="theme-color">
+    <meta data-n-head="true" content="#7661ca" data-hid="msapplication-navbutton-color" name="masapplication-navbutton-color">
 
-	<!-- CSS -->
+    <!-- CSS -->
 	<link href="<?php echo base_url('') ?>public/css/bootstrap.min.css" rel="stylesheet">
 	<link href="<?php echo base_url('') ?>public/css/baboo-responsive.css" rel="stylesheet" type="text/css">
 	<link href="<?php echo base_url('') ?>public/css/custom-margin-padding.css" rel="stylesheet" type="text/css">
