@@ -600,7 +600,7 @@ echo "<script>(function(d, s, id) {
 <?php endif ?>
 <script src='https://podio.github.io/jquery-mentions-input/lib/jquery.events.input.js' type='text/javascript'></script>
 <script src='https://podio.github.io/jquery-mentions-input/lib/jquery.elastic.js' type='text/javascript'></script>
-<?php if ((bool)$detail_book['data']['book_info']['is_pdf'] == true) { ?>
+<?php echo $this->session->flashdata('pay_alert'); if ((bool)$detail_book['data']['book_info']['is_pdf'] == true) { ?>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.87/pdf.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.87/pdf.worker.js"></script>
 <?php } ?>
