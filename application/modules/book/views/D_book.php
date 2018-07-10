@@ -96,7 +96,6 @@ echo "<script async src='//pagead2.googlesyndication.com/pagead/js/adsbygoogle.j
 								<a href="javascript:void(0)" data-follow="<?php echo $detail_book['data']['author']['author_id']; ?>" class="btn-no-fill dbookfollowbtn ml-20 <?php if ((bool)$detail_book['data']['author']['isFollow'] == false) { echo "follow-u"; }else{ echo "unfollow-u"; } ?>"><span class="nametitle2 txtfollow"><?php if ($detail_book['data']['author']['isFollow'] == false) { echo "Follow"; }else{ echo "Unfollow"; } ?></span></a>
 							</div>
 						</div>
-						<?php print_r($detail_book); ?>
 				<center>
 					<div class="loader" id="loader_scroll" style="display: none;"></div>
 				</center>
