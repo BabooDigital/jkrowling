@@ -65,11 +65,11 @@ echo "<script async src='//pagead2.googlesyndication.com/pagead/js/adsbygoogle.j
 		<!-- Right Side -->
 		<div class="col-3 tmlin">
 			<div class="stickymenu">
-				<div class="card card-widget mb-15">
+				<!-- <div class="card card-widget mb-15">
 					<a href="<?php echo base_url('event') ?>">
 						<img src="https://s3-us-west-2.amazonaws.com/s3.baboo.id/baboo-cover/hasil-web.png" style="width:100%;height: 100%;">
 					</a>
-				</div>
+				</div> -->
 				<!-- Buku Populer -->
 				<div class="side-card mb-15">
 					<div class="card-header">

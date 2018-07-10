@@ -253,8 +253,12 @@ if (!empty($query['stat'])) {
 						</div>
 						<div class="row mt-20" style="width: 110%;">
 							<div class="form-group col-8">
-								<label class="text-muted">Mulai Jual Pada Chapter</label>
-								<!-- <input type="number" value="6" min="3" class="form-control chaptermin" id="font-size"> -->
+								<?php if ((bool)$book['book_info']['is_pdf'] == true) {
+									echo "<label class='text-muted'>Mulai Jual Pada Halaman</label>";
+								}else{
+									echo "<label class='text-muted'>Mulai Jual Pada Chapter</label>";
+								} ?>
+								
 								<input type="number" name="start_chapter" class="input-range start_chapter" id="addormin" style="width: 100%;background: none;">
 							</div>
 							<div class="col-2" style="margin-left: -15px;">
@@ -273,6 +277,7 @@ if (!empty($query['stat'])) {
 			</div>
 			<input type="hidden" name="count_chapter" id="count_chapter" value="" class="w-100" placeholder="Count Chapter" required="">
 			<input type="hidden" name="count_chapter_plus_minus" id="count_chapter_plus_minus" value="" class="w-100" placeholder="Count Chapter" required="">
+			<input type="hidden" name="minim_chapter" id="minim_chapter" value="" class="w-100" placeholder="Count Chapter" required="">
 			<div class="mt-20">
 				<div class="checkbox">
 					<label>
@@ -339,13 +344,13 @@ if (!empty($query['stat'])) {
 					}
 				}
 				if ( action == "minus") {
-					if (value <= $("#count_chapter_plus_minus").val()) {
-						if (value < 2) {
+					if (value <= $("#minim_chapter").val()) {
+						// if (value < 2) {
 							value;
 						}else{
 							value--;
 						}
-					}
+					// }
 				}
 				$('[id="'+target+'"]').val(value);
 			});

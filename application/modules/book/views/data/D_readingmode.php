@@ -5,6 +5,7 @@
 		<?php } ?>
 	<?php if ((bool) $detail_book['data']['book_info']['is_pdf'] == true) { ?>
 		<div id='pdf-viewer'> </div>
+		<div class="loader mx-auto" style="display: none;"></div>
 	<?php }else{ ?>
 		<?php if ($detail_book['data']['chapter']['chapter_free'] == 'true'): ?>
 

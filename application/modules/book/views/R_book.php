@@ -66,7 +66,7 @@
 	display: inline;
 }
 .textp > p {
-	/*text-indent: 0*/
+	text-indent: 10%;
 }
 .modal-backdrop ~ .modal-backdrop
 {
@@ -329,9 +329,20 @@ echo "<script>(function(d, s, id) {
 			<?php }else{ ?>
 				<p class="text-muted ml-20">Daftar Chapter</p>
 				<div class="list-group mt-10 mb-90 pl-10 pr-10" id="">
-					<?php $count = 0; $counts = 0; $countss = 0; $uri = $this->uri->segment(2); $uri2 = $this->uri->segment(3);
-					foreach ($chapt_data as $ch) { ?>
-						<a href="<?php echo site_url('book/'.$uri.'/'.$count++); ?>" class="borbot bornone font-weight-bold bg-none list-group-item list-group-item-action chpt <?php if ($uri2 == $countss++){echo 'active';} ?>" chapter-count="<?php echo $counts++; ?>"><?php echo $ch['chapter_title']; ?></a>
+					<?php $count = 0; $counts = 0; $countss = 0; $uri = $this->uri->segment(2); $uri2 = $this->uri->segment(3);$usDat = $this->session->userdata('userData');
+					foreach ($chapt_data as $ch) {
+						$notfree = '';
+						$imgnotfree = '';
+						$urlnotfree = site_url('book/'.$uri.'/'.$count++);
+						if ((bool)$ch['chapter_free'] == false && $usDat['user_id'] != $detail_book['data']['author']['author_id'])	 {
+							$notfree = ' text-muted';
+							$imgnotfree = "<img src='".base_url('public/img/assets/icon_sell.png')."' width='20' class='mt-5 float-right'>";
+							$urlnotfree = 'javascript:void(0);';
+						}else if($usDat['user_id'] == $detail_book['data']['author']['author_id'] && $ch['status_publish']['status_id'] != 2){
+							$imgnotfree = "<img src='".base_url('public/img/assets/icon_draft_pub.png')."' width='40' class='img-fluid float-right'>";
+						}
+					 ?>
+						<a href="<?php echo $urlnotfree; ?>" class="borbot bornone font-weight-bold bg-none list-group-item list-group-item-action chpt <?php if ($uri2 == $countss++){echo 'active';} echo $notfree; ?> " chapter-count="<?php echo $counts++; ?>"><?php echo $ch['chapter_title']; echo $imgnotfree; ?>  </a>
 					<?php } ?>
 				</div>
 			<?php } ?>
@@ -582,7 +593,7 @@ echo "<script>(function(d, s, id) {
     </div>
 <?php endif ?>
 
-<?php $this->load->view('include/modal_checkout'); ?>
+<?php $this->load->view('include/modal_checkout', $detail_book); ?>
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/0.10.0/lodash.min.js"></script>
 <?php if (isset($js)): ?>
 	<?php echo get_js($js) ?>

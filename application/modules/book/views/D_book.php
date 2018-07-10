@@ -96,6 +96,10 @@ echo "<script async src='//pagead2.googlesyndication.com/pagead/js/adsbygoogle.j
 								<a href="javascript:void(0)" data-follow="<?php echo $detail_book['data']['author']['author_id']; ?>" class="btn-no-fill dbookfollowbtn ml-20 <?php if ((bool)$detail_book['data']['author']['isFollow'] == false) { echo "follow-u"; }else{ echo "unfollow-u"; } ?>"><span class="nametitle2 txtfollow"><?php if ($detail_book['data']['author']['isFollow'] == false) { echo "Follow"; }else{ echo "Unfollow"; } ?></span></a>
 							</div>
 						</div>
+						<?php print_r($detail_book); ?>
+				<center>
+					<div class="loader" id="loader_scroll" style="display: none;"></div>
+				</center>
 						<?php if ((bool) $detail_book['data']['book_info']['is_pdf'] == false) { ?>
 							<div id="appentoContent">
 								<h2 class="dbooktitlebook"><?php echo $detail_book['data']['title_book']; ?></h2>
@@ -109,12 +113,12 @@ echo "<script async src='//pagead2.googlesyndication.com/pagead/js/adsbygoogle.j
 							</div>
 						<?php }else{ ?>
 							<div id='pdf-viewer'> </div>
+							<?php if ((bool) $detail_book['data']['book_info']['is_bought'] == false && (bool) $detail_book['data']['book_info']['is_free'] == false) { ?>
+								<div style="background:transparent;" class="list-group-item mt-15" id="list_chapters"><a class="" id=""><p>Versi buku full</p><span style="color:#7554bd">Rp <?php echo number_format( $detail_book['data']['book_info']['book_price'], 0, ',', '.'); ?></span></a><button style="float:right;margin-top: -15px;" class="btn-buy" data-toggle="modal" data-target="#buymodal">Beli</button></div>
+							<?php } ?>
 						<?php } ?>
 					</div>
 				</div>
-				<center>
-					<div class="loader" id="loader_scroll" style="display: none;"></div>
-				</center>
 			</div>
 			<div class="col-md-1">
 				<div class="card stickymenu" style="background: #F5F8FA;">
@@ -267,7 +271,8 @@ echo "<script async src='//pagead2.googlesyndication.com/pagead/js/adsbygoogle.j
 				<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.87/pdf.js"></script>
 				<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.87/pdf.worker.js"></script>
 				<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.18/jquery.touchSwipe.js"></script>
-				<script>getBooks();</script>
+				<script>getBooks();
+				window.onload = function() {document.addEventListener("contextmenu", function(e){e.preventDefault(); }, false); document.addEventListener("keydown", function(e) {if (e.ctrlKey && e.shiftKey && e.keyCode == 73) {disabledEvent(e); } if (e.ctrlKey && e.shiftKey && e.keyCode == 74) {disabledEvent(e); } if (e.keyCode == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {disabledEvent(e); } if (e.ctrlKey && e.keyCode == 85) {disabledEvent(e); } if (event.keyCode == 123) {disabledEvent(e); } if (e.ctrlKey && e.keyCode == 65) {disabledEvent(e); } if (e.ctrlKey && e.keyCode == 67) {disabledEvent(e); } if (e.ctrlKey && e.shiftKey && e.keyCode == 67) {disabledEvent(e); } }, false); function disabledEvent(e){if (e.stopPropagation){e.stopPropagation(); } else if (window.event){window.event.cancelBubble = true; } e.preventDefault(); return false; } }; </script>
 			<?php } ?>
 </body>
 </html>

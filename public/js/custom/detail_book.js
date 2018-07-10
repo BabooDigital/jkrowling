@@ -735,6 +735,7 @@ __CANVAS = $('#pdf-canvas').get(0),
 pageElement = document.getElementById('pdf-viewer');
 
 function showPDF(pdf_url, password) {
+	$(".loader").show();
 	PDFJS.disableStream = true;
 	PDFJS.getDocument({ url: pdf_url, password: password }).then(function(pdf_doc) {
 		__PDF_DOC = pdf_doc;
@@ -774,6 +775,7 @@ function showPage(page_no, canvas) {
 		canvas.height = viewport.height;
 		canvas.width = viewport.width;        
 		page.render({canvasContext: canvas.getContext('2d'), viewport: viewport});
+		$(".loader").hide();
 	});
 }
 }

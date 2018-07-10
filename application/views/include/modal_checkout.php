@@ -35,19 +35,19 @@
               <div class="card">
                 <div class="card-body pl-0 pr-0">
                   <div class="media">
-                    <img class="align-self-start mr-10" id="ccoverb" src="https://assets.dev-baboo.co.id/baboo-cover/default1.png" width="110" height="170" alt="" style="object-fit: cover;box-shadow: 0px 0px 4px #abababc7;">
+                    <img class="align-self-start mr-10" id="ccoverb" src="<?php if(!empty($detail_book['data']['book_info']['cover_url'])){echo $detail_book['data']['book_info']['cover_url'];}else{echo base_url('public/img/blank_cover.png');} ?>" width="110" height="170" alt="" style="object-fit: cover;box-shadow: 0px 0px 4px #abababc7;">
                     <div class="media-body">
                       <div>
-                        <h4 class="mt-0 font-weight-bold" id="ctitleb"></h4>
+                        <h4 class="mt-0 font-weight-bold" id="ctitleb"><?php echo $detail_book['data']['book_info']['title_book']; ?></h4>
                       </div>
-                      <span class="mr-5" style="font-size: 12px;" id="ccatb"></span>
-                      <span class="text-muted mr-5" style="font-size: 12px;"><img src="<?php echo base_url('public/img/assets/icon_view.svg'); ?>" width="21"> <span id="cviewb"></span></span> <span class="text-muted" style="font-size: 12px;"><img src="<?php echo base_url('public/img/assets/icon_share.svg'); ?>" width="11"> <span id="cshareb"></span></span>
+                      <span class="mr-5" style="font-size: 12px;" id="ccatb"><?php echo $detail_book['data']['category']['category_name']; ?></span>
+                      <span class="text-muted mr-5" style="font-size: 12px;"><img src="<?php echo base_url('public/img/assets/icon_view.svg'); ?>" width="21"> <span id="cviewb"><?php echo $detail_book['data']['book_info']['view_count']; ?></span></span> <span class="text-muted" style="font-size: 12px;"><img src="<?php echo base_url('public/img/assets/icon_share.svg'); ?>" width="11"> <span id="cshareb"><?php echo $detail_book['data']['book_info']['share_count']; ?></span></span>
                       <br>
                       <div class="media mt-20">
-                        <img class="d-flex align-self-start mr-5 rounded-circle" id="cauthorb" src="" width="40" height="40">
+                        <img class="d-flex align-self-start mr-5 rounded-circle" id="cauthorb" src="<?php if(!empty($detail_book['data']['author']['avatar'])){echo $detail_book['data']['author']['avatar'];}else{echo base_url('public/img/profile/blank-photo.jpg');} ?>" width="40" height="40">
                         <div class="media-body">
-                          <span class="card-title">by <a href="#" class="author_names menu-page" id="tab-page"> <b id="cauthnameb"></b></a></span>
-                          <p class="text-muted" style="margin-top:-5px;"><small>Jakarta, Indonesia</small></p>
+                          <span class="card-title">by <a href="<?php echo site_url('profile/'.$detail_book['author']['author_id'].'-'.url_title($detail_book['author']['author_name'], 'dash', true)); ?>" class="author_names menu-page" id="tab-page"> <b id="cauthnameb"><?php echo $detail_book['data']['author']['author_name']; ?></b></a></span>
+                          <!-- <p class="text-muted" style="margin-top:-5px;"><small>Jakarta, Indonesia</small></p> -->
                           </div>
                         </div>
                       </div>
@@ -60,11 +60,11 @@
           <div class="container mt-20">
             <div class="row">
               <div class="col-12">
-                <p><span>Harga Buku</span> <span class="float-right" style="font-weight: 600;">Rp. <span id="chargab"></span></span></p>
+                <p><span>Harga Buku</span> <span class="float-right" style="font-weight: 600;">Rp. <span id="chargab"><?php echo number_format( $detail_book['data']['book_info']['book_price'], 0, ',', '.'); ?></span></span></p>
               <hr>
               </div>
               <div class="col-12">
-                <p><span>Total Pembayaran</span> <span class="float-right"  style="font-weight: 900;">Rp. <span id="ctotb"></span></span></p> 
+                <p><span>Total Pembayaran</span> <span class="float-right"  style="font-weight: 900;">Rp. <span id="ctotb"><?php echo number_format( $detail_book['data']['book_info']['book_price'], 0, ',', '.'); ?></span></span></p> 
               </div>
             </div>
           </div>

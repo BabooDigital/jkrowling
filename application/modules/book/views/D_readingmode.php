@@ -135,6 +135,7 @@
 		pageElement = document.getElementById('pdf-viewer');
 
 		function showPDF(pdf_url, password) {
+			$(".loader").show();
 			PDFJS.disableStream = true;
 			PDFJS.getDocument({ url: pdf_url, password: password }).then(function(pdf_doc) {
 				__PDF_DOC = pdf_doc;
@@ -163,17 +164,13 @@ function showPage(page_no, canvas) {
 	__PAGE_RENDERING_IN_PROGRESS = 1;
 	__CURRENT_PAGE = page_no;
 
-	$("#pdf-canvas").hide();
-	$("#page-loader").show();
-
-	$("#pdf-current-page").text(page_no);
-
 	__PDF_DOC.getPage(page_no).then(function(page) {
 		var scale = 1;
 		viewport = page.getViewport(scale);
 		canvas.height = viewport.height;
 		canvas.width = viewport.width;        
 		page.render({canvasContext: canvas.getContext('2d'), viewport: viewport});
+		$(".loader").hide();
 	});
 }
 }

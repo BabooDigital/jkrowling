@@ -20,7 +20,7 @@
 								<div class='dropdown right-posi'>
 									<button aria-expanded='false' aria-haspopup='true' class='btn-clear' data-toggle='dropdown' id='dropEditBook' style='font-size:17pt;' type='button'>&#8226;&#8226;&#8226;</button>
 									<div aria-labelledby='dropEditBook' class='dropdown-menu'>
-										<a class='dropdown-item editbook' href='javascript:void(0);' dataedit="<?php echo $book['book_id']; ?>"><img src='<?php echo base_url('public/img/assets/icon_pen.svg'); ?>'> Edit Buku</a>
+										<a class='dropdown-item editbook' href='javascript:void(0);' dataedit="<?php echo $book['book_id']; ?>" type="<?php echo $book['is_pdf'] ?>"><img src='<?php echo base_url('public/img/assets/icon_pen.svg'); ?>'> Edit Buku</a>
 										<hr style='margin-top: 10px !important;margin-bottom: 10px !important;'>
 										<a class='dropdown-item delbook' href='javascript:void(0);' datadel="<?php echo $book['book_id']; ?>"><img src='<?php echo base_url('public/img/icon-tab/dustbin.svg'); ?>'> Hapus Buku</a>
 									</div>
