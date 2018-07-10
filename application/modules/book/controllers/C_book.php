@@ -108,8 +108,11 @@ class C_book extends MX_Controller
 
         $data['id_chapter_asli'] = $data['detailBook']['data']['chapter']['chapter_id'];
         if ($this->agent->mobile()) {
+            $data['css'][] = "public/css/sweetalert2.min.css";
+
             $data['chapt_count'] = count($data_before_chapter['chapter']['data']['chapter']);
             $data['chapt_data'] = $data_before_chapter['chapter']['data']['chapter'];
+            $data['js'][] = "public/js/sweetalert2.all.min.js";
             $data['js'][] = "public/js/custom/mobile/r_detail_book.js";
 
             $this->load->view('include/head', $data);
@@ -503,15 +506,31 @@ public function finish_pay()
     $data_update = $this->curl_request->curl_post($this->API.'payment/Payment/UpdateTrans', $sendData);
     if ($data_update['code'] == 200) {
 
-        if ($data_midtrans['payment_type'] == 'bank_transfer' || $data_midtrans['payment_type'] == 'echannel' && $data_midtrans['transaction_status'] == 'pending') {
+        if ($data_midtrans['payment_type'] == 'bank_transfer' || $data_midtrans['payment_type'] == 'echannel' || $data_midtrans['payment_type'] == 'mandiri_clickpay' && $data_midtrans['transaction_status'] == 'pending') {
             $this->session->set_flashdata('popup_status_payment', 2);
             $this->session->set_userdata('popup_status_payment', 2);
             $this->session->set_flashdata('pdf_url', $data_midtrans['pdf_url']);
             redirect($url_redirect,'refresh');
-        }if ($data_midtrans['payment_type'] == 'credit_card') {
+        }else if ($data_midtrans['payment_type'] == 'credit_card') {
             $this->session->unset_userdata('popup_status_payment');
             $this->session->set_flashdata('popup_status_payment', 1);
             $this->session->set_userdata('popup_status_payment', 1);
+            $this->session->set_flashdata('pay_alert', '<script>
+                    swal("Success", "Pembayaran berhasil, selamat membaca dengan versi Full...", "success");
+                </script>');
+            redirect($url_redirect,'refresh');
+        }else if ($data_midtrans['payment_type'] == 'mandiri_clickpay' && $data_midtrans['transaction_status'] == 'settlement') {
+            $this->session->unset_userdata('popup_status_payment');
+            $this->session->set_flashdata('popup_status_payment', 1);
+            $this->session->set_userdata('popup_status_payment', 1);
+            $this->session->set_flashdata('pay_alert', '<script>
+                    swal("Success", "Pembayaran berhasil, selamat membaca dengan versi Full...", "success");
+                </script>');
+            redirect($url_redirect,'refresh');
+        }else{
+            $this->session->set_flashdata('pay_alert', '<script>
+                    swal("Warning", "Pembayaran gagal dan buku belum memiliki versi full..", "success");
+                </script>');
             redirect($url_redirect,'refresh');
         }
     }
