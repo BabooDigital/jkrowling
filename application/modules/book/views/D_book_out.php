@@ -199,9 +199,21 @@ if (empty($u12) || $u12 != 'pdf') {
 					</div>
 				</div>
 			</div>
-			<center>
-				<div class="loader" id="loader_scroll" style="display: none;"></div>
-			</center>
+			<hr>
+			<div class="row mb-20">
+				<div class="col-12">
+					<div class="text-center">
+						<span class="desc_outs">Silakan masuk untuk melanjutkan membaca</span>
+					</div>
+				</div>
+			</div>
+			<div class="row mb-50">
+				<div class="col-12">
+					<div class="text-center">
+						<a href="<?php echo site_url(); ?>login?b=<?php echo $bid; ?>" class="btnlogin">Masuk</a>
+					</div>
+				</div>
+			</div>
 		</div>
 		<div class="col-md-1">
 			<div class="card stickymenu">

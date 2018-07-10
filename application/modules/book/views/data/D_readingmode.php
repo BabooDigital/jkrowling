@@ -4,8 +4,19 @@
 		<div id="post-<?php echo (int)$id_chapter; ?>" class="mauboleh" style="">
 		<?php } ?>
 	<?php if ((bool) $detail_book['data']['book_info']['is_pdf'] == true) { ?>
-		<div id='pdf-viewer'> </div>
 		<div class="loader mx-auto" style="display: none;"></div>
+		<div id='pdf-viewer'> </div>
+		<?php $usDat = $this->session->userdata('userData'); if ((bool) $detail_book['data']['book_info']['is_bought'] == false && (bool) $detail_book['data']['book_info']['is_free'] == false && $usDat['user_id'] != $detail_book['data']['author']['author_id']) { ?>
+			<div class="container">
+				<div class="row">
+					<div class="col-3"></div>
+					<div class="col-6">
+						<div style="background:transparent;" class="list-group-item mt-15" id="list_chapters"><a class="" id=""><p>Versi buku full</p><span style="color:#7554bd">Rp <?php echo number_format( $detail_book['data']['book_info']['book_price'], 0, ',', '.'); ?></span></a><button style="float:right;margin-top: -15px;" class="btn-buy" data-toggle="modal" data-target="#buymodal">Beli</button></div>
+					</div>
+					<div class="col-3"></div>
+				</div>
+			</div>
+		<?php } ?>
 	<?php }else{ ?>
 		<?php if ($detail_book['data']['chapter']['chapter_free'] == 'true'): ?>
 

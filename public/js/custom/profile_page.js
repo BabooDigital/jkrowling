@@ -166,7 +166,7 @@ $(document).ready(function() {
 					gambarLike = "public/img/assets/icon_love.svg";
 					kataLike = "Suka";
 				}
-				datas += "<div class='card mb-15'> <div class='card-body pt-20 pb-20 pl-30 pr-30'> <div class='row'> <div class='media w-100'> <div class='media-body'> <a href='book/"+ item.book_id+"-"+convertToSlug(item.title_book) +"'> <img class='d-flex align-self-start mr-10 float-left' src='"+cover+"' width='120' height='170' alt='"+item.title_book+"'> </a> <span class='card-title nametitle3'><a href='book/"+ item.book_id+"-"+convertToSlug(item.title_book) +"'>"+item.title_book+"</a></span> <div class='dropdown float-right'><button class='btn btn-transparent dropdown-toggle float-right' type='button' data-toggle='dropdown'><span class='float-right'><img src='"+base_url+"/public/img/assets/caret.svg'></span></button><ul class='dropdown-menu dropdown-menu-right'> <li class='drpdwn-caret'><a href='javascript:void(0);' onclick='editBook("+item.book_id+")'>Edit Buku</a></li> <li class='drpdwn-caret'><a href='javascript:void(0);' onclick='deleteBook("+item.book_id+")'>Hapus Buku</a></li></ul></div><br><br><p class='catbook'><a href='#' class='mr-20'><span class='btn-no-fill'>"+item.category+"</span></a> <span class='mr-20'><img src='public/img/assets/icon_view.svg'> "+item.view_count+"</span> <span><img src='public/img/assets/icon_share.svg'> "+item.share_count+"</span></p> <p class='text-desc-in'>"+item.desc+" <a href='#' class='readmore'>Lanjut</a> </p> </div> </div> </div> </div><div class='card-footer text-muted' style='font-size: 0.8em;font-weight: bold;'> <div class='pull-right'> <a class='fs-14px' href='#'><img class='mr-10' src='public/img/assets/icon_share.svg' width='23'> Bagikan</a> </div> <div> <a class='mr-30 fs-14px "+isLike+"' href='javascript:void(0);' id='loveboo'><img class='mr-10 loveicon' src='"+gambarLike+"' width='27'> "+kataLike+"</a> <a class='fs-14px' href='#' id='commentboo'><img class='mr-10' src='public/img/assets/icon_comment.svg' width='25'> Komentar</a> </div> </div> </div>";
+				datas += "<div class='card mb-15'> <div class='card-body pt-20 pb-20 pl-30 pr-30'> <div class='row'> <div class='media w-100'> <div class='media-body'> <a href='book/"+ item.book_id+"-"+convertToSlug(item.title_book) +"'> <img class='d-flex align-self-start mr-10 float-left' src='"+cover+"' width='120' height='170' alt='"+item.title_book+"'> </a> <span class='card-title nametitle3'><a href='book/"+ item.book_id+"-"+convertToSlug(item.title_book) +"'>"+item.title_book+"</a></span> <div class='dropdown float-right'><button class='btn btn-transparent dropdown-toggle float-right' type='button' data-toggle='dropdown'><span class='float-right'><img src='"+base_url+"/public/img/assets/caret.svg'></span></button><ul class='dropdown-menu dropdown-menu-right'> <li class='drpdwn-caret'><a href='javascript:void(0);' onclick='editBook("+item.book_id+","+item.is_pdf+")'>Edit Buku</a></li> <li class='drpdwn-caret'><a href='javascript:void(0);' onclick='deleteBook("+item.book_id+")'>Hapus Buku</a></li></ul></div><br><br><p class='catbook'><a href='#' class='mr-20'><span class='btn-no-fill'>"+item.category+"</span></a> <span class='mr-20'><img src='public/img/assets/icon_view.svg'> "+item.view_count+"</span> <span><img src='public/img/assets/icon_share.svg'> "+item.share_count+"</span></p> <p class='text-desc-in'>"+item.desc+" <a href='#' class='readmore'>Lanjut</a> </p> </div> </div> </div> </div><div class='card-footer text-muted' style='font-size: 0.8em;font-weight: bold;'> <div class='pull-right'> <a class='fs-14px' href='#'><img class='mr-10' src='public/img/assets/icon_share.svg' width='23'> Bagikan</a> </div> <div> <a class='mr-30 fs-14px "+isLike+"' href='javascript:void(0);' id='loveboo'><img class='mr-10 loveicon' src='"+gambarLike+"' width='27'> "+kataLike+"</a> <a class='fs-14px' href='#' id='commentboo'><img class='mr-10' src='public/img/assets/icon_comment.svg' width='25'> Komentar</a> </div> </div> </div>";
 			});
 		}
 		$('.loader').hide();
@@ -360,9 +360,13 @@ function deleteBook(id_book) {
 		}
 	});
 }
-function editBook(id_book) {
+function editBook(id_book, type) {
 	swal.showLoading();
-	window.location.href = base_url+'my_book/'+id_book;
+	if (type == true) {
+    window.location = base_url+'upload_mypdf/'+id_book+'?stat=revision';
+    }else{
+    window.location = base_url+'my_book/'+id_book+'?stat=revision';
+    }
 }
 $(document).on("click", ".share-fb", function() {
     var aww = $(this);
