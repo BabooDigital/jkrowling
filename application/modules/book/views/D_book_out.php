@@ -125,6 +125,14 @@ if (empty($u12) || $u12 != 'pdf') {
 	font-weight: bold;
 	color: #7554bd;
 }
+.btnlogin {
+	color: #fff;
+    background: #7554bd;
+    padding: 10px 100px;
+    font-size: 15pt;
+    border-radius: 35px;
+    box-shadow: 0px 2px 3px #818181;
+}
 </style>
 <div class="container pt-100 mb-80">
 	<div class="row">
