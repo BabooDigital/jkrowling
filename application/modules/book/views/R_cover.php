@@ -127,6 +127,8 @@ input:checked + .slider:before {
 }
 .swal2-contentwrapper {
 	margin-top: 15px;
+}input[type='file'] {
+  opacity:0    
 }
 </style>
 <?php
