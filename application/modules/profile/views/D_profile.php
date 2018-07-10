@@ -456,15 +456,13 @@ $this->load->view('navbar/D_navbar'); ?>
 							</button>
 						</div>
 
-						<div class="modal-body bg-white mb-10">
+						<div class="modal-body bg-white mb-10" style="min-height: 400px;">
 							<div class="loader" style="display: none;margin-left: auto;margin-right: auto;"></div>
 						</div>
 						<div class="modal-footer navbar navbar-light fixed-bottom  bg-white">
-							<span class="w-100">
-								<input id="pmessageas" placeholder="Tulis sesuatu.." type="text" class="frmcomment commentform"
-								style="width: 80%;height: 45px;">
-								<a href="javascript:void(0)" id="postMessage" class="btn Rpost-message-parap"
-								data-p-id="390">Kirim</a>
+							<span class="w-100 mt-10 mb-10">
+								<input id="pmessageas" placeholder="Tulis sesuatu.." type="text" class="frmcomment commentform" style="width: 80%;height: 45px;">
+								<a href="javascript:void(0)" id="postMessage" class="btn Rpost-message-parap" data-p-id="<?php echo $userdata['user_id']; ?>" style="font-size: 12pt;border-radius: 30px;padding: 8px 20px;background-color: #7554bd;color: #fff;">Kirim</a>
 							</span>
 						</div>
 					</div><!-- modal-content -->

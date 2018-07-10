@@ -50,6 +50,20 @@
                         <div class="your-class">
                             <?php $this->load->view('include/slide'); ?>
                         </div>
+                        <br>
+                        <h4 align="left"><b>Koleksi Buku</b></h4>
+                        <div class="container" align="center">
+                            <div class="row">
+                                <?php $this->load->view('include/collection'); ?>
+                            </div>
+                        </div>
+                        <br>
+                        <h4 align="left"><b>Bookmark Buku</b></h4>
+                        <div class="container" align="center">
+                            <div class="row">
+                                <?php $this->load->view('include/bookmark'); ?>
+                            </div>
+                        </div>
                     </div>
                     <?php if ($transaction['code'] == 404): ?>
                         <div class="col-md-3">
@@ -125,12 +139,7 @@
             <div class="<?php echo $paddingslide; ?>">
                 <div class="row">
                     <div class="col-md-9">
-                        <h4 align="left"><b>Koleksi Buku</b></h4>
-                        <div class="container" align="center">
-                            <div class="row">
-                                <?php $this->load->view('include/collection'); ?>
-                            </div>
-                        </div>
+                        
 
                     </div>
                     <?php if ($transaction['code'] == 200): ?>
@@ -153,12 +162,7 @@
             </div>
             <div class="paddingslide">
                 <div class="col-md-9">
-                    <h4 align="left"><b>Bookmark Buku</b></h4>
-                    <div class="container" align="center">
-                        <div class="row">
-                            <?php $this->load->view('include/bookmark'); ?>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
         </div>
