@@ -196,10 +196,16 @@ class C_createpdf extends MX_Controller {
 			$cFile = '@' . realpath($pdffile);
 		}
 
-        $data_book = array(
-            'book_id' => $book_id,
-            'pdf_book' => $cFile
-        );
+		if (empty($pdffile)) {
+			$data_book = array(
+				'book_id' => $book_id
+			);
+		}else{
+			$data_book = array(
+				'book_id' => $book_id,
+				'pdf_book' => $cFile
+			);
+		}
 
         $resval = $this->curl_request->curl_post_auth($this->API.'book/Books/uploadPDF', $data_book, $auth);
 

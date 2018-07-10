@@ -8,6 +8,10 @@
 .fr-toolbar .fr-command.fr-btn, .fr-popup .fr-command.fr-btn {
 	margin: 0;
 }
+.fr-view > p {
+	line-height: 27px;
+	margin-bottom: 1rem;
+}
 </style>
 <body id="pageContent">
 	<input type="checkbox" id="toggle-right">

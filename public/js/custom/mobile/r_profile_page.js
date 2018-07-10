@@ -273,7 +273,12 @@ loaded = true;
       }
     });
     var bid = $(this).attr("dataedit");
+    var type = $(this).attr("type");
+    if (type == 1) {
+    window.location = base_url+'upload_mypdf/'+bid+'?stat=revision';
+    }else{
     window.location = base_url+'listchapter/'+bid+'?stat=revision';
+    }
   });
 
 });

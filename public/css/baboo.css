@@ -1961,15 +1961,17 @@ input.formsearch:focus {
 		background: #DDDDDD;
 	}
 	.input-range {
-		margin-top: 15px;
+		margin-top: 5px;
 		background: #DDDDDD;
-		margin-left:10px;
+		margin-left: 10px;
 		width: 70%;
-		border-bottom:solid 1px #a9a9a9;
+		border: none;
+		font-size: 15pt;
+		font-weight: bold;
 		outline: 0;
-		border-left: 1px transparent;
-		border-right : 1px transparent;
-		border-top: 1px transparent;
+		/* border-left: 1px transparent; */
+		/* border-right: 1px transparent; */
+		/* border-top: 1px transparent; */
 	}
 	input:checked + .slider {
 		background-color: #7554bd;

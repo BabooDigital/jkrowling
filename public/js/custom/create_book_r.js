@@ -16,10 +16,10 @@ $(function(){
 function publishBook() {
   $("#publish_book").click(function() {
     var formData = new FormData();
-    formData.append("csrf_test_name", csrf_value);
     var ch = $(".start_chapter").val();
     var slide = $('.priceCheck:checkbox:checked');
     var asd = slide.is(':empty');
+    formData.append("csrf_test_name", csrf_value);
       if (slide.length == 0 || asd == false) {
       formData.append("book_id", $("#uri").val());
       formData.append("file_cover", $("#cover_file").val());
@@ -30,11 +30,11 @@ function publishBook() {
       formData.append("file_cover", $("#cover_file").val());
       formData.append("category", $("#category_ids").val());
       formData.append("price", $("#inputprice").val());
-      if (ch == '3' || ch >= '3' || ch > '3') {
+      // if (ch == '3' || ch > '3') {
         formData.append("chapter_start", ch);
-      }else {
-        formData.append("chapter_start", $(".start_chapter").val('3'));
-      }
+      // }else {
+      //   formData.append("chapter_start", '3');
+      // }
       formData.append("is_paid", true);
     }
       var cat = $("#category_ids").val();
@@ -59,7 +59,15 @@ function publishBook() {
           type: 'POST',
           contentType: false,
           processData: false,
-          data: formData
+          data: formData,
+          beforeSend: function() {
+            swal({
+              text: 'Harap tunggu...',
+              onOpen: () => {
+                swal.showLoading();
+              }
+            });
+          }
         })
         .done(function(data) {
           if (data.code == 200) {
@@ -484,8 +492,9 @@ function check_sell() {
       });
       if (data.data.is_publishable == true) {
         if (data.data.is_sellable == true && data.data.price == "0") {
-          $(".start_chapter").val('3');
+          $(".start_chapter").val(data.data.total_chapter_sellable);
           $("#count_chapter_plus_minus").val(data.data.total_chapter);
+          $("#minim_chapter").val(data.data.total_chapter_sellable);
           $('.switch').show();
           swal({
             title: 'Yeay...!',

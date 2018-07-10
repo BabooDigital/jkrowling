@@ -63,7 +63,7 @@
 		box-shadow: 0px 2px 3px #818181;
 	}
 	.textp > p {
-		/*text-indent: 10%;*/
+		text-indent: 10%;
 	}
 	a {
 		color: #333;

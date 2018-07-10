@@ -325,98 +325,79 @@ $(document).ready(function() {
     });
     $(document).on("click", ".buyfullbook", function() {
         $('#modal-checkout').modal('show');
-        var a = $('.cover_image').attr('src');
-        var b = $('.title_book').text();
-        var c = $('.cbookd').text();
-        var d = $('.boview').text();
-        var e = $('.boshare').text();
-        var f = $('.authimg').attr('src');
-        var g = $('.author_name').text();
-        var h = $('.priceb').text();
-        // var i = $('.priceb').text();
         var j = $('#iaidubi').val();
 
-        $('#ccoverb').attr({ src: a, alt: b });
-        $('#ctitleb').text(b);
-        $('#ccatb').text(c);
-        $('#cviewb').text(d);
-        $('#cshareb').text(e);
-        $('#cauthorb').attr('src', f);
-        $('#cauthnameb').text(g);
-        $('#chargab').text(h);
-        $('#ctotb').text(h);
         $('#nextcheck').attr('b-id', j);
-
     });
     getRCommentBook();
-    getRMenuChapter();
+    // getRMenuChapter();
 });
 
-function getRMenuChapter() {
-    $.ajax({
-        url: base_url + "getmenuchapter",
-        type: "POST",
-        dataType: "json",
-        data: {
-            id_book: segment,
-            csrf_test_name: csrf_value
-        }
-    }).done(function(b) {
-        var count = 0;
-        var counts = 0;
-        var data_chapter = "";
-        if (userbook == userdata) {
-            $.each(b, function(ba, val) {
-                if (ba != 'pay') {
-                    var id = $('.chpt').attr('chpt');
-                    if (val.status_publish.status_id == 2) {
-                        data_chapter += '<a href="' + base_url + 'book/' + segment + '/' + count++ + '" class="borbot bornone font-weight-bold bg-none list-group-item list-group-item-action chpt ';
-                        // if (active == id) {
-                        //     data_chapter += 'active';
-                        // }
-                        data_chapter += '" data-count="'+ counts++ +'">' + val['chapter_title'] + '</a>';
-                    }else {
-                        data_chapter += '<a href="' + base_url + 'book/' + segment + '/' + count++ + '" class="borbot text-muted font-weight-bold bornone bg-none list-group-item list-group-item-action chpt ';
-                        // if (active == id) {
-                        //     data_chapter += 'active';
-                        // }
-                        data_chapter += '" data-count="'+ counts++ +'">' + val['chapter_title'] + '<img src="'+base_url+'public/img/assets/icon_draft_pub.png" width="40" class="img-fluid float-right"></a>';
-                    }
-                }
-                $(".detailbook").children().attr("data-id");
-            });
-        }else{
-            $.each(b, function(ba, val) {
-                if (ba != 'pay') {
-                    var id = $('.chpt').attr('chpt');
-                    if (val['chapter_free'] == true) {
-                      data_chapter += '<a href="' + base_url + 'book/' + segment + '/' + count++ + '" class="borbot bornone bg-none font-weight-bold list-group-item list-group-item-action chpt ';
-                    //   if (active == id) {
-                    //     data_chapter += 'active';
-                    // }
-                    data_chapter += '" data-count="'+ counts++ +'">' + val['chapter_title'] + '</a>';
-                } else {
-                  data_chapter += '<a class="borbot bornone font-weight-bold bg-none list-group-item list-group-item-action text-muted';
-          // if (index == 0) {
-              data_chapter += ' disabled ';
-          // }
-          data_chapter += '>';
-          data_chapter += '" title="Beli untuk membaca chapter ini."><img src="'+base_url+'public/img/assets/icon_sell.png" width="20" class="mt-5 float-right">' + val['chapter_title'] + '</a>';
-      }
+// function getRMenuChapter() {
+//     $.ajax({
+//         url: base_url + "getmenuchapter",
+//         type: "POST",
+//         dataType: "json",
+//         data: {
+//             id_book: segment,
+//             csrf_test_name: csrf_value
+//         }
+//     }).done(function(b) {
+//         var count = 0;
+//         var counts = 0;
+//         var data_chapter = "";
+//         if (userbook == userdata) {
+//             $.each(b, function(ba, val) {
+//                 if (ba != 'pay') {
+//                     var id = $('.chpt').attr('chpt');
+//                     if (val.status_publish.status_id == 2) {
+//                         data_chapter += '<a href="' + base_url + 'book/' + segment + '/' + count++ + '" class="borbot bornone font-weight-bold bg-none list-group-item list-group-item-action chpt ';
+//                         // if (active == id) {
+//                         //     data_chapter += 'active';
+//                         // }
+//                         data_chapter += '" data-count="'+ counts++ +'">' + val['chapter_title'] + '</a>';
+//                     }else {
+//                         data_chapter += '<a href="' + base_url + 'book/' + segment + '/' + count++ + '" class="borbot text-muted font-weight-bold bornone bg-none list-group-item list-group-item-action chpt ';
+//                         // if (active == id) {
+//                         //     data_chapter += 'active';
+//                         // }
+//                         data_chapter += '" data-count="'+ counts++ +'">' + val['chapter_title'] + '<img src="'+base_url+'public/img/assets/icon_draft_pub.png" width="40" class="img-fluid float-right"></a>';
+//                     }
+//                 }
+//                 $(".detailbook").children().attr("data-id");
+//             });
+//         }else{
+//             $.each(b, function(ba, val) {
+//                 if (ba != 'pay') {
+//                     var id = $('.chpt').attr('chpt');
+//                     if (val['chapter_free'] == true) {
+//                       data_chapter += '<a href="' + base_url + 'book/' + segment + '/' + count++ + '" class="borbot bornone bg-none font-weight-bold list-group-item list-group-item-action chpt ';
+//                     //   if (active == id) {
+//                     //     data_chapter += 'active';
+//                     // }
+//                     data_chapter += '" data-count="'+ counts++ +'">' + val['chapter_title'] + '</a>';
+//                 } else {
+//                   data_chapter += '<a class="borbot bornone font-weight-bold bg-none list-group-item list-group-item-action text-muted';
+//           // if (index == 0) {
+//               data_chapter += ' disabled ';
+//           // }
+//           data_chapter += '>';
+//           data_chapter += '" title="Beli untuk membaca chapter ini."><img src="'+base_url+'public/img/assets/icon_sell.png" width="20" class="mt-5 float-right">' + val['chapter_title'] + '</a>';
+//       }
       
-      $(".detailbook").children().attr("data-id");
-  }
-});
-        }
-        $("#list_Rchapter").html(data_chapter);
+//       $(".detailbook").children().attr("data-id");
+//   }
+// });
+//         }
+//         $("#list_Rchapter").html(data_chapter);
 
-        // Paging
-        // var paging = "<div class='col-4'> <button class='pull-left'><</button> </div> <div class='col-4'> <span class='w-100'> </span> </div> <div class='col-4'> <button class='pull-right'>></button> </div>";
-        // $("#paging-chapter").html(paging);
-    }).fail(function() {
-        console.log("error")
-    }).always(function() {})
-}
+//         // Paging
+//         // var paging = "<div class='col-4'> <button class='pull-left'><</button> </div> <div class='col-4'> <span class='w-100'> </span> </div> <div class='col-4'> <button class='pull-right'>></button> </div>";
+//         // $("#paging-chapter").html(paging);
+//     }).fail(function() {
+//         console.log("error")
+//     }).always(function() {})
+// }
 
 function getRCommentBook() {
     var b = $("#iaidubi").val();
@@ -643,6 +624,10 @@ var openNextPage = function() {
   if (page_no !== __CURRENT_PAGE) {
     __CURRENT_PAGE = page_no;
     showPage(__CURRENT_PAGE);
+}
+if (page_no == __TOTAL_PAGES) {
+    $('#modal-checkout').modal('toggle');
+}else{
 }
 };
 var openPrevPage = function() {
