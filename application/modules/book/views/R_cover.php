@@ -253,6 +253,7 @@ if (!empty($query['stat'])) {
 						</div>
 						<div class="row mt-20" style="width: 110%;">
 							<div class="form-group col-8">
+								<?php print_r($book); ?>
 								<?php if ((bool)$book['book_info']['is_pdf'] == true) {
 									echo "<label class='text-muted'>Mulai Jual Pada Halaman</label>";
 								}else{

@@ -214,7 +214,6 @@ class C_createpdf extends MX_Controller {
         	$auth = $resval['bbo_auth'];
             $status = $data['code'];
             $this->session->set_userdata('authKey', $auth);
-            $this->session->unset_userdata('idBook_');
         } else {
             $status = $data['code'];
         }

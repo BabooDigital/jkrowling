@@ -196,7 +196,6 @@ if (!empty($query['stat'])) {
 			<div class="min_padding">
 				<p style="font-size: 16px;">Atau
 					<input type="button" style="background: transparent; color: #b448cc;border: 0;cursor: pointer;" onclick="window.location.href = '<?php echo site_url('create_cover'); ?>';" value="Buat Disini" />
-					<!-- <a href="<?php echo site_url(); ?>create_cover" style="color: #b448cc;"><b>Buat Di Sini</b></a></p> -->
 				</div>
 			</div>
 			<div class="mt-40">
@@ -233,7 +232,7 @@ if (!empty($query['stat'])) {
 									<option selected>Rp</option>
 								</select>
 							</div>
-							<div class="form-group col-8">
+							<div class="form-group col-6">
 								<label class="text-muted">Harga Buku Lengkap</label>
 								<input type="number" class="form-control" id="inputprice" placeholder="60000">
 							</div>
@@ -263,8 +262,11 @@ if (!empty($query['stat'])) {
 						</div>
 						<div class="row mt-20" style="width: 110%;">
 							<div class="form-group col-8">
-								<label class="text-muted">Mulai Jual Pada Chapter</label>
-								<!-- <input type="number" value="6" min="3" class="form-control chaptermin" id="font-size"> -->
+								<?php if ((bool)$book['book_info']['is_pdf'] == true) {
+									echo "<label class='text-muted'>Mulai Jual Pada Halaman</label>";
+								}else{
+									echo "<label class='text-muted'>Mulai Jual Pada Chapter</label>";
+								} ?>
 								<input type="number" name="start_chapter" class="input-range start_chapter" id="addormin" style="width: 100%;background: none;">
 							</div>
 							<div class="col-2" style="margin-left: -15px;">
@@ -283,6 +285,7 @@ if (!empty($query['stat'])) {
 			</div>
 			<input type="hidden" name="count_chapter" id="count_chapter" value="" class="w-100" placeholder="Count Chapter" required="">
 			<input type="hidden" name="count_chapter_plus_minus" id="count_chapter_plus_minus" value="" class="w-100" placeholder="Count Chapter" required="">
+			<input type="hidden" name="minim_chapter" id="minim_chapter" value="" class="w-100" placeholder="Count Chapter" required="">
 			<div class="mt-20">
 				<div class="checkbox">
 					<label>
@@ -346,11 +349,11 @@ if (!empty($query['stat'])) {
 				}
 				if ( action == "minus") {
 					if (value <= $("#count_chapter_plus_minus").val()) {
-						if (value < 2) {
+						// if (value < 2) {
 							value;
 						}else{
 							value--;
-						}
+						// }
 					}
 				}
 				$('[id="'+target+'"]').val(value);

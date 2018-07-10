@@ -11,6 +11,7 @@
 	</script>
 	<?php echo "<script type='text/javascript' src='https://".MID_BASE_URL."/snap/snap.js' data-client-key='".MID_CLIENT."'></script>"; ?>
 </head>
+<style> .btn-buy {width: 89px; text-align: center; color: white; padding-top: 5px; padding-bottom: 5px; border-radius: 15px; background-color: #7661ca; } </style>
 <body>
 	<div class="container-fluid mb-40">
 		<div class="row">

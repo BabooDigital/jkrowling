@@ -1192,6 +1192,7 @@ class C_createbook extends MX_Controller
 		    	$this->session->set_userdata('authKey', $auths);
 		    	$this->session->set_userdata('dataBook', $user);
 		    	$this->session->unset_userdata('dataCover');
+		    	$this->session->unset_userdata('idBook_');
 		    	$this->session->unset_userdata('dataBook');
 		    	$this->session->set_flashdata('success_publish', '<script>
                     swal("Success", "Buku Anda Sudah Publish", "success");
