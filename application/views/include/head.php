@@ -40,7 +40,7 @@
 	padding: 0px 8px !important;
 }
 </style>
-<?php if ($this->uri->segment(2) == 'book') {
+<?php if ($this->uri->segment(1) == 'book') {
 	echo "<body oncontextmenu='return false;'>";
 }else{
 	echo "<body>";

@@ -288,7 +288,6 @@ $this->load->view('navbar/D_navbar'); ?>
 						<?php else: ?>
 							<div class="col-md-6" id="post-data">
 								<?php if (!empty($bookdata)) {
-//								    print_r($bookdata);
 									foreach ($bookdata as $s_book) {
 //									    echo ((bool)$s_book['is_like'] == true) ? "like" : "unlike";
 									    ?>

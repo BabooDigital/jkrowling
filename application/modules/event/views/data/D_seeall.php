@@ -1,5 +1,4 @@
 <?php foreach ($seeall_event as $s_book): ?>
-	<?php print_r($s_book['popular_book_isLike']); ?>
 	<div class="col-md-6 col-sm-12 col-xs-12 mb-20">
 		<div class="card">
 			<div class="card-body">
