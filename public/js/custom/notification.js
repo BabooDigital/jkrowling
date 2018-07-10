@@ -154,12 +154,6 @@ function load_notification() {
             }
             datas += "<a href='"+base_url+'book/'+val.notif_book.book_id+'-'+convertToSlug(val.notif_book.title_book)+"' class='list-group-item list-group-item-action align-items-start btn_notif_like' "+add_style+" id='btn_notif_like' ntf='"+val.notif_id+"' style='text-align:  left !important;'> <div class='row'><div><img alt='Follow you' class='mr-5' height='25' src='"+base_url+"public/img/assets/notif_like.png' width='25'> <img alt='"+val.notif_user.fullname+"' class='mr-10 rounded-circle' height='35' src='"+user+"' width='35' style='object-fit:  cover; '></div> <div class='media-body'><p style='margin-bottom: -5px !important;line-height: 15px;'><span style='font-size: 11pt; '><b>"+val.notif_user.fullname+"</b> "+val.notif_text+"</span></p><span style='font-size:  8pt; 'class='text-muted'>"+val.notif_time+"</span></div><div class='mt-5'><img src='"+val.notif_book.cover_url+"' style='width: 100%;height:100px;object-fit:cover;'></div></div> </a>";
           }else if(val.notif_type.notif_type_id == 4){
-            var title = "";
-            if (val.notif_book.title_book != null || val.notif_book.title_book != '' || val.notif_book.title_book != 'undefined') {
-              title += "";
-            }else{
-              title += "kosong";
-            }
             if (val.notif_user.prof_pict == null || val.notif_user.prof_pict == '' || val.notif_user.prof_pict == 'Kosong') {
               user = base_url+'public/img/profile/blank-photo.jpg';
             }else{
@@ -174,19 +168,19 @@ function load_notification() {
             if (val.notif_status == "read") {
               add_style += "style='background:#f1f1f1;'";
             }
-            datas += '<a href="'+base_url+'book/'+val.notif_book.book_id+'-'+convertToSlug(val.notif_book.title_book)+'" class="list-group-item list-group-item-action flex-column align-items-start btn_notif_publish" '+add_style+' id="" ntf="'+val.notif_id+'"> <div class="row mb-10" style="padding: 0px 10px 0px 10px;text-align: left;"> <div class="media" style="width: 100%;"> <div class="media-body"> <span class="nametitle2">'+title+'</span> <br> <p class="" style="margin-bottom:-5px !important;">'+val.notif_text+'</p> <span class="text-muted" style="font-size:  8pt;">'+val.notif_time+'</span></div> </div> </div> </a>';
+            datas += '<a href="'+base_url+'book/'+val.notif_book.book_id+'-'+convertToSlug(val.notif_book.title_book)+'" class="list-group-item list-group-item-action flex-column align-items-start btn_notif_publish" '+add_style+' id="" ntf="'+val.notif_id+'"> <div class="row mb-10" style="padding: 0px 10px 0px 10px;text-align: left;"> <div class="media" style="width: 100%;"> <div class="media-body"> <span class="nametitle2"></span> <br> <p class="" style="margin-bottom:-5px !important;">'+val.notif_text+'</p> <span class="text-muted" style="font-size:  8pt;">'+val.notif_time+'</span></div> </div> </div> </a>';
           }else if(val.notif_type.notif_type_id == 5){
             var add_style = "";
             if (val.notif_status == "read") {
               add_style += "style='background:#f1f1f1;'";
             }
-            datas += '<a href="javascript:void(0);" class="list-group-item list-group-item-action flex-column align-items-start btn_notif_publish" '+add_style+' id="" ntf="'+val.notif_id+'"> <div class="row mb-10" style="padding: 0px 10px 0px 10px;text-align: left;"> <div class="media" style="width: 100%;"> <div class="media-body"> <span class="nametitle2">'+title+'</span> <br> <p class="" style="margin-bottom:-5px !important;">'+val.notif_text+'</p> <span class="text-muted" style="font-size:  8pt;">'+val.notif_time+'</span></div> </div> </div> </a>';
+            datas += '<a href="javascript:void(0);" class="list-group-item list-group-item-action flex-column align-items-start btn_notif_publish" '+add_style+' id="" ntf="'+val.notif_id+'"> <div class="row mb-10" style="padding: 0px 10px 0px 10px;text-align: left;"> <div class="media" style="width: 100%;"> <div class="media-body"> <span class="nametitle2"></span> <br> <p class="" style="margin-bottom:-5px !important;">'+val.notif_text+'</p> <span class="text-muted" style="font-size:  8pt;">'+val.notif_time+'</span></div> </div> </div> </a>';
           }else if(val.notif_type.notif_type_id == 6){
             var add_style = "";
             if (val.notif_status == "read") {
               add_style += "style='background:#f1f1f1;'";
             }
-            datas += '<a href="javascript:void(0);" class="list-group-item list-group-item-action flex-column align-items-start btn_notif_publish" '+add_style+' id="" ntf="'+val.notif_id+'"> <div class="row mb-10" style="padding: 0px 10px 0px 10px;text-align: left;"> <div class="media" style="width: 100%;"> <div class="media-body"> <span class="nametitle2">'+title+'</span> <br> <p class="" style="margin-bottom:-5px !important;">'+val.notif_text+'</p> <span class="text-muted" style="font-size:  8pt;">'+val.notif_time+'</span></div> </div> </div> </a>';
+            datas += '<a href="javascript:void(0);" class="list-group-item list-group-item-action flex-column align-items-start btn_notif_publish" '+add_style+' id="" ntf="'+val.notif_id+'"> <div class="row mb-10" style="padding: 0px 10px 0px 10px;text-align: left;"> <div class="media" style="width: 100%;"> <div class="media-body"> <span class="nametitle2"></span> <br> <p class="" style="margin-bottom:-5px !important;">'+val.notif_text+'</p> <span class="text-muted" style="font-size:  8pt;">'+val.notif_time+'</span></div> </div> </div> </a>';
           }
           // console.log(val.notif_user);
         });
