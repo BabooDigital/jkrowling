@@ -12,7 +12,6 @@ class C_book extends MX_Controller
         $api_url = checkBase();
 
         $this->API = $api_url;
-        $this->index();
     }
 
     public function index()
