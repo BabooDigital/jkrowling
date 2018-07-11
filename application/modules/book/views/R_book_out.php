@@ -77,16 +77,6 @@
 	var csrf_value = '<?php echo $this->security->get_csrf_hash(); ?>';
 </script>
 </head>
-<?php 
-$u1= $this->uri->segment(2);
-$u12= $this->uri->segment(4);
-if (empty($u12) || $u12 != 'pdf') {
-	if ((bool)$detailBook['book_info']['is_pdf'] == true) {
-		redirect(site_url('book/'.$u1.'/preview/pdf'),'refresh');
-	}else{	
-	}
-}
-?>
 <body class="bgboo">
 	<!-- BANNER POPUP BUTTON PLAYSTORE MOBILE -->
 	<div class="bannerPopUp"></div>
@@ -192,7 +182,7 @@ if (empty($u12) || $u12 != 'pdf') {
 			}
 		};
 		var bid = '<?php echo $this->uri->segment(2); ?>';
-		var link = "intent://"+"<?php echo BASE_URL_WEB; ?>"+bid+"#Intent;scheme=https;package=id.android.baboo;S.doctype=FRA;S.docno=FRA1234;S.browser_fallback_url=market://details?id=id.android.baboo;end";
+		var link = "intent://"+"<?php echo BASE_URL_WEB; ?>book/"+bid+"#Intent;scheme=https;package=id.android.baboo;S.doctype=FRA;S.docno=FRA1234;S.browser_fallback_url=market://details?id=id.android.baboo;end";
 		$('.bannerPopUp').html("<div class='popUpBannerBox'> <div class='popUpBannerInner'> <div class='popUpBannerContent'> <a href='"+link+"'><span class='popUpBannerSpan'>Baca di Aplikasi</span></a><a href='#' class='closeButton'>&#120;</a> </div> </div> </div>");
 
 		function showPopUpBanner() {

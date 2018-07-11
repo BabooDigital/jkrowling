@@ -12,11 +12,7 @@ class C_book extends MX_Controller
         $api_url = checkBase();
 
         $this->API = $api_url;
-
-        if ($this->session->userdata('isLogin') != 200) {
-            $id = $this->uri->segment(2);
-            redirect('book/' . $id . '/preview');
-        }
+        $this->index();
     }
 
     public function index()
@@ -51,8 +47,18 @@ class C_book extends MX_Controller
         );
 
         // END GET CHAPTER
-        $data = $this->curl_request->curl_post_auth($this->API.'book/Books/detailBook/', $data_book, $auth);
-        $datapdf = $this->curl_request->curl_post_auth($this->API.'book/Books/detailPDF/', $data_book, $auth);
+        if ($this->session->userdata('isLogin') != 200) {
+            $data = $this->curl_request->curl_post($this->API.'timeline/Home/detailBook', $data_book, '');
+            $id = $this->uri->segment(2);
+            if ($data['data']['book_info']['is_pdf'] != 1) {
+                redirect('book/' . $id . '/preview');
+            }else{
+                redirect('book/' . $id . '/preview/pdf');
+            }
+        }else{
+            $data = $this->curl_request->curl_post_auth($this->API.'book/Books/detailBook/', $data_book, $auth);   
+            $datapdf = $this->curl_request->curl_post_auth($this->API.'book/Books/detailPDF/', $data_book, $auth);
+        }
 
         if ($data['data']['data']['book_info']['is_pdf'] != 1) {
             $data['detail_book'] = $data['data'];
@@ -61,83 +67,83 @@ class C_book extends MX_Controller
         }
         $auth = $data['bbo_auth'];
 
-
-
-
-        if (!$this->input->get("chapter")) {
-        } else {
-            $chapter_id = $data_before_chapter['chapter']['data']['chapter'][$this->input->get("chapter")]['chapter_id'];
-
-            $data_book = array(
-                'book_id' => $idb[0],
-                'chapter' => $chapter_id
-            );
-
-            $data = $this->curl_request->curl_post_auth($this->API.'book/Books/detailBook/', $data_book, $auth);
-
-            $auth = $data['bbo_auth'];
-        $this->session->set_userdata('authKey', $auth);
-            if (isset($data['detail_book']['code']) && $data['detail_book']['code'] == '200') {
-                $status = $data['detail_book']['code'];
-                if(!empty($auth)) $this->session->set_userdata('authKey', $auth);
+        if ($this->session->userdata('isLogin') != 200) {
+        }else{
+            if (!$this->input->get("chapter")) {
             } else {
-                $status = $data['detail_book']['code'];
-            }
-            // unset($data['bbo_auth']);
-            $data['detail_book'] = $data['data'];
-        }
+                $chapter_id = $data_before_chapter['chapter']['data']['chapter'][$this->input->get("chapter")]['chapter_id'];
 
-        $data['title'] = $data['detail_book']['data']['book_info']['title_book'] . " - Baboo";
+                $data_book = array(
+                    'book_id' => $idb[0],
+                    'chapter' => $chapter_id
+                );
 
-        $data['detailBook'] = json_decode(end($data), true);
-        $data['menuChapter'] = json_decode(end($data_before_chapter), true);
+                $data = $this->curl_request->curl_post_auth($this->API.'book/Books/detailBook/', $data_book, $auth);
 
-        if ($data_before_chapter['chapter']['data']['chapter'][3]['chapter_free'] != "false") {
-            $data['detailChapter'] = count($data_before_chapter['chapter']['data']['chapter']);
-        } else {
-            $data['detailChapter'] = 2;
-        }
-
-
-        $data['js'][] = "public/js/jquery.min.js";
-        $data['js'][] = "public/js/umd/popper.min.js";
-        $data['js'][] = "public/js/bootstrap.min.js";
-        $data['js'][] = "public/js/jquery.mentionsInput.js";
-
-        $data['id_chapter'] = $this->input->get("chapter");
-
-        $data['id_chapter_asli'] = $data['detailBook']['data']['chapter']['chapter_id'];
-        if ($this->agent->mobile()) {
-            $data['css'][] = "public/css/sweetalert2.min.css";
-
-            $data['chapt_count'] = count($data_before_chapter['chapter']['data']['chapter']);
-            $data['chapt_data'] = $data_before_chapter['chapter']['data']['chapter'];
-            $data['js'][] = "public/js/sweetalert2.all.min.js";
-            $data['js'][] = "public/js/custom/mobile/r_detail_book.js";
-
-            $this->load->view('include/head', $data);
-            $this->load->view('R_book');
-        } else {
-            $data['css'][] = "public/plugins/holdOn/css/HoldOn.css";
-
-            $data['js'][] = "public/plugins/holdOn/js/HoldOn.js";
-            $data['js'][] = "public/js/jquery.sticky-kit.min.js";
-            $data['js'][] = "public/js/custom/notification.js";
-            $data['js'][] = "public/js/custom/transaction.js";
-            if ($this->input->get("chapter")) {
-                if ($data_before_chapter['chapter']['data']['chapter'][$this->input->get("chapter")] == null || $data_before_chapter['chapter']['data']['chapter'][$this->input->get("chapter")] == '') {
-                    // print_r("kosong chapter");
+                $auth = $data['bbo_auth'];
+            $this->session->set_userdata('authKey', $auth);
+                if (isset($data['detail_book']['code']) && $data['detail_book']['code'] == '200') {
+                    $status = $data['detail_book']['code'];
+                    if(!empty($auth)) $this->session->set_userdata('authKey', $auth);
                 } else {
-                    $data['js'][] = "public/js/custom/detail_book.js";
-                    $result = $this->load->view('data/D_book', $data);
+                    $status = $data['detail_book']['code'];
                 }
+                // unset($data['bbo_auth']);
+                $data['detail_book'] = $data['data'];
+            }
+
+            $data['title'] = $data['detail_book']['data']['book_info']['title_book'] . " - Baboo";
+
+            $data['detailBook'] = json_decode(end($data), true);
+            $data['menuChapter'] = json_decode(end($data_before_chapter), true);
+
+            if ($data_before_chapter['chapter']['data']['chapter'][3]['chapter_free'] != "false") {
+                $data['detailChapter'] = count($data_before_chapter['chapter']['data']['chapter']);
             } else {
-                // print_r($content);
-                $data['js'][] = "public/js/custom/search.js";
-                $data['js'][] = "public/js/custom/detail_book.js";
+                $data['detailChapter'] = 2;
+            }
+
+
+            $data['js'][] = "public/js/jquery.min.js";
+            $data['js'][] = "public/js/umd/popper.min.js";
+            $data['js'][] = "public/js/bootstrap.min.js";
+            $data['js'][] = "public/js/jquery.mentionsInput.js";
+
+            $data['id_chapter'] = $this->input->get("chapter");
+
+            $data['id_chapter_asli'] = $data['detailBook']['data']['chapter']['chapter_id'];
+            if ($this->agent->mobile()) {
+                $data['css'][] = "public/css/sweetalert2.min.css";
+
+                $data['chapt_count'] = count($data_before_chapter['chapter']['data']['chapter']);
+                $data['chapt_data'] = $data_before_chapter['chapter']['data']['chapter'];
+                $data['js'][] = "public/js/sweetalert2.all.min.js";
+                $data['js'][] = "public/js/custom/mobile/r_detail_book.js";
+
                 $this->load->view('include/head', $data);
-                $this->load->view('D_book');
-                count($data_before_chapter['chapter']);
+                $this->load->view('R_book');
+            } else {
+                $data['css'][] = "public/plugins/holdOn/css/HoldOn.css";
+
+                $data['js'][] = "public/plugins/holdOn/js/HoldOn.js";
+                $data['js'][] = "public/js/jquery.sticky-kit.min.js";
+                $data['js'][] = "public/js/custom/notification.js";
+                $data['js'][] = "public/js/custom/transaction.js";
+                if ($this->input->get("chapter")) {
+                    if ($data_before_chapter['chapter']['data']['chapter'][$this->input->get("chapter")] == null || $data_before_chapter['chapter']['data']['chapter'][$this->input->get("chapter")] == '') {
+                        // print_r("kosong chapter");
+                    } else {
+                        $data['js'][] = "public/js/custom/detail_book.js";
+                        $result = $this->load->view('data/D_book', $data);
+                    }
+                } else {
+                    // print_r($content);
+                    $data['js'][] = "public/js/custom/search.js";
+                    $data['js'][] = "public/js/custom/detail_book.js";
+                    $this->load->view('include/head', $data);
+                    $this->load->view('D_book');
+                    count($data_before_chapter['chapter']);
+                }
             }
         }
     }
