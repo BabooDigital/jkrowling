@@ -657,7 +657,7 @@ echo "<script>(function(d, s, id) {
 		}
 	};
 	var bid = segment.split('-');
-	var link = "intent://"+"<?php echo BASE_URL_WEB; ?>"+bid[0]+"#Intent;scheme=https;package=id.android.baboo;S.doctype=FRA;S.docno=FRA1234;S.browser_fallback_url=market://details?id=id.android.baboo;end";
+	var link = "intent://"+"<?php echo BASE_URL_WEB; ?>book/"+bid[0]+"#Intent;scheme=https;package=id.android.baboo;S.doctype=FRA;S.docno=FRA1234;S.browser_fallback_url=market://details?id=id.android.baboo;end";
 	$('.bannerPopUp').html("<div class='popUpBannerBox'> <div class='popUpBannerInner'> <div class='popUpBannerContent'> <a href='"+link+"'><span class='popUpBannerSpan'>Baca di Aplikasi</span></a><a href='#' class='closeButton'>&#120;</a> </div> </div> </div>");
 
 	function showPopUpBanner() {
