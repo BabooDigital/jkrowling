@@ -360,7 +360,7 @@ echo "<script>(function(d, s, id) {
 	</div><br>
 	<br>
 	<div class="container mt-30 mb-70">
-		<?php if (!$this->uri->segment(3)) { ?>
+		<?php if ($this->uri->segment(3) == 'pdf') { ?>
 		<div class="row mb-30">
 			<div class="col-12">
 				<div class="text-center mb-15">
@@ -380,7 +380,7 @@ echo "<script>(function(d, s, id) {
 		</div>
 		<?php } ?>
 		<?php if ((bool)$detail_book['data']['book_info']['is_pdf'] != true) { ?>
-			<?php $sess = $this->session->userdata('userData'); if (!$this->uri->segment(3)) { ?>
+			<?php $sess = $this->session->userdata('userData'); if ($this->uri->segment(3) == 'pdf') { ?>
 				<div class="row">
 				<?php }else{ ?>
 					<div class="row" style="display: none;">

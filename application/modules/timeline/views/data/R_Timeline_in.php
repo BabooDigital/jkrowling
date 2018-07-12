@@ -24,9 +24,9 @@
 								</div>
 							</div>
 						</div>
-						<a href="<?php echo site_url(); ?>book/<?php echo $s_book['book_id']; ?>-<?php echo url_title($s_book['title_book'], 'dash', true); ?>"> 
+						<a href="<?php if ((bool)$s_book['is_pdf'] == true) { echo site_url('book/'.$s_book['book_id'].'-'.url_title($s_book['title_book'], 'dash', true).'/pdf'); }else{ echo site_url('book/'.$s_book['book_id'].'-'.url_title($s_book['title_book'], 'dash', true)); } ?>"> 
 							<div class="row pl-10 pr-10">
-								<h5 class="w-100" style="font-weight: 700;"><b><a href="<?php echo site_url(); ?>book/<?php echo $s_book['book_id']; ?>-<?php echo url_title($s_book['title_book'], 'dash', true); ?>" class="dbooktitle segment" data-href="<?php echo $s_book['book_id']; ?>"><?php echo $s_book['title_book']; ?></a></b></h5>
+								<h5 class="w-100" style="font-weight: 700;"><b><a href="<?php if ((bool)$s_book['is_pdf'] == true) { echo site_url('book/'.$s_book['book_id'].'-'.url_title($s_book['title_book'], 'dash', true).'/pdf'); }else{ echo site_url('book/'.$s_book['book_id'].'-'.url_title($s_book['title_book'], 'dash', true)); } ?>" class="dbooktitle segment" data-href="<?php echo $s_book['book_id']; ?>"><?php echo $s_book['title_book']; ?></a></b></h5>
 								<div class="w-100">
 									<span class="mr-15" style="font-size: 12px;"><?php echo $s_book['category']; ?> &#8226; </span>
 
@@ -41,7 +41,7 @@
 										echo $s_book['comment_count']; ?></span>
 									</span>
 
-									<a href="<?php echo site_url(); ?>book/<?php echo $s_book['book_id']; ?>-<?php echo url_title($s_book['title_book'], 'dash', true); ?>" class="segment" data-href="<?php echo $s_book['book_id']; ?>"> 
+									<a href="<?php if ((bool)$s_book['is_pdf'] == true) { echo site_url('book/'.$s_book['book_id'].'-'.url_title($s_book['title_book'], 'dash', true).'/pdf'); }else{ echo site_url('book/'.$s_book['book_id'].'-'.url_title($s_book['title_book'], 'dash', true)); } ?>" class="segment" data-href="<?php echo $s_book['book_id']; ?>"> 
 										<p class="mt-10 text-justify textp" data-text="<?php echo substr($s_book['desc'],0,200); ?> ..."><?php echo substr($s_book['desc'],0,200); ?> ...</p>
 									</a>
 								</div>
@@ -59,7 +59,7 @@
 					</div>
 				</div>
 				<?php }else{ ?>
-				<a href="<?php echo site_url(); ?>book/<?php echo $s_book['book_id']; ?>-<?php echo url_title($s_book['title_book'], 'dash', true); ?>">
+				<a href="<?php if ((bool)$s_book['is_pdf'] == true) { echo site_url('book/'.$s_book['book_id'].'-'.url_title($s_book['title_book'], 'dash', true).'/pdf'); }else{ echo site_url('book/'.$s_book['book_id'].'-'.url_title($s_book['title_book'], 'dash', true)); } ?>">
 					<div class="card mb-15" style="padding: 0 00px;">
 						<div class="card-body pl-20 pr-20 pt-20 pb-10">
 							<div class="row mb-10 pl-10 pr-10">
@@ -82,18 +82,18 @@
 											</div>
 										</div>
 									</div>
-									<a href="<?php echo site_url(); ?>book/<?php echo $s_book['book_id']; ?>-<?php echo url_title($s_book['title_book'], 'dash', true); ?>" data-href="<?php echo $s_book['book_id']; ?>-<?php echo url_title($s_book['title_book'], 'dash', true); ?>" class="segment"> 
+									<a href="<?php if ((bool)$s_book['is_pdf'] == true) { echo site_url('book/'.$s_book['book_id'].'-'.url_title($s_book['title_book'], 'dash', true).'/pdf'); }else{ echo site_url('book/'.$s_book['book_id'].'-'.url_title($s_book['title_book'], 'dash', true)); } ?>" data-href="<?php echo $s_book['book_id']; ?>-<?php echo url_title($s_book['title_book'], 'dash', true); ?>" class="segment"> 
 										<div class="row pl-10 pr-10">
 											<div class="media">
 												<img alt="<?php
 												echo $s_book['title_book']; ?>" src="<?php if($s_book['cover_url'] == NULL){ echo "https://assets.dev-baboo.co.id/baboo-cover/default1.png"; }else{ echo $s_book['cover_url']; } ?>" class="w-100 imgcover cover_image">
 											</div>
-											<h5 class="pt-20 w-100" style="font-weight: 700;"><b><a href="<?php echo site_url(); ?>book/<?php echo $s_book['book_id']; ?>-<?php echo url_title($s_book['title_book'], 'dash', true); ?>" class="dbooktitle "><?php
+											<h5 class="pt-20 w-100" style="font-weight: 700;"><b><a href="<?php if ((bool)$s_book['is_pdf'] == true) { echo site_url('book/'.$s_book['book_id'].'-'.url_title($s_book['title_book'], 'dash', true).'/pdf'); }else{ echo site_url('book/'.$s_book['book_id'].'-'.url_title($s_book['title_book'], 'dash', true)); } ?>" class="dbooktitle "><?php
 											echo $s_book['title_book']; ?></a></b></h5>
 											<div class="w-100">
 												<span class="mr-8" style="font-size: 12px;"><?php echo $s_book['category']; ?> &#8226;</span>
 												<span class="text-muted" style="font-size: 11px;">Dibaca <?php echo $s_book['view_count']; ?> kali</span>
-												<a href="<?php echo site_url(); ?>book/<?php echo $s_book['book_id']; ?>-<?php echo url_title($s_book['title_book'], 'dash', true); ?>"> 
+												<a href="<?php if ((bool)$s_book['is_pdf'] == true) { echo site_url('book/'.$s_book['book_id'].'-'.url_title($s_book['title_book'], 'dash', true).'/pdf'); }else{ echo site_url('book/'.$s_book['book_id'].'-'.url_title($s_book['title_book'], 'dash', true)); } ?>"> 
 													<p class="mt-10 text-justify textp" data-text="<?php echo substr($s_book['desc'],0,200); ?> ..."><?php echo substr($s_book['desc'],0,200); ?> ...</p>
 												</a>
 											</div>
@@ -169,7 +169,7 @@
 								<div id="myWorkContent" class="bg-white mb-20" style="margin-top: -10px;">
 									<?php error_reporting(0); foreach ($populars as $pop){ ?>
 									<div id="insideDiv">
-										<a id="tes" href="<?php echo site_url(); ?>book/<?php echo $pop['popular_book_id']; ?>-<?php echo url_title($pop['popular_book_title'], 'dash', true); ?>">
+										<a id="tes" href="<?php if ((bool)$pop['is_pdf'] == 1) { echo site_url('book/'.$pop['popular_book_id'].'-'.url_title($pop['popular_book_title'], 'dash', true).'/pdf'); }else{ echo site_url('book/'.$pop['popular_book_id'].'-'.url_title($pop['popular_book_title'], 'dash', true)); } ?>">
 											<div class="col-12" style="height:auto;">
 												<div>
 													<img src="<?php if($pop['popular_cover_url'] == NULL){ echo 'https://assets.dev-baboo.co.id/baboo-cover/default3.png';
