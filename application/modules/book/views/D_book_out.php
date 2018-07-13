@@ -123,6 +123,9 @@
     border-radius: 35px;
     box-shadow: 0px 2px 3px #818181;
 }
+.fsize {
+	font-size: 12px;
+}
 </style>
 <div class="container pt-100 mb-80">
 	<div class="row">
@@ -136,29 +139,26 @@
 							<h3 class="dbooktitle"><?php echo $title; ?></h3>
 						</a>
 						<div class="dbooksociallist">
-							<a href="#"><span class=".fs-13"><img src="<?php echo base_url('') ?>public/img/assets/icon_view.svg" width="27"> <span id="viewcount">23</span></span></a>
+							<a href="#"><span title="Total <?php echo $view; ?>"><img src="<?php echo base_url('') ?>public/img/assets/icon_view.svg" width="25"> <span class="fsize" id="viewcount"><?php echo $this->thousand_to_k->ConvertToK($view); ?></span></span></a>
 						</div>
 						<div class="dbooksociallist">
-							<a href="#"><span class=".fs-13"><img src="<?php echo base_url('') ?>public/img/assets/icon_comment.svg" width="14"> <span id="commentcount">0</span></span></a>
+							<a href="#"><span title="Total <?php echo $comment; ?>"><img src="<?php echo base_url('') ?>public/img/assets/icon_comment.svg" width="14"> <span class="fsize" id="commentcount"><?php echo $this->thousand_to_k->ConvertToK($comment); ?></span></span></a>
 						</div>
 						<div class="dbooksociallist">
-							<a href="#"><span class=".fs-13"><img src="<?php echo base_url('') ?>public/img/assets/icon_love.svg" width="16"> <span id="likecount">0</span></span></a>
+							<a href="#"><span title="Total <?php echo $like; ?>"><img src="<?php echo base_url('') ?>public/img/assets/icon_love.svg" width="15"> <span class="fsize" id="likecount"><?php echo $this->thousand_to_k->ConvertToK($like); ?></span></span></a>
 						</div>
 						<div class="dbooksociallist">
-							<a href="#"><span class=".fs-13"><img src="<?php echo base_url('') ?>public/img/assets/icon_share.svg" width="14"> <span id="sharecount">0</span></span></a>
+							<a href="#"><span title="Total <?php echo $share; ?>"><img src="<?php echo base_url('') ?>public/img/assets/icon_share.svg" width="15"> <span class="fsize" id="sharecount"><?php echo $this->thousand_to_k->ConvertToK($share); ?></span></span></a>
 						</div>
 					</div>
 				</div>
 				<div class="pr-20 pl-20 subchapter">
-					<ul class="list-group list-group-flush">
-						<li class="list-group-item"><small>Bagian Cerita</small></li>
-						<center>
-							<!-- <div class="loader" id="loader_chapter"></div> -->
-						</center>
-						<div id="list_chapter">
-							
-						</div>
-					</ul>
+                <br>
+                <div class="mx-auto">
+                	<!-- Disamping -->
+                	<?php echo "<ins class='adsbygoogle' style='display:inline-block;width:250px;height:250px' data-ad-client='".AD_CLIENT."' data-ad-slot='".AD_SLOT."'></ins>" ?>
+                	<script> (adsbygoogle = window.adsbygoogle || []).push({}); </script>
+                </div>
 				</div>
 			</div>
 		</div>
@@ -166,26 +166,25 @@
 		<div class="col-md-7"">
 			<div class="card pt-10 pl-20 pr-20 book-content">
 				<div class="card-body">
-					<div class="media">
+					<div class="media" style="margin-bottom: -15px;">
 						<img class="d-flex align-self-start mr-20 rounded-circle" width="50" height="50" src="
 						<?php echo ($avatar != null) ? $avatar : base_url('public/img/profile/blank-photo.jpg') ; ?>" alt="Aditia Nugraha">
 						<div class="media-body">
 							<h5 class="nametitle2 author_name"><?php echo $author; ?></h5>
 							<p><small><span>Jakarta, Indonesia</span></small></p>
-							<a href="#" data-follow="2311" class="btn-no-fill dbookfollowbtn ml-20 follow-u"><span class="nametitle2 txtfollow">Follow</span></a>
+							<a href="#"><span></span></a>
 						</div>
 					</div>
 					<div id="appentoContent">
 						<h2 class="dbooktitlebook"></h2>
 						<br>
 						<div id="post-data">
-							<br>
-							<h4 id="" class="book-title chapter"> Judul Buku : <?php echo $title; ?></h4>
+							<h4 id="" class="book-title chapter mb-30" style="font-weight: 600;"><?php echo $title; ?></h4>
 							<div id="parentparaph">
 								<?php 
 								foreach ($desc as $book) {
 									if ($count == 0) { $view_count = '+'; }else{ $view_count = $count;}
-									$data .= "".$book['paragraph_text']."";
+									$data .= "<div id='detailStyle' class='textp parap-desk'>".$book['paragraph_text']."</div>";
 								}
 								echo $data;
 								?>
@@ -258,7 +257,6 @@
 <script src="<?php echo base_url('') ?>public/js/jquery.sticky-kit.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url('') ?>public/plugins/holdOn/js/HoldOn.js" type="text/javascript"></script>
 <script src="<?php echo base_url('') ?>public/js/custom/notification.js" type="text/javascript"></script>
-<script src="<?php echo base_url('') ?>public/js/custom/detail_book.js" type="text/javascript"></script>
 
 <!-- <script type="text/javascript">
 	var page = 0;

@@ -109,12 +109,12 @@
 				</a>
 				<?php } ?>
 				
-					<?php $asd = $s_book['populars']; echo "<label class='ml-10'><b>".$asd['desc']."</b></label>";
+					<?php if (!empty($s_book['populars']['desc'])) { echo "<label class='ml-10'><b>".$s_book['populars']['desc']."</b></label>"; }else{ echo "";} 
 					 foreach ($s_book['populars'] as $populars){ ?>
 					<div id="myWorkContent" class="bg-white mb-20" style="margin-top: -10px;">
 						<?php error_reporting(0); foreach ($populars as $pop){ ?>
 						<div id="insideDiv">
-							<a id="tes" href="<?php echo site_url(); ?>book/<?php echo $pop['popular_book_id']; ?>-<?php echo url_title($pop['popular_book_title'], 'dash', true); ?>">
+							<a id="tes" href="<?php echo site_url(); ?>book/<?php echo $s_book['book_id']; ?>">
 								<div class="col-12" style="height:auto;">
 									<div>
 										<img src="<?php if($pop['popular_cover_url'] == NULL){ echo 'https://assets.dev-baboo.co.id/baboo-cover/default3.png';
