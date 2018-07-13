@@ -1,8 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Noto+Serif|Source+Sans+Pro:400,600,700,900');
 
 #detailStyle {
-  line-height: 26px;
+  line-height: 1.4em;
   font-size: 18px;
+  hyphens: auto;
 }
 div {
   font-family: 'Source Sans Pro', sans-serif;

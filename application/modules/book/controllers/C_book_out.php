@@ -44,6 +44,9 @@ class C_book_out extends MX_Controller {
 		$book['cover'] = $datas['data']['book_info']['cover_url'];
 		$book['category'] = $datas['data']['category']['category_name'];
 		$book['view'] = $datas['data']['book_info']['view_count'];
+		$book['comment'] = $datas['data']['book_info']['book_comment_count'];
+		$book['share'] = $datas['data']['book_info']['share_count'];
+		$book['like'] = $datas['data']['book_info']['like_count'];
 		$book['desc'] = $datas['data']['chapter']['paragraphs'];
 		$book['bid'] = $datas['data']['book_info']['book_id'];
 		$book['aid'] = $datas['data']['author']['author_id'];

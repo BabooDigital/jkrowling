@@ -34,8 +34,8 @@ textarea:-ms-input-placeholder {
 	font-size: 12pt;  
 }
 </style>
-<body id="pageContent" style="background-color: #edf0f3;">
-	<nav class="navbar navbar-expand-lg fixed-top" style="height:60px;background: #fff;">
+<body id="pageContent" style="background-color: #f7f6f4;">
+	<nav class="navbar navbar-expand-lg fixed-top" style="height:60px;background: #fcfcff;">
 		<div class="container">
 			<form class="navbar-brande">
 				<button type="button" class="clear-btn" onclick="history.go(-1)" style="cursor: pointer;"><i class="fa fa-arrow-left"></i> &nbsp; <span>Kembali</span> </button>

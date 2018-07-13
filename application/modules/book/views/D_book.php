@@ -83,17 +83,21 @@ echo "<script async src='//pagead2.googlesyndication.com/pagead/js/adsbygoogle.j
 			<div class="card pb-20 pt-10 pl-20 pr-20 book-content">
 				<div class="card-body">
 					<div class="media">
-						<img class="d-flex align-self-start mr-20 rounded-circle" width="50" height="50" src="
+						<img class="d-flex align-self-start mr-10 rounded-circle" width="50" height="50" src="
 						<?php if($detail_book['data']['author']['avatar'] == NULL){
 							echo base_url('public/img/profile/blank-photo.jpg');
 						}else{
 							echo $detail_book['data']['author']['avatar']; } ?>" alt="<?php echo $detail_book['data']['author']['author_name']; ?>">
 							<div class="media-body">
-								<a data-usr-prf="<?php echo $detail_book['data']['author']['author_id']; ?>" data-usr-name="<?php echo $detail_book['data']['author']['author_name'] ?>" href="<?php echo site_url('profile/'.url_title($detail_book['data']['author']['author_name'])) ?>" class="profile"><h5 class="card-title nametitle2 profile"><?php
+								<a data-usr-prf="<?php echo $detail_book['data']['author']['author_id']; ?>" data-usr-name="<?php echo $detail_book['data']['author']['author_name'] ?>" href="<?php echo site_url('profile/'.url_title($detail_book['data']['author']['author_name'])) ?>" class="profile"><h5 class="card-title nametitle2 profile mt-10"><?php
 							echo $detail_book['data']['author']['author_name']; ?></h5></a>
 								<!-- <h5 class="nametitle2 author_name"><?php echo $detail_book['data']['author']['author_name']; ?></h5> -->
 								<p><small><span>&nbsp;&nbsp;</span></small></p>
+								<?php $sess = $this->session->userdata('userData'); if ($sess['user_id'] == $detail_book['data']['author']['author_id']) { ?>
+									<div></div>
+								<?php }else{ ?>
 								<a href="javascript:void(0)" data-follow="<?php echo $detail_book['data']['author']['author_id']; ?>" class="btn-no-fill dbookfollowbtn ml-20 <?php if ((bool)$detail_book['data']['author']['isFollow'] == false) { echo "follow-u"; }else{ echo "unfollow-u"; } ?>"><span class="nametitle2 txtfollow"><?php if ($detail_book['data']['author']['isFollow'] == false) { echo "Follow"; }else{ echo "Unfollow"; } ?></span></a>
+								<?php } ?>
 							</div>
 						</div>
 				<center>

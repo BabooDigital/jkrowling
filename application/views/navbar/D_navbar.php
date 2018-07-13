@@ -51,11 +51,7 @@
 						<a class="nav-link <?php if ($this->uri->segment('1') == 'message') { echo 'boo-menu-des-active'; }else { echo 'boo-menu-des'; } ?>" href="<?php echo site_url('message') ?>"><img src="<?php if ($this->uri->segment('1') == 'message') { echo base_url('public/img/icon-tab/message_active.svg'); }else { echo base_url('public/img/icon-tab/message.svg'); } ?>" height="27"><p class="fs-12px">Pesan</p></a>
 					</li>
 					<li class="nav-item ml-100 mr-30">
-						<form action="<?php echo site_url(); ?>createidbook" method="POST" class="mt-10">
-							<input type="hidden" name="iaiduui" id="iaiduui" value="<?php $name = $this->session->userdata('userData'); echo $name['user_id']; ?>">
-							<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
-							<button type="submit" class="nav-link btn-newstory" style="cursor: pointer;height: 33px;"><span><i class="fa fa-pencil-square-o"></i> Tulis Buku</span></button>
-						</form>
+						<button type="button" class="nav-link btn-newstory" style="cursor: pointer;height: 33px;" data-toggle="modal" data-target="#optionModal"><span><i class="fa fa-pencil-square-o"></i> Tulis Cerita</span></button>
 					</li>
 					<li class="nav-item">
 						<div class="media" style="margin-top: 6px;margin-bottom: -8px;">
@@ -88,3 +84,31 @@
 						<?php } ?>
 					</div>
 				</nav>
+
+				<div class="modal fade" id="optionModal" tabindex="-1" role="dialog" aria-labelledby="optionModalLabel" aria-hidden="true">
+					<div class="modal-dialog" role="document" style="top: 30%;">
+						<div class="modal-content" style="border-radius: 35px;height: auto !important;">
+							<div class="modal-body" style="padding: 40px 60px;">
+								<div class="container">
+									<div class="row">
+										<div class="col-6 text-center">
+											<form action="<?php echo site_url(); ?>createidbook" method="POST" class="mt-10">
+												<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+												<button type="submit" class="btn-select-create" title="Tuliskan buku mu disini..">
+													<img src="<?php echo base_url('public/img/icon-tab/icon_pen_write.png'); ?>">
+												</button>
+											</form>
+											<p class="mt-10 p-select-create">Tulis Buku</p>
+										</div>
+										<div class="col-6 text-center">
+											<button type="button" onclick="location.href=base_url+'upload_mypdf?from=nav_header';" id="btn-pdf-new" class="btn-select-create" title="Upload cerita mu dalam bentuk PDF File..">
+												<img src="<?php echo base_url('public/img/icon-tab/icon_pdf_write.png'); ?>">
+											</button>
+											<p class="mt-10 ml-5 p-select-create">Upload PDF</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
