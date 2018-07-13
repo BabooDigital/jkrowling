@@ -22,8 +22,13 @@ class C_book_out extends MX_Controller {
 		error_reporting(0);
 		$book_id = $this->uri->segment(2);
 		$id = explode('-', $book_id);
+		$ip = $this->input->post('curip', TRUE);
+		$ippub = (!empty($ip))? $_SERVER['REMOTE_ADDR'].';'.$ip : $_SERVER['REMOTE_ADDR'];
+
 		$sendData = array(
-			'book_id' => $id[0]
+			'book_id' => $id[0],
+			'ip_client' => $ippub
+
 		);
 
 		$datas = $this->curl_request->curl_post($this->API.'timeline/Home/detailBook', $sendData, '');
