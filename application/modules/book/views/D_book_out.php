@@ -49,14 +49,8 @@
 .nav-link {
 	padding: 0px 0.3rem !important;
 }
-</style>	<div id="fb-root"></div>
-<script>(function(d, s, id) {
-	var js, fjs = d.getElementsByTagName(s)[0];
-	if (d.getElementById(id)) return;
-	js = d.createElement(s); js.id = id;
-	js.src = 'https://connect.facebook.net/id_ID/sdk.js#xfbml=1&version=v2.11&appId=124081454991891';
-	fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+</style>
+<script async src='//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'></script>
 
 <?php $this->load->view('navbar/D_navbar'); ?>	
 
@@ -256,7 +250,6 @@
 <script src="<?php echo base_url('') ?>public/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url('') ?>public/js/jquery.sticky-kit.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url('') ?>public/plugins/holdOn/js/HoldOn.js" type="text/javascript"></script>
-<script src="<?php echo base_url('') ?>public/js/custom/notification.js" type="text/javascript"></script>
 
 <!-- <script type="text/javascript">
 	var page = 0;
