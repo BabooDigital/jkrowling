@@ -538,7 +538,7 @@ function getContent(d, c) {
 			$.each(d.chapter.paragraphs, function(a, c) {
 				var d = strip_tags(c.paragraph_text),
 				e = c.comment_count;
-				b += "<div class='mb-20 textp' data-id-p='" + c.paragraph_id + "' data-text='" + d + "'>" + c.paragraph_text +
+				b += "<div id='detailStyle' class='mb-20 textp parap-desk mb-10' data-id-p='" + c.paragraph_id + "'>" + c.paragraph_text +
 				"</div>"
 			});
 			$("#parentparaph").html(b)

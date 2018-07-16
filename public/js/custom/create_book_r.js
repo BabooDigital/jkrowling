@@ -21,22 +21,16 @@ function publishBook() {
     var asd = slide.is(':empty');
     formData.append("csrf_test_name", csrf_value);
       if (slide.length == 0 || asd == false) {
-      formData.append("book_id", $("#uri").val());
-      formData.append("file_cover", $("#cover_file").val());
-      formData.append("category", $("#category_ids").val());
       formData.append("is_paid", false);
     }else{
+      formData.append("price", $("#inputprice").val());
+      formData.append("chapter_start", ch);
+      formData.append("is_paid", true);
+    }
       formData.append("book_id", $("#uri").val());
       formData.append("file_cover", $("#cover_file").val());
       formData.append("category", $("#category_ids").val());
-      formData.append("price", $("#inputprice").val());
-      // if (ch == '3' || ch > '3') {
-        formData.append("chapter_start", ch);
-      // }else {
-      //   formData.append("chapter_start", '3');
-      // }
-      formData.append("is_paid", true);
-    }
+
       var cat = $("#category_ids").val();
       var tnc = $('.checktnc:checkbox:checked');
 
