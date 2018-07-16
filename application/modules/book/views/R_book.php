@@ -304,7 +304,7 @@ echo "<script>(function(d, s, id) {
 	</div>
 	<div class="profiles">
 		<label class="close" for="toggle-right" style="height: 45px;">&nbsp;&nbsp;&times;</label>
-		<div class="text-center">
+		<div class="text-center p-10">
 			<?php 
 			if ((bool)$detail_book['data']['book_info']['is_pdf'] != true) { ?>
 				<div class="mt-20 spadding">
@@ -323,7 +323,7 @@ echo "<script>(function(d, s, id) {
 		</div>
 		<div class="mt-20">
 			<?php if ((bool)$detail_book['data']['book_info']['is_pdf'] == true) { ?>
-				<div class="mt-10 mb-100 pl-10 pr-10">
+				<div class="mt-10 mb-100 pl-10 pr-10 desc_pdf">
 					<?php echo $detail_book['data']['book_info']['desc']; ?>
 				</div>
 			<?php }else{ ?>
@@ -419,8 +419,6 @@ echo "<script>(function(d, s, id) {
 						<?php
 						foreach ($detail_book['data']['chapter']['paragraphs'] as $book) {
 							$text = strip_tags($book['paragraph_text']);
-							$count = $book['comment_count'];
-							if ($count == 0) { $view_count = '+'; }else{ $view_count = $count;}
 							$datas .= "<div  class='mb-15 textp' id='detailStyle' data-id-p='".$book['paragraph_id']."'>".ucfirst($book['paragraph_text'])."</div>";
 						}
 						echo $datas;
@@ -618,9 +616,14 @@ echo "<script>(function(d, s, id) {
 	});
 
 	var segment = '<?php echo $this->uri->segment(2); ?>';
-	var active = '<?php echo $this->uri->segment(3); ?>';
 	var userdata = '<?php $usDat = $this->session->userdata('userData'); echo $usDat['user_id']; ?>';
 	var userbook = '<?php echo $detail_book['data']['author']['author_id']; ?>';
+	var author = '<?php echo $detail_book['data']['author']['author_name']; ?>';
+	<?php if ((bool)$detail_book['data']['book_info']['is_pdf'] == true) { ?>
+	var desc = $('.desc_pdf').text();
+	<?php }else{ ?>
+	var desc = "<?php $data_book = ''; foreach ($detail_book['data']['chapter']['paragraphs'] as $book) {$text = strip_tags($book['paragraph_text']); $text2 = str_replace('"', '', $text); $text3 = substr($text2, 0, 250); $data_book .= ''.$text3.''; } print_r($data_book); ?>";
+	<?php } ?>
 
 	var banner_height = $("#navscroll, #navscrollf").height();
 	var lastScrollTop = 0;
@@ -672,11 +675,6 @@ echo "<script>(function(d, s, id) {
 		$('.popUpBannerBox').fadeOut("2000");
 		return false;
 	});
-	// var id = $('.chpt').attr();
-	// console.log(id);
-    //   if (active == id) {
-    //     $('.chpt').addClass('active');
-    // }
 </script>
 </body>
 </html>

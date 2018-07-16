@@ -278,7 +278,6 @@ $(document).ready(function() {
 		$("#iaidubi").val();
 		var b = $(".dbooktitle").text();
 		c = +$("#sharecount").text() + 1;
-		d = $(".textp").attr("data-text");
 		e = $(".cover_image").attr("src");
 		k = $(".author_name").text();
 		FB.ui({
@@ -288,7 +287,7 @@ $(document).ready(function() {
 				object: {
 					"og:url": base_url + "book/" + segment + "/preview",
 					"og:title": b + " ~ By : " + k,
-					"og:description": d,
+					"og:description": desc,
 					"og:image": e
 				}
 			})

@@ -60,7 +60,7 @@ echo "<script async src='//pagead2.googlesyndication.com/pagead/js/adsbygoogle.j
 						<div class="mb-10 text-center">
 							<div class="spadding" dat-cpss="<?php echo $password; ?>"></div>
 							<span style="font-size: 15pt;font-weight: 600;">Deskripsi Cerita</span></div>
-						<div class="text-justify"><?php echo $detail_book['data']['book_info']['desc']; ?></div>
+						<div class="text-justify desc_pdf"><?php echo $detail_book['data']['book_info']['desc']; ?></div>
 						<?php $usDat = $this->session->userdata('userData'); if ((bool)$detail_book['data']['book_info']['is_free'] == true || $usDat['user_id'] == $detail_book['data']['author']['author_id']) { ?>
 							<div></div>
 						<?php }else{ ?>
@@ -263,6 +263,11 @@ echo "<script async src='//pagead2.googlesyndication.com/pagead/js/adsbygoogle.j
 			var count_data = '<?php echo $detailChapter; ?>';
 			var userdata = '<?php echo $this->session->userdata('userData')['user_id']; ?>';
 			var userbook = '<?php echo $detail_book['data']['author']['author_id']; ?>';
+			<?php if ((bool)$detail_book['data']['book_info']['is_pdf'] == true) { ?>
+				var desc = $('.desc_pdf').text();
+			<?php }else{ ?>
+				var desc = "<?php $data_book = ''; foreach ($detail_book['data']['chapter']['paragraphs'] as $book) {$text = strip_tags($book['paragraph_text']); $text2 = str_replace('"', '', $text); $text3 = substr($text2, 0, 250); $data_book .= ''.$text3.''; } print_r($data_book); ?>";
+			<?php } ?>
 		</script>
 		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/0.10.0/lodash.min.js"></script>
 		<?php if (isset($js)): ?>
