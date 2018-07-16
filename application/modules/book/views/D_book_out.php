@@ -250,41 +250,5 @@
 <script src="<?php echo base_url('') ?>public/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url('') ?>public/js/jquery.sticky-kit.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url('') ?>public/plugins/holdOn/js/HoldOn.js" type="text/javascript"></script>
-
-<!-- <script type="text/javascript">
-	var page = 0;
-	$(window).scroll(function() {
-		if($(window).scrollTop() + $(window).height() > $(document).height() - 1000) {
-			if (page < count_data) {
-				page++;
-				loadMoreData(page);
-			}
-		}
-	});
-	function loadMoreData(page){
-		$.ajax(
-		{
-			url: '?chapter=' + page,
-			type: "get",
-			beforeSend: function()
-			{
-				$('#loader_scroll').show();
-			}
-		})
-		.done(function(data)
-		{
-			if(data == " "){
-				$('#loader_scroll').html("No more records found");
-				return;
-			}
-			$('#loader_scroll').hide();
-			$("#post-data").append(data);
-		})
-		.fail(function(jqXHR, ajaxOptions, thrownError)
-		{
-			console.log('server not responding...');
-		});
-	}
-</script> -->
 </body>
 </html>
