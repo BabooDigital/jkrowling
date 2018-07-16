@@ -114,7 +114,7 @@
 					<div id="myWorkContent" class="bg-white mb-20" style="margin-top: -10px;">
 						<?php error_reporting(0); foreach ($populars as $pop){ ?>
 						<div id="insideDiv">
-							<a id="tes" href="<?php echo site_url(); ?>book/<?php echo $s_book['book_id']; ?>">
+							<a id="tes" href="<?php echo site_url(); ?>book/<?php echo $pop['popular_book_id']; ?>">
 								<div class="col-12" style="height:auto;">
 									<div>
 										<img src="<?php if($pop['popular_cover_url'] == NULL){ echo 'https://assets.dev-baboo.co.id/baboo-cover/default3.png';
