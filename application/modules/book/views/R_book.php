@@ -622,7 +622,7 @@ echo "<script>(function(d, s, id) {
 	<?php if ((bool)$detail_book['data']['book_info']['is_pdf'] == true) { ?>
 	var desc = $('.desc_pdf').text();
 	<?php }else{ ?>
-	var desc = "<?php $data_book = ''; foreach ($detail_book['data']['chapter']['paragraphs'] as $book) {$text = strip_tags($book['paragraph_text']); $text2 = str_replace('"', '', $text); $text3 = substr($text2, 0, 250); $data_book .= ''.$text3.''; } print_r($data_book); ?>";
+	var desc = "<?php $st1 = strip_tags($datas); $st2 = str_replace('"', '', $st1); if (strlen($st2) > 200) echo $st2 = substr($st2, 0, 200) . '...';  ?>";
 	<?php } ?>
 
 	var banner_height = $("#navscroll, #navscrollf").height();
