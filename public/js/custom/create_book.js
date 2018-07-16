@@ -669,23 +669,20 @@ $("#publish_book").click(function() {
 	var formData = new FormData();
 	var ch = $(".start_chapter").val();
 	var slide = $('#is_free:checkbox:checked');
-	if (slide.length == 0) {
-		formData.append("book_id", $("#uri").val());
-		formData.append("file_cover", $("#cover_name").val());
-		formData.append("category", $("#category_id").val());
+    var asd = slide.is(':empty');
+	if (slide.length == 0 || asd == false) {
 		formData.append("is_paid", false);
 	}else{
-		formData.append("book_id", $("#uri").val());
-		formData.append("file_cover", $("#cover_name").val());
-		formData.append("category", $("#category_id").val());
 		formData.append("price", $(".input-range").val());
-		if (ch == '3' || ch >= '3' || ch > '3') {
-			formData.append("chapter_start", ch);
-		}else {
-			formData.append("chapter_start", $(".start_chapter").val('3'));
-		}
+		formData.append("chapter_start", ch);
 		formData.append("is_paid", true);
 	}
+	formData.append("book_id", $("#uri").val());
+	formData.append("file_cover", $("#cover_name").val());
+	formData.append("category", $("#category_id").val());
+	formData.append("book_paragraph", $("#book_paragraph").val());
+	formData.append("title_book", $("#title_book").val());
+	formData.append("title_chapter", $("#title_chapter").val());
 	formData.append("csrf_test_name", csrf_value);
 
 	var cat = $("#category_id").val();
@@ -707,7 +704,7 @@ $("#publish_book").click(function() {
 	}
 	else {
 		$.ajax({
-			url: base_url+'publishbook',
+			url: base_url+'my_book/create_book/publish',
 			dataType: 'json',
 			type: 'POST',
 			contentType: false,

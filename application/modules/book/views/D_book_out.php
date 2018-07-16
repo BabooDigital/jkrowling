@@ -257,41 +257,34 @@
 <script src="<?php echo base_url('') ?>public/js/jquery.sticky-kit.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url('') ?>public/plugins/holdOn/js/HoldOn.js" type="text/javascript"></script>
 <script src="<?php echo base_url('') ?>public/js/custom/notification.js" type="text/javascript"></script>
-
-<!-- <script type="text/javascript">
-	var page = 0;
-	$(window).scroll(function() {
-		if($(window).scrollTop() + $(window).height() > $(document).height() - 1000) {
-			if (page < count_data) {
-				page++;
-				loadMoreData(page);
+<script>
+	$(document).ready(function() {
+	var myIP = 'unknown';
+	window.RTCPeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection;//compatibility for Firefox and chrome
+	var pc = new RTCPeerConnection({iceServers:[]}), noop = function(){};      
+		pc.createDataChannel('');//create a bogus data channel
+		pc.createOffer(pc.setLocalDescription.bind(pc), noop);// create offer and set local description
+		pc.onicecandidate = function(ice)
+		{
+			if (ice && ice.candidate && ice.candidate.candidate)
+			{
+				myIP = /([0-9]{1,3}(\.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})/.exec(ice.candidate.candidate)[1]; 
+				pc.onicecandidate = noop;
+				$.ajax({
+					url: '<?php echo current_url(); ?>',
+					type: 'POST',
+					dataType: 'json',
+					data: {curip:myIP,csrf_test_name:csrf_value},
+				})
+				.done(function() {
+				})
+				.fail(function() {
+				})
+				.always(function() {
+				});
 			}
 		}
 	});
-	function loadMoreData(page){
-		$.ajax(
-		{
-			url: '?chapter=' + page,
-			type: "get",
-			beforeSend: function()
-			{
-				$('#loader_scroll').show();
-			}
-		})
-		.done(function(data)
-		{
-			if(data == " "){
-				$('#loader_scroll').html("No more records found");
-				return;
-			}
-			$('#loader_scroll').hide();
-			$("#post-data").append(data);
-		})
-		.fail(function(jqXHR, ajaxOptions, thrownError)
-		{
-			console.log('server not responding...');
-		});
-	}
-</script> -->
+</script>
 </body>
 </html>

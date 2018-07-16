@@ -1092,6 +1092,7 @@ class C_createbook extends MX_Controller
 	public function publishBook()
 	{
 		error_reporting(0);
+		$resval = array();
 		$auths = $this->session->userdata('authKey');
 		$bData = $this->session->userdata('dataBook');
 		
@@ -1138,7 +1139,7 @@ class C_createbook extends MX_Controller
 		        	'image_url' => $cFile
 		        );
 
-		        $data = $this->curl_request->curl_post_auth($this->API.'book/Books/uploadImage', $coverData, $auth);
+		        $data = $this->curl_request->curl_post_auth($this->API.'book/Books/uploadImage', $coverData, $auths);
 
 		        $resval = $data['data'];
 		        $psn = $resval['message'];
@@ -1180,13 +1181,14 @@ class C_createbook extends MX_Controller
 		    if (!empty($this->input->post('id_books'))) {
 		    	$bookData['book_id'] = $this->input->post('id_books', TRUE);
 		    }
-		    $data = $this->curl_request->curl_post_auth($this->API.'book/Books/saveBook', $bookData, $auth);
+		    $data = $this->curl_request->curl_post_auth($this->API.'book/Books/saveBook', $bookData, $auths);
 		    
 		    $resval = $data['data'];
 
 		    $psn  = $resval['message'];
 		    $user = $resval['data'];
 		    $auth = $data['bbo_auth'];
+		    echo json_encode($resval);
 		    if (isset($resval['code']) && $resval['code'] == '200') {
 		    	$status = $resval['code'];
 		    	$this->session->set_userdata('authKey', $auths);
@@ -1197,7 +1199,6 @@ class C_createbook extends MX_Controller
 		    	$this->session->set_flashdata('success_publish', '<script>
                     swal("Success", "Buku Anda Sudah Publish", "success");
                 </script>');
-		    	redirect('timeline', 'refresh');
 		    } else {
 		    	$status = $resval['code'];
 		    }
