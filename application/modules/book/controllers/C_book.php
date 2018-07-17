@@ -296,6 +296,7 @@ class C_book extends MX_Controller
             $data['id_chapter'] = $this->input->get("chapter");
             $data['chapter_free'] = $data_before_chapter['chapter']['data']['chapter'][3]['chapter_free'];
             $data['css'][] = "public/css/bootstrap.min.css";
+            $data['css'][] = "public/css/baboo.css";
             $data['css'][] = "public/css/custom-margin-padding.css";
             $data['css'][] = "public/css/font-awesome.min.css";
             $data['css'][] = "public/plugins/holdOn/css/HoldOn.css";

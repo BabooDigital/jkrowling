@@ -13,7 +13,7 @@
 </head>
 <style> .btn-buy {width: 89px; text-align: center; color: white; padding-top: 5px; padding-bottom: 5px; border-radius: 15px; background-color: #7661ca; } </style>
 <body>
-	<div class="container-fluid mb-40">
+	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-2 bg-dark"></div>
 			<?php if ((bool) $detail_book['data']['book_info']['is_pdf'] == false) { ?>
@@ -45,9 +45,7 @@
 							<div id="post-data">
 								<?php $this->load->view('data/D_readingmode'); ?>
 							</div>
-							<div class="loader text-center" style="display:none;">
-								<img style="margin-left: auto;margin-right: auto;width:150px;height: 150px;" src="<?php echo base_url('public/img/spinner.gif') ?>">
-							</div>
+							<center><div class="loader text-center mt-10" style="display:none;"></div></center>
 							
 							<div class="mt-10">
 								<div class="bg-white p-10">
@@ -89,7 +87,7 @@
 												$url = base_url(uri_string());
 												$replace = str_replace("/read", "#comment", $url);
 												?>
-												<a href="<?php echo $replace; ?>"><img src="<?php echo base_url(); ?>public/img/assets/icon_comment.svg" width="25"></a>
+												<a href="<?php echo $replace; ?>"><img src="<?php echo base_url(); ?>public/img/assets/icon_comment.svg" width="30"></a>
 											</li>
 										</ul>
 									</div>
@@ -175,6 +173,45 @@ function showPage(page_no, canvas) {
 	});
 }
 }
+$("#buy-btn").click(function(event) {
+	event.preventDefault();
+	$(this).attr("disabled", "disabled");
+		// console.log("clicked");
+
+		$.ajax({
+			url: base_url+'pay_book/token',
+			type: "POST",
+			data:{id_book:$("#iaidubi").val(), url_redirect:window.location.href, csrf_test_name: csrf_value},
+			cache: false,
+			success: function(data) {
+				var resultType = document.getElementById('result-type');
+				var resultData = document.getElementById('result-data');
+				function changeResult(type,data){
+					$("#result-type").val(type);
+					$("#result-data").val(JSON.stringify(data));
+				}
+				snap.pay(data, {
+
+					onSuccess: function(result){
+						changeResult('success', result);
+						console.log(result.status_message);
+						console.log(result);
+						$("#payment-form").submit();
+					},
+					onPending: function(result){
+						changeResult('pending', result);
+						console.log(result.status_message);
+						$("#payment-form").submit();
+					},
+					onError: function(result){
+						changeResult('error', result);
+						console.log(result.status_message);
+						$("#payment-form").submit();
+					}
+				});
+			}
+		});
+	});
 </script>
 <?php }else{ ?>
 	<script type="text/javascript" src="<?php echo base_url('public/js/custom/reading_mode.js'); ?>"></script>
