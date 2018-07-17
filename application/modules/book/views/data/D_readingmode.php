@@ -19,18 +19,18 @@
 	<?php }else{ ?>
 		<?php if ($detail_book['data']['chapter']['chapter_free'] == 'true'): ?>
 
-		<h4 class="dbooktitlebook" > <?php
+		<h3 class="dbooktitlebook text-center mb-10" > <?php
 		if ($id_chapter == null || $id_chapter == '' || $id_chapter == 0) {
 			$data = $detail_book['data']['book_info']['title_book'];
 		}else{
 			$data = $detail_book['data']['chapter']['chapter_title'];
 		}
-		?> <?php echo $data; ?></h4>
+		?> <?php echo $data; ?></h3>
 		<?php
 
 		$data_book = ''; 
 		foreach ($detail_book['data']['chapter']['paragraphs'] as $book) {
-			$data_book .= "<div id='detailStyle'>".$book['paragraph_text']."</div>";
+			$data_book .= "<div id='detailStyle' class='textp parap-desk mb-10' style='line-height: 1.4em;font-size: 18px;'>".$book['paragraph_text']."</div>";
 		}
 		echo $data_book;
 		?>
