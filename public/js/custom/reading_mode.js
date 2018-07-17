@@ -25,17 +25,11 @@ $(document).ready(function() {
                 $(".loader").show()
             }
         }).done(function(a) {
-            // if (!$.trim(a)) {
-            //     $('.loader').hide();
-            //     $('#post-data').append("");
-            //     return;
-
-            // };
             if (!$.trim(a)) {
                 $('.loader').hide();
-                cls.first().show();
                 loaded = false;
             }
+            cls.first().show();
             " " == a ? $(".loader").html("No more records found") : ($(".loader").hide(), $("#post-data").append(a), $("#chapter_number").text(b), $("nav#cobamenu").append("<input type='hidden' value='post-" + b + "' />"));
             loaded = true;
         }).fail(function(a, b, d) {

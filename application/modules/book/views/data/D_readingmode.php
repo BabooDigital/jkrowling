@@ -4,7 +4,6 @@
 		<div id="post-<?php echo (int)$id_chapter; ?>" class="mauboleh" style="">
 		<?php } ?>
 	<?php if ((bool) $detail_book['data']['book_info']['is_pdf'] == true) { ?>
-		<div class="loader mx-auto" style="display: none;"></div>
 		<div id='pdf-viewer'> </div>
 		<?php $usDat = $this->session->userdata('userData'); if ((bool) $detail_book['data']['book_info']['is_bought'] == false && (bool) $detail_book['data']['book_info']['is_free'] == false && $usDat['user_id'] != $detail_book['data']['author']['author_id']) { ?>
 			<div class="container">
