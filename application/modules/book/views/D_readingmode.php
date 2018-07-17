@@ -22,7 +22,7 @@
 				<?php }else{ ?>
 					<div class="col-md-8 bg-white p-0">
 					<?php } ?>
-				<div id="readingModeContent">
+				<div id="readingModeContent" class="mb-100">
 					<?php if ((bool) $detail_book['data']['book_info']['is_pdf'] == false) { ?>
 						<div class="card p-30" style="border-radius: 0;border: none;">
 						<div class="card-body" style="padding-bottom:200px;">
