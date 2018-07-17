@@ -469,7 +469,7 @@ function getmenuChapter() {
 		if (userbook == userdata) {
 			$.each(d, function(d, a) {
 				if (d != 'pay') {
-				c += '<li style="background:transparent;border-bottom: 0.5px #f2f2f2;" class="list-group-item ', c += '" id="list_chapters"><a href="' + base_url + "book/" + segment + "/chapter/" + a.chapter_id + '" class="id_chapter', c += '" id="' + d + '">' + a.chapter_title + "</a>";
+				c += '<li style="background:transparent;border-bottom: 0.5px #eeeeee;', 0 == d && (c += "background: url(../public/img/assets/frame_active.svg) no-repeat; background-position: right; "), c += '" class="list-group-item ', 0 == d && (c += "chapter_active icon_active "), c += '" id="list_chapters"><a href="' + base_url + "book/" + segment + "/chapter/" + a.chapter_id + '" class="id_chapter', c += '" id="' + d + '">' + a.chapter_title + "</a>", 0 == d && (c += "</li>");
 				}
 			});
 		}else{
@@ -480,24 +480,25 @@ function getmenuChapter() {
 				}
 			});
 			if (d.pay.is_free == false) {
-				 c += '<li class="list-group-item"  style="background:transparent;border-bottom: 0.5px #eeeeee;"></li><li style="background:transparent;border-bottom: 0.5px #eeeeee;" class="list-group-item ', c += '" id="list_chapters"><a class="', c += '" id="' + d + '"><p style="font-size:10px;">' + 'Versi buku full' + "</p><span style='color:#7554bd'>Rp "+ d.pay.book_price +"</span></a><button style='float:right;' class='btn-buy'  data-toggle='modal' data-target='#buymodal'>Beli</button></li>";
+				 c += '<li style="background:transparent;border-bottom: 0.5px #eeeeee;" class="list-group-item ', c += '"><a class="', c += '" id="' + d + '"><p style="font-size:10px;">' + 'Versi buku full' + "</p><span style='color:#7554bd'>Rp "+ d.pay.book_price +"</span></a><button style='float:right;' class='btn-buy'  data-toggle='modal' data-target='#buymodal'>Beli</button></li>";
 			}
 		}
 		$("#list_chapter").html(c);
-		$(".id_chapter").on("click", function(c) {
-			var a = $(this).attr("id");
+		$(document).on('click', '#list_chapters', function(event) {
+			event.preventDefault();
+			/* Act on the event */
+			var a = $(this).children('.id_chapter').attr("id");
 			HoldOn.open({
 				theme: "sk-cube-grid",
 				message: "Tunggu Sebentar ",
 				backgroundColor: "white",
 				textColor: "#7554bd"
 			});
-			var b = $(this).attr("href");
-			$(this).parent().siblings().removeClass("chapter_active").end().addClass("chapter_active");
-			$(this).parent().siblings().removeAttr("style").end().attr("style", "background:transparent;border-bottom: 0.5px #eeeeee;background: url(../public/img/assets/frame_active.svg) no-repeat; background-position: right;");	
+			var b = $(this).children('.id_chapter').attr("href");
+			$(this).siblings().removeClass("chapter_active").end().addClass("chapter_active");
+			$(this).siblings().removeAttr("style").end().attr("style", "background:transparent;border-bottom: 0.5px #eeeeee;background: url(../public/img/assets/frame_active.svg) no-repeat; background-position: right;");	
 			getContent(b, a);
-			c.preventDefault()
-		})
+		});
 	}).fail(function() {
 		$("#loader_chapter").hide();
 		console.log("error")
