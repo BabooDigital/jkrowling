@@ -151,3 +151,10 @@ data-ad-slot	= "7276054409"
 */
 defined('AD_CLIENT')	OR	define('AD_CLIENT', 'ca-pub-4994852796413443');
 defined('AD_SLOT')		OR	define('AD_SLOT', '7276054409');
+// CONFIG ID GOOGLE ANALYTICS / GOOGLE TAG MANAGER
+/*
+@@@ PRODUCTION @@@
+
+*/
+defined('ANALYTICS_GID')	OR	define('ANALYTICS_GID', 'UA-122451400-1');
+defined('TAGMNG_GID')	OR	define('TAGMNG_GID', 'GTM-MVW4JD3');

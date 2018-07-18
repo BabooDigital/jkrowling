@@ -1,15 +1,3 @@
-<?php 
-echo "<script>(function(d, s, id) {
-	var js, fjs = d.getElementsByTagName(s)[0];
-	if (d.getElementById(id)) return;
-	js = d.createElement(s); js.id = id;
-	js.src = 'https://connect.facebook.net/id_ID/sdk.js#xfbml=1&version=v2.12&appId=".APPID_FB."';
-	fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>";
-echo "<script type='text/javascript' src='https://".MID_BASE_URL."/snap/snap.js' data-client-key='".MID_CLIENT."'></script>";
-echo "<script async src='//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'></script>";
-?>
-
 <?php $this->load->view('navbar/D_navbar'); ?>	
 
 <style type="text/css">

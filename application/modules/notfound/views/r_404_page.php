@@ -21,6 +21,7 @@
 	<link href="<?php echo base_url();?>public/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
 	<!-- JS -->
+	<?php $this->load->view('include/third_party_script'); ?>
 	<script type="text/javascript" src="<?php echo base_url();?>public/js/jquery.min.js"></script>
 	<script>var base_url = '<?php echo base_url(); ?>';</script>
 </head>
@@ -43,6 +44,10 @@ body, html {
 }
 </style>
 <body>
+	<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MVW4JD3"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 	<div style="background-image: url(<?php echo base_url('public/img/404_notfound.svg'); ?>);" class="bg"></div>
 	<div class="container">
 		<div class="row">

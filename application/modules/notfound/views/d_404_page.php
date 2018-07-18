@@ -20,6 +20,7 @@
 		var base_url = '<?php echo base_url(); ?>';
 		var csrf_value = '<?php echo $this->security->get_csrf_hash(); ?>';
 	</script>
+	<?php $this->load->view('include/third_party_script'); ?>
 </head>
 <style>
 body, html {
@@ -34,6 +35,10 @@ body, html {
 }
 </style>
 <body>
+	<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MVW4JD3"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
