@@ -21,18 +21,13 @@
 	<?php if (isset($css)): ?>
 		<?php echo get_css($css) ?>
 	<?php endif ?>
-	<!-- <style type="text/css">
-	.navbar {
-		padding: 0.4rem 1rem !important;
-	}
-	
-</style> -->
-<script type="text/javascript">
-	var base_url = "<?php echo base_url(''); ?>";
-	var csrf_value = '<?php echo $this->security->get_csrf_hash(); ?>';
-	var csrf_name = '<?php echo $this->security->get_csrf_token_name(); ?>';
-</script>
-<!-- <script src="https://js.pusher.com/4.2/pusher.min.js"></script> -->
+
+	<script type="text/javascript">
+		var base_url = "<?php echo base_url(''); ?>";
+		var csrf_value = '<?php echo $this->security->get_csrf_hash(); ?>';
+		var csrf_name = '<?php echo $this->security->get_csrf_token_name(); ?>';
+	</script>
+	<?php $this->load->view('include/third_party_script'); ?>
 
 </head>
 <style>
@@ -46,3 +41,7 @@
 	echo "<body>";
 } ?>
 <body>
+	<!-- Google Tag Manager (noscript) -->
+	<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MVW4JD3"
+		height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->

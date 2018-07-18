@@ -35,15 +35,6 @@
     border-color: #6450b3;
 }
 </style>
-<?php 
-echo "<script>(function(d, s, id) {
-	var js, fjs = d.getElementsByTagName(s)[0];
-	if (d.getElementById(id)) return;
-	js = d.createElement(s); js.id = id;
-	js.src = 'https://connect.facebook.net/id_ID/sdk.js#xfbml=1&version=v2.12&appId=".APPID_FB."';
-	fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>";
-?>
 <body id="pageContent">
 	<!-- BANNER POPUP BUTTON PLAYSTORE MOBILE -->
 	<div class="bannerPopUp"></div>

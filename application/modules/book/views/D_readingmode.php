@@ -10,10 +10,14 @@
 		var base_url = '<?php echo base_url() ?>';
 		var csrf_value = '<?php echo $this->security->get_csrf_hash(); ?>';
 	</script>
-	<?php echo "<script type='text/javascript' src='https://".MID_BASE_URL."/snap/snap.js' data-client-key='".MID_CLIENT."'></script>"; ?>
+		<?php $this->load->view('include/third_party_script'); ?>
 </head>
 <style> .btn-buy {width: 89px; text-align: center; color: white; padding-top: 5px; padding-bottom: 5px; border-radius: 15px; background-color: #7661ca; } </style>
 <body>
+	<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MVW4JD3"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-2 bg-dark"></div>

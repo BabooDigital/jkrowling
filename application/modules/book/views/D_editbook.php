@@ -9,6 +9,7 @@
 	<?php if (isset($css)): ?>
 		<?php echo get_css($css) ?>
 	<?php endif ?>
+	<?php $this->load->view('include/third_party_script'); ?>
 </head>
 <?php   $b = $this->uri->segment(3); ?>
 <script type="text/javascript">
@@ -41,6 +42,10 @@
 	var csrf_value = '<?php echo $this->security->get_csrf_hash(); ?>';
 </script>
 <body>
+	<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MVW4JD3"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 	<?php  $attr = array('id' => 'form_book'); echo form_open_multipart('my_book/create_book/publish'); ?>
 	
 		<div class="container-fluid">

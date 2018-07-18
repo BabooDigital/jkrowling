@@ -1,4 +1,3 @@
-<?php echo "<script type='text/javascript' src='https://".MID_BASE_URL."/snap/snap.js' data-client-key='".MID_CLIENT."'></script>"; ?>
 <style>
 .list-group-item.active {
 	z-index: 2;
@@ -277,15 +276,6 @@
 }
 
 </style>
-<?php 
-echo "<script>(function(d, s, id) {
-	var js, fjs = d.getElementsByTagName(s)[0];
-	if (d.getElementById(id)) return;
-	js = d.createElement(s); js.id = id;
-	js.src = 'https://connect.facebook.net/id_ID/sdk.js#xfbml=1&version=v2.12&appId=".APPID_FB."';
-	fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>";
-?>
 <!-- BANNER POPUP BUTTON PLAYSTORE MOBILE -->
 <div class="bannerPopUp"></div>
 <!-- BANNER POPUP BUTTON PLAYSTORE MOBILE -->

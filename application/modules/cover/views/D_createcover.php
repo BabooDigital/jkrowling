@@ -8,8 +8,13 @@
 	<script>
 		var csrf_value = '<?php echo $this->security->get_csrf_hash(); ?>';
 	</script>
+	<?php $this->load->view('include/third_party_script'); ?>
 </head>
 <body>
+	<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MVW4JD3"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-1 p-0 w-100" style="height: auto;background-color: #5a5a5a;">
