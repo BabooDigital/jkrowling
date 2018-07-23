@@ -339,6 +339,26 @@ $(document).ready(function() {
 	getmenuChapter(); - 1 != document.URL.indexOf("#comment") && getCommentBook()
 	buyBook();
 	$("#notifpayment").modal('show');
+
+	$(document).on("click", ".buyfullbook", function() {
+        stat = $(this).attr('stats-book') ;
+        if (stat == 'done') {
+            $('#buymodal').modal('show');
+        }else{
+            swal({
+              text: "Mohon selesaikan transaksi sebelumnya terlebih dahulu, sebelum melakukan transaksi baru.",
+              showCancelButton: true,
+              confirmButtonColor: '#7661ca',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'OK',
+              cancelButtonText: 'Batal'
+          }).then((result) => {
+              if (result.value) {
+                window.location = base_url+'library#list_trans'
+            }
+        })
+        }
+    });
 });
 function buyBook() {
 	$("#buy-btn").click(function(event) {
