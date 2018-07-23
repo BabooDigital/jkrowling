@@ -114,7 +114,12 @@ class C_Login extends MX_Controller
                 //         redirect('complete_profile');
                 //     }
                 // }else{
+                $bsession = $this->session->userdata('bookRef');
+                if (!empty($bsession)) {
+                    redirect('book/'.$bsession);
+                }else{
                     redirect('timeline');
+                }
                 // }
             }else
             {
@@ -192,7 +197,12 @@ class C_Login extends MX_Controller
                 //         redirect('complete_profile');
                 //     }
                 // }else{
-                    redirect('timeline');
+            $bsession = $this->session->userdata('bookRef');
+            if (!empty($bsession)) {
+                redirect('book/'.$bsession);
+            }else{
+                redirect('timeline');
+            }
                 // }
         }else {
             $status = $resval['code'];
@@ -264,7 +274,6 @@ class C_Login extends MX_Controller
                     redirect('book/'.$bsession);
                 }else{
                     redirect('timeline');
-                    // print_r("a");
                 }
             }
             else
