@@ -459,7 +459,6 @@
 					</div><!-- modal-content -->
 				</div><!-- modal-dialog -->
 			</div><!-- modal -->
-			<?php echo $this->session->userdata('hasPIN'); ?>
 			<?php $pin = $userdata['has_pin']; if ($pin == 1) { ?>
 			<?php $this->load->view('include/modal_pin'); ?>
 			<?php }else{ ?>

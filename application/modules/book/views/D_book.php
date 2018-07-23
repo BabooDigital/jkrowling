@@ -5,6 +5,11 @@
 	#list_chapters {cursor: pointer;}
 </style>
 </style>
+<?php if ($detail_book['data']['book_info']['status_payment'] == 'pending') {
+	$statusp = 'pend';
+}else{
+	$statusp = 'done';
+}  ?>
 <div class="container pt-100 mb-80">
 	<div class="row">
 		<div class="col-md-4 dtlbok">
@@ -53,7 +58,7 @@
 						<?php $usDat = $this->session->userdata('userData'); if ((bool)$detail_book['data']['book_info']['is_free'] == true || $usDat['user_id'] == $detail_book['data']['author']['author_id']) { ?>
 							<div></div>
 						<?php }else{ ?>
-							<div style="background:transparent;" class="list-group-item mt-15" id="list_chapters"><a class="" id=""><p style="font-size:10px;">Versi buku full</p><span style="color:#7554bd">Rp <?php echo number_format( $detail_book['data']['book_info']['book_price'], 0, ',', '.'); ?></span></a><button style="float:right;margin-top: -15px;" class="btn-buy" data-toggle="modal" data-target="#buymodal">Beli</button></div>
+							<div style="background:transparent;" class="list-group-item mt-15"><a class="" id=""><p style="font-size:10px;">Versi buku full</p><span style="color:#7554bd">Rp <?php echo number_format( $detail_book['data']['book_info']['book_price'], 0, ',', '.'); ?></span></a><button style="float:right;margin-top: -15px;cursor: pointer;" class="btn-buy buyfullbook" stats-book='<?php echo $statusp; ?>'>Beli</button></div>
 						<?php } ?>
 					<?php } ?>
 				</div>
@@ -106,7 +111,7 @@
 						<?php }else{ ?>
 							<div id='pdf-viewer'> </div>
 							<?php $usDat = $this->session->userdata('userData'); if ((bool) $detail_book['data']['book_info']['is_bought'] == false && (bool) $detail_book['data']['book_info']['is_free'] == false && $usDat['user_id'] != $detail_book['data']['author']['author_id']) { ?>
-								<div style="background:transparent;" class="list-group-item mt-15" id="list_chapters"><a class="" id=""><p>Versi buku full</p><span style="color:#7554bd">Rp <?php echo number_format( $detail_book['data']['book_info']['book_price'], 0, ',', '.'); ?></span></a><button style="float:right;margin-top: -15px;" class="btn-buy" data-toggle="modal" data-target="#buymodal">Beli</button></div>
+								<div style="background:transparent;" class="list-group-item mt-15" id="list_chapters"><a class="" id=""><p>Versi buku full</p><span style="color:#7554bd">Rp <?php echo number_format( $detail_book['data']['book_info']['book_price'], 0, ',', '.'); ?></span></a><button style="float:right;margin-top: -15px;cursor: pointer;" class="btn-buy buyfullbook" stats-book='<?php echo $statusp; ?>'>Beli</button></div>
 							<?php } ?>
 						<?php } ?>
 					</div>
@@ -247,6 +252,11 @@
 				<?php $this->load->view('data/D_notifpayment'); ?>
 			</div>
 		<?php endif ?>
+		
+		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/0.10.0/lodash.min.js"></script>
+		<?php if (isset($js)): ?>
+			<?php echo get_js($js) ?>
+		<?php endif ?>
 		<script type="text/javascript">
 			var segment = '<?php echo $this->uri->segment(2); ?>';
 			var count_data = '<?php echo $detailChapter; ?>';
@@ -258,10 +268,6 @@
 				var desc = "<?php foreach ($detail_book['data']['chapter']['paragraphs'] as $book) {$text = strip_tags($book['paragraph_text']); $datas .= "<div  class='mb-15 textp' id='detailStyle' data-id-p='".$book['paragraph_id']."'>".ucfirst($book['paragraph_text'])."</div>"; } $st1 = strip_tags($datas); $st2 = str_replace('"', '', $st1); if (strlen($st2) > 200) echo $st2 = substr($st2, 0, 200) . '...'; ?>";
 			<?php } ?>
 		</script>
-		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/0.10.0/lodash.min.js"></script>
-		<?php if (isset($js)): ?>
-			<?php echo get_js($js) ?>
-		<?php endif ?>
 			<script src='https://podio.github.io/jquery-mentions-input/lib/jquery.events.input.js' type='text/javascript'></script>
 			<script src='https://podio.github.io/jquery-mentions-input/lib/jquery.elastic.js' type='text/javascript'></script>
 			<?php if ((bool) $detail_book['data']['book_info']['is_pdf'] == true) { ?>

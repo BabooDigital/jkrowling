@@ -322,10 +322,25 @@ $(document).ready(function() {
         })
     });
     $(document).on("click", ".buyfullbook", function() {
-        $('#modal-checkout').modal('show');
+        stat = $(this).attr('stats-book') ;
         var j = $('#iaidubi').val();
-
-        $('#nextcheck').attr('b-id', j);
+        if (stat == 'done') {
+            $('#modal-checkout').modal('show');
+            $('#nextcheck').attr('b-id', j);    
+        }else{
+            swal({
+              text: "Mohon selesaikan transaksi sebelumnya terlebih dahulu, sebelum melakukan transaksi baru.",
+              showCancelButton: true,
+              confirmButtonColor: '#7661ca',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'OK',
+              cancelButtonText: 'Batal'
+          }).then((result) => {
+              if (result.value) {
+                window.location = base_url+'library#list_trans'
+            }
+        })
+        }
     });
     getRCommentBook();
 });

@@ -343,7 +343,12 @@
 		<div class="bg-white" style="width: 250px;height: auto;position: fixed;bottom: 0;padding: 5px 15px;">
 			<small>Versi Buku Full</small>
 			<div>
-				<p><img src="<?php echo site_url('public/img/assets/icon_sell.png'); ?>" width="20" class="mr-5"><span style="color: #7661ca;font-weight: 600;">Rp <span class="priceb"><?php echo number_format( $detail_book['data']['book_info']['book_price'], 0, ',', '.'); ?></span></span> <button type="button" class="float-right btn-transparant buyfullbook" style="margin-top: -10px;padding: 3px 30px;border-radius: 35px;background: #7661ca;color: #fff;">Beli</button></p>
+				<?php if ($detail_book['data']['book_info']['status_payment'] == 'pending') {
+					$statusp = 'pend';
+				}else{
+					$statusp = 'done';
+				}  ?>
+				<p><img src="<?php echo site_url('public/img/assets/icon_sell.png'); ?>" width="20" class="mr-5"><span style="color: #7661ca;font-weight: 600;">Rp <span class="priceb"><?php echo number_format( $detail_book['data']['book_info']['book_price'], 0, ',', '.'); ?></span></span> <button type="button" class="float-right btn-transparant buyfullbook" stats-book='<?php echo $statusp; ?>' style="margin-top: -10px;padding: 3px 30px;border-radius: 35px;background: #7661ca;color: #fff;">Beli</button></p>
 			</div>
 		</div>
 		<?php } ?>
