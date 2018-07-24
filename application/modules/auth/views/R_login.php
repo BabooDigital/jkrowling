@@ -59,8 +59,11 @@ error_reporting(0);
 $actual_link = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 $parts = parse_url($actual_link);
 parse_str($parts['query'], $query);
-if (!empty($query['b'])) {
+if (!empty($query['b']) && empty($query['c'])) {
 	$this->session->set_userdata('bookRef', $query['b']);
+}else if (!empty($query['c']) && !empty($query['b'])) {
+	$this->session->set_userdata('bookRef', $query['b']);
+	$this->session->set_userdata('chapterRef', $query['c']);
 }else{	
 }
 ?>

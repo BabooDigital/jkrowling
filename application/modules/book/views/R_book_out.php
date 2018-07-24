@@ -147,7 +147,8 @@
 			<div class="row mb-50">
 				<div class="col-12">
 					<div class="text-center">
-						<a href="<?php echo site_url(); ?>login?b=<?php echo $bid; ?>" class="btnlogin">Masuk</a>
+						<?php $cid = $this->uri->segment(5); $link = ""; if (empty($cid)) {$link = "?b=".$bid; }else{$link = "?b=".$bid."&c=".$cid; } ?>
+						<a href="<?php echo site_url('login'.$link); ?>" class="btnlogin">Masuk</a>
 					</div>
 				</div>
 			</div>
@@ -181,8 +182,8 @@
 				return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
 			}
 		};
-		var bid = '<?php echo $this->uri->segment(2); ?>';
-		var link = "intent://"+"<?php echo BASE_URL_WEB; ?>book/"+bid+"#Intent;scheme=https;package=id.android.baboo;S.doctype=FRA;S.docno=FRA1234;S.browser_fallback_url=market://details?id=id.android.baboo;end";
+		<?php $bid = explode('-', $this->uri->segment(2)); $cid = $this->uri->segment(5); if (empty($cid)) { $url = BASE_URL_DEEPLINK.'book/'.$bid[0]; }else{ $url = BASE_URL_DEEPLINK.'book/'.$bid[0].'/preview/chapter/'.$cid;} ?>
+		var link = "intent://"+"<?php echo $url; ?>"+"#Intent;scheme=https;package=id.android.baboo;S.doctype=FRA;S.docno=FRA1234;S.browser_fallback_url=market://details?id=id.android.baboo;end";
 		$('.bannerPopUp').html("<div class='popUpBannerBox'> <div class='popUpBannerInner'> <div class='popUpBannerContent'> <a href='"+link+"'><span class='popUpBannerSpan'>Baca di Aplikasi</span></a><a href='#' class='closeButton'>&#120;</a> </div> </div> </div>");
 
 		function showPopUpBanner() {

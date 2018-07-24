@@ -295,7 +295,7 @@
 	<div class="profiles">
 		<label class="close" for="toggle-right" style="height: 45px;">&nbsp;&nbsp;&times;</label>
 		<div class="text-center p-10">
-			<?php 
+			<?php
 			if ((bool)$detail_book['data']['book_info']['is_pdf'] != true) { ?>
 				<div class="mt-20 spadding">
 				<?php }else{
@@ -309,9 +309,15 @@
 			</div>
 			<div class="mt-15">
 				<h3 class="title_book" style="font-weight: bold;color: #141414;"><?php echo $detail_book['data']['book_info']['title_book']; ?></h3>
+				<div class="text-center mb-15">
+					<p class="text-muted pcat"><b class="cbookd"><?php echo $detail_book['data']['category']['category_name']; ?></b> &#8226; Dibaca <span class="boview"><?php echo $this->thousand_to_k->ConvertToK($detail_book['data']['book_info']['view_count']); ?></span> kali</p>
+				</div>
+			</div>
+			<div class="mt-15">
+				<button type="button" class="btn-share-ch share-fb-ch w-100 pt-10 pb-10"><img src="<?php echo base_url('public/img/assets/share_chapter.svg'); ?>"> Bagikan Buku</button>
 			</div>
 		</div>
-		<div class="mt-20">
+		<div class="mt-10">
 			<?php if ((bool)$detail_book['data']['book_info']['is_pdf'] == true) { ?>
 				<div class="mt-10 mb-100 pl-10 pr-10 desc_pdf">
 					<?php echo $detail_book['data']['book_info']['desc']; ?>
@@ -319,11 +325,12 @@
 			<?php }else{ ?>
 				<p class="text-muted ml-20">Daftar Chapter</p>
 				<div class="list-group mt-10 mb-90 pl-10 pr-10" id="">
-					<?php $count = 0; $counts = 0; $countss = 0; $uri = $this->uri->segment(2); $uri2 = $this->uri->segment(3);$usDat = $this->session->userdata('userData');
+					<?php $uri = $this->uri->segment(2); $uri4 = $this->uri->segment(4); $usDat = $this->session->userdata('userData');
 					foreach ($chapt_data as $ch) {
+						$chid = $ch['chapter_id'];
 						$notfree = '';
 						$imgnotfree = '';
-						$urlnotfree = site_url('book/'.$uri.'/'.$count++);
+						$urlnotfree = site_url('book/'.$uri.'/chapter/'.$ch['chapter_id']);
 						if ((bool)$ch['chapter_free'] == false && $usDat['user_id'] != $detail_book['data']['author']['author_id'])	 {
 							$notfree = ' text-muted';
 							$imgnotfree = "<img src='".base_url('public/img/assets/icon_sell.png')."' width='20' class='mt-5 float-right'>";
@@ -332,7 +339,7 @@
 							$imgnotfree = "<img src='".base_url('public/img/assets/icon_draft_pub.png')."' width='40' class='img-fluid float-right'>";
 						}
 					 ?>
-						<a href="<?php echo $urlnotfree; ?>" class="borbot bornone font-weight-bold bg-none list-group-item list-group-item-action chpt <?php if ($uri2 == $countss++){echo 'active';} echo $notfree; ?> " chapter-count="<?php echo $counts++; ?>"><?php echo $ch['chapter_title']; echo $imgnotfree; ?>  </a>
+						<a href="<?php echo $urlnotfree; ?>" class="borbot bornone font-weight-bold bg-none list-group-item list-group-item-action chpt <?php if ($uri4 == $chid){echo 'active';} echo $notfree; ?>"><?php echo $ch['chapter_title']; echo $imgnotfree; ?>  </a>
 					<?php } ?>
 				</div>
 			<?php } ?>
@@ -433,39 +440,19 @@
 				</div>
 			<?php } ?>
 		</div>
+		<?php if (!empty($chapt_count) && $chapt_count > 1) { ?>
 			<div class="row" id="paging-chapter">
-				<?php if (!empty($chapt_count)) { ?>
-					<?php $uri = $this->uri->segment(2); $uri2 = $this->uri->segment(3); $ch_next = $uri2+1; $ch_prev = $uri2-1; if ($ch_prev==0 || $ch_prev <= 1) { $ch_prev = ""; } $fix = $chapt_count-1; 
-					if (empty($uri2) && $uri2 < $fix && $uri2 == 0) { ?>
-						<div class='col-4'>
-						</div> 
-						<div class='col-4'>
-							<span class='w-100'> </span> 
-						</div> 
-						<div class='col-4'> 
-							<a href="<?php echo site_url('book/'.$uri.'/'.$ch_next); ?>" class='pull-right btn-next-chapt'><i class="fa fa-chevron-right" aria-hidden="true"></i></a> 
-						</div>
-					<?php }else if (!empty($uri2) && $uri2 < $fix) { ?>
-						<div class='col-4'>
-							<a href="<?php echo site_url('book/'.$uri.'/'.$ch_prev); ?>" class='pull-left  btn-next-chapt'><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
-						</div>
-						<div class='col-4'>
-							<span class='w-100'> </span> 
-						</div> 
-						<div class='col-4'> 
-							<a href="<?php echo site_url('book/'.$uri.'/'.$ch_next); ?>" class='pull-right btn-next-chapt'><i class="fa fa-chevron-right" aria-hidden="true"></i></a> 
-						</div>
-					<?php }else if ($uri2 == $fix && $uri2 >= $fix) { ?>
-						<div class='col-4'>
-							<a href="<?php echo site_url('book/'.$uri.'/'.$ch_prev); ?>" class='pull-left  btn-next-chapt'><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
-						</div>
-						<div class='col-4'>
-							<span class='w-100'> </span> 
-						</div> 
-						<div class='col-4'> 
-						</div>
-					<?php }else{echo "";} ?>
-				<?php }else { echo ""; } ?>
+				<?php if (!isset($next_ch) && empty($next_ch)) {$next_paging = "display:none;"; }else if (!isset($prev_ch) && empty($prev_ch)) {$prev_paging = "display:none;"; } ?>
+				<div class='col-4'>
+					<a href="<?php echo site_url('book/'.$uri.'/chapter/'.$prev_ch); ?>" class='pull-left  btn-next-chapt' style="<?php echo $prev_paging ?>"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
+				</div>
+				<div class='col-4'>
+					<span class='w-100'> </span> 
+				</div> 
+				<div class='col-4'> 
+					<a href="<?php echo site_url('book/'.$uri.'/chapter/'.$next_ch); ?>" class='pull-right btn-next-chapt' style="<?php echo $next_paging ?>"><i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+				</div>
+			<?php }else { echo ""; } ?>
 			</div>
 		<div class="row mt-20">
 			<div class="text-center mx-auto w-100" style="overflow: hidden;">
@@ -660,7 +647,8 @@
 		}
 	};
 	var bid = segment.split('-');
-	var link = "intent://"+"<?php echo BASE_URL_WEB; ?>book/"+bid[0]+"#Intent;scheme=https;package=id.android.baboo;S.doctype=FRA;S.docno=FRA1234;S.browser_fallback_url=market://details?id=id.android.baboo;end";
+	<?php $bid = explode('-', $this->uri->segment(2)); $cid = $this->uri->segment(4); if (empty($cid)) { $url = BASE_URL_DEEPLINK.'book/'.$bid[0]; }else{ $url = BASE_URL_DEEPLINK.'book/'.$bid[0].'/chapter/'.$cid;} ?>
+	var link = "intent://"+"<?php echo $url; ?>"+"#Intent;scheme=https;package=id.android.baboo;S.doctype=FRA;S.docno=FRA1234;S.browser_fallback_url=market://details?id=id.android.baboo;end";
 	$('.bannerPopUp').html("<div class='popUpBannerBox'> <div class='popUpBannerInner'> <div class='popUpBannerContent'> <a href='"+link+"'><span class='popUpBannerSpan'>Baca di Aplikasi</span></a><a href='#' class='closeButton'>&#120;</a> </div> </div> </div>");
 
 	function showPopUpBanner() {
@@ -675,6 +663,12 @@
 		$('.popUpBannerBox').fadeOut("2000");
 		return false;
 	});
+
+	<?php if (empty($this->uri->segment(3))) {
+		echo "var link_url = '".BASE_URL_WEB."book/".$bid[0]."'";
+	}else{
+		echo "var link_url = '".BASE_URL_WEB."book/".$bid[0]."/chapter/".$cid."'";
+	} ?>
 </script>
 </body>
 </html>

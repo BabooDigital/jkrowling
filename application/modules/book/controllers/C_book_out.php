@@ -21,6 +21,7 @@ class C_book_out extends MX_Controller {
 	{
 		error_reporting(0);
 		$book_id = $this->uri->segment(2);
+		$chapter_id = $this->uri->segment(5);
 		$id = explode('-', $book_id);
 		$visits =base64_encode(uniqid(time(), true));
         if (!isset($_COOKIE['VISITOR_INF'])) $_COOKIE['VISITOR_INF'] = $visits;
@@ -29,13 +30,14 @@ class C_book_out extends MX_Controller {
 
 		$sendData = array(
 			'book_id' => $id[0],
-			'ip_client' => $kuki
+			'ip_client' => $kuki,
+			'chapter'=>$chapter_id
 		);
 
 		$datas = $this->curl_request->curl_post($this->API.'timeline/Home/detailBook', $sendData, '');
+		// $datas = $this->curl_request->curl_post($this->API.'timeline/Home/allChapters', $sendData, '');
 
-		$book['css'][] = "public/plugins/holdOn/css/HoldOn.css"
-		;
+		$book['css'][] = "public/plugins/holdOn/css/HoldOn.css";
 		$book['js'][] = "public/js/jquery.min.js";
 		$book['js'][] = "public/js/umd/popper.min.js";
 		$book['js'][] = "public/js/bootstrap.min.js";
