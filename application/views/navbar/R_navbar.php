@@ -7,9 +7,9 @@
 			<input aria-label="Search" class="form-search" placeholder="Penulis atau Buku" style="height:30px; width: 200px; font-size: 14px; margin-left:-30px;" type="text">
 		</form> -->
 		<form class="form-inline">
-			<a href="<?php echo site_url('search'); ?>" id="tab_page" class="menu-page mr-20" id="tab_page" dat-title="Pencarian"><img src="<?php echo base_url() ?>/public/img/assets/icon_search.svg" width="30"></a>
-			<a class="menu-page mr-20" href="<?php echo site_url('yourdraft'); ?>" id="tab_page" dat-title="Daftar Draft Buku"><img src="<?php echo base_url() ?>/public/img/assets/icon_draft.svg" width="30"></a>
-			<a href="<?php echo site_url('message') ?>" id="tab_page" style="color:#9785bc; font-size:10px;"><img src="<?php echo base_url() ?>/public/img/icon-tab/icon_message.svg" width="26"></a>
+			<a href="<?php echo site_url('search'); ?>" id="tab_page" class="menu-page mr-20" id="tab_page" dat-title="Pencarian"><img src="<?php echo base_url() ?>/public/img/assets/icon_search.svg" width="25"></a>
+			<a class="menu-page mr-20" href="<?php echo site_url('yourdraft'); ?>" id="tab_page" dat-title="Daftar Draft Buku"><img src="<?php echo base_url() ?>/public/img/assets/icon_draft.svg" width="25"></a>
+			<a href="<?php echo site_url('message') ?>" id="tab_page" style="color:#9785bc; font-size:10px;"><img src="<?php echo base_url() ?>/public/img/icon-tab/icon_message.svg" width="24"></a>
 		</form>
 	</div>
 </nav>

@@ -41,4 +41,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','".TAGMNG_GID."');
 </script>";
 
+// Adop JS Implement
+echo "<script async src='//compass.adop.cc/assets/js/adop/adop.js?v=10' ></script>";
 ?>

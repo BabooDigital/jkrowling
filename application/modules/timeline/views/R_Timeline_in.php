@@ -25,7 +25,12 @@
 		<?php $this->load->view('navbar/R_navbar'); ?>
 		<div class="babooid" style="overflow-y: hidden;overflow-x: hidden;">
 			<div class="row">
-				<div class="col-12 mt-130" id="post-data">
+				<div class="col-12 mt-130 text-center">
+					<?php echo $this->load->view('ads/top_mid_ad'); ?>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-12" id="post-data">
 					<!-- Status -->
 					<?php if (!empty($home['event']['redirect']) || !empty($home['event']['image'])) { ?>
 					<div class="card mb-15 bg-transparent" style="box-shadow: none;">
@@ -41,6 +46,9 @@
 					if ($home == null || $home == [] || empty($home)) {
 						echo "<div class='container first_login mt-30'> <div class='row'> <div class='mx-auto' style='width: 85%;'> <div class='text-center mb-10'> <img src='".base_url('public/img/first_login.png')."' width='190'> </div> <div class='text-center'> <h4><b>Tentukan konten yang kamu suka!</b></h4> <p style='font-size: 12pt;'>Jangan buang-buang waktu dengan hal yg tidak kamu suka, yuk atur konten yg kamu suka.</p> <br> <a href='".site_url('selectcategory')."' class='btn btn-navdaftar'><span class='navdaftar'>Atur Sekarang</span></a> </div> </div> </div> </div> ";
 					}
+					echo "<div class='mb-10 mx-auto text-center'>";
+					echo $this->load->view('ads/360_side_ad');
+					echo "</div>";
 					?>
 				</div>
 				<div class="loader mb-20" style="display: none;margin-left: auto;margin-right: auto;"></div>

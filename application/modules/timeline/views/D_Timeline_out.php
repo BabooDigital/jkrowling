@@ -1,4 +1,3 @@
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 	
 	<!-- BANNER POPUP BUTTON PLAYSTORE DESKTOP -->
 	<!-- <div class="popUpBannerBox" style="display: block;"> 
@@ -57,9 +56,7 @@
 					</div>
 					<!-- Penulis Minggu Ini -->
                     <ul class="list-group list-group-flush">
-                    	<!-- Disamping -->
-                    	<?php echo "<ins class='adsbygoogle' style='display:inline-block;width:250px;height:250px' data-ad-client='".AD_CLIENT."' data-ad-slot='".AD_SLOT."'></ins>" ?>
-                    	<script> (adsbygoogle = window.adsbygoogle || []).push({}); </script>
+                    	<?php echo $this->load->view('ads/250_side_ad'); ?>
                     </ul>
 					
 					<!-- Buku Populer -->
@@ -90,6 +87,11 @@
 				</div>
 			</div>
 			<div class="col-md-9">
+				<div class="row">
+					<div class="col-12 text-center mx-auto">
+					<?php echo $this->load->view('ads/top_mid_ad'); ?>
+					</div>
+				</div>
 				<div class="row mt-10 mb-10">
 					<div class="col-md-3">
 						<span class="bukupilihan">Buku Pilihan</span>

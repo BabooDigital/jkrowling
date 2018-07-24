@@ -1,5 +1,12 @@
 <?php $this->load->view('navbar/D_navbar'); ?>
-<div class="container babooidin">
+<div class="container mt-80">
+	<div class="row mb-5">
+		<div class="col-2"></div>
+		<div class="col-8">
+			<?php echo $this->load->view('ads/top_mid_ad'); ?>
+		</div>
+		<div class="col-2"></div>
+	</div>
 	<div class="row">
 		<!-- Left Side -->
 		<div class="col-3 tmlin">
@@ -36,9 +43,7 @@
 				</div>
                 <div class="side-card mb-15" style="background: transparent;">
                     <div class="card-body p-0">
-                    	<!-- Disamping -->
-                    	<?php echo "<ins class='adsbygoogle' style='display:inline-block;width:250px;height:250px' data-ad-client='".AD_CLIENT."' data-ad-slot='".AD_SLOT."'></ins>" ?>
-                    	<script> (adsbygoogle = window.adsbygoogle || []).push({}); </script>
+                    	<?php echo $this->load->view('ads/250_side_ad'); ?>
                     </div>
                 </div>
 			</div>
@@ -55,6 +60,7 @@
 		<!-- Right Side -->
 		<div class="col-3 tmlin">
 			<div class="stickymenu">
+				<?php echo $this->load->view('ads/250_side_ad'); ?>
 				<!-- <div class="card card-widget mb-15">
 					<a href="<?php echo base_url('event') ?>">
 						<img src="https://s3-us-west-2.amazonaws.com/s3.baboo.id/baboo-cover/hasil-web.png" style="width:100%;height: 100%;">
@@ -113,7 +119,7 @@
 	<script type="text/javascript">
 		swal("Maaf..", "Kamu Sudah Mengikuti Event!", "warning");
 	</script>
-<?php endif ?>>
+<?php endif ?>
 
 </body>
 </html>

@@ -10,7 +10,14 @@
 }else{
 	$statusp = 'done';
 }  ?>
-<div class="container pt-100 mb-80">
+<div class="container pt-80 mb-80">
+	<div class="row mb-5">
+		<div class="col-2"></div>
+		<div class="col-8">
+			<?php echo $this->load->view('ads/top_mid_ad'); ?>
+		</div>
+		<div class="col-2"></div>
+	</div>
 	<div class="row">
 		<div class="col-md-4 dtlbok">
 			<?php if (!empty($detail_book)) { ?>
@@ -64,9 +71,7 @@
 				</div>
                 <br>
                 <div class="mx-auto">
-                	<!-- Disamping -->
-                	<?php echo "<ins class='adsbygoogle' style='display:inline-block;width:300px;height:250px' data-ad-client='".AD_CLIENT."' data-ad-slot='".AD_SLOT."'></ins>" ?>
-                	<script> (adsbygoogle = window.adsbygoogle || []).push({}); </script>
+                	<?php echo $this->load->view('ads/250_side_ad'); ?>
                 </div>
 			</div>
 			<?php  }else {

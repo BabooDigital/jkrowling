@@ -1,0 +1,1 @@
+<ins class='adsbyadop' _adop_zon = '1458a394-47c0-40e3-b07d-794be8619180' _adop_type = 'js' style='display:inline-block;width:250px;height:250px;' _page_url=''></ins>
