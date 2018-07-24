@@ -28,6 +28,7 @@
 	<link href="<?php echo base_url();?>public/css/baboo-responsive.css" rel="stylesheet" type="text/css">
 	<link href="<?php echo base_url();?>public/css/custom-margin-padding.css" rel="stylesheet" type="text/css">
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<script async src='//compass.adop.cc/assets/js/adop/adop.js?v=10' ></script>
 
 	
 </head>
@@ -100,6 +101,9 @@ a:hover {
 						if ($home == null || $home == [] || empty($home)) {
 							echo "<div class='container first_login mt-30'> <div class='row'> <div class='mx-auto' style='width: 85%;'> <div class='text-center mb-10'> <img src='".base_url('public/img/first_login.png')."'> </div> <div class='text-center'> <h4><b>Tentukan konten yang kamu suka!</b></h4> <p style='font-size: 12pt;'>Jangan buang-buang waktu dengan hal yg tidak kamu suka, yuk atur konten yg kamu suka.</p> <br> <a href='".site_url('login')."' class='btn btn-navdaftar'><span class='navdaftar'>Daftar Sekarang</span></a> </div> </div> </div> </div> ";
 						}
+						echo "<div class='mb-10 mx-auto text-center'>";
+						echo $this->load->view('ads/360_side_ad');
+						echo "</div>";
 						?>
 					</div>
 					<div class="loader" style="display: none;margin-left: auto;margin-right: auto;"></div>

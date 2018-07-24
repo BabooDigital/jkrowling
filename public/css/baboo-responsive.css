@@ -2,7 +2,7 @@
 
 #detailStyle {
   line-height: 1.4em;
-  font-size: 18px;
+  font-size: 17px;
   hyphens: auto;
 }
 div {
@@ -549,6 +549,7 @@ button:focus, a:focus {
                       font-size: 21px;
                       margin-right: auto;
                       font-family: 'Noto Serif', serif;
+                      padding: 0 5%;
                     }
                     .commentbook {
                       width: 100%;
@@ -1119,7 +1120,7 @@ button:focus, a:focus {
                     }
                     .popUpBannerContent {
                       position: fixed;
-                      bottom: 5px;
+                      bottom: 13px;
                     }
                     .popUpBannerSpan {
                       background: #482d8e;

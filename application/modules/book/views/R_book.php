@@ -467,6 +467,11 @@
 					<?php }else{echo "";} ?>
 				<?php }else { echo ""; } ?>
 			</div>
+		<div class="row mt-20">
+			<div class="text-center mx-auto w-100" style="overflow: hidden;">
+				<?php echo $this->load->view('ads/360_side_ad'); ?>
+			</div>
+		</div>
 		</div>
 		
 		<?php }else{ ?>

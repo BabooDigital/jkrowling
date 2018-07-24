@@ -31,7 +31,7 @@
 	<meta property="og:image"              content="<?php echo $cover; ?>" />
 
 	<title><?php echo $title; ?> | Baboo.id</title>
-
+	<link rel="icon" href="<?php echo base_url(); ?>public/img/favicon.ico" sizes="16x16">
 	<!-- CSS -->
 	<link href="<?php echo base_url('') ?>public/css/bootstrap.min.css" rel="stylesheet">
 	<link href="<?php echo base_url('') ?>public/css/baboo.css" rel="stylesheet" type="text/css">
@@ -44,13 +44,13 @@
 		var csrf_value = '<?php echo $this->security->get_csrf_hash(); ?>';
 	</script>
 	<!-- <script src="https://js.pusher.com/4.2/pusher.min.js"></script> -->
+	<script async src='//compass.adop.cc/assets/js/adop/adop.js?v=10' ></script>
 </head>
 <style>
 .nav-link {
 	padding: 0px 0.3rem !important;
 }
 </style>
-<script async src='//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'></script>
 
 <?php $this->load->view('navbar/D_navbar'); ?>	
 
@@ -149,9 +149,7 @@
 				<div class="pr-20 pl-20 subchapter">
                 <br>
                 <div class="mx-auto">
-                	<!-- Disamping -->
-                	<?php echo "<ins class='adsbygoogle' style='display:inline-block;width:250px;height:250px' data-ad-client='".AD_CLIENT."' data-ad-slot='".AD_SLOT."'></ins>" ?>
-                	<script> (adsbygoogle = window.adsbygoogle || []).push({}); </script>
+                	<?php echo $this->load->view('ads/250_side_ad'); ?>
                 </div>
 				</div>
 			</div>
@@ -204,6 +202,9 @@
 						<a href="<?php echo site_url(); ?>login?b=<?php echo $bid; ?>" class="btnlogin">Masuk</a>
 					</div>
 				</div>
+			</div>
+			<div class="row">
+				<?php echo $this->load->view('ads/top_mid_ad'); ?>
 			</div>
 		</div>
 		<div class="col-md-1">

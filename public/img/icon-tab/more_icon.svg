@@ -1,5 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="30" height="27" viewBox="0 0 30 27">
-    <g fill="none" fill-rule="evenodd" stroke="#898989" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5">
-        <path d="M5.634 6.317h19.192M9.183 13.04h15.643M5.634 19.762h14.638"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="19px" height="15px" viewBox="0 0 19 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>20F87D01-D0BD-4EAA-AAB7-FBC86078EA9A</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="Read-Copy-7" transform="translate(-287.000000, -18.000000)" stroke="#585858" stroke-width="2">
+            <g id="Group-4" transform="translate(287.000000, 18.000000)">
+                <path d="M4.9973386,1.73757584 L17.9366711,1.73757584" id="Line-2"></path>
+                <path d="M1.02938952,1.73757584 L1.63676032,1.73757584" id="Line-2-Copy-3"></path>
+                <path d="M6.8463154,7.52949532 C6.8463154,7.52949532 10.5431006,7.52949532 17.9366711,7.52949532" id="Line-2-Copy"></path>
+                <path d="M2.88093114,13.1583839 L13.2586716,13.1583839" id="Line-2-Copy-2"></path>
+                <path d="M16.5786988,13.1583839 L17.3715487,13.1583839" id="Line-2-Copy-4"></path>
+            </g>
+        </g>
     </g>
 </svg>

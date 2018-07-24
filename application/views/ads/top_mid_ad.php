@@ -1,0 +1,1 @@
+<ins class='adsbyadop' check="true" _adop_zon = '8ddbec3c-c142-4c42-a74c-2540ebc642b8' _adop_type = 'js' style='display:inline-block;width:360px;height:70px;' _page_url='' _over_size='auto' _over_zone='{"728x90":"098971dc-7b8b-42b0-afff-33ced2654714"}' ></ins>
