@@ -15,7 +15,8 @@ $(document).ready(function() {
     });
 
     $(document).on("click", ".backfrmbook", function() {
-        history.go(-1);
+        // history.go(-1);
+        window.location = base_url+'timeline';
     });
     $(document).on("click", ".btncompar", function() {
         var b = $(this).parents(".textp").attr("data-text");
@@ -300,6 +301,40 @@ $(document).ready(function() {
             action_properties: JSON.stringify({
                 object: {
                     "og:url": base_url + "book/" + segment,
+                    "og:title": a + " ~ By : " + author,
+                    "og:description": desc,
+                    "og:image": d
+                }
+            })
+        }, function(a) {
+            a && !a.error_message && (b.append("csrf_test_name", csrf_value),b.append("user_id", $("#iaiduui").val()), b.append("book_id", $("#iaidubi").val()), $.ajax({
+                url: base_url + "shares",
+                type: "POST",
+                dataType: "JSON",
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: b
+            }).done(function(a) {
+                $("#sharecount").text(c)
+            }).fail(function() {
+                console.log("Failure")
+            }).always(function() {}))
+        })
+    });
+    $(document).on("click", ".share-fb-ch", function() {
+        $(this);
+        var b = new FormData;
+        $("#iaidubi").val();
+        var a = $(".title_book").text(),
+        c = +$("#sharecount").text() + 1,
+        d = $(".cover_image").attr("src");
+        FB.ui({
+            method: "share_open_graph",
+            action_type: "og.shares",
+            action_properties: JSON.stringify({
+                object: {
+                    "og:url": link_url,
                     "og:title": a + " ~ By : " + author,
                     "og:description": desc,
                     "og:image": d

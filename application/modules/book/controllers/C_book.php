@@ -17,7 +17,6 @@ class C_book extends MX_Controller
     public function index()
     {
         error_reporting(0);
-        $count = ($this->uri->segment(3) && !empty($this->uri->segment(3))) ? $this->uri->segment(3) : 0;
         $auth = $this->session->userdata('authKey');
         $id_book = $this->uri->segment(2);
         $idb = explode('-', $id_book, 2);
@@ -28,7 +27,6 @@ class C_book extends MX_Controller
             'book_id' => $idb[0]
         );
         $data_before_chapter = $this->curl_request->curl_post_auth($this->API.'book/Books/allChapters/', $data_book1, $auth);
-
         $data_before_chapter['chapter'] = $data_before_chapter['data'];
         $auth = $data_before_chapter['bbo_auth'];
         if (isset($data_before_chapter['chapter']['code']) && $data_before_chapter['chapter']['code'] == '200') {
@@ -37,20 +35,31 @@ class C_book extends MX_Controller
         } else {
             $status = $data_before_chapter['chapter']['code'];
         }
-
-        $schapter = (isset($data_before_chapter['chapter']['data']['chapter'][$count]['chapter_id'])) ? $data_before_chapter['chapter']['data']['chapter'][$count]['chapter_id'] : "";
-
+        $count = ($this->uri->segment(4) && !empty($this->uri->segment(4))) ? $this->uri->segment(4) : $data_before_chapter['chapter']['data']['chapter'][0]['chapter_id'];
+        foreach ($data_before_chapter['chapter']['data']['chapter'] as $key=>$val) {
+            if ($count == $val['chapter_id']) {
+                $nexts = $key + 1;
+                $prevs = $key - 1;
+                $currs = $key;
+            }
+            $datas[] = $val['chapter_id'];
+        }
         $data_book = array(
             'book_id' => $idb[0],
-            'chapter' => $schapter
+            'chapter' => $count
         );
 
         // END GET CHAPTER
         if ($this->session->userdata('isLogin') != 200) {
             $data = $this->curl_request->curl_post($this->API.'timeline/Home/detailBook', $data_book, '');
             $id = $this->uri->segment(2);
+            $chaptid = $this->uri->segment(4);
             if ($data['data']['book_info']['is_pdf'] != 1) {
-                redirect('book/' . $id . '/preview');
+                if (empty($this->uri->segment(4))) {
+                    redirect('book/' . $id . '/preview');
+                }else{
+                    redirect('book/' . $id . '/preview/chapter/'.$chaptid);
+                }
             }else{
                 redirect('book/' . $id . '/preview/pdf');
             }
@@ -116,9 +125,13 @@ class C_book extends MX_Controller
 
                 $data['chapt_count'] = count($data_before_chapter['chapter']['data']['chapter']);
                 $data['chapt_data'] = $data_before_chapter['chapter']['data']['chapter'];
+
+                $data['next_ch'] = $datas[$nexts];
+                $data['prev_ch'] = $datas[$prevs];
+                $data['curr_ch'] = $datas[$currs];
+
                 $data['js'][] = "public/js/sweetalert2.all.min.js";
                 $data['js'][] = "public/js/custom/mobile/r_detail_book.js";
-
                 $this->load->view('include/head', $data);
                 $this->load->view('R_book');
             } else {
@@ -178,7 +191,9 @@ class C_book extends MX_Controller
             $this->session->sess_destroy();
             redirect('login', 'refresh');
         } else {
-            echo json_encode($data['detail_book']['data']);
+            echo json_encode(array(
+                'chapter' => $data['detail_book']['data']['chapter']
+            ));
         }
     }
 
@@ -211,10 +226,13 @@ class C_book extends MX_Controller
         $data_price = $data_before_chapter['chapter']['data']['book_info']['book_price'];
         $is_free = $data_before_chapter['chapter']['data']['book_info']['is_free'];
         $author_id = $data_author['author_id'];
+        $status_pay = $resval2['data']['data']['book_info']['status_payment'];
 
         $data_before_chapter['chapter']['data']['chapter']['pay']['book_price'] = number_format($data_price);
         $data_before_chapter['chapter']['data']['chapter']['pay']['is_free'] = $is_free;
         $data_before_chapter['chapter']['data']['chapter']['pay']['author_id'] = $author_id;
+        $data_before_chapter['chapter']['data']['chapter']['pay']['stats'] = $status_pay;
+
         if ($data_before_chapter['chapter']['code'] == 403) {
             $this->session->unset_userdata('userData');
             $this->session->unset_userdata('authKey');

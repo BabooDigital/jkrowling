@@ -130,7 +130,8 @@ $route['video_book'] = 'book/C_createbook/video_book';
 $route['book/:any'] = 'book/C_book';
 $route['book/:any/pdf'] = 'book/C_book';
 $route['book/:any/:num'] = 'book/C_book';
-$route['book/:any/chapter/:num'] = 'book/C_book/chapterBook';
+$route['book/:any/ch/:num'] = 'book/C_book/chapterBook';
+$route['book/:any/chapter/:num'] = 'book/C_book';
 $route['getmenuchapter'] = 'book/C_book/chapter';
 $route['getChapter'] = 'book/C_createbook/getChapter';
 $route['book/:any/read'] = 'book/C_book/readingMode';
@@ -153,6 +154,7 @@ $route['validateSell'] = 'book/C_createbook/validatePublish';
 $route['bookCheck'] = 'book/C_createbook/checkBook';
 
 $route['book/:any/preview'] = 'book/C_book_out';
+$route['book/:any/preview/chapter/:num'] = 'book/C_book_out';
 $route['book/:any/preview/pdf'] = 'book/C_book_out';
 
 

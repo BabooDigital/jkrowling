@@ -489,7 +489,7 @@ function getmenuChapter() {
 		if (userbook == userdata) {
 			$.each(d, function(d, a) {
 				if (d != 'pay') {
-				c += '<li style="background:transparent;border-bottom: 0.5px #eeeeee;', 0 == d && (c += "background: url(../public/img/assets/frame_active.svg) no-repeat; background-position: right; "), c += '" class="list-group-item ', 0 == d && (c += "chapter_active icon_active "), c += '" id="list_chapters"><a href="' + base_url + "book/" + segment + "/chapter/" + a.chapter_id + '" class="id_chapter', c += '" id="' + d + '">' + a.chapter_title + "</a>", 0 == d && (c += "</li>");
+				c += '<li style="background:transparent;border-bottom: 0.5px #eeeeee;', 0 == d && (c += "background: url(../public/img/assets/frame_active.svg) no-repeat; background-position: right; "), c += '" class="list-group-item ', 0 == d && (c += "chapter_active icon_active "), c += '" id="list_chapters"><a href="' + base_url + "book/" + segment + "/ch/" + a.chapter_id + '" class="id_chapter', c += '" id="' + d + '">' + a.chapter_title + "</a>", 0 == d && (c += "</li>");
 				}
 			});
 		}else{
@@ -500,7 +500,14 @@ function getmenuChapter() {
 				}
 			});
 			if (d.pay.is_free == false) {
-				 c += '<li style="background:transparent;border-bottom: 0.5px #eeeeee;" class="list-group-item ', c += '"><a class="', c += '" id="' + d + '"><p style="font-size:10px;">' + 'Versi buku full' + "</p><span style='color:#7554bd'>Rp "+ d.pay.book_price +"</span></a><button style='float:right;' class='btn-buy'  data-toggle='modal' data-target='#buymodal'>Beli</button></li>";
+				var pend;
+				if (d.pay.stats == 'pending') {
+					pend = 'pend';
+				}else{
+					pend = 'done';
+				}
+				if (true) {}
+				 c += '<li style="background:transparent;border-bottom: 0.5px #eeeeee;" class="list-group-item ', c += '"><a class="', c += '" id="' + d + '"><p style="font-size:10px;">' + 'Versi buku full' + "</p><span style='color:#7554bd'>Rp "+ d.pay.book_price +"</span></a><button style='float:right;' class='btn-buy buyfullbook' stats-book='"+ pend +"'>Beli</button></li>";
 			}
 		}
 		$("#list_chapter").html(c);

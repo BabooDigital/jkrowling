@@ -116,7 +116,7 @@
 						<?php }else{ ?>
 							<div id='pdf-viewer'> </div>
 							<?php $usDat = $this->session->userdata('userData'); if ((bool) $detail_book['data']['book_info']['is_bought'] == false && (bool) $detail_book['data']['book_info']['is_free'] == false && $usDat['user_id'] != $detail_book['data']['author']['author_id']) { ?>
-								<div style="background:transparent;" class="list-group-item mt-15" id="list_chapters"><a class="" id=""><p>Versi buku full</p><span style="color:#7554bd">Rp <?php echo number_format( $detail_book['data']['book_info']['book_price'], 0, ',', '.'); ?></span></a><button style="float:right;margin-top: -15px;cursor: pointer;" class="btn-buy buyfullbook" stats-book='<?php echo $statusp; ?>'>Beli</button></div>
+								<div style="background:transparent;" class="list-group-item mt-15"><a class="" id=""><p>Versi buku full</p><span style="color:#7554bd">Rp <?php echo number_format( $detail_book['data']['book_info']['book_price'], 0, ',', '.'); ?></span></a><button style="float:right;margin-top: -15px;cursor: pointer;" class="btn-buy buyfullbook" stats-book='<?php echo $statusp; ?>'>Beli</button></div>
 							<?php } ?>
 						<?php } ?>
 					</div>

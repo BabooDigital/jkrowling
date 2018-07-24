@@ -115,8 +115,11 @@ class C_Login extends MX_Controller
                 //     }
                 // }else{
                 $bsession = $this->session->userdata('bookRef');
+                $csession = $this->session->userdata('chapterRef');
                 if (!empty($bsession)) {
                     redirect('book/'.$bsession);
+                }else if (!empty($csession)) {
+                    redirect('book/'.$bsession.'/chapter/'.$csession);
                 }else{
                     redirect('timeline');
                 }
@@ -198,8 +201,11 @@ class C_Login extends MX_Controller
                 //     }
                 // }else{
             $bsession = $this->session->userdata('bookRef');
+            $csession = $this->session->userdata('chapterRef');
             if (!empty($bsession)) {
                 redirect('book/'.$bsession);
+            }else if (!empty($csession)) {
+                redirect('book/'.$bsession.'/chapter/'.$csession);
             }else{
                 redirect('timeline');
             }
@@ -270,8 +276,11 @@ class C_Login extends MX_Controller
                 $this->session->set_userdata('isLogin', $status);
                 
                 $bsession = $this->session->userdata('bookRef');
-                if (!empty($bsession)) {
+                $csession = $this->session->userdata('chapterRef');
+                if (!empty($bsession) && empty($csession)) {
                     redirect('book/'.$bsession);
+                }else if (!empty($bsession) && !empty($csession)) {
+                    redirect('book/'.$bsession.'/chapter/'.$csession);
                 }else{
                     redirect('timeline');
                 }
