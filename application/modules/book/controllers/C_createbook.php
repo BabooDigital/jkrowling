@@ -918,6 +918,7 @@ class C_createbook extends MX_Controller
 			$covers = $cover;
 		}
 		$book_id  = $this->input->post('book_id', TRUE);
+		$ch_id  = $this->input->post('chapter_id', TRUE);
 		$cat      = $this->input->post('category', TRUE);
 		$user     = $this->input->post('user_id', TRUE);
 		$stat     = $this->input->post('status', TRUE);
@@ -931,6 +932,7 @@ class C_createbook extends MX_Controller
 
 		$bookData = array(
 			'book_id' => $book_id,
+			'chapter_id' => $ch_id,
 			'title_book' => $title,
 			'file_cover' => $covers,
 			'category' => $cat,
