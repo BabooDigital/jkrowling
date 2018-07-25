@@ -156,6 +156,10 @@ $(document).ready(function() {
 				formData.append("user_id", $("#user_id").val());
 				formData.append("csrf_test_name", csrf_value);
 				// formData.append("tag_book", $("#tag_book").val());
+				if ($(this).attr('ch_id') == null) {
+				}else{
+					formData.append("chapter_id", $(this).attr('ch_id'));
+				}
 				formData.append("book_paragraph", $("#book_paragraph").val());
 				if ($("#book_id").val() != null) {
 					formData.append("book_id", $("#book_id").val());
@@ -215,6 +219,10 @@ $(document).ready(function() {
 				formData.append("category", $("#category_id").val());
 				formData.append("user_id", $("#user_id").val());
 				// formData.append("tag_book", $("#tag_book").val());
+				if ($(this).attr('ch_id') == null) {
+				}else{
+					formData.append("chapter_id", $(this).attr('ch_id'));
+				}
 				formData.append("book_paragraph", $("#book_paragraph").val());
 				formData.append("csrf_test_name",  csrf_value)
 				if ($("#book_id").val() != null) {
@@ -278,11 +286,12 @@ $(document).on('click', '.saveasdraft', function() {
 		formData.append("book_paragraph", $("#book_paragraph").val());
 		if ($("#book_id").val() != null) {
 			formData.append("book_id", $("#book_id").val());
-			// for (var pair of formData.entries()) {
-			// 	console.log(pair[0] + ', ' + pair[1]);
-			// }
 		} else {
 			console.log('tidak');
+		}
+		if ($(this).attr('ch_id') == null) {
+		}else{
+			formData.append("chapter_id", $(this).attr('ch_id'));
 		}
 
 		if (title_book == null) {
@@ -305,6 +314,8 @@ $(document).on('click', '.saveasdraft', function() {
 						$(this).hide();
 						n();
 					});
+					$('.saveasdraft').attr('ch_id', data.data.chapter_id);
+					$('.addsubchapt').attr('ch_id', data.data.chapter_id);
 					// location.reload();
 					// var url = data['data']['book_id'] + '/chapter/' + data['data']['chapter_id'];
 					// url_redirect += 'create_book/' + data['data']['book_id'];
@@ -347,6 +358,8 @@ $(document).on('click', '.saveasdraft', function() {
 						$(this).hide();
 						n();
 					});
+					$('.saveasdraft').attr('ch_id', data.data.chapter_id);
+					$('.addsubchapt').attr('ch_id', data.data.chapter_id);
 					// location.reload();
 					// var url = data['data']['book_id'] + '/chapter/' + data['data']['chapter_id'];
 					// url_redirect += 'create_book/' + data['data']['book_id'];
@@ -422,9 +435,9 @@ function getChapter() {
 			if (data.chapter[0]) {
 				chapter += '<div id="accordion"> <div class="card"> <div class="card-header" id="headingOne"> <h5 class="mb-0"> <button class="btn btn-transparent" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"> Daftar Chapter <span class="caret"></span> </button> </h5> </div> <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion"> ';
 				$.each(data.chapter, function(index, val) {
-					if (index != 0) {
+					// if (index != 0) {
 						chapter += '<div class="your_chapter" title="'+val.chapter_title+'"><a style="border-bottom:solid 1px #DDD;    text-overflow: ellipsis;overflow: hidden;white-space: nowrap;" class="btn w-100 chapterdata0 editsubchapt1 addsubchapt_on " book="2016" chapter="1326" id="editchapt" href="'+base_url+'my_book/'+uri_segment+'/chapter/'+val.chapter_id+'" onclick="showLoading()"><img src="'+base_url+'/public/img/icon-tab/chapter.svg" class="pr-10">  '+val.chapter_title+'</a> </div>';
-					}
+					// }
 				});
 				chapter += '</div> </div> </div><br>';
 			}
@@ -502,7 +515,7 @@ function getChapter() {
 		}else{
 		}
 		$(".tulisjudul").html(title);
-		$(".start_chapter").val(data.chapter.length);
+		$(".start_chapter").val(3);
 		$("#btn_chapter").html(chapter);
 	})
 .fail(function() {
@@ -525,28 +538,38 @@ $(function () {
 });
 
 function addMinusPlus() {
-	$(document).on('click','.value-control',function(){
-		var action = $(this).attr('data-action')
-		var target = $(this).attr('data-target')
-		var value  = parseFloat($('[id="'+target+'"]').val());
-		if ( action == "plus") {
-			if (value == $("#count_chapter_plus_minus").val()) {
-				value;
-			}else{
-				value++;
-			}
-		}
-		if ( action == "minus") {
-			if (value <= $("#count_chapter_plus_minus").val()) {
-				if (value < 2) {
-					value;
-				}else{
-					value--;
-				}
-			}
-		}
-		$('[id="'+target+'"]').val(value);
-	});
+        $('.addplus').click(function(e){
+        e.preventDefault();
+        fieldName = $(this).attr('data-target');
+        var currentVal = parseInt($('input[name='+fieldName+']').val());
+        var jum = $("#count_chapter_plus_minus").val() - 2;
+        if (!isNaN(currentVal)) {
+            if (currentVal < jum)
+            {
+            	$('input[name='+fieldName+']').val(currentVal + 1);
+            	$('.addmin').removeAttr('style');
+            }
+            else
+            {
+            	$('.addplus').css('cursor','not-allowed');
+            }
+        } else {
+            $('input[name='+fieldName+']').val(1);
+
+        }
+    });
+    $(".addmin").click(function(e) {
+        e.preventDefault();
+        fieldName = $(this).attr('data-target');
+        var currentVal = parseInt($('input[name='+fieldName+']').val());
+        if (!isNaN(currentVal) && currentVal > 3) {
+            $('input[name='+fieldName+']').val(currentVal - 1);
+            $('.addplus').removeAttr('style');
+        } else {
+            $('input[name='+fieldName+']').val(3);
+            $('.addmin').css('cursor','not-allowed');
+        }
+    });
 }
 
 $(document).on('click', '#setpin_publish', function() {
@@ -568,14 +591,21 @@ $(document).on('click', '#setpin_publish', function() {
 
 $("#publish_book").click(function() {
 	var formData = new FormData();
+	var d_ch = '';
 	var ch = $(".start_chapter").val();
+	if (ch < 3) {
+		d_ch = '3';
+	}else if (ch > $('#count_chapter_plus_minus').val()-2){
+		d_ch = $('#count_chapter_plus_minus').val()-2;
+	}
+	var pr = $(".input-range").val();
 	var slide = $('#is_free:checkbox:checked');
     var asd = slide.is(':empty');
 	if (slide.length == 0 || asd == false) {
 		formData.append("is_paid", false);
 	}else{
-		formData.append("price", $(".input-range").val());
-		formData.append("chapter_start", ch);
+		formData.append("price", pr);
+		formData.append("chapter_start", d_ch);
 		formData.append("is_paid", true);
 	}
 	formData.append("book_id", $("#uri").val());
@@ -595,7 +625,13 @@ $("#publish_book").click(function() {
 			'Pilih kategori buku mu.',
 			'error'
 			);
-	}
+	}else if(slide.length == 1 && pr <= 10000){
+      swal(
+        'Gagal!',
+        'Minimal harga total penjualan buku sebesar Rp 10.000,-',
+        'error'
+        );
+    }
 	else if(tnc.length == 0){
 		swal(
 			'Gagal!',
@@ -610,15 +646,24 @@ $("#publish_book").click(function() {
 			type: 'POST',
 			contentType: false,
 			processData: false,
-			data: formData
+			data: formData,
+			beforeSend: function () {
+				HoldOn.open({
+					theme: 'sk-bounce',
+					message: "Tunggu sebentar."
+				});
+			}
 		})
 		.done(function(data) {
 			if (data.code == 200) {
 				window.location = base_url+'timeline';
+			}else{
+				location.reload();
 			}
 		})
 		.fail(function() {
 			console.log("errorss");
+			location.reload();
 		})
 		.always(function() {
 		});

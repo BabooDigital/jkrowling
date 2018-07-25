@@ -16,66 +16,94 @@ $(function(){
 function publishBook() {
   $("#publish_book").click(function() {
     var formData = new FormData();
+    var d_ch = '';
     var ch = $(".start_chapter").val();
+    if (ch < 3) {
+      d_ch = '3';
+    }else if (ch > $('#count_chapter_plus_minus').val()-2){
+      d_ch = $('#count_chapter_plus_minus').val()-2;
+    }
+    var ch2 = $(".start_chapter_pdf").val();
+    if (ch2 < 50) {
+      d_ch2 = '50';
+    }else if (ch2 > $('#count_chapter_plus_minus').val()){
+      d_ch2 = $('#count_chapter_plus_minus').val();
+    }
+    var start_ch = '';
+    if ($('.pdfcheck').val() == 'true') {
+      start_ch = d_ch2;
+    }else{
+      start_ch = d_ch;
+    }
+    var pr = $("#inputprice").val();
     var slide = $('.priceCheck:checkbox:checked');
     var asd = slide.is(':empty');
     formData.append("csrf_test_name", csrf_value);
-      if (slide.length == 0 || asd == false) {
+    if (slide.length == 0 || asd == false) {
       formData.append("is_paid", false);
     }else{
-      formData.append("price", $("#inputprice").val());
-      formData.append("chapter_start", ch);
+      formData.append("price", pr);
+      formData.append("chapter_start", start_ch);
       formData.append("is_paid", true);
     }
-      formData.append("book_id", $("#uri").val());
-      formData.append("file_cover", $("#cover_file").val());
-      formData.append("category", $("#category_ids").val());
+    formData.append("book_id", $("#uri").val());
+    formData.append("file_cover", $("#cover_file").val());
+    formData.append("category", $("#category_ids").val());
 
-      var cat = $("#category_ids").val();
-      var tnc = $('.checktnc:checkbox:checked');
+    var cat = $("#category_ids").val();
+    var tnc = $('.checktnc:checkbox:checked');
 
-      if (cat == null || cat == "") {
-        swal(
-          'Gagal!',
-          'Pilih kategori buku mu.',
-          'error'
-          );
-      }else if(tnc.length == 0){
-        swal(
-          'Gagal!',
-          'Setujui Term of Service.',
-          'error'
-          );
-      }else {
-        $.ajax({
-          url: base_url+'publishbook',
-          dataType: 'json',
-          type: 'POST',
-          contentType: false,
-          processData: false,
-          data: formData,
-          beforeSend: function() {
-            swal({
-              text: 'Harap tunggu...',
-              onOpen: () => {
-                swal.showLoading();
-              }
-            });
-          }
+    if (cat == null || cat == "") {
+      swal(
+        'Gagal!',
+        'Pilih kategori buku mu.',
+        'error'
+        );
+    }else if(slide.length == 1 && pr <= 10000){
+      swal(
+        'Gagal!',
+        'Minimal harga total penjualan buku sebesar Rp 10.000,-',
+        'error'
+        );
+    }else if(tnc.length == 0){
+      swal(
+        'Gagal!',
+        'Setujui Term of Service.',
+        'error'
+        );
+    }else {
+      $.ajax({
+        url: base_url+'publishbook',
+        dataType: 'json',
+        type: 'POST',
+        contentType: false,
+        processData: false,
+        data: formData,
+        beforeSend: function() {
+          swal({
+            text: 'Harap tunggu...',
+            onOpen: () => {
+              swal.showLoading();
+            }
+          });
+        }
+      })
+      .done(function(data) {
+        if (data.code == 200) {
+          window.location = base_url+'timeline';
+        }else{
+          location.reload();
+        }
         })
-        .done(function(data) {
-          if (data.code == 200) {
-            window.location = base_url+'timeline';
-          }
-        })
-        .fail(function() {
-          console.log("errorss");
-        })
-        .always(function() {
-        });
-      }
+      .fail(function() {
+        console.log("errorss");
+        location.reload();
+      })
+      .always(function() {
+      });
+    }
 
-    });
+  });
 }
 
 function uploadCoverMr() {
@@ -486,7 +514,7 @@ function check_sell() {
       });
       if (data.data.is_publishable == true) {
         if (data.data.is_sellable == true && data.data.price == "0") {
-          $(".start_chapter").val(data.data.total_chapter_sellable);
+          $(".start_chapter").val(data.data.total_chapter_sellable-2);
           $("#count_chapter_plus_minus").val(data.data.total_chapter);
           $("#minim_chapter").val(data.data.total_chapter_sellable);
           $('.switch').show();

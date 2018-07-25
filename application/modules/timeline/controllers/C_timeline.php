@@ -330,6 +330,7 @@ class C_timeline extends MX_Controller {
 			$data['js'][] = "public/js/menupage.js";
 			$this->load->view('R_draft', $data);
 		}else{
+			redirect('profile','refresh');
 		}
 	}
 	public function AllPopularWriters()

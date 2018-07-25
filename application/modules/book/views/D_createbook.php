@@ -49,7 +49,7 @@
 	<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-md-3 bg-white pt-10 cleftmenu">
+				<div class="col-md-3 bg-white pt-10 cleftmenu pb-20">
 					<div class="stickymenu" style="height: auto;">
 						<a href="javascript:void(0);" class="backbtn" style="font-size: 14px;"><i class="fa fa-long-arrow-left mr-10" aria-hidden="true"></i> Kembali</a>
 						<div class="text-center">
@@ -107,7 +107,7 @@
 								</div>
 							</div>
 							<input type="hidden" id="what" value="<?php $pin = $this->session->userdata('hasPIN'); if ($pin == 1) {echo 'true';}else{echo 'false';}  ?>">
-							<div class="container mt-20 rangebook" style="background: #DDDDDD;">
+							<div class="container mt-20 pb-5 rangebook" style="background: #DDDDDD;">
 								<div class="col-md-15">
 									<div class="form-group">
 										<select class="selectbook select-kurs" id="category_id" name="cat_book">
@@ -130,9 +130,9 @@
 									</div>
 									<div class="form-group">
 										<label class="text-muted">Mulai Jual Pada Chapter</label>
-										<input type="number" name="start_chapter" class="input-range start_chapter" id="font-size" style="width: 40%;">
-										<a class="ml-20 btn-transparant value-control addmin" data-action="minus" data-target="font-size"><img src="<?php echo base_url('public/img/assets/icon_minch_active.png'); ?>" width="35"></a>
-										<a class="ml-10 btn-transparant value-control addplus" data-action="plus" data-target="font-size"><img src="<?php echo base_url('public/img/assets/icon_plusch_active.png'); ?>" width="35"></a>
+										<input type="number" name="start_chapter" class="input-range start_chapter" id="start_chapter" style="width: 40%;" onkeypress="return event.charCode >= 48 && event.charCode <= 57" readonly>
+										<a class="ml-20 btn-transparant value-control addmin" data-action="minus" data-target="start_chapter" style="cursor: pointer;"><img src="<?php echo base_url('public/img/assets/icon_minch_active.png'); ?>" width="35"></a>
+										<a class="ml-10 btn-transparant value-control addplus" data-action="plus" data-target="start_chapter" style="cursor: pointer;"><img src="<?php echo base_url('public/img/assets/icon_plusch_active.png'); ?>" width="35"></a>
 									</div>
 								</div>
 							</div>
@@ -170,7 +170,7 @@
 					</div>
 
 					<div class="pull-right mb-10">
-						<input type="button" class="mr-30 saveasdraft" style="font-size: 18px;font-weight: bold;background: transparent; border: 0; cursor: pointer;" value="Simpan ke Draft" />
+						<input type="button" class="mr-30 saveasdraft" ch_id="" style="font-size: 18px;font-weight: bold;background: transparent; border: 0; cursor: pointer;" value="Simpan ke Draft" />
 						<button type="button" class="btnbeliskrg" id='publish_book' href="#" style="padding: 10px 50px;"><span class="txtbtnbeliskrg">Publish</span></button>
 						<button type='button' class='btnbeliskrg activeWallet' id='setpin_publish' style="display: none;padding: 10px 50px;"><span class="txtbtnbeliskrg">Publish</span></button>
 					</div>
