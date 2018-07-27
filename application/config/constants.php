@@ -97,6 +97,7 @@ URL = 'https://staging.baboo.id/'
 URL = 'https://dev-baboo.co.id/'
 */
 defined('BASE_URL_WEB')		OR define('BASE_URL_WEB', 'https://www.baboo.id/');
+defined('BASE_URL_DEEPLINK')		OR define('BASE_URL_DEEPLINK', 'www.baboo.id/');
 
 // CONFIG DB
 /*
