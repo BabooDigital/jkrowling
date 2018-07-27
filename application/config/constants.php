@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+
 /*
 |--------------------------------------------------------------------------
 | Display Debug backtrace
@@ -11,6 +12,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 defined('SHOW_DEBUG_BACKTRACE') OR define('SHOW_DEBUG_BACKTRACE', TRUE);
+
 /*
 |--------------------------------------------------------------------------
 | File and Directory Modes
@@ -28,6 +30,7 @@ defined('FILE_READ_MODE')  OR define('FILE_READ_MODE', 0644);
 defined('FILE_WRITE_MODE') OR define('FILE_WRITE_MODE', 0666);
 defined('DIR_READ_MODE')   OR define('DIR_READ_MODE', 0755);
 defined('DIR_WRITE_MODE')  OR define('DIR_WRITE_MODE', 0755);
+
 /*
 |--------------------------------------------------------------------------
 | File Stream Modes
@@ -44,6 +47,7 @@ defined('FOPEN_WRITE_CREATE')                   OR define('FOPEN_WRITE_CREATE', 
 defined('FOPEN_READ_WRITE_CREATE')              OR define('FOPEN_READ_WRITE_CREATE', 'a+b');
 defined('FOPEN_WRITE_CREATE_STRICT')            OR define('FOPEN_WRITE_CREATE_STRICT', 'xb');
 defined('FOPEN_READ_WRITE_CREATE_STRICT')       OR define('FOPEN_READ_WRITE_CREATE_STRICT', 'x+b');
+
 /*
 |--------------------------------------------------------------------------
 | Exit Status Codes
@@ -79,51 +83,73 @@ defined('EXIT_USER_INPUT')     OR define('EXIT_USER_INPUT', 7); // invalid user 
 defined('EXIT_DATABASE')       OR define('EXIT_DATABASE', 8); // database error
 defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
+
+
 // CONFIG BASE URL CI
 /*
 @@@ PRODUCTION @@@
 URL = 'https://www.baboo.id/'
+
 @@@ STAGING @@@
 URL = 'https://staging.baboo.id/'
+
 @@@ DEVELOPMENT @@@
 URL = 'https://dev-baboo.co.id/'
 */
-defined('BASE_URL_WEB')		OR define('BASE_URL_WEB', 'https://dev-baboo.co.id/');
-defined('BASE_URL_DEEPLINK')		OR define('BASE_URL_DEEPLINK', 'www.baboo.id/');
+defined('BASE_URL_WEB')		OR define('BASE_URL_WEB', 'https://staging.baboo.id/');
+
 // CONFIG DB
-defined('DB_HOST')			OR define('DB_HOST', '');
-defined('DB_USERNAME')		OR define('DB_USERNAME', '');
-defined('DB_USERPASSWORD')	OR define('DB_USERPASSWORD', '');
-defined('DB_NAME')			OR define('DB_NAME', '');
+/*
+@@@ STAGING @@@
+'hostname' => 'dbnode0',
+'username' => 'baboo_dbusr',
+'password' => 'B4booAWs2018',
+'database' => 'baboo_dbstg',
+
+@@@ PRODUCTION @@@
+'hostname' => '',
+'username' => '',
+'password' => '',
+'database' => '',
+*/
+defined('DB_HOST')			OR define('DB_HOST', 'dbnode0');
+defined('DB_USERNAME')		OR define('DB_USERNAME', 'baboo_dbusr');
+defined('DB_USERPASSWORD')	OR define('DB_USERPASSWORD', 'B4booAWs2018');
+defined('DB_NAME')			OR define('DB_NAME', 'baboo_dbstg');
+
 // CONFIG API URL
 /*
 API DEV = 'api.dev-baboo.co.id/v1/'
 API STG = 'https://api.staging.baboo.id/v1/'
 API PRD = 'https://api.baboo.id/v1/'
 */
-defined('API_URL')	OR	define('API_URL', 'api.dev-baboo.co.id/v1/');
+defined('API_URL')	OR	define('API_URL', 'https://api.staging.baboo.id/v1/');
+
 // CONFIG APP ID FACEBOOK
 /*
 APPID DEV = '196429547790304'	|	APPSEC DEV = '51d446946c5024034b06b66a18e70a81'
 APPID STG = '1677083049033942'	|	APPSEC STG = '72bfed7ed3b202de2797977e5d1ce09b'
 APPID PRD = '2093513617332249'	|	APPSEC PRD = '39ee66409a3d976689d7db1fc48e842f'
 */
-defined('APPID_FB')		OR	define('APPID_FB', '196429547790304');
-defined('APPSEC_FB')	OR	define('APPSEC_FB', '51d446946c5024034b06b66a18e70a81');
+defined('APPID_FB')		OR	define('APPID_FB', '1677083049033942');
+defined('APPSEC_FB')	OR	define('APPSEC_FB', '72bfed7ed3b202de2797977e5d1ce09b');
+
 // CONFIG APP ID GOOGLE
 /*
 APPID DEV = '625200931795-v9j07677ch7drvplu5ohpph4u48b4277.apps.googleusercontent.com'	|	APPSEC DEV = '9a-ThTIiKvuELANSjq-HFn4g'
 APPID STG = '347878416490-7era9p9mn379qdod4vbd61s217ubk2co.apps.googleusercontent.com'	|	APPSEC STG = 'TnNCHFjM1d8g44fzBM0cV3eL'
 APPID PRD = '87855736095-9bo8c78nojsne31dj3vr3gf694itavoh.apps.googleusercontent.com'	|	APPSEC PRD = 'DHXnd3vSUDQI8C0YOLmLk4YO'
 */
-defined('APPID_GOOGLE')		OR	define('APPID_GOOGLE', '625200931795-v9j07677ch7drvplu5ohpph4u48b4277.apps.googleusercontent.com');
-defined('APPSEC_GOOGLE')	OR	define('APPSEC_GOOGLE', '9a-ThTIiKvuELANSjq-HFn4g');
+defined('APPID_GOOGLE')		OR	define('APPID_GOOGLE', '347878416490-7era9p9mn379qdod4vbd61s217ubk2co.apps.googleusercontent.com');
+defined('APPSEC_GOOGLE')	OR	define('APPSEC_GOOGLE', 'TnNCHFjM1d8g44fzBM0cV3eL');
+
 // CONFIG Access Keys Midtrans
 /*
 @@@ PRODUCTION @@@
 Merchant ID = M127372
 Client Key	= Mid-client-JGAimn-rG7nf4PpW
 Server Key	= Mid-server-OOqHX9vrFCfo5OrmJ7pgrWoQ
+
 @@@ DEV/STG SANDBOX @@@
 Merchant ID = M127372
 Client Key	= SB-Mid-client-FbaqZneHUk1HWy6m
@@ -133,19 +159,23 @@ defined('MID_ID')		 OR	define('MID_ID', 'M127372');
 defined('MID_CLIENT')	 OR	define('MID_CLIENT', 'SB-Mid-client-FbaqZneHUk1HWy6m');
 defined('MID_SERVER')	 OR	define('MID_SERVER', 'SB-Mid-server-4bmgeo85fTsjFQccrdZt6T6E');
 defined('MID_STAT_PROD') OR	define('MID_STAT_PROD', false);
+
 // CONFIG BASE URL MIDTRANS
 /*
 @@@ PRODUCTION @@@
 URL = app.midtrans.com
-@@@ DEV/STG @@@ 
+
+@@@ DEV/STG @@@
 URL = app.sandbox.midtrans.com
 */
 defined('MID_BASE_URL')		 OR	define('MID_BASE_URL', 'app.sandbox.midtrans.com');
+
 // CONFIG ID GOOGLE ADSENSE
 /*
 @@@ PRODUCTION @@@
 data-ad-client	= "ca-pub-3590496162921239"
 data-ad-slot	= ""
+
 @@@ DEV/STG @@@
 data-ad-client	= "ca-pub-4994852796413443"
 data-ad-slot	= "7276054409"
