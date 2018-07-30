@@ -16,11 +16,9 @@ class C_search extends MX_Controller
 
     public function index()
     {
-        $data['title'] = "Pencarian - Baboo";
-
-        $data['js'][]   = "public/js/jquery.min.js";
-
         $datas['title'] = "Pencarian - Baboo";
+        $datas['page_desc'] = "Cari buku dan teman mu disini. - Baboo";
+
         $datas['css'][] = "public/css/bootstrap.min.css";
         $datas['css'][] = "public/css/custom-margin-padding.css";
         $datas['css'][] = "public/css/font-awesome.min.css";

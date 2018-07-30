@@ -17,6 +17,7 @@ class C_createpdf extends MX_Controller {
 	public function index()
 	{
 		$data['title'] = "Berikan Deskripsi Mengenai Cerita Mu - Baboo";
+		$data['page_desc'] = "Upload PDF mu dan Berikan Deskripsi Mengenai Cerita Mu - Baboo";
 		
 		$data['css'][] = "public/css/bootstrap.min.css";
 		$data['css'][] = "public/css/custom-margin-padding.css";
@@ -40,6 +41,7 @@ class C_createpdf extends MX_Controller {
 	public function uploadPDFView()
 	{
 		$data['title'] = "Upload Cerita Mu Dalam Bentuk PDF File - Baboo";
+		$data['page_desc'] = "Upload PDF - Baboo";
 		
 		$data['css'][] = "public/css/bootstrap.min.css";
 		$data['css'][] = "public/css/custom-margin-padding.css";
@@ -70,6 +72,7 @@ class C_createpdf extends MX_Controller {
         $auth = $this->session->userdata('authKey');
 
 		$data['title'] = "Berikan Deskripsi Mengenai Cerita Mu - Baboo";
+		$data['page_desc'] = "Upload PDF - Baboo";
 		
 		$data['css'][] = "public/css/bootstrap.min.css";
 		$data['css'][] = "public/css/custom-margin-padding.css";
