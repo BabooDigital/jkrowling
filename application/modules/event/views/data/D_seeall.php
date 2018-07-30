@@ -3,7 +3,7 @@
 		<div class="card">
 			<div class="card-body">
 				<div class="media">
-					<img class="align-self-start mr-3" src="<?php echo ($s_book['popular_cover_url'] != 'Kosong') ? ($s_book['popular_cover_url'] != null ? $s_book['popular_cover_url'] : base_url('public/img/icon-tab/empty-set.png')) : base_url('public/img/icon-tab/empty-set.png'); ?>" width="150" height="210" alt="Generic placeholder image">
+					<img class="align-self-start mr-3" src="<?php echo ($s_book['popular_cover_url'] != 'Kosong') ? ($s_book['popular_cover_url'] != null ? $s_book['popular_cover_url'] : base_url('public/img/blank_cover.png')) : base_url('public/img/blank_cover.png'); ?>" width="150" height="210" alt="Generic placeholder image">
 					<div class="media-body">
 						<!-- <h5 class="mt-0" style="color: #7661ca;">Top #1</h5> -->
 						<h3 class="mt-0"><a class="book_link" href="<?php echo site_url('book/'.$s_book['popular_book_id']); ?>"><?php echo $s_book['popular_book_title']; ?></a></h3>

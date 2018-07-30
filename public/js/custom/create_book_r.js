@@ -16,24 +16,11 @@ $(function(){
 function publishBook() {
   $("#publish_book").click(function() {
     var formData = new FormData();
-    var d_ch = '';
-    var ch = $(".start_chapter").val();
-    if (ch < 3) {
-      d_ch = '3';
-    }else if (ch > $('#count_chapter_plus_minus').val()-2){
-      d_ch = $('#count_chapter_plus_minus').val()-2;
-    }
-    var ch2 = $(".start_chapter_pdf").val();
-    if (ch2 < 50) {
-      d_ch2 = '50';
-    }else if (ch2 > $('#count_chapter_plus_minus').val()){
-      d_ch2 = $('#count_chapter_plus_minus').val();
-    }
     var start_ch = '';
     if ($('.pdfcheck').val() == 'true') {
-      start_ch = d_ch2;
+      start_ch = $(".start_chapter_pdf").val();
     }else{
-      start_ch = d_ch;
+      start_ch = $(".start_chapter").val();
     }
     var pr = $("#inputprice").val();
     var slide = $('.priceCheck:checkbox:checked');
@@ -513,6 +500,11 @@ function check_sell() {
         }
       });
       if (data.data.is_publishable == true) {
+
+        $('#writen1').text(data.data.writer_fee+'%');
+        $('#baboo1').text(data.data.baboo_fee+'%');
+        $('#fee1').text(data.data.ppn+'%');
+
         if (data.data.is_sellable == true && data.data.price == "0") {
           $(".start_chapter").val(data.data.total_chapter_sellable-2);
           $("#count_chapter_plus_minus").val(data.data.total_chapter);
@@ -549,10 +541,16 @@ function check_sell() {
             var payment_fee = data.data.payment_fee;
             var nominal = $(this).val().split(".").join("");
             var ppn = data.data.ppn * nominal / 100;
+            var writen_earn = parseFloat(id) * data.data.writer_fee / 100;
+            var baboo_earn = parseFloat(id) * data.data.baboo_fee / 100;
             var rp_total = parseFloat(id) + (ppn + payment_fee);
             $("#rp").show();
             $("#rp_fee").show();
+            $("#rp2").show();
+            $("#rp_fee2").show();
             $("#rp_total").show();
+            $('#writen-earn').number(writen_earn);
+            $('#baboo-earn').number(baboo_earn);
             $('#ppn').number(ppn);
             $('#payment_fee').number(payment_fee);
             $('#total').number(rp_total);

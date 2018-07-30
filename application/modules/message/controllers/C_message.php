@@ -67,6 +67,7 @@ class C_message extends MX_Controller
                 $this->load->view('R_message', $data);
             } else {
                 $datas['js'][] = "public/js/custom/notification.js";
+                $datas['js'][] = "public/js/custom/transaction.js";
                 $datas['js'][]   = "public/js/custom/search.js";
                 $this->load->view('include/head', $datas);
                 $this->load->view('D_message', $data);

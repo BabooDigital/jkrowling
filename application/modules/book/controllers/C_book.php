@@ -496,14 +496,35 @@ public function token_pay()
         $transaction_details = array(
           'order_id' => rand(),
           'gross_amount' => $data['data']['book_info']['book_price'],
+      );
+        $billing_address = array(
+            'first_name'       => $user['fullname'],
+            'phone'            => $user['phone_number'],
+            'address'          => $user['address']
+        );
+        $shipping_address = array(
+            'first_name'       => $user['fullname'],
+            'phone'            => $user['phone_number'],
+            'address'          => $user['address']
         );
         $customer_details = array(
-            'email'            => $user['email']
+            'email'            => $user['email'],
+            'first_name'       => $user['fullname'],
+            'phone'            => $user['phone_number'],
+            'billing_address'  => $billing_address,
+            'shipping_address' => $shipping_address 
+        );
+        $item_details = array(
+            'id' => $data['data']['book_info']['book_id'],
+            'price' => $data['data']['book_info']['book_price'],
+            'quantity' => 1,
+            'name' => $data['data']['book_info']['title_book']
         );
         $transaction = array(
           'transaction_details' => $transaction_details,
-          'customer_details' => $customer_details
-        );
+          'customer_details' => $customer_details,
+          'item_details' => $item_details
+      );
         $snapToken = $this->midtrans->getSnapToken($transaction);
         error_log($snapToken);
         echo $snapToken;

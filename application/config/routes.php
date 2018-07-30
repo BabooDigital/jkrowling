@@ -197,6 +197,9 @@ $route['getpublishbookother'] = 'profile/C_profile/getPublishBookOther';
 $route['getdraftbook'] = 'profile/C_profile/getDraftBook';
 $route['getlatestread'] = 'profile/C_profile/getLatestRead';
 
+$route['all-friends'] = 'profile/C_profile/getFollowersList';
+$route['profile/(:any)/all-friends'] = 'profile/C_profile/getFollowersListOther';
+
 $route['upload_pict'] = 'profile/C_edit_profile/postUploadProfPict';
 
 $route['firstlogin'] = 'profile/C_edit_profile/completeProfile';

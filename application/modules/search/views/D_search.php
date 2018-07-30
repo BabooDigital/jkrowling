@@ -59,7 +59,7 @@
 										">
 										<input type="hidden" name="" class="dbooktitle" value="<?php echo $s_book['title_book']; ?>">
 										<?php if ($s_book['cover_url'] != null): ?>
-											<img class="effect-img d-flex align-self-start mr-10 float-left" src="<?php echo ($s_book['cover_url'] != 'Kosong') ? ($s_book['cover_url'] != null ? $s_book['cover_url'] : base_url('public/img/icon-tab/empty-set.png')) : base_url('public/img/icon-tab/empty-set.png'); ?>" width="120" height="170" alt="<?php
+											<img class="effect-img d-flex align-self-start mr-10 float-left" src="<?php echo ($s_book['cover_url'] != 'Kosong') ? ($s_book['cover_url'] != null ? $s_book['cover_url'] : base_url('public/img/blank_cover.png')) : base_url('public/img/blank_cover.png'); ?>" width="120" height="170" alt="<?php
 											echo $s_book['title_book']; ?>">
 										<?php endif ?>
 									</a>
