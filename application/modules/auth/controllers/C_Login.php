@@ -116,9 +116,9 @@ class C_Login extends MX_Controller
                 // }else{
                 $bsession = $this->session->userdata('bookRef');
                 $csession = $this->session->userdata('chapterRef');
-                if (!empty($bsession)) {
+                if (!empty($bsession) && empty($csession)) {
                     redirect('book/'.$bsession);
-                }else if (!empty($csession)) {
+                }else if (!empty($csession) && !empty($bsession)) {
                     redirect('book/'.$bsession.'/chapter/'.$csession);
                 }else{
                     redirect('timeline');
@@ -201,14 +201,14 @@ class C_Login extends MX_Controller
                 //     }
                 // }else{
             $bsession = $this->session->userdata('bookRef');
-            $csession = $this->session->userdata('chapterRef');
-            if (!empty($bsession)) {
-                redirect('book/'.$bsession);
-            }else if (!empty($csession)) {
-                redirect('book/'.$bsession.'/chapter/'.$csession);
-            }else{
-                redirect('timeline');
-            }
+                $csession = $this->session->userdata('chapterRef');
+                if (!empty($bsession) && empty($csession)) {
+                    redirect('book/'.$bsession);
+                }else if (!empty($csession) && !empty($bsession)) {
+                    redirect('book/'.$bsession.'/chapter/'.$csession);
+                }else{
+                    redirect('timeline');
+                }
                 // }
         }else {
             $status = $resval['code'];
@@ -279,7 +279,7 @@ class C_Login extends MX_Controller
                 $csession = $this->session->userdata('chapterRef');
                 if (!empty($bsession) && empty($csession)) {
                     redirect('book/'.$bsession);
-                }else if (!empty($bsession) && !empty($csession)) {
+                }else if (!empty($csession) && !empty($bsession)) {
                     redirect('book/'.$bsession.'/chapter/'.$csession);
                 }else{
                     redirect('timeline');
