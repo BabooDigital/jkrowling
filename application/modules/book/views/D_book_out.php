@@ -44,7 +44,7 @@
 		var csrf_value = '<?php echo $this->security->get_csrf_hash(); ?>';
 	</script>
 	<!-- <script src="https://js.pusher.com/4.2/pusher.min.js"></script> -->
-	<script async src='//compass.adop.cc/assets/js/adop/adop.js?v=10' ></script>
+	<?php $this->load->view('include/third_party_script'); ?>
 </head>
 <style>
 .nav-link {

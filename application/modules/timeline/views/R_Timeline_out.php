@@ -24,7 +24,7 @@
 	<link href="<?php echo base_url();?>public/css/baboo-responsive.css" rel="stylesheet" type="text/css">
 	<link href="<?php echo base_url();?>public/css/custom-margin-padding.css" rel="stylesheet" type="text/css">
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-	<script async src='//compass.adop.cc/assets/js/adop/adop.js?v=10' ></script>
+	<?php $this->load->view('include/third_party_script'); ?>
 
 	
 </head>
