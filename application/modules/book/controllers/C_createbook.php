@@ -20,6 +20,7 @@ class C_createbook extends MX_Controller
 	public function index()
 	{
 		$data['title'] = "Buat Sebuah Cerita - Baboo";
+		$data['page_desc'] = "Tentukan Judul Cerita Mu - Baboo";
 		
 		$data['css'][] = "public/css/bootstrap.min.css";
 		$data['css'][] = "public/css/custom-margin-padding.css";
@@ -663,6 +664,7 @@ class C_createbook extends MX_Controller
 			redirect('login','refresh');
 		}else{
 			$data['title'] = "Buat Sebuah Cerita - Baboo";
+			$data['page_desc'] = "Buat Sebuah Cerita - Baboo";
 
 			$data['css'][] = "public/css/bootstrap.min.css";
 			$data['css'][] = "public/css/custom-margin-padding.css";
