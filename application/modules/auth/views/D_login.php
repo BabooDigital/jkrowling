@@ -2,7 +2,7 @@
 <html>
 <head>
 
-	<title>Login Baboo - Baca buku online</title>
+	<title><?php echo $title; ?></title>
 
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/page/login.css">

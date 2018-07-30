@@ -335,7 +335,7 @@ $(document).ready(function() {
             action_properties: JSON.stringify({
                 object: {
                     "og:url": link_url,
-                    "og:title": a + " ~ By : " + author,
+                    "og:title": a + " - " + chapter_title + " ~ By : " + author,
                     "og:description": desc,
                     "og:image": d
                 }
