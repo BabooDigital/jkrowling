@@ -1,13 +1,5 @@
 	
-	<!-- BANNER POPUP BUTTON PLAYSTORE DESKTOP -->
-	<!-- <div class="popUpBannerBox" style="display: block;"> 
-		<div class="popUpBannerInner"> 
-			<div class="popUpBannerContent">
-				<a href="https://play.google.com/store/apps/details?id=id.android.baboo"><span style="background:  #482d8e;padding: 15px 100px;border-radius:  35px;color:  #fff;font-size: 15pt;">Download App</span></a><a href="#" class="closeButton">X</a>
-
-			</div>
-		</div>
-	</div> -->
+	
 	<?php $this->load->view('navbar/D_navbar'); ?>	
 <div class="mt-50 hidden-sm hidden-xs">
 	<div class="slideboo">

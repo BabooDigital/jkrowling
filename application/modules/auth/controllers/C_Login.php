@@ -19,6 +19,8 @@ class C_Login extends MX_Controller
     
     public function index()
     {
+        $data['title'] = "Login Baboo - Baca buku online";
+
         $data['authUrl'] = $this->facebook->login_url();
         $data['authUrlG'] = $this->google->loginURL();
         $data['authUrlGEv'] = $this->google->loginURLEvent();

@@ -36,6 +36,8 @@ class C_home extends MX_Controller {
 		// $data['event'] = json_decode($resval['event']['response'], TRUE);
 
 		$data['title'] = "Baboo - Make Money From Writing";
+		$data['page_desc'] = "Baboo Situs untuk para pembaca dan pembuat buku dimana mereka dapat menghasilkan uang hanya dengan menulis ceritanya. Ayo buat bukumu sekarang!";
+
 		$data['js'][]   = "public/js/jquery.min.js";
 		$data['js'][]   = "public/plugins/infinite_scroll/jquery.jscroll.js";
 		$data['js'][]   = "public/js/jquery.bxslider.min.js";

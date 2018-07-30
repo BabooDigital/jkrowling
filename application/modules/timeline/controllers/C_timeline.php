@@ -42,7 +42,8 @@ class C_timeline extends MX_Controller {
 			$datas['writter'] = $best_writter['data'];
 			$datas['best'] = $best_book['data'];
 			$datas['title'] = "Baboo.id";
-			
+			$datas['page_desc'] = "Baboo Situs untuk para pembaca dan pembuat buku dimana mereka dapat menghasilkan uang hanya dengan menulis ceritanya. Ayo buat bukumu sekarang!";
+
 			$datas['css'][] = "public/css/sweetalert2.min.css";
 			$datas['js'][]	 = "public/js/sweetalert2.all.min.js";
 			$datas['js'][]   = "public/js/jquery.min.js";

@@ -15,11 +15,7 @@
 
 	<title><?php echo $title; ?></title>
 
-	<meta name="description" content="Situs untuk para pembaca dan pembuat buku dimana mereka dapat menghasilkan uang hanya dengan menulis ceritanya. Ayo buat bukumu sekarang!" />
-	<meta property="og:url" content="https://www.baboo.id/" />
-	<meta property="og:site_name" content="Baboo" />
-	<meta property="og:title" content="Babooo - Make Money From Writing" />
-	<meta property="og:description" content="Situs untuk para pembaca dan pembuat buku dimana mereka dapat menghasilkan uang hanya dengan menulis ceritanya. Ayo buat bukumu sekarang!" />
+	<?php echo $this->load->view('include/meta_head'); ?>
 	<!-- CSS -->
 	<link href="<?php echo base_url();?>public/css/bootstrap.css" rel="stylesheet">
 	<link href="<?php echo base_url();?>public/css/baboo.css" rel="stylesheet" type="text/css">

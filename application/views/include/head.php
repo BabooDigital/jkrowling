@@ -12,6 +12,8 @@
 	
 	<title><?php echo $title; ?></title>
 
+	<?php $this->load->view('include/meta_head'); ?>
+
 	<!-- CSS -->
 	<link href="<?php echo base_url();?>public/css/bootstrap.min.css" rel="stylesheet">
 	<link href="<?php echo base_url();?>public/css/baboo.css" rel="stylesheet" type="text/css">

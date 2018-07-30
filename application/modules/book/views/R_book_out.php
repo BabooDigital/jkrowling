@@ -19,7 +19,7 @@
 	<!-- Facebook -->
 	<?php $u1= $this->uri->segment(2); if ((bool)$detailBook['book_info']['is_pdf'] == true) { echo "<meta property='og:url'                content='".base_url('book/'.$u1.'/preview/pdf')."' />"; }else { echo "<meta property='og:url'                content='".base_url('book/'.$u1.'/preview')."' />"; }  ?>
 	<meta property="og:type"               content="website" />
-	<meta property="og:title"              content="<?php echo $title; ?> | Baboo.id" />
+	<meta property="og:title"              content="<?php echo $title; ?> &#8211; <?php echo $ch_title; ?>" />
 	<?php 
 	foreach ($desc as $meta) {
 		$txt  = strip_tags($meta['paragraph_text']);
@@ -31,7 +31,7 @@
 	
 	<meta property="og:image"              content="<?php echo $cover; ?>" />
 
-	<title><?php echo $title; ?> | Baboo.id</title>
+	<title><?php echo $title; ?> &#8211; <?php echo $ch_title; ?> | Baboo.id</title>
     <meta data-n-head="true" content="yes" data-hid="mobile-web-app-capable" name="mobile-web-app-capable">
     <meta data-n-head="true" content="#7661ca" data-hid="theme-color" name="theme-color">
     <meta data-n-head="true" content="#7661ca" data-hid="msapplication-navbutton-color" name="masapplication-navbutton-color">

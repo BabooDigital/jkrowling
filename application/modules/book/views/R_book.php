@@ -665,10 +665,11 @@
 	});
 
 	<?php if (empty($this->uri->segment(3))) {
-		echo "var link_url = '".BASE_URL_WEB."book/".$bid[0]."'";
+		echo "var link_url = '".BASE_URL_WEB."book/".$bid[0]."';";
 	}else{
-		echo "var link_url = '".BASE_URL_WEB."book/".$bid[0]."/chapter/".$cid."'";
+		echo "var link_url = '".BASE_URL_WEB."book/".$bid[0]."/chapter/".$cid."';";
 	} ?>
+	var chapter_title = '<?php echo $detail_book['data']['chapter']['chapter_title']; ?>';
 </script>
 </body>
 </html>

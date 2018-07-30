@@ -2,7 +2,8 @@
 <html>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <head>
-	<title>Login Baboo - Baca buku online</title>
+	<title><?php echo $title; ?></title>
+
 	<meta data-n-head="true" content="yes" data-hid="mobile-web-app-capable" name="mobile-web-app-capable">
 	<meta data-n-head="true" content="#7661ca" data-hid="theme-color" name="theme-color">
 	<meta data-n-head="true" content="#7661ca" data-hid="msapplication-navbutton-color" name="masapplication-navbutton-color">
