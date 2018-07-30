@@ -16,11 +16,9 @@ class C_search extends MX_Controller
 
     public function index()
     {
-        $data['title'] = "Pencarian - Baboo";
-
-        $data['js'][]   = "public/js/jquery.min.js";
-
         $datas['title'] = "Pencarian - Baboo";
+        $datas['page_desc'] = "Cari buku dan teman mu disini. - Baboo";
+
         $datas['css'][] = "public/css/bootstrap.min.css";
         $datas['css'][] = "public/css/custom-margin-padding.css";
         $datas['css'][] = "public/css/font-awesome.min.css";
@@ -37,7 +35,7 @@ class C_search extends MX_Controller
 
         if ($this->agent->mobile()) {
             $this->load->view('include/head', $datas);
-            $this->load->view('R_search', $datas);
+            $this->load->view('R_search');
         } else {
             error_reporting(0);
             $auth = $this->session->userdata('authKey');
