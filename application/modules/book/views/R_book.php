@@ -314,7 +314,7 @@
 				</div>
 			</div>
 			<div class="mt-15">
-				<button type="button" class="btn-share-ch share-fb-ch w-100 pt-10 pb-10"><img src="<?php echo base_url('public/img/assets/share_chapter.svg'); ?>"> Bagikan Buku</button>
+				<button type="button" class="btn-share-ch share-fb w-100 pt-10 pb-10"><img src="<?php echo base_url('public/img/assets/share_chapter.svg'); ?>"> Bagikan Buku</button>
 			</div>
 		</div>
 		<div class="mt-10">
@@ -502,7 +502,7 @@
 				<a href="javascript:void(0);" class="comment_"><img class="" src="<?php echo base_url(); ?>public/img/assets/icon_comment.svg" width="22"> <?php echo $this->thousand_to_k->ConvertToK($detail_book['data']['book_info']['book_comment_count']); ?></a>
 			</div>
 			<div>
-				<a class="share-fb" href="javascript:void(0);"><img class="" src="<?php echo base_url(); ?>public/img/assets/icon_share.svg" width="23"> <span class="boshare"><?php echo $this->thousand_to_k->ConvertToK($detail_book['data']['book_info']['share_count']); ?></span></a>
+				<a class="share-fb-ch" href="javascript:void(0);"><img class="" src="<?php echo base_url(); ?>public/img/assets/icon_share.svg" width="23"> <span class="boshare"><?php echo $this->thousand_to_k->ConvertToK($detail_book['data']['book_info']['share_count']); ?></span></a>
 			</div>
 			<div>
 				<a href="#"><img class="" src="<?php echo base_url(); ?>public/img/assets/icon_view.svg" width="35"> <?php echo $this->thousand_to_k->ConvertToK($detail_book['data']['book_info']['view_count']); ?></a>
