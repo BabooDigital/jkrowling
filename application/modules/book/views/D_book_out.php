@@ -16,7 +16,7 @@
 	<meta name="Keywords" content="baboo">
 
 	<!-- Facebook -->
-	<?php $u1= $this->uri->segment(2); if ($detailBook['book_info']['is_pdf'] == '1') { echo "<meta property='og:url'                content='".base_url('book/'.$u1.'/preview/pdf')."' />"; }else { echo "<meta property='og:url'                content='".base_url('book/'.$u1.'/preview')."' />"; }  ?>
+	<?php $u1= $this->uri->segment(2); $u2 = $this->uri->segment(5); if ((bool)$detailBook['book_info']['is_pdf'] == true) { echo "<meta property='og:url'                content='".base_url('book/'.$u1.'/preview/pdf')."' />"; } else {if (empty($this->uri->segment(5))) {echo "<meta property='og:url'                content='".base_url('book/'.$u1.'/preview')."' />"; }else{echo "<meta property='og:url'                content='".base_url('book/'.$u1.'/preview/chapter/'.$u2)."' />"; } } ?>
 	<meta property="og:type"               content="website" />
 	<meta property="og:title"              content="<?php echo $title; ?> &#8211; <?php echo $ch_title; ?>" />
 	<?php 
