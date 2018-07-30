@@ -35,7 +35,7 @@ class C_search extends MX_Controller
 
         if ($this->agent->mobile()) {
             $this->load->view('include/head', $datas);
-            $this->load->view('R_search', $datas);
+            $this->load->view('R_search');
         } else {
             error_reporting(0);
             $auth = $this->session->userdata('authKey');
