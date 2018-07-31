@@ -20,7 +20,7 @@ class C_transaction extends MX_Controller
 
 		$datas['transaction'] = $data['data'];
 		
-		$auth = $resval['bbo_auth'];
+		$auth = $data['bbo_auth'];
     	$this->session->set_userdata('authKey', $auth);
 		if ($datas['transaction']['code'] == 403){
 			$this->session->unset_userdata('userData');
@@ -28,7 +28,7 @@ class C_transaction extends MX_Controller
 			$this->session->sess_destroy();
 			redirect('login','refresh');
 		}else{
-			echo json_encode($datas['transaction'], true);
+			echo json_encode(count($datas['transaction']['data']), true);
 		}
 	}
 	public function detail_transaction()

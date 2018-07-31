@@ -1605,17 +1605,17 @@ input.formsearch:focus {
 		line-height: 14px;
 	}
 	#transaction_box_counter {
-		background: red;
-		margin-left: 5px;
-		padding:3px;
-
+		background: #fff;
+		vertical-align: middle;
+		font-weight: 600;
+		margin-left: 10px;
+		color: #5d9bb8;
+		padding: 0px 6px;
 		border-radius: 2px;
 		-moz-border-radius: 2px;
 		-webkit-border-radius: 2px;
-		
-		min-width: 20px;
 		line-height: 14px;
-		border-radius: 28px;
+		border-radius: 35px;
 	}
 	#notifications {
 		display:none;
