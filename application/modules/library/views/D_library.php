@@ -38,6 +38,10 @@
 {
     opacity:0.5 !important;
 }
+.slick-list {
+    border-radius: 10px;
+    box-shadow: 0px 0px 4px rgba(55, 111, 111, 0.4);
+}
 </style>
 <body>
     <?php $this->load->view('navbar/D_navbar'); ?>
@@ -46,29 +50,50 @@
             <div class="paddingslide">
                 <div class="row">
                     <div class="col-md-9">
-                        <h4 align="left"><b>Terakhir Dibaca</b></h4>
+                        <h4><b>Terakhir Dibaca</b></h4>
                         <div class="your-class">
                             <?php $this->load->view('include/slide'); ?>
                         </div>
                         <br>
-                        <h4 align="left"><b>Koleksi Buku</b></h4>
+                        <h4><b>Koleksi Buku</b></h4>
                         <div class="container" align="center">
                             <div class="row">
                                 <?php $this->load->view('include/collection'); ?>
                             </div>
                         </div>
                         <br>
-                        <h4 align="left"><b>Bookmark Buku</b></h4>
+                        <h4><b>Bookmark Buku</b></h4>
                         <div class="container" align="center">
                             <div class="row">
                                 <?php $this->load->view('include/bookmark'); ?>
                             </div>
                         </div>
                     </div>
-                    <?php if ($transaction['code'] == 404): ?>
-                        <div class="col-md-3">
-                            <div class="">
-                                <div class="card mb-15">
+                    <div class="col-md-3">
+                        <div style="margin-bottom: 30px;"></div>
+                        <?php if ($transaction['code'] == 404): ?>
+                            <div></div>
+                            <?php else: ?>
+                                <div class="mb-15">
+                                    <a data-toggle="modal" href="#list_trans">
+                                        <div style="position: relative;text-align: center; color: white;">
+                                            <img class="img-fluid w-100" src="<?php echo base_url('public/img/bg_peding_desk.svg'); ?>">
+                                            <div class="lefttop-inf">
+                                                <div class="text-left">
+                                                    <span class="text-white fs18px">Pembelian <span class="badge badge-pill badge-light" style="color: #5d9bb8;"><?php echo count($transaction['data']); ?></span></span>
+                                                </div>
+                                            </div>
+                                            <div class="leftbot-inf">
+                                                <div class="text-left">
+                                                    <p class="text-white"><span class="pendbook-lib"><?php $end = end($transaction['data']); echo $end['title_book']; ?></span><span class="text-light d-block pendtext-lib">Menunggu Proses Pembayaran . . .</span></p>
+                                                </div>
+                                            </div><span class="badge" style="position: absolute; right: 5%; bottom: 40%;">Details <i class="fa fa-chevron-right"></i></span>
+                                        </div>
+                                    </a>
+                                    <div class="loader mx-auto mt-10" style="display: none;"></div>
+                                </div>
+                            <?php endif ?>
+                            <div class="card mb-15">
                                     <div class="card-header">
                                         Buku Populer
                                     </div>
@@ -83,17 +108,13 @@
                                                     <li class="list-group-item">
                                                         <div class="media">
                                                             <div class="media-left mr-10">
-                                                                <a href="#"><img class="media-object" src="<?php echo $cover; ?>" width="60" height="80"></a>
+                                                                <a href="<?php if ((bool)$best_book['is_pdf'] == true) { echo site_url('book/'.$best_book['popular_book_id'].'-'.url_title($best_book['popular_book_title'], 'dash', true).'/pdf'); }else{ echo site_url('book/'.$best_book['popular_book_id'].'-'.url_title($best_book['popular_book_title'], 'dash', true)); } ?>"><img class="media-object rounded" src="<?php echo $cover; ?>" width="60" height="80"></a>
                                                             </div>
                                                             <div class="media-body">
-                                                                <div>
                                                                     <h4 class="media-heading bold mt-10">
-                                                                        <a href="book/<?php
-                                                                        echo $best_book['popular_book_id']; ?>
-                                                                        -<?php echo url_title($best_book['popular_book_title'], 'dash', true); ?>"><?php echo $best_book['popular_book_title'] ?></a>
+                                                                        <a href="<?php if ((bool)$best_book['is_pdf'] == true) { echo site_url('book/'.$best_book['popular_book_id'].'-'.url_title($best_book['popular_book_title'], 'dash', true).'/pdf'); }else{ echo site_url('book/'.$best_book['popular_book_id'].'-'.url_title($best_book['popular_book_title'], 'dash', true)); } ?>"><?php echo $best_book['popular_book_title'] ?></a>
                                                                     </h4>
-                                                                    <p style="font-size: 10pt;">by <a class="profile" data-usr-prf="<?php echo $best_book['popular_author_id']; ?>" data-usr-name="<?php echo url_title($best_book['popular_author_name']); ?>" href="profile/<?php echo url_title($best_book['popular_author_name']); ?>"><?php echo $best_book['popular_author_name']; ?></a></p>
-                                                                </div>
+                                                                    <p style="font-size: 10pt;">by <a class="profile" data-usr-prf="<?php echo $best_book['popular_author_id']; ?>" data-usr-name="<?php echo url_title($best_book['popular_author_name']); ?>" href="<?php echo site_url('profile/'.$best_book['popular_author_id'].'-'.url_title($best_book['popular_author_name'], 'dash', true)); ?>"><?php echo $best_book['popular_author_name']; ?></a></p>
                                                             </div>
                                                         </div>
                                                     </li>
@@ -102,67 +123,12 @@
                                             </ul>
                                     </div>
                                 </div><!-- Buku Populer -->
-                            </div>
                         </div>
-                    <?php else: ?>
-                        <div class="col-md-3">
-                            <h4 align="left"><b>Pembelian</b></h4>
-                            <div class="">
-                                <a data-toggle="modal" href="#list_trans">
-                                    <div class="statuspembelian" style="height: 245px;">
-                                        <div class="textpembelian">
-                                            <span class="">Pembelian</span><span id="transaction_box_counter"><?php echo count($transaction['data']); ?></span>
-                                            <span class="" style="float: right;"><img src="<?php echo base_url('public/img/assets/shape.svg') ?>"></span>
-                                        </div>
-                                        <br><br>
-                                        <div class="textpembelian">
-                                            <span class="" style="font-size: 20px;font-weight: bold;"><?php $end = end($transaction['data']); echo $end['title_book']; ?></span>
-                                            <br>
-                                            <p class="fontkecil">Menunggu proses pembayaran</p>
-                                            <br><br><br>
-                                            <p class="" style="float: right;">More</p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <div class="loader mx-auto mt-10" style="display: none;"></div>
-                            </div>
-                        </div>
-                    <?php endif ?>
                 </div>
             </div>
-            <?php if ($transaction['code'] == 200){
-                $paddingslide = 'paddingslide';
-            }else{
-                $paddingslide = '';
-            }
-            ?>
-            <div class="<?php echo $paddingslide; ?>">
-                <div class="row">
-                    <div class="col-md-9">
-                        
-
-                    </div>
-                    <?php if ($transaction['code'] == 200): ?>
-                        <div class="col-md-3">
-                            <div class="">
-                                <div class="card mb-15">
-                                    <div class="card-header">
-                                        Buku Populer
-                                    </div>
-                                    <div class="card-body p-0">
-                                        <ul class="list-group list-group-flush" id="best_book_library">
-
-                                        </ul>
-                                    </div>
-                                </div><!-- Buku Populer -->
-                            </div>
-                        </div>
-                    <?php endif ?>
-                </div>
-            </div>
-            <div class="paddingslide">
-                <div class="col-md-9">
-                    
+            <div class="mt-30">
+                <div class="col-12 text-center">
+                    <?php echo $this->load->view('ads/top_mid_ad'); ?>
                 </div>
             </div>
         </div>
@@ -293,8 +259,8 @@
                     nextSelector: '.nextbtn',
                     prevSelector: '.prevbtn',
 
-                    prevArrow:"<i class='fa fa-chevron-left contslider slidebtn prevbtn mt-20' style='width:47px;'></i>",
-                    nextArrow:"<i class='fa fa-chevron-right contslider slidebtn nextbtn mt-20' style='width:47px;'></i>",
+                    prevArrow:"<i class='fa fa-chevron-left contslider slidebtn prevbtn mt-20 text-dark' style='width:47px;cursor:pointer;'></i>",
+                    nextArrow:"<i class='fa fa-chevron-right contslider slidebtn nextbtn mt-20 text-dark' style='width:47px;cursor:pointer;'></i>",
                     responsive: [
                     {
                         breakpoint: 768,

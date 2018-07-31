@@ -33,11 +33,11 @@
 						<a class="nav-link  <?php if ($this->uri->segment('1') == 'timeline') { echo 'boo-menu-des-active'; }else { echo 'boo-menu-des'; } ?>" href="<?php echo site_url(); ?>"><img src="<?php if ($this->uri->segment('1') == 'timeline') { echo base_url('public/img/icon-tab/feed_icon_active.svg'); }else { echo base_url('public/img/icon-tab/feed_icon.svg'); } ?>" height="27"><p class="fs-12px">Explore</p></a>
 					</li>
 					<li class="nav-item mt-7 transaction_container">
-						<div id="transaction_counter" style="top: -10px;"></div>
+						<div id="transaction_counter" style="top: -10px;cursor: pointer;" title="Ada transaksi pembayaran yang harus kamu bayar"></div>
 						<a class="nav-link <?php if ($this->uri->segment('1') == 'library') { echo 'boo-menu-des-active'; }else { echo 'boo-menu-des'; } ?>" href="<?php echo site_url('library') ?>"><img src="<?php if ($this->uri->segment('1') == 'library') { echo base_url('public/img/icon-tab/library_icon_active.svg'); }else { echo base_url('public/img/icon-tab/library_icon.svg'); } ?>" height="27"><p class="fs-12px">Library</p></a>
 					</li>
 					<li class="nav-item mt-7 noti_Container">
-						<div id="noti_Counter" style="top: -10px;"></div>
+						<div id="noti_Counter" style="top: -10px;cursor: pointer;" title="Kamu memiliki pemberitahuan baru"></div>
 						<a id="noti_Button" class="nav-link <?php if ($this->uri->segment('1') == 'notification') { echo 'boo-menu-des-active'; }else { echo 'boo-menu-des'; } ?>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#"><img src="<?php echo site_url(); ?>public/img/icon-tab/notif_icon.svg" height="27"><p class="fs-12px">Activity</p></a>
 						<div id="notifications">
 							<h5>Notifications</h5>
