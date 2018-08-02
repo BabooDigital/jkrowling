@@ -30,7 +30,7 @@
             <li class="other">
                 <div class="avatar"><img class="d-flex align-self-start mr-20 rounded-circle"
                    src="<?php if (empty($messv["prof_pict"])) {
-                       echo base_url(); ?>public/img/profile/pp_wanita2.png<?php } else {
+                       echo base_url(); ?>public/img/profile/blank-photo.jpg<?php } else {
                            echo $messv["prof_pict"];
                        } ?>" width="48" height="48" alt="<?php echo $messv["fullname"]; ?>" draggable="false"></div>
                        <div class="msg">

@@ -182,7 +182,7 @@
 	<div class="row">
 		<!-- Left Side -->
 		<div class="col-md-3">
-			<div class="">
+			<div class="stickymenu">
 				<div class="card mb-15">
 					<div class="text-center pr-10 pl-10 pt-20">
 						<div class="card-body p-0 mb-20">
@@ -196,32 +196,27 @@
 							<div class="mb-20">
 								<?php if (!$this->uri->segment(2)): ?>
 									<a data-toggle="modal" data-target="#edit-profile" href="#" class="btn-edprof fs-12px mr-10">Edit Profile</a> <a href="<?php echo site_url('message'); ?>" class="btn-edprof fs-12px">Message</a>
-								<?php else: ?>
-									<a href="javascript:void(0);" class="btn-edprof fs-12px mr-10 message-user" data-usr-msg="<?php echo $userdata["user_id"]; ?>" data-usr-name ="<?php echo $userdata["fullname"]; ?>">Kirim Pesan
-									</a>
-									<a href="#" data-follow="<?php echo $userdata['user_id']; ?>" class="btn-edprof fs-12px <?php if ($userdata['isFollow'] == false) { echo "follow-u"; }else{ echo "unfollow-u"; } ?>"><span class=" txtfollow"><?php if ($userdata['isFollow'] == false) { echo "Ikuti"; }else{ echo "Diikuti"; } ?></span></a>
-									<input type="hidden" name="iaiduui" id="iaiduui" value="<?php $dat = $this->session->userdata('userData'); echo $dat['user_id']; ?>">
-								<?php endif ?>
-							</div>
-							<hr>
-							<?php if (!$this->uri->segment(2)): ?>
-								<!-- <div class="penghargaan">
-									<span class="text-left">Balance</span>
-									<button class="float-right btn-edprof fs-12px">Top Up</button>
-									<p></p>
-									<p class="text-left"><b><?php echo 'Rp. '.number_format($userdata['balance'], 0, ',', '.'); ?></b></p>
-								</div> -->
-								<div class="penghargaan">
-									<div class="pt-5 pb-5 pl-10 pr-10" style="background-color: #7661ca;border-radius: 10px;width: 110%;">
-										<?php $pin = $userdata['has_pin']; if ($pin == 1 || $pin != false) { ?>
-										<p class="text-left"><img src="<?php echo base_url('public/img/assets/icon_wallet_white.png'); ?>" class="img-fluid" width="20"> <span class="text-white">Dompet</span> <button type="button" class="float-right detail-wallet" data-toggle="modal" data-target="pinauth-modal" style="width: 30%;font-size: 13px;">Detail</button></p>
-										<p class="text-left mt-15"><button class="btn-transparant text-white btnActive" style="font-size: 20px;font-weight: 800;">Rp <?php echo number_format($userdata['balance'] , 0, ',', '.'); ?></button></p>
-										<?php }else{ ?>
-										<p class="text-left"><img src="<?php echo base_url('public/img/assets/icon_wallet_white.png'); ?>" class="img-fluid" width="20"> <span class="text-white">Dompet</span></p>
-										<p class="text-left mt-30"><button class="btn-transparant text-white btnActive activeWallet" style="font-size: 18px;">Aktifkan Sekarang ˃</button></p>
-										<?php } ?>
-									</div>
+									<?php else: ?>
+										<a href="javascript:void(0);" class="btn-edprof fs-12px mr-10 message-user" data-usr-msg="<?php echo $userdata["user_id"]; ?>" data-usr-name ="<?php echo $userdata["fullname"]; ?>">Kirim Pesan
+										</a>
+										<a href="#" data-follow="<?php echo $userdata['user_id']; ?>" class="btn-edprof fs-12px <?php if ($userdata['isFollow'] == false) { echo "follow-u"; }else{ echo "unfollow-u"; } ?>"><span class=" txtfollow"><?php if ($userdata['isFollow'] == false) { echo "Ikuti"; }else{ echo "Diikuti"; } ?></span></a>
+										<input type="hidden" name="iaiduui" id="iaiduui" value="<?php $dat = $this->session->userdata('userData'); echo $dat['user_id']; ?>">
+									<?php endif ?>
 								</div>
+								<hr>
+								<?php if (!$this->uri->segment(2)): ?>
+									<div class="penghargaan">
+										<div class="pt-5 pb-5 pl-10 pr-10" style="background-color: #7661ca;border-radius: 10px;width: 110%;">
+											<?php $pin = $userdata['has_pin']; if ($pin == 1 || $pin != false) { ?>
+												<p class="text-left"><img src="<?php echo base_url('public/img/assets/icon_wallet_white.png'); ?>" class="img-fluid" width="20"> <span class="text-white">Dompet</span> <button type="button" class="float-right detail-wallet" data-toggle="modal" data-target="pinauth-modal" style="width: 30%;font-size: 13px;">Detail</button></p>
+												<p class="text-left mt-15"><button class="btn-transparant text-white btnActive" style="font-size: 20px;font-weight: 800;">Rp <?php echo number_format($userdata['balance'] , 0, ',', '.'); ?></button></p>
+											<?php }else{ ?>
+												<p class="text-left"><img src="<?php echo base_url('public/img/assets/icon_wallet_white.png'); ?>" class="img-fluid" width="20"> <span class="text-white">Dompet</span></p>
+												<p class="text-left mt-30"><button class="btn-transparant text-white btnActive activeWallet" style="font-size: 18px;">Aktifkan Sekarang ˃</button></p>
+											<?php } ?>
+										</div>
+									</div>
+								<?php endif ?>
 								<div class="penghargaan">
 									<label><b>Statistik</b></label>
 								</div>
@@ -241,17 +236,16 @@
 												<a href="#"><img src="<?php echo base_url(); ?>public/img/assets/icon_soldbook.svg" width="27">
 													<p class="mt-5"><?php echo $userdata['book_sold']; ?></p></a>
 												</div><br><br><br>
-												<!-- <div class="mt-100 mb-20" style="background: #fcfbff;">
-													<br>
-													<p><small style="color:#fcfbff;">Buku Terjual</small></p>
-													<p style="font-size: 25px;color: #7a5abf;font-weight: 700;"><?php echo 'Rp. '.number_format($userdata['balance'], 0, ',', '.'); ?></p>
-												</div> -->
-											<?php endif ?>
+											</div>
+										</div>
+									</div><!-- Trending -->
+									<div class="mb-15" style="">
+										<div class="p-0">
+											<?php echo $this->load->view('ads/250_side_ad'); ?>
 										</div>
 									</div>
-								</div><!-- Trending -->
-							</div>
-						</div><!-- Mid Side -->
+								</div>
+							</div><!-- Mid Side -->
 						<?php if (!$this->uri->segment(2)): ?>
 							<div class="col-md-6" id="post-data">
 								<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
@@ -264,24 +258,63 @@
 								</ul>
 								<div class="tab-content" id="pills-tabContent">
 									<div class="tab-pane fade show active" id="pills-publish" role="tabpanel" aria-labelledby="pills-publish-tab">
-										<div id="publishdata">
-											
+										<div id="publishdata" class="w-100">
+											<?php echo $this->load->view('data/D_profile', $bookdata); 
+											if ($bookdata == null || $bookdata == [] || empty($bookdata)) {
+												echo "<div class='container first_login mt-30'> <div class='row'> <div class='mx-auto' style='width: 85%;'> <div class='text-center mb-10'><img src='".base_url('public/img/icon_draft_blank.png')."' width='190'></div> <div class='text-center'> <h4><b>Tentukan konten yang kamu suka!</b></h4> <p style='font-size: 12pt;'>Belum ada buku yg kamu publish</p> </div> </div> </div> </div>";
+											}
+											?>
 										</div>
+									</div>
+									<div class="tab-pane fade" id="pills-draft" role="tabpanel" aria-labelledby="pills-draft-tab">
+										<?php if (!empty($draftdata)) {
+											foreach ($draftdata as $d_book) {
+											if ((bool)$d_book['is_pdf'] == true) {
+											 	$edit_url = site_url('upload_mypdf/'.$d_book['book_id'].'?stat=draft');
+											 }else{
+											 	$edit_url = site_url('my_book/'.$d_book['book_id'].'?stat=draft');
+											 } ?>
+												<div class="card mb-20">
+													<div class="card-header bg-white">
+														<?php if ($d_book['status_publish']['status_id'] == 1 ) { ?>
+															<span><img src='public/img/assets/icon_clock.svg' width='20'> <?php echo $d_book['latest_update']; ?></span> 
+															<span class='float-right'><img src="<?php echo base_url('public/img/assets/icon_stat_draft.png'); ?>"></span>
+														<?php }else if ($d_book['status_publish']['status_id'] == 3) { ?>
+															<span><img src='public/img/assets/icon_clock.svg' width='20'> Terbit <?php echo date("d M Y", strtotime($d_book['publish_date'])); ?></span> 
+															<span class='float-right'><img src="<?php echo base_url('public/img/assets/icon_stat_revisi.png'); ?>"></span>
+														<?php } ?>
+													</div>
+													<div class="card-body">
+														<img alt="<?php echo $d_book['title_book']; ?>" class="d-flex align-self-start mr-10 float-left rounded" height="170" src="<?php echo ($d_book['cover_url'] != 'Kosong') ? ($d_book['cover_url'] != null ? $d_book['cover_url'] : base_url('public/img/blank_cover.png')) : base_url('public/img/blank_cover.png'); ?>" width="120">
+														<h4 class="card-title nametitle3"><span class="titlebooks"><?php echo $d_book['title_book']; ?></span></h4>
+														<p class="catbook mb-10"><span class="btn-no-fill"><?php echo $d_book['category']; ?></span></p>
+														<p class="text-desc-in"><?php echo $d_book['desc']; ?></p>
+													</div>
+													<div class="card-footer text-muted bg-white" style="font-size: 0.8em;font-weight: bold;">
+														<div class="pull-right" style="margin-top: 3px;">
+															<a class="mr-10 fs-14px mb-5" href="<?php echo $edit_url; ?>" style="border: 1px #333 solid;border-radius: 40px;padding: 8px 25px;"><img src="<?php echo base_url('public/img/assets/icon_pen.svg'); ?>" width="23"> Edit</a>
+														</div>
+														<div>
+															<button class="clear-btn deldraft" type="button" draft-id="<?php echo $d_book['book_id']; ?>"><img src="<?php echo base_url('public/img/icon-tab/dustbin.svg'); ?>" width="20"></button>
+														</div>
+													</div>
+												</div>
+											<?php } }else { } ?>
 									</div>
 									<div class="loader" style="display: none;margin-left: auto;margin-right: auto;"></div>
-									<div class="tab-pane fade" id="pills-draft" role="tabpanel" aria-labelledby="pills-draft-tab">
-										<div id="draftdata">
-
-										</div>
-									</div>
 								</div>
-							</div><!-- Right Side -->
+							</div>
+							<!-- Right Side -->
 						<?php else: ?>
 							<div class="col-md-6" id="post-data">
+								
+											<?php echo $this->load->view('data/D_profile', $bookdata); 
+											if ($bookdata == null || $bookdata == [] || empty($bookdata)) {
+												echo "<div class='container first_login mt-30'> <div class='row'> <div class='mx-auto' style='width: 85%;'> <div class='text-center mb-10'><img src='".base_url('public/img/icon_draft_blank.png')."' width='190'></div> <div class='text-center'> <h4><b>Tentukan konten yang kamu suka!</b></h4> <p style='font-size: 12pt;'>Belum ada buku yg kamu publish</p> </div> </div> </div> </div>";
+											}
+											?>
 								<?php if (!empty($bookdata)) {
-									foreach ($bookdata as $s_book) {
-//									    echo ((bool)$s_book['is_like'] == true) ? "like" : "unlike";
-									    ?>
+									foreach ($bookdata as $s_book) { ?>
 									<div class="card mb-15" style="padding: 0 10px 10px;">
 										<div class="card-body p-0 p-20">
 											<div class="row mb-20 pb-10" style="border-bottom: 1px rgba(225, 225, 225, 0.28) solid;">
@@ -292,7 +325,7 @@
 														echo $s_book['author_avatar']; } ?>" width="60" height="60" alt="<?php
 														echo $s_book['author_name']; ?>"></a>
 														<div class="media-body mt-5">
-															<a data-usr-prf="<?php echo $s_book['author_id']; ?>" data-usr-name="<?php echo url_title($s_book['author_name'], 'dash', true); ?>" href="<?php echo site_url(); ?>profile/<?php echo url_title($s_book['author_name'], 'dash', true); ?>" class="profile"><h5 class="card-title nametitle2"><?php
+															<a data-usr-prf="<?php echo $s_book['author_id']; ?>" data-usr-name="<?php echo url_title($s_book['author_name'], 'dash', true); ?>" href="<?php echo site_url('profile/'.$s_book['author']['author_id'].'-'.url_title($s_book['author']['author_name'], 'dash', true)); ?>" class="profile"><h5 class="card-title nametitle2"><?php
 															echo $s_book['author_name']; ?></h5></a>
 															<p><small>
 																<span><?php echo $s_book['publish_date'] ?></span></small></p>
@@ -310,7 +343,7 @@
 																">
 																<input type="hidden" name="" class="dbooktitle" value="<?php echo $s_book['title_book']; ?>">
 																<?php if ($s_book['cover_url'] != null): ?>
-																	<img class="effect-img d-flex align-self-start mr-20 float-left" src="<?php echo ($s_book['cover_url'] != 'Kosong') ? ($s_book['cover_url'] != null ? $s_book['cover_url'] : base_url('public/img/icon-tab/empty-set.png')) : base_url('public/img/icon-tab/empty-set.png'); ?>" width="120" height="170" alt="<?php
+																	<img class="effect-img d-flex align-self-start mr-20 float-left rounded" src="<?php echo ($s_book['cover_url'] != 'Kosong') ? ($s_book['cover_url'] != null ? $s_book['cover_url'] : base_url('public/img/blank_cover.png')) : base_url('public/img/blank_cover.png'); ?>" width="120" height="170" alt="<?php
 																	echo $s_book['title_book']; ?>">
 																<?php endif ?>
 															</a>
@@ -327,14 +360,14 @@
 															echo $s_book['share_count']; ?></span></p>
 															<p class="text-desc-in desc<?php
 															echo $s_book['book_id']; ?>"><span class="ptexts" style="font-family: 'Noto Serif', serif;"><?php
-															echo $s_book['desc']; ?> </span><a class="segment" data-href="<?php
-															echo $s_book['book_id']; ?>-<?php echo url_title($s_book['title_book'], 'dash', true); ?>" onclick="showLoading()" href="<?php echo site_url(); ?>book/<?php echo $s_book['book_id']; ?>-<?php echo url_title($s_book['title_book'], 'dash', true); ?>" class="readmore">Lanjut</a>
+															echo $s_book['desc']; ?> </span><a class="segment readmore" data-href="<?php
+															echo $s_book['book_id']; ?>-<?php echo url_title($s_book['title_book'], 'dash', true); ?>" onclick="showLoading()" href="<?php echo site_url(); ?>book/<?php echo $s_book['book_id']; ?>-<?php echo url_title($s_book['title_book'], 'dash', true); ?>">Lanjut</a>
 														</p>
 													</div>
 												</div>
 											</div>
 										</div>
-										<div class="card-footer text-muted" style="font-size: 0.8em;font-weight: bold;border-radius: 15px;">
+										<div class="card-footer text-muted" style="font-size: 0.8em;font-weight: bold;border-bottom-left-radius: 15px;border-bottom-right-radius: 15px;">
 											<div class="pull-right">
 												<div class="dropdown">
 													<button class="share-btn dropbtn fs-14px" type="button" id="dropShare" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -354,20 +387,34 @@
 											</div>
 										</div>
 									</div>
-									<?php } }else {
-									} ?>
+									<?php } }else { } ?>
 								</div><!-- Right Side -->
 							<?php endif ?>
 							<div class="col-md-3 tmlin">
-								<div class="">
+								<div class="stickymenu">
 									<!-- Buku Populer -->
 									<div class="card mb-15">
 										<div class="card-header">
 											Terakhir Dibaca
 										</div>
 										<div class="card-body p-0">
-											<ul class="list-group list-group-flush" id="latestreadbook">
-
+											<ul class="list-group list-group-flush">
+												<?php if (!empty($latestread)) {
+													foreach ($latestread as $l_book) { ?>
+														<li class="list-group-item">
+															<div class="media">
+																<div class="media-left mr-10">
+																	<a href="<?php if ((bool)$l_book['is_pdf'] == true) { echo site_url('book/'.$l_book['book_id'].'-'.url_title($l_book['title_book'], 'dash', true).'/pdf'); }else{ echo site_url('book/'.$l_book['book_id'].'-'.url_title($l_book['title_book'], 'dash', true)); } ?>"><img class="media-object rounded" height="80" src="<?php echo ($l_book['cover_url'] != 'Kosong') ? ($l_book['cover_url'] != null ? $l_book['cover_url'] : base_url('public/img/blank_cover.png')) : base_url('public/img/blank_cover.png'); ?>" width="60" style="object-fit: cover;"></a>
+																</div>
+																<div class="media-body">
+																	<div>
+																		<h4 class="media-heading bold mt-10"><a href="<?php if ((bool)$l_book['is_pdf'] == true) { echo site_url('book/'.$l_book['book_id'].'-'.url_title($l_book['title_book'], 'dash', true).'/pdf'); }else{ echo site_url('book/'.$l_book['book_id'].'-'.url_title($l_book['title_book'], 'dash', true)); } ?>"><?php echo $l_book['title_book']; ?></a></h4>
+																		<p style="font-size: 10pt;">by <a href="<?php echo site_url('profile/'.$l_book['author_id'].'-'.url_title($l_book['author_name'], 'dash', true)); ?>"><?php echo $l_book['author_name']; ?></a></p>
+																	</div>
+																</div>
+															</div>
+														</li>
+													<?php } }else { } ?>
 											</ul>
 										</div>
 									</div><!-- Buku Populer -->

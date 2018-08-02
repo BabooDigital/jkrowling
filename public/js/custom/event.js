@@ -89,7 +89,7 @@ $(document).ready(function() {
 // 	      	title = txt;
 // 	      }
 // 	      if (val.popular_cover_url == null || val.popular_cover_url == '' || val.popular_cover_url == 'Kosong') {
-// 	        cover = base_url+'public/img/icon-tab/empty-set.png';
+// 	        cover = base_url+'public/img/blank_cover.png';
 // 	      }else{
 // 	        cover = val.popular_cover_url;
 // 	      }

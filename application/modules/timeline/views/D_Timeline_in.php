@@ -30,8 +30,9 @@
 								<?php $follow = ""; ?>
 							<?php endif ?>
 							<li class='media baboocontent'>
-								<img class='d-flex mr-3 rounded-circle' src='<?php echo $img; ?>' width='50' height='50'><div class='media-body mt-7'>
-									<a class='profile' data-usr-prf='<?php echo $best_writter['author_id']; ?>' data-usr-name='<?php echo url_title($best_writter['author_name']); ?>' href='profile/<?php echo url_title($best_writter['author_name']); ?>'>
+								<a href="<?php echo site_url('profile/'.$best_writter['author_id'].'-'.url_title($best_writter['author_name'], 'dash', true)); ?>"><img class='d-flex mr-3 rounded-circle' src='<?php echo $img; ?>' width='50' height='50'></a>
+								<div class='media-body mt-7'>
+									<a class='profile' data-usr-prf='<?php echo $best_writter['author_id']; ?>' data-usr-name='<?php echo url_title($best_writter['author_name']); ?>' href='<?php echo site_url('profile/'.$best_writter['author_id'].'-'.url_title($best_writter['author_name'], 'dash', true)); ?>'>
 										<h5 class='mt-0 mb-1 nametitle'><?php echo $best_writter['author_name']; ?></h5>
 									</a>
 									<div class='pull-right baboocolor'><?php echo $follow; ?></div>
@@ -91,7 +92,7 @@
 								echo $best_book['popular_book_id']; ?>
 								-<?php echo url_title($best_book['popular_book_title'], 'dash', true); ?>"><?php echo $best_book['popular_book_title'] ?></a>
 											</h4>
-											<p style="font-size: 10pt;">by <a class="profile" data-usr-prf="<?php echo $best_book['popular_author_id']; ?>" data-usr-name="<?php echo url_title($best_book['popular_author_name']); ?>" href="profile/<?php echo url_title($best_book['popular_author_name']); ?>"><?php echo $best_book['popular_author_name']; ?></a></p>
+											<p style="font-size: 10pt;">by <a class="profile" data-usr-prf="<?php echo $best_book['popular_author_id']; ?>" data-usr-name="<?php echo url_title($best_book['popular_author_name']); ?>" href="<?php echo site_url('profile/'.$best_book['popular_author_id'].'-'.url_title($best_book['popular_author_name'], 'dash', true)); ?>"><?php echo $best_book['popular_author_name']; ?></a></p>
 										</div>
 									</div>
 								</div>
