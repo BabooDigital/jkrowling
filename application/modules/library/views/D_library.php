@@ -283,7 +283,9 @@
                     ]
                 });
 
-
+                function funcDropdown() {
+                    document.getElementById("myDropdown").classList.toggle("showss")
+                }
             </script>
         </body>
         </html>
