@@ -10,7 +10,7 @@
 						echo $s_book['author_avatar']; } ?>" width="60" height="60" alt="<?php
 						echo $s_book['author_name']; ?>"></a>
 						<div class="media-body mt-5">
-							<a data-usr-prf="<?php echo $s_book['author_id']; ?>" data-usr-name="<?php echo $s_book['author_name'] ?>" href="<?php echo site_url('profile/'.url_title($s_book['author_name'])) ?>" class="profile"><h5 class="card-title nametitle2 profile"><?php
+							<a data-usr-prf="<?php echo $s_book['author_id']; ?>" data-usr-name="<?php echo url_title($s_book['author_name'], 'dash', true); ?>" href="<?php echo site_url('profile/'.$s_book['author_id'].'-'.url_title($s_book['author_name'], 'dash', true)); ?>" class="profile"><h5 class="card-title nametitle2 profile"><?php
 							echo $s_book['author_name']; ?></h5></a>
 							<p><small>
 								<span><?php echo $s_book['publish_date'] ?></span></small></p>
@@ -28,7 +28,7 @@
 								">
 								<input type="hidden" name="" class="dbooktitle" value="<?php echo $s_book['title_book']; ?>">
 								<?php if ($s_book['cover_url'] != null): ?>
-									<img class="effect-img d-flex align-self-start mr-20 float-left" src="<?php echo ($s_book['cover_url'] != 'Kosong') ? ($s_book['cover_url'] != null ? $s_book['cover_url'] : base_url('public/img/icon-tab/empty-set.png')) : base_url('public/img/icon-tab/empty-set.png'); ?>" width="120" height="170" alt="<?php
+									<img class="effect-img d-flex align-self-start mr-20 float-left" src="<?php echo ($s_book['cover_url'] != 'Kosong') ? ($s_book['cover_url'] != null ? $s_book['cover_url'] : base_url('public/img/blank_cover.png')) : base_url('public/img/blank_cover.png'); ?>" width="120" height="170" alt="<?php
 									echo $s_book['title_book']; ?>">
 								<?php endif ?>
 							</a>

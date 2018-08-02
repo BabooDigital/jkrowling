@@ -2,31 +2,44 @@ function funcDropdown() {
     document.getElementById("myDropdown").classList.toggle("showss")
 }
 $(document).ready(function() {
-	// validateProfile();
-	// $("#profile-edit").validate({
-	// 	rules: {
-	// 		fullname: {
-	// 			required: true
-	// 		},
-	// 		dateofbirth: {
-	// 			required: true
-	// 		},
-	// 		address : {
-	// 			required: true
-	// 		}
-	// 	},
-	// 	messages: {
-	// 		fullname: {
-	// 			required: 'Nama Lengkap harus di isi'
-	// 		},
-	// 		dateofbirth: {
-	// 			required: 'Tanggal Harus Diisi'
-	// 		},
-	// 		address: {
-	// 			required: 'Alamat Harus di isi'
-	// 		}
-	// 	},
-	// 	submitHandler: function(form) {
+	
+	loaded = true;
+	var page = 2;
+	$(window).scroll(function() {
+		if  ($(window).scrollTop() + $(window).height() >= $(document).height() - 100 && loaded){
+			loadMoreData(page)
+			page++;
+		}
+	});
+
+	function loadMoreData(page) {
+		loaded = false;
+		$.ajax({
+			url: '?page=' + page,
+			type: "get",
+			beforeSend: function() {
+				$('.loader').show();
+			}
+		})
+		.done(function(data) {
+			if (!$.trim(data)) {
+				$('.loader').hide();
+				$('#publishdata').append("<div class='mb-30 text-center'>Tidak ada buku lagi, ayo buat lebih banyak buku!</div>");
+				return;
+
+			};
+			$('.loader').hide();
+			$("#publishdata").append(data);
+			loaded = true;
+		})
+		.fail(function(jqXHR, ajaxOptions, thrownError) {
+			console.log('server not responding...');
+			loaded = true;
+			location.reload();
+		});
+	}
+
+
 		$(document).on('click', '.ikuti-lomba', function() {
 			var formData = new FormData();
 
@@ -132,130 +145,6 @@ $(document).ready(function() {
 
 	var id = $('#iaiduui').val();
 
-	// PUBLISH BOOK DESKTOP
-	$.ajax({
-		url: base_url + 'getpublishbook',
-		type: 'POST',
-		dataType: 'json',
-		data: {
-			user_id: id,
-			csrf_test_name : csrf_value
-		},
-		beforeSend: function()
-		{
-			$('.loader').show();
-		}
-	}).done(function(data) {
-		if (data.code != 200) {
-			var datas = "";
-			datas += "<div class='container first_login mt-30'> <div class='row'> <div class='mx-auto' style='width: 85%;'> <div class='text-center mb-10'> <img src='public/img/icon_draft_blank.png' width='190'> </div> <div class='text-center'> <h4><b>Tentukan konten yang kamu suka!</b></h4> <p style='font-size: 12pt;'>Belum ada buku yg kamu publish</p></div> </div> </div> </div> ";
-		}else{
-			var datas = "";
-			$.each(data.data, function(i, item) {
-				var cover;
-				if (item.cover_url != null || item.cover_url != [] || item.cover_url != "") {
-					cover = item.cover_url;
-				} else if (item.cover_url == null || item.cover_url == [] || item.cover_url == "") {
-					cover = 'public/img/blank_cover.png';
-				}
-				var kataLike = "Batal Suka";
-				var isLike = "like";
-				var gambarLike = "public/img/assets/love_active.svg";
-				if(item.is_like == false){
-					isLike = "unlike";
-					gambarLike = "public/img/assets/icon_love.svg";
-					kataLike = "Suka";
-				}
-				datas += "<div class='card mb-15'> <div class='card-body pt-20 pb-20 pl-30 pr-30'> <div class='row'> <div class='media w-100'> <div class='media-body'> <a href='book/"+ item.book_id+"-"+convertToSlug(item.title_book) +"'> <img class='d-flex align-self-start mr-10 float-left' src='"+cover+"' width='120' height='170' alt='"+item.title_book+"'> </a> <span class='card-title nametitle3'><a href='book/"+ item.book_id+"-"+convertToSlug(item.title_book) +"'>"+item.title_book+"</a></span> <div class='dropdown float-right'><button class='btn btn-transparent dropdown-toggle float-right' type='button' data-toggle='dropdown'><span class='float-right'><img src='"+base_url+"/public/img/assets/caret.svg'></span></button><ul class='dropdown-menu dropdown-menu-right'> <li class='drpdwn-caret'><a href='javascript:void(0);' onclick='editBook("+item.book_id+","+item.is_pdf+")'>Edit Buku</a></li> <li class='drpdwn-caret'><a href='javascript:void(0);' onclick='deleteBook("+item.book_id+")'>Hapus Buku</a></li></ul></div><br><br><p class='catbook'><a href='#' class='mr-20'><span class='btn-no-fill'>"+item.category+"</span></a> <span class='mr-20'><img src='public/img/assets/icon_view.svg'> "+item.view_count+"</span> <span><img src='public/img/assets/icon_share.svg'> "+item.share_count+"</span></p> <p class='text-desc-in'>"+item.desc+" <a href='#' class='readmore'>Lanjut</a> </p> </div> </div> </div> </div><div class='card-footer text-muted' style='font-size: 0.8em;font-weight: bold;'> <div class='pull-right'> <a class='fs-14px' href='#'><img class='mr-10' src='public/img/assets/icon_share.svg' width='23'> Bagikan</a> </div> <div> <a class='mr-30 fs-14px "+isLike+"' href='javascript:void(0);' id='loveboo'><img class='mr-10 loveicon' src='"+gambarLike+"' width='27'> "+kataLike+"</a> <a class='fs-14px' href='#' id='commentboo'><img class='mr-10' src='public/img/assets/icon_comment.svg' width='25'> Komentar</a> </div> </div> </div>";
-			});
-		}
-		$('.loader').hide();
-		$("#publishdata").html(datas);
-	}).fail(function() {
-		console.log("error");
-	}).always(function() {
-	});
-
-	// DRAFT BOOK DESKTOP
-	$.ajax({
-		url: base_url + 'getdraftbook',
-		type: 'POST',
-		dataType: 'json',
-		data: {
-			user_id: id,
-			csrf_test_name : csrf_value
-		},
-		beforeSend: function()
-		{
-			$('.loader').show();
-		}
-	}).done(function(data) {
-		// console.log(data);
-		if (data.length != 0) {
-			var datas = "";
-			$.each(data, function(i, item) {
-				var cover;
-				if (item.cover_url == null || item.cover_url == [] || item.cover_url == "") {
-					cover = 'public/img/blank_cover.png';
-				}else {
-					cover = item.cover_url;
-				}
-				datas += "<div class='card mb-20'> <div class='card-header bg-white'> <span><img src='public/img/assets/icon_clock.svg' width='20'> "+item.latest_update+"</span> <span class='float-right' style='color: red;'>Draft</span> </div> <div class='card-body'> <img alt='"+item.category+"' class='d-flex align-self-start mr-10 float-left' height='170' src='"+cover+"' width='120'> <h4 class='card-title nametitle3'><span class='titlebooks'>"+item.title_book+"</span></h4> <p class='catbook mb-10'><span class='btn-no-fill'>"+item.category+"</span></p> <p class='text-desc-in'>"+item.desc+"</p> </div> <div class='card-footer text-muted bg-white' style='font-size: 0.8em;font-weight: bold;'> <div class='pull-right' style='margin-top: 3px;'>";
-				if (item.is_pdf == true) {
-					datas += "<a class='mr-10 fs-14px mb-5' href='"+base_url+"upload_mypdf/"+item.book_id+"' style='border: 1px #333 solid;border-radius: 40px;padding: 8px 25px;'><img src='public/img/assets/icon_pen.svg' width='23'> Edit</a> </div>";
-				}else{	
-					datas += "<a class='mr-10 fs-14px mb-5' href='"+base_url+"my_book/"+item.book_id+"' style='border: 1px #333 solid;border-radius: 40px;padding: 8px 25px;'><img src='public/img/assets/icon_pen.svg' width='23'> Edit</a> </div>";
-				}
-				datas += "<div> <button type='button' class='clear-btn deldraft' draft-id='"+item.book_id+"'><img src='public/img/icon-tab/dustbin.svg' width='20'></button> </div> </div> </div>";
-			}); 
-		}else {
-			var datas = "";
-			datas += "<div class='container first_login mt-30' style='height:100vh;'> <div class='row'> <div class='mx-auto' style='width: 85%;'> <div class='text-center mb-10'> <img src='public/img/icon_draft_blank.png' width='190'> </div> <div class='text-center'> <h4><b>Belum ada draft buku yang kamu tulis</b></h4> </div> </div> </div> </div>" ;
-		}
-		$('.loader').hide();
-		$("#draftdata").html(datas);
-	}).fail(function() {
-		console.log("error");
-	}).always(function() {
-	});
-	
-
-	// LATEST READ BOOK
-	$.ajax({
-		url: base_url + 'getlatestread',
-		type: 'POST',
-		dataType: 'json',
-		data: {
-			user_id: id,
-			csrf_test_name : csrf_value
-		},
-		beforeSend: function()
-		{
-			$('.loader').show();
-		}
-	}).done(function(data) {
-		if (data != 0) {
-			var datas = "";
-			$.each(data, function(i, item) {
-				var cover;
-				if (item.cover_url != null || item.cover_url != [] || item.cover_url != "") {
-					cover = item.cover_url;
-				} else if (item.cover_url == null || item.cover_url == [] || item.cover_url == "") {
-					cover = 'public/img/blank_cover.png';
-				}
-				// console.log(item);
-				datas += "<li class='list-group-item'> <div class='media'> <div class='media-left mr-10'> <a href='"+base_url+"book/"+ item.book_id+"-"+convertToSlug(item.title_book) +"'><img class='media-object' src='"+ cover +"' width='60' height='80'></a> </div> <div class='media-body'> <div> <h4 class='media-heading bold mt-10'><a href='"+base_url+"book/"+ item.book_id+"-"+convertToSlug(item.title_book) +"'>"+ item.title_book +"</a></h4> <p style='font-size: 10pt;'>by <a href='"+base_url+"profile/"+item.author_id+"-"+convertToSlug(item.author_name)+"'>"+ item.author_name +"</a></p> </div> </div> </div> </li>";
-			});
-		}else {
-			var datas = "";
-			datas += "<p class='text-center'>Belum membaca buku manapun</p>";
-		}
-		$('.loader').hide();
-		$("#latestreadbook").html(datas);
-	}).fail(function() {
-		console.log("error");
-	}).always(function() {
-	});
 
 });
 

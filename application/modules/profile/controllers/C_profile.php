@@ -26,9 +26,13 @@ class C_profile extends MX_Controller {
 		$sendData = array('count' => $idpage);
 
 		$datas2 = $this->curl_request->curl_post($this->API.'timeline/Timelines/publish', $sendData, $auth);
+		$datas3 = $this->curl_request->curl_post($this->API.'timeline/Timelines/draft', '', $auth);
+		$datas4 = $this->curl_request->curl_post($this->API.'book/Books/latestRead', '', $auth);
 
 		$data['userdata'] = $datas['data'];
 		$data['bookdata'] = $datas2['data'];
+		$data['draftdata'] = $datas3['data'];
+		$data['latestread'] = $datas4['data'];
 		$data['title'] = "Profile Page - Baboo";
 		$data['css'][] = "public/css/sweetalert2.min.css";
 
@@ -68,9 +72,13 @@ class C_profile extends MX_Controller {
 					$data['js'][] = "public/js/custom/profile_page.js";
 					$data['js'][] = "public/js/custom/cashout_auth.js";
                 	$data['js'][]   = "public/js/custom/search.js";
-
-					$this->load->view('include/head', $data);
-					$this->load->view('D_profile');
+                	
+                	if (!empty($this->input->get("page"))) {
+						$result = $this->load->view('data/D_profile', $data);
+					}else{
+						$this->load->view('include/head', $data);
+						$this->load->view('D_profile');
+					}
 				}
 			}else {
 				$this->session->set_flashdata('fail_alert', '<script>
@@ -112,9 +120,11 @@ class C_profile extends MX_Controller {
 			'count' => $idpage
 		);
 		$datas = $this->curl_request->curl_post($this->API.'auth/OAuth/otherProfile', $sendData, $auth);
+		$datas2 = $this->curl_request->curl_post($this->API.'book/Books/latestRead', $sendData, $auth);
 
 		$data['userdata'] = $datas['data']['user_info'];
 		$data['bookdata'] = $datas['data']['book_published'];
+		$data['latestread'] = $datas2['data'];
 
 		$data['title'] = "Profile Page - Baboo";
 		$data['js'][] = "public/js/jquery.min.js";
@@ -123,6 +133,7 @@ class C_profile extends MX_Controller {
 		$data['js'][] = "public/js/jquery.sticky-kit.min.js";
 		$data['js'][] = "public/js/custom/follow.js";
 		$data['js'][] = "public/js/custom/notification.js";
+		$data['js'][] = "public/js/custom/transaction.js";
 
 		if (http_response_code() == 403){
 			$this->session->unset_userdata('userData');
@@ -144,7 +155,6 @@ class C_profile extends MX_Controller {
 					if (!empty($this->input->get("page"))) {
 						$result = $this->load->view('data/R_other_profile', $data);
 					}else{
-
 						$this->load->view('include/head', $data);
 						$this->load->view('R_other_profile');
 					}
