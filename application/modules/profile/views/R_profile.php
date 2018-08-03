@@ -74,18 +74,19 @@
 						<?php endif ?>
 						<hr>
 						<div class="info">
-							<img src="<?php echo base_url('') ?>public/img/icon-tab/book.svg"><b class="label_info">
-								<?php echo $userdata['book_made']; ?></b>
+							<img src="<?php echo base_url('') ?>public/img/icon-tab/book.svg"><b class="label_info"><?php echo $this->thousand_to_k->ConvertToK($userdata['book_made']); ?></b>
 								<p class="text-muted">Buku</p>
 							</div>
 							<div class="info">
-								<img src="<?php echo base_url('') ?>public/img/icon-tab/followers.svg"><b
-								class="label_info"> <?php echo $userdata['followers']; ?></b>
-								<p class="text-muted">Teman</p>
+								<a href="<?php echo site_url('all-friends'); ?>" class="view-friends">
+									<img src="<?php echo base_url('') ?>public/img/icon-tab/followers.svg"><b
+									class="label_info"><?php echo $this->thousand_to_k->ConvertToK($userdata['followers']); ?></b>
+									<p class="text-muted">Teman</p>
+								</a>
 							</div>
 							<div class="info_last">
 								<img src="<?php echo base_url('') ?>public/img/icon-tab/sale.svg"><b
-								class="label_info"><?php echo $userdata['book_sold']; ?></b>
+								class="label_info"><?php echo $this->thousand_to_k->ConvertToK($userdata['book_sold']); ?></b>
 								<p class="text-muted">Terjual</p>
 							</div>
 							<br>

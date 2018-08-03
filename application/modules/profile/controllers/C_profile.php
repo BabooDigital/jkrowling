@@ -369,4 +369,88 @@ class C_profile extends MX_Controller {
 			echo json_encode($comm_data);
 		}
 	}
+
+	public function getFollowersList()
+	{
+		error_reporting(0);
+		$auth = $this->session->userdata('authKey');
+
+		$resval = $this->curl_request->curl_post_auth($this->API.'auth/OAuth/listFollowers', '', $auth);
+
+		$foll_list = $resval['data']['data'];
+		$status = $resval['data']['code'];
+
+		$auth = $resval['bbo_auth'];
+		$this->session->set_userdata('authKey', $auth);
+
+		$data['followers'] = $resval['data']['data'];
+		$data['title'] = "Semua Daftar Teman Mu | Baboo.id";
+		$data['css'][] = "public/css/bootstrap.min.css";
+		$data['css'][] = "public/css/font-awesome.min.css";
+		$data['css'][] = "public/css/baboo-responsive.css";
+		$data['css'][] = "public/css/custom-margin-padding.css";
+		$data['js'][] = "public/js/jquery.min.js";
+		$data['js'][] = "public/js/tether.min.js";
+		$data['js'][] = "public/js/umd/popper.min.js";
+		$data['js'][] = "public/js/bootstrap.min.js";
+		$data['js'][]   = "public/js/custom/follow.js";
+		$data['js'][] = "public/js/menupage.js";
+		
+		if ($status == 403) {
+			$this->session->unset_userdata('userData');
+			$this->session->unset_userdata('authKey');
+			$this->session->sess_destroy();
+			redirect('login', 'refresh');
+		} else {
+			if ($this->agent->mobile()) {
+				$this->load->view('R_list_followers', $data);
+			}else{
+				redirect('profile','refresh');
+			}
+		}
+	}
+
+	public function getFollowersListOther()
+	{
+		error_reporting(0);
+		$auth = $this->session->userdata('authKey');
+		$id_user = $this->uri->segment(2);
+        $idb = explode('-', $id_user, 2);
+        if (is_array($idb)) ;
+		$sendData = array('user_id' => $idb[0]);
+
+		$resval = $this->curl_request->curl_post_auth($this->API.'auth/OAuth/listFollowers', $sendData, $auth);
+
+		$foll_list = $resval['data']['data'];
+		$status = $resval['data']['code'];
+
+		$auth = $resval['bbo_auth'];
+		$this->session->set_userdata('authKey', $auth);
+
+		$data['followers'] = $resval['data']['data'];
+		$data['title'] = "Semua Daftar Teman | Baboo.id";
+		$data['css'][] = "public/css/bootstrap.min.css";
+		$data['css'][] = "public/css/font-awesome.min.css";
+		$data['css'][] = "public/css/baboo-responsive.css";
+		$data['css'][] = "public/css/custom-margin-padding.css";
+		$data['js'][] = "public/js/jquery.min.js";
+		$data['js'][] = "public/js/tether.min.js";
+		$data['js'][] = "public/js/umd/popper.min.js";
+		$data['js'][] = "public/js/bootstrap.min.js";
+		$data['js'][]   = "public/js/custom/follow.js";
+		$data['js'][] = "public/js/menupage.js";
+		
+		if ($status == 403) {
+			$this->session->unset_userdata('userData');
+			$this->session->unset_userdata('authKey');
+			$this->session->sess_destroy();
+			redirect('login', 'refresh');
+		} else {
+			if ($this->agent->mobile()) {
+				$this->load->view('R_list_followers_other', $data);
+			}else{
+				redirect('profile','refresh');
+			}
+		}
+	}
 }
