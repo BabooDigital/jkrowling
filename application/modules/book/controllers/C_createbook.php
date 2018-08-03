@@ -184,6 +184,7 @@ class C_createbook extends MX_Controller
 
 		if ($this->agent->mobile()) {
 			$data['title'] = "Buat Sebuah Cerita - Baboo";
+			$data['page_desc'] = "Buat Sebuah Cerita - Baboo";
 
 			$data['css'][] = "public/css/bootstrap.min.css";
 			$data['css'][] = "public/css/custom-margin-padding.css";
@@ -290,6 +291,7 @@ class C_createbook extends MX_Controller
 		$data['chapter'] = $resval['data'];
 		
 		$data['title'] = "Ubah Cerita Mu - Baboo";
+		$data['page_desc'] = "Ubah Cerita Mu - Baboo";
 		
 		$data['css'][] = "public/css/bootstrap.min.css";
 		$data['css'][] = "public/css/custom-margin-padding.css";
@@ -1113,7 +1115,7 @@ class C_createbook extends MX_Controller
 		$parap   = $this->input->post('book_paragraph', TRUE);
 		$price   = $this->input->post('price');
 		$total_price = $this->input->post('total_price', TRUE);
-		$start_chapter = $this->input->post('start_chapter', TRUE);
+		$start_chapter = $this->input->post('chapter_start', TRUE);
 
 		$output   = preg_replace("/(<[^>]+) style='.*?'/i", "$1", $parap);
 

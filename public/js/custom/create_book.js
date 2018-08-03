@@ -452,6 +452,11 @@ function getChapter() {
 			$("#preview").attr('src', base_url+'public/img/assets/def_prev.png');
 		}
 		if (data.is_publishable == true) {
+
+			$('#writen1').text(data.writer_fee+'%');
+			$('#baboo1').text(data.baboo_fee+'%');
+			$('#fee1').text(data.ppn+'%');
+
 			if (data.is_sellable == true && data.book_info.is_free == true) {
 				swal({
 					title: 'Yeay...!',
@@ -496,14 +501,19 @@ function getChapter() {
 					var payment_fee = data.payment_fee;
 					var nominal = $(this).val().split(".").join("");
 					var ppn = data.ppn * nominal / 100;
-					var rp_total = ppn + payment_fee;
-					var total = parseInt(rp_total) + parseInt(id);
+					var writen_earn = parseFloat(id) * data.writer_fee / 100;
+					var baboo_earn = parseFloat(id) * data.baboo_fee / 100;
+					var rp_total = parseFloat(id) + (ppn + payment_fee);
 					$("#rp").show();
 					$("#rp_fee").show();
+					$("#rp2").show();
+					$("#rp_fee2").show();
 					$("#rp_total").show();
+					$('#writen-earn').number(writen_earn);
+					$('#baboo-earn').number(baboo_earn);
 					$('#ppn').number(ppn);
 					$('#payment_fee').number(payment_fee);
-					$('#total').number(total);
+					$('#total').number(rp_total);
 					$("#sell_nominal").show();
 					$("#sell_nominal").html("<input type='text' name='price' value='"+nominal+"'><input type='text' name='total_price' value='"+total+"'>");
 				});
@@ -591,13 +601,6 @@ $(document).on('click', '#setpin_publish', function() {
 
 $("#publish_book").click(function() {
 	var formData = new FormData();
-	var d_ch = '';
-	var ch = $(".start_chapter").val();
-	if (ch < 3) {
-		d_ch = '3';
-	}else if (ch > $('#count_chapter_plus_minus').val()-2){
-		d_ch = $('#count_chapter_plus_minus').val()-2;
-	}
 	var pr = $(".input-range").val();
 	var slide = $('#is_free:checkbox:checked');
     var asd = slide.is(':empty');
@@ -605,7 +608,7 @@ $("#publish_book").click(function() {
 		formData.append("is_paid", false);
 	}else{
 		formData.append("price", pr);
-		formData.append("chapter_start", d_ch);
+		formData.append("chapter_start", $("#chapter_start").val());
 		formData.append("is_paid", true);
 	}
 	formData.append("book_id", $("#uri").val());

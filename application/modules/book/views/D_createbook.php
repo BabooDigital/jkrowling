@@ -115,22 +115,43 @@
 										</select>
 										<input type="text" name="Harga Buku" class="input-range" placeholder="Masukan Harga Buku">
 									</div>
+									<div class="row">
+										<div class="col-5">
+											<label class="fs-10">Penulis (<span id="writen1"></span>)</label>
+										</div>
+										<div class="col-7">
+											<label class="fs-10-right"><b style="display: none;" id="rp2">Rp</b> <b id="writen-earn">-</b></label>
+										</div>
+										<div class="col-5">
+											<label class="fs-10">Baboo (<span id="baboo1"></span>)</label>
+										</div>
+										<div class="col-7">
+											<label class="fs-10-right"> <b style="display: none;" id="rp_fee2">Rp</b> <b id="baboo-earn">-</b></label>
+										</div>
+									</div>
+									<hr class="mt-5 mb-5">
+									<div class="row">
+										<div class="col-5">
+											<label class="fs-10">+ Pph 21 (<span id="fee1"></span>)</label>
+										</div>
+										<div class="col-7">
+											<label class="fs-10-right"><b style="display: none;" id="rp">Rp</b> <b id="ppn">-</b></label>
+										</div>
+										<div class="col-5">
+											<label class="fs-10">+ Biaya Transaksi</label>
+										</div>
+										<div class="col-7">
+											<label class="fs-10-right"> <b style="display: none;" id="rp_fee">Rp</b> <b id="payment_fee">-</b></label>
+										</div>
+									</div>
+									<hr class="mt-5 mb-5">
 									<div class="form-group pd-ppn">
-										<label class="text-muted fs-10">PPN 10%</label>
-										<label class="text-muted fs-10-right"><b style="display: none;" id="rp">Rp</b> <b id="ppn">-</b></label>
-									</div>
-									<div class="form-group pd-ppn" style="margin-top: -30px;">
-										<label class="text-muted fs-10">Payment Fee</label>
-										<label class="text-muted fs-10-right"> <b style="display: none;" id="rp_fee">Rp</b> <b id="payment_fee">-</b></label>
-									<hr style="margin-top: -5px;">
-									</div>
-									<div class="form-group pd-ppn" style="margin-top: -35px;">
-										<label class="text-muted fs-10">Harga Jual Buku</label>
-										<label class="text-muted fs-10-right"> <b style="display: none;" id="rp_total">Rp</b> <b id="total">-</b></label>
+										<label class="fs-10">Harga Jual Buku</label>
+										<label class="fs-10-right"> <b style="display: none;" id="rp_total">Rp</b> <b id="total">-</b></label>
 									</div>
 									<div class="form-group">
-										<label class="text-muted">Mulai Jual Pada Chapter</label>
-										<input type="number" name="start_chapter" class="input-range start_chapter" id="start_chapter" style="width: 40%;" onkeypress="return event.charCode >= 48 && event.charCode <= 57" readonly>
+										<label class="">Mulai Jual Pada Chapter</label>
+										<input type="number" name="start_chapter" class="input-range start_chapter" id="chapter_start" style="width: 40%;" onkeypress="return event.charCode >= 48 && event.charCode <= 57" readonly>
 										<a class="ml-20 btn-transparant value-control addmin" data-action="minus" data-target="start_chapter" style="cursor: pointer;"><img src="<?php echo base_url('public/img/assets/icon_minch_active.png'); ?>" width="35"></a>
 										<a class="ml-10 btn-transparant value-control addplus" data-action="plus" data-target="start_chapter" style="cursor: pointer;"><img src="<?php echo base_url('public/img/assets/icon_plusch_active.png'); ?>" width="35"></a>
 									</div>
