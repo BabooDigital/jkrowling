@@ -227,18 +227,33 @@ if (!empty($query['stat'])) {
 							</div>
 							<div class="form-group col-8">
 								<label class="text-muted">Harga Buku Lengkap</label>
-								<input type="number" class="form-control" id="inputprice" placeholder="60000">
+								<input type="number" class="form-control" id="inputprice" placeholder="12000">
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-4">
-								<label class="text-muted fs-10">PPN 10%</label>
+								<label class="text-muted fs-10">Penulis (<span id="writen1"></span>)</label>
+							</div>
+							<div class="col-8">
+								<label class="text-muted fs-10-right"><b style="display: none;" id="rp2">Rp</b> <b id="writen-earn">-</b></label>
+							</div>
+							<div class="col-4">
+								<label class="text-muted fs-10">Baboo (<span id="baboo1"></span>)</label>
+							</div>
+							<div class="col-8">
+								<label class="text-muted fs-10-right"> <b style="display: none;" id="rp_fee2">Rp</b> <b id="baboo-earn">-</b></label>
+							</div>
+						</div>
+						<hr class="mt-5 mb-5">
+						<div class="row">
+							<div class="col-4">
+								<label class="text-muted fs-10">+ Pph 21 (<span id="fee1"></span>)</label>
 							</div>
 							<div class="col-8">
 								<label class="text-muted fs-10-right"><b style="display: none;" id="rp">Rp</b> <b id="ppn">-</b></label>
 							</div>
 							<div class="col-4">
-								<label class="text-muted fs-10">Payment Fee</label>
+								<label class="text-muted fs-10">+ Biaya Transaksi</label>
 							</div>
 							<div class="col-8">
 								<label class="text-muted fs-10-right"> <b style="display: none;" id="rp_fee">Rp</b> <b id="payment_fee">-</b></label>
@@ -305,6 +320,7 @@ if (!empty($query['stat'])) {
 			<?php echo get_js($js) ?>
 		<?php endif ?>
 		<script>
+			$('#inputprice').number(true);
 			check_sell();
 			checkingPIN();
 			$(document).on('click','.tncModal',function(){
