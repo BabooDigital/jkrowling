@@ -107,7 +107,7 @@
 				</div>
 				<div class="row" id="post-data">
 					<?php 
-						$this->load->view('data/D_timeline_out', $home);
+						$this->load->view('data/D_Timeline_out', $home);
 					?>
 				</div>
 				<div class="loader" style="display: none;margin-left: auto;margin-right: auto;"></div>
