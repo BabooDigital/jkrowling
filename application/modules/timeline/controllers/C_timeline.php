@@ -82,7 +82,7 @@ class C_timeline extends MX_Controller {
 				$datas['js'][]   = "public/js/custom/D_timeline_in.js";
 				if (!empty($this->input->get("page"))) {
 					
-					$result = $this->load->view('data/D_timeline_in', $datas);
+					$result = $this->load->view('data/D_Timeline_in', $datas);
 				}else{
 					$this->load->view('include/head',$datas);
 					$this->load->view('D_Timeline_in', $datas);
