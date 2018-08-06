@@ -97,28 +97,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 											</div> 
 											<div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
 												<?php foreach ($detail_chapter['data']['chapter'] as $key => $btn_chapters): ?>		
-													<?php if ($key != 0): ?>
+													<?php if ($this->uri->segment(4) == $btn_chapters['chapter_id']): ?>
+														<?php 
+														$active = 'chapter_active';
+														?> 
+													<?php endif ?>
+													<div class="">
 														<?php if ($this->uri->segment(4) == $btn_chapters['chapter_id']): ?>
-															<?php 
-																$active = 'chapter_active';
-															?> 
-														<?php endif ?>
-														<div class="">
-															<?php if ($this->uri->segment(4) == $btn_chapters['chapter_id']): ?>
-																<span class="<?php echo ($this->uri->segment(4) == $btn_chapters['chapter_id']) ? 'chapter_active_list' : ''; ?> btn w-100 addsubchapt_on ">
+															<span class="<?php echo ($this->uri->segment(4) == $btn_chapters['chapter_id']) ? 'chapter_active_list' : ''; ?> btn w-100 addsubchapt_on ">
 																<img src="<?php echo ($this->uri->segment(4) == $btn_chapters['chapter_id']) ? base_url('').'public/img/icon-tab/chapter_active.svg' : base_url('').'public/img/icon-tab/chapter.svg'; ?>" class="pr-10">
 																<?php echo substr($btn_chapters['chapter_title'], 0, 25) .((strlen($btn_chapters['chapter_title']) > 25) ? '...' : ''); ?>	
 																<div style="float: right;"><a data-id="<?php echo $btn_chapters['chapter_id']; ?>" href="<?php echo site_url('my_book/'.$detail_chapter['data']['book_info']['book_id'].'/delchapter/'.$btn_chapters['chapter_id']) ?>" class="deletechapter"><img src="<?php echo base_url('public/img/icon-tab/trash.svg') ?>"></a></div>
 															</span>
 															<?php else: ?>
 																<a class="<?php echo ($this->uri->segment(4) == $btn_chapters['chapter_id']) ? 'chapter_active_list' : ''; ?> btn w-100 addsubchapt_on " book="2016" chapter="1326" id="editchapt" href="<?php $url = 'my_book/'.$detail_book['data']['book_info']['book_id'].'/chapter/'.$btn_chapters['chapter_id']; echo site_url($url) ?>" onclick="showLoading()">
-																<img src="<?php echo ($this->uri->segment(4) == $btn_chapters['chapter_id']) ? base_url('').'public/img/icon-tab/chapter_active.svg' : base_url('').'public/img/icon-tab/chapter.svg'; ?>" class="pr-10">
-																<?php echo substr($btn_chapters['chapter_title'], 0, 25) .((strlen($btn_chapters['chapter_title']) > 25) ? '...' : ''); ?>	</a>
-															<?php endif ?>
-														</div>
-													<?php endif ?>
-												<?php endforeach ?>
-											</div>
+																	<img src="<?php echo ($this->uri->segment(4) == $btn_chapters['chapter_id']) ? base_url('').'public/img/icon-tab/chapter_active.svg' : base_url('').'public/img/icon-tab/chapter.svg'; ?>" class="pr-10">
+																	<?php echo substr($btn_chapters['chapter_title'], 0, 25) .((strlen($btn_chapters['chapter_title']) > 25) ? '...' : ''); ?>	</a>
+																<?php endif ?>
+															</div>
+														<?php endforeach ?>
+													</div>
 										</div>
 									</div>
 									<br>
