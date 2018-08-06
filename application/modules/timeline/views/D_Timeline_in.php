@@ -53,7 +53,7 @@
 		<!-- Mid Side -->
 		<div class="col-6 mb-50">
 			<div id="post-data">
-				<?php $this->load->view('data/D_timeline_in', $home); ?>
+				<?php $this->load->view('data/D_Timeline_in', $home); ?>
 			</div>
 			<div class="loader" style="display: none;margin-left: auto;margin-right: auto;"></div>
 		</div>
