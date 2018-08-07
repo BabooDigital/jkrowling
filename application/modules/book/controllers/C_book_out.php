@@ -36,6 +36,16 @@ class C_book_out extends MX_Controller {
 
 		$datas = $this->curl_request->curl_post($this->API.'timeline/Home/detailBook', $sendData, '');
 		// $datas = $this->curl_request->curl_post($this->API.'timeline/Home/allChapters', $sendData, '');
+		$st1 = strip_tags($datas['data']['chapter']['paragraphs'][0]['paragraph_text']); 
+		$st2 = str_replace("'", "", $st1);
+		$book['page_desc'] = substr($st2, 5, 150) . '...';
+		$book['m_book_cover'] = $datas['data']['book_info']['cover_url'];
+		$book['m_book_price'] = $datas['data']['book_info']['book_price'];
+		if ((bool)$datas['data']['book_info']['is_free'] == false) {
+			$book['m_type'] = 'product';
+		}else{
+			$book['m_type'] = 'website';
+		}
 
 		$book['css'][] = "public/plugins/holdOn/css/HoldOn.css";
 		$book['js'][] = "public/js/jquery.min.js";

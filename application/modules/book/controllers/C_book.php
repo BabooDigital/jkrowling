@@ -69,9 +69,18 @@ class C_book extends MX_Controller
         }
 
         if ($data['data']['data']['book_info']['is_pdf'] != 1) {
+            foreach ($data['data']['data']['chapter']['paragraphs'] as $book) {
+                $text = strip_tags($book['paragraph_text']);
+                 $datas .= "<div  class='mb-15 textp' id='detailStyle' data-id-p='".$book['paragraph_id']."'>".ucfirst($book['paragraph_text'])."</div>"; 
+             } 
+             $st1 = strip_tags($datas); 
+             $st2 = str_replace('"', '', $st1);
+
             $data['detail_book'] = $data['data'];
+            $data['page_desc'] = substr($st2, 5, 150) . '...';
         }else{
             $data['detail_book'] = $datapdf['data'];
+            $data['page_desc'] = $datapdf['data']['data']['book_info']['desc'];
         }
         $auth = $data['bbo_auth'];
 
@@ -100,14 +109,18 @@ class C_book extends MX_Controller
                 $data['detail_book'] = $data['data'];
             }
 
-            $data['title'] = $data['detail_book']['data']['book_info']['title_book'] . " - Baboo";
+            $data['title'] = $data['detail_book']['data']['book_info']['title_book'];
+            $data['m_book_cover'] = $data['detail_book']['data']['book_info']['cover_url'];
+            $data['m_book_price'] = $data['detail_book']['data']['book_info']['book_price'];
 
             $data['detailBook'] = json_decode(end($data), true);
             $data['menuChapter'] = json_decode(end($data_before_chapter), true);
 
             if ($data_before_chapter['chapter']['data']['chapter'][3]['chapter_free'] != "false") {
                 $data['detailChapter'] = count($data_before_chapter['chapter']['data']['chapter']);
+                $data['m_type'] = 'website';
             } else {
+                $data['m_type'] = 'product';
                 $data['detailChapter'] = 2;
             }
 

@@ -5,30 +5,7 @@
 	<meta charset="utf-8">
 	<meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
 
-	<?php 
-	foreach ($desc as $meta) {
-		$txt  = strip_tags($meta['paragraph_text']);
-		if ($counts == 0) { $view_counts = '+'; }else{ $view_counts = $counts;}
-		$datas .= substr($txt, 0, 150);
-	}
-	echo "<meta name='description'  content='".$datas."' />";
-	?>
-	<meta name="Keywords" content="baboo">
-
-	<!-- Facebook -->
-	<?php $u1= $this->uri->segment(2); $u2 = $this->uri->segment(5); if ((bool)$detailBook['book_info']['is_pdf'] == true) { echo "<meta property='og:url'                content='".base_url('book/'.$u1.'/preview/pdf')."' />"; } else {if (empty($this->uri->segment(5))) {echo "<meta property='og:url'                content='".base_url('book/'.$u1.'/preview')."' />"; }else{echo "<meta property='og:url'                content='".base_url('book/'.$u1.'/preview/chapter/'.$u2)."' />"; } } ?>
-	<meta property="og:type"               content="website" />
-	<meta property="og:title"              content="<?php echo $title; ?> &#8211; <?php echo $ch_title; ?>" />
-	<?php 
-	foreach ($desc as $meta) {
-		$txt  = strip_tags($meta['paragraph_text']);
-		if ($counts == 0) { $view_counts = '+'; }else{ $view_counts = $counts;}
-		$datas .= substr($txt, 0, 150);
-	}
-	echo "<meta property='og:description'			content='".$datas."' />";
-	?>
-	
-	<meta property="og:image"              content="<?php echo $cover; ?>" />
+	<?php $this->load->view('include/meta_head', $data, FALSE); ?>
 
 	<title><?php echo $title; ?> &#8211; <?php echo $ch_title; ?> | Baboo.id</title>
 	<link rel="icon" href="<?php echo base_url(); ?>public/img/favicon.ico" sizes="16x16">
@@ -241,7 +218,6 @@
 		</div>
 	</div>
 </div>
-
 <script type="text/javascript">
 	var segment = '2311-aku';
 	var count_data = '1';
@@ -251,5 +227,8 @@
 <script src="<?php echo base_url('') ?>public/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url('') ?>public/js/jquery.sticky-kit.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url('') ?>public/plugins/holdOn/js/HoldOn.js" type="text/javascript"></script>
+<?php if ((bool)$detailBook['book_info']['is_free'] == false) { ?>
+	<div data-content-category='Book &gt; <?php echo $category; ?>' data-content-ids='<?php echo $bid; ?>' data-content-name='<?php echo $title; ?>' data-content-type='<?php echo $m_type; ?>' data-page-type='ViewContent' data-value='<?php echo preg_replace('/[^0-9]/', '', $detailBook['book_info']['book_price'] ); ?>' id='fbpixel'></div>
+<?php } ?>
 </body>
 </html>
