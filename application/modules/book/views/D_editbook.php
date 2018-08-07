@@ -123,12 +123,80 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 									<a onclick="showLoading()" href="<?php echo site_url('my_book/'.$this->uri->segment(2)); ?>" class="btn w-100 mb-10 btn-default" style="background: #f3f3f3;padding: 15px;">Tambah Sub Cerita</a>
 								</div>
 
-								<div class="mt-40">
+							<div class="mt-5">
+								<div class="form-group">
+									<select class="form-control" id="category_id" name="category_id" required>
+										<option value="">Kategori</option>
+									</select>
+								</div>
+							</div>
+							<div class="mt-20">
+								<div class="checkbox">
+									<label>
+										<input type="checkbox" value="" class="checktnc" name="ischecked">
+										<a href="javascript:void(0);" class="tncModal" style="color: #7554bd;">Term of Service</a>
+									</label>
+								</div>
+							</div>
+							<div class="mt-20" id="sell_book" style="display: none;">
+								<div class="form-group">
+									<span class="text-left">Jual Buku ?</span>
+									<label class="switch float-right">
+										<input type="checkbox" id="is_free" data-toggle='collapse' class="priceCheck">
+										<span class="slider round"></span>
+									</label>
+								</div>
+							</div>
+							<input type="hidden" id="what" value="<?php $pin = $this->session->userdata('hasPIN'); if ($pin == 1) {echo 'true';}else{echo 'false';}  ?>">
+							<div class="container mt-20 pb-5 rangebook" style="background: #DDDDDD;">
+								<div class="col-md-15">
 									<div class="form-group">
-										<select class="form-control" id="category_id" name="category_id" required>
-											<option>Kategori</option>
+										<select class="selectbook select-kurs" id="category_id" name="cat_book">
+											<option value="rp">Rp</option>
 										</select>
+										<input type="text" name="Harga Buku" class="input-range" placeholder="Masukan Harga Buku">
 									</div>
+									<div class="row">
+										<div class="col-5">
+											<label class="fs-10">Penulis (<span id="writen1"></span>)</label>
+										</div>
+										<div class="col-7">
+											<label class="fs-10-right"><b style="display: none;" id="rp2">Rp</b> <b id="writen-earn">-</b></label>
+										</div>
+										<div class="col-5">
+											<label class="fs-10">Baboo (<span id="baboo1"></span>)</label>
+										</div>
+										<div class="col-7">
+											<label class="fs-10-right"> <b style="display: none;" id="rp_fee2">Rp</b> <b id="baboo-earn">-</b></label>
+										</div>
+									</div>
+									<hr class="mt-5 mb-5">
+									<div class="row">
+										<div class="col-5">
+											<label class="fs-10">+ Pph 21 (<span id="fee1"></span>)</label>
+										</div>
+										<div class="col-7">
+											<label class="fs-10-right"><b style="display: none;" id="rp">Rp</b> <b id="ppn">-</b></label>
+										</div>
+										<div class="col-5">
+											<label class="fs-10">+ Biaya Transaksi</label>
+										</div>
+										<div class="col-7">
+											<label class="fs-10-right"> <b style="display: none;" id="rp_fee">Rp</b> <b id="payment_fee">-</b></label>
+										</div>
+									</div>
+									<hr class="mt-5 mb-5">
+									<div class="form-group pd-ppn">
+										<label class="fs-10">Harga Jual Buku</label>
+										<label class="fs-10-right"> <b style="display: none;" id="rp_total">Rp</b> <b id="total">-</b></label>
+									</div>
+									<div class="form-group">
+										<label class="">Mulai Jual Pada Chapter</label>
+										<input type="number" name="start_chapter" class="input-range start_chapter" id="chapter_start" style="width: 40%;" onkeypress="return event.charCode >= 48 && event.charCode <= 57" readonly>
+										<a class="ml-20 btn-transparant value-control addmin" data-action="minus" data-target="start_chapter" style="cursor: pointer;"><img src="<?php echo base_url('public/img/assets/icon_minch_active.png'); ?>" width="35"></a>
+										<a class="ml-10 btn-transparant value-control addplus" data-action="plus" data-target="start_chapter" style="cursor: pointer;"><img src="<?php echo base_url('public/img/assets/icon_plusch_active.png'); ?>" width="35"></a>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -144,6 +212,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 									<input type="hidden" name="user_id" id="user_id" value="<?php $name = $this->session->userdata('userData');
 									echo $name['user_id']; ?>">
 									<input type="hidden" name="book_id" id="book_id" value="<?php echo $this->uri->segment(2); ?>">
+									<input type="hidden" name="book_id" id="uri" value="<?php echo $this->uri->segment(2); ?>">
 									<input type="hidden" id="cover_url" accept="image/*" onchange="tampilkanPreview(this,'preview')" name="cover_url" value="<?php $src = $this->session->userdata('dataCover'); if($src != NULL){  echo $src['asset_url']; }else{ echo " "; } ?>">
 									<div id="books_id"></div>
 									<h5 class="mt-0 mb-1 nametitle"><?php $uri = $this->session->userdata('userData'); echo $uri['fullname'] ?></h5>
@@ -172,17 +241,69 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 							</div>
 						</div>
 						<div class="pull-right mb-10">
-							<input type="button" class="mr-30" id="updateChapter" style="font-size: 18px;font-weight: bold;background: transparent; border: 0; cursor: pointer;" value="Update Chapter" />
-							<button type="submit" class="btnbeliskrg" href="#" style="padding: 10px 50px;"><span class="txtbtnbeliskrg" ">Publish</span></button>
+							<input type="button" class="mr-30" id="updateChapter" style="font-size: 18px; font-weight: bold; background: #7554bd; border: 0px; cursor: pointer; margin-top: 20px; color: #fff; border-radius: 35px; padding: 10px 20px;" value="Update Chapter" />
+							<!-- <button type="button" class="btnbeliskrg" id='publish_book' href="#" style="padding: 10px 50px;"><span class="txtbtnbeliskrg">Publish</span></button>
+							<button type='button' class='btnbeliskrg activeWallet' id='setpin_publish' style="display: none;padding: 10px 50px;"><span class="txtbtnbeliskrg">Publish</span></button> -->
 						</div>
 					</div>
 				</div>
 			</div>
+
+
 		<?php echo form_close(); ?>
+
+		<div class="modal fade" id="wallet-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document" style="height: ">
+				<div class="modal-content" style="width: 440px !important; left: 10%;">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="bottom: auto;right: -40px;">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<div class="modal-body" style="height: 670px;">
+						<iframe id="targetFrame" width="100%" height="100%" scrolling="NO" frameborder="0" src="<?php echo site_url('pin-dompet');?>">></iframe>
+					</div>
+				</div>
+			</div>
+		</div>
+		<?php $this->load->view('include/modal_tnc'); ?>
 
 		<?php if (isset($js)): ?>
 			<?php echo get_js($js) ?>
 		<?php endif ?>
+		<script>
+			$(document).on('click','.tncModal',function(){
+				$('#tnc-modal').modal('show');
+				$(document).on('click', '.btn-acc', function() {
+					$('.checktnc').prop('checked', true);
+					$('#tnc-modal').modal('hide');
+				});
+				$(document).on('click', '.btn-diss', function() {
+					$('.checktnc').prop('checked', false);
+					$('#tnc-modal').modal('hide');
+				});
+			});
+			$(document).on('click', '#is_free', function() {
+				var sellbtn = $('#is_free:checkbox:checked');
+				var pin = $('#what').val();
+				if (sellbtn.length == 0 && pin == 'false') {
+					$('#publish_book').show();
+					$('#setpin_publish').hide();
+				}else if (sellbtn.length == 1 && pin == 'true'){
+					$('#publish_book').show();
+					$('#setpin_publish').hide();
+				}else if (sellbtn.length == 0 && pin == 'true'){
+					$('#publish_book').show();
+					$('#setpin_publish').hide();
+				}else{
+					$('#publish_book').hide();
+					$('#setpin_publish').show();
+				}
+				if (sellbtn.length == 0) {
+					$('.rangebook').hide();
+				}else{
+					$('.rangebook').show();
+				}
+			});
+		</script>
 		<?php echo $this->session->flashdata('limit_character'); ?>
 	</body>
 	</html>

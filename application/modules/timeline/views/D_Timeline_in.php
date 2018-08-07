@@ -60,8 +60,8 @@
 
 		<!-- Right Side -->
 		<div class="col-3 tmlin">
-			<div class="stickymenu">
 				<?php echo $this->load->view('ads/250_side_ad'); ?>
+			<div class="stickymenu">
 				<!-- <div class="card card-widget mb-15">
 					<a href="<?php echo base_url('event') ?>">
 						<img src="https://s3-us-west-2.amazonaws.com/s3.baboo.id/baboo-cover/hasil-web.png" style="width:100%;height: 100%;">

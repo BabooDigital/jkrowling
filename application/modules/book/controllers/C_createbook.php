@@ -1538,6 +1538,7 @@ class C_createbook extends MX_Controller
 			$this->load->view('include/head', $data);
 			$this->load->view('R_createbook');
 		} else {
+			$data['css'][] = "public/css/sweetalert2.min.css";
 			$data['js'][] = "public/js/umd/popper.min.js";
 			$data['js'][] = "public/js/bootstrap.min.js";
 			$data['js'][] = "public/js/jquery.sticky-kit.min.js";
@@ -1546,6 +1547,8 @@ class C_createbook extends MX_Controller
 			$data['js'][] = "public/js/custom/edit_book.js";
 			
 			$data['js'][] = "public/plugins/holdOn/js/HoldOn.js";
+			
+			$data['js'][] = "public/js/sweetalert2.all.min.js";
 			
 			$data['css'][] = "public/css/baboo.css";
 			$this->load->view('D_editbook', $data);
