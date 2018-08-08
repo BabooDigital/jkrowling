@@ -6,30 +6,7 @@
 	<meta charset="utf-8">
 	<meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
 
-	<?php 
-	foreach ($desc as $meta) {
-		$txt  = strip_tags($meta['paragraph_text']);
-		if ($counts == 0) { $view_counts = '+'; }else{ $view_counts = $counts;}
-		$datas .= substr($txt, 0, 150);
-	}
-	echo "<meta name='description'  content='".$datas."' />";
-	?>
-	<meta name="Keywords" content="baboo">
-
-	<!-- Facebook -->
-	<?php $u1= $this->uri->segment(2); $u2 = $this->uri->segment(5); if ((bool)$detailBook['book_info']['is_pdf'] == true) { echo "<meta property='og:url'                content='".base_url('book/'.$u1.'/preview/pdf')."' />"; } else {if (empty($this->uri->segment(5))) {echo "<meta property='og:url'                content='".base_url('book/'.$u1.'/preview')."' />"; }else{echo "<meta property='og:url'                content='".base_url('book/'.$u1.'/preview/chapter/'.$u2)."' />"; } } ?>
-	<meta property="og:type"               content="website" />
-	<meta property="og:title"              content="<?php echo $title; ?> &#8211; <?php echo $ch_title; ?>" />
-	<?php 
-	foreach ($desc as $meta) {
-		$txt  = strip_tags($meta['paragraph_text']);
-		if ($counts == 0) { $view_counts = '+'; }else{ $view_counts = $counts;}
-		$datas .= substr($txt, 0, 150);
-	}
-	echo "<meta property='og:description'			content='".$datas."' />";
-	?>
-	
-	<meta property="og:image"              content="<?php echo $cover; ?>" />
+	<?php $this->load->view('include/meta_head', $data, FALSE); ?>
 
 	<title><?php echo $title; ?> &#8211; <?php echo $ch_title; ?> | Baboo.id</title>
     <meta data-n-head="true" content="yes" data-hid="mobile-web-app-capable" name="mobile-web-app-capable">
@@ -183,7 +160,7 @@
 				return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
 			}
 		};
-		<?php $bid = explode('-', $this->uri->segment(2)); $cid = $this->uri->segment(5); if (empty($cid)) { $url = BASE_URL_DEEPLINK.'book/'.$bid[0]; }else{ $url = BASE_URL_DEEPLINK.'book/'.$bid[0].'/preview/chapter/'.$cid;} ?>
+		<?php $cid = $this->uri->segment(5); if (empty($cid)) { $url = BASE_URL_DEEPLINK.'book/'.$bid; }else{ $url = BASE_URL_DEEPLINK.'book/'.$bid.'/preview/chapter/'.$cid;} ?>
 		var link = "intent://"+"<?php echo $url; ?>"+"#Intent;scheme=https;package=id.android.baboo;S.doctype=FRA;S.docno=FRA1234;S.browser_fallback_url=market://details?id=id.android.baboo;end";
 		$('.bannerPopUp').html("<div class='popUpBannerBox'> <div class='popUpBannerInner'> <div class='popUpBannerContent'> <a href='"+link+"'><span class='popUpBannerSpan'>Baca di Aplikasi</span></a><a href='#' class='closeButton'>&#120;</a> </div> </div> </div>");
 
@@ -200,5 +177,6 @@
 			return false;
 		});
 	</script>
+	<div data-content-category='Book &gt; <?php echo $category; ?>' data-content-ids='<?php echo $bid; ?>' data-content-name='<?php echo $title; ?>' data-content-type='<?php echo $m_type; ?>' data-page-type='ViewContent' data-value='<?php echo $m_book_price; ?>' id='fbpixel'></div>
 </body>
 </html>

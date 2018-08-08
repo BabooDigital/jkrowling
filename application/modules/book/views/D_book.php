@@ -282,5 +282,6 @@
 				<script>getBooks();
 				window.onload = function() {document.addEventListener("contextmenu", function(e){e.preventDefault(); }, false); document.addEventListener("keydown", function(e) {if (e.ctrlKey && e.shiftKey && e.keyCode == 73) {disabledEvent(e); } if (e.ctrlKey && e.shiftKey && e.keyCode == 74) {disabledEvent(e); } if (e.keyCode == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {disabledEvent(e); } if (e.ctrlKey && e.keyCode == 85) {disabledEvent(e); } if (event.keyCode == 123) {disabledEvent(e); } if (e.ctrlKey && e.keyCode == 65) {disabledEvent(e); } if (e.ctrlKey && e.keyCode == 67) {disabledEvent(e); } if (e.ctrlKey) {disabledEvent(e); } }, false); function disabledEvent(e){if (e.stopPropagation){e.stopPropagation(); } else if (window.event){window.event.cancelBubble = true; } e.preventDefault(); return false; } }; </script>
 			<?php } ?>
+			<div data-content-category='Book &gt; <?php echo $detail_book['data']['category']['category_name']; ?>' data-content-ids='<?php echo $detail_book['data']['book_info']['book_id']; ?>' data-content-name='<?php echo $title; ?>' data-content-type='<?php echo $m_type; ?>' data-page-type='ViewContent' data-value='<?php echo $m_book_price; ?>' id='fbpixel'></div>
 </body>
 </html>

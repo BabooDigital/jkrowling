@@ -227,8 +227,6 @@
 <script src="<?php echo base_url('') ?>public/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url('') ?>public/js/jquery.sticky-kit.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url('') ?>public/plugins/holdOn/js/HoldOn.js" type="text/javascript"></script>
-<?php if ((bool)$detailBook['book_info']['is_free'] == false) { ?>
-	<div data-content-category='Book &gt; <?php echo $category; ?>' data-content-ids='<?php echo $bid; ?>' data-content-name='<?php echo $title; ?>' data-content-type='<?php echo $m_type; ?>' data-page-type='ViewContent' data-value='<?php echo preg_replace('/[^0-9]/', '', $detailBook['book_info']['book_price'] ); ?>' id='fbpixel'></div>
-<?php } ?>
+	<div data-content-category='Book &gt; <?php echo $category; ?>' data-content-ids='<?php echo $bid; ?>' data-content-name='<?php echo $title; ?>' data-content-type='<?php echo $m_type; ?>' data-page-type='ViewContent' data-value='<?php echo $m_book_price; ?>' id='fbpixel'></div>
 </body>
 </html>

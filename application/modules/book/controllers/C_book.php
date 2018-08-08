@@ -71,9 +71,9 @@ class C_book extends MX_Controller
         if ($data['data']['data']['book_info']['is_pdf'] != 1) {
             foreach ($data['data']['data']['chapter']['paragraphs'] as $book) {
                 $text = strip_tags($book['paragraph_text']);
-                 $datas .= "<div  class='mb-15 textp' id='detailStyle' data-id-p='".$book['paragraph_id']."'>".ucfirst($book['paragraph_text'])."</div>"; 
+                 $datasa .= "<div>".ucfirst($book['paragraph_text'])."</div>"; 
              } 
-             $st1 = strip_tags($datas); 
+             $st1 = strip_tags($datasa); 
              $st2 = str_replace('"', '', $st1);
 
             $data['detail_book'] = $data['data'];
@@ -111,16 +111,19 @@ class C_book extends MX_Controller
 
             $data['title'] = $data['detail_book']['data']['book_info']['title_book'];
             $data['m_book_cover'] = $data['detail_book']['data']['book_info']['cover_url'];
-            $data['m_book_price'] = $data['detail_book']['data']['book_info']['book_price'];
+            $data['m_book_price'] = preg_replace('/[^0-9]/', '', $data['detail_book']['data']['book_info']['book_price']);
 
             $data['detailBook'] = json_decode(end($data), true);
             $data['menuChapter'] = json_decode(end($data_before_chapter), true);
+            if ((bool)$data['detail_book']['data']['book_info']['is_free'] == FALSE) {
+                $data['m_type'] = 'product';
+            }else{
+                $data['m_type'] = 'website';
+            }
 
             if ($data_before_chapter['chapter']['data']['chapter'][3]['chapter_free'] != "false") {
                 $data['detailChapter'] = count($data_before_chapter['chapter']['data']['chapter']);
-                $data['m_type'] = 'website';
             } else {
-                $data['m_type'] = 'product';
                 $data['detailChapter'] = 2;
             }
 
