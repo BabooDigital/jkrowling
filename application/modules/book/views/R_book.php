@@ -280,6 +280,8 @@
 <div class="bannerPopUp"></div>
 <!-- BANNER POPUP BUTTON PLAYSTORE MOBILE -->
 
+<div data-content-category='Book &gt; <?php echo $detail_book['data']['category']['category_name']; ?>' data-content-ids='<?php echo $detail_book['data']['book_info']['book_id']; ?>' data-content-name='<?php echo $title; ?>' data-content-type='<?php echo $m_type; ?>' data-page-type='ViewContent' data-value='<?php echo $m_book_price; ?>' id='fbpixel'></div>
+
 <input type="checkbox" id="toggle-right">	
 <div class="page-wrap wrapper">
 	<div id="banner">
@@ -671,6 +673,5 @@
 	} ?>
 	var chapter_title = '<?php echo $detail_book['data']['chapter']['chapter_title']; ?>';
 </script>
-<div data-content-category='Book &gt; <?php echo $detail_book['data']['category']['category_name']; ?>' data-content-ids='<?php echo $detail_book['data']['book_info']['book_id']; ?>' data-content-name='<?php echo $title; ?>' data-content-type='<?php echo $m_type; ?>' data-page-type='ViewContent' data-value='<?php echo $m_book_price; ?>' id='fbpixel'></div>
 </body>
 </html>
