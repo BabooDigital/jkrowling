@@ -16,11 +16,6 @@ if ($uri1 == 'book') {
 	echo "<script type='text/javascript' src='https://".MID_BASE_URL."/snap/snap.js' data-client-key='".MID_CLIENT."'></script>";
 }
 
-// Adsgoogle
-if ($uri1 == 'book' || $uri1 == 'timeline') {
-	echo "<script async src='//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'></script>";
-}
-
 // Google Analytics & Tag Manager
 echo "<script>
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

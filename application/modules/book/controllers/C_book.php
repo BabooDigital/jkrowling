@@ -111,7 +111,7 @@ class C_book extends MX_Controller
 
             $data['title'] = $data['detail_book']['data']['book_info']['title_book'];
             $data['m_book_cover'] = $data['detail_book']['data']['book_info']['cover_url'];
-            $data['m_book_price'] = preg_replace('/[^0-9]/', '', $data['detail_book']['data']['book_info']['book_price']);
+            $data['m_book_price'] = $data['detail_book']['data']['book_info']['book_price'];
 
             $data['detailBook'] = json_decode(end($data), true);
             $data['menuChapter'] = json_decode(end($data_before_chapter), true);

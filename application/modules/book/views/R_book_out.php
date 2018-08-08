@@ -59,6 +59,9 @@
 	<!-- BANNER POPUP BUTTON PLAYSTORE MOBILE -->
 	<div class="bannerPopUp"></div>
 	<!-- BANNER POPUP BUTTON PLAYSTORE MOBILE -->
+
+	<div data-content-category='Book &gt; <?php echo $category; ?>' data-content-ids='<?php echo $bid; ?>' data-content-name='<?php echo $title; ?>' data-content-type='<?php echo $m_type; ?>' data-page-type='ViewContent' data-value='<?php echo $m_book_price; ?>' id='fbpixel'></div>
+	
 	<div class="wrapper">
 		<nav class="navbar navbar-expand-lg fixed-top mb-20 bgboo">
 			<div class="container">
@@ -177,6 +180,5 @@
 			return false;
 		});
 	</script>
-	<div data-content-category='Book &gt; <?php echo $category; ?>' data-content-ids='<?php echo $bid; ?>' data-content-name='<?php echo $title; ?>' data-content-type='<?php echo $m_type; ?>' data-page-type='ViewContent' data-value='<?php echo $m_book_price; ?>' id='fbpixel'></div>
 </body>
 </html>

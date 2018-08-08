@@ -98,6 +98,8 @@
 	font-size: 12px;
 }
 </style>
+<body>
+	<div data-content-category='Book &gt; <?php echo $category; ?>' data-content-ids='<?php echo $bid; ?>' data-content-name='<?php echo $title; ?>' data-content-type='<?php echo $m_type; ?>' data-page-type='ViewContent' data-value='<?php echo $m_book_price; ?>' id='fbpixel'></div>
 <div class="container pt-100 mb-80">
 	<div class="row">
 		<div class="col-md-4 dtlbok" style="padding: 0 40px;">
@@ -227,6 +229,5 @@
 <script src="<?php echo base_url('') ?>public/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url('') ?>public/js/jquery.sticky-kit.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url('') ?>public/plugins/holdOn/js/HoldOn.js" type="text/javascript"></script>
-	<div data-content-category='Book &gt; <?php echo $category; ?>' data-content-ids='<?php echo $bid; ?>' data-content-name='<?php echo $title; ?>' data-content-type='<?php echo $m_type; ?>' data-page-type='ViewContent' data-value='<?php echo $m_book_price; ?>' id='fbpixel'></div>
 </body>
 </html>
