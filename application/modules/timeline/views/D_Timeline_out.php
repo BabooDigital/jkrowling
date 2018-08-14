@@ -8,7 +8,11 @@
 			<span id="slider-prev"></span> <span id="slider-next" style="padding-left: 40%;"></span>
 		</div>
 		<div style="width: 100%;height: auto;position: relative;">
-			<?php $this->load->view('include/slide'); ?>
+			<?php if (isset($slide) && $slide['code'] == 200) {
+				$this->load->view('include/slide');
+			}else{
+				echo "<div></div>";
+			}  ?>
 		</div>
 	</div>
 
@@ -16,14 +20,15 @@
 		<div class="row">
 			<div class="col-md-3 outleft">
 				<div class="stickymenu">
-					<!-- Penulis Minggu Ini -->
-					<div class="card mb-15" style="background-color: transparent;border: none;">
-						<div class="card-header" style="border: none;">
-							Penulis minggu ini
-						</div>
-						<div class="card-body p-0">
-							<ul class="list-group list-group-flush" id="author_this_week">
-								<?php foreach ($writter['data'] as $wr) { ?>
+
+					<?php if (isset($writter) && $writter['code'] == 200) { ?>
+						<div class="card mb-15" style="background-color: transparent;border: none;">
+							<div class="card-header" style="border: none;">
+								Penulis minggu ini
+							</div>
+							<div class="card-body p-0">
+								<ul class="list-group list-group-flush" id="author_this_week">
+									<?php foreach ($writter['data'] as $wr) { ?>
 									<li class="media baboocontent">
 										<a href="<?php echo site_url('profile/'.$wr['author_id']); ?>">
 											<img alt="<?php echo $wr['author_name']; ?>" class="d-flex mr-3 rounded-circle" src="<?php echo $wr['avatar']; ?>" width="50" height="50">
@@ -42,11 +47,14 @@
 											</div>
 										</div>
 									</li>
-								<?php } ?>
-							</ul>
+									<?php } ?>
+								</ul>
+							</div>
 						</div>
-					</div>
-					<!-- Penulis Minggu Ini -->
+				<?php }else{ ?>
+					<div></div>
+				<?php }  ?>
+
                     <ul class="list-group list-group-flush">
                     	<?php echo $this->load->view('ads/250_side_ad'); ?>
                     </ul>

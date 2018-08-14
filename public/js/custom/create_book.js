@@ -422,7 +422,7 @@ function getChapter() {
 		var chapter = "";
 		var title = "";
 		if (data.chapter == null || data.chapter.length == 0) {
-			title += '<input type="text" name="title_book" id="title_book" class="w-100" placeholder="Masukan Judul buku" required> <input type="text" name="title_chapter" style="display: none;" id="title_chapter" value="Description" class="w-100" placeholder="Masukan Chapter">';
+			title += '<input type="text" name="title_book" id="title_book" class="w-100" placeholder="Masukan Judul buku" maxlength="50" required> <input type="text" name="title_chapter" style="display: none;" id="title_chapter" value="Description" class="w-100" placeholder="Masukan Chapter">';
 			title += '<input type="hidden" name="count_chapter" id="count_chapter" value="0" class="w-100" placeholder="Count Chapter" required>';
 
 		}else{
