@@ -30,7 +30,7 @@ function getWritters() {
     //     type: "GET",
     //     dataType: "json",
     //     beforeSend : function() {
-    //         $('.loader').show();   
+    //         $('.loader').show();
     //     }
     // }).done(function(c) {
     //     var b = "";
@@ -77,7 +77,6 @@ function getWritters() {
         .fail(function(jqXHR, ajaxOptions, thrownError) {
           console.log('server not responding...');
           loaded = true;
-          location.reload();
       });
     }
 };

@@ -17,7 +17,7 @@
 	<div class="form_book_title" align="center">
 		<label for="title_book_out" style="font-size: 20pt;">Judul</label>
 		<br>
-		<textarea type="text" name="title_book_out" id="title_book_out" class="title_book_form autoExpand" data-min-rows='3' placeholder="Judul Buku"> </textarea>
+		<textarea type="text" name="title_book_out" id="title_book_out" class="title_book_form autoExpand" data-min-rows='3' placeholder="Judul Buku" maxlength="50"> </textarea>
 	</div>
 
 	<?php if (isset($js)): ?>

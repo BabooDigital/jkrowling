@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Poppins|Roboto');
-@import url('../../fonts/fonts.css');
+@import url('https://fonts.googleapis.com/css?family=Noto+Serif|Source+Sans+Pro');
 
 body{
 
@@ -19,7 +18,7 @@ body{
 	height:100%;
 	position: fixed;
 	display: block;
-	font-family: 'Proxima Nova', Georgia, sans-serif;
+	font-family: 'Source Sans Pro', sans-serif;;
 	
 }
 	
@@ -82,7 +81,7 @@ li a.footer-link:hover{
 .btn-signup{
 	background-color: #7554bd;
 	color:#fff;
-	font-family: 'Proxima Nova', Georgia, sans-serif; 
+	font-family: 'Source Sans Pro', sans-serif;; 
 	font-size:14px;
 	border-radius: 50px;
 	margin-top:30px;
@@ -121,7 +120,7 @@ button.btn-primary:active:focus{
 .text-daftar{
 	color: #1f2d3e;
 	font-size:14px;
-	font-family: 'Proxima Nova', Georgia, sans-serif;
+	font-family: 'Source Sans Pro', sans-serif;;
 	margin-top: 20px;
 }
 
@@ -129,20 +128,20 @@ button.btn-primary:active:focus{
 	color: gray;
 	font-size:22px;
 	font-weight: 600;
-	font-family: 'Proxima Nova', Georgia, sans-serif;
+	font-family: 'Source Sans Pro', sans-serif;;
 }
 
 .text-img-modal{
 	color: gray;
 	font-size:19px;
-	font-family: 'Proxima Nova', Georgia, sans-serif;
+	font-family: 'Source Sans Pro', sans-serif;;
 	margin-top:10px;
 }
 
 .skip-text{
 	color: #1f2d3e;
 	font-size:12px;
-	font-family: 'Proxima Nova', Georgia, sans-serif;
+	font-family: 'Source Sans Pro', sans-serif;;
 	float: right;
 	margin-top: 30px;
 }
@@ -161,21 +160,21 @@ button.btn-primary:active:focus{
 a.link-daftar{
 	color: #7554bd;
 	margin-left: 5px;
-	font-family: 'Proxima Nova', Georgia, sans-serif;
+	font-family: 'Source Sans Pro', sans-serif;;
 }
 
 a.link-daftar:hover{
 	color: #7554bd;
 	text-decoration: none;
 	font-weight: 600;
-	font-family: 'Proxima Nova', Georgia, sans-serif;
+	font-family: 'Source Sans Pro', sans-serif;;
 	margin-left: 5px;
 }
 
 .login-input{
  	font-size:14px;"
  	color:#eee;
-	font-family: 'Proxima Nova', Georgia, sans-serif;
+	font-family: 'Source Sans Pro', sans-serif;;
     height: 50px;
     border:1px solid #d7d7d7;
     box-shadow: #eee 0px 0px 0px 1px;
