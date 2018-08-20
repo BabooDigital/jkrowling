@@ -108,7 +108,7 @@
                                                     <li class="list-group-item">
                                                         <div class="media">
                                                             <div class="media-left mr-10">
-                                                                <a href="<?php if ((bool)$best_book['is_pdf'] == true) { echo site_url('book/'.$best_book['popular_book_id'].'-'.url_title($best_book['popular_book_title'], 'dash', true).'/pdf'); }else{ echo site_url('book/'.$best_book['popular_book_id'].'-'.url_title($best_book['popular_book_title'], 'dash', true)); } ?>"><img class="media-object rounded" src="<?php echo $cover; ?>" width="60" height="80"></a>
+                                                                <a href="<?php if ((bool)$best_book['is_pdf'] == true) { echo site_url('book/'.$best_book['popular_book_id'].'-'.url_title($best_book['popular_book_title'], 'dash', true).'/pdf'); }else{ echo site_url('book/'.$best_book['popular_book_id'].'-'.url_title($best_book['popular_book_title'], 'dash', true)); } ?>"><img class="media-object rounded" src="<?php echo $cover; ?>" width="60" height="80" onerror="this.onerror=null;this.src='./public/img/blank_cover.png';" ></a>
                                                             </div>
                                                             <div class="media-body">
                                                                     <h4 class="media-heading bold mt-10">
@@ -149,7 +149,7 @@
                                         <div class="row mb-5">
                                             <div class="col-12">
                                                 <div class="media">
-                                                    <img class="mr-3" src="<?php echo $trans['cover_url'] ?>" width="50" height="70" alt="<?php echo $trans['title_book']; ?>" style="object-fit: cover;">
+                                                    <img class="mr-3" src="<?php echo $trans['cover_url'] ?>" width="50" height="70" alt="<?php echo $trans['title_book']; ?>" onerror="this.onerror=null;this.src='<?php echo base_url('public/img/blank_cover.png'); ?>';"  style="object-fit: cover;">
                                                     <div class="media-body">
                                                         <div class="pull-right">
                                                             <div class="dropdown">
@@ -200,7 +200,7 @@
                                 <?php endforeach ?>
                             </div>
                             </div>
-                        </div>                  
+                        </div>
                     </div>
                 </div>
             </div>
@@ -224,7 +224,7 @@
                                     <div class="countdown pdf_url" style="height: 500px;">
                                     </div>
                                     </div>
-                                </div>                  
+                                </div>
                             </div>
                         </div>
                     </div>
