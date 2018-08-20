@@ -96,7 +96,7 @@
 						<div class="input-group-prepend">
 							<div class="input-group-text">Rp</div>
 						</div>
-						<input type="text" class="form-control fs17pxfw600" id="inpJumSal" name="inpJumSal" placeholder="200.000">
+						<input type="text" class="form-control fs17pxfw600" id="inpJumSal" name="inpJumSal" placeholder="( Contoh : 200000 )">
 					</div>
 				</div>
 			</div>
@@ -107,7 +107,7 @@
 					<button type="submit" class="btn-done-rek">OK</button>
 				</div>
 			</div>
-		</div> 
+		</div>
 	</form>
 </div>
 

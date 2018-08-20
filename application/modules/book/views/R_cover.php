@@ -97,7 +97,7 @@ input:checked + .slider:before {
 .checkbox label input[type="checkbox"]:checked+.cr>.cr-icon {
 	opacity: 1;
 }
-.subtitle { 
+.subtitle {
 	color: #000;font-size: 13pt;font-weight: 600;
 }
 .bg-greypale {
@@ -128,7 +128,7 @@ input:checked + .slider:before {
 .swal2-contentwrapper {
 	margin-top: 15px;
 }input[type='file'] {
-  opacity:0    
+  opacity:0
 }
 </style>
 <?php
@@ -142,11 +142,11 @@ $dat = array(
 	'bid' => $string,
 	'param' => $query['stat']
 );
-if (!empty($query['stat'])) {	
+if (!empty($query['stat'])) {
 	$this->session->set_userdata('editPub', $dat);
-}else {		
+}else {
 
-}	
+}
 ?>
 <body id="pageContent">
 	<input type="checkbox" id="toggle-right">
@@ -155,7 +155,7 @@ if (!empty($query['stat'])) {
 			<div class="container">
 				<form class="navbar-brande">
 					<a href="javascript:history.back()">
-						<i class="fa fa-arrow-left"></i> &nbsp; <span>Kembali</span> 
+						<i class="fa fa-arrow-left"></i> &nbsp; <span>Kembali</span>
 					</a>
 				</form>
 				<form class="form-inline">
@@ -227,7 +227,7 @@ if (!empty($query['stat'])) {
 							</div>
 							<div class="form-group col-8">
 								<label class="text-muted">Harga Buku Lengkap</label>
-								<input type="number" class="form-control" id="inputprice" placeholder="12000">
+								<input type="number" class="form-control" id="inputprice" placeholder="( Contoh : 15000 )">
 							</div>
 						</div>
 						<div class="row">
@@ -275,7 +275,7 @@ if (!empty($query['stat'])) {
 								}else{
 									echo "<label class='text-muted'>Mulai Jual Pada Chapter</label>";
 								} ?>
-								
+
 								<input type="number" name="start_chapter" class="input-range start_chapter" id="addormin" style="width: 100%;background: none;" readonly>
 								<input type="hidden" class="pdfcheck" value="false">
 							</div>

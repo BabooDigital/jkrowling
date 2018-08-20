@@ -43,7 +43,7 @@
 	<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MVW4JD3"
 		height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		<!-- End Google Tag Manager (noscript) -->
-	<?php $attr = array('id' => 'form_book'); 
+	<?php $attr = array('id' => 'form_book');
 		form_open_multipart('my_book/create_book/publish', $attr);
 	?>
 	<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
@@ -113,7 +113,7 @@
 										<select class="selectbook select-kurs" id="category_id" name="cat_book">
 											<option value="rp">Rp</option>
 										</select>
-										<input type="text" name="Harga Buku" class="input-range" placeholder="Masukan Harga Buku">
+										<input type="text" name="Harga Buku" class="input-range first_price" placeholder="Masukan Harga Buku">
 									</div>
 									<div class="row">
 										<div class="col-5">
@@ -180,7 +180,7 @@
 
 						<div>
 							<div class="mt-30 tulisjudul">
-								
+
 							</div>
 
 							<div class="tulisbuku mt-10">
@@ -247,6 +247,8 @@
 				$('.rangebook').hide();
 			}else{
 				$('.rangebook').show();
+				$('.first_price').focus();
+                window.scrollTo(0,document.body.scrollHeight);
 			}
 		});
 	</script>

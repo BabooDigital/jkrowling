@@ -118,13 +118,13 @@ $(document).ready(function() {
 		$(".stickymenu").stick_in_parent();
 	}
 
-	
+
 	function showSpinner() {
 		var options = {
 			theme:"sk-cube-grid",
 			message:'Tunggu Sebentar ',
 			backgroundColor:"white",
-			textColor:"#7554bd" 
+			textColor:"#7554bd"
 		};
 		HoldOn.open(options);
 	}
@@ -164,7 +164,7 @@ $(document).ready(function() {
 				if ($("#book_id").val() != null) {
 					formData.append("book_id", $("#book_id").val());
 					// for (var pair of formData.entries()) {
-						// console.log(pair[0]+ ', ' + pair[1]); 
+						// console.log(pair[0]+ ', ' + pair[1]);
 					// }
 				} else {
 					console.log('tidak');
@@ -187,7 +187,7 @@ $(document).ready(function() {
 
 						// console.log(formData);
 						// for (var pair of formData.entries()) {
-						//     console.log(pair[0]+ ', ' + pair[1]); 
+						//     console.log(pair[0]+ ', ' + pair[1]);
 						// }
 						location.reload();
 						$("#title_chapter").show();
@@ -228,7 +228,7 @@ $(document).ready(function() {
 				if ($("#book_id").val() != null) {
 					formData.append("book_id", $("#book_id").val());
 					for (var pair of formData.entries()) {
-						// console.log(pair[0]+ ', ' + pair[1]); 
+						// console.log(pair[0]+ ', ' + pair[1]);
 					}
 				} else {
 					console.log('tidak');
@@ -320,7 +320,7 @@ $(document).on('click', '.saveasdraft', function() {
 					// var url = data['data']['book_id'] + '/chapter/' + data['data']['chapter_id'];
 					// url_redirect += 'create_book/' + data['data']['book_id'];
 					// aww.replaceWith('<a class="btn w-100 mb-10 chapterdata0 editsubchapt' + count + ' addsubchapt_on" book="' + data['data']['book_id'] + '" chapter="' + data['data']['chapter_id'] + '" id="editchapt" href="' + url + '">' + $("#title_book").val() + '</a>');
-					
+
 					// $("#books_id").html('<input type="hidden" id="book_id" name="book_id" value="' + data['data']['book_id'] + '">');
 					// $("#sub_title").removeClass('txtaddsubchapt').addClass('txtaddsubchapt_on');
 					// $("#title_book").val("");
@@ -364,7 +364,7 @@ $(document).on('click', '.saveasdraft', function() {
 					// var url = data['data']['book_id'] + '/chapter/' + data['data']['chapter_id'];
 					// url_redirect += 'create_book/' + data['data']['book_id'];
 					// aww.replaceWith('<a class="btn w-100 mb-10 chapterdata0 editsubchapt' + count + ' addsubchapt_on" book="' + data['data']['book_id'] + '" chapter="' + data['data']['chapter_id'] + '" id="editchapt" href="' + url + '">' + $("#title_book").val() + '</a>');
-					
+
 					// $("#books_id").html('<input type="hidden" id="book_id" name="book_id" value="' + data['data']['book_id'] + '">');
 					// $("#sub_title").removeClass('txtaddsubchapt').addClass('txtaddsubchapt_on');
 					// $("#title_book").val("");
@@ -378,7 +378,7 @@ $(document).on('click', '.saveasdraft', function() {
 				})
 				.always(function() {});
 			}
-		}	
+		}
 	});
 });
 function getCategory() {
@@ -389,7 +389,7 @@ function getCategory() {
 		data: {csrf_test_name: csrf_value}
 	})
 	.done(function(data) {
-		var category = "<option value=''>Pilih Category Buku</option>"; 
+		var category = "<option value=''>Pilih Category Buku</option>";
 		$.each(data, function(index, val) {
 			category += "<option value='"+val.category_id+"'>"+val.category_name+"</option>";
 		});
@@ -400,14 +400,14 @@ function getCategory() {
 	})
 	.always(function() {
 	});
-	
+
 }
 function showLoading() {
 	var options = {
 		theme:"sk-cube-grid",
 		message:'Tunggu Sebentar ',
 		backgroundColor:"white",
-		textColor:"#7554bd" 
+		textColor:"#7554bd"
 	};
 	HoldOn.open(options);
 }
@@ -470,8 +470,10 @@ function getChapter() {
 					confirmButtonText: 'Ya, Jual',
 					cancelButtonText: 'Nanti'
 				}).then((result) => {
-					if (result.value) {
-						// $('#is_free').prop('checked', true);
+                    if (result.value) {
+						$('html, body').animate({
+							scrollTop: $("#sell_book").offset().top
+						}, 2000);
 						$(document).on('click', '#is_free', function() {
 							var sellbtn = $('#is_free:checkbox:checked');
 							var pin = $('#what').val();
