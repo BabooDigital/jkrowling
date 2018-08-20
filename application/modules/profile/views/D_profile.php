@@ -1,4 +1,4 @@
-<?php $this->load->view('navbar/D_navbar'); ?>	
+<?php $this->load->view('navbar/D_navbar'); ?>
 	<style type="text/css">
 	button {
 		cursor: pointer;
@@ -259,7 +259,7 @@
 								<div class="tab-content" id="pills-tabContent">
 									<div class="tab-pane fade show active" id="pills-publish" role="tabpanel" aria-labelledby="pills-publish-tab">
 										<div id="publishdata" class="w-100">
-											<?php echo $this->load->view('data/D_profile', $bookdata); 
+											<?php echo $this->load->view('data/D_profile', $bookdata);
 											if ($bookdata == null || $bookdata == [] || empty($bookdata)) {
 												echo "<div class='container first_login mt-30'> <div class='row'> <div class='mx-auto' style='width: 85%;'> <div class='text-center mb-10'><img src='".base_url('public/img/icon_draft_blank.png')."' width='190'></div> <div class='text-center'> <h4><b>Tentukan konten yang kamu suka!</b></h4> <p style='font-size: 12pt;'>Belum ada buku yg kamu publish</p> </div> </div> </div> </div>";
 											}
@@ -277,10 +277,10 @@
 												<div class="card mb-20">
 													<div class="card-header bg-white">
 														<?php if ($d_book['status_publish']['status_id'] == 1 ) { ?>
-															<span><img src='public/img/assets/icon_clock.svg' width='20'> <?php echo $d_book['latest_update']; ?></span> 
+															<span><img src='public/img/assets/icon_clock.svg' width='20'> <?php echo $d_book['latest_update']; ?></span>
 															<span class='float-right'><img src="<?php echo base_url('public/img/assets/icon_stat_draft.png'); ?>"></span>
 														<?php }else if ($d_book['status_publish']['status_id'] == 3) { ?>
-															<span><img src='public/img/assets/icon_clock.svg' width='20'> Terbit <?php echo date("d M Y", strtotime($d_book['publish_date'])); ?></span> 
+															<span><img src='public/img/assets/icon_clock.svg' width='20'> Terbit <?php echo date("d M Y", strtotime($d_book['publish_date'])); ?></span>
 															<span class='float-right'><img src="<?php echo base_url('public/img/assets/icon_stat_revisi.png'); ?>"></span>
 														<?php } ?>
 													</div>
@@ -307,8 +307,8 @@
 							<!-- Right Side -->
 						<?php else: ?>
 							<div class="col-md-6" id="post-data">
-								
-											<?php echo $this->load->view('data/D_profile', $bookdata); 
+
+											<?php echo $this->load->view('data/D_profile', $bookdata);
 											if ($bookdata == null || $bookdata == [] || empty($bookdata)) {
 												echo "<div class='container first_login mt-30'> <div class='row'> <div class='mx-auto' style='width: 85%;'> <div class='text-center mb-10'><img src='".base_url('public/img/icon_draft_blank.png')."' width='190'></div> <div class='text-center'> <h4><b>Tentukan konten yang kamu suka!</b></h4> <p style='font-size: 12pt;'>Belum ada buku yg kamu publish</p> </div> </div> </div> </div>";
 											}
@@ -347,7 +347,7 @@
 																	echo $s_book['title_book']; ?>">
 																<?php endif ?>
 															</a>
-															
+
 															<h5 class="card-title nametitle3"><a onclick="showLoading()" href="<?php echo site_url(); ?>book/<?php
 															echo $s_book['book_id']; ?>
 															-<?php echo url_title($s_book['title_book'], 'dash', true); ?>
@@ -404,7 +404,7 @@
 														<li class="list-group-item">
 															<div class="media">
 																<div class="media-left mr-10">
-																	<a href="<?php if ((bool)$l_book['is_pdf'] == true) { echo site_url('book/'.$l_book['book_id'].'-'.url_title($l_book['title_book'], 'dash', true).'/pdf'); }else{ echo site_url('book/'.$l_book['book_id'].'-'.url_title($l_book['title_book'], 'dash', true)); } ?>"><img class="media-object rounded" height="80" src="<?php echo ($l_book['cover_url'] != 'Kosong') ? ($l_book['cover_url'] != null ? $l_book['cover_url'] : base_url('public/img/blank_cover.png')) : base_url('public/img/blank_cover.png'); ?>" width="60" style="object-fit: cover;"></a>
+																	<a href="<?php if ((bool)$l_book['is_pdf'] == true) { echo site_url('book/'.$l_book['book_id'].'-'.url_title($l_book['title_book'], 'dash', true).'/pdf'); }else{ echo site_url('book/'.$l_book['book_id'].'-'.url_title($l_book['title_book'], 'dash', true)); } ?>"><img class="media-object rounded" height="80" src="<?php echo ($l_book['cover_url'] != 'Kosong') ? ($l_book['cover_url'] != null ? $l_book['cover_url'] : base_url('public/img/blank_cover.png')) : base_url('public/img/blank_cover.png'); ?>" onerror="this.onerror=null;this.src='<?php echo base_url('public/img/blank_cover.png'); ?>';" width="60" style="object-fit: cover;"></a>
 																</div>
 																<div class="media-body">
 																	<div>
@@ -460,13 +460,13 @@
 														<div class="form-group">
 															<div class="pull-left">
 																<button type="submit" name="submit" class="btn btn-primary pull-right btn-login ikuti-lomba"><i class="icon-arrow-right"></i>Update Profile</button>
-															</div>	
+															</div>
 														</div>
 													<!-- </form> -->
 												</div>
 											</div>
 										</div>
-									</div> 
+									</div>
 									<!-- </form> -->
 								</div>
 							</div>

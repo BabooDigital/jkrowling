@@ -28,11 +28,11 @@
 								">
 								<input type="hidden" name="" class="dbooktitle" value="<?php echo $s_book['title_book']; ?>">
 								<?php if ($s_book['cover_url'] != null): ?>
-									<img class="effect-img d-flex align-self-start mr-20 float-left" src="<?php echo ($s_book['cover_url'] != 'Kosong') ? ($s_book['cover_url'] != null ? $s_book['cover_url'] : base_url('public/img/blank_cover.png')) : base_url('public/img/blank_cover.png'); ?>" width="120" height="170" alt="<?php
+									<img class="effect-img d-flex align-self-start mr-20 float-left cover_tl" src="<?php echo ($s_book['cover_url'] != 'Kosong') ? ($s_book['cover_url'] != null ? $s_book['cover_url'] : base_url('public/img/blank_cover.png')) : base_url('public/img/blank_cover.png'); ?>" onerror="this.onerror=null;this.src='<?php echo base_url('public/img/blank_cover.png'); ?>';" width="120" height="170" alt="<?php
 									echo $s_book['title_book']; ?>">
 								<?php endif ?>
 							</a>
-							
+
 							<h5 class="card-title nametitle3"><a onclick="showLoading()" href="<?php echo site_url(); ?>book/<?php
 							echo $s_book['book_id']; ?>
 							-<?php echo url_title($s_book['title_book'], 'dash', true); ?>
@@ -45,7 +45,7 @@
 							echo $s_book['share_count']; ?></span></p>
 							<p class="text-desc-in desc<?php
 							echo $s_book['book_id']; ?>"><span class="ptexts" style="font-family: 'Noto Serif', serif;"><?php
-							echo $s_book['desc']; ?> </span><a class="segment" data-href="<?php
+							echo $s_book['desc']; ?> </span><a class="segment" style="color: #7554bd;" data-href="<?php
 							echo $s_book['book_id']; ?>-<?php echo url_title($s_book['title_book'], 'dash', true); ?>" onclick="showLoading()" href="<?php echo site_url(); ?>book/<?php echo $s_book['book_id']; ?>-<?php echo url_title($s_book['title_book'], 'dash', true); ?>" class="readmore">Lanjut</a>
 						</p>
 					</div>
@@ -58,7 +58,7 @@
 				<div><span class="mr-30"><b class="like_countys"><?php echo $s_book['like_count'] ?></b> Suka</span><span class="ml-50"><b class="txtlike"><?php echo $s_book['comment_count'] ?></b> Komentar</span></div>
 			</div>
 		</div>
-		<div class="card-footer text-muted" style="font-size: 0.8em;font-weight: bold;border-radius: 15px;">
+		<div class="card-footer text-muted" style="font-size: 0.8em;font-weight: bold;">
 			<div class="pull-right">
 				<div class="dropdown">
 					<button class="share-btn dropbtn fs-14px" type="button" id="dropShare" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

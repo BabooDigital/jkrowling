@@ -83,7 +83,7 @@
 							<li class="list-group-item">
 								<div class="media">
 									<div class="media-left mr-10">
-										<a href="#"><img class="media-object" src="<?php echo $cover; ?>" width="60" height="80"></a>
+										<a href="#"><img class="media-object" src="<?php echo $cover; ?>"  onerror="this.onerror=null;this.src='<?php echo base_url('public/img/blank_cover.png'); ?>';" width="60" height="80"></a>
 									</div>
 									<div class="media-body">
 										<div>
