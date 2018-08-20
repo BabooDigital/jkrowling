@@ -64,16 +64,16 @@ class C_book extends MX_Controller
                 redirect('book/' . $id . '/preview/pdf');
             }
         }else{
-            $data = $this->curl_request->curl_post_auth($this->API.'book/Books/detailBook/', $data_book, $auth);   
+            $data = $this->curl_request->curl_post_auth($this->API.'book/Books/detailBook/', $data_book, $auth);
             $datapdf = $this->curl_request->curl_post_auth($this->API.'book/Books/detailPDF/', $data_book, $auth);
         }
 
         if ($data['data']['data']['book_info']['is_pdf'] != 1) {
             foreach ($data['data']['data']['chapter']['paragraphs'] as $book) {
                 $text = strip_tags($book['paragraph_text']);
-                 $datasa .= "<div>".ucfirst($book['paragraph_text'])."</div>"; 
-             } 
-             $st1 = strip_tags($datasa); 
+                 $datasa .= "<div>".ucfirst($book['paragraph_text'])."</div>";
+             }
+             $st1 = strip_tags($datasa);
              $st2 = str_replace('"', '', $st1);
 
             $data['detail_book'] = $data['data'];
@@ -109,7 +109,8 @@ class C_book extends MX_Controller
                 $data['detail_book'] = $data['data'];
             }
 
-            $data['title'] = $data['detail_book']['data']['book_info']['title_book'];
+            $data['title'] = $data['detail_book']['data']['book_info']['title_book'].' - '.$data['detail_book']['data']['chapter']['chapter_title'].' | Baboo.id';
+            $data['ch_title'] = $data['detail_book']['data']['chapter']['chapter_title'];
             $data['m_book_cover'] = $data['detail_book']['data']['book_info']['cover_url'];
             $data['m_book_price'] = $data['detail_book']['data']['book_info']['book_price'];
 
@@ -365,7 +366,7 @@ class C_book extends MX_Controller
     {
         error_reporting(0);
         $auth = $this->session->userdata('authKey');
-        
+
         $book_id = $this->input->post('book_id', TRUE);
         $parap_id = $this->input->post('paragraph_id', TRUE);
         $comment = $this->input->post('comments', TRUE);
@@ -420,7 +421,7 @@ class C_book extends MX_Controller
         }
 
         $resval = $this->curl_request->curl_post_auth($this->API.'timeline/Timelines/getComment', $sendData, $auth);
-        
+
         $psn = $resval['data']['message'];
         $userdetail = $resval['data']['data']['comments'];
 
@@ -486,7 +487,7 @@ class C_book extends MX_Controller
             $this->session->sess_destroy();
             redirect('login', 'refresh');
         } else {
-            echo json_encode(array("code"=>$status));  
+            echo json_encode(array("code"=>$status));
         }
     }
 public function token_pay()
@@ -528,7 +529,7 @@ public function token_pay()
             'first_name'       => $user['fullname'],
             'phone'            => $user['phone_number'],
             'billing_address'  => $billing_address,
-            'shipping_address' => $shipping_address 
+            'shipping_address' => $shipping_address
         );
         $item_details = array(
             'id' => $data['data']['book_info']['book_id'],
