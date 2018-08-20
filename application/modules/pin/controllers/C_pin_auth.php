@@ -4,13 +4,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class C_pin_auth extends MX_Controller {
 
 	var $API = "";
-	
+
 	function __construct()
 	{
 		parent::__construct();
 		$api_url = checkBase();
 		$this->API = $api_url;
-		
+
 		if ($this->session->userdata('isLogin') != 200) {
 			$this->session->set_flashdata('fail_alert', '<script>
 					swal("Gagal", "Maaf, sepertinya anda sudah membuat PIN", "warning");
@@ -53,7 +53,7 @@ class C_pin_auth extends MX_Controller {
 					</script>');
 			redirect('profile','refresh');
 		}
-		
+
 	}
 
 	public function third()
@@ -189,21 +189,23 @@ class C_pin_auth extends MX_Controller {
 		$ktpno    = $this->input->post('ktp_no', TRUE);
 		$ktpimg    = $_FILES["ktp_image"]["tmp_name"];
 		if (substr($phone, 0, 1) === '0') {
-			$phones = '0'.ltrim($phone, '0');
+			$phones = '62'.ltrim($phone, '0');
 		}elseif (substr($phone, 0, 2) === '62') {
-			$phones = '0'.$phone;
-		}elseif (substr($phone, 0, 1) === '8') {
-			$phones = '0'.$phone;
+			$phones = $phone;
+		}elseif (substr($phone, 0, 3) === '+62'){
+            $phones = substr($phone, 1);
+        }elseif (substr($phone, 0, 1) === '8') {
+			$phones = '62'.$phone;
 		}
 		if (function_exists('curl_file_create')) {
 			$cFile = curl_file_create($ktpimg, $_FILES["ktp_image"]["type"],$_FILES["ktp_image"]["name"]);
-		} else { 
+		} else {
 			$cFile = '@' . realpath($ktpimg);
 		}
 
 		$send = array('fullname' => $name,'phone' => $phones,'ktp_no' => $ktpno,'ktp_image' => $cFile);
 		$datas = $this->curl_request->curl_post($this->API.'auth/OAuth/confirmAccount', $send, $auth);
-		
+
 		if (http_response_code() == 403){
 			$this->session->sess_destroy();
 			redirect('login','refresh');
@@ -261,7 +263,7 @@ class C_pin_auth extends MX_Controller {
 		$auth = $this->session->userdata('authKey');
 
 		$datas = $this->curl_request->curl_get($this->API.'auth/OAuth/resendOTP', '', $auth);
-		
+
 		if (http_response_code() == 403){
 			$this->session->sess_destroy();
 			redirect('login','refresh');
