@@ -1,6 +1,12 @@
 function funcDropdown() {
 	document.getElementById("myDropdown").classList.toggle("showss")
 }
+$(window).on("load", function() {
+    var getHashDaft = window.location.hash;
+    if (getHashDaft != "" && getHashDaft == "#buynow") {
+        $('.buyfullbook').click();
+    }
+});
 $(document).ready(function() {
 	$(document).on('click', '.profile', function() {
         event.preventDefault();
@@ -66,7 +72,7 @@ $(document).ready(function() {
 			console.log("error")
 		}).always(function() {})
 	});
-	
+
 	var d = window.location.hash;
 	"" != d && "#comment" == d && $("#commentModal").modal("toggle");
 	var c = $(window).width();
@@ -137,14 +143,14 @@ $(document).ready(function() {
             })
             .always(function() {
             });
-            
+
             // $.getJSON(base_url+"user_all",{search: cut}, function(responseData) {
             //    responseData = _.filter(responseData, function(item) { return item.fullname.toLowerCase().indexOf(query.toLowerCase()) > -1 });
             //    callback.call(this, responseData);
             // });
        }
    });
-    
+
 	$(document).on("click", ".like", function() {
 		var a = $(this),
 		b = new FormData,
@@ -523,7 +529,7 @@ function getmenuChapter() {
 			});
 			var b = $(this).children('.id_chapter').attr("href");
 			$(this).siblings().removeClass("chapter_active").end().addClass("chapter_active");
-			$(this).siblings().removeAttr("style").end().attr("style", "background:transparent;border-bottom: 0.5px #eeeeee;background: url(../public/img/assets/frame_active.svg) no-repeat; background-position: right;");	
+			$(this).siblings().removeAttr("style").end().attr("style", "background:transparent;border-bottom: 0.5px #eeeeee;background: url(../public/img/assets/frame_active.svg) no-repeat; background-position: right;");
 			getContent(b, a);
 		});
 	}).fail(function() {
@@ -592,7 +598,7 @@ function getCommentBook() {
             var c;
             "" != d.comment_user_avatar ? c = d.comment_user_avatar : "" == d.comment_user_avatar && (c = base_url+"public/img/profile/blank-photo.jpg");
             b += "<div class='media pb-15 mb-15 coment_' id='" + d.comment_id + "'> <img class='d-flex align-self-start mr-15 rounded-circle' src='" + c + "' width='40' height='40' alt='" + d.comment_user_name +
-            "' style='object-fit:cover;'> <div class='media-body'> <a href='#'><span class='card-title' style='font-size: 12pt;font-weight: 800;'>" + d.comment_user_name + "</span></a>"; 
+            "' style='object-fit:cover;'> <div class='media-body'> <a href='#'><span class='card-title' style='font-size: 12pt;font-weight: 800;'>" + d.comment_user_name + "</span></a>";
             if (d.comment_user_id == userdata) {
                 b += "<div class='dropdown right-posi'> <button aria-expanded='false' aria-haspopup='true' class='btn-clear' data-toggle='dropdown' id='dropEditComm' style='font-size:11pt;' type='button'>&#8226;&#8226;&#8226;</button> <div aria-labelledby='dropEditComm' class='dropdown-menu'> <a class='dropdown-item editcomm' href='javascript:void(0);' dataedit='"+d.comment_id+"' datacom='"+d.comment_text+"'><img src='"+base_url+"public/img/assets/icon_pen.svg'> Ubah Komentar</a> <hr style='margin-top: 10px !important;margin-bottom: 10px !important;'> <a class='dropdown-item delcomm' href='javascript:void(0);' datadel='"+d.comment_id+"'><img src='"+base_url+"public/img/icon-tab/dustbin.svg'> Hapus Komentar</a> </div></div> ";
             }else{
@@ -676,7 +682,7 @@ $(document).on('click', '.post-comment-repl', function(event) {
     })
     .always(function() {
     });
-    
+
 });
 $(document).on('click', '.delcomm', function(event) {
     event.preventDefault();
@@ -709,7 +715,7 @@ $(document).on('click', '.delcomm', function(event) {
     })
     .always(function() {
     });
-    
+
 });
 $(document).on('click', '.editcomm', function(event) {
     var txt = $(this).attr('datacom');
@@ -752,7 +758,7 @@ $(document).on('click', '.post-editcomment', function(event) {
     .always(function() {
     });
 });
-function getBooks() {var id = $('#iaidubi').val(); var di = $('.spadding').attr('dat-cpss'); $.ajax({url: base_url+'detailBooks', type: 'POST', dataType: 'json', data: {book_id: id, csrf_test_name: csrf_value} }) .done(function(data) {if (data.c == 200) {showPDF(atob(data.dat.u), di.slice(0, -5)); } }) .fail(function() {}) .always(function() {}); 
+function getBooks() {var id = $('#iaidubi').val(); var di = $('.spadding').attr('dat-cpss'); $.ajax({url: base_url+'detailBooks', type: 'POST', dataType: 'json', data: {book_id: id, csrf_test_name: csrf_value} }) .done(function(data) {if (data.c == 200) {showPDF(atob(data.dat.u), di.slice(0, -5)); } }) .fail(function() {}) .always(function() {});
 var __PDF_DOC,
 __CURRENT_PAGE,
 __TOTAL_PAGES,
@@ -769,9 +775,9 @@ function showPDF(pdf_url, password) {
 		__TOTAL_PAGES = __PDF_DOC.numPages;
 
 		for(page = 1; page <= __TOTAL_PAGES; page++) {
-			canvas = document.createElement("canvas");    
-			canvas.className = 'pdf-page-canvas mb-10 w-100';      
-			pageElement.appendChild(canvas);            
+			canvas = document.createElement("canvas");
+			canvas.className = 'pdf-page-canvas mb-10 w-100';
+			pageElement.appendChild(canvas);
 			showPage(page, canvas);
 		}
 
@@ -800,7 +806,7 @@ function showPage(page_no, canvas) {
 		var scale = 1;
 		viewport = page.getViewport(scale);
 		canvas.height = viewport.height;
-		canvas.width = viewport.width;        
+		canvas.width = viewport.width;
 		page.render({canvasContext: canvas.getContext('2d'), viewport: viewport});
 		$(".loader").hide();
 	});

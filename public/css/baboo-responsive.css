@@ -55,13 +55,13 @@ button:focus, a:focus {
       }
       .textinboo {
         font-size: 10pt !important;
-      } 
+      }
     }
 
     @media screen and (max-width: 992px) {
       .textinboo {
         font-size: 15pt;
-      } 
+      }
     }
 
     @media screen and (max-width: 1200px) {
@@ -186,7 +186,7 @@ button:focus, a:focus {
     div#insideDivTerakhirDilihat{
       width:100%;
     }
-    ::-webkit-scrollbar { 
+    ::-webkit-scrollbar {
       /*display: none; */
     }
     .checked{
@@ -500,7 +500,7 @@ button:focus, a:focus {
                     .search_message {
                       background: white;
                       padding: 0;
-                      margin: 0;  
+                      margin: 0;
                     }
                     .search_message_form {
                       height:30px;
@@ -544,7 +544,7 @@ button:focus, a:focus {
                       width: 100%;
                       height: auto;
                       text-align: justify;
-                      margin-top: 10px; 
+                      margin-top: 10px;
                       margin-left: auto;
                       font-size: 21px;
                       margin-right: auto;
@@ -554,10 +554,10 @@ button:focus, a:focus {
                     .commentbook {
                       width: 100%;
                       height: auto;
-                      margin-top: 10px; 
+                      margin-top: 10px;
                       margin-left: auto;
                       font-size: 14px;
-                      margin-right: auto; 
+                      margin-right: auto;
                     }
                     .frmcomment {
                       width: 90%;
@@ -828,7 +828,7 @@ button:focus, a:focus {
                     }
                     .select-text {
                       background: transparent;
-                      border: solid 1px transparent; 
+                      border: solid 1px transparent;
                     }
                     .font-text {
                       font-size: 15px;
@@ -1025,7 +1025,7 @@ button:focus, a:focus {
                     }
 
                     @-webkit-keyframes fadein {
-                      from {bottom: 0; opacity: 0;} 
+                      from {bottom: 0; opacity: 0;}
                       to {bottom: 30px; opacity: 1;}
                     }
 
@@ -1035,7 +1035,7 @@ button:focus, a:focus {
                     }
 
                     @-webkit-keyframes fadeout {
-                      from {bottom: 30px; opacity: 1;} 
+                      from {bottom: 30px; opacity: 1;}
                       to {bottom: 0; opacity: 0;}
                     }
 
@@ -1094,14 +1094,14 @@ button:focus, a:focus {
                       top: 0;
                       transform: translate(-50%);
                     }
-                    .form-searchs {    
-                      padding: 3px 15px 3px 12px;   
-                      color: #848484;   
-                      border: 2px solid rgba(210, 215, 218, 0.6);   
-                      border-radius: 100px;   
-                      background: url("../img/search.png") no-repeat right;   
-                      background-size: 18px;    
-                      background-position: 95% 50%;   
+                    .form-searchs {
+                      padding: 3px 15px 3px 12px;
+                      color: #848484;
+                      border: 2px solid rgba(210, 215, 218, 0.6);
+                      border-radius: 100px;
+                      background: url("../img/search.png") no-repeat right;
+                      background-size: 18px;
+                      background-position: 95% 50%;
                     }
 
                     .popUpBannerBox {
@@ -1111,7 +1111,7 @@ button:focus, a:focus {
                       top: 0;
                       left: 0;
                       color: #FFF;
-                      z-index: 999999;
+                      z-index: 1049;
                       display: none;
                     }
                     .popUpBannerInner {
@@ -1232,7 +1232,7 @@ button:focus, a:focus {
                       border: 1px #fff solid;
                       border-radius: 35px;
                       color: #fff;
-                    } 
+                    }
                     .bg-purp {
                       background-color: #7661ca;
                       height: inherit;
@@ -1267,7 +1267,7 @@ button:focus, a:focus {
                     }
 
                     @-webkit-keyframes fadein {
-                      from {bottom: 0; opacity: 0;} 
+                      from {bottom: 0; opacity: 0;}
                       to {bottom: 30px; opacity: 1;}
                     }
 
@@ -1277,7 +1277,7 @@ button:focus, a:focus {
                     }
 
                     @-webkit-keyframes fadeout {
-                      from {bottom: 30px; opacity: 1;} 
+                      from {bottom: 30px; opacity: 1;}
                       to {bottom: 0; opacity: 0;}
                     }
 
@@ -1317,7 +1317,7 @@ button:focus, a:focus {
                     }
 
                     @-webkit-keyframes fadein {
-                      from {bottom: 0; opacity: 0;} 
+                      from {bottom: 0; opacity: 0;}
                       to {bottom: 30px; opacity: 1;}
                     }
 
@@ -1327,7 +1327,7 @@ button:focus, a:focus {
                     }
 
                     @-webkit-keyframes fadeout {
-                      from {bottom: 30px; opacity: 1;} 
+                      from {bottom: 30px; opacity: 1;}
                       to {bottom: 0; opacity: 0;}
                     }
 

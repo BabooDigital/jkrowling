@@ -166,7 +166,7 @@ function froalaEditor() {
     toolbarBottom: false,
     pastePlain: true
   });
-  $('#paragraph_book').froalaEditor('events.on', 'focus', function (e) { 
+  $('#paragraph_book').froalaEditor('events.on', 'focus', function (e) {
     $('#paragraph_book').froalaEditor('fullscreen.toggle');
     $('.fr-element').css({'background-color':'#f3f5f7', 'height':'100vh', 'z-index':'9999'});
   }, false);
@@ -236,7 +236,7 @@ function backLink() {
     var chapter_id = $("#ch_id").val();
     var paragraph_book = $("#paragraph_book").val();
     var url = base_url+'savechapter';
-    
+
     if (chapter_title != '' || paragraph_book != '') {
       swal({
         title: 'Ingin Kembali?',
@@ -308,7 +308,7 @@ function saveDraft() {
         'Lengkapi Judul dan Isi Buku mu.',
         'error'
         )
-    }else { 
+    }else {
       $.ajax({
         type:"POST",
         url:url,
@@ -406,7 +406,7 @@ function getCategory() {
     data:{csrf_test_name: csrf_value}
   })
   .done(function(data) {
-    var category = "<option value=''>Kategori Buku</option>"; 
+    var category = "<option value=''>Kategori Buku</option>";
     $.each(data, function(index, val) {
       category += "<option value='"+val.category_id+"'>"+val.category_name+"</option>";
     });
@@ -417,7 +417,7 @@ function getCategory() {
   })
   .always(function() {
   });
-  
+
 }
 
 // function back(url) {
@@ -493,12 +493,8 @@ function check_sell() {
     }
   })
   .done(function(data) {
+      $('.swal2-container').css('display', 'none');
     if (data.code == 200) {
-      swal({
-        onOpen: () => {
-          swal.hideLoading();
-        }
-      });
       if (data.data.is_publishable == true) {
 
         $('#writen1').text(data.data.writer_fee+'%');
@@ -560,7 +556,7 @@ function check_sell() {
 
         }
       }else{
-        
+
       }
     }else{
       window.location = base_url+'yourdraft';

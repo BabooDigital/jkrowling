@@ -8,7 +8,7 @@
 
 	<?php $this->load->view('include/meta_head', $data, FALSE); ?>
 
-	<title><?php echo $title; ?> &#8211; <?php echo $ch_title; ?> | Baboo.id</title>
+	<title><?php echo $title; ?></title>
     <meta data-n-head="true" content="yes" data-hid="mobile-web-app-capable" name="mobile-web-app-capable">
     <meta data-n-head="true" content="#7661ca" data-hid="theme-color" name="theme-color">
     <meta data-n-head="true" content="#7661ca" data-hid="msapplication-navbutton-color" name="masapplication-navbutton-color">
@@ -60,8 +60,8 @@
 	<div class="bannerPopUp"></div>
 	<!-- BANNER POPUP BUTTON PLAYSTORE MOBILE -->
 
-	<div data-content-category='Book &gt; <?php echo $category; ?>' data-content-ids='<?php echo $bid; ?>' data-content-name='<?php echo $title; ?>' data-content-type='<?php echo $m_type; ?>' data-page-type='ViewContent' data-value='<?php echo $m_book_price; ?>' id='fbpixel'></div>
-	
+	<div data-content-category='Book &gt; <?php echo $category; ?>' data-content-ids='<?php echo $bid; ?>' data-content-name='<?php echo $bo_title; ?>' data-content-type='<?php echo $m_type; ?>' data-page-type='ViewContent' data-value='<?php echo $m_book_price; ?>' id='fbpixel'></div>
+
 	<div class="wrapper">
 		<nav class="navbar navbar-expand-lg fixed-top mb-20 bgboo">
 			<div class="container">
@@ -76,15 +76,17 @@
 			<div class="row">
 				<div class="col-12">
 					<div class="text-center">
-						<h4 class="title_out"><?php echo $title; ?></h4>
+						<h4 class="title_out"><?php echo $bo_title; ?></h4>
 						<p class="text-muted pcat"><b><?php echo $category; ?></b> &#8226; Dibaca <?php echo $view; ?> kali</p>
+                        <img class="img-fluid rounded mt-5 mb-5 w-50" src="<?php echo $cover; ?>">
 					</div>
 				</div>
 			</div>
 			<div class="row mt-20">
-				<div class="col-12">
-					<div class="media mb-20">
-						<img class="d-flex align-self-start mr-20 rounded-circle" src="<?php if($avatar == NULL){ echo base_url('public/img/profile/blank-photo.jpg'); }else{ echo $avatar; } ?>" width="40" height="40" alt="<?php echo $detail_book['data']['author']['author_name']; ?>">
+                <div class="col-2"></div>
+                    <div class="col-8">
+					<div class="media text-center">
+						<img class="d-flex align-self-start ml-30 rounded-circle" src="<?php if($avatar == NULL){ echo base_url('public/img/profile/blank-photo.jpg'); }else{ echo $avatar; } ?>" width="40" height="40" alt="<?php echo $detail_book['data']['author']['author_name']; ?>">
 						<div class="media-body">
 							<span class="nametitle2 title_out" style="display: -webkit-inline-box;"><a href="#" class="author_name"><?php echo $author; ?></a></span>
 							<!-- <a href="#" data-follow="<?php echo $aid; ?>" class="btn-topup follow-u float-right mt-5"
@@ -95,7 +97,9 @@
 						</div>
 					</div>
 				</div>
+                <div class="col-2"></div>
 			</div>
+            <hr>
 			<div class="row">
 				<div class="col-12">
 					<div class="text-center">
@@ -107,7 +111,7 @@
 			<div class="row">
 				<div class="col-12">
 					<div id='detailStyle' class="detailbook text-justify">
-						<?php 
+						<?php
 						foreach ($desc as $book) {
 							$text = strip_tags($book['paragraph_text']);
 							$data .= $book['paragraph_text'];
@@ -121,15 +125,15 @@
 			<div class="row mb-20">
 				<div class="col-12">
 					<div class="text-center">
-						<span class="desc_outs">Silakan masuk untuk melanjutkan membaca</span>
+						<span class="desc_outs"><?php echo $txt_desc_btn; ?></span>
 					</div>
 				</div>
 			</div>
-			<div class="row mb-50">
+			<div class="row mb-70">
 				<div class="col-12">
 					<div class="text-center">
 						<?php $cid = $this->uri->segment(5); $link = ""; if (empty($cid)) {$link = "?b=".$bid; }else{$link = "?b=".$bid."&c=".$cid; } ?>
-						<a href="<?php echo site_url('login'.$link); ?>" class="btnlogin">Masuk</a>
+						<a href="<?php echo site_url('login'.$link.$hash_uri); ?>" class="btnlogin"><?php echo $txt_btn; ?></a>
 					</div>
 				</div>
 			</div>

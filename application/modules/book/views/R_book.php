@@ -280,9 +280,9 @@
 <div class="bannerPopUp"></div>
 <!-- BANNER POPUP BUTTON PLAYSTORE MOBILE -->
 
-<div data-content-category='Book &gt; <?php echo $detail_book['data']['category']['category_name']; ?>' data-content-ids='<?php echo $detail_book['data']['book_info']['book_id']; ?>' data-content-name='<?php echo $title; ?>' data-content-type='<?php echo $m_type; ?>' data-page-type='ViewContent' data-value='<?php echo $m_book_price; ?>' id='fbpixel'></div>
+<div data-content-category='Book &gt; <?php echo $detail_book['data']['category']['category_name']; ?>' data-content-ids='<?php echo $detail_book['data']['book_info']['book_id']; ?>' data-content-name='<?php echo $detail_book['data']['book_info']['title_book']; ?>' data-content-type='<?php echo $m_type; ?>' data-page-type='ViewContent' data-value='<?php echo $m_book_price; ?>' id='fbpixel'></div>
 
-<input type="checkbox" id="toggle-right">	
+<input type="checkbox" id="toggle-right">
 <div class="page-wrap wrapper">
 	<div id="banner">
 		<nav class="navbar navbar-expand-lg fixed-top mb-20 bgboo" id="navscroll" style="height: 60px;">
@@ -449,9 +449,9 @@
 					<a href="<?php echo site_url('book/'.$uri.'/chapter/'.$prev_ch); ?>" class='pull-left  btn-next-chapt' style="<?php echo $prev_paging ?>"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
 				</div>
 				<div class='col-4'>
-					<span class='w-100'> </span> 
-				</div> 
-				<div class='col-4'> 
+					<span class='w-100'> </span>
+				</div>
+				<div class='col-4'>
 					<a href="<?php echo site_url('book/'.$uri.'/chapter/'.$next_ch); ?>" class='pull-right btn-next-chapt' style="<?php echo $next_paging ?>"><i class="fa fa-chevron-right" aria-hidden="true"></i></a>
 				</div>
 			<?php }else { echo ""; } ?>
@@ -462,14 +462,14 @@
 			</div>
 		</div>
 		</div>
-		
+
 		<?php }else{ ?>
 		<div class="container text-center">
 			<?php if ((bool)$detail_book['data']['book_info']['is_pdf'] != true) { ?>
 				<div class="row">
 					<div class="col-12">
 						<h3>Versi Buku Full</h3>
-						<img src="<?php echo site_url('public/img/assets/icon_sell.png'); ?>" width="20" class="mr-5"><span style="color: #7661ca;font-weight: 600;">Rp <span><?php echo number_format( $detail_book['data']['book_info']['book_price'], 0, ',', '.'); ?></span></span> 
+						<img src="<?php echo site_url('public/img/assets/icon_sell.png'); ?>" width="20" class="mr-5"><span style="color: #7661ca;font-weight: 600;">Rp <span><?php echo number_format( $detail_book['data']['book_info']['book_price'], 0, ',', '.'); ?></span></span>
 					</div>
 				</div>
 			<?php }else{ ?>
@@ -488,7 +488,7 @@
 				<!-- <div class="col-12">
 					<button type="button" class="float-right btn-transparant buyfullbook w-100" style="margin-top: -10px;padding: 10px 30px;border-radius: 35px;background: #7661ca;color: #fff;">Beli</button>
 				</div> -->
-			</div>	
+			</div>
 		</div>
 	</div>
 	<?php } ?>
@@ -601,7 +601,10 @@
 			$("#notifpayment").modal('show');
 			buyBook();
 		<?php } ?>
-
+        var getHashDaft = window.location.hash;
+        if (getHashDaft != "" && getHashDaft == "#buynow") {
+            $('.buyfullbook').click();
+        }
 	});
 
 	var segment = '<?php echo $this->uri->segment(2); ?>';

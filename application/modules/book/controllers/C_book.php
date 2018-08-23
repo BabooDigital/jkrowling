@@ -78,9 +78,11 @@ class C_book extends MX_Controller
 
             $data['detail_book'] = $data['data'];
             $data['page_desc'] = substr($st2, 5, 150) . '...';
+            $data['title'] = $data['detail_book']['data']['book_info']['title_book'].' - '.$data['detail_book']['data']['chapter']['chapter_title'];
         }else{
             $data['detail_book'] = $datapdf['data'];
             $data['page_desc'] = $datapdf['data']['data']['book_info']['desc'];
+            $data['title'] = $datapdf['data']['data']['book_info']['title_book'];
         }
         $auth = $data['bbo_auth'];
 
@@ -109,7 +111,6 @@ class C_book extends MX_Controller
                 $data['detail_book'] = $data['data'];
             }
 
-            $data['title'] = $data['detail_book']['data']['book_info']['title_book'].' - '.$data['detail_book']['data']['chapter']['chapter_title'].' | Baboo.id';
             $data['ch_title'] = $data['detail_book']['data']['chapter']['chapter_title'];
             $data['m_book_cover'] = $data['detail_book']['data']['book_info']['cover_url'];
             $data['m_book_price'] = $data['detail_book']['data']['book_info']['book_price'];

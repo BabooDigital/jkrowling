@@ -1,6 +1,6 @@
-<div data-content-category='Book &gt; <?php echo $detail_book['data']['category']['category_name']; ?>' data-content-ids='<?php echo $detail_book['data']['book_info']['book_id']; ?>' data-content-name='<?php echo $title; ?>' data-content-type='<?php echo $m_type; ?>' data-page-type='ViewContent' data-value='<?php echo $m_book_price; ?>' id='fbpixel'></div>
+<div data-content-category='Book &gt; <?php echo $detail_book['data']['category']['category_name']; ?>' data-content-ids='<?php echo $detail_book['data']['book_info']['book_id']; ?>' data-content-name='<?php echo $detail_book['data']['book_info']['title_book']; ?>' data-content-type='<?php echo $m_type; ?>' data-page-type='ViewContent' data-value='<?php echo $m_book_price; ?>' id='fbpixel'></div>
 
-<?php $this->load->view('navbar/D_navbar'); ?>	
+<?php $this->load->view('navbar/D_navbar'); ?>
 
 <style type="text/css">
 @media only screen and (min-width: 1200px) {.modal.right.fade .modal-dialog {right: -29%; } } @media only screen and (min-width: 1300px) {.modal.right.fade .modal-dialog {right: -32%; } } @media only screen and (max-width: 1000px) {.modal.right.fade .modal-dialog {right: -25%; } } /*Right*/ .modal.right.fade .modal-dialog {-webkit-transition: opacity 0.3s linear, right 0.3s ease-out; -moz-transition: opacity 0.3s linear, right 0.3s ease-out; -o-transition: opacity 0.3s linear, right 0.3s ease-out; transition: opacity 0.3s linear, right 0.3s ease-out; } .modal.right.fade.in .modal-dialog {right: 0; } .modal-backdrop {opacity:0.5 !important; } /* ----- MODAL STYLE ----- */ .modal-content {border-radius: 0; border: none; height: 100vh; } .modal-header {border-bottom-color: #EEEEEE; background-color: #FAFAFA; } .closes {background: none; font-size: 2rem; line-height: 1; opacity: .5; border: none; position: absolute; right: 35px; } .thumbnail {position: relative; display: inline-block; } .caption {position: absolute; top: 44%; left: 50%; transform: translate( -50%, -50% ); text-align: center; font-weight: bold; color: #7554bd; } .comment-marker .num-comment{top: 5px !important; } .mentions-input-box {position: relative; background: #fff; width: 80%; border-radius: 35px; float: left; } .mentions-input-box textarea {width: 80%; display: block; height: 18px; padding: 9px; overflow: hidden; background: transparent; position: relative; outline: 0; resize: none; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; } .mentions-input-box .mentions-autocomplete-list {display: none; background: #fff; border: 1px solid #b2b2b2; position: absolute; left: 0; bottom: 40px; right: 0; z-index: 1070; border-radius:5px; border-top-right-radius:0; border-top-left-radius:0; -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.148438); -moz-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.148438); box-shadow: 0 2px 5px rgba(0, 0, 0, 0.148438); } .mentions-input-box .mentions-autocomplete-list ul {margin: 0; padding: 0; } .mentions-input-box .mentions-autocomplete-list li {background-color: #fff; padding: 0 5px; margin: 0; width: auto; border-bottom: 1px solid #eee; height: 26px; line-height: 26px; overflow: hidden; cursor: pointer; list-style: none; white-space: nowrap; } .mentions-input-box .mentions-autocomplete-list li:last-child {border-radius:5px; } .mentions-input-box .mentions-autocomplete-list li > img, .mentions-input-box .mentions-autocomplete-list li > div.icon {width: 16px; height: 16px; float: left; margin-top:5px; margin-right: 5px; -moz-background-origin:3px; border-radius:3px; } .mentions-input-box .mentions-autocomplete-list li em {font-weight: bold; font-style: none; } .mentions-input-box .mentions-autocomplete-list li:hover, .mentions-input-box .mentions-autocomplete-list li.active {background-color: #f2f2f2; } .mentions-input-box .mentions-autocomplete-list li b {background: #ffff99; font-weight: normal; } .mentions-input-box .mentions {position: absolute; left: 1px; right: 0; top: 1px; bottom: 0; padding: 9px; color: #fff; overflow: hidden; white-space: pre-wrap; word-wrap: break-word; } .mentions-input-box .mentions > div {color: #fff; white-space: pre-wrap; width: 100%; } .mentions-input-box .mentions > div > strong {font-weight:normal; background: #d8dfea; } .mentions-input-box .mentions > div > strong > span {filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0); } .mores {display: none; } .coment_ {border-bottom: 1px #dddddd solid; } #pdf-main-container {width: 95%; margin: 20px auto; } #pdf-loader {display: none; text-align: center; color: #999999; font-size: 13px; line-height: 100px; height: 100px; } #pdf-contents {display: none; } #pdf-meta {overflow: hidden; margin: 0 0 20px 0; } #pdf-buttons {float: left; } #page-count-container {float: right; } #pdf-current-page {display: inline; } #pdf-total-pages {display: inline; } #pdf-canvas {width: 100%; border: 1px solid rgba(0,0,0,0.2); box-sizing: border-box; } #page-loader {height: 100px; line-height: 100px; text-align: center; display: none; color: #999999; font-size: 13px; } .btn-nav-pdf {background: #fcfcff; border: 1px #c3c3c3 solid; border-radius: 6px; } #parentparaph { text-align: justify; }
@@ -29,7 +29,7 @@
 					<div class="card-body">
 						<input type="hidden" name="iaidubi" id="iaidubi" value="<?php echo $detail_book['data']['book_info']['book_id']; ?>">
 						<h3 class="dbooktitle"><?php echo $detail_book['data']['book_info']['title_book']; ?></h3>
-						
+
 						<div class="dbooksociallist">
 							<span class=".fs-13"><img src="<?php echo base_url(); ?>public/img/assets/icon_view.svg" width="27"> <span id="viewcount"><?php echo $detail_book['data']['book_info']['view_count']; ?></span></span>
 						</div>
@@ -259,7 +259,7 @@
 				<?php $this->load->view('data/D_notifpayment'); ?>
 			</div>
 		<?php endif ?>
-		
+
 		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/0.10.0/lodash.min.js"></script>
 		<?php if (isset($js)): ?>
 			<?php echo get_js($js) ?>
@@ -273,7 +273,7 @@
 				var desc = $('.desc_pdf').text();
 			<?php }else{ ?>
 				var desc = "<?php foreach ($detail_book['data']['chapter']['paragraphs'] as $book) {$text = strip_tags($book['paragraph_text']); $datas .= "<div  class='mb-15 textp' id='detailStyle' data-id-p='".$book['paragraph_id']."'>".ucfirst($book['paragraph_text'])."</div>"; } $st1 = strip_tags($datas); $st2 = str_replace('"', '', $st1); if (strlen($st2) > 200) echo $st2 = substr($st2, 0, 200) . '...'; ?>";
-			<?php } ?>
+        <?php } ?>
 		</script>
 			<script src='https://podio.github.io/jquery-mentions-input/lib/jquery.events.input.js' type='text/javascript'></script>
 			<script src='https://podio.github.io/jquery-mentions-input/lib/jquery.elastic.js' type='text/javascript'></script>
