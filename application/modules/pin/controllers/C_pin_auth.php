@@ -188,6 +188,7 @@ class C_pin_auth extends MX_Controller {
 		$phone    = $this->input->post('phone', TRUE);
 		$ktpno    = $this->input->post('ktp_no', TRUE);
 		$ktpimg    = $_FILES["ktp_image"]["tmp_name"];
+		$phones = $phone;
 		if (substr($phone, 0, 1) === '0') {
 			$phones = '62'.ltrim($phone, '0');
 		}elseif (substr($phone, 0, 2) === '62') {

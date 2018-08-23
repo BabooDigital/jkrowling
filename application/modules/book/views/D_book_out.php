@@ -7,7 +7,7 @@
 
 	<?php $this->load->view('include/meta_head', $data, FALSE); ?>
 
-	<title><?php echo $title; ?> &#8211; <?php echo $ch_title; ?> | Baboo.id</title>
+	<title><?php echo $title; ?></title>
 	<link rel="icon" href="<?php echo base_url(); ?>public/img/favicon.ico" sizes="16x16">
 	<!-- CSS -->
 	<link href="<?php echo base_url('') ?>public/css/bootstrap.min.css" rel="stylesheet">
@@ -29,7 +29,7 @@
 }
 </style>
 
-<?php $this->load->view('navbar/D_navbar'); ?>	
+<?php $this->load->view('navbar/D_navbar'); ?>
 
 <style type="text/css">
 
@@ -99,7 +99,7 @@
 }
 </style>
 <body>
-	<div data-content-category='Book &gt; <?php echo $category; ?>' data-content-ids='<?php echo $bid; ?>' data-content-name='<?php echo $title; ?>' data-content-type='<?php echo $m_type; ?>' data-page-type='ViewContent' data-value='<?php echo $m_book_price; ?>' id='fbpixel'></div>
+	<div data-content-category='Book &gt; <?php echo $category; ?>' data-content-ids='<?php echo $bid; ?>' data-content-name='<?php echo $bo_title; ?>' data-content-type='<?php echo $m_type; ?>' data-page-type='ViewContent' data-value='<?php echo $m_book_price; ?>' id='fbpixel'></div>
 <div class="container pt-100 mb-80">
 	<div class="row">
 		<div class="col-md-4 dtlbok" style="padding: 0 40px;">
@@ -109,7 +109,7 @@
 					<div class="card-body">
 						<input type="hidden" name="iaidubi" id="iaidubi" value="2311">
 						<a href="#">
-							<h3 class="dbooktitle"><?php echo $title; ?></h3>
+							<h3 class="dbooktitle"><?php echo $bo_title; ?></h3>
 						</a>
 						<div class="dbooksociallist">
 							<a href="#"><span title="Total <?php echo $view; ?>"><img src="<?php echo base_url('') ?>public/img/assets/icon_view.svg" width="25"> <span class="fsize" id="viewcount"><?php echo $this->thousand_to_k->ConvertToK($view); ?></span></span></a>
@@ -150,16 +150,16 @@
 						<h2 class="dbooktitlebook"></h2>
 						<br>
 						<div id="post-data">
-							<h4 id="" class="book-title chapter mb-30" style="font-weight: 600;"><?php echo $title; ?></h4>
+							<h4 id="" class="book-title chapter mb-30" style="font-weight: 600;"><?php echo $ch_title; ?></h4>
 							<div id="parentparaph">
-								<?php 
+								<?php
 								foreach ($desc as $book) {
 									if ($count == 0) { $view_count = '+'; }else{ $view_count = $count;}
 									$data .= "<div id='detailStyle' class='textp parap-desk'>".$book['paragraph_text']."</div>";
 								}
 								echo $data;
 								?>
-							</div>							
+							</div>
 						</div>
 					</div>
 					<div id="appendContent">
@@ -171,14 +171,14 @@
 			<div class="row mb-20">
 				<div class="col-12">
 					<div class="text-center">
-						<span class="desc_outs">Silakan masuk untuk melanjutkan membaca</span>
+						<span class="desc_outs"><?php echo $txt_desc_btn; ?></span>
 					</div>
 				</div>
 			</div>
 			<div class="row mb-50">
 				<div class="col-12">
 					<div class="text-center">
-						<a href="<?php echo site_url(); ?>login?b=<?php echo $bid; ?>" class="btnlogin">Masuk</a>
+						<a href="<?php echo site_url(); ?>login?b=<?php echo $bid.$hash_uri; ?>" class="btnlogin"><?php echo $txt_btn; ?></a>
 					</div>
 				</div>
 			</div>

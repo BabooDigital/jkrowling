@@ -3,6 +3,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <head>
 	<title><?php echo $title; ?></title>
+    <?php $this->load->view('include/meta_head'); ?>
 
 	<meta data-n-head="true" content="yes" data-hid="mobile-web-app-capable" name="mobile-web-app-capable">
 	<meta data-n-head="true" content="#7661ca" data-hid="theme-color" name="theme-color">
@@ -23,7 +24,7 @@
 #inputemail-error, #inputpass-error{
 	color: red;
 }
-.subtitle { 
+.subtitle {
 	color: #000;font-size: 13pt;font-weight: 600;
 }
 .bg-greypale {
@@ -57,15 +58,15 @@
 </style>
 <?php
 error_reporting(0);
-$actual_link = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-$parts = parse_url($actual_link);
-parse_str($parts['query'], $query);
-if (!empty($query['b']) && empty($query['c'])) {
-	$this->session->set_userdata('bookRef', $query['b']);
-}else if (!empty($query['c']) && !empty($query['b'])) {
-	$this->session->set_userdata('bookRef', $query['b']);
-	$this->session->set_userdata('chapterRef', $query['c']);
-}else{	
+$query = $this->input->get();
+if (!empty($query['b'])){
+    $this->session->set_userdata('bookRef', $query['b']);
+    if (!empty($query['c'])){
+        $this->session->set_userdata('chapterRef', $query['c']);
+    }
+    if (!empty($query['hash'])){
+        $this->session->set_userdata('buyHash', $query['hash']);
+    }
 }
 ?>
 <body>
@@ -107,7 +108,7 @@ if (!empty($query['b']) && empty($query['c'])) {
 							</div>
 
 							<div class="col-lg-6 col-6" style="padding-left:5px;">
-								<button class="btn btn-sosmed" style="width: 100%;" id="login_google">	
+								<button class="btn btn-sosmed" style="width: 100%;" id="login_google">
 									<img src="public/img/assets/google-icon.png" class="btn-img-sosmed"> <span class="btn-text-sosmed" style="font-size:13px;">Google</span>
 								</button>
 							</div>
@@ -117,11 +118,11 @@ if (!empty($query['b']) && empty($query['c'])) {
 							</div>
 
 							<div class="col-lg-12">
-								<?php 
+								<?php
 									$atrr = array('id' => 'form-login', 'novalidate' => 'novalidate');
 									echo form_open('auth/C_Login/postloginuser', $attr);
 								?>
-								
+
 									<div class="form-group">
 										<input type="email" class="form-control login-input" id="inputemail" name="emails" aria-describedby="emailHelp" placeholder="Masukan alamat email" required>
 									</div>
@@ -132,15 +133,15 @@ if (!empty($query['b']) && empty($query['c'])) {
 
 									<p class="text-right text-daftar">Belum punya akun ? <a  data-toggle="modal" data-target="#register-modal" href="#" class="link-daftar">Daftar disini</a></p>
 									<div class="pull-right">
-										<button type="submit" class="btn btn-primary pull-right btn-login"><i class="icon-arrow-right"></i></button>	
+										<button type="submit" class="btn btn-primary pull-right btn-login"><i class="icon-arrow-right"></i></button>
 									<?php echo form_close(); ?>
 								</div>
 
 							</div>
 						</div>
 					</div>
-				</div>	
-			</div>	
+				</div>
+			</div>
 		</div>
 		<!-- Modal -->
 		<div class="modal fade" id="register-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -173,7 +174,7 @@ if (!empty($query['b']) && empty($query['c'])) {
 										<p style="font-size:12px; color:#676767;">Tanggal lahir</p>
 
 										<div class="form-group">
-											<input type="text" id="date" data-max-year="2015" data-first-item="name" data-format="YYYY-MM-DD" data-template="DD MM YYYY" data-custom-class="form-control login-input" data-smart-days="true" name="tgl_lahir"> 
+											<input type="text" id="date" data-max-year="2015" data-first-item="name" data-format="YYYY-MM-DD" data-template="DD MM YYYY" data-custom-class="form-control login-input" data-smart-days="true" name="tgl_lahir">
 										</div>
 
 										<div class="row" style="margin-top:10px;">
@@ -181,7 +182,7 @@ if (!empty($query['b']) && empty($query['c'])) {
 												<div class="form-group">
 													<div class="form-check">
 														<label class="form-check-label">
-															<input class="form-check-input" type="radio" name="j_kelamin" id="exampleRadios1" value="pria" checked> 
+															<input class="form-check-input" type="radio" name="j_kelamin" id="exampleRadios1" value="pria" checked>
 															<span class="text-modal" style="margin-left:5px;">Laki-laki</span>
 														</label>
 													</div>
@@ -200,7 +201,7 @@ if (!empty($query['b']) && empty($query['c'])) {
 											</div>
 										</div>
 										<button type="submit" class="btn btn-signup btn-block"><b>Daftar</b></button>
-									</div> 
+									</div>
 								</form>
 							</div>
 
@@ -222,16 +223,16 @@ if (!empty($query['b']) && empty($query['c'])) {
 		<script type="text/javascript" src="<?php echo base_url();?>public/js/combodate.js"></script>
 		<script type="text/javascript" src="<?php echo base_url();?>public/js/sweetalert2.all.min.js"></script>
 		<script src="<?php echo base_url();?>public/js/jquery.validate.js"></script>
-		<script src="<?php echo base_url();?>public/js/additional-methods.js"></script>	
+		<script src="<?php echo base_url();?>public/js/additional-methods.js"></script>
 		<script src="<?php echo base_url();?>public/js/custom/auth.js"></script>
-		<script> 
+		<script>
 			var base_url = '<?php echo base_url(); ?>';
 			$(function(){
 			    $(window).scrollTop($(".form-group").offset().top);
 			    // $("input").focus();
 	$('#inputemail').focus();
 			});
-			
+
 			$("#login_fb").on("click",function() {
 				window.location.href = '<?php echo $authUrl; ?>';
 			});
@@ -245,7 +246,7 @@ if (!empty($query['b']) && empty($query['c'])) {
 				window.location.href = '<?php echo base_url('google_event'); ?>';
 				// console.log("a");
 			});
-		</script>	
+		</script>
 		<?php echo $this->session->flashdata('login_alert');?>
 		<?php echo $this->session->flashdata('isRegistered');?>
 		<script type="text/javascript">

@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <head>
 
 	<title><?php echo $title; ?></title>
+    <?php $this->load->view('include/meta_head'); ?>
 
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/page/login.css">
@@ -11,24 +13,26 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/sweetalert2.min.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/font-awesome.min.css">
 
-
 	<link href="<?php echo base_url('') ?>public/css/bootstrap.min.css" rel="stylesheet">
 	<link href="<?php echo base_url('') ?>public/css/baboo.css" rel="stylesheet" type="text/css">
 	<link href="<?php echo base_url('') ?>public/css/baboo-responsive.css" rel="stylesheet" type="text/css">
 	<link href="<?php echo base_url('') ?>public/css/custom-margin-padding.css" rel="stylesheet" type="text/css">
 	<link href="<?php echo base_url('') ?>public/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 	<link href="<?php echo base_url('') ?>public/css/sweetalert2.min.css" rel="stylesheet" type="text/css">
-	
+
 </head>
 <!-- CSS -->
 <?php
 error_reporting(0);
-$actual_link = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-$parts = parse_url($actual_link);
-parse_str($parts['query'], $query);
-if (!empty($query['b'])) {
-	$this->session->set_userdata('bookRef', $query['b']);
-}else{	
+$query = $this->input->get();
+if (!empty($query['b'])){
+    $this->session->set_userdata('bookRef', $query['b']);
+    if (!empty($query['c'])){
+        $this->session->set_userdata('chapterRef', $query['c']);
+    }
+    if (!empty($query['hash'])){
+        $this->session->set_userdata('buyHash', $query['hash']);
+    }
 }
 ?>
 
@@ -45,7 +49,7 @@ if (!empty($query['b'])) {
 						<div class="slideboo" style="width: 100%;">
 							<!-- <div class="leftboo"></div> -->
 							<div class="slidecontrols">
-								<span id="slider-prev" style="position: absolute; left: 5%;"></span>  
+								<span id="slider-prev" style="position: absolute; left: 5%;"></span>
 								<span id="slider-next" style="position: absolute; right: 5%;"></span>
 							</div>
 							<!-- SLIDE BABOO -->
@@ -108,7 +112,7 @@ if (!empty($query['b'])) {
 							</div>
 
 							<div class="col-lg-6 col-md-12 col-xl-6">
-								<button class="btn btn-block btn-sosmed" id="login_google">	
+								<button class="btn btn-block btn-sosmed" id="login_google">
 									<img src="<?php echo base_url();?>public/img/assets/google-icon.svg" class="btn-img-sosmed"> <span class="btn-text-sosmed">Google</span>
 								</button>
 							</div>
@@ -118,8 +122,8 @@ if (!empty($query['b'])) {
 							</div>
 
 							<div class="col-lg-12">
-								<?php 
-									$attr= array('id' => 'login-form'); 
+								<?php
+									$attr= array('id' => 'login-form');
 									echo form_open('auth/C_Login/postloginuser', $attr);
 								?>
 									<div class="form-group">
@@ -131,14 +135,14 @@ if (!empty($query['b'])) {
 									</div>
 									<p class="text-right text-daftar">Belum punya akun ? <a  data-toggle="modal" data-target="#register-modal" href="#" class="link-daftar">Daftar disini</a></p>
 									<div class="pull-right">
-										<button type="submit" name="submit" class="btn btn-primary pull-right btn-login"><i class="icon-arrow-right"></i></button>	
+										<button type="submit" name="submit" class="btn btn-primary pull-right btn-login"><i class="icon-arrow-right"></i></button>
 									<?php echo form_close(); ?>
 								</div>
 
 							</div>
 						</div>
 					</div>
-				</div>	
+				</div>
 				<!-- End Right Side Content -->
 
 			</div>
@@ -152,11 +156,6 @@ if (!empty($query['b'])) {
 							<div class="register_later">
 								<a href="<?php echo site_url('') ?>">Daftar Nanti &nbsp;&nbsp;&nbsp; &#8658;</a>
 							</div>
-							<?php if ($this->session->flashdata('isRegistered')): ?>
-								<div class="alert alert-warning">
-									<strong>Warning!</strong> Email Sudah Digunakan.
-								</div>
-							<?php endif ?>
 							<br><br>
 							<div class="col-lg-12 col-xl-12">
 								<img src="<?php echo base_url();?>public/img/logo_purple.png" style="height:50px;">
@@ -166,11 +165,11 @@ if (!empty($query['b'])) {
 
 								<p class="text-img-modal">Selamat datang di Baboo</p>
 
-								<?php 
-									$attr = array('id' => 'form-register'); 
+								<?php
+									$attr = array('id' => 'form-register');
 									echo form_open('auth/C_Login/postregisteruser', $attr);
 								?>
-								
+
 									<div class="form-group">
 										<input type="text" class="form-control login-input" placeholder="Nama Lengkap" name="name">
 									</div>
@@ -188,14 +187,14 @@ if (!empty($query['b'])) {
 									<p style="font-size:12px; color:#676767;">Tanggal lahir</p>
 
 									<div class="form-group">
-										<input type="text" id="date" data-max-year="2015" data-first-item="name" data-format="YYYY-MM-DD" data-template="YYYY MM DD" data-custom-class="form-control login-input" data-smart-days="true" name="tgl_lahir"> 
+										<input type="text" id="date" data-max-year="2015" data-first-item="name" data-format="YYYY-MM-DD" data-template="YYYY MM DD" data-custom-class="form-control login-input" data-smart-days="true" name="tgl_lahir">
 									</div>
 
 									<div class="row">
 										<div class="col-lg-4 col-xl-4">
 											<div class="form-group">
 												<div class="form-check">
-													<input class="badar-radio" type="radio" name="j_kelamin" id="maleGen" value="male" checked> 
+													<input class="badar-radio" type="radio" name="j_kelamin" id="maleGen" value="male" checked>
 													<span class="text-modal">Laki-laki</span>
 												</div>
 											</div>
@@ -204,7 +203,7 @@ if (!empty($query['b'])) {
 										<div class="col-lg-6 col-xl-6">
 											<div class="form-group">
 												<div class="form-check">
-													<input class="badar-radio" type="radio" name="j_kelamin" id="femaleGen" value="female"> 
+													<input class="badar-radio" type="radio" name="j_kelamin" id="femaleGen" value="female">
 													<span class="text-modal" style="margin-left:15px; font-size:12px;">Perempuan</span>
 												</div>
 											</div>
@@ -214,7 +213,7 @@ if (!empty($query['b'])) {
 										<p class="text-daftar" style="text-align:center;">Dengan mengklik tombol daftar, anda setuju pada <a  data-toggle="modal" data-target="#tnc" href="#" class="link-daftar"><b>Terms of Service</b></a></p>
 									</center>
 									<button type="submit" class="btn btn-signup btn-block"><b>Daftar</b></button>
-								</div> 
+								</div>
 							<?php echo form_close(); ?>
 						</div>
 					</div>
@@ -242,7 +241,7 @@ if (!empty($query['b'])) {
 
 							<p class="text-img-modal">Selamat datang di Baboo</p>
 
-							
+
 								<div class="row">
 									<div class="col-lg-12">
 										<p class="right-text">Lanjutkan dengan</p>
@@ -255,7 +254,7 @@ if (!empty($query['b'])) {
 									</div>
 
 									<div class="col-lg-6 col-md-12 col-xl-6">
-										<button class="btn btn-block btn-sosmed" id="login_google_event">	
+										<button class="btn btn-block btn-sosmed" id="login_google_event">
 											<img src="<?php echo base_url();?>public/img/assets/google-icon.svg" class="btn-img-sosmed"> <span class="btn-text-sosmed">Google</span>
 										</button>
 									</div>
@@ -265,11 +264,11 @@ if (!empty($query['b'])) {
 									</div>
 
 									<div class="col-lg-12">
-										<?php 
+										<?php
 											$attr = array('id' => 'login-formevent');
 											echo form_open('auth/C_Login/postloginevent', $attr);
 										?>
-										
+
 											<div class="form-group">
 												<input type="email" class="form-control login-input" id="yourEmailRe" name="emails" placeholder="Alamat Email">
 											</div>
@@ -279,13 +278,13 @@ if (!empty($query['b'])) {
 											</div>
 											<p class="text-right text-daftar">Belum punya akun ? <a  data-toggle="modal" data-target="#register-modal" href="#" class="link-daftar">Daftar disini</a></p>
 											<div class="pull-right">
-												<button type="submit" name="submit" class="btn btn-primary pull-right btn-login"><i class="icon-arrow-right"></i></button>	
+												<button type="submit" name="submit" class="btn btn-primary pull-right btn-login"><i class="icon-arrow-right"></i></button>
 										<?php echo form_close(); ?>
 										</div>
 
 									</div>
 								</div>
-							</div> 
+							</div>
 							<!-- </form> -->
 						</div>
 					</div>
@@ -408,7 +407,7 @@ if (!empty($query['b'])) {
 	</div>
 	<!-- END Modal Login -->
 	<!-- Footer -->
-	<footer style="bottom: 0;padding: 0;margin: 0;"> 
+	<footer style="bottom: 0;padding: 0;margin: 0;">
 		<div class="container">
 			<ul style="position: absolute; left:20px;">
 				<li class="footer-link"><a href="<?php echo site_url(); ?>login" class="footer-link">Masuk</a></li>
@@ -546,11 +545,11 @@ if (!empty($query['b'])) {
 			});
 			$("#login_google_event").on("click", function() {
 				window.location.href = '<?php echo base_url('google_event'); ?>';
-			// console.log("a");
 		});
 		});
 	</script>
-	<?php echo $this->session->flashdata('login_alert');?>
+	<?php echo $this->session->flashdata('login_alert');
+	        echo $this->session->flashdata('isRegistered'); ?>
 
 </body>
 </html>

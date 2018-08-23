@@ -36,31 +36,54 @@ class C_book_out extends MX_Controller {
 
 		$datas = $this->curl_request->curl_post($this->API.'timeline/Home/detailBook', $sendData, '');
 		// $datas = $this->curl_request->curl_post($this->API.'timeline/Home/allChapters', $sendData, '');
-		$st1 = strip_tags($datas['data']['chapter']['paragraphs'][0]['paragraph_text']); 
+		$st1 = strip_tags($datas['data']['chapter']['paragraphs'][0]['paragraph_text']);
 		$st2 = str_replace("'", "", $st1);
 		$book['page_desc'] = substr($st2, 5, 150) . '...';
 		$book['m_book_cover'] = $datas['data']['book_info']['cover_url'];
 		if ((bool)$datas['data']['book_info']['is_free'] == false) {
 			$book['m_book_price'] = preg_replace('/[^0-9]/', '', $datas['data']['book_info']['book_price']);
 			$book['m_type'] = 'product';
-		}else{
-			$book['m_book_price'] = '0';
-			$book['m_type'] = 'website';
-		}
+            $book['txt_btn'] = 'Beli Sekarang';
+            $book['txt_desc_btn'] = 'Penasaran cerita selanjutnya? Beli versi full buku ini sekarang dan lanjutkan membaca.';
+            $book['hash_uri'] = '&hash=buynow';
+        }else{
+            $book['m_book_price'] = '0';
+            $book['m_type'] = 'website';
+            $book['txt_btn'] = 'Masuk';
+            $book['txt_desc_btn'] = 'Penasaran cerita selanjutnya? Silakan masuk untuk melanjutkan membaca.';
+            $book['hash_uri'] = '';
+        }
 
 		$book['css'][] = "public/plugins/holdOn/css/HoldOn.css";
 		$book['js'][] = "public/js/jquery.min.js";
 		$book['js'][] = "public/js/umd/popper.min.js";
 		$book['js'][] = "public/js/bootstrap.min.js";
-		$book['js'][] = "public/js/jquery.sticky-kit.min.js";		
+		$book['js'][] = "public/js/jquery.sticky-kit.min.js";
 		$book['js'][] = "public/plugins/holdOn/js/HoldOn.js";
 		$book['js'][] = "public/js/custom/notification.js";
 		$book['js'][] = "public/js/custom/detail_book.js";
-		$datas['js'][] = "public/js/custom/D_timeline_in.js";
+
+        if ((bool)$datas['data']['book_info']['is_pdf'] == FALSE){
+            $book['title'] = $datas['data']['book_info']['title_book'].' - '.$datas['data']['chapter']['chapter_title'];
+        }else{
+            $book['title'] = $datas['data']['book_info']['title_book'];
+        }
+
+        $book['cover'] = $datas['data']['book_info']['cover_url'];
+        if ($book['cover'] == NULL){
+            $book['cover'] = base_url('public/img/blank_cover.png');
+        }else{
+            $book['cover'] = $datas['data']['book_info']['cover_url'];
+        }
+
+        $book['ch_title'] = $datas['data']['chapter']['chapter_title'];
+        if ($book['ch_title'] == NULL){
+            $book['ch_title'] = 'Description';
+        }else{
+            $book['ch_title'] = $datas['data']['chapter']['chapter_title'];
+        }
 
 		$book['detailBook'] = $datas['data'];
-		$book['title'] = $datas['data']['book_info']['title_book'];
-		$book['cover'] = $datas['data']['book_info']['cover_url'];
 		$book['category'] = $datas['data']['category']['category_name'];
 		$book['view'] = $datas['data']['book_info']['view_count'];
 		$book['comment'] = $datas['data']['book_info']['book_comment_count'];
@@ -71,7 +94,7 @@ class C_book_out extends MX_Controller {
 		$book['aid'] = $datas['data']['author']['author_id'];
 		$book['author'] = $datas['data']['author']['author_name'];
 		$book['avatar'] = $datas['data']['author']['avatar'];
-		$book['ch_title'] = $datas['data']['chapter']['chapter_title'];
+        $book['bo_title'] = $datas['data']['book_info']['title_book'];
 		if ($this->agent->mobile()) {
 			$this->load->view('R_book_out', $book);
 		}else {

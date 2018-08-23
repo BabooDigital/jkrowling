@@ -10,12 +10,12 @@
     <meta name='twitter:card' content='summary' />
 
 	<?php if ($this->uri->segment(1) == 'book') {
-        echo "<meta name='twitter:title' content='".$title." - ".$ch_title."' />";
-        echo "<meta property='og:title' content='".$title." - ".$ch_title."' />";
+        echo "<meta name='twitter:title' content='".$title."' />";
+        echo "<meta property='og:title' content='".$title."' />";
 
 		echo "<meta property='og:type' content='".$m_type."' />";
 		echo "<meta property='og:image' content='".$m_book_cover."' />";
-		echo "<meta property='og:image:alt' content='".$title." - ".$ch_title."' />";
+		echo "<meta property='og:image:alt' content='".$title."' />";
 
 		echo "<meta name='twitter:image' content='".$m_book_cover."' />";
 		echo "<meta name='twitter:label1' content='Harga' />";
