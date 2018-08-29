@@ -45,7 +45,7 @@ $(document).ready(function() {
             })
             .always(function() {
             });
-            
+
             // $.getJSON(base_url+"user_all",{search: cut}, function(responseData) {
             //    responseData = _.filter(responseData, function(item) { return item.fullname.toLowerCase().indexOf(query.toLowerCase()) > -1 });
             //    callback.call(this, responseData);
@@ -86,7 +86,7 @@ $(document).ready(function() {
 
             }
         });
-        
+
         // function getMentions($content) {
         //     $('textarea.mention').mentionsInput('getMentions', function(data) {
         //       alert(JSON.stringify(data));
@@ -361,7 +361,7 @@ $(document).ready(function() {
         var j = $('#iaidubi').val();
         if (stat == 'done') {
             $('#modal-checkout').modal('show');
-            $('#nextcheck').attr('b-id', j);    
+            $('#nextcheck').attr('b-id', j);
         }else{
             swal({
               text: "Mohon selesaikan transaksi sebelumnya terlebih dahulu, sebelum melakukan transaksi baru.",
@@ -399,7 +399,7 @@ function getRCommentBook() {
             var c;
             "" != d.comment_user_avatar ? c = d.comment_user_avatar : "" == d.comment_user_avatar && (c = base_url+"public/img/profile/blank-photo.jpg");
             b += "<div class='media pb-15 mb-15 coment_' id='" + d.comment_id + "'> <img class='d-flex align-self-start mr-15 rounded-circle' src='" + c + "' width='40' height='40' alt='" + d.comment_user_name +
-            "' style='object-fit:cover;'> <div class='media-body'> <a href='#'><span class='card-title' style='font-size: 12pt;font-weight: 800;'>" + d.comment_user_name + "</span></a>"; 
+            "' style='object-fit:cover;'> <div class='media-body'> <a href='#'><span class='card-title' style='font-size: 12pt;font-weight: 800;'>" + d.comment_user_name + "</span></a>";
             if (d.comment_user_id == userdata) {
                 b += "<div class='dropdown right-posi'> <button aria-expanded='false' aria-haspopup='true' class='btn-clear' data-toggle='dropdown' id='dropEditComm' style='font-size:11pt;' type='button'>&#8226;&#8226;&#8226;</button> <div aria-labelledby='dropEditComm' class='dropdown-menu'> <a class='dropdown-item editcomm' href='javascript:void(0);' dataedit='"+d.comment_id+"' datacom='"+d.comment_text+"'><img src='"+base_url+"public/img/assets/icon_pen.svg'> Ubah Komentar</a> <hr style='margin-top: 10px !important;margin-bottom: 10px !important;'> <a class='dropdown-item delcomm' href='javascript:void(0);' datadel='"+d.comment_id+"'><img src='"+base_url+"public/img/icon-tab/dustbin.svg'> Hapus Komentar</a> </div></div> ";
             }else{
@@ -476,7 +476,7 @@ function buyBook() {
         });
     });
 }
-function getBooks() {var id = $('#iaidubi').val(); var di = $('.spadding').attr('dat-cpss'); $.ajax({url: base_url+'detailBooks', type: 'POST', dataType: 'json', data: {book_id: id, csrf_test_name: csrf_value} }) .done(function(data) {if (data.c == 200) {showPDF(atob(data.dat.u), di.slice(0, -5)); } }) .fail(function() {}) .always(function() {}); 
+function getBooks() {var id = $('#iaidubi').val(); var di = $('.spadding').attr('dat-cpss'); $.ajax({url: base_url+'detailBooks', type: 'POST', dataType: 'json', data: {book_id: id, csrf_test_name: csrf_value} }) .done(function(data) {if (data.c == 200) {showPDF(atob(data.dat.u), di.slice(0, -5)); } }) .fail(function() {}) .always(function() {});
 var __PDF_DOC,
 __CURRENT_PAGE,
 __TOTAL_PAGES,
@@ -544,7 +544,7 @@ function showPDF(pdf_url, password) {
     PDFJS.getDocument({ url: pdf_url, password: password }).then(function(pdf_doc) {
         __PDF_DOC = pdf_doc;
         __TOTAL_PAGES = __PDF_DOC.numPages;
-        
+
         $("#pdf-loader").hide();
         $("#password-container").hide();
         $("#pdf-contents").show();
@@ -553,7 +553,7 @@ function showPDF(pdf_url, password) {
         showPage(1);
     }).catch(function(error) { console.log(error)
         $("#pdf-loader").hide();
-        
+
         if(error.name == 'PasswordException') {
             $("#password-container").show();
             $("#pdf-password").val('');
@@ -576,19 +576,20 @@ function showPage(page_no) {
     $("#page-loader").show();
 
     $("#pdf-current-page").text(page_no);
-    
+
     __PDF_DOC.getPage(page_no).then(function(page) {
-        var scale_required = __CANVAS.width / page.getViewport(1).width;
+        var scale_required = 2;
 
         var viewport = page.getViewport(scale_required);
 
         __CANVAS.height = viewport.height;
+        __CANVAS.width = viewport.width;
 
         var renderContext = {
             canvasContext: __CANVAS_CTX,
             viewport: viewport
         };
-        
+
         page.render(renderContext).then(function() {
             __PAGE_RENDERING_IN_PROGRESS = 0;
 
@@ -687,7 +688,7 @@ $(document).on('click', '.Rpost-comment-repl', function(event) {
     })
     .always(function() {
     });
-    
+
 });
 $(document).on('click', '.delcomm', function(event) {
     event.preventDefault();
@@ -720,7 +721,7 @@ $(document).on('click', '.delcomm', function(event) {
     })
     .always(function() {
     });
-    
+
 });
 $(document).on('click', '.editcomm', function(event) {
     var txt = $(this).attr('datacom');

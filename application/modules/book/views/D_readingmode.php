@@ -36,7 +36,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 					<?php } ?>
 							<!-- <div class="media">
 							<img class="d-flex align-self-start mr-20 rounded-circle" width="50" height="50" src="
-							<?php if($detail_book['data']['author']['avatar'] == NULL){ 
+							<?php if($detail_book['data']['author']['avatar'] == NULL){
 							}else{
 								echo $detail_book['data']['author']['avatar']; } ?>" alt="<?php echo $detail_book['data']['author']['author_name']; ?>">
 								<div class="media-body">
@@ -51,14 +51,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 								<?php $this->load->view('data/D_readingmode'); ?>
 							</div>
 							<center><div class="loader text-center mt-10" style="display:none;"></div></center>
-							
+
 							<div class="mt-10">
 								<div class="bg-white p-10">
 									<p></p>
 									<div class="row">
 										<?php if ((bool) $detail_book['data']['book_info']['is_pdf'] == false) { ?>
 											<div class="col-md-3 spadding">
-											<?php }else{ 
+											<?php }else{
 												function incrementalHash($len = 5){$charset = "0123456789abcdefghijklmnopqrstuvwxyz"; $base = strlen($charset); $result = ''; $now = explode(' ', microtime())[1]; while ($now >= $base){$i = $now % $base; $result = $charset[$i] . $result; $now /= $base; } return substr($result, -5); }
 												$generateDate = $detail_book['data']['book_info']['epoch_time'];
 												$datapassword = 'ID#' . $detail_book['data']['book_info']['book_id'] . '#' . $detail_book['data']['book_info']['title_book'] . '#' . strtotime($generateDate);
@@ -73,7 +73,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 						</div>
 						<?php if ((bool) $detail_book['data']['book_info']['is_pdf'] == false) { ?>
 							<nav id="cobamenu" class="navbar navbar-expand-lg navbar-light bg-white fixed-bottom box-shadow-navbar">
-								<input type="hidden" value="post-0" />	
+								<input type="hidden" value="post-0" />
 								<div class="container-fluid pt-5 pb-5">
 									<div id="buatappend" class="col-md-2">
 									</div>
@@ -88,7 +88,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 												</a>
 											</li>
 											<li class="nav-item ml-20">
-												<?php 
+												<?php
 												$url = base_url(uri_string());
 												$replace = str_replace("/read", "#comment", $url);
 												?>
@@ -129,7 +129,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		<script>$(".backbtn").on("click", function() {
         window.history.go(-1)
     });getBooks();
-		function getBooks() {var id = $('#iaidubi').val(); var di = $('.spadding').attr('dat-cpss'); $.ajax({url: base_url+'detailBooks', type: 'POST', dataType: 'json', data: {book_id: id, csrf_test_name: csrf_value} }) .done(function(data) {if (data.c == 200) {showPDF(atob(data.dat.u), di.slice(0, -5)); } }) .fail(function() {}) .always(function() {}); 
+		function getBooks() {var id = $('#iaidubi').val(); var di = $('.spadding').attr('dat-cpss'); $.ajax({url: base_url+'detailBooks', type: 'POST', dataType: 'json', data: {book_id: id, csrf_test_name: csrf_value} }) .done(function(data) {if (data.c == 200) {showPDF(atob(data.dat.u), di.slice(0, -5)); } }) .fail(function() {}) .always(function() {});
 		var __PDF_DOC,
 		__CURRENT_PAGE,
 		__TOTAL_PAGES,
@@ -146,9 +146,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 				__TOTAL_PAGES = __PDF_DOC.numPages;
 
 				for(page = 1; page <= __TOTAL_PAGES; page++) {
-					canvas = document.createElement("canvas");    
-					canvas.className = 'pdf-page-canvas mb-10 w-100';      
-					pageElement.appendChild(canvas);            
+					canvas = document.createElement("canvas");
+					canvas.className = 'pdf-page-canvas mb-10 w-100';
+					pageElement.appendChild(canvas);
 					showPage(page, canvas);
 				}
 
@@ -169,10 +169,10 @@ function showPage(page_no, canvas) {
 	__CURRENT_PAGE = page_no;
 
 	__PDF_DOC.getPage(page_no).then(function(page) {
-		var scale = 1;
+		var scale = 2;
 		viewport = page.getViewport(scale);
 		canvas.height = viewport.height;
-		canvas.width = viewport.width;        
+		canvas.width = viewport.width;
 		page.render({canvasContext: canvas.getContext('2d'), viewport: viewport});
 		$(".loader").hide();
 	});

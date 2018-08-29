@@ -4,7 +4,7 @@
 				<div class='card-body p-0 pl-30 pr-30 pt-15'>
 					<div class='row mb-10 pl-15 pr-15'>
 						<div class='media'>
-							<img alt='<?php echo $book['author_name']; ?>' class='d-flex align-self-start mr-20 rounded-circle' height='50' src='<?php echo $book['author_avatar']; ?>' width='50'>
+							<img alt='<?php echo $book['author_name']; ?>' class='d-flex align-self-start mr-20 rounded-circle' height='50' src='<?php echo $book['author_avatar']; ?>' width='50' onerror="this.onerror=null;this.src='<?php echo base_url('public/img/profile/blank-photo.jpg'); ?>'>
 							<div class='media-body mt-5'>
 								<h5 class='card-title nametitle2'><a href='javascript:void(0);' class="author_name"><?php echo $book['author_name']; ?></a></h5>
 								<p class='text-muted' style='margin-top:-10px;'><small>

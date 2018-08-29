@@ -456,8 +456,8 @@
 				</div>
 			<?php }else { echo ""; } ?>
 			</div>
-		<div class="row mt-20">
-			<div class="text-center mx-auto w-100" style="overflow: hidden;">
+		<div class="row mt-20" style="width:90%;margin: auto">
+			<div class="text-center mx-auto" style="overflow: hidden;">
 				<?php echo $this->load->view('ads/360_side_ad'); ?>
 			</div>
 		</div>
