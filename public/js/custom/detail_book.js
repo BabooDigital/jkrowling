@@ -110,7 +110,7 @@ $(document).ready(function() {
                     }else{
                         var ava = a.comment_user_avatar;
                     }
-                    dats = "<div class='media pb-15 mb-15 coment_'> <img class='d-flex align-self-start mr-15 rounded-circle' src='"+ava+"' width='40' height='40' alt='"+a.comment_user_name+"' style='object-fit:cover;'> <div class='media-body'> <a href='#'><span class='card-title' style='font-size: 12pt;font-weight: 800;'>"+a.comment_user_name+"</span></a><div class='dropdown right-posi'> <button aria-expanded='false' aria-haspopup='true' class='btn-clear' data-toggle='dropdown' id='dropEditComm' style='font-size:11pt;' type='button'>&#8226;&#8226;&#8226;</button> <div aria-labelledby='dropEditComm' class='dropdown-menu'> <a class='dropdown-item editcomm' href='javascript:void(0);' dataedit='"+a.comment_id+"' datacom='"+a.comment_text+"'><img src='"+base_url+"public/img/assets/icon_pen.svg'> Ubah Komentar</a> <hr style='margin-top: 10px !important;margin-bottom: 10px !important;'> <a class='dropdown-item delcomm' href='javascript:void(0);' datadel='"+a.comment_id+"'><img src='"+base_url+"public/img/icon-tab/dustbin.svg'> Hapus Komentar</a> </div></div> <p class='commenttxt' com-id='"+a.comment_id+"'>"+a.comment_text+"</p><div><small><span class='text-muted'>"+a.comment_time+"</span> <a href='javascript:void(0);' class='ml-20 replcom' com-id='"+a.comment_id+"' com-name='" + a.comment_user_name + "'>Balas</a></small></div></div></div>";
+                    dats = "<div class='media pb-15 mb-15 coment_'> <img class='d-flex align-self-start mr-15 rounded-circle' src='"+ava+"' width='40' height='40' alt='"+a.comment_user_name+"' style='object-fit:cover;'> <div class='media-body'> <a href='"+base_url+"profile/"+a.comment_user+"-"+convertToSlug(a.comment_user_name)+"'><span class='card-title' style='font-size: 12pt;font-weight: 800;'>"+a.comment_user_name+"</span></a><div class='dropdown right-posi'> <button aria-expanded='false' aria-haspopup='true' class='btn-clear' data-toggle='dropdown' id='dropEditComm' style='font-size:11pt;' type='button'>&#8226;&#8226;&#8226;</button> <div aria-labelledby='dropEditComm' class='dropdown-menu'> <a class='dropdown-item editcomm' href='javascript:void(0);' dataedit='"+a.comment_id+"' datacom='"+a.comment_text+"'><img src='"+base_url+"public/img/assets/icon_pen.svg'> Ubah Komentar</a> <hr style='margin-top: 10px !important;margin-bottom: 10px !important;'> <a class='dropdown-item delcomm' href='javascript:void(0);' datadel='"+a.comment_id+"'><img src='"+base_url+"public/img/icon-tab/dustbin.svg'> Hapus Komentar</a> </div></div> <p class='commenttxt' com-id='"+a.comment_id+"'>"+a.comment_text+"</p><div><small><span class='text-muted'>"+a.comment_time+"</span> <a href='javascript:void(0);' class='ml-20 replcom' com-id='"+a.comment_id+"' com-name='" + a.comment_user_name + "'>Balas</a></small></div></div></div>";
                     $("#bookcomment_list").append(dats);
                 }).fail(function() {
                     console.log("error")
@@ -598,7 +598,7 @@ function getCommentBook() {
             var c;
             "" != d.comment_user_avatar ? c = d.comment_user_avatar : "" == d.comment_user_avatar && (c = base_url+"public/img/profile/blank-photo.jpg");
             b += "<div class='media pb-15 mb-15 coment_' id='" + d.comment_id + "'> <img class='d-flex align-self-start mr-15 rounded-circle' src='" + c + "' width='40' height='40' alt='" + d.comment_user_name +
-            "' style='object-fit:cover;'> <div class='media-body'> <a href='#'><span class='card-title' style='font-size: 12pt;font-weight: 800;'>" + d.comment_user_name + "</span></a>";
+            "' style='object-fit:cover;'> <div class='media-body'> <a href='"+base_url+"profile/"+d.comment_user_id+"-"+convertToSlug(d.comment_user_name)+"'><span class='card-title' style='font-size: 12pt;font-weight: 800;'>" + d.comment_user_name + "</span></a>";
             if (d.comment_user_id == userdata) {
                 b += "<div class='dropdown right-posi'> <button aria-expanded='false' aria-haspopup='true' class='btn-clear' data-toggle='dropdown' id='dropEditComm' style='font-size:11pt;' type='button'>&#8226;&#8226;&#8226;</button> <div aria-labelledby='dropEditComm' class='dropdown-menu'> <a class='dropdown-item editcomm' href='javascript:void(0);' dataedit='"+d.comment_id+"' datacom='"+d.comment_text+"'><img src='"+base_url+"public/img/assets/icon_pen.svg'> Ubah Komentar</a> <hr style='margin-top: 10px !important;margin-bottom: 10px !important;'> <a class='dropdown-item delcomm' href='javascript:void(0);' datadel='"+d.comment_id+"'><img src='"+base_url+"public/img/icon-tab/dustbin.svg'> Hapus Komentar</a> </div></div> ";
             }else{
@@ -607,7 +607,7 @@ function getCommentBook() {
             b += "<p class='commenttxt' com-id='" + d.comment_id + "'>" + d.comment_text + "</p><div><small><span class='text-muted'>" + d.comment_date + "</span> <a href='javascript:void(0);' class='ml-20 replcom' com-id='" + d.comment_id + "' com-name='" + d.comment_user_name + "'>Balas</a></small></div><div class='data-reply' data-reply='" + d.comment_id + "'>";
             $.each(d.comment_reply_data, function(d, repl) {
                 var names = repl.comment_user_name.substr(0,repl.comment_user_name.indexOf(' '));
-                b += "<div class='mt-5'> <img src='"+repl.comment_user_avatar+"' width='20' height='20' class='rounded-circle fitcover'><a src='#' class='ml-10' style='font-weight: 600;'>"+names+"</a><span class='ml-10 commenttxt'>"+repl.comment_text+"</span></div>";
+                b += "<div class='mt-5'> <img src='"+repl.comment_user_avatar+"' width='20' height='20' class='rounded-circle fitcover'><a href='"+base_url+"profile/"+repl.comment_user_id+"-"+convertToSlug(repl.comment_user_name)+"' class='ml-10' style='font-weight: 600;'>"+names+"</a><span class='ml-10 commenttxt'>"+repl.comment_text+"</span></div>";
             });
             b += "</div></div></div>";
             // <a href='#' class='float-right'>Like</a>
@@ -624,10 +624,6 @@ function ScrollToBottom(d) {
 	var c;
 	for (c = 0; c <= d; c++) window.scrollTo(0, document.querySelector("#post-data").scrollHeight)
 }
-
-function convertToSlug(d) {
-	return d.toLowerCase().replace(/[^\w ]+/g, "").replace(/ +/g, "-")
-};
 
 $(document).on('click', '.replcom', function() {
     event.preventDefault();
@@ -667,7 +663,7 @@ $(document).on('click', '.post-comment-repl', function(event) {
         $("#comments").val("");$("textarea.mention").mentionsInput('reset');
         $(".loader").hide();
         var names = a.comment_user_name.substr(0,a.comment_user_name.indexOf(' '));
-        dats = "<div class='mt-5'> <img src='"+a.comment_user_avatar+"' width='20' height='20' class='rounded-circle fitcover'><a src='#' class='ml-10' style='font-weight: 600;'>"+names+"</a><span class='ml-10 commenttxt'>"+a.comment_text+"</span> ";
+        dats = "<div class='mt-5'> <img src='"+a.comment_user_avatar+"' width='20' height='20' class='rounded-circle fitcover'><a src='"+base_url+"profile/"+a.comment_user_id+"-"+convertToSlug(a.comment_user_name)+"' class='ml-10' style='font-weight: 600;'>"+names+"</a><span class='ml-10 commenttxt'>"+a.comment_text+"</span> ";
         if (a.comment_user_id == userdata) {
             dats += "<div class='dropdown right-posi'> <button aria-expanded='false' aria-haspopup='true' class='btn-clear' data-toggle='dropdown' id='dropEditComm' style='font-size:11pt;' type='button'>&#8226;&#8226;&#8226;</button> <div aria-labelledby='dropEditComm' class='dropdown-menu'> <a class='dropdown-item editcomm' href='javascript:void(0);' dataedit='"+a.comment_id+"' datacom='"+a.comment_text+"'><img src='"+base_url+"public/img/assets/icon_pen.svg'> Ubah Komentar</a> <hr style='margin-top: 10px !important;margin-bottom: 10px !important;'> <a class='dropdown-item delcomm' href='javascript:void(0);' datadel='"+a.comment_id+"'><img src='"+base_url+"public/img/icon-tab/dustbin.svg'> Hapus Komentar</a> </div></div> ";
         }else{
@@ -676,6 +672,7 @@ $(document).on('click', '.post-comment-repl', function(event) {
         $("#"+comid_).find(".data-reply").attr('data-reply', comid_).append(dats);
         var btn = "<button class='post-comment' type='button' style='background: none;border: none;'><img src='"+base_url+"public/img/assets/icon_sendcomm.png' width='43' height='43'></button>";
         $('#btn-com').html(btn);
+        location.reload();
     })
     .fail(function() {
         console.log("error");
@@ -812,3 +809,7 @@ function showPage(page_no, canvas) {
 	});
 }
 }
+
+function convertToSlug(d) {
+    return d.toLowerCase().replace(/[^\w ]+/g, "").replace(/ +/g, "-")
+};

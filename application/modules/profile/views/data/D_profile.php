@@ -1,34 +1,50 @@
 <?php if (!empty($bookdata)) {
     foreach ($bookdata as $s_book) { ?>
         <div class="card mb-15">
-            <div class="card-body pt-20 pb-20 pl-30 pr-30">
+            <div class="card-body pt-10 pb-20 pl-30 pr-30">
+                <div class="row mb-20 pb-10" style="border-bottom: 1px rgba(225, 225, 225, 0.28) solid;">
+                    <div class="media">
+                        <a href="#"><img class="d-flex align-self-start mr-20 rounded-circle" src="<?php if($s_book['author_avatar'] == NULL){
+                                echo base_url('public/img/profile/blank-photo.jpg');
+                            }else{
+                                echo $s_book['author_avatar']; } ?>" width="50" height="50" alt="<?php
+                            echo $s_book['author_name']; ?>"></a>
+                        <div class="media-body mt-5">
+                            <a data-usr-prf="<?php echo $s_book['author_id']; ?>" data-usr-name="<?php echo url_title($s_book['author_name'], 'dash', true); ?>" href="<?php echo site_url('profile/'.$s_book['author_id'].'-'.url_title($s_book['author_name'], 'dash', true)); ?>" class="profile"><h5 class="nametitle2 mb-0"><?php
+                                    echo $s_book['author_name']; ?></h5></a>
+                            <small>
+                                <span><?php echo $s_book['publish_date'] ?></span></small>
+                        </div>
+                    </div>
+                    <?php if (!$this->uri->segment(2)) { ?>
+                        <div class="dropdown right-posi">
+                            <button class="btn btn-transparent dropdown-toggle float-right" data-toggle="dropdown" type="button"><span class="float-right"><img src="<?php echo base_url('public/img/assets/caret.svg'); ?>"></span></button>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li class="drpdwn-caret">
+                                    <a href="javascript:void(0);" onclick="editBook(<?php echo $s_book['book_id']; ?>,<?php if((bool)$s_book['is_pdf'] == TRUE){ echo "true"; }else { echo "false"; } ?>)">Edit Buku</a>
+                                </li>
+                                <li class="drpdwn-caret">
+                                    <a href="javascript:void(0);" onclick="deleteBook(<?php echo $s_book['book_id']; ?>)">Hapus Buku</a>
+                                </li>
+                            </ul>
+                        </div>
+                    <?php }else{ ?>
+                        <div></div>
+                    <?php } ?>
+                </div>
                 <div class="row">
                     <div class="media w-100">
                         <div class="media-body">
-                            <a href="<?php if ((bool)$s_book['is_pdf'] == true) { echo site_url('book/'.$s_book['book_id'].'-'.url_title($s_book['title_book'], 'dash', true).'/pdf'); }else{ echo site_url('book/'.$s_book['book_id'].'-'.url_title($s_book['title_book'], 'dash', true)); } ?>"><img alt="<?php echo $s_book['title_book']; ?>" class="effect-img d-flex align-self-start mr-10 float-left rounded" height="170" src="<?php echo ($s_book['cover_url'] != 'Kosong') ? ($s_book['cover_url'] != null ? $s_book['cover_url'] : base_url('public/img/blank_cover.png')) : base_url('public/img/blank_cover.png'); ?>" width="120" onerror="this.onerror=null;this.src='<?php echo base_url('public/img/blank_cover.png'); ?>';"></a> <span class="card-title nametitle3"><a href="<?php if ((bool)$s_book['is_pdf'] == true) { echo site_url('book/'.$s_book['book_id'].'-'.url_title($s_book['title_book'], 'dash', true).'/pdf'); }else{ echo site_url('book/'.$s_book['book_id'].'-'.url_title($s_book['title_book'], 'dash', true)); } ?>"><?php echo $s_book['title_book']; ?></a></span>
+                            <a href="<?php if ((bool)$s_book['is_pdf'] == true) { echo site_url('book/'.$s_book['book_id'].'-'.url_title($s_book['title_book'], 'dash', true).'/pdf'); }else{ echo site_url('book/'.$s_book['book_id'].'-'.url_title($s_book['title_book'], 'dash', true)); } ?>">
+                                <img alt="<?php echo $s_book['title_book']; ?>" class="effect-img d-flex align-self-start mr-20 mb-5 float-left rounded" height="170" src="<?php echo ($s_book['cover_url'] != 'Kosong') ? ($s_book['cover_url'] != null ? $s_book['cover_url'] : base_url('public/img/blank_cover.png')) : base_url('public/img/blank_cover.png'); ?>" width="120" onerror="this.onerror=null;this.src='<?php echo base_url('public/img/blank_cover.png'); ?>';">
+                            </a>
+                            <span class="card-title nametitle3">
+                                <a href="<?php if ((bool)$s_book['is_pdf'] == true) { echo site_url('book/'.$s_book['book_id'].'-'.url_title($s_book['title_book'], 'dash', true).'/pdf'); }else{ echo site_url('book/'.$s_book['book_id'].'-'.url_title($s_book['title_book'], 'dash', true)); } ?>"><?php echo $s_book['title_book']; ?></a></span>
                             <input type="hidden" name="" class="dbooktitle" value="<?php echo $s_book['title_book']; ?>">
                             <span class="nametitle2" style="display: none;"><?php echo $s_book['author_name']; ?></span>
-                            <?php if (!$this->uri->segment(2)) { ?>
-                                <div class="dropdown float-right">
-                                    <button class="btn btn-transparent dropdown-toggle float-right" data-toggle="dropdown" type="button"><span class="float-right"><img src="<?php echo base_url('public/img/assets/caret.svg'); ?>"></span></button>
-                                    <ul class="dropdown-menu dropdown-menu-right">
-                                        <li class="drpdwn-caret">
-                                            <a href="javascript:void(0);" onclick="editBook(<?php echo $s_book['book_id']; ?>,<?php if((bool)$s_book['is_pdf'] == TRUE){ echo "true"; }else { echo "false"; } ?>)">Edit Buku</a>
-                                        </li>
-                                        <li class="drpdwn-caret">
-                                            <a href="javascript:void(0);" onclick="deleteBook(<?php echo $s_book['book_id']; ?>)">Hapus Buku</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            <?php }else{ ?>
-                                <div></div>
-                            <?php } ?>
-                            <br>
-                            <br>
-                            <p class="catbook"><a class="mr-20" href="#"><span class="btn-no-fill"><?php
-                                        echo $s_book['category']; ?></span></a> <span class="mr-20"><img src="<?php echo base_url('public/img/assets/icon_view.svg'); ?>"> <?php echo $s_book['view_count']; ?></span>
+                            <p class="catbook mt-10 mb-10"><a class="mr-20" href="#"><span class="btn-no-fill"><?php                                        echo $s_book['category']; ?></span></a> <span class="mr-20"><img src="<?php echo base_url('public/img/assets/icon_view.svg'); ?>"> <?php echo $s_book['view_count']; ?></span>
                                 <span><img src="<?php echo base_url('public/img/assets/icon_share.svg'); ?>">  <?php echo $s_book['share_count']; ?></span></p>
-                            <p class="text-desc-in ptexts"><?php
+                            <p class="text-desc-in ptexts text-justify"><?php
                                 echo $s_book['desc']; ?> <a class="segment readmore" data-href="<?php
                                 echo $s_book['book_id']; ?>-<?php echo url_title($s_book['title_book'], 'dash', true); ?>" onclick="showLoading()" href="<?php echo site_url(); ?>book/<?php echo $s_book['book_id']; ?>-<?php echo url_title($s_book['title_book'], 'dash', true); ?>">Lanjut</a></p>
                         </div>

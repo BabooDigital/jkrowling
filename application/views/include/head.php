@@ -9,7 +9,7 @@
 	<meta data-n-head="true" content="#7661ca" data-hid="msapplication-navbutton-color" name="masapplication-navbutton-color">
 
 	<link rel="icon" href="<?php echo base_url(); ?>public/img/favicon.ico" sizes="16x16">
-	
+
 	<title><?php echo $title; ?></title>
 
 	<?php $this->load->view('include/meta_head'); ?>
@@ -42,7 +42,6 @@
 }else{
 	echo "<body>";
 } ?>
-<body>
 	<!-- Google Tag Manager (noscript) -->
 	<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MVW4JD3"
 		height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>

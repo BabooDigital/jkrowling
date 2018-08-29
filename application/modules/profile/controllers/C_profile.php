@@ -29,10 +29,13 @@ class C_profile extends MX_Controller {
 		$datas3 = $this->curl_request->curl_post($this->API.'timeline/Timelines/draft', '', $auth);
 		$datas4 = $this->curl_request->curl_post($this->API.'book/Books/latestRead', '', $auth);
 
+        $followers_list = $this->curl_request->curl_post_auth($this->API.'auth/OAuth/listFollowers', '', $auth);
+
 		$data['userdata'] = $datas['data'];
 		$data['bookdata'] = $datas2['data'];
 		$data['draftdata'] = $datas3['data'];
 		$data['latestread'] = $datas4['data'];
+		$data['followers'] = array_slice($followers_list['data']['data'], 0, 20);
 		$data['title'] = "Profile Page - Baboo";
 		$data['css'][] = "public/css/sweetalert2.min.css";
 
@@ -41,10 +44,11 @@ class C_profile extends MX_Controller {
 		$data['js'][] = "public/js/bootstrap.min.js";
 		$data['js'][] = "public/js/jquery.sticky-kit.min.js";
 		$data['js'][] = "public/js/custom/notification.js";
+		$data['js'][] = "public/js/custom/follow.js";
 		$data['js'][] = "public/js/custom/transaction.js";
 		$data['js'][] = "public/js/jquery.validate.js";
 		$data['js'][] = "public/js/sweetalert2.all.min.js";
-		
+
 		if (http_response_code() == 403){
 			$this->session->unset_userdata('userData');
 			$this->session->unset_userdata('authKey');
@@ -72,7 +76,7 @@ class C_profile extends MX_Controller {
 					$data['js'][] = "public/js/custom/profile_page.js";
 					$data['js'][] = "public/js/custom/cashout_auth.js";
                 	$data['js'][]   = "public/js/custom/search.js";
-                	
+
                 	if (!empty($this->input->get("page"))) {
 						$result = $this->load->view('data/D_profile', $data);
 					}else{
@@ -122,9 +126,13 @@ class C_profile extends MX_Controller {
 		$datas = $this->curl_request->curl_post($this->API.'auth/OAuth/otherProfile', $sendData, $auth);
 		$datas2 = $this->curl_request->curl_post($this->API.'book/Books/latestRead', $sendData, $auth);
 
+		$uid = array('user_id' => $idfix);
+        $followers_list = $this->curl_request->curl_post_auth($this->API.'auth/OAuth/listFollowers', $uid, $auth);
+
 		$data['userdata'] = $datas['data']['user_info'];
 		$data['bookdata'] = $datas['data']['book_published'];
 		$data['latestread'] = $datas2['data'];
+        $data['followers'] = array_slice($followers_list['data']['data'], 0, 20);
 
 		$data['title'] = "Profile Page - Baboo";
 		$data['js'][] = "public/js/jquery.min.js";
@@ -210,7 +218,7 @@ class C_profile extends MX_Controller {
 		$datas = $resval['data'];
 		$status = $resval['code'];
 		$auth = $headers['BABOO-AUTH-KEY'];
-		
+
 		$this->session->set_userdata('authKey', $auth);
 		if ($status == 403){
 			$this->session->unset_userdata('userData');
@@ -254,10 +262,10 @@ class C_profile extends MX_Controller {
 		$psn = $resval['message'];
 		$userdetail = $resval['data'];
 		$auth = $headers['BABOO-AUTH-KEY'];
-		
+
 		$status = $resval['code'];
 		$this->session->set_userdata('authKey', $auth);
-		
+
 		if ($status == 403){
 			$this->session->unset_userdata('userData');
 			$this->session->unset_userdata('authKey');
@@ -301,10 +309,10 @@ class C_profile extends MX_Controller {
 		$psn = $resval['message'];
 		$userdetail = $resval['data'];
 		$auth = $headers['BABOO-AUTH-KEY'];
-		
+
 		$this->session->set_userdata('authKey', $auth);
 		$status = $resval['code'];
-		
+
 		if ($status == 403){
 			$this->session->unset_userdata('userData');
 			$this->session->unset_userdata('authKey');
@@ -347,7 +355,7 @@ class C_profile extends MX_Controller {
 			}
 		}
 	}
-	
+
 	public function getMentionPeople()
 	{
 		error_reporting(0);
@@ -395,18 +403,18 @@ class C_profile extends MX_Controller {
 		$data['js'][] = "public/js/bootstrap.min.js";
 		$data['js'][]   = "public/js/custom/follow.js";
 		$data['js'][] = "public/js/menupage.js";
-		
+
 		if ($status == 403) {
 			$this->session->unset_userdata('userData');
 			$this->session->unset_userdata('authKey');
 			$this->session->sess_destroy();
 			redirect('login', 'refresh');
 		} else {
-			if ($this->agent->mobile()) {
+//			if ($this->agent->mobile()) {
 				$this->load->view('R_list_followers', $data);
-			}else{
-				redirect('profile','refresh');
-			}
+//			}else{
+//				redirect('profile','refresh');
+//			}
 		}
 	}
 
@@ -439,18 +447,18 @@ class C_profile extends MX_Controller {
 		$data['js'][] = "public/js/bootstrap.min.js";
 		$data['js'][]   = "public/js/custom/follow.js";
 		$data['js'][] = "public/js/menupage.js";
-		
+
 		if ($status == 403) {
 			$this->session->unset_userdata('userData');
 			$this->session->unset_userdata('authKey');
 			$this->session->sess_destroy();
 			redirect('login', 'refresh');
 		} else {
-			if ($this->agent->mobile()) {
+//			if ($this->agent->mobile()) {
 				$this->load->view('R_list_followers_other', $data);
-			}else{
-				redirect('profile','refresh');
-			}
+//			}else{
+//				redirect('profile','refresh');
+//			}
 		}
 	}
 }

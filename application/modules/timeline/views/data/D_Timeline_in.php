@@ -1,19 +1,19 @@
 <?php if (!empty($home['timeline'])) {
 	foreach ($home['timeline'] as $s_book) {  ?>
 	<div class="card mb-15" style="padding: 0 10px 10px;">
-		<div class="card-body p-0 p-20">
-			<div class="row mb-20 pb-10" style="border-bottom: 1px rgba(225, 225, 225, 0.28) solid;">
+		<div class="card-body pt-10 pr-20 pl-20 pb-0">
+			<div class="row mb-15 pb-10" style="border-bottom: 1px rgba(225, 225, 225, 0.28) solid;">
 				<div class="media">
 					<a href="#"><img class="d-flex align-self-start mr-10 rounded-circle" src="<?php if($s_book['author_avatar'] == NULL){
 						echo base_url('public/img/profile/blank-photo.jpg');
 					}else{
-						echo $s_book['author_avatar']; } ?>" width="60" height="60" alt="<?php
-						echo $s_book['author_name']; ?>"></a>
-						<div class="media-body mt-5">
-							<a data-usr-prf="<?php echo $s_book['author_id']; ?>" data-usr-name="<?php echo url_title($s_book['author_name'], 'dash', true); ?>" href="<?php echo site_url('profile/'.$s_book['author_id'].'-'.url_title($s_book['author_name'], 'dash', true)); ?>" class="profile"><h5 class="card-title nametitle2 profile"><?php
+						echo $s_book['author_avatar']; } ?>" width="50" height="50" alt="<?php
+						echo $s_book['author_name']; ?>" onerror="this.onerror=null;this.src='<?php echo base_url('public/img/profile/blank-photo.jpg'); ?>';"></a>
+						<div class="media-body" style="margin-top: 7px;">
+							<a data-usr-prf="<?php echo $s_book['author_id']; ?>" data-usr-name="<?php echo url_title($s_book['author_name'], 'dash', true); ?>" href="<?php echo site_url('profile/'.$s_book['author_id'].'-'.url_title($s_book['author_name'], 'dash', true)); ?>" class="profile"><h5 class="nametitle2 profile mb-0"><?php
 							echo $s_book['author_name']; ?></h5></a>
-							<p><small>
-								<span><?php echo $s_book['publish_date'] ?></span></small></p>
+							<small>
+								<span><?php echo $s_book['publish_date'] ?></span></small>
 							</div>
 						</div>
 					</div>
@@ -43,7 +43,7 @@
 							echo $s_book['category']; ?></span></a> <span class="mr-20"><img src="<?php echo base_url(); ?>public/img/assets/icon_view.svg"> <?php
 							echo $s_book['view_count']; ?></span> <span><img src="<?php echo base_url(); ?>public/img/assets/icon_share.svg"> <?php
 							echo $s_book['share_count']; ?></span></p>
-							<p class="text-desc-in desc<?php
+							<p class="text-desc-in text-justify desc<?php
 							echo $s_book['book_id']; ?>"><span class="ptexts" style="font-family: 'Noto Serif', serif;"><?php
 							echo $s_book['desc']; ?> </span><a class="segment" style="color: #7554bd;" data-href="<?php
 							echo $s_book['book_id']; ?>-<?php echo url_title($s_book['title_book'], 'dash', true); ?>" onclick="showLoading()" href="<?php echo site_url(); ?>book/<?php echo $s_book['book_id']; ?>-<?php echo url_title($s_book['title_book'], 'dash', true); ?>" class="readmore">Lanjut</a>
@@ -54,8 +54,8 @@
 		</div>
 		<div class="row mt-10" style="width: 95%;margin-left: auto;margin-right: auto;">
 			<div class="col-12 text-muted" style="font-size: 13px;">
-				<div class="pull-right"><span><b class="share_countys"><?php echo $s_book['share_count']; ?></b> Bagikan </span></div>
-				<div><span class="mr-30"><b class="like_countys"><?php echo $s_book['like_count'] ?></b> Suka</span><span class="ml-50"><b class="txtlike"><?php echo $s_book['comment_count'] ?></b> Komentar</span></div>
+				<div class="pull-right"><span><b class="share_countys"><?php echo $this->thousand_to_k->ConvertToK($s_book['share_count']); ?></b> Bagikan </span></div>
+				<div><span class="mr-30"><b class="like_countys"><?php echo $this->thousand_to_k->ConvertToK($s_book['like_count']); ?></b> Suka</span><span class="ml-50"><b class="txtlike"><?php echo $this->thousand_to_k->ConvertToK($s_book['comment_count']); ?></b> Komentar</span></div>
 			</div>
 		</div>
 		<div class="card-footer text-muted" style="font-size: 0.8em;font-weight: bold;">
