@@ -803,7 +803,7 @@ function showPage(page_no, canvas) {
 	$("#pdf-current-page").text(page_no);
 
 	__PDF_DOC.getPage(page_no).then(function(page) {
-		var scale = 1;
+		var scale = 1.5;
 		viewport = page.getViewport(scale);
 		canvas.height = viewport.height;
 		canvas.width = viewport.width;

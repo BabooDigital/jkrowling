@@ -86,7 +86,7 @@
 			</form>
 			<form class="form-inline">
 				<a href="javascript:void(0);" class="mr-20 change-file-pdf" style="color: #333;"> GANTI FILE </a>
-				<a href="javascript:void(0);" class="btn-transparant" id="post-uploadpdf" style="color: #7554bd;"><img src="<?php echo base_url() ?>public/img/assets/icon_publish.png" width="23"> &nbsp;<span>Publish</span></a> 
+				<a href="javascript:void(0);" class="btn-transparant" id="post-uploadpdf" style="color: #7554bd;"><img src="<?php echo base_url() ?>public/img/assets/icon_publish.png" width="23"> &nbsp;<span>Publish</span></a>
 			</form>
 		</div>
 	</nav>
@@ -114,7 +114,7 @@
 			<p class="mx-auto" style="font-size: 15pt;">Upload file pdf</p>
 		</div>
 		<div class="row">
-			<button id="upload-button" class="btn-upl-pdf pdf-file">Pilih File</button> 
+			<button id="upload-button" class="btn-upl-pdf pdf-file">Pilih File</button>
 			<input type="file" id="file-to-upload" accept="application/pdf" />
 		</div>
 		<div class="row pr-10 pl-10">
@@ -157,7 +157,7 @@
 		// If error re-show the upload button
 		$("#pdf-loader").hide();
 		$("#upload-button").show();
-		
+
 		alert(error.message);
 	});;
 }
@@ -175,23 +175,24 @@ function showPage(page_no) {
 
 	// Update current page in HTML
 	$("#pdf-current-page").text(page_no);
-	
+
 	// Fetch the page
 	__PDF_DOC.getPage(page_no).then(function(page) {
 		// As the canvas is of a fixed width we need to set the scale of the viewport accordingly
-		var scale_required = __CANVAS.width / page.getViewport(1).width;
+		var scale_required = 1.5;
 
 		// Get viewport of the page at required scale
 		var viewport = page.getViewport(scale_required);
 
 		// Set canvas height
 		__CANVAS.height = viewport.height;
+        __CANVAS.width = viewport.width;
 
 		var renderContext = {
 			canvasContext: __CANVAS_CTX,
 			viewport: viewport
 		};
-		
+
 		// Render the page contents in the canvas
 		page.render(renderContext).then(function() {
 			__PAGE_RENDERING_IN_PROGRESS = 0;
