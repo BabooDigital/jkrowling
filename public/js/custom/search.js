@@ -10,7 +10,7 @@ $(document).ready(function () {
         // formdata.append("csrf_test_name", csrf_value);
         // var url = base_url+'profile/'+usr_name;
         // var form = $('<form action="' + url + '" method="post">' +
-          // '<input type="hidden" name="' + csrf_name + '" value="' + csrf_value + '" />' +
+        // '<input type="hidden" name="' + csrf_name + '" value="' + csrf_value + '" />' +
         //   '<input type="hidden" name="usr_prf" value="' + usr_prf + '" />' +
         //   '<input type="hidden" name="usr_name" value="' + usr_name + '" />' +
         //   '</form>');
@@ -25,7 +25,7 @@ $(document).ready(function () {
         var bak = $(this).val();
         if (bak.length >= 3) {
             var ab = $(this),
-            b = new FormData;
+                b = new FormData;
             b.append("search", $(this).val());
             b.append("csrf_test_name", csrf_value);
             ab.data('timer', setTimeout(function () {
@@ -115,85 +115,109 @@ $(document).ready(function () {
                 }).always(function () {
                 });
             }, 1000));
-    };
-    if(event.keyCode == 13) {
-      event.preventDefault();
-      return false;
+        };
+        if(event.keyCode == 13) {
+            event.preventDefault();
+            return false;
+        }
+    });
+
+    //
+    //   $(document).on('click', '.share-fbs', function() {
+    //
+    //   var aww = $(this);
+    //   var formData = new FormData();
+    //   var blink = aww.parents(".card").find(".dbooktitle").text();
+    //   var desc = aww.parents(".card").find(".textp").attr('data-text')+'.. - Baca buku lebih lengkap disini.. | Baboo.id';
+    //   var img = aww.parents(".card").find('.cover_image').attr('src');
+    //   var auname = aww.parents(".card").find('.author_name').text();
+    //   var segment = aww.parents(".card").find('.segment').attr('data-href');
+    //
+    //   FB.ui({
+    //     method     : 'share_open_graph',
+    //     action_type: 'og.shares',
+    //     action_properties: JSON.stringify({
+    //       object: {
+    //         'og:url': base_url + 'book/' + segment + '/preview',
+    //         'og:title': blink + ' ~ By : ' + auname + ' | Baboo.id',
+    //         'og:description': desc,
+    //         'og:image': img
+    //       }
+    //     })
+    //   },
+    //     // callback
+    //     function(response) {
+    //       if (response && !response.error_message) {
+    //
+    //         formData.append("user_id", $("#iaiduui").val());
+    //         formData.append("book_id", aww.attr('data-share'));
+    //         formData.append("csrf_test_name", csrf_value);
+    //
+    //         $.ajax({
+    //           url: base_url + 'shares',
+    //           type: 'POST',
+    //           dataType: 'JSON',
+    //           cache: false,
+    //           contentType: false,
+    //           processData: false,
+    //           data: formData,
+    //             // beforeSend: function() {
+    //             // }
+    //           })
+    //         .done(function(data) {
+    //             // $('.loader').hide();
+    //             // console.log("ke share");
+    //           })
+    //         .fail(function() {
+    //           console.log("Failure");
+    //         })
+    //         .always(function() {
+    //
+    //         });
+    //       } else {
+    //         console.log("Batal Share");
+    //       }
+    //     });
+    // });
+
+    function convertToSlug(Text) {
+        return Text
+            .toLowerCase()
+            .replace(/[^\w ]+/g, '')
+            .replace(/ +/g, '-');
     }
-});
+    function convertSearch(Text) {
+        return Text
+            .toLowerCase()
+            .replace(/[^\w ]+/g, '')
+            .replace(/ +/g, '+');
+    }
+    // $(document).on('focus', '.search_bbo', function () {
+    //     $(".search_result_bbo").addClass('show').removeClass('hide');
+    // });
+    $(document).on('click', function () {
+        $(".search_result_bbo").addClass('hide').removeClass('show');
+    });
 
-  //
-  //   $(document).on('click', '.share-fbs', function() {
-  //
-  //   var aww = $(this);
-  //   var formData = new FormData();
-  //   var blink = aww.parents(".card").find(".dbooktitle").text();
-  //   var desc = aww.parents(".card").find(".textp").attr('data-text')+'.. - Baca buku lebih lengkap disini.. | Baboo.id';
-  //   var img = aww.parents(".card").find('.cover_image').attr('src');
-  //   var auname = aww.parents(".card").find('.author_name').text();
-  //   var segment = aww.parents(".card").find('.segment').attr('data-href');
-  //
-  //   FB.ui({
-  //     method     : 'share_open_graph',
-  //     action_type: 'og.shares',
-  //     action_properties: JSON.stringify({
-  //       object: {
-  //         'og:url': base_url + 'book/' + segment + '/preview',
-  //         'og:title': blink + ' ~ By : ' + auname + ' | Baboo.id',
-  //         'og:description': desc,
-  //         'og:image': img
-  //       }
-  //     })
-  //   },
-  //     // callback
-  //     function(response) {
-  //       if (response && !response.error_message) {
-  //
-  //         formData.append("user_id", $("#iaiduui").val());
-  //         formData.append("book_id", aww.attr('data-share'));
-  //         formData.append("csrf_test_name", csrf_value);
-  //
-  //         $.ajax({
-  //           url: base_url + 'shares',
-  //           type: 'POST',
-  //           dataType: 'JSON',
-  //           cache: false,
-  //           contentType: false,
-  //           processData: false,
-  //           data: formData,
-  //             // beforeSend: function() {
-  //             // }
-  //           })
-  //         .done(function(data) {
-  //             // $('.loader').hide();
-  //             // console.log("ke share");
-  //           })
-  //         .fail(function() {
-  //           console.log("Failure");
-  //         })
-  //         .always(function() {
-  //
-  //         });
-  //       } else {
-  //         console.log("Batal Share");
-  //       }
-  //     });
-  // });
+    $('.search_bbo').bind("enterKey",function(e){
+        window.location = base_url+'search/'+$(this).val();
+    });
+    $('.search_bbo').keyup(function(e){
+        if(e.keyCode == 13)
+        {
+            $(this).trigger("enterKey");
+        }
+    });
 
-function convertToSlug(Text) {
-  return Text
-  .toLowerCase()
-  .replace(/[^\w ]+/g, '')
-  .replace(/ +/g, '-');
-}
-function convertSearch(Text) {
-  return Text
-  .toLowerCase()
-  .replace(/[^\w ]+/g, '')
-  .replace(/ +/g, '+');
-}
+    var delay = (function(){
+        var timer = 0;
+        return function(callback, ms){
+            clearTimeout (timer);
+            timer = setTimeout(callback, ms);
+        };
+    })();
     $(document).on('keyup', '.search_bbo', function(event) {
-        $(this).siblings().removeAttr("style").end().attr("style", "background: url('"+base_url+"public/img/spinner.gif') no-repeat right;background-size: 75px;background-position: 110% 50%;");
+        $(this).attr("style", "background: url('"+base_url+"public/img/spinner.gif') no-repeat right;background-size: 75px;background-position: 110% 50%;");
         var search = $(this).val();
         var formdata = new FormData();
 
@@ -208,35 +232,57 @@ function convertSearch(Text) {
             processData: !1,
             data: formdata,
         })
-        .done(function(data) {
-            $(this).siblings().removeAttr("style").end().attr("style", "background: url('"+base_url+"public/img/search.png') no-repeat right;background-size: 18px;background-position: 95% 50%;");
-                $(".search_result_bbo").css({ 'margin-left': '18%', 'overflow': 'scroll', 'width': '20%' });
-            if (search.length >=3) {
-                $(".search_result_bbo").addClass('show');
-                var list_book = '',
-                    list_user = '';
+            .done(function(data) {
+                if (search.length >=3) {
+                    $(".search_result_bbo").addClass('show').removeClass('hide');
+                    var list_book = '',
+                        list_user = '';
                     list_all = '';
-                list_book += '<h6 class="dropdown-header">List Book</h6>';
-                $.each(data['books'], function(index, val) {
-                var urls = base_url+'book/'+ val.book_id+'-'+convertToSlug(val.title_book);
-                if (val.is_pdf == true) {
-                    var urls = base_url+'book/'+ val.book_id+'-'+convertToSlug(val.title_book)+'/pdf';
+
+                    if (data['books'].length !== 0){
+                        list_book += '<h6 class="dropdown-header">Daftar Pencarian Buku</h6><hr class="mt-0 mb-5">';
+                    }
+                    $.each(data['books'], function(index, val) {
+                        var cover = val.cover_url;
+                        if (cover == null || cover == ""){
+                            var cover = base_url+'public/img/blank_cover.png';
+                        }
+                        var urls = base_url+'book/'+ val.book_id+'-'+convertToSlug(val.title_book);
+                        if (val.is_pdf == true) {
+                            var urls = base_url+'book/'+ val.book_id+'-'+convertToSlug(val.title_book)+'/pdf';
+                        }
+                        list_book += '<a href="'+urls+'"><li class="dropdown-item"><img class="img-fluid rounded mr-10 obj-fit-cover book_cover_search" src="'+cover+'" width="20" height="25">'+val.title_book+'</li></a>';
+                    });
+
+
+                    if (data['user'].length !== 0) {
+                        list_user += '<h6 class="dropdown-header mt-15">Daftar Pencarian Pengguna</h6><hr class="mt-0 mb-5">';
+                    }
+                    $.each(data['user'], function(index, val) {
+                        var prof_pict = val.prof_pict;
+                        if (prof_pict == null || prof_pict == ""){
+                            var prof_pict = base_url+'public/img/profile/blank-photo.jpg';
+                        }
+                        list_user += '<a class=""  data-usr-prf="'+val.user_id+'" data-usr-name="'+convertToSlug(val.fullname)+'" href="'+base_url+'profile/'+val.user_id+'-'+convertToSlug(val.fullname)+'"><li class="dropdown-item"><img class="img-fluid rounded mr-10 obj-fit-cover prof_pict_search" src="'+prof_pict+'" width="20" height="25">'+val.fullname+'</li></a>';
+                    });
+                    list_all += '<hr class="mb-5"><a href="'+base_url+'search/'+convertSearch(search)+'"><li class="dropdown-item font-weight-bold text-center">Lihat Semua</li></a>';
+                    if (data['books'].length === 0 && data['user'].length === 0){
+                        $(".search_result_bbo").html('<li class="dropdown-item">Kata kunci yang anda cari tidak ada...</li>');
+                    }else{
+                        $(".search_result_bbo").html(list_book+list_user+list_all);
+                    }
+                }else{
+                    $(".search_result_bbo").addClass('hide').removeClass('show');
                 }
-                    list_book += '<a class="dropdown-item" href="'+urls+'">'+val.title_book+'</a>';
-                });
-                list_user += '<h6 class="dropdown-header">List User</h6>';
-                $.each(data['user'], function(index, val) {
-                    list_user += '<a class="dropdown-item profile"  data-usr-prf="'+val.user_id+'" data-usr-name="'+convertToSlug(val.fullname)+'" href="'+base_url+'profile/'+convertToSlug(val.fullname)+'">'+val.fullname+'</a>';
-                });
-                list_all += '<hr><a href="'+base_url+'search/'+convertSearch(search)+'">Lihat Semua</a>';
-                $(".search_result_bbo").html(list_book+list_user+list_all);
-            }
-        })
-        .fail(function() {
-            console.log("error");
-        })
-        .always(function() {
-        });
+            })
+            .fail(function() {
+                console.log("error");
+            })
+            .always(function() {
+                delay(function(){
+                    $('.search_bbo').attr("style", "background: url('"+base_url+"public/img/search.png') no-repeat right;background-size: 18px;background-position: 95% 50%;");
+                }, 500);
+            });
     });
 
 });

@@ -1340,7 +1340,7 @@ button:focus, a:focus {
                       border: none;
                     }
                     .right-posi {
-                      position: absolute;
+                      position: absolute !important;
                       right: 30px;
                     }
                     .fitcover {

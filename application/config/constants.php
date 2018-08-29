@@ -137,7 +137,7 @@ defined('MID_STAT_PROD') OR	define('MID_STAT_PROD', false);
 /*
 @@@ PRODUCTION @@@
 URL = app.midtrans.com
-@@@ DEV/STG @@@ 
+@@@ DEV/STG @@@
 URL = app.sandbox.midtrans.com
 */
 defined('MID_BASE_URL')		 OR	define('MID_BASE_URL', 'app.sandbox.midtrans.com');

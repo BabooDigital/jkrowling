@@ -47,7 +47,7 @@ $(document).ready(function() {
 			.always(function() {
 			});
 		}
-		
+
 	});
 
 	$('#post-uploadpdf').on('click', function(event) {
@@ -136,7 +136,7 @@ $(document).ready(function() {
 			.always(function() {
 			});
 		}
-		
+
 	});
 });
 

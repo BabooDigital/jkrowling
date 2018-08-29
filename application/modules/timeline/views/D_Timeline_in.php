@@ -24,7 +24,7 @@
 							<?php else: ?>
 								<?php $img = $best_writter['avatar']; ?>
 							<?php endif ?>
-							<?php if ($best_writter['isFollow'] == false): ?>
+							<?php $usD = $this->session->userdata('userData'); if ($best_writter['isFollow'] == false && $best_writter['author_id'] != $usD['user_id']): ?>
 								<?php $follow = "<a href='#' data-follow='".$best_writter['author_id']."' class='addbutton followprofile'><img src='public/img/assets/icon_plus_purple.svg' width='20' class='mt-img'></a>"; ?>
 							<?php else: ?>
 								<?php $follow = ""; ?>
@@ -32,8 +32,8 @@
 							<li class='media baboocontent'>
 								<a href="<?php echo site_url('profile/'.$best_writter['author_id'].'-'.url_title($best_writter['author_name'], 'dash', true)); ?>"><img class='d-flex mr-3 rounded-circle' src='<?php echo $img; ?>' width='50' height='50'></a>
 								<div class='media-body mt-7'>
-									<a class='profile' data-usr-prf='<?php echo $best_writter['author_id']; ?>' data-usr-name='<?php echo url_title($best_writter['author_name']); ?>' href='<?php echo site_url('profile/'.$best_writter['author_id'].'-'.url_title($best_writter['author_name'], 'dash', true)); ?>'>
-										<h5 class='mt-0 mb-1 nametitle'><?php echo $best_writter['author_name']; ?></h5>
+									<a class='#' data-usr-prf='<?php echo $best_writter['author_id']; ?>' data-usr-name='<?php echo url_title($best_writter['author_name']); ?>' href='<?php echo site_url('profile/'.$best_writter['author_id'].'-'.url_title($best_writter['author_name'], 'dash', true)); ?>'>
+										<h5 class='mt-5 mb-1 nametitle'><?php echo $best_writter['author_name']; ?></h5>
 									</a>
 									<div class='pull-right baboocolor'><?php echo $follow; ?></div>
 								</div>
