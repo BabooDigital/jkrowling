@@ -10,10 +10,11 @@ $(document).ready(function() {
 	$('#post-prepdf').on('click', function(event) {
 		event.preventDefault();
 		/* Act on the event */
-		var t = $('#judul_buku').val(),
-		d = $('#isi_buku').val(),
-		FD = new FormData(),
-		aww = $(this);
+        var t = $('#judul_buku').val(),
+            d = $('#isi_buku').val(),
+            FD = new FormData(),
+            bid = $('.pdf_file_nec').attr('pdf_book'),
+            aww = $(this);
 
 		if (d.length < 150) {
 			swal(
@@ -22,6 +23,11 @@ $(document).ready(function() {
 				'warning'
 				);
 		}else{
+            if (bid !== null || bid !== ""){
+                FD.append('id_book', $('.pdf_file_nec').attr('pdf_book'));
+            }else{
+
+            }
 			FD.append('title_book', t);
 			FD.append('desc_book', d);
 			FD.append(csrf_name, csrf_value);
@@ -53,10 +59,11 @@ $(document).ready(function() {
 	$('#post-draftprepdf').on('click', function(event) {
 		event.preventDefault();
 		/* Act on the event */
-		var t = $('#judul_buku').val(),
-		d = $('#isi_buku').val(),
-		FD = new FormData(),
-		aww = $(this);
+        var t = $('#judul_buku').val(),
+            d = $('#isi_buku').val(),
+            FD = new FormData(),
+            bid = $('.pdf_file_nec').attr('pdf_book'),
+            aww = $(this);
 
 		if (d.length < 150) {
 			swal(
@@ -65,6 +72,11 @@ $(document).ready(function() {
 				'warning'
 				);
 		}else{
+            if (bid !== null || bid !== ""){
+                FD.append('id_book', $('.pdf_file_nec').attr('pdf_book'));
+            }else{
+
+            }
 			FD.append('title_book', t);
 			FD.append('desc_book', d);
 			FD.append(csrf_name, csrf_value);
@@ -86,6 +98,7 @@ $(document).ready(function() {
                 var x = document.getElementById("snackbar");
                 x.className = "show";
                 setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                $('.pdf_file_nec').attr('pdf_book', data.d.book_id);
 			}else{
 				console.log(data);
 			}
@@ -257,6 +270,7 @@ function checking_pdf() {
 			window.location = base_url+'yourdraft';
 		}else{
             $('.pdf_file_in').attr('pdf_url', url);
+            // $('.pdf_file_nec').attr('pdf_url', url);
 			if (data.d.url_book != "") {
 				showPDF(url);
 			}

@@ -64,6 +64,7 @@ textarea:-ms-input-placeholder {
 				</div>
 			</div>
 		</div>
+        <div class="pdf_file_nec" pdf_book="<?php echo $desc['data']['book_id']; ?>"></div>
 		<div class="row">
 			<div class="col-12">
 				<div class="mt-10 pt-15 pl-10">
@@ -86,6 +87,7 @@ textarea:-ms-input-placeholder {
 		<?php echo get_js($js) ?>
 	<?php endif ?>
 	<script type="text/javascript">
+        checking_pdf();
 	// Applied globally on all textareas with the "autoExpand" class
 	$(document)
 	.one('focus.autoExpand', 'textarea.autoExpand', function(){

@@ -351,38 +351,73 @@ if (!empty($query['stat'])) {
 					$('#setpin_publish').show();
 				}
 			});
-			$('.addplus').click(function(e){
-				e.preventDefault();
-				fieldName = $(this).attr('data-target');
-				var currentVal = parseInt($('input[name='+fieldName+']').val());
-				var jum = $("#count_chapter_plus_minus").val() - 2;
-				if (!isNaN(currentVal)) {
-					if (currentVal < jum)
-					{
-						$('input[name='+fieldName+']').val(currentVal + 1);
-						$('.addmin').removeAttr('style');
-					}
-					else
-					{
-						$('.addplus').css('cursor','not-allowed');
-					}
-				} else {
-					$('input[name='+fieldName+']').val(1);
+            <?php if ((bool)$book['book_info']['is_pdf'] == true) { ?>
+            $('.addplus').click(function(e){
+                e.preventDefault();
+                fieldName = $(this).attr('data-target');
+                var currentVal = parseInt($('input[name='+fieldName+']').val());
+                var jum = $("#count_chapter_plus_minus").val();
+                if (!isNaN(currentVal)) {
+                    if (currentVal < jum)
+                    {
+                        $('input[name='+fieldName+']').val(currentVal + 1);
+                        $('.addmin').removeAttr('style');
+                    }
+                    else
+                    {
+                        $('.addplus').css('cursor','not-allowed');
+                    }
+                } else {
+                    $('input[name='+fieldName+']').val(1);
 
-				}
-			});
-			$(".addmin").click(function(e) {
-				e.preventDefault();
-				fieldName = $(this).attr('data-target');
-				var currentVal = parseInt($('input[name='+fieldName+']').val());
-				if (!isNaN(currentVal) && currentVal > 3) {
-					$('input[name='+fieldName+']').val(currentVal - 1);
-					$('.addplus').removeAttr('style');
-				} else {
-					$('input[name='+fieldName+']').val(3);
-					$('.addmin').css('cursor','not-allowed');
-				}
-			});
+                }
+            });
+            $(".addmin").click(function(e) {
+                e.preventDefault();
+                fieldName = $(this).attr('data-target');
+                var currentVal = parseInt($('input[name='+fieldName+']').val());
+                if (!isNaN(currentVal) && currentVal > 3) {
+                    $('input[name='+fieldName+']').val(currentVal - 1);
+                    $('.addplus').removeAttr('style');
+                } else {
+                    $('input[name='+fieldName+']').val(3);
+                    $('.addmin').css('cursor','not-allowed');
+                }
+            });
+            <?php }else{ ?>
+            $('.addplus').click(function(e){
+                e.preventDefault();
+                fieldName = $(this).attr('data-target');
+                var currentVal = parseInt($('input[name='+fieldName+']').val());
+                var jum = $("#count_chapter_plus_minus").val() - 1;
+                if (!isNaN(currentVal)) {
+                    if (currentVal < jum)
+                    {
+                        $('input[name='+fieldName+']').val(currentVal + 1);
+                        $('.addmin').removeAttr('style');
+                    }
+                    else
+                    {
+                        $('.addplus').css('cursor','not-allowed');
+                    }
+                } else {
+                    $('input[name='+fieldName+']').val(1);
+
+                }
+            });
+            $(".addmin").click(function(e) {
+                e.preventDefault();
+                fieldName = $(this).attr('data-target');
+                var currentVal = parseInt($('input[name='+fieldName+']').val());
+                if (!isNaN(currentVal) && currentVal > 3) {
+                    $('input[name='+fieldName+']').val(currentVal - 1);
+                    $('.addplus').removeAttr('style');
+                } else {
+                    $('input[name='+fieldName+']').val(3);
+                    $('.addmin').css('cursor','not-allowed');
+                }
+            });
+            <?php } ?>
 			$(document).on('click','.ainfo',function(){
 				swal({
 					title: 'Info Penjualan Buku',
