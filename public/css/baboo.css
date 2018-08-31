@@ -1554,10 +1554,14 @@ select.form-control:focus {
     background-position: right;*/
 }
 .icon_active {
-    background: url('../../public/img/assets/frame_active.svg') no-repeat right;
+    /*background: url('../../public/img/assets/frame_active.svg') no-repeat right;*/
+}
+.item_price_book {
+    background:transparent;border-bottom: 0.5px #eeeeee;
 }
 #list_chapters{
-    background: url('../../public/img/assets/frame_active.svg') no-repeat;
+    background: #f5f8fa;
+    font-weight: 400;
     background-position: right;
 }
 
