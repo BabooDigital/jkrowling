@@ -282,7 +282,7 @@ if (!empty($query['stat'])) {
 								}else{
 									echo "<label class='text-muted'>Mulai Jual Pada Chapter</label>";
 								} ?>
-								<input type="number" name="start_chapter_pdf" class="input-range start_chapter_pdf" id="addormin" style="width: 100%;background: none;" readonly value="50">
+								<input type="number" name="start_chapter_pdf" class="input-range start_chapter_pdf" id="addormin" style="width: 100%;background: none;" readonly value="">
 								<input type="hidden" class="pdfcheck" value="true">
 							</div>
 							<div class="col-2" style="margin-left: -15px;">

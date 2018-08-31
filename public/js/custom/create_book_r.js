@@ -503,6 +503,7 @@ function check_sell() {
 
         if (data.data.is_sellable == true && data.data.price == "0") {
           $(".start_chapter").val(data.data.total_chapter_sellable-2);
+          $(".start_chapter_pdf").val(data.data.total_chapter_sellable);
           $("#count_chapter_plus_minus").val(data.data.total_chapter);
           $("#minim_chapter").val(data.data.total_chapter_sellable);
           $('.switch').show();

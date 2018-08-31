@@ -4,15 +4,15 @@ textarea::-webkit-input-placeholder {
 }
 
 textarea:-moz-placeholder { /* Firefox 18- */
-	color: #e5e5e5;  
+	color: #e5e5e5;
 }
 
 textarea::-moz-placeholder {  /* Firefox 19+ */
-	color: #e5e5e5;  
+	color: #e5e5e5;
 }
 
 textarea:-ms-input-placeholder {
-	color: #e5e5e5;  
+	color: #e5e5e5;
 }
 .desc::-webkit-input-placeholder {
 	color: #e5e5e5;
@@ -21,17 +21,23 @@ textarea:-ms-input-placeholder {
 
 .desc:-moz-placeholder { /* Firefox 18- */
 	color: #e5e5e5;
-	font-size: 12pt;  
+	font-size: 12pt;
 }
 
 .desc::-moz-placeholder {  /* Firefox 19+ */
 	color: #e5e5e5;
-	font-size: 12pt;  
+	font-size: 12pt;
 }
 
 .desc:-ms-input-placeholder {
 	color: #e5e5e5;
-	font-size: 12pt;  
+	font-size: 12pt;
+}
+.bg-baboo-nav {
+    background: #fcfcff;
+}
+#snackbar{
+    margin-left: -40px !important;
 }
 </style>
 <body id="pageContent" style="background-color: #f7f6f4;">
@@ -42,7 +48,7 @@ textarea:-ms-input-placeholder {
 			</form>
 			<center><strong>Upload PDF</strong></center>
 			<form class="form-inline">
-				<a href="javascript:void(0);" class="btn-transparant" id="post-prepdf" style="color: #7554bd;"><i class="fa fa-check" aria-hidden="true"></i> &nbsp;<span>Lanjut</span></a> 
+				<a href="javascript:void(0);" class="btn-transparant" id="post-prepdf" style="color: #7554bd;"><i class="fa fa-check" aria-hidden="true"></i> &nbsp;<span>Lanjut</span></a>
 			</form>
 		</div>
 	</nav>
@@ -68,6 +74,13 @@ textarea:-ms-input-placeholder {
 			</div>
 		</div>
 	</div>
+    <nav class="navbar fixed-bottom navbar-light bg-baboo-nav">
+        <div class="container">
+            <a class="navbar-brand" href="javascript:void(0);" id="post-draftprepdf"><img src="<?php echo base_url('public/img/assets/icon_save_draft.svg'); ?>" class="mr-5 img-fluid" ><span class="commenttxt">Simpan ke Draft</span></a>
+        </div>
+    </nav>
+
+    <div id="snackbar">Data disimpan ke Draft.</div>
 
 	<?php if (isset($js)): ?>
 		<?php echo get_js($js) ?>
