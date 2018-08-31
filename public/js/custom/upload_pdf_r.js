@@ -50,49 +50,144 @@ $(document).ready(function() {
 
 	});
 
-	$('#post-uploadpdf').on('click', function(event) {
+	$('#post-draftprepdf').on('click', function(event) {
 		event.preventDefault();
 		/* Act on the event */
-		var t = $('.pdf_file_nec').attr('pdf_book'),
-		d = $("#file-to-upload")[0].files,
-		p = $(".pdf_file_in").attr('pdf_url'),
+		var t = $('#judul_buku').val(),
+		d = $('#isi_buku').val(),
 		FD = new FormData(),
 		aww = $(this);
-		if (d.length == 1) {
-			FD.append('pdf_file', d[0]);
+
+		if (d.length < 150) {
+			swal(
+				'Maaf!',
+				'Deskripsi bukumu kurang dari 150 karakter.',
+				'warning'
+				);
 		}else{
-			FD.append('pdf_file', '');
-		}
-		FD.append('id_book', t);
-		FD.append(csrf_name, csrf_value);
-		$.ajax({
-			url: base_url+'uploadAct',
-			type: 'POST',
-			dataType: 'JSON',
-			crossDomain: true,
-			cache: false,
-			contentType: false,
-			processData: false,
-			mimeType: "multipart/form-data",
-			data: FD,
-			beforeSend: function () {
-				swal.showLoading()
-			},
-		})
-		.done(function(data) {
-			console.log(data);
-			if (data.c == 403) {
-				window.location = base_url+'yourpdf';
+			FD.append('title_book', t);
+			FD.append('desc_book', d);
+			FD.append(csrf_name, csrf_value);
+			$.ajax({
+				url: base_url+'preUploadAct',
+				type: 'POST',
+				dataType: 'JSON',
+				cache: false,
+				contentType: false,
+				processData: false,
+				data: FD,
+				beforeSend: function () {
+                    swal.showLoading();
+                }
+			})
+			.done(function(data) {
+			if (data.c == 200){
+                $('.swal2-container').css('display', 'none');
+                var x = document.getElementById("snackbar");
+                x.className = "show";
+                setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 			}else{
-				window.location = base_url+'cover/'+t;
+				console.log(data);
 			}
-		})
-		.fail(function() {
-			console.log("error");
-		})
-		.always(function() {
-		});
+			})
+			.fail(function() {
+				console.log("error");
+			})
+			.always(function() {
+			});
+		}
+
 	});
+
+    $('#post-uploadpdf').on('click', function(event) {
+        event.preventDefault();
+        /* Act on the event */
+        var t = $('.pdf_file_nec').attr('pdf_book'),
+            d = $("#file-to-upload")[0].files,
+            p = $(".pdf_file_in").attr('pdf_url'),
+            FD = new FormData(),
+            aww = $(this);
+        if (d.length === 1 || p !== "") {
+            FD.append('pdf_file', d[0]);
+            FD.append('id_book', t);
+            FD.append(csrf_name, csrf_value);
+            $.ajax({
+                url: base_url+'uploadAct',
+                type: 'POST',
+                dataType: 'JSON',
+                crossDomain: true,
+                cache: false,
+                contentType: false,
+                processData: false,
+                mimeType: "multipart/form-data",
+                data: FD,
+                beforeSend: function () {
+                    swal.showLoading()
+                },
+            })
+                .done(function(data) {
+                    console.log(data);
+                    if (data.c == 403) {
+                        window.location = base_url+'yourpdf';
+                    }else{
+                        window.location = base_url+'cover/'+t;
+                    }
+                })
+                .fail(function() {
+                    console.log("error");
+                })
+                .always(function() {
+                });
+        }else{
+            swal('File .PDF tidak boleh kosong');
+        }
+    });
+
+    $('#post-uploaddraftpdf').on('click', function(event) {
+        event.preventDefault();
+        /* Act on the event */
+        var t = $('.pdf_file_nec').attr('pdf_book'),
+            d = $("#file-to-upload")[0].files,
+            p = $(".pdf_file_in").attr('pdf_url'),
+            FD = new FormData(),
+            aww = $(this);
+        if (d.length === 1 || p !== "") {
+            FD.append('pdf_file', d[0]);
+            FD.append('id_book', t);
+            FD.append(csrf_name, csrf_value);
+            $.ajax({
+                url: base_url+'uploadAct',
+                type: 'POST',
+                dataType: 'JSON',
+                crossDomain: true,
+                cache: false,
+                contentType: false,
+                processData: false,
+                mimeType: "multipart/form-data",
+                data: FD,
+                beforeSend: function () {
+                    swal.showLoading()
+                },
+            })
+                .done(function(data) {
+                    if (data.c == 200){
+                        $('.swal2-container').css('display', 'none');
+                        var x = document.getElementById("snackbar");
+                        x.className = "show";
+                        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                    }else{
+                        console.log(data);
+                    }
+                })
+                .fail(function() {
+                    console.log("error");
+                })
+                .always(function() {
+                });
+        }else{
+            swal('File .PDF tidak boleh kosong');
+        }
+    });
 
 	$('#post-prepdfedit').on('click', function(event) {
 		event.preventDefault();
@@ -161,6 +256,7 @@ function checking_pdf() {
 		if (data.c != 200) {
 			window.location = base_url+'yourdraft';
 		}else{
+            $('.pdf_file_in').attr('pdf_url', url);
 			if (data.d.url_book != "") {
 				showPDF(url);
 			}

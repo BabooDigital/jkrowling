@@ -6,17 +6,17 @@ textarea::-webkit-input-placeholder {
 
 textarea:-moz-placeholder { /* Firefox 18- */
 	color: #d0d0d0;
-	text-align: center;  
+	text-align: center;
 }
 
 textarea::-moz-placeholder {  /* Firefox 19+ */
 	color: #d0d0d0;
-	text-align: center;  
+	text-align: center;
 }
 
 textarea:-ms-input-placeholder {
 	color: #d0d0d0;
-	text-align: center;  
+	text-align: center;
 }
 .desc::-webkit-input-placeholder {
 	color: #d0d0d0;
@@ -27,29 +27,35 @@ textarea:-ms-input-placeholder {
 .desc:-moz-placeholder { /* Firefox 18- */
 	color: #d0d0d0;
 	text-align: center;
-	font-size: 12pt;  
+	font-size: 12pt;
 }
 
 .desc::-moz-placeholder {  /* Firefox 19+ */
 	color: #d0d0d0;
 	text-align: center;
-	font-size: 12pt;  
+	font-size: 12pt;
 }
 
 .desc:-ms-input-placeholder {
 	color: #d0d0d0;
 	text-align: center;
-	font-size: 12pt;  
+	font-size: 12pt;
+}
+.bg-baboo-nav {
+    background: #fcfcff;
+}
+#snackbar{
+    margin-left: -40px !important;
 }
 </style>
 <body id="pageContent" style="background-color: #f7f6f4;">
-	<nav class="navbar navbar-expand-lg fixed-top" style="height:60px;background: #fcfcff;">
+	<nav class="navbar navbar-expand-lg fixed-top bg-baboo-nav" style="height:60px;">
 		<div class="container">
 			<form class="navbar-brande">
 				<button type="button" class="clear-btn" onclick="history.go(-1)" style="cursor: pointer;"><i class="fa fa-arrow-left"></i> &nbsp; <span>Kembali</span> </button>
 			</form>
 			<form class="form-inline">
-				<a href="javascript:void(0);" class="btn-transparant" id="post-prepdf" style="color: #7554bd;"><i class="fa fa-check" aria-hidden="true"></i> &nbsp;<span>Lanjut</span></a> 
+				<a href="javascript:void(0);" class="btn-transparant" id="post-prepdf" style="color: #7554bd;"><i class="fa fa-check" aria-hidden="true"></i> &nbsp;<span>Lanjut</span></a>
 			</form>
 		</div>
 	</nav>
@@ -75,6 +81,13 @@ textarea:-ms-input-placeholder {
 			</div>
 		</div>
 	</div>
+    <nav class="navbar fixed-bottom navbar-light bg-baboo-nav">
+        <div class="container">
+            <a class="navbar-brand" href="javascript:void(0);" id="post-draftprepdf"><img src="<?php echo base_url('public/img/assets/icon_save_draft.svg'); ?>" class="mr-5 img-fluid" ><span class="commenttxt">Simpan ke Draft</span></a>
+        </div>
+    </nav>
+
+    <div id="snackbar">Data disimpan ke Draft.</div>
 
 	<?php if (isset($js)): ?>
 		<?php echo get_js($js) ?>

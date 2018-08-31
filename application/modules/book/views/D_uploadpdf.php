@@ -57,7 +57,7 @@
 }
 
 #pdf-canvas {
-	/*width: 100%;*/
+	width: 100%;
 	border: 1px solid rgba(0,0,0,0.2);
 	box-sizing: border-box;
 }
@@ -83,6 +83,12 @@
 	border: 1px #c3c3c3 solid;
 	border-radius: 6px;
 }
+.bg-baboo-nav {
+    background: #fcfcff;
+}
+#snackbar{
+    margin-left: -40px !important;
+}
 
 </style>
 <body id="pageContent" style="background-color: #f7f6f4;">
@@ -102,7 +108,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-12">
-				<div id="pdf-main-container" class="mt-30">
+				<div id="pdf-main-container" class="mt-30 mb-60">
 					<div id="pdf-loader">Loading PDF ...</div>
 					<div id="pdf-contents" class="pl-10 pr-10 text-center">
 						<div id="pdf-meta">
@@ -135,6 +141,13 @@
 			</div>
 		</div>
 	</div>
+    <nav class="navbar fixed-bottom navbar-light bg-baboo-nav">
+        <div class="container">
+        <a class="navbar-brand" href="javascript:void(0);" id="post-uploaddraftpdf"><img src="<?php echo base_url('public/img/assets/icon_save_draft.svg'); ?>" class="mr-5 img-fluid" ><span class="commenttxt">Simpan ke Draft</span></a>
+        </div>
+    </nav>
+
+    <div id="snackbar">Data disimpan ke Draft.</div>
 
 	<?php if (isset($js)): ?>
 		<?php echo get_js($js) ?>

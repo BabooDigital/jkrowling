@@ -76,7 +76,9 @@
 	border: 1px #c3c3c3 solid;
 	border-radius: 6px;
 }
-
+.bg-baboo-nav {
+    background: #fcfcff;
+}
 </style>
 <body id="pageContent" style="background-color: #f7f6f4;">
 	<nav class="navbar navbar-expand-lg fixed-top" style="height:60px;background: #fcfcff;">
@@ -92,7 +94,7 @@
 	</nav>
 	<br>
 	<br>
-	<div id="pdf-main-container" class="mt-30">
+<div id="pdf-main-container" class="mt-30 mb-60">
 		<div id="pdf-loader">Loading PDF ...</div>
 		<div id="pdf-contents" class="pl-10 pr-10">
 			<div id="pdf-meta">
@@ -122,6 +124,11 @@
 			<div class='pdf_file_in'></div>
 		</div>
 	</div>
+    <nav class="navbar fixed-bottom navbar-light bg-baboo-nav">
+        <a class="navbar-brand" href="javascript:void(0);" id="post-uploaddraftpdf"><img src="<?php echo base_url('public/img/assets/icon_save_draft.svg'); ?>" class="mr-5 img-fluid" ><span class="commenttxt">Simpan ke Draft</span></a>
+    </nav>
+
+    <div id="snackbar">Data disimpan ke Draft.</div>
 
 	<?php if (isset($js)): ?>
 		<?php echo get_js($js) ?>
