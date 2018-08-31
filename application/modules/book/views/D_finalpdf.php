@@ -357,7 +357,7 @@ if (!empty($query['stat'])) {
 				e.preventDefault();
 				fieldName = $(this).attr('data-target');
 				var currentVal = parseInt($('input[name='+fieldName+']').val());
-				var jum = $("#count_chapter_plus_minus").val() - 2;
+				var jum = $("#count_chapter_plus_minus").val();
 				if (!isNaN(currentVal)) {
 					if (currentVal < jum)
 					{
@@ -375,13 +375,14 @@ if (!empty($query['stat'])) {
 			});
 			$(".addmin").click(function(e) {
 				e.preventDefault();
+
 				fieldName = $(this).attr('data-target');
 				var currentVal = parseInt($('input[name='+fieldName+']').val());
-				if (!isNaN(currentVal) && currentVal > 50) {
+				if (!isNaN(currentVal) && currentVal > $('#count_chapter_plus_minus').val()) {
 					$('input[name='+fieldName+']').val(currentVal - 1);
 					$('.addplus').removeAttr('style');
 				} else {
-					$('input[name='+fieldName+']').val(50);
+					$('input[name='+fieldName+']').val($('#count_chapter_plus_minus').val());
 					$('.addmin').css('cursor','not-allowed');
 				}
 			});

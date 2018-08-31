@@ -55,6 +55,7 @@
     <br>
     <textarea type="text" name="title_book_out" id="judul_buku" class="title_book_form text-left" data-min-rows='3' placeholder="Tulis di sini"></textarea>
 </div>
+<div class="pdf_file_nec" pdf_book=""></div>
 <div class="mt-10 pt-15 pl-10">
     <label for="title_book_out" style="font-size: 14pt;">Deskripsi</label>
     <br>
@@ -70,6 +71,7 @@
     <?php echo get_js($js) ?>
 <?php endif ?>
 <script type="text/javascript">
+    checking_pdf();
     // Applied globally on all textareas with the "autoExpand" class
     $(document)
         .one('focus.autoExpand', 'textarea.autoExpand', function(){
