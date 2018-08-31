@@ -513,7 +513,7 @@ function getmenuChapter() {
 					pend = 'done';
 				}
 				if (true) {}
-				 c += '<li style="background:transparent;border-bottom: 0.5px #eeeeee;" class="list-group-item ', c += '"><a class="', c += '" id="' + d + '"><p style="font-size:10px;">' + 'Versi buku full' + "</p><span style='color:#7554bd'>Rp "+ d.pay.book_price +"</span></a><button style='float:right;' class='btn-buy buyfullbook' stats-book='"+ pend +"'>Beli</button></li>";
+				 c += '<li class="list-group-item item_price_book ', c += '"><a class="', c += '" id="' + d + '"><p style="font-size:10px;">' + 'Versi buku full' + "</p><span style='color:#7554bd'>Rp "+ d.pay.book_price +"</span></a><button style='float:right;' class='btn-buy buyfullbook' stats-book='"+ pend +"'>Beli</button></li>";
 			}
 		}
 		$("#list_chapter").html(c);
