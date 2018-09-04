@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $(document).on('click', '.profile', function() {
+    // $(document).on('click', '.profile', function() {
         // event.preventDefault();
         // var boo = $(this);
         // var usr_prf = boo.attr("data-usr-prf");
@@ -17,7 +17,7 @@ $(document).ready(function () {
         // $(boo).append(form);
         // form.submit();
         // console.log("aaa");
-    });
+    // });
 
     $(document).on("keyup", "#searchss", function (event) {
         $("#myWorkContent").html("<div id='insideDiv'></div>");

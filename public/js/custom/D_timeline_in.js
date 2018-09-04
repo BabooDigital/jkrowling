@@ -33,29 +33,29 @@ function shareBtn() {
     document.getElementById("dropdownShare").classList.toggle("show")
 }
 $(document).ready(function() {
-    $(document).on('click', '.profile', function() {
-        event.preventDefault();
-        var boo = $(this);
-        var usr_prf = boo.attr("data-usr-prf");
-        var usr_name = boo.attr("data-usr-name");
-        var formdata = new FormData();
-
-        formdata.append("user_prf", usr_prf);
-        formdata.append("csrf_test_name", csrf_value);
-        var url = base_url+'profile/'+usr_name;
-        var form = $('<form action="' + url + '" method="post">' +
-          '<input type="hidden" name="' + csrf_name + '" value="' + csrf_value + '" />' +
-          '<input type="hidden" name="usr_prf" value="' + usr_prf + '" />' +
-          '<input type="hidden" name="usr_name" value="' + usr_name + '" />' +
-          '</form>');
-        $(boo).append(form);
-        form.submit();
-    });
+    // $(document).on('click', '.profile', function() {
+    //     event.preventDefault();
+    //     var boo = $(this);
+    //     var usr_prf = boo.attr("data-usr-prf");
+    //     var usr_name = boo.attr("data-usr-name");
+    //     var formdata = new FormData();
+    //
+    //     formdata.append("user_prf", usr_prf);
+    //     formdata.append("csrf_test_name", csrf_value);
+    //     var url = base_url+'profile/'+usr_name;
+    //     var form = $('<form action="' + url + '" method="post">' +
+    //       '<input type="hidden" name="' + csrf_name + '" value="' + csrf_value + '" />' +
+    //       '<input type="hidden" name="usr_prf" value="' + usr_prf + '" />' +
+    //       '<input type="hidden" name="usr_name" value="' + usr_name + '" />' +
+    //       '</form>');
+    //     $(boo).append(form);
+    //     form.submit();
+    // });
     $(document).on('click', '.followprofile', function(event) {
         event.preventDefault();
         var a = $(this),
         b = new FormData;
-        a.hide(); 
+        a.hide();
         b.append("user_id", $("#iaiduui").val());
         b.append("fuser_id", a.attr("data-follow"));
         b.append("csrf_test_name", csrf_value);
@@ -110,7 +110,7 @@ $(document).ready(function() {
             }).always(function() {}))
         })
     });
-    
+
     loaded = true;
     var page = 2;
     $(window).scroll(function() {
@@ -146,7 +146,7 @@ $(document).ready(function() {
           location.reload();
       });
     }
-  
+
     // ,
     //  $.ajax({
     //     url: base_url + "writters_afer_login",
@@ -160,9 +160,9 @@ $(document).ready(function() {
     //         var o;
     //         var follow = '';
     //         if (a.isFollow == false) {
-    //             follow += "<a href='#' data-follow='"+a.author_id+"' class='addbutton followprofile'><img src='public/img/assets/icon_plus_purple.svg' width='20' class='mt-img'></a>"; 
+    //             follow += "<a href='#' data-follow='"+a.author_id+"' class='addbutton followprofile'><img src='public/img/assets/icon_plus_purple.svg' width='20' class='mt-img'></a>";
     //         }else{
-    //             follow += ""; 
+    //             follow += "";
     //         }
     //         null != a.avatar && (o = a.avatar), "" == a.avatar ? o = "public/img/profile/blank-photo.jpg" : null == a.avatar && (o = "public/img/profile/blank-photo.jpg"), t += "<li class='media baboocontent'><img alt='" + a.author_name + "' class='d-flex mr-3 rounded-circle' src='" + o + "' width='50' height='50'><div class='media-body mt-7'><a class='profile' data-usr-prf='"+a.author_id+"' data-usr-name='"+convertToSlug(a.author_name)+"' href='profile/"+convertToSlug(a.author_name) + "'><h5 class='mt-0 mb-1 nametitle'>" + a.author_name + "</h5></a><div class='pull-right baboocolor'>"+follow+"</div></div></li>"
     //     }), $("#author_this_week").html(t)

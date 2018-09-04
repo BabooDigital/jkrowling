@@ -2,7 +2,7 @@ function funcDropdown() {
     document.getElementById("myDropdown").classList.toggle("showss")
 }
 $(document).ready(function() {
-	
+
 	loaded = true;
 	var page = 2;
 	$(window).scroll(function() {
@@ -89,28 +89,28 @@ $(document).ready(function() {
      //        	}
      // 			console.log(response);
      //        	location.href = base_url+'';
-     //        }            
+     //        }
      //    });
     // }
 	// });
-	$(document).on('click', '.profile', function(event) {
-        event.preventDefault();
-        var boo = $(this);
-        var usr_prf = boo.attr("data-usr-prf");
-        var usr_name = boo.attr("data-usr-name");
-        var formdata = new FormData();
-
-        formdata.append("user_prf", usr_prf);
-        formdata.append("csrf_test_name", csrf_value);
-        var url = base_url+'profile/'+usr_name;
-        var form = $('<form action="' + url + '" method="post">' +
-          '<input type="hidden" name="' + csrf_name + '" value="' + csrf_value + '" />' +
-          '<input type="hidden" name="usr_prf" value="' + usr_prf + '" />' +
-          '<input type="hidden" name="usr_name" value="' + usr_name + '" />' +
-          '</form>');
-        $(boo).append(form);
-        form.submit();
-    });
+	// $(document).on('click', '.profile', function(event) {
+     //    event.preventDefault();
+     //    var boo = $(this);
+     //    var usr_prf = boo.attr("data-usr-prf");
+     //    var usr_name = boo.attr("data-usr-name");
+     //    var formdata = new FormData();
+    //
+     //    formdata.append("user_prf", usr_prf);
+     //    formdata.append("csrf_test_name", csrf_value);
+     //    var url = base_url+'profile/'+usr_name;
+     //    var form = $('<form action="' + url + '" method="post">' +
+     //      '<input type="hidden" name="' + csrf_name + '" value="' + csrf_value + '" />' +
+     //      '<input type="hidden" name="usr_prf" value="' + usr_prf + '" />' +
+     //      '<input type="hidden" name="usr_name" value="' + usr_name + '" />' +
+     //      '</form>');
+     //    $(boo).append(form);
+     //    form.submit();
+    // });
 	var window_width = $( window ).width();
 
 	if (window_width < 768) {
@@ -202,7 +202,7 @@ function convertToSlug(d) {
 	return d.toLowerCase().replace(/[^\w ]+/g, "").replace(/ +/g, "-")
 };
 function validateProfile() {
-	
+
 }
 function deleteBook(id_book) {
 	var formData = new FormData();
@@ -266,7 +266,7 @@ $(document).on("click", ".share-fb", function() {
         coverimg = aww.parents('.card').find(".effect-img").attr("src"),
         authname = aww.parents('.card').find(".nametitle2").text(),
         links = aww.parents('.card').find(".segment").attr("data-href");
-        
+
     FB.ui({
         method: "share_open_graph",
         action_type: "og.shares",

@@ -54,38 +54,42 @@ $(document).ready(function() {
    });
     $(document).on("click", ".Rpost-comment", function() {
         var boo = $(this);
-        $('textarea.mention').mentionsInput('val', function(text) {
-            if(post_text != '')
-            {
-                var post_text = text;
-                var post_data = "book_id="+$("#iaidubi").val()+"&comments="+post_text+"&csrf_test_name="+csrf_value;
-                $.ajax({
-                    url: base_url + "commentbook",
-                    type: "POST",
-                    dataType: "JSON",
-                    data: post_data,
-                    beforeSend: function() {
-                        $(".loader").show()
-                    }
-                }).done(function(a) {
-                    null == a && ($(".coment_").hide(), console.log("Koneksi Bermasalah"));
-                    $("textarea.mention").mentionsInput('reset');
-                    $(".loader").hide();
-                    var ava;
-                    if (a.comment_user_avatar == null || a.comment_user_avatar == "") {
-                        var ava = base_url+"public/img/profile/blank-photo.jpg";
-                    }else{
-                        var ava = a.comment_user_avatar;
-                    }
-                    dats = "<div class='media pb-15 mb-15 coment_'> <img class='d-flex align-self-start mr-15 rounded-circle' src='"+ava+"' width='40' height='40' alt='"+a.comment_user_name+"' style='object-fit:cover;'> <div class='media-body'> <a href='#'><span class='card-title' style='font-size: 12pt;font-weight: 800;'>"+a.comment_user_name+"</span></a><div class='dropdown right-posi'> <button aria-expanded='false' aria-haspopup='true' class='btn-clear' data-toggle='dropdown' id='dropEditComm' style='font-size:11pt;' type='button'>&#8226;&#8226;&#8226;</button> <div aria-labelledby='dropEditComm' class='dropdown-menu'> <a class='dropdown-item editcomm' href='javascript:void(0);' dataedit='"+a.comment_id+"' datacom='"+a.comment_text+"'><img src='"+base_url+"public/img/assets/icon_pen.svg'> Ubah Komentar</a> <hr style='margin-top: 10px !important;margin-bottom: 10px !important;'> <a class='dropdown-item delcomm' href='javascript:void(0);' datadel='"+a.comment_id+"'><img src='"+base_url+"public/img/icon-tab/dustbin.svg'> Hapus Komentar</a> </div></div> <p class='commenttxt' com-id='"+a.comment_id+"'>"+a.comment_text+"</p><div><small><span class='text-muted'>"+a.comment_time+"</span> <a href='javascript:void(0);' class='ml-20 replcom' com-id='"+a.comment_id+"' com-name='" + a.comment_user_name + "'>Balas</a></small></div></div></div>";
-                    $("#Rbookcomment_list").append(dats);
-                }).fail(function() {
-                    console.log("error")
-                }).always(function() {})
-            } else {
 
-            }
-        });
+        if ($('#comments').val() !== ""){
+            $('textarea.mention').mentionsInput('val', function(text) {
+                if(post_text != '')
+                {
+                    var post_text = text;
+                    var post_data = "book_id="+$("#iaidubi").val()+"&comments="+post_text+"&csrf_test_name="+csrf_value;
+                    $.ajax({
+                        url: base_url + "commentbook",
+                        type: "POST",
+                        dataType: "JSON",
+                        data: post_data,
+                        beforeSend: function() {
+                            $(".loader").show()
+                        }
+                    }).done(function(a) {
+                        null == a && ($(".coment_").hide(), console.log("Koneksi Bermasalah"));
+                        $("textarea.mention").mentionsInput('reset');
+                        $(".loader").hide();
+                        var ava;
+                        if (a.comment_user_avatar == null || a.comment_user_avatar == "") {
+                            var ava = base_url+"public/img/profile/blank-photo.jpg";
+                        }else{
+                            var ava = a.comment_user_avatar;
+                        }
+                        dats = "<div class='media pb-15 mb-15 coment_'> <img class='d-flex align-self-start mr-15 rounded-circle' src='"+ava+"' width='40' height='40' alt='"+a.comment_user_name+"' style='object-fit:cover;'> <div class='media-body'> <a href='#'><span class='card-title' style='font-size: 12pt;font-weight: 800;'>"+a.comment_user_name+"</span></a><div class='dropdown right-posi'> <button aria-expanded='false' aria-haspopup='true' class='btn-clear' data-toggle='dropdown' id='dropEditComm' style='font-size:11pt;' type='button'>&#8226;&#8226;&#8226;</button> <div aria-labelledby='dropEditComm' class='dropdown-menu'> <a class='dropdown-item editcomm' href='javascript:void(0);' dataedit='"+a.comment_id+"' datacom='"+a.comment_text+"'><img src='"+base_url+"public/img/assets/icon_pen.svg'> Ubah Komentar</a> <hr style='margin-top: 10px !important;margin-bottom: 10px !important;'> <a class='dropdown-item delcomm' href='javascript:void(0);' datadel='"+a.comment_id+"'><img src='"+base_url+"public/img/icon-tab/dustbin.svg'> Hapus Komentar</a> </div></div> <p class='commenttxt' com-id='"+a.comment_id+"'>"+a.comment_text+"</p><div><small><span class='text-muted'>"+a.comment_time+"</span> <a href='javascript:void(0);' class='ml-20 replcom' com-id='"+a.comment_id+"' com-name='" + a.comment_user_name + "'>Balas</a></small></div></div></div>";
+                        $("#Rbookcomment_list").append(dats);
+                    }).fail(function() {
+                        console.log("error")
+                    }).always(function() {})
+                } else {
+
+                }
+            });
+        }else{
+        }
 
         // function getMentions($content) {
         //     $('textarea.mention').mentionsInput('getMentions', function(data) {
@@ -656,39 +660,42 @@ $(document).on('click', '.Rpost-comment-repl', function(event) {
     formData.append('comment_id', comid_);
     formData.append('comments', $('#comments').val());
     formData.append('csrf_test_name', csrf_value);
-    $.ajax({
-        url: base_url+'replycom',
-        type: 'POST',
-        dataType: 'JSON',
-        cache: false,
-        contentType: false,
-        processData: false,
-        data: formData,
-        beforeSend: function() {
-            $(".loader").show()
-        }
-    })
-    .done(function(a) {
-        // null == a && ($(".rcommentviewnull").hide(), console.log("Koneksi Bermasalah"));
-        $("#comments").val("");$("textarea.mention").mentionsInput('reset');
-        $(".loader").hide();
-        var names = a.comment_user_name.substr(0,a.comment_user_name.indexOf(' '));
-        dats = "<div class='mt-5'> <img src='"+a.comment_user_avatar+"' width='20' height='20' class='rounded-circle fitcover'><a src='#' class='ml-10' style='font-weight: 600;'>"+names+"</a><span class='ml-10 commenttxt'>"+a.comment_text+"</span> ";
-        if (a.comment_user_id == userdata) {
-            dats += "<div class='dropdown right-posi'> <button aria-expanded='false' aria-haspopup='true' class='btn-clear' data-toggle='dropdown' id='dropEditComm' style='font-size:11pt;' type='button'>&#8226;&#8226;&#8226;</button> <div aria-labelledby='dropEditComm' class='dropdown-menu'> <a class='dropdown-item editcomm' href='javascript:void(0);' dataedit='"+a.comment_id+"' datacom='"+a.comment_text+"'><img src='"+base_url+"public/img/assets/icon_pen.svg'> Ubah Komentar</a> <hr style='margin-top: 10px !important;margin-bottom: 10px !important;'> <a class='dropdown-item delcomm' href='javascript:void(0);' datadel='"+a.comment_id+"'><img src='"+base_url+"public/img/icon-tab/dustbin.svg'> Hapus Komentar</a> </div></div> ";
-        }else{
-            dats += "</div>";
-        }
-        $("#"+comid_).find(".data-reply").attr('data-reply', comid_).append(dats);
-        var btn = "<button class='Rpost-comment' type='button' style='background: none;border: none;'><img src='"+base_url+"public/img/assets/icon_sendcomm.png' width='43' height='43'></button>";
-        $('#btn-com').html(btn);
-    })
-    .fail(function() {
-        console.log("error");
-    })
-    .always(function() {
-    });
 
+    if ($('#comments').val() !== ""){
+        $.ajax({
+            url: base_url+'replycom',
+            type: 'POST',
+            dataType: 'JSON',
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: formData,
+            beforeSend: function() {
+                $(".loader").show()
+            }
+        })
+            .done(function(a) {
+                // null == a && ($(".rcommentviewnull").hide(), console.log("Koneksi Bermasalah"));
+                $("#comments").val("");$("textarea.mention").mentionsInput('reset');
+                $(".loader").hide();
+                var names = a.comment_user_name.substr(0,a.comment_user_name.indexOf(' '));
+                dats = "<div class='mt-5'> <img src='"+a.comment_user_avatar+"' width='20' height='20' class='rounded-circle fitcover'><a src='#' class='ml-10' style='font-weight: 600;'>"+names+"</a><span class='ml-10 commenttxt'>"+a.comment_text+"</span> ";
+                if (a.comment_user_id == userdata) {
+                    dats += "<div class='dropdown right-posi'> <button aria-expanded='false' aria-haspopup='true' class='btn-clear' data-toggle='dropdown' id='dropEditComm' style='font-size:11pt;' type='button'>&#8226;&#8226;&#8226;</button> <div aria-labelledby='dropEditComm' class='dropdown-menu'> <a class='dropdown-item editcomm' href='javascript:void(0);' dataedit='"+a.comment_id+"' datacom='"+a.comment_text+"'><img src='"+base_url+"public/img/assets/icon_pen.svg'> Ubah Komentar</a> <hr style='margin-top: 10px !important;margin-bottom: 10px !important;'> <a class='dropdown-item delcomm' href='javascript:void(0);' datadel='"+a.comment_id+"'><img src='"+base_url+"public/img/icon-tab/dustbin.svg'> Hapus Komentar</a> </div></div> ";
+                }else{
+                    dats += "</div>";
+                }
+                $("#"+comid_).find(".data-reply").attr('data-reply', comid_).append(dats);
+                var btn = "<button class='Rpost-comment' type='button' style='background: none;border: none;'><img src='"+base_url+"public/img/assets/icon_sendcomm.png' width='43' height='43'></button>";
+                $('#btn-com').html(btn);
+            })
+            .fail(function() {
+                console.log("error");
+            })
+            .always(function() {
+            });
+    }else{
+    }
 });
 $(document).on('click', '.delcomm', function(event) {
     event.preventDefault();

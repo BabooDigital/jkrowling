@@ -378,11 +378,11 @@ if (!empty($query['stat'])) {
 
 				fieldName = $(this).attr('data-target');
 				var currentVal = parseInt($('input[name='+fieldName+']').val());
-				if (!isNaN(currentVal) && currentVal > $('#count_chapter_plus_minus').val()) {
+				if (!isNaN(currentVal) && currentVal > $('#minim_chapter').val()) {
 					$('input[name='+fieldName+']').val(currentVal - 1);
 					$('.addplus').removeAttr('style');
 				} else {
-					$('input[name='+fieldName+']').val($('#count_chapter_plus_minus').val());
+					$('input[name='+fieldName+']').val($('#minim_chapter').val());
 					$('.addmin').css('cursor','not-allowed');
 				}
 			});
