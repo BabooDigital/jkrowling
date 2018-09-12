@@ -39,7 +39,7 @@ class C_book_out extends MX_Controller {
 
 		$st1 = strip_tags($datas['data']['chapter']['paragraphs'][0]['paragraph_text']);
 		$st2 = str_replace("'", "", $st1);
-		$book['page_desc'] = substr($st2, 5, 150) . '...';
+		$book['page_desc'] = substr($st2, 5, 160) . '...';
         $book['m_book_cover'] = $datas['data']['book_info']['cover_url'];
 		if ((bool)$datas['data']['book_info']['is_free'] == false) {
 			$book['m_book_price'] = preg_replace('/[^0-9]/', '', $datas['data']['book_info']['book_price']);

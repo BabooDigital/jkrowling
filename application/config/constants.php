@@ -88,7 +88,7 @@ URL = 'https://staging.baboo.id/'
 @@@ DEVELOPMENT @@@
 URL = 'https://dev-baboo.co.id/'
 */
-defined('BASE_URL_WEB')		OR define('BASE_URL_WEB', 'https://dev-baboo.co.id/');
+defined('BASE_URL_WEB')		OR define('BASE_URL_WEB', 'https://dev-baboo.co.id');
 defined('BASE_URL_DEEPLINK')		OR define('BASE_URL_DEEPLINK', 'www.baboo.id/');
 // CONFIG DB
 defined('DB_HOST')			OR define('DB_HOST', '');
@@ -156,7 +156,7 @@ defined('AD_SLOT')		OR	define('AD_SLOT', '7276054409');
 /*
 @@@ PRODUCTION @@@
 ANALYTIS ID = 'UA-122661844-1'
-GTAGSM ID = 'GTM-WJXMRQ5'
+GTAGSM ID = 'GTM-NR9NJMX'
 @@@ STAGING @@@
 ANALYTIS ID = 'UA-122668478-1'
 GTAGSM ID = 'GTM-MFRWL46'
