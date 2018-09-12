@@ -77,7 +77,7 @@ class C_book extends MX_Controller
              $st2 = str_replace('"', '', $st1);
 
             $data['detail_book'] = $data['data'];
-            $data['page_desc'] = substr($st2, 5, 150) . '...';
+            $data['page_desc'] = substr($st2, 5, 160) . '...';
             $data['title'] = $data['detail_book']['data']['book_info']['title_book'].' - '.$data['detail_book']['data']['chapter']['chapter_title'];
         }else{
             $data['detail_book'] = $datapdf['data'];

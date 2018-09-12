@@ -9,6 +9,8 @@
 	<meta name='twitter:description' content='<?php echo $page_desc; ?>' />
     <meta name='twitter:card' content='summary' />
 
+    <meta name="google-site-verification" content="H1TyRzWK3ppRRDlk8GuM6Rpv2tArZPXOgrDHuPTgM9s" />
+
 	<?php if ($this->uri->segment(1) == 'book') {
         echo "<meta name='twitter:title' content='".$title."' />";
         echo "<meta property='og:title' content='".$title."' />";
