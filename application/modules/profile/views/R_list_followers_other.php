@@ -32,7 +32,7 @@
 		</div>
 
 		<nav class="navbar navbar-light">
-			<a class="menu-page" href="<?php echo site_url('profile/'.$this->uri->segment(2)); ?>" id="tab_page" dat-title="Profile"><i class="fa fa-arrow-left"></i></a> <h5 style="margin: auto;">Semua Teman</h5>
+			<a class="menu-page" href="<?php echo site_url('penulis/'.$this->uri->segment(2)); ?>" id="tab_page" dat-title="Profile"><i class="fa fa-arrow-left"></i></a> <h5 style="margin: auto;">Semua Teman</h5>
 		</nav>
 
 		<div class="container mt-15">
@@ -42,7 +42,7 @@
 					<div class='card pt-15 pb-15' style='border: solid 1px #e8ebec;border-radius: 10px !important;'>
 						<div class='text-center'>
 							<img class='rounded-circle' height='50' src='<?php echo $fol['prof_pict']; ?>' alt='<?php echo $fol['fullname']; ?>' style='object-fit:cover;' width='50'>
-							<p class='nametitled'><a href='<?php echo site_url(); ?>profile/<?php echo $fol['user_id']; ?>-<?php echo url_title($fol['fullname'], 'dash', true); ?>'><?php echo $fol['fullname']; ?></a></p>
+							<p class='nametitled'><a href='<?php echo site_url(); ?>penulis/<?php echo $fol['user_id']; ?>-<?php echo url_title($fol['fullname'], 'dash', true); ?>'><?php echo $fol['fullname']; ?></a></p>
 						</div>
 						<div class='row'>
 							<div class='col-6 text-center rborder pr-0'>

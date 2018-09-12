@@ -13,7 +13,7 @@
 		<div id="insideDivTerakhirDilihat">
 			<div class="terakhir_dilihat">
 				<div class="terakhir_dilihat_sub1a w-100">
-					<a href="<?php if ((bool)$book['is_pdf'] == true) { echo site_url('book/'.$book['book_id'].'-'.url_title($book['title_book'], 'dash', true).'/pdf'); }else{ echo site_url('book/'.$book['book_id'].'-'.url_title($book['title_book'], 'dash', true)); } ?>">
+					<a href="<?php if ((bool)$book['is_pdf'] == true) { echo site_url('penulis/'.$book['author_id'].'-'.url_title($book['author_name'], 'dash', true).'/'.$book['book_id'].'-'.url_title($book['title_book'], 'dash', true).'/pdf'); }else{ echo site_url('penulis/'.$book['author_id'].'-'.url_title($book['author_name'], 'dash', true).'/'.$book['book_id'].'-'.url_title($book['title_book'], 'dash', true)); } ?>">
 						<img src="<?php echo ($book['cover_url'] != null) ? $book['cover_url'] : base_url('public/img/blank_cover.png'); ?>" width="130" height="170"  onerror="this.onerror=null;this.src='<?php echo base_url('public/img/blank_cover.png'); ?>';" class="terakhir_dilihat_imgs rounded">
 						<div class="terakhir_dilihat_sub2">
 							<div id="title_book">

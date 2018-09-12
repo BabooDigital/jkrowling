@@ -18,7 +18,7 @@ class C_book extends MX_Controller
     {
         error_reporting(0);
         $auth = $this->session->userdata('authKey');
-        $id_book = $this->uri->segment(2);
+        $id_book = $this->uri->segment(3);
         $idb = explode('-', $id_book, 2);
         if (is_array($idb)) ;
 
@@ -35,7 +35,7 @@ class C_book extends MX_Controller
         } else {
             $status = $data_before_chapter['chapter']['code'];
         }
-        $count = ($this->uri->segment(4) && !empty($this->uri->segment(4))) ? $this->uri->segment(4) : $data_before_chapter['chapter']['data']['chapter'][0]['chapter_id'];
+        $count = ($this->uri->segment(5) && !empty($this->uri->segment(5))) ? $this->uri->segment(5) : $data_before_chapter['chapter']['data']['chapter'][0]['chapter_id'];
         foreach ($data_before_chapter['chapter']['data']['chapter'] as $key=>$val) {
             if ($count == $val['chapter_id']) {
                 $nexts = $key + 1;
@@ -52,16 +52,17 @@ class C_book extends MX_Controller
         // END GET CHAPTER
         if ($this->session->userdata('isLogin') != 200) {
             $data = $this->curl_request->curl_post($this->API.'timeline/Home/detailBook', $data_book, '');
-            $id = $this->uri->segment(2);
-            $chaptid = $this->uri->segment(4);
+            $id = $this->uri->segment(2).'/'.$this->uri->segment(3);
+            $chaptid = $this->uri->segment(5);
             if ($data['data']['book_info']['is_pdf'] != 1) {
-                if (empty($this->uri->segment(4))) {
-                    redirect('book/' . $id . '/preview');
+                if (empty($this->uri->segment(5))) {
+                    if ($this->uri->segment())
+                    redirect('penulis/' . $id . '/preview');
                 }else{
-                    redirect('book/' . $id . '/preview/chapter/'.$chaptid);
+                    redirect('penulis/' . $id . '/preview/chapter/'.$chaptid);
                 }
             }else{
-                redirect('book/' . $id . '/preview/pdf');
+                redirect('penulis/' . $id . '/preview/pdf');
             }
         }else{
             $data = $this->curl_request->curl_post_auth($this->API.'book/Books/detailBook/', $data_book, $auth);
@@ -183,8 +184,8 @@ class C_book extends MX_Controller
     {
         error_reporting(0);
         $auth = $this->session->userdata('authKey');
-        $id_book = $this->uri->segment(2);
-        $id_chapter = $this->uri->segment(4);
+        $id_book = $this->uri->segment(3);
+        $id_chapter = $this->uri->segment(5);
         $idb = explode('-', $id_book, 2);
         if (is_array($idb)) ;
 
@@ -265,7 +266,7 @@ class C_book extends MX_Controller
     {
         error_reporting(0);
         $auth = $this->session->userdata('authKey');
-        $id_book = $this->uri->segment(2);
+        $id_book = $this->uri->segment(3);
         $idb = explode('-', $id_book, 2);
         if (is_array($idb)) ;
 

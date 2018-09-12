@@ -227,9 +227,9 @@ $(document).ready(function() {
 				formData.append("csrf_test_name",  csrf_value)
 				if ($("#book_id").val() != null) {
 					formData.append("book_id", $("#book_id").val());
-					for (var pair of formData.entries()) {
+					// for (var pair of formData.entries()) {
 						// console.log(pair[0]+ ', ' + pair[1]);
-					}
+					// }
 				} else {
 					console.log('tidak');
 				}

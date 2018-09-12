@@ -42,7 +42,7 @@
 					<div class='card pt-15 pb-15' style='border: solid 1px #e8ebec;border-radius: 10px !important;'>
 						<div class='text-center'>
 							<img class='rounded-circle' height='50' src='<?php echo $pop['prof_pict']; ?>' alt='<?php echo $pop['fullname']; ?>' style='object-fit:cover;' width='50'>
-							<p class='nametitled'><a href='<?php echo site_url(); ?>profile/<?php echo $pop['user_id']; ?>-<?php echo url_title($pop['fullname'], 'dash', true); ?>'><?php echo $pop['fullname']; ?></a></p>
+							<p class='nametitled'><a href='<?php echo site_url(); ?>penulis/<?php echo $pop['user_id']; ?>-<?php echo url_title($pop['fullname'], 'dash', true); ?>'><?php echo $pop['fullname']; ?></a></p>
 						</div>
 						<div class='row'>
 							<div class='col-6 text-center rborder pr-0'>

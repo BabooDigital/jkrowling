@@ -5,14 +5,14 @@ class C_timeline extends MX_Controller {
 	function __construct(){
 		parent::__construct();
 		$api_url = checkBase();
-		$this->API = $api_url;			
-		
+		$this->API = $api_url;
+
 		if ($this->session->userdata('isLogin') != 200) {
 			redirect('home');
 		}
 		$this->load->library(array('simple_cache'));
 	}
-	
+
 	public function index()
 	{
 		error_reporting(0);
@@ -81,7 +81,7 @@ class C_timeline extends MX_Controller {
 				$datas['js'][]   = "public/js/custom/search.js";
 				$datas['js'][]   = "public/js/custom/D_timeline_in.js";
 				if (!empty($this->input->get("page"))) {
-					
+
 					$result = $this->load->view('data/D_Timeline_in', $datas);
 				}else{
 					$this->load->view('include/head',$datas);
@@ -137,7 +137,7 @@ class C_timeline extends MX_Controller {
 		echo json_encode(array(
 			'code' => $status,
 			'data' => $book
-		));	
+		));
 	}
 	public function getWritter()
 	{
@@ -182,7 +182,7 @@ class C_timeline extends MX_Controller {
 			echo json_encode($data_best, true);
 		}
 	}
-	
+
 	public function signout() {
 		$this->facebook->destroy_session();
 		$this->session->unset_userdata('isLogin');
@@ -204,7 +204,7 @@ class C_timeline extends MX_Controller {
 
 		$status = $resval['data']['code'];
 		$auth = $resval['bbo_auth'];
-		
+
 		$this->session->set_userdata('authKey', $auth);
 		if ($status == 403){
 			$this->session->unset_userdata('userData');
@@ -230,7 +230,7 @@ class C_timeline extends MX_Controller {
 
 		$status = $resval['data']['code'];
 		$pesan = $resval['data']['message'];
-		
+
 		$auth = $resval['bbo_auth'];
 		$this->session->set_userdata('authKey', $auth);
 		if ($status == 403){
@@ -239,7 +239,7 @@ class C_timeline extends MX_Controller {
 			$this->session->sess_destroy();
 			redirect('login','refresh');
 		}else{
-			echo json_encode(array('code' => $status, 'message' => $pesan));	
+			echo json_encode(array('code' => $status, 'message' => $pesan));
 		}
 	}
 	public function postFollowUser()
@@ -257,7 +257,7 @@ class C_timeline extends MX_Controller {
 
 		$status = $resval['data']['code'];
 		$pesan = $resval['data']['message'];
-		
+
 		$auth = $resval['bbo_auth'];
 		$this->session->set_userdata('authKey', $auth);
 		if ($status == 403){
@@ -266,7 +266,7 @@ class C_timeline extends MX_Controller {
 			$this->session->sess_destroy();
 			redirect('login','refresh');
 		}else{
-			echo json_encode(array('code' => $status, 'message' => $pesan));	
+			echo json_encode(array('code' => $status, 'message' => $pesan));
 		}
 	}
 	public function postShareSocmed()
@@ -284,7 +284,7 @@ class C_timeline extends MX_Controller {
 
 		$status = $resval['data']['code'];
 		$pesan = $resval['data']['message'];
-		
+
 		$auth = $resval['bbo_auth'];
 		$this->session->set_userdata('authKey', $auth);
 		if ($status == 403){
@@ -293,7 +293,7 @@ class C_timeline extends MX_Controller {
 			$this->session->sess_destroy();
 			redirect('login','refresh');
 		}else{
-			echo json_encode(array('code' => $status, 'message' => $pesan));	
+			echo json_encode(array('code' => $status, 'message' => $pesan));
 		}
 	}
 	public function draftListView()
@@ -312,7 +312,7 @@ class C_timeline extends MX_Controller {
 			$this->session->unset_userdata('authKey');
 			$this->session->sess_destroy();
 			redirect('login','refresh');
-		}else{	
+		}else{
 		}
 		if ($this->agent->mobile()) {
 			$data['datadraft'] = $resval['data']['data'];
@@ -331,7 +331,7 @@ class C_timeline extends MX_Controller {
 			$data['js'][] = "public/js/menupage.js";
 			$this->load->view('R_draft', $data);
 		}else{
-			redirect('profile','refresh');
+			redirect('penulis','refresh');
 		}
 	}
 	public function AllPopularWriters()
@@ -362,7 +362,7 @@ class C_timeline extends MX_Controller {
 			}
 			else
 			{
-				
+
 			}
 		} else {
 			$status = $resval['data']['code'];
@@ -373,7 +373,7 @@ class C_timeline extends MX_Controller {
 			$this->session->sess_destroy();
 			redirect('login', 'refresh');
 		} else {
-			
+
 		}
 	}
 }

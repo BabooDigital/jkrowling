@@ -46,7 +46,7 @@
                       <div class="media mt-20">
                         <img class="d-flex align-self-start mr-5 rounded-circle" id="cauthorb" src="<?php if(!empty($detail_book['data']['author']['avatar'])){echo $detail_book['data']['author']['avatar'];}else{echo base_url('public/img/profile/blank-photo.jpg');} ?>" width="40" height="40">
                         <div class="media-body">
-                          <span class="card-title">by <a href="<?php echo site_url('profile/'.$detail_book['author']['author_id'].'-'.url_title($detail_book['author']['author_name'], 'dash', true)); ?>" class="author_names menu-page" id="tab-page"> <b id="cauthnameb"><?php echo $detail_book['data']['author']['author_name']; ?></b></a></span>
+                          <span class="card-title">by <a href="<?php echo site_url('penulis/'.$detail_book['author']['author_id'].'-'.url_title($detail_book['author']['author_name'], 'dash', true)); ?>" class="author_names menu-page" id="tab-page"> <b id="cauthnameb"><?php echo $detail_book['data']['author']['author_name']; ?></b></a></span>
                           <!-- <p class="text-muted" style="margin-top:-5px;"><small>Jakarta, Indonesia</small></p> -->
                           </div>
                         </div>
@@ -64,7 +64,7 @@
               <hr>
               </div>
               <div class="col-12">
-                <p><span>Total Pembayaran</span> <span class="float-right"  style="font-weight: 900;">Rp. <span id="ctotb"><?php echo number_format( $detail_book['data']['book_info']['book_price'], 0, ',', '.'); ?></span></span></p> 
+                <p><span>Total Pembayaran</span> <span class="float-right"  style="font-weight: 900;">Rp. <span id="ctotb"><?php echo number_format( $detail_book['data']['book_info']['book_price'], 0, ',', '.'); ?></span></span></p>
               </div>
             </div>
           </div>

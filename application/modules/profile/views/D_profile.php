@@ -341,12 +341,12 @@
                                     <li class="list-group-item">
                                         <div class="media">
                                             <div class="media-left mr-10">
-                                                <a href="<?php if ((bool)$l_book['is_pdf'] == true) { echo site_url('book/'.$l_book['book_id'].'-'.url_title($l_book['title_book'], 'dash', true).'/pdf'); }else{ echo site_url('book/'.$l_book['book_id'].'-'.url_title($l_book['title_book'], 'dash', true)); } ?>"><img class="media-object rounded" height="80" src="<?php echo ($l_book['cover_url'] != 'Kosong') ? ($l_book['cover_url'] != null ? $l_book['cover_url'] : base_url('public/img/blank_cover.png')) : base_url('public/img/blank_cover.png'); ?>" onerror="this.onerror=null;this.src='<?php echo base_url('public/img/blank_cover.png'); ?>';" width="60" style="object-fit: cover;"></a>
+                                                <a href="<?php if ((bool)$l_book['is_pdf'] == true) { echo site_url('penulis/'.$l_book['author_id'].'-'.url_title($l_book['author_name'], 'dash', true).'/'.$l_book['book_id'].'-'.url_title($l_book['title_book'], 'dash', true).'/pdf'); }else{ echo site_url('penulis/'.$l_book['author_id'].'-'.url_title($l_book['author_name'], 'dash', true).'/'.$l_book['book_id'].'-'.url_title($l_book['title_book'], 'dash', true)); } ?>"><img class="media-object rounded" height="80" src="<?php echo ($l_book['cover_url'] != 'Kosong') ? ($l_book['cover_url'] != null ? $l_book['cover_url'] : base_url('public/img/blank_cover.png')) : base_url('public/img/blank_cover.png'); ?>" onerror="this.onerror=null;this.src='<?php echo base_url('public/img/blank_cover.png'); ?>';" width="60" style="object-fit: cover;"></a>
                                             </div>
                                             <div class="media-body">
                                                 <div>
-                                                    <h4 class="media-heading bold mt-10"><a href="<?php if ((bool)$l_book['is_pdf'] == true) { echo site_url('book/'.$l_book['book_id'].'-'.url_title($l_book['title_book'], 'dash', true).'/pdf'); }else{ echo site_url('book/'.$l_book['book_id'].'-'.url_title($l_book['title_book'], 'dash', true)); } ?>"><?php echo $l_book['title_book']; ?></a></h4>
-                                                    <p style="font-size: 10pt;">by <a href="<?php echo site_url('profile/'.$l_book['author_id'].'-'.url_title($l_book['author_name'], 'dash', true)); ?>"><?php echo $l_book['author_name']; ?></a></p>
+                                                    <h4 class="media-heading bold mt-10"><a href="<?php if ((bool)$l_book['is_pdf'] == true) { echo site_url('penulis/'.$l_book['author_id'].'-'.url_title($l_book['author_name'], 'dash', true).'/'.$l_book['book_id'].'-'.url_title($l_book['title_book'], 'dash', true).'/pdf'); }else{ echo site_url('penulis/'.$l_book['author_id'].'-'.url_title($l_book['author_name'], 'dash', true).'/'.$l_book['book_id'].'-'.url_title($l_book['title_book'], 'dash', true)); } ?>"><?php echo $l_book['title_book']; ?></a></h4>
+                                                    <p style="font-size: 10pt;">by <a href="<?php echo site_url('penulis/'.$l_book['author_id'].'-'.url_title($l_book['author_name'], 'dash', true)); ?>"><?php echo $l_book['author_name']; ?></a></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -460,7 +460,7 @@
                                 <div class='card pt-15 pb-15' style='border: solid 1px #e8ebec;border-radius: 10px !important;'>
                                     <div class='text-center'>
                                         <img class='rounded-circle' height='50' src='<?php echo $fol['prof_pict']; ?>' alt='<?php echo $fol['fullname']; ?>' style='object-fit:cover;' width='50' onerror="this.onerror=null;this.src='<?php echo base_url('public/img/profile/blank-photo.jpg'); ?>';">
-                                        <p class='nametitled'><a href='<?php echo site_url(); ?>profile/<?php echo $fol['user_id']; ?>-<?php echo url_title($fol['fullname'], 'dash', true); ?>'><?php echo $fol['fullname']; ?></a></p>
+                                        <p class='nametitled'><a href='<?php echo site_url(); ?>penulis/<?php echo $fol['user_id']; ?>-<?php echo url_title($fol['fullname'], 'dash', true); ?>'><?php echo $fol['fullname']; ?></a></p>
                                     </div>
                                     <div class='row'>
                                         <div class='col-6 text-center rborder pr-0'>
@@ -486,7 +486,7 @@
                 </div>
             </div>
 
-            <?php if (empty($this->uri->segment(2))){$url = 'all-friends';}else{$url = 'profile/'.$this->uri->segment(2).'/all-friends';} if (count($followers) == 20){ ?>
+            <?php if (empty($this->uri->segment(2))){$url = 'all-friends';}else{$url = 'penulis/'.$this->uri->segment(2).'/all-friends';} if (count($followers) == 20){ ?>
                 <div class="modal-footer">
                     <a href="<?php echo site_url($url); ?>" class="mx-auto text-white rounded" style="background: #482d8e;padding: 10px 80px;">Lihat Semua</a>
                 </div>

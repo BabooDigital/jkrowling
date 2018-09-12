@@ -30,9 +30,9 @@ function getLastRead() {
                 if (title.length > 10) {
                     viewtitle = title.substring(0,11) + '...';
                 }
-                var urls = base_url+'book/'+ val.book_id+'-'+convertToSlug(val.title_book);
+                var urls = base_url+'penulis/'+val.author_id+'-'+convertToSlug(val.author_name)+'/'+ val.book_id+'-'+convertToSlug(val.title_book);
                 if (val.is_pdf == true) {
-                    var urls = base_url+'book/'+ val.book_id+'-'+convertToSlug(val.title_book)+'/pdf';
+                    var urls = base_url+'penulis/'+val.author_id+'-'+convertToSlug(val.author_name)+'/'+ val.book_id+'-'+convertToSlug(val.title_book)+'/pdf';
                 }
                 html += '<a class="pull-left" href="'+urls+'"> <div class="col-12" style="height:auto;"> <div> <img src="'+val.cover_url.toString()+'" width="110" height="140" class="rounded" style="box-shadow: 0px 0px 10px rgba(76, 76, 76, 0.3);object-fit:cover;"> </div> <div class="mt-10" style="text-align:left;"> <div id="title_book"> <p style="font-size: 13px;font-weight: bold;">'+ viewtitle +'</p> </div> <div id="author_book" class="text-muted"> <p style="font-size: 10px;">by '+val.author_name+'</p> </div> </div> </div> </a>'; });
             $("#insideDiv").html(html);
@@ -43,7 +43,7 @@ function getLastRead() {
         $(".loader").hide();
     })
     .fail(function() {
-        
+
     })
     .always(function() {
     });
@@ -73,9 +73,9 @@ function getBookmark() {
                 if (authorimg == null || authorimg == '') {
                     authorimg = 'public/img/profile/blank-photo.jpg';
                 }
-                var urls = base_url+'book/'+ val.book_id+'-'+convertToSlug(val.title_book);
+                var urls = base_url+'penulis/'+val.author_id+'-'+convertToSlug(val.author_name)+'/'+ val.book_id+'-'+convertToSlug(val.title_book);
                 if (val.is_pdf == true) {
-                    var urls = base_url+'book/'+ val.book_id+'-'+convertToSlug(val.title_book)+'/pdf';
+                    var urls = base_url+'penulis/'+val.author_id+'-'+convertToSlug(val.author_name)+'/'+ val.book_id+'-'+convertToSlug(val.title_book)+'/pdf';
                 }
                 html += '<a href="'+urls+'"><div class="col-12 mb-20"> <div class="bookmarkbook w-100"> <img src="'+ val.cover_url.toString() +'" width="150" height="180" class="rounded"> <img src="public/img/assets/bookmark.png" width="30" height="40" class="markbook" style="object-fit:cover;"> <div class="mt-10" style="text-align:left;"> <div id="title_book"> <p style="font-size: 13px;font-weight: bold;">'+ viewtitle +'</p> </div> <div id="author_book"> <p style="font-size: 12px;"><img src="'+ authorimg +'" width="20" height="20" class="rounded-circle"> '+ val.author_name +'</p> </div> </div> </div> </div></a>';
 
@@ -95,7 +95,7 @@ function getBookmark() {
         $(".loader").hide();
     })
     .fail(function() {
-        
+
     })
     .always(function() {
     });
@@ -125,9 +125,9 @@ function getCollection() {
                     authorimg = 'public/img/profile/blank-photo.jpg';
                 }
 
-                var urls = base_url+'book/'+ col.book_id+'-'+convertToSlug(col.title_book);
+                var urls = base_url+'penulis/'+col.author_id+'-'+convertToSlug(col.author_name)+'/'+ col.book_id+'-'+convertToSlug(col.title_book);
                 if (col.is_pdf == true) {
-                    var urls = base_url+'book/'+ col.book_id+'-'+convertToSlug(col.title_book)+'/pdf';
+                    var urls = base_url+'penulis/'+col.author_id+'-'+convertToSlug(col.author_name)+'/'+ col.book_id+'-'+convertToSlug(col.title_book)+'/pdf';
                 }
                 html += '<a href="'+urls+'"><div class="col-12 mb-20"> <div class="bookmarkbook w-100"> <img src="'+ col.cover_url.toString() +'" width="150" height="180" class="rounded"> <div class="mt-10" style="text-align:left;"> <div id="title_book"> <p style="font-size: 13px;font-weight: bold;">'+ viewtitle +'</p> </div> <div id="author_book"> <p style="font-size: 12px;"><img src="'+ authorimg +'" width="20" height="20" class="rounded-circle"> '+ col.author_name +'</p> </div> </div> </div> </div></a>';
 
@@ -147,7 +147,7 @@ function getCollection() {
         $(".loader").hide();
     })
     .fail(function() {
-        
+
     })
     .always(function() {
     });

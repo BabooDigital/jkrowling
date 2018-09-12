@@ -1,7 +1,7 @@
 <?php
 $uri1 = $this->uri->segment(1); $uri2 = $this->uri->segment(2); $uri3 = $this->uri->segment(3);
 // FB
-if ($uri1 == 'book' || $uri1 == 'profile' || $uri1 == 'search' || $uri1 == 'timeline') {
+if ($uri1 == 'penulis' || $uri1 == 'search' || $uri1 == 'timeline') {
 	echo "<script>(function(d, s, id) {
 		var js, fjs = d.getElementsByTagName(s)[0];
 		if (d.getElementById(id)) return;
@@ -12,7 +12,7 @@ if ($uri1 == 'book' || $uri1 == 'profile' || $uri1 == 'search' || $uri1 == 'time
 }
 
 // Midtrans
-if ($uri1 == 'book') {
+if ($uri1 == 'penulis') {
 	echo "<script type='text/javascript' src='https://".MID_BASE_URL."/snap/snap.js' data-client-key='".MID_CLIENT."'></script>";
 }
 

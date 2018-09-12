@@ -139,7 +139,7 @@
 				<div class="card-body">
 					<div class="media" style="margin-bottom: -15px;">
 						<img class="d-flex align-self-start mr-20 rounded-circle" width="50" height="50" src="
-						<?php echo ($avatar != null) ? $avatar : base_url('public/img/profile/blank-photo.jpg') ; ?>" alt="Aditia Nugraha">
+						<?php echo ($avatar != null) ? $avatar : base_url('public/img/profile/blank-photo.jpg') ; ?>" alt="<?php echo $author; ?>">
 						<div class="media-body">
 							<h5 class="nametitle2 author_name"><?php echo $author; ?></h5>
 							<p><small><span>Jakarta, Indonesia</span></small></p>
@@ -178,7 +178,7 @@
 			<div class="row mb-50">
 				<div class="col-12">
 					<div class="text-center">
-						<a href="<?php echo site_url(); ?>login?b=<?php echo $bid.$hash_uri; ?>" class="btnlogin"><?php echo $txt_btn; ?></a>
+						<a href="<?php echo site_url(); ?>login?w=<?php echo $aid; ?>&b=<?php echo $bid.$hash_uri; ?>" class="btnlogin"><?php echo $txt_btn; ?></a>
 					</div>
 				</div>
 			</div>
@@ -189,7 +189,7 @@
 		<div class="col-md-1">
 			<div class="card stickymenu">
 				<div class="text-center">
-					<a onclick="showLoading()" href="<?php echo site_url(); ?>login?b=<?php echo $bid; ?>">
+					<a onclick="showLoading()" href="<?php echo site_url(); ?>login?w=<?php echo $aid; ?>&b=<?php echo $bid; ?>">
 						<div class="p-1">
 							<img src="<?php echo base_url('') ?>public/img/assets/read-mode.svg" width="45">
 							<span class="bold11px">Mode Baca</span>
@@ -199,7 +199,7 @@
 					<div class="border1px"></div>
 					<div class="pt-20 pb-20">
 						<p class="mb-30">
-							<a data-id="2311" href="<?php echo site_url(); ?>login?b=<?php echo $bid; ?>" id="loveboo" class="fs-14px unlike">
+							<a data-id="2311" href="<?php echo site_url(); ?>login?w=<?php echo $aid; ?>&b=<?php echo $bid; ?>" id="loveboo" class="fs-14px unlike">
 								<img src="<?php echo base_url('') ?>public/img/assets/icon_love.svg" class="" width="40">
 							</a>
 						</p>
@@ -220,10 +220,6 @@
 		</div>
 	</div>
 </div>
-<script type="text/javascript">
-	var segment = '2311-aku';
-	var count_data = '1';
-</script>
 <script src="<?php echo base_url('') ?>public/js/jquery.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url('') ?>public/js/umd/popper.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url('') ?>public/js/bootstrap.min.js" type="text/javascript"></script>

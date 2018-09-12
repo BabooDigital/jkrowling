@@ -12,7 +12,7 @@
 							echo $s_book['author_avatar']; } ?>" width="50" height="50" alt="<?php
 							echo $s_book['author_name']; ?>">
 							<div class="media-body mt-5">
-								<h5 class="card-title nametitle2"><a href="<?php echo site_url('profile/'.$s_book['author_id'].'-'.url_title($s_book['author_name'], 'dash', true)); ?>" class="author_name menu-page" id="tab-page"><?php
+								<h5 class="card-title nametitle2"><a href="<?php echo site_url('penulis/'.$s_book['author_id'].'-'.url_title($s_book['author_name'], 'dash', true)); ?>" class="author_name menu-page" id="tab-page"><?php
 								echo $s_book['author_name']; ?></a></h5>
 								<p class="text-muted" style="margin-top:-10px;"><small>
 									<span><?php echo $s_book['publish_date']; ?></span>
@@ -24,9 +24,9 @@
 								</div>
 							</div>
 						</div>
-						<a href="<?php if ((bool)$s_book['is_pdf'] == true) { echo site_url('book/'.$s_book['book_id'].'-'.url_title($s_book['title_book'], 'dash', true).'/pdf'); }else{ echo site_url('book/'.$s_book['book_id'].'-'.url_title($s_book['title_book'], 'dash', true)); } ?>"> 
+						<a href="<?php if ((bool)$s_book['is_pdf'] == true) { echo site_url('penulis/'.$s_book['author_id'].'-'.url_title($s_book['author_name'], 'dash', true).'/'.$s_book['book_id'].'-'.url_title($s_book['title_book'], 'dash', true).'/pdf'); }else{ echo site_url('penulis/'.$s_book['author_id'].'-'.url_title($s_book['author_name'], 'dash', true).'/'.$s_book['book_id'].'-'.url_title($s_book['title_book'], 'dash', true)); } ?>">
 							<div class="row pl-10 pr-10">
-								<h5 class="w-100" style="font-weight: 700;"><b><a href="<?php if ((bool)$s_book['is_pdf'] == true) { echo site_url('book/'.$s_book['book_id'].'-'.url_title($s_book['title_book'], 'dash', true).'/pdf'); }else{ echo site_url('book/'.$s_book['book_id'].'-'.url_title($s_book['title_book'], 'dash', true)); } ?>" class="dbooktitle segment" data-href="<?php echo $s_book['book_id']; ?>"><?php echo $s_book['title_book']; ?></a></b></h5>
+								<h5 class="w-100" style="font-weight: 700;"><b><a href="<?php if ((bool)$s_book['is_pdf'] == true) { echo site_url('penulis/'.$s_book['author_id'].'-'.url_title($s_book['author_name'], 'dash', true).'/'.$s_book['book_id'].'-'.url_title($s_book['title_book'], 'dash', true).'/pdf'); }else{ echo site_url('penulis/'.$s_book['author_id'].'-'.url_title($s_book['author_name'], 'dash', true).'/'.$s_book['book_id'].'-'.url_title($s_book['title_book'], 'dash', true)); } ?>" class="dbooktitle segment" data-href="<?php echo $s_book['book_id']; ?>"><?php echo $s_book['title_book']; ?></a></b></h5>
 								<div class="w-100">
 									<span class="mr-15" style="font-size: 12px;"><?php echo $s_book['category']; ?> &#8226; </span>
 
@@ -41,7 +41,7 @@
 										echo $s_book['comment_count']; ?></span>
 									</span>
 
-									<a href="<?php if ((bool)$s_book['is_pdf'] == true) { echo site_url('book/'.$s_book['book_id'].'-'.url_title($s_book['title_book'], 'dash', true).'/pdf'); }else{ echo site_url('book/'.$s_book['book_id'].'-'.url_title($s_book['title_book'], 'dash', true)); } ?>" class="segment" data-href="<?php echo $s_book['book_id']; ?>"> 
+									<a href="<?php if ((bool)$s_book['is_pdf'] == true) { echo site_url('penulis/'.$s_book['author_id'].'-'.url_title($s_book['author_name'], 'dash', true).'/'.$s_book['book_id'].'-'.url_title($s_book['title_book'], 'dash', true).'/pdf'); }else{ echo site_url('penulis/'.$s_book['author_id'].'-'.url_title($s_book['author_name'], 'dash', true).'/'.$s_book['book_id'].'-'.url_title($s_book['title_book'], 'dash', true)); } ?>" class="segment" data-href="<?php echo $s_book['book_id']; ?>">
 										<p class="mt-10 text-justify textp" data-text="<?php echo substr($s_book['desc'],0,200); ?> ..."><?php echo substr($s_book['desc'],0,200); ?> ...</p>
 									</a>
 								</div>
@@ -59,7 +59,7 @@
 					</div>
 				</div>
 				<?php }else{ ?>
-				<a href="<?php if ((bool)$s_book['is_pdf'] == true) { echo site_url('book/'.$s_book['book_id'].'-'.url_title($s_book['title_book'], 'dash', true).'/pdf'); }else{ echo site_url('book/'.$s_book['book_id'].'-'.url_title($s_book['title_book'], 'dash', true)); } ?>">
+				<a href="<?php if ((bool)$s_book['is_pdf'] == true) { echo site_url('penulis/'.$s_book['author_id'].'-'.url_title($s_book['author_name'], 'dash', true).'/'.$s_book['book_id'].'-'.url_title($s_book['title_book'], 'dash', true).'/pdf'); }else{ echo site_url('penulis/'.$s_book['author_id'].'-'.url_title($s_book['author_name'], 'dash', true).'/'.$s_book['book_id'].'-'.url_title($s_book['title_book'], 'dash', true)); } ?>">
 					<div class="card mb-15" style="padding: 0 00px;">
 						<div class="card-body pl-20 pr-20 pt-20 pb-10">
 							<div class="row mb-10 pl-10 pr-10">
@@ -70,7 +70,7 @@
 										echo $s_book['author_avatar']; } ?>" width="50" height="50" alt="<?php
 										echo $s_book['author_name']; ?>">
 										<div class="media-body mt-5">
-											<h5 class="card-title nametitle2"><a href="<?php echo site_url('profile/'.$s_book['author_id'].'-'.url_title($s_book['author_name'], 'dash', true)); ?>" class="author_name menu-page" id="tab-page"><?php
+											<h5 class="card-title nametitle2"><a href="<?php echo site_url('penulis/'.$s_book['author_id'].'-'.url_title($s_book['author_name'], 'dash', true)); ?>" class="author_name menu-page" id="tab-page"><?php
 											echo $s_book['author_name']; ?></a></h5>
 											<p class="text-muted" style="margin-top:-10px;"><small>
 												<span><?php echo $s_book['publish_date']; ?></span>
@@ -82,18 +82,18 @@
 											</div>
 										</div>
 									</div>
-									<a href="<?php if ((bool)$s_book['is_pdf'] == true) { echo site_url('book/'.$s_book['book_id'].'-'.url_title($s_book['title_book'], 'dash', true).'/pdf'); }else{ echo site_url('book/'.$s_book['book_id'].'-'.url_title($s_book['title_book'], 'dash', true)); } ?>" data-href="<?php echo $s_book['book_id']; ?>-<?php echo url_title($s_book['title_book'], 'dash', true); ?>" class="segment"> 
+									<a href="<?php if ((bool)$s_book['is_pdf'] == true) { echo site_url('penulis/'.$s_book['author_id'].'-'.url_title($s_book['author_name'], 'dash', true).'/'.$s_book['book_id'].'-'.url_title($s_book['title_book'], 'dash', true).'/pdf'); }else{ echo site_url('penulis/'.$s_book['author_id'].'-'.url_title($s_book['author_name'], 'dash', true).'/'.$s_book['book_id'].'-'.url_title($s_book['title_book'], 'dash', true)); } ?>" data-href="<?php echo $s_book['book_id']; ?>-<?php echo url_title($s_book['title_book'], 'dash', true); ?>" class="segment">
 										<div class="row pl-10 pr-10">
 											<div class="media">
 												<img alt="<?php
 												echo $s_book['title_book']; ?>" src="<?php if($s_book['cover_url'] == NULL){ echo "https://assets.dev-baboo.co.id/baboo-cover/default1.png"; }else{ echo $s_book['cover_url']; } ?>" class="w-100 imgcover cover_image">
 											</div>
-											<h5 class="pt-20 w-100" style="font-weight: 700;"><b><a href="<?php if ((bool)$s_book['is_pdf'] == true) { echo site_url('book/'.$s_book['book_id'].'-'.url_title($s_book['title_book'], 'dash', true).'/pdf'); }else{ echo site_url('book/'.$s_book['book_id'].'-'.url_title($s_book['title_book'], 'dash', true)); } ?>" class="dbooktitle "><?php
+											<h5 class="pt-20 w-100" style="font-weight: 700;"><b><a href="<?php if ((bool)$s_book['is_pdf'] == true) { echo site_url('penulis/'.$s_book['author_id'].'-'.url_title($s_book['author_name'], 'dash', true).'/'.$s_book['book_id'].'-'.url_title($s_book['title_book'], 'dash', true).'/pdf'); }else{ echo site_url('penulis/'.$s_book['author_id'].'-'.url_title($s_book['author_name'], 'dash', true).'/'.$s_book['book_id'].'-'.url_title($s_book['title_book'], 'dash', true)); } ?>" class="dbooktitle "><?php
 											echo $s_book['title_book']; ?></a></b></h5>
 											<div class="w-100">
 												<span class="mr-8" style="font-size: 12px;"><?php echo $s_book['category']; ?> &#8226;</span>
 												<span class="text-muted" style="font-size: 11px;">Dibaca <?php echo $s_book['view_count']; ?> kali</span>
-												<a href="<?php if ((bool)$s_book['is_pdf'] == true) { echo site_url('book/'.$s_book['book_id'].'-'.url_title($s_book['title_book'], 'dash', true).'/pdf'); }else{ echo site_url('book/'.$s_book['book_id'].'-'.url_title($s_book['title_book'], 'dash', true)); } ?>"> 
+												<a href="<?php if ((bool)$s_book['is_pdf'] == true) { echo site_url('penulis/'.$s_book['author_id'].'-'.url_title($s_book['author_name'], 'dash', true).'/'.$s_book['book_id'].'-'.url_title($s_book['title_book'], 'dash', true).'/pdf'); }else{ echo site_url('penulis/'.$s_book['author_id'].'-'.url_title($s_book['author_name'], 'dash', true).'/'.$s_book['book_id'].'-'.url_title($s_book['title_book'], 'dash', true)); } ?>">
 													<p class="mt-10 text-justify textp" data-text="<?php echo substr($s_book['desc'],0,200); ?> ..."><?php echo substr($s_book['desc'],0,200); ?> ...</p>
 												</a>
 											</div>
@@ -124,7 +124,7 @@
 						</a>
 						<?php } ?>
 
-						<?php 
+						<?php
 						if ($s_book['populars']['desc'] == 'Popular Writers') {
 							echo "<label class='ml-10'><b>".$s_book['populars']['desc']."</b></label>";
 							?>
@@ -136,7 +136,7 @@
 										<div class='card pt-15 pb-15' style='border: solid 1px #e8ebec;border-radius: 10px !important;'>
 											<div class='text-center'>
 												<img class='rounded-circle' height='50' src='<?php echo $pop['popular_author_avatar']; ?>' alt='<?php echo $pop['popular_author_name']; ?>' style='object-fit:cover;' width='50'>
-												<p class='nametitled'><a href='<?php echo site_url(); ?>profile/<?php echo $pop['popular_author_id']; ?>-<?php echo url_title($pop['popular_author_name'], 'dash', true); ?>'><?php echo $pop['popular_author_name']; ?></a></p>
+												<p class='nametitled'><a href='<?php echo site_url(); ?>penulis/<?php echo $pop['popular_author_id']; ?>-<?php echo url_title($pop['popular_author_name'], 'dash', true); ?>'><?php echo $pop['popular_author_name']; ?></a></p>
 											</div>
 											<div class='row'>
 												<div class='col-6 text-center rborder pr-0'>
@@ -164,12 +164,12 @@
 								</div>
 							</div>
 							<?php }else{
-								if (!empty($s_book['populars']['desc'])) { echo "<label class='ml-10'><b>".$s_book['populars']['desc']."</b></label>"; }else{ echo "";} 
+								if (!empty($s_book['populars']['desc'])) { echo "<label class='ml-10'><b>".$s_book['populars']['desc']."</b></label>"; }else{ echo "";}
 								foreach ($s_book['populars'] as $populars){ ?>
 								<div id="myWorkContent" class="bg-white mb-20" style="margin-top: -10px;">
 									<?php error_reporting(0); foreach ($populars as $pop){ ?>
 									<div id="insideDiv">
-										<a id="tes" href="<?php if ((bool)$pop['is_pdf'] == 1) { echo site_url('book/'.$pop['popular_book_id'].'-'.url_title($pop['popular_book_title'], 'dash', true).'/pdf'); }else{ echo site_url('book/'.$pop['popular_book_id'].'-'.url_title($pop['popular_book_title'], 'dash', true)); } ?>">
+										<a id="tes" href="<?php if ((bool)$pop['is_pdf'] == true) { echo site_url('penulis/'.$pop['popular_author_id'].'-'.url_title($pop['popular_author_name'], 'dash', true).'/'.$pop['popular_book_id'].'-'.url_title($pop['popular_book_title'], 'dash', true).'/pdf'); }else{ echo site_url('penulis/'.$pop['popular_author_id'].'-'.url_title($pop['popular_author_name'], 'dash', true).'/'.$pop['popular_book_id'].'-'.url_title($pop['popular_book_title'], 'dash', true)); } ?>">
 											<div class="col-12" style="height:auto;">
 												<div>
 													<img src="<?php if($pop['popular_cover_url'] == NULL){ echo 'https://assets.dev-baboo.co.id/baboo-cover/default3.png';

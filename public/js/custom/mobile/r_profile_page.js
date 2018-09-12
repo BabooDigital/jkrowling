@@ -125,14 +125,14 @@ loaded = true;
     var desc = aww.parents(".card").find(".textp").attr('data-text')+'.. - Baca buku lebih lengkap disini.. | Baboo.id';
     var img = aww.parents(".card").find('.cover_image').attr('src');
     var auname = aww.parents(".card").find('.author_name').text();
-    var segment = aww.parents(".card").find('.segment').attr('data-href');
+    var segment = aww.parents(".card").find('.segment').attr('href');
 
     FB.ui({
       method     : 'share_open_graph',
       action_type: 'og.shares',
       action_properties: JSON.stringify({
         object: {
-          'og:url': base_url + 'book/' + segment + '/preview',
+          'og:url': segment + '/preview',
           'og:title': blink + ' ~ By : ' + auname + ' | Baboo.id',
           'og:description': desc,
           'og:image': img
@@ -213,7 +213,7 @@ loaded = true;
 		})
 		.always(function() {
 		});
-		
+
 	});
 
   $(document).on('click', '.delbook', function() {
@@ -226,7 +226,7 @@ loaded = true;
       title: 'Hapus buku mu yang telah diterbitkan?',
       type: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',  
+      confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
       confirmButtonText: 'Hapus',
       cancelButtonText: 'Batal'
