@@ -1,4 +1,4 @@
-<div data-content-category='Book &gt; <?php echo $detail_book['data']['category']['category_name']; ?>' data-content-ids='<?php echo $detail_book['data']['book_info']['book_id']; ?>' data-content-name='<?php echo $detail_book['data']['book_info']['title_book']; ?>' data-content-type='<?php echo $m_type; ?>' data-page-type='ViewContent' data-value='<?php echo $m_book_price; ?>' id='fbpixel'></div>
+<div data-content-category='Book &gt; <?php echo $detail_book['data']['category']['category_name']; ?>' data-content-ids='<?php echo $detail_book['data']['book_info']['book_id']; ?>' data-content-name="<?php echo $detail_book['data']['book_info']['title_book']; ?>" data-content-type='<?php echo $m_type; ?>' data-page-type='ViewContent' data-value='<?php echo $m_book_price; ?>' id='fbpixel'></div>
 
 <?php $this->load->view('navbar/D_navbar'); ?>
 
@@ -90,7 +90,7 @@
 						}else{
 							echo $detail_book['data']['author']['avatar']; } ?>" alt="<?php echo $detail_book['data']['author']['author_name']; ?>">
 							<div class="media-body">
-								<a data-usr-prf="<?php echo $detail_book['data']['author']['author_id']; ?>" data-usr-name="<?php echo $detail_book['data']['author']['author_name'] ?>" href="<?php echo site_url('profile/'.$detail_book['data']['author']['author_id'].'-'.url_title($detail_book['data']['author']['author_name'])) ?>" class="profile"><h5 class="card-title nametitle2 profile mt-10"><?php
+								<a data-usr-prf="<?php echo $detail_book['data']['author']['author_id']; ?>" data-usr-name="<?php echo $detail_book['data']['author']['author_name'] ?>" href="<?php echo site_url('penulis/'.$detail_book['data']['author']['author_id'].'-'.url_title($detail_book['data']['author']['author_name'], 'dash', true)) ?>" class=""><h5 class="card-title nametitle2 profile mt-10"><?php
 							echo $detail_book['data']['author']['author_name']; ?></h5></a>
 								<!-- <h5 class="nametitle2 author_name"><?php echo $detail_book['data']['author']['author_name']; ?></h5> -->
 								<p><small><span>&nbsp;&nbsp;</span></small></p>
@@ -127,8 +127,7 @@
 			<div class="col-md-1">
 				<div class="card stickymenu" style="background: #F5F8FA;">
 					<div class="text-center">
-						<a onclick="showLoading()" href="<?php echo site_url(); ?>book/<?php
-						echo $detail_book['data']['book_info']['book_id']; ?>-<?php echo url_title($detail_book['data']['book_info']['title_book'], 'dash', true); ?>/read">
+						<a onclick="showLoading()" href="<?php echo site_url('penulis/'.$detail_book['data']['author']['author_id'].'-'.url_title($detail_book['data']['author']['author_name'], 'dash', true).'/'.$detail_book['data']['book_info']['book_id'].'-'.url_title($detail_book['data']['book_info']['title_book'], 'dash', true)); ?>/read">
 						<div class="p-1">
 							<img src="<?php echo base_url(); ?>public/img/assets/read-mode.svg" width="45">
 							<span class="bold11px">Mode Baca</span>
@@ -265,10 +264,11 @@
 			<?php echo get_js($js) ?>
 		<?php endif ?>
 		<script type="text/javascript">
-			var segment = '<?php echo $this->uri->segment(2); ?>';
+			var segment = '<?php echo $this->uri->segment(3); ?>';
 			var count_data = '<?php echo $detailChapter; ?>';
 			var userdata = '<?php echo $this->session->userdata('userData')['user_id']; ?>';
 			var userbook = '<?php echo $detail_book['data']['author']['author_id']; ?>';
+            var full_url = '<?php echo (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; ?>';
 			<?php if ((bool)$detail_book['data']['book_info']['is_pdf'] == true) { ?>
 				var desc = $('.desc_pdf').text();
 			<?php }else{ ?>

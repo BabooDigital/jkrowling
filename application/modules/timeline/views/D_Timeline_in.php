@@ -30,9 +30,9 @@
 								<?php $follow = ""; ?>
 							<?php endif ?>
 							<li class='media baboocontent'>
-								<a href="<?php echo site_url('profile/'.$best_writter['author_id'].'-'.url_title($best_writter['author_name'], 'dash', true)); ?>"><img class='d-flex mr-3 rounded-circle' src='<?php echo $img; ?>' width='50' height='50'></a>
+								<a href="<?php echo site_url('penulis/'.$best_writter['author_id'].'-'.url_title($best_writter['author_name'], 'dash', true)); ?>"><img class='d-flex mr-3 rounded-circle' src='<?php echo $img; ?>' width='50' height='50'></a>
 								<div class='media-body mt-7'>
-									<a class='#' data-usr-prf='<?php echo $best_writter['author_id']; ?>' data-usr-name='<?php echo url_title($best_writter['author_name']); ?>' href='<?php echo site_url('profile/'.$best_writter['author_id'].'-'.url_title($best_writter['author_name'], 'dash', true)); ?>'>
+									<a class='#' data-usr-prf='<?php echo $best_writter['author_id']; ?>' data-usr-name='<?php echo url_title($best_writter['author_name']); ?>' href='<?php echo site_url('penulis/'.$best_writter['author_id'].'-'.url_title($best_writter['author_name'], 'dash', true)); ?>'>
 										<h5 class='mt-5 mb-1 nametitle'><?php echo $best_writter['author_name']; ?></h5>
 									</a>
 									<div class='pull-right baboocolor'><?php echo $follow; ?></div>
@@ -83,16 +83,14 @@
 							<li class="list-group-item">
 								<div class="media">
 									<div class="media-left mr-10">
-										<a href="#"><img class="media-object" src="<?php echo $cover; ?>"  onerror="this.onerror=null;this.src='<?php echo base_url('public/img/blank_cover.png'); ?>';" width="60" height="80"></a>
+										<a href="<?php echo site_url('penulis/'.$best_book['popular_author_id'].'-'.url_title($best_book['popular_author_name'], 'dash', true).'/'.$best_book['popular_book_id'].'-'.url_title($best_book['popular_book_title'], 'dash', true)); ?>"><img class="media-object" src="<?php echo $cover; ?>"  onerror="this.onerror=null;this.src='<?php echo base_url('public/img/blank_cover.png'); ?>';" width="60" height="80"></a>
 									</div>
 									<div class="media-body">
 										<div>
 											<h4 class="media-heading bold mt-10">
-												<a href="book/<?php
-								echo $best_book['popular_book_id']; ?>
-								-<?php echo url_title($best_book['popular_book_title'], 'dash', true); ?>"><?php echo $best_book['popular_book_title'] ?></a>
+												<a href="<?php echo site_url('penulis/'.$best_book['popular_author_id'].'-'.url_title($best_book['popular_author_name'], 'dash', true).'/'.$best_book['popular_book_id'].'-'.url_title($best_book['popular_book_title'], 'dash', true)); ?>"><?php echo $best_book['popular_book_title'] ?></a>
 											</h4>
-											<p style="font-size: 10pt;">by <a class="profile" data-usr-prf="<?php echo $best_book['popular_author_id']; ?>" data-usr-name="<?php echo url_title($best_book['popular_author_name']); ?>" href="<?php echo site_url('profile/'.$best_book['popular_author_id'].'-'.url_title($best_book['popular_author_name'], 'dash', true)); ?>"><?php echo $best_book['popular_author_name']; ?></a></p>
+											<p style="font-size: 10pt;">by <a class="profile" data-usr-prf="<?php echo $best_book['popular_author_id']; ?>" data-usr-name="<?php echo url_title($best_book['popular_author_name']); ?>" href="<?php echo site_url('penulis/'.$best_book['popular_author_id'].'-'.url_title($best_book['popular_author_name'], 'dash', true)); ?>"><?php echo $best_book['popular_author_name']; ?></a></p>
 										</div>
 									</div>
 								</div>

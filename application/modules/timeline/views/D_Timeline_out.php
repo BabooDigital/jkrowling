@@ -1,6 +1,6 @@
-	
-	
-	<?php $this->load->view('navbar/D_navbar'); ?>	
+
+
+	<?php $this->load->view('navbar/D_navbar'); ?>
 <div class="mt-50 hidden-sm hidden-xs">
 	<div class="slideboo">
 		<div class="leftboo"></div>
@@ -30,17 +30,17 @@
 								<ul class="list-group list-group-flush" id="author_this_week">
 									<?php foreach ($writter['data'] as $wr) { ?>
 									<li class="media baboocontent">
-										<a href="<?php echo site_url('profile/'.$wr['author_id']); ?>">
+										<a href="<?php echo site_url('penulis/'.$wr['author_id']); ?>">
 											<img alt="<?php echo $wr['author_name']; ?>" class="d-flex mr-3 rounded-circle" src="<?php echo $wr['avatar']; ?>" width="50" height="50">
 										</a>
 										<div class="media-body mt-7">
-											<a href="<?php echo site_url('profile/'.$wr['author_id']); ?>">
+											<a href="<?php echo site_url('penulis/'.$wr['author_id']); ?>">
 												<h5 class="mt-0 mb-1 nametitle"><?php if(strlen($wr['author_name']) > 25){ $str =  substr($wr['author_name'], 0, 23).'...'; echo $str; }else { echo $wr['author_name']; }  ?>
 												</h5>
 												<small>Penulis</small>
 											</a>
 											<div class="pull-right baboocolor">
-												<a href="<?php echo site_url('profile/'.$wr['author_id']); ?>"></a>
+												<a href="<?php echo site_url('penulis/'.$wr['author_id']); ?>"></a>
 												<a href="<?php echo site_url('login'); ?>" class="addbutton">
 													<img src="<?php echo base_url('public/img/assets/icon_plus_purple.svg'); ?>" width="20" class="mt-img">
 												</a>
@@ -58,14 +58,14 @@
                     <ul class="list-group list-group-flush">
                     	<?php echo $this->load->view('ads/250_side_ad'); ?>
                     </ul>
-					
+
 					<!-- Buku Populer -->
 					<!-- <div class="card mb-15" style="background-color: transparent;border: none;">
 						<div class="card-header" style="border: none;">
 							Buku Populer
 						</div>
 						<div class="card-body p-0">
-							<ul class="list-group list-group-flush">	
+							<ul class="list-group list-group-flush">
 								<li class="list-group-item" style="background-color: transparent;border: none;">
 									<div class="media">
 										<div class="media-left mr-10">
@@ -114,7 +114,7 @@
 					</div>
 				</div>
 				<div class="row" id="post-data">
-					<?php 
+					<?php
 						$this->load->view('data/D_Timeline_out', $home);
 					?>
 				</div>

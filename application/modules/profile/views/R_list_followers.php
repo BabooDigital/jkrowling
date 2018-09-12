@@ -42,7 +42,7 @@
 					<div class='card pt-15 pb-15' style='border: solid 1px #e8ebec;border-radius: 10px !important;'>
 						<div class='text-center'>
 							<img class='rounded-circle' height='50' src='<?php echo $fol['prof_pict']; ?>' alt='<?php echo $fol['fullname']; ?>' style='object-fit:cover;' width='50' onerror="this.onerror=null;this.src='<?php echo base_url('public/img/profile/blank-photo.jpg'); ?>';">
-							<p class='nametitled'><a href='<?php echo site_url(); ?>profile/<?php echo $fol['user_id']; ?>-<?php echo url_title($fol['fullname'], 'dash', true); ?>'><?php echo $fol['fullname']; ?></a></p>
+							<p class='nametitled'><a href='<?php echo site_url(); ?>penulis/<?php echo $fol['user_id']; ?>-<?php echo url_title($fol['fullname'], 'dash', true); ?>'><?php echo $fol['fullname']; ?></a></p>
 						</div>
 						<div class='row'>
 							<div class='col-6 text-center rborder pr-0'>

@@ -19,7 +19,7 @@
 	<?php }else{ ?>
 		<?php if ($detail_book['data']['chapter']['chapter_free'] == 'true'): ?>
 			<div id="headbook" class="mb-30 text-center">
-				
+
 				<?php
 				if ($id_chapter == null || $id_chapter == '' || $id_chapter == 0) {
 					echo "<h2 class='mb-60' style='letter-spacing: 5px;'>".ucfirst($detail_book['data']['book_info']['title_book'])."</h2>";
@@ -27,14 +27,14 @@
 				}else{
 					$data = $detail_book['data']['chapter']['chapter_title'];
 				}
-				?> 
+				?>
 				<h3 class="dbooktitlebook" style="letter-spacing: 5px;margin-bottom: 0px;"><?php echo ucfirst($data); ?></h3>
 				<span><i>Chapter <?php echo (int)$count_chapter; ?></i></span>
 			</div>
-		
+
 		<div class="mb-40">
 			<?php
-			$data_book = ''; 
+			$data_book = '';
 			foreach ($detail_book['data']['chapter']['paragraphs'] as $book) {
 				$data_book .= "<div id='detailStyle' class='textp parap-desk mb-10' style='line-height: 1.4em;font-size: 18px;'>".$book['paragraph_text']."</div>";
 			}
@@ -56,9 +56,7 @@
 					<div class="media">
 						<img alt="Book Cover" class="mr-3" src="<?php echo ($detail_book['data']['book_info']['cover_url'] != 'Kosong') ? ($detail_book['data']['book_info']['cover_url'] != null ? $detail_book['data']['book_info']['cover_url'] : base_url('public/img/profile/blank-photo.jpg')) : base_url('public/img/profile/blank-photo.jpg'); ?>" width="150">
 						<div class="media-body mt-10">
-							<h5 class="card-title nametitle3"><a href="<?php echo site_url(); ?>book/<?php
-							echo $detail_book['data']['book_info']['book_id']; ?>
-							-<?php echo url_title($detail_book['data']['book_info']['title_book'], 'dash', true); ?>"><?php echo $detail_book['data']['book_info']['title_book']; ?></a></h5>
+							<h5 class="card-title nametitle3"><a href="<?php echo site_url('penulis/'.$detail_book['data']['book_info']['author_id'].'-'.url_title($detail_book['data']['book_info']['author_name'], 'dash', true).'/'.$detail_book['data']['book_info']['book_id'].'-'.url_title($detail_book['data']['book_info']['title_book'], 'dash', true)); ?>"><?php echo $detail_book['data']['book_info']['title_book']; ?></a></h5>
 							<div class="mt-20 mb-50">
 								<div class="col-md-10">
 								</div>

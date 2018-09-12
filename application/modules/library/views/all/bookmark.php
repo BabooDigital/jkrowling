@@ -40,13 +40,13 @@
 				<?php if (!empty($book)) {
 					foreach ($book as $b) { ?>
 					<div class="col-6 mb-30">
-						<a href="<?php echo site_url(); ?>book/<?php echo $b['book_id']; ?>-<?php echo url_title($b['title_book'], 'dash', true); ?>"><img class="rounded" src="<?php echo $b['cover_url']; ?>" width="150" height="180" style="object-fit: cover;"> <img class="markbook" height="40" src="<?php echo base_url('public/img/assets/bookmark.png'); ?>" style="object-fit:cover;" width="30"></a>
+						<a href="<?php echo site_url('penulis/'.$b['author_id'].'-'.url_title($b['author_name'], 'dash', true).'/'.$b['book_id'].'-'.url_title($b['title_book'], 'dash', true)); ?>"><img class="rounded" src="<?php echo $b['cover_url']; ?>" width="150" height="180" style="object-fit: cover;"> <img class="markbook" height="40" src="<?php echo base_url('public/img/assets/bookmark.png'); ?>" style="object-fit:cover;" width="30"></a>
 						<div class="mt-10" style="text-align:left;">
-							<a href="<?php echo site_url(); ?>book/<?php echo $b['book_id']; ?>-<?php echo url_title($b['title_book'], 'dash', true); ?>"><div id="title_book">
+							<a href="<?php echo site_url('penulis/'.$b['author_id'].'-'.url_title($b['author_name'], 'dash', true).'/'.$b['book_id'].'-'.url_title($b['title_book'], 'dash', true)); ?>"><div id="title_book">
 								<span style="font-size: 13px;font-weight: bold;"><?php if(strlen($b['title_book']) > 15){ $str =  substr($b['title_book'], 0, 15).'...'; echo $str; }else { echo $b['title_book']; }  ?></span>
 							</div></a>
 							<div id="author_book">
-								<a href="<?php echo site_url('profile/'.$b['author_id'].'-'.url_title($b['author_name'], 'dash', true)); ?>"><span style="font-size: 12px;"><img class="rounded-circle" height="20" src="<?php if($b['author_avatar'] == NULL){ echo base_url('public/img/profile/blank-photo.jpg'); }else{ echo $b['author_avatar']; } ?>" width="20"> <?php echo $b['author_name']; ?></span></a>
+								<a href="<?php echo site_url('penulis/'.$b['author_id'].'-'.url_title($b['author_name'], 'dash', true)); ?>"><span style="font-size: 12px;"><img class="rounded-circle" height="20" src="<?php if($b['author_avatar'] == NULL){ echo base_url('public/img/profile/blank-photo.jpg'); }else{ echo $b['author_avatar']; } ?>" width="20"> <?php echo $b['author_name']; ?></span></a>
 								</div>
 							</div>
 						</div>

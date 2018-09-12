@@ -132,8 +132,8 @@
 			<div class="row mb-70">
 				<div class="col-12">
 					<div class="text-center">
-						<?php $cid = $this->uri->segment(5); $link = ""; if (empty($cid)) {$link = "?b=".$bid; }else{$link = "?b=".$bid."&c=".$cid; } ?>
-						<a href="<?php echo site_url('login'.$link.$hash_uri); ?>" class="btnlogin"><?php echo $txt_btn; ?></a>
+						<?php $cid = $this->uri->segment(6); $link = ""; if (empty($cid)) {$link = "b=".$bid; }else{$link = "b=".$bid."&c=".$cid; } ?>
+						<a href="<?php echo site_url('login?w='.$aid.'&'.$link.$hash_uri); ?>" class="btnlogin"><?php echo $txt_btn; ?></a>
 					</div>
 				</div>
 			</div>
@@ -167,7 +167,7 @@
 				return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
 			}
 		};
-		<?php $cid = $this->uri->segment(5); if (empty($cid)) { $url = BASE_URL_DEEPLINK.'book/'.$bid; }else{ $url = BASE_URL_DEEPLINK.'book/'.$bid.'/preview/chapter/'.$cid;} ?>
+		<?php $cid = $this->uri->segment(6); if (empty($cid)) { $url = BASE_URL_DEEPLINK.'penulis/'.$aid.'/'.$bid; }else{ $url = BASE_URL_DEEPLINK.'penulis/'.$aid.'/'.$bid.'/preview/chapter/'.$cid;} ?>
 		var link = "intent://"+"<?php echo $url; ?>"+"#Intent;scheme=https;package=id.android.baboo;S.doctype=FRA;S.docno=FRA1234;S.browser_fallback_url=market://details?id=id.android.baboo;end";
 		$('.bannerPopUp').html("<div class='popUpBannerBox'> <div class='popUpBannerInner'> <div class='popUpBannerContent'> <a href='"+link+"'><span class='popUpBannerSpan'>Baca di Aplikasi</span></a><a href='#' class='closeButton'>&#120;</a> </div> </div> </div>");
 

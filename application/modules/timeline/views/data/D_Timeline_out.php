@@ -5,13 +5,13 @@
                 <div class="card-body pt-10 pr-20 pl-20 pb-0">
                     <div class="row mb-15 pb-10" style="border-bottom: 1px rgba(225, 225, 225, 0.28) solid;">
                         <div class="media">
-                            <a href="#"><img class="d-flex align-self-start mr-10 rounded-circle" src="<?php if($s_book['author_avatar'] == NULL){
+                            <a href="<?php echo site_url('penulis/'.$s_book['author_id'].'-'.url_title($s_book['author_name'], 'dash', true)); ?>"><img class="d-flex align-self-start mr-10 rounded-circle" src="<?php if($s_book['author_avatar'] == NULL){
                                     echo base_url('public/img/profile/blank-photo.jpg');
                                 }else{
                                     echo $s_book['author_avatar']; } ?>" width="50" height="50" alt="<?php
                                 echo $s_book['author_name']; ?>" onerror="this.onerror=null;this.src='<?php echo base_url('public/img/profile/blank-photo.jpg'); ?>';"></a>
                             <div class="media-body" style="margin-top: 7px;">
-                                <a data-usr-prf="<?php echo $s_book['author_id']; ?>" data-usr-name="<?php echo url_title($s_book['author_name'], 'dash', true); ?>" href="<?php echo site_url('profile/'.$s_book['author_id'].'-'.url_title($s_book['author_name'], 'dash', true)); ?>" class="profile"><h5 class="nametitle2 profile mb-0"><?php
+                                <a data-usr-prf="<?php echo $s_book['author_id']; ?>" data-usr-name="<?php echo url_title($s_book['author_name'], 'dash', true); ?>" href="<?php echo site_url('penulis/'.$s_book['author_id'].'-'.url_title($s_book['author_name'], 'dash', true)); ?>" class="profile"><h5 class="nametitle2 profile mb-0"><?php
                                         echo $s_book['author_name']; ?></h5></a>
                                 <small>
                                     <span><?php echo $s_book['publish_date'] ?></span></small>
@@ -21,20 +21,14 @@
                     <div class="row">
                         <div class="media w-100">
                             <div class="media-body">
-                                <a href="<?php echo site_url(); ?>book/<?php
-                                echo $s_book['book_id']; ?>
-								-<?php echo url_title($s_book['title_book'], 'dash', true); ?>
-								">
+                                <a href="<?php echo site_url('penulis/'.$s_book['author_id'].'-'.url_title($s_book['author_name'], 'dash', true).'/'.$s_book['book_id'].'-'.url_title($s_book['title_book'], 'dash', true)); ?>">
                                     <?php if ($s_book['cover_url'] != null): ?>
                                         <img class="effect-img d-flex align-self-start mr-20 float-left cover_tl" src="<?php echo ($s_book['cover_url'] != 'Kosong') ? ($s_book['cover_url'] != null ? $s_book['cover_url'] : base_url('public/img/blank_cover.png')) : base_url('public/img/blank_cover.png'); ?>" onerror="this.onerror=null;this.src='<?php echo base_url('public/img/blank_cover.png'); ?>';" width="120" height="170" alt="<?php
                                         echo $s_book['title_book']; ?>">
                                     <?php endif ?>
                                 </a>
 
-                                <h5 class="card-title nametitle3"><a onclick="showLoading()" href="<?php echo site_url(); ?>book/<?php
-                                    echo $s_book['book_id']; ?>
-							-<?php echo url_title($s_book['title_book'], 'dash', true); ?>
-							" id="book-link<?php
+                                <h5 class="card-title nametitle3"><a onclick="showLoading()" href="<?php echo site_url('penulis/'.$s_book['author_id'].'-'.url_title($s_book['author_name'], 'dash', true).'/'.$s_book['book_id'].'-'.url_title($s_book['title_book'], 'dash', true)); ?>" id="book-link<?php
                                     echo $s_book['book_id']; ?>"><?php
                                         echo $s_book['title_book']; ?></a></h5>
                                 <p class="catbook"><a href="#" class="mr-10"><span class="btn-no-fill"><?php
@@ -44,7 +38,7 @@
                                 <p class="text-desc-in text-justify desc<?php
                                 echo $s_book['book_id']; ?>"><span class="ptexts" style="font-family: 'Noto Serif', serif;"><?php
                                         echo $s_book['desc']; ?> </span><a class="segment" style="color: #7554bd;" data-href="<?php
-                                    echo $s_book['book_id']; ?>-<?php echo url_title($s_book['title_book'], 'dash', true); ?>" onclick="showLoading()" href="<?php echo site_url(); ?>book/<?php echo $s_book['book_id']; ?>-<?php echo url_title($s_book['title_book'], 'dash', true); ?>" class="readmore">Lanjut</a>
+                                    echo $s_book['book_id']; ?>-<?php echo url_title($s_book['title_book'], 'dash', true); ?>" onclick="showLoading()" href="<?php echo site_url('penulis/'.$s_book['author_id'].'-'.url_title($s_book['author_name'], 'dash', true).'/'.$s_book['book_id'].'-'.url_title($s_book['title_book'], 'dash', true)); ?>" class="readmore">Lanjut</a>
                                 </p>
                             </div>
                         </div>

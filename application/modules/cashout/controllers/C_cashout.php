@@ -4,19 +4,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class C_cashout extends MX_Controller {
 
 	var $API = "";
-	
+
 	function __construct()
 	{
 		parent::__construct();
 		$api_url = checkBase();
 		$this->API = $api_url;
-		
+
 		$usrPin = $this->session->userdata('hasPIN');
 		if ($this->session->userdata('isLogin') != 200 || $usrPin != 1) {
 			$this->session->set_flashdata('fail_alert', '<script>
 					swal("Gagal", "Maaf, Perlu verifikasi PIN / Daftar PIN", "warning");
 				</script>');
-			redirect('profile#PINauth', 'refresh');
+			redirect('penulis#PINauth', 'refresh');
 		}
 	}
 
@@ -48,7 +48,7 @@ class C_cashout extends MX_Controller {
 			$this->session->set_flashdata('fail_alert', '<script>
 					swal("Gagal", "Maaf, Perlu verifikasi PIN / Daftar PIN", "warning");
 				</script>');
-			redirect('profile#PINauth', 'refresh');
+			redirect('penulis#PINauth', 'refresh');
 		}
 	}
 
@@ -57,7 +57,7 @@ class C_cashout extends MX_Controller {
 		error_reporting(0);
 		$auth = $this->session->userdata('authKey');
 		$datas = $this->curl_request->curl_get($this->API.'payment/Iris/pendingPayout', '', $auth);
-		
+
 		if (http_response_code() == 200) {
 			$this->session->set_userdata('authKey', $auth);
 			if ($datas['code'] == 403){
@@ -214,7 +214,7 @@ class C_cashout extends MX_Controller {
 					</script>');
 				redirect('cashout/first','refresh');
 			}
-			
+
 		}else{
 			echo "terjadi kesalahan";
 		}
@@ -314,7 +314,7 @@ class C_cashout extends MX_Controller {
 	public function pinWallet()
 	{
 		$data['css'][] = "public/css/baboo.css";
-		
+
 		$data['css'][] = "public/css/sweetalert2.min.css";
 
 		$data['js'][] = "public/js/jquery.min.js";

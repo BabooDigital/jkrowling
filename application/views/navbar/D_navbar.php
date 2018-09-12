@@ -27,7 +27,8 @@
             </div>
 
         <?php }else { ?>
-
+            <input type="hidden" id="uid_sess" value="<?php $sess = $this->session->userdata('userData'); echo $sess['user_id']; ?>">
+            <input type="hidden" id="name_sess" value="<?php echo $sess['fullname']; ?>">
             <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbarSupportedContent" data-toggle="collapse" type="button"><span class="fa fa-bars fa-border"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav text-center" style="margin-bottom: -8px;">

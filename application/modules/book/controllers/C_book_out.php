@@ -12,16 +12,17 @@ class C_book_out extends MX_Controller {
 
 		$uri1 = $this->uri->segment(1);
 		$uri2 = $this->uri->segment(2);
+		$uri3 = $this->uri->segment(3);
 		if ($this->session->userdata('isLogin') == 200) {
-			redirect($uri1.'/'.$uri2);
+			redirect($uri1.'/'.$uri2.'/'.$uri3);
 		}
 	}
 
 	public function index()
 	{
 		error_reporting(0);
-		$book_id = $this->uri->segment(2);
-		$chapter_id = $this->uri->segment(5);
+		$book_id = $this->uri->segment(3);
+		$chapter_id = $this->uri->segment(6);
 		$id = explode('-', $book_id);
 		$visits =base64_encode(uniqid(time(), true));
         if (!isset($_COOKIE['VISITOR_INF'])) $_COOKIE['VISITOR_INF'] = $visits;

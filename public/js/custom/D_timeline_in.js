@@ -83,13 +83,13 @@ $(document).ready(function() {
             desc = aww.parents('.card').find(".ptexts").text();
             coverimg = aww.parents('.card').find(".effect-img").attr("src"),
             authname = aww.parents('.card').find(".nametitle2").text(),
-            links = aww.parents('.card').find(".segment").attr("data-href");
+            links = aww.parents('.card').find(".segment").attr("href");
         FB.ui({
             method: "share_open_graph",
             action_type: "og.shares",
             action_properties: JSON.stringify({
                 object: {
-                    "og:url": base_url + "book/" + links + "/preview",
+                    "og:url": links + "/preview",
                     "og:title": title + " ~ By : " + authname,
                     "og:description": desc,
                     "og:image": coverimg

@@ -25,13 +25,16 @@
 <?php
 error_reporting(0);
 $query = $this->input->get();
-if (!empty($query['b'])){
-    $this->session->set_userdata('bookRef', $query['b']);
-    if (!empty($query['c'])){
-        $this->session->set_userdata('chapterRef', $query['c']);
-    }
-    if (!empty($query['hash'])){
-        $this->session->set_userdata('buyHash', $query['hash']);
+if (!empty($query['w'])){
+    $this->session->set_userdata('userRef', $query['w']);
+    if (!empty($query['b'])){
+        $this->session->set_userdata('bookRef', $query['b']);
+        if (!empty($query['c'])){
+            $this->session->set_userdata('chapterRef', $query['c']);
+        }
+        if (!empty($query['hash'])){
+            $this->session->set_userdata('buyHash', $query['hash']);
+        }
     }
 }
 ?>

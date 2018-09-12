@@ -327,12 +327,12 @@
 			<?php }else{ ?>
 				<p class="text-muted ml-20">Daftar Chapter</p>
 				<div class="list-group mt-10 mb-90 pl-10 pr-10" id="">
-					<?php $uri = $this->uri->segment(2); $uri4 = $this->uri->segment(4); $usDat = $this->session->userdata('userData');
+					<?php $uri = $this->uri->segment(3); $uri4 = $this->uri->segment(5); $usDat = $this->session->userdata('userData');
 					foreach ($chapt_data as $ch) {
 						$chid = $ch['chapter_id'];
 						$notfree = '';
 						$imgnotfree = '';
-						$urlnotfree = site_url('book/'.$uri.'/chapter/'.$ch['chapter_id']);
+						$urlnotfree = site_url('penulis/'.$detail_book['data']['author']['author_id'].'-'.url_title($detail_book['data']['author']['author_name'], '-', true).'/'.$uri.'/chapter/'.$ch['chapter_id']);
 						if ((bool)$ch['chapter_free'] == false && $usDat['user_id'] != $detail_book['data']['author']['author_id'])	 {
 							$notfree = ' text-muted';
 							$imgnotfree = "<img src='".base_url('public/img/assets/icon_sell.png')."' width='20' class='mt-5 float-right'>";
@@ -364,7 +364,7 @@
 	</div><br>
 	<br>
 	<div class="container mt-30 mb-70">
-		<?php if ($this->uri->segment(3) == 'pdf') { ?>
+		<?php if ($this->uri->segment(4) == 'pdf') { ?>
 		<div class="row mb-30">
 			<div class="col-12">
 				<div class="text-center mb-15">
@@ -384,7 +384,7 @@
 		</div>
 		<?php } ?>
 		<?php if ((bool)$detail_book['data']['book_info']['is_pdf'] != true) { ?>
-			<?php $sess = $this->session->userdata('userData'); if ($this->uri->segment(3) == 'pdf') { ?>
+			<?php $sess = $this->session->userdata('userData'); if ($this->uri->segment(5) == 'pdf') { ?>
 				<div class="row">
 				<?php }else{ ?>
 					<div class="row" style="display: none;">
@@ -393,7 +393,7 @@
 						<div class="media mb-20">
 							<img alt="<?php echo $detail_book['data']['author']['author_name']; ?>" class="d-flex align-self-start mr-10 rounded-circle authimg" height="55" src="<?php if($detail_book['data']['author']['avatar'] == NULL){ echo base_url('public/img/profile/blank-photo.jpg'); }else{ echo $detail_book['data']['author']['avatar']; } ?>" width="55">
 							<div class="media-body mt-5">
-								<div style="display: flex;"><h5 class="nametitle2 mr-10"><a href="<?php echo site_url('profile/'.$detail_book['data']['author']['author_id'].'-'.url_title($detail_book['data']['author']['author_name'], 'dash', true)); ?>" class="author_name"><?php echo $detail_book['data']['author']['author_name']; ?></a></h5>
+								<div style="display: flex;"><h5 class="nametitle2 mr-10"><a href="<?php echo site_url('penulis/'.$detail_book['data']['author']['author_id'].'-'.url_title($detail_book['data']['author']['author_name'], 'dash', true)); ?>" class="author_name"><?php echo $detail_book['data']['author']['author_name']; ?></a></h5>
 									<?php if ($sess['user_id'] == $detail_book['data']['author']['author_id']) { ?>
 										<div></div>
 									<?php }else{ ?>
@@ -446,13 +446,13 @@
 			<div class="row" id="paging-chapter">
 				<?php if (!isset($next_ch) && empty($next_ch)) {$next_paging = "display:none;"; }else if (!isset($prev_ch) && empty($prev_ch)) {$prev_paging = "display:none;"; } ?>
 				<div class='col-4'>
-					<a href="<?php echo site_url('book/'.$uri.'/chapter/'.$prev_ch); ?>" class='pull-left  btn-next-chapt' style="<?php echo $prev_paging ?>"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
+					<a href="<?php echo site_url('penulis/'.$detail_book['data']['author']['author_id'].'-'.url_title($detail_book['data']['author']['author_name'], '-', true).'/'.$uri.'/chapter/'.$prev_ch); ?>" class='pull-left  btn-next-chapt' style="<?php echo $prev_paging ?>"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
 				</div>
 				<div class='col-4'>
 					<span class='w-100'> </span>
 				</div>
 				<div class='col-4'>
-					<a href="<?php echo site_url('book/'.$uri.'/chapter/'.$next_ch); ?>" class='pull-right btn-next-chapt' style="<?php echo $next_paging ?>"><i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+					<a href="<?php echo site_url('penulis/'.$detail_book['data']['author']['author_id'].'-'.url_title($detail_book['data']['author']['author_name'], '-', true).'/'.$uri.'/chapter/'.$next_ch); ?>" class='pull-right btn-next-chapt' style="<?php echo $next_paging ?>"><i class="fa fa-chevron-right" aria-hidden="true"></i></a>
 				</div>
 			<?php }else { echo ""; } ?>
 			</div>
@@ -607,7 +607,7 @@
         }
 	});
 
-	var segment = '<?php echo $this->uri->segment(2); ?>';
+	var segment = '<?php echo $this->uri->segment(3); ?>';
 	var userdata = '<?php $usDat = $this->session->userdata('userData'); echo $usDat['user_id']; ?>';
 	var userbook = '<?php echo $detail_book['data']['author']['author_id']; ?>';
 	var author = '<?php echo $detail_book['data']['author']['author_name']; ?>';
@@ -652,7 +652,7 @@
 		}
 	};
 	var bid = segment.split('-');
-	<?php $bid = explode('-', $this->uri->segment(2)); $cid = $this->uri->segment(4); if (empty($cid)) { $url = BASE_URL_DEEPLINK.'book/'.$bid[0]; }else{ $url = BASE_URL_DEEPLINK.'book/'.$bid[0].'/chapter/'.$cid;} ?>
+	<?php $aid = explode('-', $this->uri->segment(2)); $bid = explode('-', $this->uri->segment(3)); $cid = $this->uri->segment(5); if (empty($cid)) { $url = BASE_URL_DEEPLINK.'penulis/'.$aid[0].'/'.$bid[0]; }else{ $url = BASE_URL_DEEPLINK.'penulis/'.$aid[0].'/'.$bid[0].'/chapter/'.$cid;} ?>
 	var link = "intent://"+"<?php echo $url; ?>"+"#Intent;scheme=https;package=id.android.baboo;S.doctype=FRA;S.docno=FRA1234;S.browser_fallback_url=market://details?id=id.android.baboo;end";
 	$('.bannerPopUp').html("<div class='popUpBannerBox'> <div class='popUpBannerInner'> <div class='popUpBannerContent'> <a href='"+link+"'><span class='popUpBannerSpan'>Baca di Aplikasi</span></a><a href='#' class='closeButton'>&#120;</a> </div> </div> </div>");
 
@@ -669,7 +669,7 @@
 		return false;
 	});
 
-	<?php if (empty($this->uri->segment(3))) {
+	<?php if (empty($this->uri->segment(5))) {
 		echo "var link_url = '".BASE_URL_WEB."book/".$bid[0]."';";
 	}else{
 		echo "var link_url = '".BASE_URL_WEB."book/".$bid[0]."/chapter/".$cid."';";

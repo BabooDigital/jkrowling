@@ -51,7 +51,7 @@ class C_pin_auth extends MX_Controller {
 					swal("Gagal", "Maaf, terjadi sebuah kesalahan", "error");
 					});
 					</script>');
-			redirect('profile','refresh');
+			redirect('penulis','refresh');
 		}
 
 	}

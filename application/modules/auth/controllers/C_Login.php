@@ -4,6 +4,7 @@ class C_Login extends MX_Controller
 {
     var $API = "";
 
+    var $wrss = "";
     var $boss = "";
     var $chss = "";
     var $hass = "";
@@ -15,6 +16,7 @@ class C_Login extends MX_Controller
         $this->API_BASE = $api_url;
         $this->API = $api_url."auth/OAuth";
 
+        $this->wrss = $this->session->userdata('userRef');
         $this->boss = $this->session->userdata('bookRef');
         $this->chss = $this->session->userdata('chapterRef');
         $this->hass = $this->session->userdata('buyHash');
@@ -102,13 +104,16 @@ class C_Login extends MX_Controller
                 }
 
                 $redirect = "";
-                if (!empty($this->boss)){
-                    $redirect .= "book/".$this->boss;
-                    if (!empty($this->chss)){
-                        $redirect .= "/chapter/".$this->chss;
-                    }
-                    if (!empty($this->hass)){
-                        $redirect .= "#".$this->hass;
+                if (!empty($this->wrss)){
+                    $redirect .= "penulis/".$this->wrss;
+                    if (!empty($this->boss)){
+                        $redirect .= '/'.$this->boss;
+                        if (!empty($this->chss)){
+                            $redirect .= "/chapter/".$this->chss;
+                        }
+                        if (!empty($this->hass)){
+                            $redirect .= "#".$this->hass;
+                        }
                     }
                 }else{
                     $redirect .= "timeline";
@@ -163,13 +168,16 @@ class C_Login extends MX_Controller
                 }
 
                 $redirect = "";
-                if (!empty($this->boss)){
-                    $redirect .= "book/".$this->boss;
-                    if (!empty($this->chss)){
-                        $redirect .= "/chapter/".$this->chss;
-                    }
-                    if (!empty($this->hass)){
-                        $redirect .= "#".$this->hass;
+                if (!empty($this->wrss)){
+                    $redirect .= "penulis/".$this->wrss;
+                    if (!empty($this->boss)){
+                        $redirect .= '/'.$this->boss;
+                        if (!empty($this->chss)){
+                            $redirect .= "/chapter/".$this->chss;
+                        }
+                        if (!empty($this->hass)){
+                            $redirect .= "#".$this->hass;
+                        }
                     }
                 }else{
                     $redirect .= "timeline";
@@ -224,13 +232,16 @@ class C_Login extends MX_Controller
 
 
                 $redirect = "";
-                if (!empty($this->boss)){
-                    $redirect .= "book/".$this->boss;
-                    if (!empty($this->chss)){
-                        $redirect .= "/chapter/".$this->chss;
-                    }
-                    if (!empty($this->hass)){
-                        $redirect .= "#".$this->hass;
+                if (!empty($this->wrss)){
+                    $redirect .= "penulis/".$this->wrss;
+                    if (!empty($this->boss)){
+                        $redirect .= '/'.$this->boss;
+                        if (!empty($this->chss)){
+                            $redirect .= "/chapter/".$this->chss;
+                        }
+                        if (!empty($this->hass)){
+                            $redirect .= "#".$this->hass;
+                        }
                     }
                 }else{
                     $redirect .= "timeline";

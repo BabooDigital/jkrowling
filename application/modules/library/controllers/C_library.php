@@ -8,7 +8,7 @@ class C_Library extends MX_Controller
     {
         parent::__construct();
         $api_url = checkBase();
-        $this->API = $api_url; 
+        $this->API = $api_url;
         if ($this->session->userdata('isLogin') != 200) {
             redirect('login');
         }
@@ -37,6 +37,8 @@ class C_Library extends MX_Controller
         $auth = $resval5['bbo_auth'];
         $this->session->set_userdata('authKey', $auth);
         $datas['css'][] = "public/css/sweetalert2.min.css";
+        $datas['css'][] = "public/css/slick.css";
+        $datas['css'][] = "public/css/slick-theme.css";
         $data['css'][] = "public/css/sweetalert2.min.css";
         $datas['js'][]   = "public/js/custom/notification.js";
         $datas['js'][] = "public/js/custom/transaction.js";
@@ -85,7 +87,7 @@ class C_Library extends MX_Controller
         $auth = $this->session->userdata('authKey');
 
         $getdata = $this->curl_request->curl_post_auth($this->API.'timeline/Timelines/listBookmark', '', $auth);
-        
+
         $resval =  $getdata['data'];
 
         $auth = $getdata['bbo_auth'];
@@ -102,7 +104,7 @@ class C_Library extends MX_Controller
             ));
         }
     }
-    
+
     public function lastRead()
     {
         error_reporting(0);
@@ -114,7 +116,7 @@ class C_Library extends MX_Controller
 
         $lastRead = $resval['data'];
         $output = array_slice($lastRead, 0, 5);
-        
+
         $auth = $getdata['bbo_auth'];
         $this->session->set_userdata('authKey', $auth);
         if ($resval['code'] == 403){

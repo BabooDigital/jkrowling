@@ -127,14 +127,14 @@ $route['library/all_lastread'] = 'library/C_library/allLatestRead';
 $route['img_book'] = 'book/C_createbook/img_book';
 $route['video_book'] = 'book/C_createbook/video_book';
 
-$route['book/:any'] = 'book/C_book';
-$route['book/:any/pdf'] = 'book/C_book';
-$route['book/:any/:num'] = 'book/C_book';
-$route['book/:any/ch/:num'] = 'book/C_book/chapterBook';
-$route['book/:any/chapter/:num'] = 'book/C_book';
+$route['penulis/:any/:any'] = 'book/C_book';
+$route['penulis/:any/:any/pdf'] = 'book/C_book';
+$route['penulis/:any/:any/:num'] = 'book/C_book';
+$route['penulis/:any/:any/ch/:num'] = 'book/C_book/chapterBook';
+$route['penulis/:any/:any/chapter/:num'] = 'book/C_book';
 $route['getmenuchapter'] = 'book/C_book/chapter';
 $route['getChapter'] = 'book/C_createbook/getChapter';
-$route['book/:any/read'] = 'book/C_book/readingMode';
+$route['penulis/:any/:any/read'] = 'book/C_book/readingMode';
 $route['my_book/:num/chapter/:num'] = 'book/C_createbook/mybook';
 $route['my_book/:num'] = 'book/C_createbook';
 $route['create_mybook'] = 'book/C_createbook';
@@ -153,9 +153,9 @@ $route['detaileditchapt'] = 'book/C_createbook/getDataChapter';
 $route['validateSell'] = 'book/C_createbook/validatePublish';
 $route['bookCheck'] = 'book/C_createbook/checkBook';
 
-$route['book/:any/preview'] = 'book/C_book_out';
-$route['book/:any/preview/chapter/:num'] = 'book/C_book_out';
-$route['book/:any/preview/pdf'] = 'book/C_book_out';
+$route['penulis/:any/:any/preview'] = 'book/C_book_out';
+$route['penulis/:any/:any/preview/chapter/:num'] = 'book/C_book_out';
+$route['penulis/:any/:any/preview/pdf'] = 'book/C_book_out';
 
 
 $route['my_book/editor_upload'] = 'book/C_createbook/editor_upload';
@@ -186,7 +186,7 @@ $route['send_cover'] = 'cover/C_cover/sendCover';
 $route['post_cover'] = 'book/C_createbook/postUploadCover';
 
 // Profile
-$route['profile/(:any)'] = 'profile/C_profile/otherProfile';
+$route['penulis/(:any)'] = 'profile/C_profile/otherProfile';
 $route['profile'] = 'profile/C_profile';
 $route['firstedit'] = 'profile/C_edit_profile/firstEditProfile';
 $route['account/edit'] = 'profile/C_edit_profile';
