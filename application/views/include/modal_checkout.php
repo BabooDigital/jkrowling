@@ -38,7 +38,7 @@
                     <img class="align-self-start mr-10" id="ccoverb" src="<?php if(!empty($detail_book['data']['book_info']['cover_url'])){echo $detail_book['data']['book_info']['cover_url'];}else{echo base_url('public/img/blank_cover.png');} ?>" width="110" height="170" alt="" style="object-fit: cover;box-shadow: 0px 0px 4px #abababc7;">
                     <div class="media-body">
                       <div>
-                        <h4 class="mt-0 font-weight-bold" id="ctitleb"><?php echo $detail_book['data']['book_info']['title_book']; ?></h4>
+                        <h3 class="mt-0 font-weight-bold" id="ctitleb" style="font-size: 20px;"><?php echo $detail_book['data']['book_info']['title_book']; ?></h3>
                       </div>
                       <span class="mr-5" style="font-size: 12px;" id="ccatb"><?php echo $detail_book['data']['category']['category_name']; ?></span>
                       <span class="text-muted mr-5" style="font-size: 12px;"><img src="<?php echo base_url('public/img/assets/icon_view.svg'); ?>" width="21"> <span id="cviewb"><?php echo $detail_book['data']['book_info']['view_count']; ?></span></span> <span class="text-muted" style="font-size: 12px;"><img src="<?php echo base_url('public/img/assets/icon_share.svg'); ?>" width="11"> <span id="cshareb"><?php echo $detail_book['data']['book_info']['share_count']; ?></span></span>

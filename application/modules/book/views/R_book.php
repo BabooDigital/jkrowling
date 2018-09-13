@@ -310,7 +310,7 @@
 				<p><img class="cover_image rounded" height="180" src="<?php echo $detail_book['data']['book_info']['cover_url']; ?>" width="130"></p>
 			</div>
 			<div class="mt-15">
-				<h3 class="title_book" style="font-weight: bold;color: #141414;"><?php echo $detail_book['data']['book_info']['title_book']; ?></h3>
+				<h1 class="title_book" style="font-weight: bold;color: #141414;font-size: 25px;"><?php echo $detail_book['data']['book_info']['title_book']; ?></h1>
 				<div class="text-center mb-15">
 					<p class="text-muted pcat"><b class="cbookd"><?php echo $detail_book['data']['category']['category_name']; ?></b> &#8226; Dibaca <span class="boview"><?php echo $this->thousand_to_k->ConvertToK($detail_book['data']['book_info']['view_count']); ?></span> kali</p>
 				</div>
@@ -341,7 +341,7 @@
 							$imgnotfree = "<img src='".base_url('public/img/assets/icon_draft_pub.png')."' width='40' class='img-fluid float-right'>";
 						}
 					 ?>
-						<a href="<?php echo $urlnotfree; ?>" class="borbot bornone font-weight-bold bg-none list-group-item list-group-item-action chpt <?php if ($uri4 == $chid){echo 'active';} echo $notfree; ?>"><?php echo $ch['chapter_title']; echo $imgnotfree; ?>  </a>
+						<a href="<?php echo $urlnotfree; ?>" class="borbot bornone bg-none list-group-item list-group-item-action chpt <?php if ($uri4 == $chid){echo 'active';} echo $notfree; ?>"><h3 class="font-weight-bold" style="font-size: 15px;"><?php echo $ch['chapter_title']; echo $imgnotfree; ?></h3></a>
 					<?php } ?>
 				</div>
 			<?php } ?>
@@ -368,7 +368,7 @@
 		<div class="row mb-30">
 			<div class="col-12">
 				<div class="text-center mb-15">
-					<h3 style="font-weight: 900;"><?php echo $detail_book['data']['book_info']['title_book']; ?></h3>
+					<h1 style="font-weight: 900;"><?php echo $detail_book['data']['book_info']['title_book']; ?></h1>
 					<p class="text-muted pcat"><b class="cbookd"><?php echo $detail_book['data']['category']['category_name']; ?></b> &#8226; Dibaca <span class="boview"><?php echo $detail_book['data']['book_info']['view_count']; ?></span> kali</p>
 				</div>
 			</div>
@@ -377,7 +377,7 @@
 		<div class="row mb-30" style="display: none;">
 			<div class="col-12">
 				<div class="text-center mb-15">
-					<h3 style="font-weight: 900;"><?php echo $detail_book['data']['book_info']['title_book']; ?></h3>
+					<h1 style="font-weight: 900;"><?php echo $detail_book['data']['book_info']['title_book']; ?></h1>
 					<p class="text-muted pcat"><b class="cbookd"><?php echo $detail_book['data']['category']['category_name']; ?></b> &#8226; Dibaca <span class="boview"><?php echo $detail_book['data']['book_info']['view_count']; ?></span> kali</p>
 				</div>
 			</div>
@@ -393,7 +393,7 @@
 						<div class="media mb-20">
 							<img alt="<?php echo $detail_book['data']['author']['author_name']; ?>" class="d-flex align-self-start mr-10 rounded-circle authimg" height="55" src="<?php if($detail_book['data']['author']['avatar'] == NULL){ echo base_url('public/img/profile/blank-photo.jpg'); }else{ echo $detail_book['data']['author']['avatar']; } ?>" width="55">
 							<div class="media-body mt-5">
-								<div style="display: flex;"><h5 class="nametitle2 mr-10"><a href="<?php echo site_url('penulis/'.$detail_book['data']['author']['author_id'].'-'.url_title($detail_book['data']['author']['author_name'], 'dash', true)); ?>" class="author_name"><?php echo $detail_book['data']['author']['author_name']; ?></a></h5>
+								<div style="display: flex;"><span class="nametitle2 mr-10"><a href="<?php echo site_url('penulis/'.$detail_book['data']['author']['author_id'].'-'.url_title($detail_book['data']['author']['author_name'], 'dash', true)); ?>" class="author_name"><?php echo $detail_book['data']['author']['author_name']; ?></a></span>
 									<?php if ($sess['user_id'] == $detail_book['data']['author']['author_id']) { ?>
 										<div></div>
 									<?php }else{ ?>
@@ -413,7 +413,7 @@
 		<?php $usDat = $this->session->userdata('userData'); if ($detail_book['data']['chapter']['chapter_free'] == true  || $usDat['user_id'] == $detail_book['data']['author']['author_id']) { ?>
 		<div class="row">
 			<div class="col-12 text-center mt-10">
-				<h5 style="font-weight: 900;"><?php echo $detail_book['data']['chapter']['chapter_title']; ?></h5>
+				<h2 style="font-weight: 900;font-size: 20px;"><?php echo $detail_book['data']['chapter']['chapter_title']; ?></h2>
 			</div>
 		</div>
 		<div class="row">
@@ -522,7 +522,7 @@
 
 			<div class="modal-header">
 				<button type="button" class="closes" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h5 class="modal-title" id="modComment2"><b>Komentar <?php if ($detail_book['data']['book_info']['book_comment_count'] != 0) {echo "(".$detail_book['data']['book_info']['book_comment_count'].")"; }else{echo ""; } ?></b></h5>
+				<span class="modal-title" id="modComment2"><b>Komentar <?php if ($detail_book['data']['book_info']['book_comment_count'] != 0) {echo "(".$detail_book['data']['book_info']['book_comment_count'].")"; }else{echo ""; } ?></b></span>
 			</div>
 
 			<div class="modal-body pt-5">

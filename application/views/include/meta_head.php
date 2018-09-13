@@ -1,12 +1,13 @@
-	<meta name="Keywords" content="baboo">
-	<meta name="description" content="<?php echo $page_desc; ?> - Baboo.id" />
+    <meta name="keywords" content="baboo.id,<?php if (!empty($keyword_meta)) { echo $keyword_meta; } ?>">
+    <meta name="description" content="<?php if (!empty($page_desc)) { echo $page_desc; } ?>" />
+    <meta name="author" content="<?php if (!empty($author_meta)) { echo $author_meta; } ?>">
 	<meta property="og:url" content="<?php echo current_url(); ?>" />
-	<meta property="og:description" content="<?php echo $page_desc; ?>" />
+    <meta property="og:description" content="<?php if (!empty($page_desc)) { echo $page_desc; } ?>" />
 	<meta property="og:site_name" content="Baboo.id" />
 
 	<meta name='twitter:site' content='@baboo_id' />
     <meta name="twitter:domain" content="https://twitter.com/baboo_id" />
-	<meta name='twitter:description' content='<?php echo $page_desc; ?>' />
+    <meta name='twitter:description' content='<?php if (!empty($page_desc)) { echo $page_desc; } ?>' />
     <meta name='twitter:card' content='summary' />
 
     <meta name="google-site-verification" content="H1TyRzWK3ppRRDlk8GuM6Rpv2tArZPXOgrDHuPTgM9s" />

@@ -40,8 +40,11 @@ class C_book_out extends MX_Controller {
 
 		$st1 = strip_tags($datas['data']['chapter']['paragraphs'][0]['paragraph_text']);
 		$st2 = str_replace("'", "", $st1);
-		$book['page_desc'] = substr($st2, 5, 160) . '...';
+        $book['page_desc'] = 'Baboo.id - '.substr($st2, 5, 160).' - '.$datas['data']['author']['author_name'];
+        $book['keyword_meta'] = $datas['data']['book_info']['title_book'].','.$datas['data']['chapter']['chapter_title'].','.$datas['data']['category']['category_name'];
         $book['m_book_cover'] = $datas['data']['book_info']['cover_url'];
+        $book['author_meta'] = $datas['data']['author']['author_name'];
+
 		if ((bool)$datas['data']['book_info']['is_free'] == false) {
 			$book['m_book_price'] = preg_replace('/[^0-9]/', '', $datas['data']['book_info']['book_price']);
 			$book['m_type'] = 'product';
