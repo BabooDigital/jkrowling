@@ -109,7 +109,7 @@
 					<div class="card-body">
 						<input type="hidden" name="iaidubi" id="iaidubi" value="2311">
 						<a href="#">
-							<h3 class="dbooktitle"><?php echo $bo_title; ?></h3>
+							<h1 class="dbooktitle" style="font-size: 25px;"><?php echo $bo_title; ?></h1>
 						</a>
 						<div class="dbooksociallist">
 							<a href="#"><span title="Total <?php echo $view; ?>"><img src="<?php echo base_url('') ?>public/img/assets/icon_view.svg" width="25"> <span class="fsize" id="viewcount"><?php echo $this->thousand_to_k->ConvertToK($view); ?></span></span></a>
@@ -141,16 +141,16 @@
 						<img class="d-flex align-self-start mr-20 rounded-circle" width="50" height="50" src="
 						<?php echo ($avatar != null) ? $avatar : base_url('public/img/profile/blank-photo.jpg') ; ?>" alt="<?php echo $author; ?>">
 						<div class="media-body">
-							<h5 class="nametitle2 author_name"><?php echo $author; ?></h5>
+							<h2 class="nametitle2 author_name"><?php echo $author; ?></h2>
 							<p><small><span>Jakarta, Indonesia</span></small></p>
 							<a href="#"><span></span></a>
 						</div>
 					</div>
-					<div id="appentoContent">
-						<h2 class="dbooktitlebook"></h2>
+					<div id="appentoContent" class="mt-15">
+<!--						<h2 class="dbooktitlebook"></h2>-->
 						<br>
 						<div id="post-data">
-							<h4 id="" class="book-title chapter mb-30" style="font-weight: 600;"><?php echo $ch_title; ?></h4>
+							<h2 id="" class="book-title chapter mb-30" style="font-weight: 600;font-size: 20px;"><?php echo $ch_title; ?></h2>
 							<div id="parentparaph">
 								<?php
 								foreach ($desc as $book) {

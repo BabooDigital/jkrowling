@@ -55,8 +55,8 @@ class C_book extends MX_Controller
             $id = $this->uri->segment(2).'/'.$this->uri->segment(3);
             $chaptid = $this->uri->segment(5);
             if ($data['data']['book_info']['is_pdf'] != 1) {
-                if (empty($this->uri->segment(5))) {
-                    if ($this->uri->segment())
+                if (empty($chaptid)) {
+                    if ($this->uri->segment(3))
                     redirect('penulis/' . $id . '/preview');
                 }else{
                     redirect('penulis/' . $id . '/preview/chapter/'.$chaptid);
@@ -78,13 +78,15 @@ class C_book extends MX_Controller
              $st2 = str_replace('"', '', $st1);
 
             $data['detail_book'] = $data['data'];
-            $data['page_desc'] = substr($st2, 5, 160) . '...';
+            $data['page_desc'] = 'Baboo.id - '.substr($st2, 0, 160) .' - '.$data['detail_book']['data']['author']['author_name'];
             $data['title'] = $data['detail_book']['data']['book_info']['title_book'].' - '.$data['detail_book']['data']['chapter']['chapter_title'];
         }else{
             $data['detail_book'] = $datapdf['data'];
-            $data['page_desc'] = $datapdf['data']['data']['book_info']['desc'];
+            $data['page_desc'] = 'Baboo.id - '.substr($datapdf['data']['data']['book_info']['desc'], 0, 160).' - '.$data['detail_book']['data']['author']['author_name'];
             $data['title'] = $datapdf['data']['data']['book_info']['title_book'];
         }
+        $data['keyword_meta'] = $data['detail_book']['data']['book_info']['title_book'].','.$data['detail_book']['data']['chapter']['chapter_title'].','.$data['detail_book']['data']['category']['category_name'];
+        $data['author_meta'] = $data['detail_book']['data']['author']['author_name'];
         $auth = $data['bbo_auth'];
 
         if ($this->session->userdata('isLogin') != 200) {

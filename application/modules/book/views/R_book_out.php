@@ -76,7 +76,7 @@
 			<div class="row">
 				<div class="col-12">
 					<div class="text-center">
-						<h4 class="title_out"><?php echo $bo_title; ?></h4>
+						<h1 class="title_out" style="font-size: 25px;"><?php echo $bo_title; ?></h1>
 						<p class="text-muted pcat"><b><?php echo $category; ?></b> &#8226; Dibaca <?php echo $view; ?> kali</p>
                         <img class="img-fluid rounded mt-5 mb-5 w-50" src="<?php echo $cover; ?>">
 					</div>
@@ -88,7 +88,7 @@
 					<div class="media text-center">
 						<img class="d-flex align-self-start ml-30 rounded-circle" src="<?php if($avatar == NULL){ echo base_url('public/img/profile/blank-photo.jpg'); }else{ echo $avatar; } ?>" width="40" height="40" alt="<?php echo $detail_book['data']['author']['author_name']; ?>">
 						<div class="media-body">
-							<span class="nametitle2 title_out" style="display: -webkit-inline-box;"><a href="#" class="author_name"><?php echo $author; ?></a></span>
+							<span class="nametitle2 title_out" style="display: -webkit-inline-box;"><a href="#" class="author_name"><h2 class="font-weight-bold" style="font-size: 16px;"><?php echo $author; ?></h2></a></span>
 							<!-- <a href="#" data-follow="<?php echo $aid; ?>" class="btn-topup follow-u float-right mt-5"
 								><span class="nametitle2 txtfollow pcat">Follow</span>
 							</a> -->
@@ -103,7 +103,7 @@
 			<div class="row">
 				<div class="col-12">
 					<div class="text-center">
-						<h5 class="title_out"><?php echo $ch_title; ?></h5>
+						<h2 class="title_out" style="font-size: 20px;"><?php echo $ch_title; ?></h2>
 						<!-- <p class="text-muted pcat">Chapter</p> -->
 					</div>
 				</div>
