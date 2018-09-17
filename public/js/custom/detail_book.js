@@ -370,12 +370,24 @@ $(document).ready(function() {
         }
     });
 });
+function goodbye(e) {
+    if(!e) e = window.event;
+    //e.cancelBubble is supported by IE - this will kill the bubbling process.
+    e.cancelBubble = true;
+    e.returnValue = 'You sure you want to leave?'; //This is displayed on the dialog
+
+    //e.stopPropagation works in Firefox.
+    if (e.stopPropagation) {
+        e.stopPropagation();
+        e.preventDefault();
+    }
+}
 function buyBook() {
 	$("#buy-btn").click(function(event) {
-		event.preventDefault();
-		$(this).attr("disabled", "disabled");
-		// console.log("clicked");
-
+		window.onbeforeunload = function(){
+		  return 'Mohon Selesaikan Pembayaran Anda!';
+		};		$(this).attr("disabled", "disabled");
+		
 			$.ajax({
 				url: base_url+'pay_book/token',
 				type: "POST",
@@ -520,6 +532,12 @@ function getmenuChapter() {
 				 c += '<li class="list-group-item item_price_book ', c += '"><a class="', c += '" id="' + d + '"><p style="font-size:10px;">' + 'Versi buku full' + "</p><span style='color:#7554bd'>Rp "+ d.pay.book_price +"</span></a><button style='float:right;' class='btn-buy buyfullbook' stats-book='"+ pend +"'>Beli</button></li>";
 			}
 		}
+		// $(document).on('click', '.btn-buy', function() {
+		// 	window.onbeforeunload = function(){
+		// 	  return 'You have unsaved changes!';
+		// 	};
+		// 	// console.log("clicked");
+		// });
 		$("#list_chapter").html(c);
 		$(document).on('click', '#list_chapters', function(event) {
 			event.preventDefault();
