@@ -1,4 +1,3 @@
-    <meta name="keywords" content="baboo.id,<?php if (!empty($keyword_meta)) { echo $keyword_meta; } ?>">
     <meta name="description" content="<?php if (!empty($page_desc)) { echo $page_desc; } ?>" />
     <meta name="author" content="<?php if (!empty($author_meta)) { echo $author_meta; } ?>">
 	<meta property="og:url" content="<?php echo current_url(); ?>" />

@@ -30,12 +30,14 @@ class C_profile extends MX_Controller {
 		$datas4 = $this->curl_request->curl_post($this->API.'book/Books/latestRead', '', $auth);
 
         $followers_list = $this->curl_request->curl_post_auth($this->API.'auth/OAuth/listFollowers', '', $auth);
+        $statistik = $this->curl_request->curl_get_auth($this->API.'auth/OAuth/statisticUser', '', $auth);
 
 		$data['userdata'] = $datas['data'];
 		$data['bookdata'] = $datas2['data'];
 		$data['draftdata'] = $datas3['data'];
 		$data['latestread'] = $datas4['data'];
 		$data['followers'] = array_slice($followers_list['data']['data'], 0, 20);
+		$data['statistik'] = $statistik['data'];
 		$data['title'] = "Profile Page - Baboo";
 		$data['css'][] = "public/css/sweetalert2.min.css";
 

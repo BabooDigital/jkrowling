@@ -1,4 +1,4 @@
-<?php if (!empty($home['timeline'])) {
+    <?php if (!empty($home['timeline'])) {
 	foreach ($home['timeline'] as $s_book) {  ?>
 	<div class="card mb-15" style="padding: 0 10px 10px;">
 		<div class="card-body pt-10 pr-20 pl-20 pb-0">

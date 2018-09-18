@@ -134,7 +134,7 @@
 						<input type="file" id="file-to-upload" accept="application/pdf" />
 					</div>
 					<div class="row pr-10 pl-10">
-						<div class='pdf_file_nec' pdf_book="<?php echo $this->session->userdata('idBook_'); ?>"></div>
+						<div class='pdf_file_nec' pdf_book="<?php echo $this->session->userdata('idBook_'); ?>" pdf_f="1"></div>
 						<div class='pdf_file_in'></div>
 					</div>
 				</div>

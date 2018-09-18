@@ -1,11 +1,11 @@
-<h2 id="<?php echo $id_chapter_asli; ?>" class="book-title chapter" style="font-weight: 600;font-size: 20px;"> <?php
+<p id="<?php echo $id_chapter_asli; ?>" class="book-title chapter h2" style="font-weight: 600;font-size: 20px;"> <?php
 //	if ($id_chapter == null || $id_chapter == '' || $id_chapter == 0) {
 //		$data = $detail_book['data']['book_info']['title_book'];
 //	}else{
 		$data = $detail_book['data']['chapter']['chapter_title'];
 //	}
 
-?> <?php echo $data; ?></h2>
+?> <?php echo $data; ?></p>
 <br>
 <div id="parentparaph">
 	<?php

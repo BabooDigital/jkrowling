@@ -145,9 +145,12 @@ $route['saveeditchapter'] = 'book/C_createbook/saveEditChapter';
 $route['delchapter'] = 'book/C_createbook/deleteChapter';
 $route['my_book/:num/delchapter/:num'] = 'book/C_createbook/deleteChapter';
 $route['delpublish'] = 'book/C_createbook/deletePublishBook';
+$route['arcpublish'] = 'book/C_createbook/postArchiveBook';
 $route['listchapter/:num'] = 'book/C_createbook/listChapter';
 $route['cover'] = 'book/C_createbook/cover';
 $route['cover/:num'] = 'book/C_createbook/cover_v';
+$route['cover/:num/pdf'] = 'book/C_createbook/cover_v';
+$route['cover/:num/epub'] = 'book/C_createbook/cover_v';
 $route['detaileditchapt'] = 'book/C_createbook/getDataChapter';
 
 $route['validateSell'] = 'book/C_createbook/validatePublish';
@@ -292,3 +295,16 @@ $route['preUploadAct'] = 'book/C_createpdf/preCreatePDFPost';
 $route['uploadAct'] = 'book/C_createpdf/uploadPDFPost';
 $route['checkingPDF'] = 'book/C_createpdf/checkDetailPDF';
 $route['detailBooks'] = 'book/C_book/getDetailPDFTest';
+
+// ePub VIEW PAGE
+$route['upload_myepub'] = 'book/C_createepub';
+$route['upload_myepub/(:num)'] = 'book/C_createepub/editDescEPUBView';
+$route['yourepub'] = 'book/C_createepub/uploadEPUBView';
+// ePub FUNCTION
+$route['preUploadActs'] = 'book/C_createepub/preCreateEPUBPost';
+$route['uploadActs'] = 'book/C_createepub/uploadEPUBPost';
+$route['checkingePub'] = 'book/C_createepub/checkDetailEPUB';
+
+// Category
+$route['kategori/(:any)'] = 'category/C_category/categoryContent';
+$route['kategori/(:any)/(:any)'] = 'category/C_category/categoryContent';

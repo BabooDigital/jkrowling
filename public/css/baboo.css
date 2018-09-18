@@ -2110,3 +2110,13 @@ input:checked + .slider:before {
 .obj-fit-cover {
     object-fit: cover;
 }
+
+.sale-icon {
+    position: relative;
+    top: 5px; left: 15px;
+}
+
+/**/
+.c-list_border_bottom {
+    border-bottom: 1px #d8d8d8 solid;
+}

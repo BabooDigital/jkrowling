@@ -18,11 +18,6 @@ class C_search extends MX_Controller
 
     public function index()
     {
-
-        $datas['css'][] = "public/css/bootstrap.min.css";
-        $datas['css'][] = "public/css/custom-margin-padding.css";
-        $datas['css'][] = "public/css/font-awesome.min.css";
-        $datas['css'][] = "public/css/baboo.css";
         $datas['css'][] = "public/plugins/holdOn/css/HoldOn.css";
 
         $datas['js'][] = "public/js/jquery.min.js";

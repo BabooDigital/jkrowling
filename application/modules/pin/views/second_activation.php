@@ -26,7 +26,7 @@
 						<label for="fileImportant" class="text-white">Upload KTP</label>
 						<label class="fileContainer" for="fileImportant">
 							<span class="txtFile">Pilih File</span> <img src="<?php echo base_url('public/img/assets/icon_upload_photo.png'); ?>" class="float-right" width="30">
-							<input type="file" name="fileKTP" class="form-control text-white pin-form-file" id="fileImportant" required>
+							<input type="file" name="fileKTP" class="form-control text-white pin-form-file" id="fileImportant" accept="image/*" required>
 						</label>
 					</div>
 					<div class="form-group">

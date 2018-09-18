@@ -34,6 +34,16 @@
 .pininput:focus {
     border-color: #6450b3;
 }
+.closes {
+    background: none;
+    border: none;
+    font-size: 15px;
+}
+.prof-btn_draft {
+    border: 1px #333 solid;
+    padding: 10px 100px;
+    border-radius: 35px;
+}
 </style>
 <body id="pageContent">
 	<!-- BANNER POPUP BUTTON PLAYSTORE MOBILE -->
@@ -41,7 +51,7 @@
 	<!-- BANNER POPUP BUTTON PLAYSTORE MOBILE -->
 	<div class="lds-css ng-scope" style="display: none;"><div style="width:100%;height:100%" class="lds-eclipse"><img src="<?php echo base_url('public/img/splash_.png'); ?>" width="90" class="img-loading"><div></div><div></div><div></div><div></div><div></div></div></div>
 	<?php $this->load->view('navbar/R_navbar'); ?>
-	
+
 	<?php $this->load->view('include/btn_floating_create'); ?>
 	<br>
 	<br>
@@ -63,7 +73,7 @@
 						<div id="profile-container" class="mx-auto mb-10">
 							<img id="profileImage" src="<?php if($userdata['prof_pict'] == null) {echo base_url('public/img/profile/blank-photo.jpg');}else{echo $userdata['prof_pict'];} ?>" style="object-fit: cover;" onerror="this.onerror=null;this.src='<?php echo base_url('public/img/profile/blank-photo.jpg'); ?>';" />
 							</div>
-							<input id="imageUpload" type="file" 
+							<input id="imageUpload" type="file"
 							name="profile_photo" placeholder="Photo" required="">
 						</div>
 						<p class="label_name"><?php echo $userdata['fullname']; ?></p>
@@ -94,8 +104,8 @@
 								<a href="<?php echo site_url(); ?>account/edit" class="btn-profile"><img
 									src="<?php echo base_url('') ?>public/img/assets/icon_edit.png" width="20"> Edit Profile
 								</a>
-								<a href="<?php echo site_url(); ?>message" class="btn-message"><img
-									src="<?php echo base_url('') ?>public/img/icon-tab/message.svg" width="25">Pesan Masuk
+								<a data-toggle="modal" data-target="#view-statistik" href="#" class="btn-message"><img
+									src="<?php echo base_url('') ?>public/img/icon-tab/statistik.svg" width="12"> Statistik
 								</a>
 							</div>
 							<br>
@@ -118,6 +128,11 @@
 								</div>
 							</div>
 						</div>
+                        <div class="row mt-20">
+                            <div class="col-12">
+                                <a href="<?php echo site_url('yourdraft'); ?>" class="prof-btn_draft"><span>Draft Tulisan</span></a>
+                            </div>
+                        </div>
 					</div>
 				</div>
 			</div>
@@ -127,7 +142,7 @@
 			<div class="col-md-9">
 				<div class="row">
 					<div id="r_publishdata" class="w-100">
-						<?php echo $this->load->view('data/R_profile', $bookdata); 
+						<?php echo $this->load->view('data/R_profile', $bookdata);
 						if ($bookdata == null || $bookdata == [] || empty($bookdata)) {
 							echo "<div class='container first_login mt-30'> <div class='row'> <div class='mx-auto' style='width: 85%;'> <div class='text-center mb-10'><img src='".base_url('public/img/icon_draft_blank.png')."' width='190'></div> <div class='text-center'> <h4><b>Tentukan konten yang kamu suka!</b></h4> <p style='font-size: 12pt;'>Belum ada buku yg kamu publish</p> </div> </div> </div> </div>";
 						}
@@ -141,6 +156,7 @@
 	</div>
 </div>
 </div>
+    <?php $this->load->view('include/modal_statistik', $statistik); ?>
 <?php $pin = $this->session->userdata('hasPIN'); if ($pin == 1) { ?>
 <?php $this->load->view('include/modal_pin'); ?>
 <?php }else{ ?>

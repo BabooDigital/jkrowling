@@ -48,7 +48,7 @@ textarea:-ms-input-placeholder {
 			</form>
 			<center><strong>Upload PDF</strong></center>
 			<form class="form-inline">
-				<a href="javascript:void(0);" class="btn-transparant" id="post-prepdf" style="color: #7554bd;"><i class="fa fa-check" aria-hidden="true"></i> &nbsp;<span>Lanjut</span></a>
+				<a href="javascript:void(0);" class="btn-transparant" id="post-prepdf" ftype="pdf" style="color: #7554bd;"><i class="fa fa-check" aria-hidden="true"></i> &nbsp;<span>Lanjut</span></a>
 			</form>
 		</div>
 	</nav>

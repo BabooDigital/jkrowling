@@ -94,20 +94,26 @@
             <div class="modal-body" style="padding: 40px 60px;">
                 <div class="container">
                     <div class="row">
-                        <div class="col-6 text-center">
-                            <form action="<?php echo site_url(); ?>createidbook" method="POST" class="mt-10">
+                        <div class="col-4 text-center">
+                            <form action="<?php echo site_url(); ?>createidbook" method="POST">
                                 <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
-                                <button type="submit" class="btn-select-create" title="Tuliskan buku mu disini..">
-                                    <img src="<?php echo base_url('public/img/icon-tab/icon_pen_write.png'); ?>">
+                                <button type="submit" class="btnsidecaret" title="Tuliskan buku mu disini..">
+                                    <img src="<?php echo base_url('public/img/icon-tab/icon_pen_write.svg'); ?>" width="70">
                                 </button>
                             </form>
                             <p class="mt-10 p-select-create">Tulis Buku</p>
                         </div>
-                        <div class="col-6 text-center">
-                            <button type="button" onclick="location.href=base_url+'upload_mypdf?from=nav_header';" id="btn-pdf-new" class="btn-select-create" title="Upload cerita mu dalam bentuk PDF File..">
-                                <img src="<?php echo base_url('public/img/icon-tab/icon_pdf_write.png'); ?>">
+                        <div class="col-4 text-center">
+                            <button type="button" onclick="location.href=base_url+'upload_mypdf?from=nav_header';" id="btn-pdf-new" class="btnsidecaret" title="Upload cerita mu dalam bentuk PDF File..">
+                                <img src="<?php echo base_url('public/img/icon-tab/icon_pdf_write.svg'); ?>" width="70">
                             </button>
                             <p class="mt-10 ml-5 p-select-create">Upload PDF</p>
+                        </div>
+                        <div class="col-4 text-center">
+                            <button type="button" onclick="location.href=base_url+'upload_myepub?from=nav_header';" id="btn-pdf-new" class="btnsidecaret" title="Upload cerita mu dalam bentuk ePub File..">
+                                <img src="<?php echo base_url('public/img/icon-tab/icon_epub_write.svg'); ?>" width="70">
+                            </button>
+                            <p class="mt-10 ml-5 p-select-create">Upload ePub</p>
                         </div>
                     </div>
                 </div>

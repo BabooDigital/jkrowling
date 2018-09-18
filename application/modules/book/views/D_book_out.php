@@ -141,7 +141,7 @@
 						<img class="d-flex align-self-start mr-20 rounded-circle" width="50" height="50" src="
 						<?php echo ($avatar != null) ? $avatar : base_url('public/img/profile/blank-photo.jpg') ; ?>" alt="<?php echo $author; ?>">
 						<div class="media-body">
-							<h2 class="nametitle2 author_name"><?php echo $author; ?></h2>
+							<p class="nametitle2 author_name h2"><?php echo $author; ?></p>
 							<p><small><span>Jakarta, Indonesia</span></small></p>
 							<a href="#"><span></span></a>
 						</div>

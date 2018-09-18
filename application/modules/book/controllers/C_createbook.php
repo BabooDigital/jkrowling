@@ -3,25 +3,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class C_createbook extends MX_Controller
 {
-	
+
 	var $API = "";
-	
+
 	function __construct()
 	{
 		parent::__construct();
 		$api_url = checkBase();
 		$this->API = $api_url;
-		
+
 		if ($this->session->userdata('isLogin') != 200) {
 			redirect('home');
 		}
 	}
-	
+
 	public function index()
 	{
 		$data['title'] = "Buat Sebuah Cerita - Baboo";
 		$data['page_desc'] = "Tentukan Judul Cerita Mu - Baboo";
-		
+
 		$data['css'][] = "public/css/bootstrap.min.css";
 		$data['css'][] = "public/css/custom-margin-padding.css";
 		$data['css'][] = "public/css/font-awesome.min.css";
@@ -29,10 +29,10 @@ class C_createbook extends MX_Controller
 		$data['css'][] = "public/css/baboo.css";
 		$data['css'][] = "public/plugins/holdOn/css/HoldOn.css";
 		$data['css'][] = "public/plugins/wysiwyg/src/bootstrap-wysihtml5.css";
-		
+
 		$data['js'][] = "public/plugins/wysiwyg/lib/js/wysihtml5-0.3.0.js";
 		$data['js'][] = "public/js/jquery.min.js";
-		
+
 		$data['css'][] = "public/plugins/froala/css/froala_editor.css";
 		$data['css'][] = "public/plugins/froala/css/froala_style.css";
 		$data['css'][] = "public/plugins/froala/css/plugins/code_view.css";
@@ -47,13 +47,13 @@ class C_createbook extends MX_Controller
 		$data['css'][] = "public/plugins/froala/css/plugins/fullscreen.css";
 		// $data['css'][] = "public/plugins/froala/css/plugins/file.css";
 		$data['css'][] = "public/plugins/froala/css/plugins/quick_insert.css";
-		
+
 		$data['js'][] = "public/js/jquery.validate.js";
 		$data['js'][] = "public/plugins/froala/js/froala_editor.min.js";
 		$data['js'][] = "public/js/jquery.number.js";
 		$data['css'][] = "public/css/sweetalert2.min.css";
 		$data['js'][] = "public/js/sweetalert2.all.min.js";
-		
+
 		if ($this->agent->mobile()) {
 			$data['js'][] = "public/js/custom/create_book_r.js";
 			$data['js'][] = "public/plugins/froala/js/plugins/align.min.js";
@@ -103,20 +103,20 @@ class C_createbook extends MX_Controller
 			$data['js'][] = "public/plugins/froala/js/plugins/save.min.js";
 			$data['js'][] = "public/plugins/froala/js/plugins/url.min.js";
 			// $data['js'][] = "public/plugins/froala/js/plugins/video.min.js";
-			
+
 			$data['js'][] = "public/js/umd/popper.min.js";
 			$data['js'][] = "public/js/bootstrap.min.js";
 			$data['js'][] = "public/js/jquery.sticky-kit.min.js";
 			$data['js'][] = "public/js/custom/create_book.js";
-			
-			
+
+
 			// $data['js'][] = "public/js/custom/edit_book.js";
-			
+
 			// $data['js'][] = "public/js/menupage.js";
-			
-			
+
+
 			$data['js'][] = "public/plugins/holdOn/js/HoldOn.js";
-			
+
 			$data['css'][] = "public/css/baboo.css";
 			if (empty($this->session->userdata('authKey'))) {
 				$this->session->unset_userdata('userData');
@@ -128,16 +128,16 @@ class C_createbook extends MX_Controller
 		}
 	}
 
-	
+
 	public function chapter()
 	{
 		if ($this->input->post('book_id', TRUE)) {
-			
+
 		} else {
 			$auth       = $this->session->userdata('authKey');
 			$title_book = $this->input->post('title_book', TRUE);
 			$id_user    = $this->session->userdata('userData');
-			
+
 			$chapterData = array(
 				'user_id' => $id_user['user_id'],
 				'title_book' => $title_book
@@ -146,7 +146,7 @@ class C_createbook extends MX_Controller
 			curl_setopt($ch, CURLOPT_URL, $this->API . 'book/Books/preCreateBook');
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			// curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-			
+
 			curl_setopt($ch, CURLOPT_POST, 1);
 			curl_setopt($ch, CURLOPT_POSTFIELDS, $chapterData);
 			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
@@ -155,14 +155,14 @@ class C_createbook extends MX_Controller
 				'baboo-auth-key: ' . $auth
 			));
 			$result = curl_exec($ch);
-			
+
 			$headers = array();
-			
+
 			$data = explode("\n", $result);
-			
-			
+
+
 			array_shift($data);
-			
+
 			foreach ($data as $part) {
 				$middle = explode(":", $part);
 				error_reporting(0);
@@ -248,13 +248,13 @@ class C_createbook extends MX_Controller
 	public function editChapter()
 	{
 		if ($this->input->post('book_id')) {
-			
+
 		} else {
 
 			$auth	= $this->session->userdata('authKey');
 			$bid = $this->session->userdata('idBook_');
 			$chid	= $this->uri->segment(2);
-			
+
 			$chapterData = array(
 				'book_id' => $bid,
 				'chapter_id' => $chid
@@ -263,7 +263,7 @@ class C_createbook extends MX_Controller
 			$ch          = curl_init();
 			curl_setopt($ch, CURLOPT_URL, $this->API . 'book/Books/detailEdit');
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-			
+
 			curl_setopt($ch, CURLOPT_POST, 1);
 			curl_setopt($ch, CURLOPT_POSTFIELDS, $chapterData);
 			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
@@ -272,14 +272,14 @@ class C_createbook extends MX_Controller
 				'baboo-auth-key: ' . $auth
 			));
 			$result = curl_exec($ch);
-			
+
 			$headers = array();
-			
+
 			$data = explode("\n", $result);
-			
-			
+
+
 			array_shift($data);
-			
+
 			foreach ($data as $part) {
 				$middle = explode(":", $part);
 				error_reporting(0);
@@ -289,10 +289,10 @@ class C_createbook extends MX_Controller
 		}
 
 		$data['chapter'] = $resval['data'];
-		
+
 		$data['title'] = "Ubah Cerita Mu - Baboo";
 		$data['page_desc'] = "Ubah Cerita Mu - Baboo";
-		
+
 		$data['css'][] = "public/css/bootstrap.min.css";
 		$data['css'][] = "public/css/custom-margin-padding.css";
 		$data['css'][] = "public/css/font-awesome.min.css";
@@ -302,10 +302,10 @@ class C_createbook extends MX_Controller
 		$data['css'][] = "public/css/custom-margin-padding.css";
 		$data['css'][] = "public/plugins/holdOn/css/HoldOn.css";
 		$data['css'][] = "public/plugins/wysiwyg/src/bootstrap-wysihtml5.css";
-		
+
 		$data['js'][] = "public/plugins/wysiwyg/lib/js/wysihtml5-0.3.0.js";
 		$data['js'][] = "public/js/jquery.min.js";
-		
+
 		$data['css'][] = "public/plugins/froala/css/froala_editor.css";
 		$data['css'][] = "public/plugins/froala/css/froala_style.css";
 		$data['css'][] = "public/plugins/froala/css/plugins/code_view.css";
@@ -318,12 +318,12 @@ class C_createbook extends MX_Controller
 		// $data['css'][] = "public/plugins/froala/css/plugins/video.css";
 		$data['css'][] = "public/plugins/froala/css/plugins/fullscreen.css";
 		$data['css'][] = "public/plugins/froala/css/plugins/quick_insert.css";
-		
-		
+
+
 		$data['js'][] = "public/plugins/froala/js/froala_editor.min.js";
 		$data['js'][] = "public/js/sweetalert2.all.min.js";
 		$data['js'][] = "public/js/custom/create_book_r.js";
-		
+
 		$data['js'][] = "public/plugins/froala/js/plugins/align.min.js";
 		$data['js'][] = "public/plugins/froala/js/plugins/char_counter.min.js";
 		$data['js'][] = "public/plugins/froala/js/plugins/colors.min.js";
@@ -344,17 +344,17 @@ class C_createbook extends MX_Controller
 		} else {
 			$data['book_id'] = $book_id['book_id'];
 		}
-		
+
 		$this->load->view('include/head', $data);
 		$this->load->view('R_chapter_edit');
 	}
-	
+
 
 	public function saveChapter()
 	{
 		$auth    = $this->session->userdata('authKey');
 		$id_user = $this->session->userdata('userData');
-		
+
 		$book_id       = $this->input->post('book_id', TRUE);
 		$chapter_id    = $this->input->post('chapter_id', TRUE);
 		$chapter_title = $this->input->post('chapter_title', TRUE);
@@ -370,7 +370,7 @@ class C_createbook extends MX_Controller
 		curl_setopt($ch, CURLOPT_URL, $this->API . 'book/Books/saveChapter');
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		// curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-		
+
 		curl_setopt($ch, CURLOPT_POST, 1);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $chapterData);
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
@@ -379,14 +379,14 @@ class C_createbook extends MX_Controller
 			'baboo-auth-key: ' . $auth
 		));
 		$result = curl_exec($ch);
-		
+
 		$headers = array();
-		
+
 		$data = explode("\n", $result);
-		
-		
+
+
 		array_shift($data);
-		
+
 		foreach ($data as $part) {
 			$middle = explode(":", $part);
 			error_reporting(0);
@@ -406,17 +406,17 @@ class C_createbook extends MX_Controller
 		echo json_encode($resval);
 		// }
 	}
-	
+
 
 	public function saveEditChapter()
 	{
 		$auth    = $this->session->userdata('authKey');
-		
+
 		$book_id       = $this->input->post('book_id', TRUE);
 		$chapter_id    = $this->input->post('chapter_id', TRUE);
 		$chapter_title = $this->input->post('chapter_title', TRUE);
 		$paragraph     = $this->input->post('paragraph_book', TRUE);
-		
+
 		$chapterData = array(
 			'book_id' => $book_id,
 			'chapter_id' => $chapter_id,
@@ -427,7 +427,7 @@ class C_createbook extends MX_Controller
 		curl_setopt($ch, CURLOPT_URL, $this->API . 'book/Books/saveChapter');
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		// curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-		
+
 		curl_setopt($ch, CURLOPT_POST, 1);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $chapterData);
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
@@ -436,14 +436,14 @@ class C_createbook extends MX_Controller
 			'baboo-auth-key: ' . $auth
 		));
 		$result = curl_exec($ch);
-		
+
 		$headers = array();
-		
+
 		$data = explode("\n", $result);
-		
-		
+
+
 		array_shift($data);
-		
+
 		foreach ($data as $part) {
 			$middle = explode(":", $part);
 			error_reporting(0);
@@ -463,7 +463,7 @@ class C_createbook extends MX_Controller
 		echo json_encode($resval);
 		// }
 	}
-	
+
 
 	public function deleteChapter()
 	{
@@ -482,7 +482,7 @@ class C_createbook extends MX_Controller
 
 		$auth    = $this->session->userdata('authKey');
 		if ($this->uri->segment(4)) {
-			$chapter_id    = $this->uri->segment(4);		
+			$chapter_id    = $this->uri->segment(4);
 		}else{
 			$chapter_id    = $this->input->post('chapter_id', TRUE);
 		}
@@ -490,12 +490,12 @@ class C_createbook extends MX_Controller
 		$chapterData = array(
 			'chapter_id' => $ch
 		);
-		
+
 		$ch          = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $this->API . 'book/Books/chapterDelete');
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		// curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-		
+
 		curl_setopt($ch, CURLOPT_POST, 1);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, build_post_fields($chapterData));
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
@@ -531,24 +531,24 @@ class C_createbook extends MX_Controller
 			echo json_encode($resval);
 		}else{
 				// echo json_encode($resval);
-			redirect('my_book/'.$this->uri->segment(2),'refresh');	
-		}	
+			redirect('my_book/'.$this->uri->segment(2),'refresh');
+		}
 	}
 
 	public function deletePublishBook()
 	{
 		$auth    = $this->session->userdata('authKey');
-		
+
 		$bid    = $this->input->post('book_id', TRUE);
 		$bookData = array(
 			'book_id' => $bid
 		);
-		
+
 		$ch          = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $this->API . 'book/Books/deleteBook');
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		// curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-		
+
 		curl_setopt($ch, CURLOPT_POST, 1);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $bookData);
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
@@ -680,13 +680,16 @@ class C_createbook extends MX_Controller
 			$data['css'][] = "public/plugins/froala/css/froala_style.css";
 
 
-			$data['js'][] = "public/js/jquery.min.js";
+            $data['js'][] = "public/js/moment.js";
+            $data['js'][] = "public/js/jquery.min.js";
 			$data['js'][] = "public/js/umd/popper.min.js";
 			$data['js'][] = "public/js/bootstrap.min.js";
 			$data['js'][] = "public/plugins/froala/js/froala_editor.min.js";
 			$data['js'][] = "public/js/jquery.number.js";
+			$data['js'][] = "public/js/combodate.js";
 			$data['js'][] = "public/js/custom/create_book_r.js";
 			$data['js'][] = "public/js/sweetalert2.all.min.js";
+			$data['js'][] = "public/js/swal-form.js";
 
 			$data['book_id'] = $this->uri->segment(2);
 			$data['category'] = $dataCat['data'];
@@ -698,7 +701,7 @@ class C_createbook extends MX_Controller
 				$this->load->view('include/head', $data);
 				$this->load->view('D_finalpdf');
 			}
-		}	
+		}
 
 	}
 
@@ -764,34 +767,34 @@ class C_createbook extends MX_Controller
 		$auth    = $this->session->userdata('authKey');
 		$id_book = $this->session->userdata('idBook_');
 
-		if(isset($_FILES["file"]["tmp_name"]))  
-		{  
-			$config['upload_path'] = './uploads';  
-			$config['allowed_types'] = 'jpg|jpeg|png|gif';  
-			$this->load->library('upload', $config);  
-			if(!$this->upload->do_upload('file'))  
-			{  
-				echo $this->upload->display_errors();  
-			}  
-			else  
-			{  
-				$data = $this->upload->data();  
-				$config['image_library'] = 'gd2';  
-				$config['source_image'] = './uploads/'.$data["file_name"];  
-				$config['create_thumb'] = FALSE;  
-				$config['maintain_ratio'] = FALSE;  
-				$config['quality'] = '75%';  
-				$config['width'] = 640;  
-				$config['height'] = 480;  
-				$config['new_image'] = './uploads/'.$data["file_name"];  
-				$this->load->library('image_lib', $config);  
-				$this->image_lib->resize();    
-				$image_data = array(  
-					'name'          =>     $data["file_name"]  
+		if(isset($_FILES["file"]["tmp_name"]))
+		{
+			$config['upload_path'] = './uploads';
+			$config['allowed_types'] = 'jpg|jpeg|png|gif';
+			$this->load->library('upload', $config);
+			if(!$this->upload->do_upload('file'))
+			{
+				echo $this->upload->display_errors();
+			}
+			else
+			{
+				$data = $this->upload->data();
+				$config['image_library'] = 'gd2';
+				$config['source_image'] = './uploads/'.$data["file_name"];
+				$config['create_thumb'] = FALSE;
+				$config['maintain_ratio'] = FALSE;
+				$config['quality'] = '75%';
+				$config['width'] = 640;
+				$config['height'] = 480;
+				$config['new_image'] = './uploads/'.$data["file_name"];
+				$this->load->library('image_lib', $config);
+				$this->image_lib->resize();
+				$image_data = array(
+					'name'          =>     $data["file_name"]
 				);
 				if (function_exists('curl_file_create')) {
 					$cFile = curl_file_create($data['full_path'], $data["file_type"],$data["file_name"]);
-				} else { 
+				} else {
 					$cFile = '@' . realpath($data['full_path']);
 				}
 					// $file_name_with_full_path = $_FILES["file"]["tmp_name"];
@@ -837,9 +840,9 @@ class C_createbook extends MX_Controller
 				$this->session->set_userdata('authKey', $auth);
 				if (unlink($cFile->name))
 				{
-					echo json_encode(array("link"=>$data_img,"name"=>$data_img));  
+					echo json_encode(array("link"=>$data_img,"name"=>$data_img));
 				}
-			}  
+			}
 		}
 	}
 
@@ -855,7 +858,7 @@ class C_createbook extends MX_Controller
 		} else { //
 			$cFile = '@' . realpath($file_name_with_full_path);
 		}
-		
+
 		$url  = $this->API . '/uploadVideo';
 		$data = array(
 			'video_url' => $cFile,
@@ -866,7 +869,7 @@ class C_createbook extends MX_Controller
 		curl_setopt($ch, CURLOPT_URL, $this->API . 'book/Books/uploadVideo');
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		// curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-		
+
 		curl_setopt($ch, CURLOPT_POST, 1);
 		curl_setopt($ch, CURLOPT_SAFE_UPLOAD, false);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
@@ -877,13 +880,13 @@ class C_createbook extends MX_Controller
 			'baboo-auth-key: ' . $auth
 		));
 		$result = curl_exec($ch);
-		
+
 		$headers = array();
-		
+
 		$data = explode("\n", $result);
-		
+
 		array_shift($data);
-		
+
 		foreach ($data as $part) {
 			$middle = explode(":", $part);
 			error_reporting(0);
@@ -891,7 +894,7 @@ class C_createbook extends MX_Controller
 		}
 		// print_r($headers);
 		$resval = (array) json_decode(end($data), true);
-		
+
 		$psn        = $resval['message'];
 		$data_video = $resval['data']['asset_url'];
 		$auth       = $headers['BABOO-AUTH-KEY'];
@@ -908,7 +911,7 @@ class C_createbook extends MX_Controller
 		error_reporting(0);
 		$auth  = $this->session->userdata('authKey');
 		$bData = $this->session->userdata('dataBook');
-		
+
 		$title   = $this->input->post('title_book', TRUE);
 		$chapter = $this->input->post('chapter_title', TRUE);
 		if (!empty($bData)) {
@@ -949,12 +952,12 @@ class C_createbook extends MX_Controller
 			$bookData['book_id'] = $this->input->post('id_books', TRUE);
 		}
 		// print_r($bookData);
-		
+
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $this->API . 'book/Books/saveBook');
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		// curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-		
+
 		curl_setopt($ch, CURLOPT_POST, 1);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $bookData);
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
@@ -963,25 +966,25 @@ class C_createbook extends MX_Controller
 			'baboo-auth-key: ' . $auth
 		));
 		$result = curl_exec($ch);
-		
+
 		$headers = array();
-		
+
 		$data = explode("\n", $result);
-		
-		
+
+
 		array_shift($data);
-		
+
 		foreach ($data as $part) {
 			$middle = explode(":", $part);
-			
+
 			if (error_reporting() == 0) {
 				$headers[trim($middle[0])] = trim($middle[1]);
 			}
 		}
-		
-		
+
+
 		$resval = (array) json_decode(end($data), true);
-		
+
 		$psn  = $resval['message'];
 		$user = $resval['data'];
 		$auth = $headers['BABOO-AUTH-KEY'];
@@ -1008,7 +1011,7 @@ class C_createbook extends MX_Controller
 		error_reporting(0);
 		$auth  = $this->session->userdata('authKey');
 		$bData = $this->session->userdata('dataBook');
-		
+
 		$title   = $this->input->post('title_book', TRUE);
 		$chapter = $this->input->post('title_chapter', TRUE);
 		if (!empty($bData)) {
@@ -1041,12 +1044,12 @@ class C_createbook extends MX_Controller
 			$bookData['book_id'] = $this->input->post('id_books', TRUE);
 		}
 		// print_r($bookData);
-		
+
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $this->API . 'book/Books/saveBook');
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		// curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-		
+
 		curl_setopt($ch, CURLOPT_POST, 1);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $bookData);
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
@@ -1055,25 +1058,25 @@ class C_createbook extends MX_Controller
 			'baboo-auth-key: ' . $auth
 		));
 		$result = curl_exec($ch);
-		
+
 		$headers = array();
-		
+
 		$data = explode("\n", $result);
-		
-		
+
+
 		array_shift($data);
-		
+
 		foreach ($data as $part) {
 			$middle = explode(":", $part);
-			
+
 			if (error_reporting() == 0) {
 				$headers[trim($middle[0])] = trim($middle[1]);
 			}
 		}
-		
-		
+
+
 		$resval = (array) json_decode(end($data), true);
-		
+
 		$psn  = $resval['message'];
 		$user = $resval['data'];
 		$auth = $headers['BABOO-AUTH-KEY'];
@@ -1100,7 +1103,7 @@ class C_createbook extends MX_Controller
 		error_reporting(0);
 		$auths = $this->session->userdata('authKey');
 		$bData = $this->session->userdata('dataBook');
-		
+
 		$title = $this->input->post('title_book', TRUE);
 		// $chapter = $this->input->post('chapter_title');
 		if (!empty($bData)) {
@@ -1187,7 +1190,7 @@ class C_createbook extends MX_Controller
 		    	$bookData['book_id'] = $this->input->post('id_books', TRUE);
 		    }
 		    $data = $this->curl_request->curl_post_auth($this->API.'book/Books/saveBook', $bookData, $auths);
-		    
+
 		    $resval = $data['data'];
 
 		    $psn  = $resval['message'];
@@ -1224,11 +1227,12 @@ class C_createbook extends MX_Controller
 	{
 		error_reporting(0);
 		$auth    = $this->session->userdata('authKey');
-		
+
 		$book_id    = $this->input->post('book_id', TRUE);
 		$file_cover = $this->input->post('file_cover', TRUE);
 		$category   = $this->input->post('category', TRUE);
 		$is_paid   = $this->input->post('is_paid', TRUE);
+		$publishdate   = $this->input->post('publish_date', TRUE);
 		$start_chapter = $this->input->post('chapter_start', TRUE);
 		$price   = $this->input->post('price', TRUE);
 
@@ -1238,7 +1242,7 @@ class C_createbook extends MX_Controller
 				'file_cover' => $file_cover,
 				'category' => $category,
 				'is_paid' => true,
-				// 'is_paid' => $is_paid,
+                'publish_date' => $publishdate,
 				'chapter_start' => $start_chapter,
 				'price' => $price
 			);
@@ -1247,8 +1251,8 @@ class C_createbook extends MX_Controller
 				'book_id' => $book_id,
 				'file_cover' => $file_cover,
 				'category' => $category,
-				'is_paid' => false
-				// 'is_paid' => $is_paid
+				'is_paid' => false,
+                'publish_date' => $publishdate
 			);
 		}
 		// print_r($bookData);
@@ -1263,7 +1267,7 @@ class C_createbook extends MX_Controller
 			$this->session->unset_userdata('dataCover');
 		} else {
 			echo json_encode($resval);
-			
+
 			$this->session->unset_userdata('dataCover');
 			$this->session->unset_userdata('dataBook');
 			$this->session->unset_userdata('editPub');
@@ -1282,34 +1286,34 @@ class C_createbook extends MX_Controller
 		$id_book = $this->input->post('book_id', TRUE);
 		$user = $this->input->post('user_id', TRUE);
 
-		if(isset($_FILES["file_cover"]["tmp_name"]))  
-		{  
-			$config['upload_path'] = './uploads';  
-			$config['allowed_types'] = 'jpg|jpeg|png|gif';  
-			$this->load->library('upload', $config);  
-			if(!$this->upload->do_upload('file_cover'))  
-			{  
-				echo $this->upload->display_errors();  
-			}  
-			else  
-			{  
-				$data = $this->upload->data();  
-				$config['image_library'] = 'gd2';  
-				$config['source_image'] = './uploads/'.$data["file_name"];  
-				$config['create_thumb'] = FALSE;  
-				$config['maintain_ratio'] = FALSE;  
-				$config['quality'] = '75%';  
-				$config['width'] = 400;  
-				$config['height'] = 540;  
-				$config['new_image'] = './uploads/'.$data["file_name"];  
-				$this->load->library('image_lib', $config);  
-				$this->image_lib->resize();    
-				$image_data = array(  
-					'name'          =>     $data["file_name"]  
+		if(isset($_FILES["file_cover"]["tmp_name"]))
+		{
+			$config['upload_path'] = './uploads';
+			$config['allowed_types'] = 'jpg|jpeg|png|gif';
+			$this->load->library('upload', $config);
+			if(!$this->upload->do_upload('file_cover'))
+			{
+				echo $this->upload->display_errors();
+			}
+			else
+			{
+				$data = $this->upload->data();
+				$config['image_library'] = 'gd2';
+				$config['source_image'] = './uploads/'.$data["file_name"];
+				$config['create_thumb'] = FALSE;
+				$config['maintain_ratio'] = FALSE;
+				$config['quality'] = '75%';
+				$config['width'] = 400;
+				$config['height'] = 540;
+				$config['new_image'] = './uploads/'.$data["file_name"];
+				$this->load->library('image_lib', $config);
+				$this->image_lib->resize();
+				$image_data = array(
+					'name'          =>     $data["file_name"]
 				);
 				if (function_exists('curl_file_create')) {
 					$cFile = curl_file_create($data['full_path'], $data["file_type"],$data["file_name"]);
-				} else { 
+				} else {
 					$cFile = '@' . realpath($data['full_path']);
 				}
 				$url = $this->API.'/uploadImage';
@@ -1349,10 +1353,10 @@ class C_createbook extends MX_Controller
 				$this->session->set_userdata('authKey', $auth);
 				if (unlink($cFile->name))
 				{
-					echo json_encode(array("link"=>$data_img,"name"=>$data_img));  
+					echo json_encode(array("link"=>$data_img,"name"=>$data_img));
 				}
 					// print_r($data);
-			}  
+			}
 		}else{
 			echo "tidak ada";
 		}
@@ -1364,18 +1368,18 @@ class C_createbook extends MX_Controller
 		$book  = $this->input->post('id_book', TRUE);
 		$title = $this->input->post('title_book', TRUE);
 		$desc  = $this->input->post('description', TRUE);
-		
+
 		$chapter = array(
 			'id_book' => $book
 		);
 		$query   = $this->db->insert('chapter', $chapter);
-		
+
 		// $id = $this->db->insert_id();
 		// $q = $this->db->get_where('chapter', array('chapter_id' => $id));
 		// foreach ($q->result() as $row){
 		// 	$redirect =  $row->id;
 		// 	header('Location:create_book/' .$book.'/chapters/'.$id);
-		// 	}	
+		// 	}
 		echo json_encode($this->input->post());
 	}
 
@@ -1388,29 +1392,29 @@ class C_createbook extends MX_Controller
 		}
 		error_reporting(0);
 		$auth = $this->session->userdata('authKey');
-		
+
 		$id_user = $this->session->userdata('userData');
-		
+
 		$id_book    = $this->uri->segment(2);
 		$id_chapter = $this->uri->segment(4);
 		$bookData   = array(
 			"book_id" => $id_book,
 			"chapter" => $id_chapter
 		);
-		
+
 		$data_book = array(
 			'book_id' => $id_book,
 			'user_id' => $id_user['user_id']
 		);
 		// print_r($data_book);
-		
+
 		// START GET CHAPTER
 		$url = $this->API . 'book/Books/allChapters/';
 		$ch  = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $url);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		// curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-		
+
 		curl_setopt($ch, CURLOPT_POST, 1);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $data_book);
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
@@ -1423,14 +1427,14 @@ class C_createbook extends MX_Controller
 		$headers             = array();
 		$data_before_chapter = explode("\n", $content);
 		$headers['status']   = $data_before_chapter[0];
-		
+
 		array_shift($data_before_chapter);
-		
+
 		foreach ($data_before_chapter as $part) {
 			$middle                    = explode(":", $part);
 			$headers[trim($middle[0])] = trim($middle[1]);
 		}
-		
+
 		$auth = $headers['BABOO-AUTH-KEY'];
 		if (isset($data['detail_chapter']['code']) && $data['detail_chapter']['code'] == '200') {
 			$status = $data['detail_chapter']['code'];
@@ -1438,12 +1442,12 @@ class C_createbook extends MX_Controller
 		} else {
 			$status = $data['detail_chapter']['code'];
 		}
-		
+
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $this->API . 'book/Books/editBook');
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		// curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-		
+
 		curl_setopt($ch, CURLOPT_POST, 1);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $bookData);
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
@@ -1452,20 +1456,20 @@ class C_createbook extends MX_Controller
 			'baboo-auth-key: ' . $auth
 		));
 		$result = curl_exec($ch);
-		
+
 		$headers = array();
-		
+
 		$data = explode("\n", $result);
-		
-		
+
+
 		array_shift($data);
-		
+
 		foreach ($data as $part) {
 			$middle                    = explode(":", $part);
 			$headers[trim($middle[0])] = trim($middle[1]);
 		}
 		// $headers['BABOO-AUTH-KEY']
-		
+
 		$auth = $headers['BABOO-AUTH-KEY'];
 		if (isset($data['detail_book']['code']) && $data['detail_book']['code'] == '200') {
 			$status = $data['detail_book']['code'];
@@ -1474,21 +1478,21 @@ class C_createbook extends MX_Controller
 		} else {
 			$status = $data['detail_book']['code'];
 		}
-		
+
 		$data['detail_book']    = json_decode(end($data), true);
 		$data['title']          = "Buat Sebuah Cerita - Baboo";
 		$data['detail_chapter'] = json_decode(end($data_before_chapter), true);
 		// print_r($data['detail_book']);
-		
+
 		$data['css'][] = "public/css/bootstrap.min.css";
 		$data['css'][] = "public/css/custom-margin-padding.css";
 		$data['css'][] = "public/css/font-awesome.min.css";
 		$data['css'][] = "public/css/baboo-responsive.css";
 		$data['css'][] = "public/css/baboo.css";
 		$data['css'][] = "public/plugins/holdOn/css/HoldOn.css";
-		
+
 		$data['js'][] = "public/js/jquery.min.js";
-		
+
 		$data['css'][] = "public/plugins/froala/css/froala_editor.css";
 		$data['css'][] = "public/plugins/froala/css/froala_style.css";
 		$data['css'][] = "public/plugins/froala/css/plugins/code_view.css";
@@ -1503,8 +1507,8 @@ class C_createbook extends MX_Controller
 		$data['css'][] = "public/plugins/froala/css/plugins/fullscreen.css";
 		$data['css'][] = "public/plugins/froala/css/plugins/file.css";
 		$data['css'][] = "public/plugins/froala/css/plugins/quick_insert.css";
-		
-		
+
+
 		$data['js'][] = "public/plugins/froala/js/froala_editor.min.js";
 		$data['js'][] = "public/plugins/froala/js/plugins/align.min.js";
 		$data['js'][] = "public/plugins/froala/js/plugins/char_counter.min.js";
@@ -1532,7 +1536,7 @@ class C_createbook extends MX_Controller
 		$data['js'][] = "public/plugins/froala/js/plugins/save.min.js";
 		$data['js'][] = "public/plugins/froala/js/plugins/url.min.js";
 		// $data['js'][] = "public/plugins/froala/js/plugins/video.min.js";
-		
+
 		if ($this->agent->mobile()) {
 			$data['js'][] = "public/js/custom/create_book_r.js";
 			$this->load->view('include/head', $data);
@@ -1543,13 +1547,13 @@ class C_createbook extends MX_Controller
 			$data['js'][] = "public/js/bootstrap.min.js";
 			$data['js'][] = "public/js/jquery.sticky-kit.min.js";
 			// $data['js'][] = "public/js/custom/create_book.js";
-			
+
 			$data['js'][] = "public/js/custom/edit_book.js";
-			
+
 			$data['js'][] = "public/plugins/holdOn/js/HoldOn.js";
-			
+
 			$data['js'][] = "public/js/sweetalert2.all.min.js";
-			
+
 			$data['css'][] = "public/css/baboo.css";
 			$this->load->view('D_editbook', $data);
 		}
@@ -1572,7 +1576,7 @@ class C_createbook extends MX_Controller
 			$fileType     = $_FILES["image1"]["type"];
 			$fileSize     = $_FILES["image1"]["size"];
 			$fileErrorMsg = $_FILES["image1"]["error"];
-			
+
 			if (!$fileTmpLoc) {
 				die("error");
 			}
@@ -1593,17 +1597,17 @@ class C_createbook extends MX_Controller
 		$auth    = $this->session->userdata('authKey');
 		$id_book = $this->input->post('book_id', TRUE);
 		// print_r($data_book);
-		
+
 		// START GET CHAPTER
 		$data_book = array(
 			'book_id' => $id_book
 		);
 		// print_r($data_book);
-		
+
 		// START GET CHAPTER
 		$data_before_chapter = $this->curl_request->curl_post_auth($this->API.'book/Books/allChapters', $data_book, $auth);
 		$validate = $this->curl_request->curl_post_auth($this->API.'book/Books/validatePublish', $data_book, $auth);
-		
+
 		$check = $validate['data']['data'];
 		$data_before_chapter['chapter'] = $data_before_chapter['data'];
 		$auth                           = $validate['bbo_auth'];
@@ -1617,27 +1621,27 @@ class C_createbook extends MX_Controller
 
 		// print_r($data_before_chapter['chapter']['data']['chapter']);
 	}
-	
-	
+
+
 	public function getDataChapter()
 	{
 		error_reporting(0);
 		$auth = $this->session->userdata('authKey');
-		
+
 		$user    = $this->session->userdata('userData');
 		$book    = $this->input->post('book_id', TRUE);
 		$chapter = $this->input->post('chapter', TRUE);
-		
+
 		$dataChapter = array(
 			'book_id' => $book,
 			'user_id' => $user['user_id'],
 			'chapter' => $chapter
 		);
-		
+
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $this->API.'book/Books/detailBook');
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		
+
 		curl_setopt($ch, CURLOPT_POST, 1);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $dataChapter);
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
@@ -1646,47 +1650,47 @@ class C_createbook extends MX_Controller
 			'baboo-auth-key: ' . $auth
 		));
 		$result = curl_exec($ch);
-		
+
 		$headers = array();
-		
+
 		$data = explode("\n", $result);
-		
-		
+
+
 		array_shift($data);
-		
+
 		foreach ($data as $part) {
 			$middle = explode(":", $part);
-			
+
 			if (error_reporting() == 0) {
 				$headers[trim($middle[0])] = trim($middle[1]);
 			}
 		}
-		
+
 		$resval = (array) json_decode(end($data), true);
-		
+
 		$chapter = $resval['data']['chapter'];
 		$auth    = $headers['BABOO-AUTH-KEY'];
-		
+
 		echo json_encode(array(
 			'data' => $chapter
 		));
-		
+
 	}
 
 	public function validatePublish()
 	{
 		error_reporting(0);
 		$auth = $this->session->userdata('authKey');
-		
+
 		$book    = $this->input->post('book_id', TRUE);
-		
+
 		$bookData = array(
 			'book_id' => $book
 		);
 		$data = $this->curl_request->curl_post_auth($this->API.'book/Books/validatePublish', $bookData, $auth);
-		
+
 		$resval = $data['data'];
-		
+
 		$auth    = $data['bbo_auth'];
 		if (isset($resval['code']) && $resval['code'] == 200) {
 			$code = $resval['code'];
@@ -1719,4 +1723,33 @@ class C_createbook extends MX_Controller
 			));
 		}
 	}
+
+    //Archive Book
+    public function postArchiveBook()
+    {
+        error_reporting(0);
+        $auth = $this->session->userdata('authKey');
+        $book_id = $this->input->post('book_id', TRUE);
+
+        $sendData = array(
+            'book_id' => $book_id
+        );
+
+        $resval = $this->curl_request->curl_post_auth($this->API.'book/Books/archiveBook', $sendData, $auth);
+
+        $psn = $resval['data']['message'];
+        $datas = $resval['data']['data'];
+
+        $auth = $resval['bbo_auth'];
+        $this->session->set_userdata('authKey', $auth);
+        $status = $resval['data']['code'];
+        if ($status == 403) {
+            $this->session->unset_userdata('userData');
+            $this->session->unset_userdata('authKey');
+            $this->session->sess_destroy();
+            redirect('login', 'refresh');
+        } else {
+            echo json_encode(array("code"=>$status));
+        }
+    }
 }

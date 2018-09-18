@@ -2,13 +2,13 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class C_createpdf extends MX_Controller {
-	
+
 	function __construct()
 	{
 		parent::__construct();
 		$api_url = checkBase();
 		$this->API = $api_url;
-		
+
 		if ($this->session->userdata('isLogin') != 200) {
 			redirect('home');
 		}
@@ -18,7 +18,7 @@ class C_createpdf extends MX_Controller {
 	{
 		$data['title'] = "Berikan Deskripsi Mengenai Cerita Mu - Baboo";
 		$data['page_desc'] = "Upload PDF mu dan Berikan Deskripsi Mengenai Cerita Mu - Baboo";
-		
+
 		$data['css'][] = "public/css/bootstrap.min.css";
 		$data['css'][] = "public/css/custom-margin-padding.css";
 		$data['css'][] = "public/css/font-awesome.min.css";
@@ -42,7 +42,7 @@ class C_createpdf extends MX_Controller {
 	{
 		$data['title'] = "Upload Cerita Mu Dalam Bentuk PDF File - Baboo";
 		$data['page_desc'] = "Upload PDF - Baboo";
-		
+
 		$data['css'][] = "public/css/bootstrap.min.css";
 		$data['css'][] = "public/css/custom-margin-padding.css";
 		$data['css'][] = "public/css/font-awesome.min.css";
@@ -73,7 +73,7 @@ class C_createpdf extends MX_Controller {
 
 		$data['title'] = "Berikan Deskripsi Mengenai Cerita Mu - Baboo";
 		$data['page_desc'] = "Upload PDF - Baboo";
-		
+
 		$data['css'][] = "public/css/bootstrap.min.css";
 		$data['css'][] = "public/css/custom-margin-padding.css";
 		$data['css'][] = "public/css/font-awesome.min.css";
@@ -121,17 +121,20 @@ class C_createpdf extends MX_Controller {
         $title = $this->input->post('title_book', TRUE);
         $desc = $this->input->post('desc_book', TRUE);
         $id = $this->input->post('id_book', TRUE);
+        $type = $this->input->post('ftype' ,TRUE);
 
         if (empty($id)) {
         	$data_book = array(
         		'title_book' => $title,
-        		'descriptions' => $desc
+        		'descriptions' => $desc,
+                'file_type' => $type
         	);
         }else{
         	$data_book = array(
         		'book_id' => $id,
         		'title_book' => $title,
-        		'descriptions' => $desc
+        		'descriptions' => $desc,
+                'file_type' => $type
         	);
         }
 
@@ -191,22 +194,25 @@ class C_createpdf extends MX_Controller {
         error_reporting(0);
         $auth = $this->session->userdata('authKey');
         $book_id = $this->input->post('id_book', TRUE);
+        $is_free = $this->input->post('is_free', TRUE);
         $pdffile = $_FILES["pdf_file"]["tmp_name"];
 
         if (function_exists('curl_file_create')) {
 			$cFile = curl_file_create($pdffile, $_FILES["pdf_file"]["type"],$_FILES["pdf_file"]["name"]);
-		} else { 
+		} else {
 			$cFile = '@' . realpath($pdffile);
 		}
 
 		if (empty($pdffile)) {
 			$data_book = array(
-				'book_id' => $book_id
+				'book_id' => $book_id,
+                'is_free' => $is_free
 			);
 		}else{
 			$data_book = array(
 				'book_id' => $book_id,
-				'pdf_book' => $cFile
+				'pdf_book' => $cFile,
+                'is_free' => $is_free
 			);
 		}
 

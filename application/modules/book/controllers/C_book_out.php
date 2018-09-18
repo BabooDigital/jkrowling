@@ -41,7 +41,6 @@ class C_book_out extends MX_Controller {
 		$st1 = strip_tags($datas['data']['chapter']['paragraphs'][0]['paragraph_text']);
 		$st2 = str_replace("'", "", $st1);
         $book['page_desc'] = 'Baboo.id - '.substr($st2, 5, 160).' - '.$datas['data']['author']['author_name'];
-        $book['keyword_meta'] = $datas['data']['book_info']['title_book'].','.$datas['data']['chapter']['chapter_title'].','.$datas['data']['category']['category_name'];
         $book['m_book_cover'] = $datas['data']['book_info']['cover_url'];
         $book['author_meta'] = $datas['data']['author']['author_name'];
 
@@ -68,11 +67,7 @@ class C_book_out extends MX_Controller {
 		$book['js'][] = "public/js/custom/notification.js";
 		$book['js'][] = "public/js/custom/detail_book.js";
 
-        if ((bool)$datas['data']['book_info']['is_pdf'] == FALSE){
-            $book['title'] = $datas['data']['book_info']['title_book'].' - '.$datas['data']['chapter']['chapter_title'];
-        }else{
-            $book['title'] = $datas['data']['book_info']['title_book'];
-        }
+		$book['title'] = $datas['data']['book_info']['title_book'].' - '.$datas['data']['author']['author_name'].' | Baboo';
 
         $book['cover'] = $datas['data']['book_info']['cover_url'];
         if ($book['cover'] == NULL){
