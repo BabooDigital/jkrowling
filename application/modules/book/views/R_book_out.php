@@ -88,7 +88,7 @@
 					<div class="media text-center">
 						<img class="d-flex align-self-start ml-30 rounded-circle" src="<?php if($avatar == NULL){ echo base_url('public/img/profile/blank-photo.jpg'); }else{ echo $avatar; } ?>" width="40" height="40" alt="<?php echo $detail_book['data']['author']['author_name']; ?>">
 						<div class="media-body">
-							<span class="nametitle2 title_out" style="display: -webkit-inline-box;"><a href="#" class="author_name"><h2 class="font-weight-bold" style="font-size: 16px;"><?php echo $author; ?></h2></a></span>
+							<span class="nametitle2 title_out" style="display: -webkit-inline-box;"><a href="#" class="author_name"><p class="font-weight-bold h2" style="font-size: 16px;"><?php echo $author; ?></p></a></span>
 							<!-- <a href="#" data-follow="<?php echo $aid; ?>" class="btn-topup follow-u float-right mt-5"
 								><span class="nametitle2 txtfollow pcat">Follow</span>
 							</a> -->

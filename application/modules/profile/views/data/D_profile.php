@@ -21,10 +21,13 @@
                             <button class="btn btn-transparent dropdown-toggle float-right" data-toggle="dropdown" type="button"><span class="float-right"><img src="<?php echo base_url('public/img/assets/caret.svg'); ?>"></span></button>
                             <ul class="dropdown-menu dropdown-menu-right">
                                 <li class="drpdwn-caret">
-                                    <a href="javascript:void(0);" onclick="editBook(<?php echo $s_book['book_id']; ?>,<?php if((bool)$s_book['is_pdf'] == TRUE){ echo "true"; }else { echo "false"; } ?>)">Edit Buku</a>
+                                    <a href="javascript:void(0);" onclick="editBook(<?php echo $s_book['book_id']; ?>,<?php if($s_book['book_type'] == 2){ echo "'pdf'"; }elseif($s_book['book_type'] == 3){ echo "'epub'"; }else { echo "'false'"; }; ?>)">Edit Buku</a>
                                 </li>
                                 <li class="drpdwn-caret">
                                     <a href="javascript:void(0);" onclick="deleteBook(<?php echo $s_book['book_id']; ?>)">Hapus Buku</a>
+                                </li>
+                                <li class="drpdwn-caret">
+                                    <a href="javascript:void(0);" onclick="archiveBook(<?php echo $s_book['book_id']; ?>)">Arsipkan (Unpublish)</a>
                                 </li>
                             </ul>
                         </div>

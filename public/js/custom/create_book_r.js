@@ -1,44 +1,201 @@
 $(function(){
-  froalaEditor();
-  titleBook();
-  chapterBook();
-  isFree();
-  backLink();
-  toChaptList();
-  saveDraft();
-  saveEditChapter();
-  addChapter();
-  publishChapter();
-  publishBook();
-  uploadCoverMr();
+    froalaEditor();
+    titleBook();
+    chapterBook();
+    isFree();
+    backLink();
+    toChaptList();
+    saveDraft();
+    saveEditChapter();
+    addChapter();
+    publishChapter();
+    publishBook();
+    uploadCoverMr();
 
+    $("#publish_book_epub").click(function() {
+        event.preventDefault();
+        /* Act on the event */
+        var formData = new FormData(),
+            pr = $("#inputprice").val(),
+            slide = $('.priceCheck:checkbox:checked'),
+            asd = slide.is(':empty'),
+            slidepub = $('.publishCheck:checkbox:checked'),
+            dsa = slidepub.is(':empty'),
+            dateField = $('#date_pub').val(),
+            timeField = $('#time_pub').val(),
+            pub_date = dateField+' '+timeField+':00';
+
+        formData.append("csrf_test_name", csrf_value);
+        if (slide.length == 0 || asd == false) {
+            formData.append("is_paid", false);
+        }else{
+            formData.append("price", pr);
+            formData.append("is_paid", true);
+        }
+        if (slidepub.length == 1 && dateField !== null || dateField !== ""){
+            formData.append("publish_date", pub_date)
+        }else{
+
+        }
+        formData.append("book_id", $("#uri").val());
+        formData.append("file_cover", $("#cover_file").val());
+        formData.append("category", $("#category_ids").val());
+
+        var cat = $("#category_ids").val();
+        var tnc = $('.checktnc:checkbox:checked');
+
+        if (cat == null || cat == "") {
+            swal(
+                'Gagal!',
+                'Pilih kategori buku mu.',
+                'error'
+            );
+        }else if(slide.length == 1 && pr <= 10000){
+            swal(
+                'Gagal!',
+                'Minimal harga total penjualan buku sebesar Rp 10.000,-',
+                'error'
+            );
+        }else if(tnc.length == 0){
+            swal(
+                'Gagal!',
+                'Setujui Term of Service.',
+                'error'
+            );
+        }else {
+            var t = type_,
+                d = $("#file-to-upload")[0].files,
+                FD = new FormData(),
+                aww = $(this);
+
+            if (d.length === 1) {
+                FD.append('pdf_file', d[0]);
+                FD.append('id_book', $('#uri').val());
+                FD.append('is_free', '1');
+                FD.append(csrf_name, csrf_value);
+                $.ajax({
+                    url: base_url+'uploadAct',
+                    type: 'POST',
+                    dataType: 'JSON',
+                    crossDomain: true,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    mimeType: "multipart/form-data",
+                    data: FD,
+                    beforeSend: function () {
+                        swal.showLoading()
+                    },
+                }).done(function(data) {
+                    if (data.c == 200){
+                        $.ajax({
+                            url: base_url+'publishbook',
+                            dataType: 'json',
+                            type: 'POST',
+                            contentType: false,
+                            processData: false,
+                            data: formData,
+                            beforeSend: function() {
+                                swal({
+                                    text: 'Harap tunggu...',
+                                    onOpen: () => {
+                                    swal.showLoading();
+                            }
+                            });
+                            }
+                        })
+                            .done(function(data) {
+                                if (data.code == 200) {
+                                    window.location = base_url+'timeline';
+                                }else{
+                                    console.log(data);
+                                    location.reload();
+                                }
+                            })
+                            .fail(function() {
+                                console.log("errorss");
+                                location.reload();
+                            })
+                            .always(function() {
+                            });
+                    }
+                })
+                    .fail(function() {
+                        console.log("error");
+                    })
+                    .always(function() {
+                    });
+            }else{
+                $.ajax({
+                    url: base_url+'publishbook',
+                    dataType: 'json',
+                    type: 'POST',
+                    contentType: false,
+                    processData: false,
+                    data: formData,
+                    beforeSend: function() {
+                        swal({
+                            text: 'Harap tunggu...',
+                            onOpen: () => {
+                            swal.showLoading();
+                    }
+                    });
+                    }
+                })
+                    .done(function(data) {
+                        console.log(data);
+                        // if (data.code == 200) {
+                        //     window.location = base_url+'timeline';
+                        // }else{
+                        //     location.reload();
+                        // }
+                    })
+                    .fail(function() {
+                        console.log("errorss");
+                        location.reload();
+                    })
+                    .always(function() {
+                    });
+            }
+        }
+    });
 });
 function publishBook() {
   $("#publish_book").click(function() {
-    var formData = new FormData();
-    var start_ch = '';
-    if ($('.pdfcheck').val() == 'true') {
-      start_ch = $(".start_chapter_pdf").val();
-    }else{
-      start_ch = $(".start_chapter").val();
-    }
-    var pr = $("#inputprice").val();
-    var slide = $('.priceCheck:checkbox:checked');
-    var asd = slide.is(':empty');
-    formData.append("csrf_test_name", csrf_value);
-    if (slide.length == 0 || asd == false) {
-      formData.append("is_paid", false);
-    }else{
-      formData.append("price", pr);
-      formData.append("chapter_start", start_ch);
-      formData.append("is_paid", true);
-    }
-    formData.append("book_id", $("#uri").val());
-    formData.append("file_cover", $("#cover_file").val());
-    formData.append("category", $("#category_ids").val());
+      var formData = new FormData(),
+          start_ch = '',
+          pr = $("#inputprice").val(),
+          slide = $('.priceCheck:checkbox:checked'),
+          asd = slide.is(':empty'),
+          slidepub = $('.publishCheck:checkbox:checked'),
+          dsa = slidepub.is(':empty'),
+          cat = $("#category_ids").val(),
+          tnc = $('.checktnc:checkbox:checked'),
+          dateField = $('#date_pub').val(),
+          timeField = $('#time_pub').val(),
+          pub_date = dateField+' '+timeField+':00';
 
-    var cat = $("#category_ids").val();
-    var tnc = $('.checktnc:checkbox:checked');
+      formData.append("csrf_test_name", csrf_value);
+      if ($('.pdfcheck').val() == 'true') {
+          start_ch = $(".start_chapter_pdf").val();
+      }else{
+          start_ch = $(".start_chapter").val();
+      }
+      if (slide.length == 0 || asd == false) {
+          formData.append("is_paid", false);
+      }else{
+          formData.append("price", pr);
+          formData.append("chapter_start", start_ch);
+          formData.append("is_paid", true);
+      }
+      if (slidepub.length == 1 && dateField !== null || dateField !== ""){
+          formData.append("publish_date", pub_date)
+      }else{
+
+      }
+      formData.append("book_id", $("#uri").val());
+      formData.append("file_cover", $("#cover_file").val());
+      formData.append("category", $("#category_ids").val());
 
     if (cat == null || cat == "") {
       swal(
@@ -525,6 +682,7 @@ function check_sell() {
               var pin = $('#what').val();
               if (sellbtn.length != 0 && pin == 'false') {
                 $('#publish_book').hide();
+                $('#publish_book_epub').hide();
                 $('#setpin_publish').show();
               }
               $('#priceSet').addClass('show');
@@ -584,7 +742,7 @@ function checkingPIN(){
       cancelButtonText: 'Jual nanti',
     }).then((result) => {
       if (result.value) {
-        window.location = base_url+'pin-dompet?from=pub-book&b='+bid;
+        window.location = base_url+'pin-dompet?from=pub-book&b='+bid+'&type='+type_;
       }
     })
   });

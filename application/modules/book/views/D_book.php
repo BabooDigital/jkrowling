@@ -1,3 +1,4 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <div data-content-category='Book &gt; <?php echo $detail_book['data']['category']['category_name']; ?>' data-content-ids='<?php echo $detail_book['data']['book_info']['book_id']; ?>' data-content-name="<?php echo $detail_book['data']['book_info']['title_book']; ?>" data-content-type='<?php echo $m_type; ?>' data-page-type='ViewContent' data-value='<?php echo $m_book_price; ?>' id='fbpixel'></div>
 
 <?php $this->load->view('navbar/D_navbar'); ?>
@@ -13,7 +14,9 @@
 	$statusp = 'done';
 }  ?>
 <div class="container pt-80 mb-80">
-	<div class="row mb-5">
+    <input type="hidden" name="iaidubi" id="iaidubi" value="<?php echo $detail_book['data']['book_info']['book_id']; ?>">
+    <div class="row mb-5">
+    <?php if ($detail_book['data']['book_info']['book_type'] != 3 ){ ?>
 		<div class="col-2"></div>
 		<div class="col-8">
 			<?php echo $this->load->view('ads/top_mid_ad'); ?>
@@ -28,7 +31,7 @@
 					<img class="cover_image" src="<?php echo ($detail_book['data']['book_info']['cover_url'] != 'Kosong') ? ($detail_book['data']['book_info']['cover_url'] != null ? $detail_book['data']['book_info']['cover_url'] : base_url('public/img/blank_cover.png')) : base_url('public/img/blank_cover.png'); ?>" width="150" height="200">
 					<div class="card-body">
 						<input type="hidden" name="iaidubi" id="iaidubi" value="<?php echo $detail_book['data']['book_info']['book_id']; ?>">
-						<h1 class="dbooktitle" style="font-size:25px;"><?php echo $detail_book['data']['book_info']['title_book']; ?></h3>
+						<h1 class="dbooktitle" style="font-size:25px;"><?php echo $detail_book['data']['book_info']['title_book']; ?></h1>
 
 						<div class="dbooksociallist">
 							<span class="fs-13"><img src="<?php echo base_url(); ?>public/img/assets/icon_view.svg" width="27"> <span id="viewcount"><?php echo $detail_book['data']['book_info']['view_count']; ?></span></span>
@@ -90,9 +93,9 @@
 						}else{
 							echo $detail_book['data']['author']['avatar']; } ?>" alt="<?php echo $detail_book['data']['author']['author_name']; ?>">
 							<div class="media-body">
-								<a data-usr-prf="<?php echo $detail_book['data']['author']['author_id']; ?>" data-usr-name="<?php echo $detail_book['data']['author']['author_name'] ?>" href="<?php echo site_url('penulis/'.$detail_book['data']['author']['author_id'].'-'.url_title($detail_book['data']['author']['author_name'], 'dash', true)) ?>" class=""><h2 class="card-title nametitle2 profile mt-10"><?php
-							echo $detail_book['data']['author']['author_name']; ?></h2></a>
-								<!-- <h5 class="nametitle2 author_name"><?php echo $detail_book['data']['author']['author_name']; ?></h5> -->
+								<a data-usr-prf="<?php echo $detail_book['data']['author']['author_id']; ?>" data-usr-name="<?php echo $detail_book['data']['author']['author_name'] ?>" href="<?php echo site_url('penulis/'.$detail_book['data']['author']['author_id'].'-'.url_title($detail_book['data']['author']['author_name'], 'dash', true)) ?>" class=""><span class="card-title nametitle2 profile mt-10 h2"><?php
+							echo $detail_book['data']['author']['author_name']; ?></span></a>
+								<!-- <span class="nametitle2 author_name"><?php echo $detail_book['data']['author']['author_name']; ?></span> -->
 								<p><small><span>&nbsp;&nbsp;</span></small></p>
 								<?php $sess = $this->session->userdata('userData'); if ($sess['user_id'] == $detail_book['data']['author']['author_id']) { ?>
 									<div></div>
@@ -106,7 +109,6 @@
 				</center>
 						<?php if ((bool) $detail_book['data']['book_info']['is_pdf'] == false) { ?>
 							<div id="appentoContent">
-								<h2 class="dbooktitlebook"><?php echo $detail_book['data']['title_book']; ?></h2>
 								<br>
 								<div id="post-data">
 									<?php $this->load->view('data/D_book'); ?>
@@ -156,6 +158,199 @@
 				</div>
 			</div>
 		</div>
+    <?php }else{ ?>
+    <div class="app">
+        <div class="sidebar-wrapper out">
+            <div class="sidebar">
+                <div class="tab-list">
+                    <a data-tab="toc" class="item">
+                        <i class="icon material-icons">list</i>
+                    </a>
+                    <a data-tab="search" class="item">
+                        <i class="icon material-icons">search</i>
+                    </a>
+                    <a data-tab="info" class="item">
+                        <i class="icon material-icons">info</i>
+                    </a>
+                    <a data-tab="settings" class="item">
+                        <i class="icon material-icons">settings</i>
+                    </a>
+                </div>
+                <div class="tab-container mb-50">
+                    <div class="tab" data-tab="toc">
+                        <div class="toc-list"></div>
+                    </div>
+                    <div class="tab search" data-tab="search">
+                        <div class="search-bar">
+                            <input type="text" autocomplete="off" placeholder="Search book..." class="search-box">
+                            <button class="search-button">
+                                <i class="icon material-icons">search</i>
+                            </button>
+                        </div>
+                        <div class="search-results"></div>
+                    </div>
+                    <div class="tab info" data-tab="info">
+                        <div class="cover-wrapper">
+                            <img src="" alt="" class="cover">
+                        </div>
+                        <h1 class="title"><?php echo $detail_book['data']['book_info']['title_book']; ?></h1>
+                        <div class="series-info">
+                            <span class="series-name"></span>
+                            <span class="divider"> - </span>
+                            <span class="series-index"></span>
+                        </div>
+                        <div class="author"><?php echo $detail_book['data']['author']['author_name']; ?></div>
+                        <div class="description"><?php echo $detail_book['data']['book_info']['desc']; ?></div>
+                    </div>
+                    <div class="tab settings" data-tab="settings">
+                        <div class="setting">
+                            <div class="setting-label">Themes</div>
+                            <div class="setting-content theme chips" data-chips="theme">
+                                <div class="theme chip" style="background: #fff; color: #000;" data-default="true" data-value="#fff;#000">A</div>
+                                <div class="theme chip" style="background: #000; color: #fff;" data-value="#000;#fff">A</div>
+                                <div class="theme chip" style="background: #333; color: #eee;" data-value="#333;#eee">A</div>
+                                <div class="theme chip" style="background: #f5deb3; color: #000;" data-value="#f5deb3;#000">A</div>
+                                <div class="theme chip" style="background: #111; color: #f5deb3;" data-value="#111;#f5deb3">A</div>
+                                <div class="theme chip" style="background: #111b21; color: #e8e8e8;" data-value="#111b21;#e8e8e8">A</div>
+                            </div>
+                        </div>
+                        <div class="setting">
+                            <div class="setting-label">Font</div>
+                            <div class="setting-content fonts chips" data-chips="fonts">
+                                <div class="fonts chip" style="font-family: 'Arial', Arimo, Liberation Sans, sans-serif;" data-value="'Arial', Arimo, Liberation Sans, sans-serif">Arial</div>
+                                <div class="fonts chip" style="font-family: 'Lato', sans-serif;" data-value="'Lato', sans-serif">Lato</div>
+                                <div class="fonts chip" style="font-family: 'Georgia', Liberation Serif, serif;" data-value="'Georgia', Liberation Serif, serif">Georgia</div>
+                                <div class="fonts chip" style="font-family: 'Times New Roman', Tinos, Liberation Serif, Times, serif;" data-value="'Times New Roman', Tinos, Liberation Serif, Times, serif"
+                                    data-default="true">Times New Roman</div>
+                                <div class="fonts chip" style="font-family: 'Arbutus Slab', serif;" data-value="'Arbutus Slab', serif">Arbutus Slab</div>
+                            </div>
+                        </div>
+                        <div class="setting">
+                            <div class="setting-label">Font Size</div>
+                            <div class="setting-content font-size chips" data-chips="font-size">
+                                <div class="size chip" style="font-size: 8pt" data-value="8pt">8</div>
+                                <div class="size chip" style="font-size: 9pt" data-value="9pt">9</div>
+                                <div class="size chip" style="font-size: 10pt" data-value="10pt">10</div>
+                                <div class="size chip" style="font-size: 11pt" data-default="true" data-value="11pt">11</div>
+                                <div class="size chip" style="font-size: 12pt" data-value="12pt">12</div>
+                                <div class="size chip" style="font-size: 14pt" data-value="14pt">14</div>
+                                <div class="size chip" style="font-size: 16pt" data-value="16pt">16</div>
+                                <div class="size chip" style="font-size: 18pt" data-value="18pt">18</div>
+                            </div>
+                        </div>
+                        <div class="setting">
+                            <div class="setting-label">Line Spacing</div>
+                            <div class="setting-content line-spacing chips" data-chips="line-spacing">
+                                <div class="size chip" data-value="1">1</div>
+                                <div class="size chip" data-value="1.2">1.2</div>
+                                <div class="size chip" data-value="1.4">1.4</div>
+                                <div class="size chip" data-default="true" data-value="1.6">1.6</div>
+                                <div class="size chip" data-value="1.8">1.8</div>
+                                <div class="size chip" data-value="2">2</div>
+                                <div class="size chip" data-value="2.3">2.3</div>
+                                <div class="size chip" data-value="2.6">2.6</div>
+                                <div class="size chip" data-value="3">3</div>
+                            </div>
+                        </div>
+                        <div class="setting">
+                            <div class="setting-label">Margin</div>
+                            <div class="setting-content margin chips" data-chips="margin">
+                                <div class="size chip" data-value="0">0</div>
+                                <div class="size chip" data-value="1px">1px</div>
+                                <div class="size chip" data-value="2px">2px</div>
+                                <div class="size chip" data-value="3px">3px</div>
+                                <div class="size chip" data-value="4px">4px</div>
+                                <div class="size chip" data-default="true" data-value="5px">5px</div>
+                                <div class="size chip" data-value="7px">7px</div>
+                                <div class="size chip" data-value="9px">9px</div>
+                                <div class="size chip" data-value="12px">12px</div>
+                                <div class="size chip" data-value="15px">15px</div>
+                            </div>
+                        </div>
+                        <div class="setting">
+                            <div class="setting-label">Fullscreen</div>
+                            <div class="setting-content">
+                                <a href="javascript:ePubViewer.doFullscreen();">Fullscreen</a>
+                            </div>
+                        </div>
+                        <div class="setting">
+                            <div class="setting-label">Reset</div>
+                            <div class="setting-content">
+                                <a href="javascript:void(0);" onclick="if(confirm('Are you sure?')){localStorage.clear();window.location.reload();}">Reset All</a>
+                            </div>
+                        </div>
+                        <div class="setting">
+                            <div class="setting-label">Share</div>
+                            <div class="setting-content">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <a href="javascript:void(0);" class="share-fb">
+                                                <p class="mb-10 p-15" style="background-color: #3a81d5;border-radius: 5px;">
+                                                    <img src="<?php echo base_url(); ?>public/img/assets/icon_fb_white.svg" width="30">
+                                                </p>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br />
+                                <br />
+                                <br />
+                                <br /> This app requires Microsoft Edge 15+, Mozilla Firefox 50+, Chrome 50+, or Safari 10+.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="error hidden">
+            <div class="error-title"></div>
+            <div class="error-description"></div>
+            <div class="error-info"></div>
+            <div class="error-dump"></div>
+        </div>
+        <div class="bar">
+            <div class="left">
+
+            </div>
+            <div class="title">
+                <span class="book-title"><?php echo $detail_book['data']['book_info']['title_book']; ?></span>
+                <span class="divider"> - </span>
+                <span class="book-author"><?php echo $detail_book['data']['author']['author_name']; ?></span>
+            </div>
+            <div class="right">
+                <button class="sidebar-button hidden" onclick="ePubViewer.doSidebar()">
+                    <i class="icon material-icons">menu</i>
+                </button>
+            </div>
+        </div>
+        <a class="book" onload="javascript:ePubViewer.doBook();">
+            <!-- <div class="empty-wrapper">
+                <div class="empty">
+                    <div class="app-name">ePubViewer</div>
+                    <div class="message">
+                        Unknown error. If this message does not disappear in a few seconds, try using a different browser (Chrome or Firefox), and
+                        if the issue still persists,
+                        <a href="https://github.com/geek1011/ePubViewer">report it here</a>.
+                    </div>
+                </div>
+            </div> -->
+        </a>
+        <div class="bar">
+            <div class="left">
+                <button class="prev hidden">
+                    <i class="icon material-icons">chevron_left</i>
+                </button>
+            </div>
+            <div class="loc"></div>
+            <div class="right">
+                <button class="next hidden">
+                    <i class="icon material-icons">chevron_right</i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <?php } ?>
 	</div>
 </div>
 <div class="modal fade" id="buymodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -203,7 +398,7 @@
 
 					<div class="modal-header bg-white">
 						<button type="button" class="closes" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						<h4 class="modal-title" id="commentLabel">Komentar</h4>
+						<span class="h4 modal-title" id="commentLabel">Komentar</span>
 					</div>
 
 					<div class="modal-body mb-50" style="overflow-x: auto;">
@@ -277,12 +472,23 @@
 		</script>
 			<script src='https://podio.github.io/jquery-mentions-input/lib/jquery.events.input.js' type='text/javascript'></script>
 			<script src='https://podio.github.io/jquery-mentions-input/lib/jquery.elastic.js' type='text/javascript'></script>
-			<?php if ((bool) $detail_book['data']['book_info']['is_pdf'] == true) { ?>
+			<?php if ($detail_book['data']['book_info']['book_type'] == 2) { ?>
 				<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.87/pdf.js"></script>
 				<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.87/pdf.worker.js"></script>
 				<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.18/jquery.touchSwipe.js"></script>
 				<script>getBooks();
 				window.onload = function() {document.addEventListener("contextmenu", function(e){e.preventDefault(); }, false); document.addEventListener("keydown", function(e) {if (e.ctrlKey && e.shiftKey && e.keyCode == 73) {disabledEvent(e); } if (e.ctrlKey && e.shiftKey && e.keyCode == 74) {disabledEvent(e); } if (e.keyCode == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {disabledEvent(e); } if (e.ctrlKey && e.keyCode == 85) {disabledEvent(e); } if (event.keyCode == 123) {disabledEvent(e); } if (e.ctrlKey && e.keyCode == 65) {disabledEvent(e); } if (e.ctrlKey && e.keyCode == 67) {disabledEvent(e); } if (e.ctrlKey) {disabledEvent(e); } }, false); function disabledEvent(e){if (e.stopPropagation){e.stopPropagation(); } else if (window.event){window.event.cancelBubble = true; } e.preventDefault(); return false; } }; </script>
-			<?php } ?>
+			<?php }else if ($detail_book['data']['book_info']['book_type'] == 3){ ?>
+            <script type="text/javascript" src="<?php echo base_url('public/plugins/epub/polyfills/babel-polyfill.min.js'); ?>";></script>
+            <script type="text/javascript" src="<?php echo base_url('public/plugins/epub/polyfills/fetch.js'); ?>"></script>
+            <script type="text/javascript" src="<?php echo base_url('public/plugins/epub/polyfills/pep.min.js'); ?>"></script>
+            <script type="text/javascript" src="<?php echo base_url('public/plugins/epub/libs/sanitize-html.min.js'); ?>"></script>
+            <script type="text/javascript" src="<?php echo base_url('public/plugins/epub/libs/jszip.min.js'); ?>"></script>
+            <script type="text/javascript" src="<?php echo base_url('public/plugins/epub/libs/epub.js'); ?>"></script>
+            <script type="text/javascript" src="<?php echo base_url('public/plugins/epub/epub_detail_book.js'); ?>"></script>
+            <script>
+                detailEPUB();
+            </script>
+            <?php }else {}?>
 </body>
 </html>

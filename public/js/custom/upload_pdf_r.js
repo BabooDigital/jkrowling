@@ -14,7 +14,8 @@ $(document).ready(function() {
             d = $('#isi_buku').val(),
             FD = new FormData(),
             bid = $('.pdf_file_nec').attr('pdf_book'),
-            aww = $(this);
+            aww = $(this),
+			type = aww.attr('ftype');
 
 		if (d.length < 150) {
 			swal(
@@ -30,6 +31,7 @@ $(document).ready(function() {
             }
 			FD.append('title_book', t);
 			FD.append('desc_book', d);
+			FD.append('ftype', type);
 			FD.append(csrf_name, csrf_value);
 			$.ajax({
 				url: base_url+'preUploadAct',
@@ -41,11 +43,14 @@ $(document).ready(function() {
 				data: FD,
 			})
 			.done(function(data) {
-				if (data.c == 200) {
-					window.location = base_url+'yourpdf';
+				if (data.c === 200 && type === 'epub') {
+					window.location = base_url+'yourepub';
+				}else if (data.c === 200 && type === 'pdf') {
+                    window.location = base_url+'yourpdf';
 				}else{
 					location.reload();
 				}
+				console.log(data);
 			})
 			.fail(function() {
 				console.log("error");
@@ -53,7 +58,6 @@ $(document).ready(function() {
 			.always(function() {
 			});
 		}
-
 	});
 
 	$('#post-draftprepdf').on('click', function(event) {
@@ -63,7 +67,8 @@ $(document).ready(function() {
             d = $('#isi_buku').val(),
             FD = new FormData(),
             bid = $('.pdf_file_nec').attr('pdf_book'),
-            aww = $(this);
+            aww = $(this),
+        	type = $('#post-prepdf').attr('ftype');
 
 		if (d.length < 150) {
 			swal(
@@ -79,6 +84,7 @@ $(document).ready(function() {
             }
 			FD.append('title_book', t);
 			FD.append('desc_book', d);
+            FD.append('ftype', type);
 			FD.append(csrf_name, csrf_value);
 			$.ajax({
 				url: base_url+'preUploadAct',
@@ -116,13 +122,18 @@ $(document).ready(function() {
         event.preventDefault();
         /* Act on the event */
         var t = $('.pdf_file_nec').attr('pdf_book'),
-            d = $("#file-to-upload")[0].files,
+            d = $("#file-to-upload"),
             p = $(".pdf_file_in").attr('pdf_url'),
+			i_f = $('.pdf_file_nec').attr('pdf_f'),
             FD = new FormData(),
             aww = $(this);
+
+        if (i_f === '0'){ var uri_ = '/epub'; }else{ var uri_ = '/pdf'; }
+
         if (d.length === 1 || p !== "") {
-            FD.append('pdf_file', d[0]);
+            FD.append('pdf_file', d[0].files[0]);
             FD.append('id_book', t);
+            FD.append('is_free', i_f);
             FD.append(csrf_name, csrf_value);
             $.ajax({
                 url: base_url+'uploadAct',
@@ -137,13 +148,13 @@ $(document).ready(function() {
                 beforeSend: function () {
                     swal.showLoading()
                 },
-            })
-                .done(function(data) {
-                    console.log(data);
-                    if (data.c == 403) {
+            }).done(function(data) {
+                    if (data.c !== 200 && i_f === 1) {
                         window.location = base_url+'yourpdf';
-                    }else{
-                        window.location = base_url+'cover/'+t;
+                    }else if (data.c !== 200 && i_f === 0){
+                        window.location = base_url+'yourepub';
+					}else{
+                        window.location = base_url+'cover/'+t+uri_;
                     }
                 })
                 .fail(function() {
@@ -152,7 +163,7 @@ $(document).ready(function() {
                 .always(function() {
                 });
         }else{
-            swal('File .PDF tidak boleh kosong');
+            swal('File .PDF / .ePUB tidak boleh kosong');
         }
     });
 
@@ -160,13 +171,15 @@ $(document).ready(function() {
         event.preventDefault();
         /* Act on the event */
         var t = $('.pdf_file_nec').attr('pdf_book'),
-            d = $("#file-to-upload")[0].files,
+            d = $("#file-to-upload"),
             p = $(".pdf_file_in").attr('pdf_url'),
+            i_f = $('.pdf_file_nec').attr('pdf_f'),
             FD = new FormData(),
             aww = $(this);
         if (d.length === 1 || p !== "") {
-            FD.append('pdf_file', d[0]);
+            FD.append('pdf_file', d[0].files[0]);
             FD.append('id_book', t);
+            FD.append('is_free', i_f);
             FD.append(csrf_name, csrf_value);
             $.ajax({
                 url: base_url+'uploadAct',
@@ -198,7 +211,7 @@ $(document).ready(function() {
                 .always(function() {
                 });
         }else{
-            swal('File .PDF tidak boleh kosong');
+            swal('File .PDF / .ePUB tidak boleh kosong');
         }
     });
 
@@ -273,6 +286,41 @@ function checking_pdf() {
             // $('.pdf_file_nec').attr('pdf_url', url);
 			if (data.d.url_book != "") {
 				showPDF(url);
+			}
+		}
+	})
+	.fail(function() {
+		console.log("error");
+	})
+	.always(function() {
+	});
+}
+
+function checking_epub() {
+	var i = $('.pdf_file_nec').attr('pdf_book');
+	FD = new FormData(),
+	aww = $(this);
+
+	FD.append('id_book', i);
+	FD.append(csrf_name, csrf_value);
+	$.ajax({
+		url: base_url+'checkingPDF',
+		type: 'POST',
+		dataType: 'JSON',
+		cache: false,
+		contentType: false,
+		processData: false,
+		data: FD,
+	})
+	.done(function(data) {
+		var url = data.d.url_book;
+		if (data.c != 200) {
+			window.location = base_url+'yourdraft';
+		}else{
+            $('.pdf_file_in').attr('pdf_url', url);
+            // $('.pdf_file_nec').attr('pdf_url', url);
+			if (data.d.url_book != "") {
+                ePubViewer.doBook(url);
 			}
 		}
 	})

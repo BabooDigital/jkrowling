@@ -69,7 +69,7 @@ class C_book extends MX_Controller
             $datapdf = $this->curl_request->curl_post_auth($this->API.'book/Books/detailPDF/', $data_book, $auth);
         }
 
-        if ($data['data']['data']['book_info']['is_pdf'] != 1) {
+        if ($data['data']['data']['book_info']['book_type'] == 1) {
             foreach ($data['data']['data']['chapter']['paragraphs'] as $book) {
                 $text = strip_tags($book['paragraph_text']);
                  $datasa .= "<div>".ucfirst($book['paragraph_text'])."</div>";
@@ -79,13 +79,13 @@ class C_book extends MX_Controller
 
             $data['detail_book'] = $data['data'];
             $data['page_desc'] = 'Baboo.id - '.substr($st2, 0, 160) .' - '.$data['detail_book']['data']['author']['author_name'];
-            $data['title'] = $data['detail_book']['data']['book_info']['title_book'].' - '.$data['detail_book']['data']['chapter']['chapter_title'];
+            $data['title'] = $data['detail_book']['data']['book_info']['title_book'].' - '.$data['detail_book']['data']['author']['author_name'].' | Baboo';
         }else{
+            $st2 = str_replace('"', '', $datapdf['data']['data']['book_info']['desc']);
             $data['detail_book'] = $datapdf['data'];
-            $data['page_desc'] = 'Baboo.id - '.substr($datapdf['data']['data']['book_info']['desc'], 0, 160).' - '.$data['detail_book']['data']['author']['author_name'];
-            $data['title'] = $datapdf['data']['data']['book_info']['title_book'];
+            $data['page_desc'] = 'Baboo.id - '.substr($st2, 0, 160).' - '.$data['detail_book']['data']['author']['author_name'];
+            $data['title'] = $datapdf['data']['data']['book_info']['title_book'].' - '.$datapdf['data']['data']['author']['author_name'].' | Baboo';
         }
-        $data['keyword_meta'] = $data['detail_book']['data']['book_info']['title_book'].','.$data['detail_book']['data']['chapter']['chapter_title'].','.$data['detail_book']['data']['category']['category_name'];
         $data['author_meta'] = $data['detail_book']['data']['author']['author_name'];
         $auth = $data['bbo_auth'];
 
@@ -137,7 +137,9 @@ class C_book extends MX_Controller
             $data['js'][] = "public/js/umd/popper.min.js";
             $data['js'][] = "public/js/bootstrap.min.js";
             $data['js'][] = "public/js/jquery.mentionsInput.js";
-
+            if ($datapdf['data']['data']['book_info']['book_type'] == 3){
+                $data['css'][] = "public/plugins/epub/epub-style.css";
+            }
             $data['id_chapter'] = $this->input->get("chapter");
 
             $data['id_chapter_asli'] = $data['detailBook']['data']['chapter']['chapter_id'];
@@ -509,6 +511,7 @@ public function token_pay()
     $data = $this->curl_request->curl_post($this->API.'book/Books/detailBook/', $sendData, $auth);
     if ($data['code'] == 200) {
         $array = array(
+            'user_id' => $user['user_id'],
             'book_id' => $id_book,
             'url_redirect' => $url_redirect
         );
@@ -728,4 +731,32 @@ public function getDetailPDFTest()
     }
 }
 
+//Archive Book
+    public function postArchiveBook()
+    {
+        error_reporting(0);
+        $auth = $this->session->userdata('authKey');
+        $book_id = $this->input->post('book_id', TRUE);
+
+        $sendData = array(
+            'book_id' => $book_id
+        );
+
+        $resval = $this->curl_request->curl_post_auth($this->API.'book/Books/archiveBook', $sendData, $auth);
+
+        $psn = $resval['data']['message'];
+        $datas = $resval['data']['data'];
+
+        $auth = $resval['bbo_auth'];
+        $this->session->set_userdata('authKey', $auth);
+        $status = $resval['data']['code'];
+        if ($status == 403) {
+            $this->session->unset_userdata('userData');
+            $this->session->unset_userdata('authKey');
+            $this->session->sess_destroy();
+            redirect('login', 'refresh');
+        } else {
+            echo json_encode(array("code"=>$status));
+        }
+    }
 }

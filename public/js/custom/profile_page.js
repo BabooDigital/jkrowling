@@ -251,11 +251,59 @@ function deleteBook(id_book) {
 }
 function editBook(id_book, type) {
 	swal.showLoading();
-	if (type == true) {
+	if (type == 'pdf') {
     window.location = base_url+'upload_mypdf/'+id_book+'?stat=revision';
-    }else{
+    }else if(type == 'epub') {
+        window.location = base_url+'upload_myepub/'+id_book+'?stat=revision';
+	}else{
     window.location = base_url+'my_book/'+id_book+'?stat=revision';
     }
+}
+function archiveBook(id_book) {
+    var formData = new FormData();
+    formData.append("book_id", id_book);
+    formData.append("csrf_test_name", csrf_value);
+    swal({
+        title: 'Arsipkan Buku',
+		text: 'Perhatian! Kamu akan memindahkan buku ini ke draft buku. Orang lain tidak akan bisa melihat buku ini kecuali kamu.\n' +
+        'Kamu dapat mempublish ulang dengan mengakses buku ini di draft.',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Arsipkan',
+        cancelButtonText: 'Batal'
+    }).then((result) => {
+        if (result.value) {
+        console.log(id_book);
+        $.ajax({
+            url: base_url+'arcpublish',
+            type: 'POST',
+            dataType: 'JSON',
+            contentType: false,
+            processData: false,
+            data:formData,
+            beforeSend: function () {
+                swal({
+                    title: 'Loading...',
+                    onOpen: () => {
+                    swal.showLoading()
+            }
+            });
+            }
+        })
+            .done(function(data) {
+                console.log(data);
+                location.reload();
+            })
+            .fail(function() {
+                console.log("error");
+            })
+            .always(function() {
+            });
+    }else{
+
+    }
+});
 }
 $(document).on("click", ".share-fb", function() {
     var aww = $(this);

@@ -23,10 +23,10 @@
 					if (empty($ad)) {
 					 	echo "<button type='button' class='btn-ok-purp'>OK</button>";
 					 }else{
-					 	echo "<a href='".site_url('cover/'.$ad['b'])."' class='btn-ok-purp pl-50 pr-50 pt-5 pb-5'>OK</a>";
+					 	echo "<a href='".site_url('cover/'.$ad['b'].'/'.$ad['type'])."' class='btn-ok-purp pl-50 pr-50 pt-5 pb-5'>OK</a>";
 					 }
 					?>
-					
+
 				</div>
 			</div>
 		</div>

@@ -217,80 +217,83 @@ if (!empty($query['stat'])) {
 						<input type="checkbox" id="showOpt" data-toggle='collapse' data-target='#priceSet' class="priceCheck">
 						<span class="slider round"></span>
 					</label>
-					<div class="container bg-white collapse" id='priceSet'>
-						<div class="row" style="width: 110%;">
-							<div class="form-group col-4">
-								<label style="color: #fff;">l</label>
-								<select id="inputCurrency" class="form-control">
-									<option selected>Rp</option>
-								</select>
-							</div>
-							<div class="form-group col-8">
-								<label class="text-muted">Harga Buku Lengkap</label>
-								<input type="number" class="form-control" id="inputprice" placeholder="( Contoh : 15000 )">
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-4">
-								<label class="text-muted fs-10">Penulis (<span id="writen1"></span>)</label>
-							</div>
-							<div class="col-8">
-								<label class="text-muted fs-10-right"><b style="display: none;" id="rp2">Rp</b> <b id="writen-earn">-</b></label>
-							</div>
-							<div class="col-4">
-								<label class="text-muted fs-10">Baboo (<span id="baboo1"></span>)</label>
-							</div>
-							<div class="col-8">
-								<label class="text-muted fs-10-right"> <b style="display: none;" id="rp_fee2">Rp</b> <b id="baboo-earn">-</b></label>
-							</div>
-						</div>
-						<hr class="mt-5 mb-5">
-						<div class="row">
-							<div class="col-4">
-								<label class="text-muted fs-10">+ Pph 21 (<span id="fee1"></span>)</label>
-							</div>
-							<div class="col-8">
-								<label class="text-muted fs-10-right"><b style="display: none;" id="rp">Rp</b> <b id="ppn">-</b></label>
-							</div>
-							<div class="col-4">
-								<label class="text-muted fs-10">+ Biaya Transaksi</label>
-							</div>
-							<div class="col-8">
-								<label class="text-muted fs-10-right"> <b style="display: none;" id="rp_fee">Rp</b> <b id="payment_fee">-</b></label>
-							</div>
-						</div>
-						<hr class="mt-5 mb-5">
-						<div class="row">
-							<div class="col-6">
-								<label class="text-muted fs-10" style="font-size: 16px;">Harga Jual Buku</label>
-							</div>
-							<div class="col-6">
-								<label class="text-muted fs-10-right" style="font-size: 16px;"> <b style="display: none;" id="rp_total">Rp</b> <b id="total">0</b></label>
-							</div>
-						</div>
-						<div class="row mt-20" style="width: 110%;">
-							<div class="form-group col-8">
-								<?php if ((bool)$book['book_info']['is_pdf'] == true) {
-									echo "<label class='text-muted'>Mulai Jual Pada Halaman</label>";
-								}else{
-									echo "<label class='text-muted'>Mulai Jual Pada Chapter</label>";
-								} ?>
+                    <?php $uri_v = $this->uri->segment(3); if (empty($uri_v) || $uri_v == 'pdf'){ ?>
+                        <div class="container bg-white collapse" id='priceSet'>
+                            <div class="row" style="width: 110%;">
+                                <div class="form-group col-4">
+                                    <label style="color: #fff;">l</label>
+                                    <select id="inputCurrency" class="form-control">
+                                        <option selected>Rp</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-8">
+                                    <label class="text-muted">Harga Buku Lengkap</label>
+                                    <input type="number" class="form-control" id="inputprice" placeholder="( Contoh : 15000 )">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">
+                                    <label class="text-muted fs-10">Penulis (<span id="writen1"></span>)</label>
+                                </div>
+                                <div class="col-8">
+                                    <label class="text-muted fs-10-right"><b style="display: none;" id="rp2">Rp</b> <b id="writen-earn">-</b></label>
+                                </div>
+                                <div class="col-4">
+                                    <label class="text-muted fs-10">Baboo (<span id="baboo1"></span>)</label>
+                                </div>
+                                <div class="col-8">
+                                    <label class="text-muted fs-10-right"> <b style="display: none;" id="rp_fee2">Rp</b> <b id="baboo-earn">-</b></label>
+                                </div>
+                            </div>
+                            <hr class="mt-5 mb-5">
+                            <div class="row">
+                                <div class="col-4">
+                                    <label class="text-muted fs-10">+ Pph 21 (<span id="fee1"></span>)</label>
+                                </div>
+                                <div class="col-8">
+                                    <label class="text-muted fs-10-right"><b style="display: none;" id="rp">Rp</b> <b id="ppn">-</b></label>
+                                </div>
+                                <div class="col-4">
+                                    <label class="text-muted fs-10">+ Biaya Transaksi</label>
+                                </div>
+                                <div class="col-8">
+                                    <label class="text-muted fs-10-right"> <b style="display: none;" id="rp_fee">Rp</b> <b id="payment_fee">-</b></label>
+                                </div>
+                            </div>
+                            <hr class="mt-5 mb-5">
+                            <div class="row">
+                                <div class="col-6">
+                                    <label class="text-muted fs-10" style="font-size: 16px;">Harga Jual Buku</label>
+                                </div>
+                                <div class="col-6">
+                                    <label class="text-muted fs-10-right" style="font-size: 16px;"> <b style="display: none;" id="rp_total">Rp</b> <b id="total">0</b></label>
+                                </div>
+                            </div>
+                            <div class="row mt-20" style="width: 110%;">
+                                <div class="form-group col-8">
+                                    <?php if ((bool)$book['book_info']['is_pdf'] == true) {
+                                        echo "<label class='text-muted'>Mulai Jual Pada Halaman</label>";
+                                    }else{
+                                        echo "<label class='text-muted'>Mulai Jual Pada Chapter</label>";
+                                    } ?>
 
-								<input type="number" name="start_chapter" class="input-range start_chapter" id="addormin" style="width: 100%;background: none;" readonly>
-								<input type="hidden" class="pdfcheck" value="false">
-							</div>
-							<div class="col-2" style="margin-left: -15px;">
-								<label style="color: #fff;">min</label>
-								<!-- <button type="button" class="btn-transparant value-control addmin" data-action="minus" data-targets="addormin"><img src="<?php echo base_url('public/img/assets/icon_minch_active.png'); ?>" width="35"></button> -->
-								<button class="ml-20 btn-transparant value-control addmin" data-action="minus" data-target="start_chapter" style="cursor: pointer;"><img src="<?php echo base_url('public/img/assets/icon_minch_active.png'); ?>" width="35"></button>
-							</div>
-							<div class="col-2">
-								<label style="color: #fff;">min</label>
-								<!-- <button type="button" class="btn-transparant value-control addplus" data-action="plus" data-targets="addormin"><img src="<?php echo base_url('public/img/assets/icon_plusch_active.png'); ?>" width="35"></button> -->
-								<button class="ml-10 btn-transparant value-control addplus" data-action="plus" data-target="start_chapter" style="cursor: pointer;"><img src="<?php echo base_url('public/img/assets/icon_plusch_active.png'); ?>" width="35"></button>
-							</div>
-						</div>
-					</div>
+                                    <input type="number" name="start_chapter" class="input-range start_chapter" id="addormin" style="width: 100%;background: none;" readonly>
+                                    <input type="hidden" class="pdfcheck" value="false">
+                                </div>
+                                <div class="col-2" style="margin-left: -15px;">
+                                    <label style="color: #fff;">min</label>
+                                    <!-- <button type="button" class="btn-transparant value-control addmin" data-action="minus" data-targets="addormin"><img src="<?php echo base_url('public/img/assets/icon_minch_active.png'); ?>" width="35"></button> -->
+                                    <button class="ml-20 btn-transparant value-control addmin" data-action="minus" data-target="start_chapter" style="cursor: pointer;"><img src="<?php echo base_url('public/img/assets/icon_minch_active.png'); ?>" width="35"></button>
+                                </div>
+                                <div class="col-2">
+                                    <label style="color: #fff;">min</label>
+                                    <!-- <button type="button" class="btn-transparant value-control addplus" data-action="plus" data-targets="addormin"><img src="<?php echo base_url('public/img/assets/icon_plusch_active.png'); ?>" width="35"></button> -->
+                                    <button class="ml-10 btn-transparant value-control addplus" data-action="plus" data-target="start_chapter" style="cursor: pointer;"><img src="<?php echo base_url('public/img/assets/icon_plusch_active.png'); ?>" width="35"></button>
+                                </div>
+                            </div>
+                        </div>
+                    <?php }else if($uri_v == 'epub'){ ?>
+                    <?php } ?>
 				</div>
 			</div>
 			<input type="hidden" name="count_chapter" id="count_chapter" value="" class="w-100" placeholder="Count Chapter" required="">
@@ -309,7 +312,8 @@ if (!empty($query['stat'])) {
 		<footer class="navbar navbar-expand-lg fixed-bottom" style="height:60px;background: #f3f5f7;">
 			<input type="hidden" id="what" value="<?php $pin = $this->session->userdata('hasPIN'); if ($pin == 1) {echo 'true';}else{echo 'false';}  ?>">
 			<div class="container">
-				<button type='button' class='btn-publish' id='publish_book'>Publish</button>
+                <?php if($uri_v == 'epub') { $pub = 'publish_book_epub'; } else { $pub = 'publish_book'; } ?>
+				<button type='button' class='btn-publish' id='<?php echo $pub; ?>'>Publish</button>
 				<button type='button' class='btn-publish' id='setpin_publish' style="display: none;">Publish</button>
 			</div>
 		</footer>

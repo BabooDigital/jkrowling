@@ -207,7 +207,11 @@
                             </div>
                             <div class="mb-20">
                                 <?php if (!$this->uri->segment(2)): ?>
-                                    <a data-toggle="modal" data-target="#edit-profile" href="#" class="btn-edprof fs-12px mr-10">Edit Profile</a> <a href="<?php echo site_url('message'); ?>" class="btn-edprof fs-12px">Message</a>
+                                    <a data-toggle="modal" data-target="#edit-profile" href="#" class="btn-edprof fs-12px mr-10">Edit Profile</a>
+                                    <a href="<?php echo site_url('message'); ?>" class="btn-edprof fs-12px">Message</a>
+                                    <div class="mt-15">
+                                        <a data-toggle="modal" data-target="#view-statistik" href="#" class="btn-edprof fs-12px mr-10">Statistik</a>
+                                    </div>
                                 <?php else: ?>
                                     <a href="javascript:void(0);" class="btn-edprof fs-12px mr-10 message-user" data-usr-msg="<?php echo $userdata["user_id"]; ?>" data-usr-name ="<?php echo $userdata["fullname"]; ?>">Kirim Pesan
                                     </a>
@@ -443,6 +447,8 @@
         </div><!-- modal-content -->
     </div><!-- modal-dialog -->
 </div><!-- modal -->
+
+<?php $this->load->view('include/modal_statistik', $statistik); ?>
 
 <div class="modal fade" id="view-friends" tabindex="-1" role="dialog" aria-labelledby="view-friendsLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
