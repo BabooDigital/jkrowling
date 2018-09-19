@@ -193,15 +193,16 @@
                     <div class="tab info" data-tab="info">
                         <div class="cover-wrapper">
                             <img src="" alt="" class="cover">
+                            <div class="cover_image" src="<?php echo $detail_book['data']['book_info']['cover_url'] ?>"></div>
                         </div>
-                        <h1 class="title"><?php echo $detail_book['data']['book_info']['title_book']; ?></h1>
+                        <h1 class="title dbooktitle"><?php echo $detail_book['data']['book_info']['title_book']; ?></h1>
                         <div class="series-info">
                             <span class="series-name"></span>
                             <span class="divider"> - </span>
                             <span class="series-index"></span>
                         </div>
                         <div class="author"><?php echo $detail_book['data']['author']['author_name']; ?></div>
-                        <div class="description"><?php echo $detail_book['data']['book_info']['desc']; ?></div>
+                        <div class="description desc_pdf"><?php echo $detail_book['data']['book_info']['desc']; ?></div>
                     </div>
                     <div class="tab settings" data-tab="settings">
                         <div class="setting">
@@ -465,7 +466,7 @@
 			var userdata = '<?php echo $this->session->userdata('userData')['user_id']; ?>';
 			var userbook = '<?php echo $detail_book['data']['author']['author_id']; ?>';
             var full_url = '<?php echo (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; ?>';
-			<?php if ((bool)$detail_book['data']['book_info']['is_pdf'] == true) { ?>
+			<?php if ($detail_book['data']['book_info']['book_type'] != 1) { ?>
 				var desc = $('.desc_pdf').text();
 			<?php }else{ ?>
 				var desc = "<?php foreach ($detail_book['data']['chapter']['paragraphs'] as $book) {$text = strip_tags($book['paragraph_text']); $datas .= "<div  class='mb-15 textp' id='detailStyle' data-id-p='".$book['paragraph_id']."'>".ucfirst($book['paragraph_text'])."</div>"; } $st1 = strip_tags($datas); $st2 = str_replace('"', '', $st1); if (strlen($st2) > 200) echo $st2 = substr($st2, 0, 200) . '...'; ?>";
