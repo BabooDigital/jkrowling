@@ -85,18 +85,6 @@ class C_category extends MX_Controller
                     $this->load->view('D_category_content');
                 }
 //            }
-//            echo json_encode(
-//                array(
-//                    'c' => $resval['data']['code'],
-//                    'dat' => array(
-//                        'u' => base64_encode($comm_data['data']['book_info']['url_book']),
-//                        // 'e' => $comm_data['data']['book_info']['epoch_time'],
-//                        // 't' => $comm_data['data']['book_info']['title_book'],
-//                        'ib' => $comm_data['data']['book_info']['is_bought'],
-//                        'ip' => $comm_data['data']['book_info']['is_pdf']
-//                    )
-//                )
-//            );
         }
     }
 }

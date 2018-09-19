@@ -1,17 +1,19 @@
 <?php if (!empty($list_content)) {
-    foreach ($list_content as $s_book) {  ?>
+    foreach ($list_content as $s_book) {
+        $urlToUser = url_title($s_book['author_name'], 'dash', true).'-'.$s_book['author_id'];
+        $urlToBook = url_title($s_book['title_book'], 'dash', true).'-'.$s_book['book_id']; ?>
         <div class="col-md-6">
             <div class="card mb-15" style="padding: 0 10px 10px;">
                 <div class="card-body p-0 p-20">
                     <div class="row mb-15 pb-10" style="border-bottom: 1px rgba(225, 225, 225, 0.28) solid;">
                         <div class="media">
-                            <a href="<?php echo site_url('penulis/'.$s_book['author_id'].'-'.url_title($s_book['author_name'], 'dash', true)); ?>"><img class="d-flex align-self-start mr-10 rounded-circle" src="<?php if($s_book['author_avatar'] == NULL){
+                            <a href="<?php echo $this->baboo_lib->urlToUser($urlToUser); ?>"><img class="d-flex align-self-start mr-10 rounded-circle" src="<?php if($s_book['author_avatar'] == NULL){
                                     echo base_url('public/img/profile/blank-photo.jpg');
                                 }else{
                                     echo $s_book['author_avatar']; } ?>" width="50" height="50" alt="<?php
                                 echo $s_book['author_name']; ?>" onerror="this.onerror=null;this.src='<?php echo base_url('public/img/profile/blank-photo.jpg'); ?>';"></a>
                             <div class="media-body mt-5">
-                                <a data-usr-prf="<?php echo $s_book['author_id']; ?>" data-usr-name="<?php echo url_title($s_book['author_name'], 'dash', true); ?>" href="<?php echo site_url('penulis/'.$s_book['author_id'].'-'.url_title($s_book['author_name'], 'dash', true)); ?>" class=""><h5 class="nametitle2 profile mb-0"><?php
+                                <a data-usr-prf="<?php echo $s_book['author_id']; ?>" data-usr-name="<?php echo url_title($s_book['author_name'], 'dash', true); ?>" href="<?php echo $this->baboo_lib->urlToUser($urlToUser); ?>" class=""><h5 class="nametitle2 profile mb-0"><?php
                                         echo $s_book['author_name']; ?></h5></a>
                                 <small>
                                     <span><?php echo $s_book['publish_date'] ?></span></small>
@@ -23,7 +25,7 @@
                             <div class="media-body">
                                 <input type="hidden" name="iaidubi" id="iaidubi" value="<?php echo $s_book['book_id']; ?>">
                                 <input type="hidden" name="iaiduui" id="iaiduui" value="<?php $dat = $this->session->userdata('userData'); echo $dat['user_id']; ?>">
-                                <a href="<?php echo site_url('penulis/'.$s_book['author_id'].'-'.url_title($s_book['author_name'], 'dash', true).'/'.$s_book['book_id'].'-'.url_title($s_book['title_book'], 'dash', true)); ?>">
+                                <a href="<?php echo $this->baboo_lib->urlToBook($urlToUser, $urlToBook); ?>">
                                     <input type="hidden" name="" class="dbooktitle" value="<?php echo $s_book['title_book']; ?>">
                                     <?php if ($s_book['cover_url'] != null): ?>
                                         <img class="effect-img d-flex align-self-start mr-20 float-left" src="<?php echo ($s_book['cover_url'] != 'Kosong') ? ($s_book['cover_url'] != null ? $s_book['cover_url'] : base_url('public/img/blank_cover.png')) : base_url('public/img/blank_cover.png'); ?>" width="120" height="170" alt="<?php
@@ -31,7 +33,7 @@
                                     <?php endif ?>
                                 </a>
 
-                                <h5 class="card-title nametitle3"><a onclick="showLoading()" href="<?php echo site_url('penulis/'.$s_book['author_id'].'-'.url_title($s_book['author_name'], 'dash', true).'/'.$s_book['book_id'].'-'.url_title($s_book['title_book'], 'dash', true)); ?>" id="book-link<?php
+                                <h5 class="card-title nametitle3"><a onclick="showLoading()" href="<?php echo $this->baboo_lib->urlToBook($urlToUser, $urlToBook); ?>" id="book-link<?php
                                     echo $s_book['book_id']; ?>"><?php
                                         echo $s_book['title_book']; ?></a></h5>
                                 <p class="catbook"><a href="#" class="mr-20"><span class="btn-no-fill"><?php
@@ -40,7 +42,7 @@
                                         echo $s_book['share_count']; ?></span></p>
                                 <p class="text-desc-in text-justify desc<?php
                                 echo $s_book['book_id']; ?>"><?php
-                                    echo $s_book['desc']; ?> <a class="segment" onclick="showLoading()" href="<?php echo site_url('penulis/'.$s_book['author_id'].'-'.url_title($s_book['author_name'], 'dash', true).'/'.$s_book['book_id'].'-'.url_title($s_book['title_book'], 'dash', true)); ?>" class="readmore" style="color:#7554bd;">Lanjut</a>
+                                    echo $s_book['desc']; ?> <a class="segment" onclick="showLoading()" href="<?php echo $this->baboo_lib->urlToBook($urlToUser, $urlToBook); ?>" class="readmore" style="color:#7554bd;">Lanjut</a>
                                 </p>
                             </div>
                         </div>

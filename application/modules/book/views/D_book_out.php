@@ -112,16 +112,16 @@
 							<h1 class="dbooktitle" style="font-size: 25px;"><?php echo $bo_title; ?></h1>
 						</a>
 						<div class="dbooksociallist">
-							<a href="#"><span title="Total <?php echo $view; ?>"><img src="<?php echo base_url('') ?>public/img/assets/icon_view.svg" width="25"> <span class="fsize" id="viewcount"><?php echo $this->thousand_to_k->ConvertToK($view); ?></span></span></a>
+							<a href="#"><span title="Total <?php echo $view; ?>"><img src="<?php echo base_url('') ?>public/img/assets/icon_view.svg" width="25"> <span class="fsize" id="viewcount"><?php echo $this->baboo_lib->ConvertToK($view); ?></span></span></a>
 						</div>
 						<div class="dbooksociallist">
-							<a href="#"><span title="Total <?php echo $comment; ?>"><img src="<?php echo base_url('') ?>public/img/assets/icon_comment.svg" width="14"> <span class="fsize" id="commentcount"><?php echo $this->thousand_to_k->ConvertToK($comment); ?></span></span></a>
+							<a href="#"><span title="Total <?php echo $comment; ?>"><img src="<?php echo base_url('') ?>public/img/assets/icon_comment.svg" width="14"> <span class="fsize" id="commentcount"><?php echo $this->baboo_lib->ConvertToK($comment); ?></span></span></a>
 						</div>
 						<div class="dbooksociallist">
-							<a href="#"><span title="Total <?php echo $like; ?>"><img src="<?php echo base_url('') ?>public/img/assets/icon_love.svg" width="15"> <span class="fsize" id="likecount"><?php echo $this->thousand_to_k->ConvertToK($like); ?></span></span></a>
+							<a href="#"><span title="Total <?php echo $like; ?>"><img src="<?php echo base_url('') ?>public/img/assets/icon_love.svg" width="15"> <span class="fsize" id="likecount"><?php echo $this->baboo_lib->ConvertToK($like); ?></span></span></a>
 						</div>
 						<div class="dbooksociallist">
-							<a href="#"><span title="Total <?php echo $share; ?>"><img src="<?php echo base_url('') ?>public/img/assets/icon_share.svg" width="15"> <span class="fsize" id="sharecount"><?php echo $this->thousand_to_k->ConvertToK($share); ?></span></span></a>
+							<a href="#"><span title="Total <?php echo $share; ?>"><img src="<?php echo base_url('') ?>public/img/assets/icon_share.svg" width="15"> <span class="fsize" id="sharecount"><?php echo $this->baboo_lib->ConvertToK($share); ?></span></span></a>
 						</div>
 					</div>
 				</div>

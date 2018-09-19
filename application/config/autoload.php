@@ -58,7 +58,7 @@ $autoload['packages'] = array();
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array('email','session','user_agent','facebook','form_validation','Curl_Request','google','Curl_Multiple', 'security','thousand_to_k');
+$autoload['libraries'] = array('email','session','user_agent','facebook','form_validation','Curl_Request','google','Curl_Multiple', 'security', 'Baboo_lib');
 
 /*
 | -------------------------------------------------------------------

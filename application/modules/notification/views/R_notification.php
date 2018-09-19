@@ -19,15 +19,16 @@ img {
 		<div class="">
             <?php
                 $sess = $this->session->userdata('userData');
-                $uid_sess = $sess['user_id'];
-                $name_sess = $sess['fullname'];
+                $urlToUserSess = url_title($sess['fullname'], 'dash', true).'-'.$sess['user_id'];
             ?>
 			<?php if (!empty($notification)) { ?>
 			<ul class="list-unstyled mb-70">
 				<?php foreach ($notification as $val_notif){
+                    $urlToUser = url_title($val_notif->notif_user->fullname, 'dash', true).'-'.$val_notif->notif_id;
+                    $urlToBook = url_title($val_notif->notif_book->title_book, 'dash', true).'-'.$val_notif->notif_book->book_id;
 					if ($val_notif->notif_type->notif_type_id == 1){ ?>
 					<li class="media <?php if($val_notif->notif_status == 'unread'){echo "bg-white";}else{ echo "bg-read";} ?> p-15" style="align-items: center;border-bottom: 1px #efefef solid;">
-						<a class="notifclick" href="<?php echo site_url(); ?>penulis/<?php echo $val_notif->notif_user->user_id; ?>-<?php echo url_title($val_notif->notif_user->fullname, 'dash', true); ?>" style="display: flex;" notifid="<?php echo $val_notif->notif_id; ?>"><img alt="Follow you" class="mr-3 mt-10" height="30" src="<?php echo base_url('public/img/assets/notif_follow.png'); ?>" width="30"> <img alt="<?php echo $val_notif->notif_user->fullname; ?>" class="mr-3 rounded-circle" height="50" src="<?php if ($val_notif->notif_user->prof_pict == null) {echo base_url('public/img/profile/blank-photo.jpg'); }else{echo $val_notif->notif_user->prof_pict; } ?>" width="50">
+						<a class="notifclick" href="<?php echo $this->baboo_lib->urlToUser($urlToUser); ?>" style="display: flex;" notifid="<?php echo $val_notif->notif_id; ?>"><img alt="Follow you" class="mr-3 mt-10" height="30" src="<?php echo base_url('public/img/assets/notif_follow.png'); ?>" width="30"> <img alt="<?php echo $val_notif->notif_user->fullname; ?>" class="mr-3 rounded-circle" height="50" src="<?php if ($val_notif->notif_user->prof_pict == null) {echo base_url('public/img/profile/blank-photo.jpg'); }else{echo $val_notif->notif_user->prof_pict; } ?>" width="50">
 							<div class="media-body">
 								<p><b><?php echo $val_notif->notif_user->fullname; ?></b> <span class="text-muted"><?php echo $val_notif->notif_text; ?></span></p>
 								<p class="text-muted" style="font-size: 11px;"><?php echo $val_notif->notif_time; ?></p>
@@ -38,7 +39,7 @@ img {
 						</li>
 						<?php }elseif ($val_notif->notif_type->notif_type_id == 2){ ?>
 						<li class="media <?php if($val_notif->notif_status == 'unread'){echo "bg-white";}else{ echo "bg-read";} ?> p-15" style="align-items: center;border-bottom: 1px #efefef solid;">
-							<a class="notifclick" href="<?php echo site_url('penulis/'.$uid_sess.'-'.url_title($name_sess, 'dash', true).'/'.$val_notif->notif_book->book_id.'-'.url_title($val_notif->notif_book->title_book, 'dash', true)); ?>" style="display: flex;" notifid="<?php echo $val_notif->notif_id; ?>">
+							<a class="notifclick" href="<?php echo $this->baboo_lib->urlToBook($urlToUserSess, $urlToBook); ?>" style="display: flex;" notifid="<?php echo $val_notif->notif_id; ?>">
 								<div class="container">
 									<div class="row mb-10">
 										<img alt="Comment you" class="mr-3 mt-10" height="30" src="<?php echo base_url('public/img/assets/notif_comment.png'); ?>" width="30"> <img alt="<?php echo $val_notif->notif_user->fullname; ?>" class="mr-3 rounded-circle" height="50" src="<?php if ($val_notif->notif_user->prof_pict == null) {echo base_url('public/img/profile/blank-photo.jpg'); }else{echo $val_notif->notif_user->prof_pict; } ?>" width="50">
@@ -57,7 +58,7 @@ img {
 							</li>
 							<?php }elseif ($val_notif->notif_type->notif_type_id == 3){ ?>
 							<li class="media <?php if($val_notif->notif_status == 'unread'){echo "bg-white";}else{ echo "bg-read";} ?> p-15" style="align-items: center;border-bottom: 1px #efefef solid;">
-								<a class="notifclick" href="<?php echo site_url('penulis/'.$uid_sess.'-'.url_title($name_sess, 'dash', true).'/'.$val_notif->notif_book->book_id.'-'.url_title($val_notif->notif_book->title_book, 'dash', true)); ?>" style="display: flex;" notifid="<?php echo $val_notif->notif_id; ?>">
+								<a class="notifclick" href="<?php echo $this->baboo_lib->urlToBook($urlToUserSess, $urlToBook); ?>" style="display: flex;" notifid="<?php echo $val_notif->notif_id; ?>">
 									<div class="container">
 										<div class="row mb-10">
 											<img alt="Like your book" class="mr-3 mt-10" height="30" src="<?php echo base_url('public/img/assets/notif_like.png'); ?>" width="30"> <img alt="<?php echo $val_notif->notif_user->fullname; ?>" class="mr-3 rounded-circle" height="50" src="<?php if ($val_notif->notif_user->prof_pict == null) {echo base_url('public/img/profile/blank-photo.jpg'); }else{echo $val_notif->notif_user->prof_pict; } ?>" width="50">
@@ -78,7 +79,7 @@ img {
 								</li>
 								<?php }elseif ($val_notif->notif_type->notif_type_id == 4){ ?>
 								<li class="media <?php if($val_notif->notif_status == 'unread'){echo "bg-white";}else{ echo "bg-read";} ?> p-15" style="align-items: center;border-bottom: 1px #efefef solid;">
-									<a class="notifclick" href="<?php echo site_url('penulis/'.$uid_sess.'-'.url_title($name_sess, 'dash', true).'/'.$val_notif->notif_book->book_id.'-'.url_title($val_notif->notif_book->title_book, 'dash', true)); ?>" style="display: flex;" notifid="<?php echo $val_notif->notif_id; ?>">
+									<a class="notifclick" href="<?php echo $this->baboo_lib->urlToBook($urlToUserSess, $urlToBook); ?>" style="display: flex;" notifid="<?php echo $val_notif->notif_id; ?>">
 										<!-- <img class="mr-3 rounded-circle" src="<?php echo base_url('public/img/profile/blank-photo.jpg'); ?>" width="50" height="50" alt="<?php echo $val_notif->notif_user->fullname; ?>"> -->
 										<i class="fa fa-bell mr-15" style="position: relative;top: 15px;font-size: 15pt;"></i>
 										<div class="media-body">

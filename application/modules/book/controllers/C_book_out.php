@@ -30,7 +30,7 @@ class C_book_out extends MX_Controller {
         setcookie('VISITOR_INF',$kuki,time()+86400*7,'/');
 
 		$sendData = array(
-			'book_id' => $id[0],
+			'book_id' => end($id),
 			'ip_client' => $kuki,
 			'chapter'=>$chapter_id
 		);

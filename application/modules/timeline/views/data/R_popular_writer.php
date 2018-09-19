@@ -37,12 +37,13 @@
 
 		<div class="container mt-15">
 			<div class="row">
-				<?php error_reporting(0); foreach ($populars as $pop){ ?>
+				<?php error_reporting(0); foreach ($populars as $pop){
+                    $urlToUser = url_title($pop['fullname'], 'dash', true).'-'.$pop['user_id']; ?>
 				<div class='col-6 mb-10 pr-5 pl-5'>
 					<div class='card pt-15 pb-15' style='border: solid 1px #e8ebec;border-radius: 10px !important;'>
 						<div class='text-center'>
 							<img class='rounded-circle' height='50' src='<?php echo $pop['prof_pict']; ?>' alt='<?php echo $pop['fullname']; ?>' style='object-fit:cover;' width='50'>
-							<p class='nametitled'><a href='<?php echo site_url(); ?>penulis/<?php echo $pop['user_id']; ?>-<?php echo url_title($pop['fullname'], 'dash', true); ?>'><?php echo $pop['fullname']; ?></a></p>
+							<p class='nametitled'><a href='<?php echo $this->baboo_lib->urlToUser($urlToUser); ?>'><?php echo $pop['fullname']; ?></a></p>
 						</div>
 						<div class='row'>
 							<div class='col-6 text-center rborder pr-0'>
@@ -50,7 +51,7 @@
 								<h6>Buku</h6>
 							</div>
 							<div class='col-6 text-center pl-0'>
-								<p style='display: inline-flex;'><img src='public/img/icon-tab/followers.svg' width='25'> <span style='font-weight: bold;'><?php echo $this->thousand_to_k->ConvertToK($pop['followers']); ?></span></p>
+								<p style='display: inline-flex;'><img src='public/img/icon-tab/followers.svg' width='25'> <span style='font-weight: bold;'><?php echo $this->baboo_lib->ConvertToK($pop['followers']); ?></span></p>
 								<h6>Teman</h6>
 							</div>
 						</div>

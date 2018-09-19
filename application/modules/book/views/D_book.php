@@ -88,12 +88,13 @@
 				<div class="card-body">
 					<div class="media">
 						<img class="d-flex align-self-start mr-10 rounded-circle" width="50" height="50" src="
-						<?php if($detail_book['data']['author']['avatar'] == NULL){
+						<?php $urlToUser = url_title($detail_book['data']['author']['author_name'], 'dash', true).'-'.$detail_book['data']['author']['author_id'];
+						if($detail_book['data']['author']['avatar'] == NULL){
 							echo base_url('public/img/profile/blank-photo.jpg');
 						}else{
 							echo $detail_book['data']['author']['avatar']; } ?>" alt="<?php echo $detail_book['data']['author']['author_name']; ?>">
 							<div class="media-body">
-								<a data-usr-prf="<?php echo $detail_book['data']['author']['author_id']; ?>" data-usr-name="<?php echo $detail_book['data']['author']['author_name'] ?>" href="<?php echo site_url('penulis/'.$detail_book['data']['author']['author_id'].'-'.url_title($detail_book['data']['author']['author_name'], 'dash', true)) ?>" class=""><span class="card-title nametitle2 profile mt-10 h2"><?php
+								<a data-usr-prf="<?php echo $detail_book['data']['author']['author_id']; ?>" data-usr-name="<?php echo $detail_book['data']['author']['author_name'] ?>" href="<?php echo $this->baboo_lib->urlToUser($urlToUser); ?>" class=""><span class="card-title nametitle2 profile mt-10 h2"><?php
 							echo $detail_book['data']['author']['author_name']; ?></span></a>
 								<!-- <span class="nametitle2 author_name"><?php echo $detail_book['data']['author']['author_name']; ?></span> -->
 								<p><small><span>&nbsp;&nbsp;</span></small></p>
@@ -129,7 +130,7 @@
 			<div class="col-md-1">
 				<div class="card stickymenu" style="background: #F5F8FA;">
 					<div class="text-center">
-						<a onclick="showLoading()" href="<?php echo site_url('penulis/'.$detail_book['data']['author']['author_id'].'-'.url_title($detail_book['data']['author']['author_name'], 'dash', true).'/'.$detail_book['data']['book_info']['book_id'].'-'.url_title($detail_book['data']['book_info']['title_book'], 'dash', true)); ?>/read">
+						<a onclick="showLoading()" href="<?php echo site_url('penulis/'.url_title($detail_book['data']['author']['author_name'], 'dash', true).'-'.$detail_book['data']['author']['author_id'].'/'.url_title($detail_book['data']['book_info']['title_book'], 'dash', true).'-'.$detail_book['data']['book_info']['book_id']); ?>/reading-mode">
 						<div class="p-1">
 							<img src="<?php echo base_url(); ?>public/img/assets/read-mode.svg" width="45">
 							<span class="bold11px">Mode Baca</span>

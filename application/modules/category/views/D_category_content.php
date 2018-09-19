@@ -41,6 +41,7 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="<?php echo site_url(); ?>">Timeline</a></li>
+                <li class="breadcrumb-item"><a href="<?php echo site_url('kategori'); ?>"><?php echo ucwords(str_replace("-"," ",$this->uri->segment(1))); ?></a></li>
                 <li class="breadcrumb-item active" aria-current="page"><?php echo ucwords(str_replace("-"," ",$this->uri->segment(2))); ?></li>
                 <?php if (!empty($this->uri->segment(3))){ echo "<li class='breadcrumb-item active' aria-current='page'>".ucwords(str_replace('-',' ',$this->uri->segment(3)))."</li>"; } else { } ?>
             </ol>

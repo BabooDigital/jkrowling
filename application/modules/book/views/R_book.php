@@ -313,7 +313,7 @@
 			<div class="mt-15">
 				<h1 class="title_book" style="font-weight: bold;color: #141414;font-size: 25px;"><?php echo $detail_book['data']['book_info']['title_book']; ?></h1>
 				<div class="text-center mb-15">
-					<p class="text-muted pcat"><b class="cbookd"><?php echo $detail_book['data']['category']['category_name']; ?></b> &#8226; Dibaca <span class="boview"><?php echo $this->thousand_to_k->ConvertToK($detail_book['data']['book_info']['view_count']); ?></span> kali</p>
+					<p class="text-muted pcat"><b class="cbookd"><?php echo $detail_book['data']['category']['category_name']; ?></b> &#8226; Dibaca <span class="boview"><?php echo $this->baboo_lib->ConvertToK($detail_book['data']['book_info']['view_count']); ?></span> kali</p>
 				</div>
 			</div>
 			<div class="mt-15">
@@ -333,7 +333,7 @@
 						$chid = $ch['chapter_id'];
 						$notfree = '';
 						$imgnotfree = '';
-						$urlnotfree = site_url('penulis/'.$detail_book['data']['author']['author_id'].'-'.url_title($detail_book['data']['author']['author_name'], '-', true).'/'.$uri.'/chapter/'.$ch['chapter_id']);
+						$urlnotfree = site_url('penulis/'.url_title($detail_book['data']['author']['author_name'], '-', true).'-'.$detail_book['data']['author']['author_id'].'/'.$uri.'/chapter/'.$ch['chapter_id']);
 						if ((bool)$ch['chapter_free'] == false && $usDat['user_id'] != $detail_book['data']['author']['author_id'])	 {
 							$notfree = ' text-muted';
 							$imgnotfree = "<img src='".base_url('public/img/assets/icon_sell.png')."' width='20' class='mt-5 float-right'>";
@@ -394,7 +394,7 @@
 						<div class="media mb-20">
 							<img alt="<?php echo $detail_book['data']['author']['author_name']; ?>" class="d-flex align-self-start mr-10 rounded-circle authimg" height="55" src="<?php if($detail_book['data']['author']['avatar'] == NULL){ echo base_url('public/img/profile/blank-photo.jpg'); }else{ echo $detail_book['data']['author']['avatar']; } ?>" width="55">
 							<div class="media-body mt-5">
-								<div style="display: flex;"><span class="nametitle2 mr-10"><a href="<?php echo site_url('penulis/'.$detail_book['data']['author']['author_id'].'-'.url_title($detail_book['data']['author']['author_name'], 'dash', true)); ?>" class="author_name"><?php echo $detail_book['data']['author']['author_name']; ?></a></span>
+								<div style="display: flex;"><span class="nametitle2 mr-10"><a href="<?php echo site_url('penulis/'.url_title($detail_book['data']['author']['author_name'], 'dash', true).'-'.$detail_book['data']['author']['author_id']); ?>" class="author_name"><?php echo $detail_book['data']['author']['author_name']; ?></a></span>
 									<?php if ($sess['user_id'] == $detail_book['data']['author']['author_id']) { ?>
 										<div></div>
 									<?php }else{ ?>
@@ -448,7 +448,7 @@
                             <div class="row" id="paging-chapter">
                             <?php if (!isset($next_ch) && empty($next_ch)) {$next_paging = "display:none;"; }else if (!isset($prev_ch) && empty($prev_ch)) {$prev_paging = "display:none;"; } ?>
                             <div class='col-4'>
-                                <a href="<?php echo site_url('penulis/'.$detail_book['data']['author']['author_id'].'-'.url_title($detail_book['data']['author']['author_name'], '-', true).'/'.$uri.'/chapter/'.$prev_ch); ?>" class='pull-left  btn-next-chapt' style="<?php echo $prev_paging ?>"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
+                                <a href="<?php echo site_url('penulis/'.url_title($detail_book['data']['author']['author_name'], '-', true).'-'.$detail_book['data']['author']['author_id'].'/'.$uri.'/chapter/'.$prev_ch); ?>" class='pull-left  btn-next-chapt' style="<?php echo $prev_paging ?>"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
                             </div>
                             <div class='col-4'>
                                 <span class='w-100'> </span>
@@ -693,16 +693,16 @@
 	<nav class="navbar navbar-expand-lg fixed-bottom baboonav" id="navscrollf" style="height:60px;">
 		<div class="container-fluid">
 			<div>
-				<a class="<?php if($detail_book['data']['book_info']['is_like'] == false){ echo 'like'; }else{ echo 'unlike'; } ?>" data-id="<?php echo $detail_book['data']['book_info']['book_id']; ?>" href="javascript:void(0);" id="loveboo"><img class=" loveicon" src="<?php if($detail_book['data']['book_info']['is_like'] == false){ echo base_url('public/img/assets/icon_love.svg'); }else{ echo base_url('public/img/assets/love_active.svg'); } ?>" width="24"> <span id="likecount"><?php echo $this->thousand_to_k->ConvertToK($detail_book['data']['book_info']['like_count']); ?></span></a>
+				<a class="<?php if($detail_book['data']['book_info']['is_like'] == false){ echo 'like'; }else{ echo 'unlike'; } ?>" data-id="<?php echo $detail_book['data']['book_info']['book_id']; ?>" href="javascript:void(0);" id="loveboo"><img class=" loveicon" src="<?php if($detail_book['data']['book_info']['is_like'] == false){ echo base_url('public/img/assets/icon_love.svg'); }else{ echo base_url('public/img/assets/love_active.svg'); } ?>" width="24"> <span id="likecount"><?php echo $this->baboo_lib->ConvertToK($detail_book['data']['book_info']['like_count']); ?></span></a>
 			</div>
 			<div>
-				<a href="javascript:void(0);" class="comment_"><img class="" src="<?php echo base_url(); ?>public/img/assets/icon_comment.svg" width="22"> <?php echo $this->thousand_to_k->ConvertToK($detail_book['data']['book_info']['book_comment_count']); ?></a>
+				<a href="javascript:void(0);" class="comment_"><img class="" src="<?php echo base_url(); ?>public/img/assets/icon_comment.svg" width="22"> <?php echo $this->baboo_lib->ConvertToK($detail_book['data']['book_info']['book_comment_count']); ?></a>
 			</div>
 			<div>
-				<a class="share-fb-ch" href="javascript:void(0);"><img class="" src="<?php echo base_url(); ?>public/img/assets/icon_share.svg" width="23"> <span class="boshare"><?php echo $this->thousand_to_k->ConvertToK($detail_book['data']['book_info']['share_count']); ?></span></a>
+				<a class="share-fb-ch" href="javascript:void(0);"><img class="" src="<?php echo base_url(); ?>public/img/assets/icon_share.svg" width="23"> <span class="boshare"><?php echo $this->baboo_lib->ConvertToK($detail_book['data']['book_info']['share_count']); ?></span></a>
 			</div>
 			<div>
-				<a href="#"><img class="" src="<?php echo base_url(); ?>public/img/assets/icon_view.svg" width="35"> <?php echo $this->thousand_to_k->ConvertToK($detail_book['data']['book_info']['view_count']); ?></a>
+				<a href="#"><img class="" src="<?php echo base_url(); ?>public/img/assets/icon_view.svg" width="35"> <?php echo $this->baboo_lib->ConvertToK($detail_book['data']['book_info']['view_count']); ?></a>
 			</div>
 			<div>
 				<a class="<?php if($detail_book['data']['book_info']['is_bookmark'] == false){ echo 'bookmark'; }else{ echo 'unbookmark'; } ?>" data-id="<?php echo $detail_book['data']['book_info']['book_id']; ?>" href="javascript:void(0);" id="bookmarkboo"><img class=" bookmarkicon" src="<?php if($detail_book['data']['book_info']['is_bookmark'] == false){ echo base_url('public/img/assets/icon_bookmark.svg'); }else{ echo base_url('public/img/assets/icon_bookmark_active.svg'); } ?>" width="27"></a>
@@ -827,7 +827,7 @@
 		}
 	};
 	var bid = segment.split('-');
-	<?php $aid = explode('-', $this->uri->segment(2)); $bid = explode('-', $this->uri->segment(3)); $cid = $this->uri->segment(5); if (empty($cid)) { $url = BASE_URL_DEEPLINK.'penulis/'.$aid[0].'/'.$bid[0]; }else{ $url = BASE_URL_DEEPLINK.'penulis/'.$aid[0].'/'.$bid[0].'/chapter/'.$cid;} ?>
+	<?php $aid = explode('-', $this->uri->segment(2)); $bid = explode('-', $this->uri->segment(3)); $cid = $this->uri->segment(5); if (empty($cid)) { $url = BASE_URL_DEEPLINK.'penulis/'.end($aid).'/'.end($bid); }else{ $url = BASE_URL_DEEPLINK.'penulis/'.end($aid).'/'.end($bid).'/chapter/'.$cid;} ?>
 	var link = "intent://"+"<?php echo $url; ?>"+"#Intent;scheme=https;package=id.android.baboo;S.doctype=FRA;S.docno=FRA1234;S.browser_fallback_url=market://details?id=id.android.baboo;end";
 	$('.bannerPopUp').html("<div class='popUpBannerBox'> <div class='popUpBannerInner'> <div class='popUpBannerContent'> <a href='"+link+"'><span class='popUpBannerSpan'>Baca di Aplikasi</span></a><a href='#' class='closeButton'>&#120;</a> </div> </div> </div>");
 
@@ -845,9 +845,9 @@
 	});
 
 	<?php if (empty($this->uri->segment(5))) {
-		echo "var link_url = '".BASE_URL_WEB."penulis/".$this->uri->segment(2)."/".$bid[0]."';";
+		echo "var link_url = '".BASE_URL_WEB."penulis/".$this->uri->segment(2)."/".$this->uri->segment(3)."';";
 	}else{
-		echo "var link_url = '".BASE_URL_WEB."penulis/".$this->uri->segment(2)."/".$bid[0]."/chapter/".$cid."';";
+		echo "var link_url = '".BASE_URL_WEB."penulis/".$this->uri->segment(2)."/".$this->uri->segment(3)."/chapter/".$cid."';";
 	} ?>
 	var chapter_title = '<?php echo $detail_book['data']['chapter']['chapter_title']; ?>';
 </script>
