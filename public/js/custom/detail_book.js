@@ -387,7 +387,7 @@ function buyBook() {
 		window.onbeforeunload = function(){
 		  return 'Mohon Selesaikan Pembayaran Anda!';
 		};		$(this).attr("disabled", "disabled");
-		
+
 			$.ajax({
 				url: base_url+'pay_book/token',
 				type: "POST",
@@ -511,7 +511,7 @@ function getmenuChapter() {
 		if (userbook == userdata) {
 			$.each(d, function(d, a) {
 				if (d != 'pay') {
-				c += '<li style="background:transparent;border-bottom: 0.5px #eeeeee;', 0 == d && (c += "background: url("+base_url+"public/img/assets/frame_active.svg) no-repeat; background-position: right; "), c += '" class="list-group-item ', 0 == d && (c += "chapter_active icon_active "), c += '" id="list_chapters"><a href="' + window.location.href + "/ch/" + a.chapter_id + '" class="id_chapter', c += '" id="' + d + '"><span style="font-size: 15px;">' + a.chapter_title + "</span></a>", 0 == d && (c += "</li>");
+				c += '<li style="background:transparent;border-bottom: 0.5px #eeeeee;', 0 == d && (c += "background: url("+base_url+"public/img/assets/frame_active.svg) no-repeat; background-position: right; "), c += '" class="list-group-item ', 0 == d && (c += "chapter_active icon_active "), c += '" id="list_chapters"><a href="' + window.location.href + "/ch/" + a.chapter_id + '" class="id_chapter', c += '" id="' + d + '"><h2 style="font-size: 15px;">' + a.chapter_title + "</h2></a>", 0 == d && (c += "</li>");
 				}
 			});
 		}else{
