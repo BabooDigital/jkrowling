@@ -535,7 +535,7 @@
                                 <span class="series-index"></span>
                             </div>
                             <div class="author"><?php echo $detail_book['data']['author']['author_name']; ?></div>
-                            <div class="description"><?php echo $detail_book['data']['book_info']['desc']; ?></div>
+                            <div class="description desc_pdf"><?php echo $detail_book['data']['book_info']['desc']; ?></div>
                         </div>
                         <div class="tab settings" data-tab="settings">
                             <div class="setting">
