@@ -238,19 +238,19 @@
                             </div>
                             <div class="dbooksociallist">
 									<span data-toggle="tooltip" data-placement="bottom" title="<?php echo $userdata['book_made']; ?> Buku telah dibuat"><img src="<?php echo base_url(); ?>public/img/assets/icon_books.svg" width="27">
-										<p class="mt-5"><?php echo $this->thousand_to_k->ConvertToK($userdata['book_made']); ?></p></span>
+										<p class="mt-5"><?php echo $this->baboo_lib->ConvertToK($userdata['book_made']); ?></p></span>
                             </div>
                             <div class="dbooksociallist">
                                 <a href="#" class="view-friends" data-toggle="modal" data-target="#view-friends" data-placement="bottom" title="<?php echo $userdata['followers']; ?> Teman"><img src="<?php echo base_url(); ?>public/img/assets/icon_follower.svg" width="27">
-                                    <p class="mt-5"><?php echo $this->thousand_to_k->ConvertToK($userdata['followers']); ?></p></a>
+                                    <p class="mt-5"><?php echo $this->baboo_lib->ConvertToK($userdata['followers']); ?></p></a>
                             </div>
                             <div class="dbooksociallist">
 											<span data-toggle="tooltip" data-placement="bottom" title="<?php echo $userdata['ppl_like']; ?> Suka"><img src="<?php echo base_url(); ?>public/img/assets/icon_liker.svg" width="27">
-												<p class="mt-5"><?php echo $this->thousand_to_k->ConvertToK($userdata['ppl_like']); ?></p></span>
+												<p class="mt-5"><?php echo $this->baboo_lib->ConvertToK($userdata['ppl_like']); ?></p></span>
                             </div>
                             <div class="dbooksociallist">
 												<span data-toggle="tooltip" data-placement="bottom" title="<?php echo $userdata['book_sold']; ?> Buku Terjual"><img src="<?php echo base_url(); ?>public/img/assets/icon_soldbook.svg" width="27">
-													<p class="mt-5"><?php echo $this->thousand_to_k->ConvertToK($userdata['book_sold']); ?></p></span>
+													<p class="mt-5"><?php echo $this->baboo_lib->ConvertToK($userdata['book_sold']); ?></p></span>
                             </div><br><br><br>
                         </div>
                     </div>
@@ -341,16 +341,18 @@
                     <div class="card-body p-0">
                         <ul class="list-group list-group-flush">
                             <?php if (!empty($latestread)) {
-                                foreach ($latestread as $l_book) { ?>
+                                foreach ($latestread as $l_book) {
+                                    $urlToUser = url_title($l_book['author_name'], 'dash', true).'-'.$l_book['author_id'];
+                                    $urlToBook = url_title($l_book['title_book'], 'dash', true).'-'.$l_book['book_id']; ?>
                                     <li class="list-group-item">
                                         <div class="media">
                                             <div class="media-left mr-10">
-                                                <a href="<?php if ((bool)$l_book['is_pdf'] == true) { echo site_url('penulis/'.$l_book['author_id'].'-'.url_title($l_book['author_name'], 'dash', true).'/'.$l_book['book_id'].'-'.url_title($l_book['title_book'], 'dash', true).'/pdf'); }else{ echo site_url('penulis/'.$l_book['author_id'].'-'.url_title($l_book['author_name'], 'dash', true).'/'.$l_book['book_id'].'-'.url_title($l_book['title_book'], 'dash', true)); } ?>"><img class="media-object rounded" height="80" src="<?php echo ($l_book['cover_url'] != 'Kosong') ? ($l_book['cover_url'] != null ? $l_book['cover_url'] : base_url('public/img/blank_cover.png')) : base_url('public/img/blank_cover.png'); ?>" onerror="this.onerror=null;this.src='<?php echo base_url('public/img/blank_cover.png'); ?>';" width="60" style="object-fit: cover;"></a>
+                                                <a href="<?php echo $this->baboo_lib->urlToBook($urlToUser, $urlToBook); ?>"><img class="media-object rounded" height="80" src="<?php echo ($l_book['cover_url'] != 'Kosong') ? ($l_book['cover_url'] != null ? $l_book['cover_url'] : base_url('public/img/blank_cover.png')) : base_url('public/img/blank_cover.png'); ?>" onerror="this.onerror=null;this.src='<?php echo base_url('public/img/blank_cover.png'); ?>';" width="60" style="object-fit: cover;"></a>
                                             </div>
                                             <div class="media-body">
                                                 <div>
-                                                    <h4 class="media-heading bold mt-10"><a href="<?php if ((bool)$l_book['is_pdf'] == true) { echo site_url('penulis/'.$l_book['author_id'].'-'.url_title($l_book['author_name'], 'dash', true).'/'.$l_book['book_id'].'-'.url_title($l_book['title_book'], 'dash', true).'/pdf'); }else{ echo site_url('penulis/'.$l_book['author_id'].'-'.url_title($l_book['author_name'], 'dash', true).'/'.$l_book['book_id'].'-'.url_title($l_book['title_book'], 'dash', true)); } ?>"><?php echo $l_book['title_book']; ?></a></h4>
-                                                    <p style="font-size: 10pt;">by <a href="<?php echo site_url('penulis/'.$l_book['author_id'].'-'.url_title($l_book['author_name'], 'dash', true)); ?>"><?php echo $l_book['author_name']; ?></a></p>
+                                                    <h4 class="media-heading bold mt-10"><a href="<?php echo $this->baboo_lib->urlToBook($urlToUser, $urlToBook); ?>"><?php echo $l_book['title_book']; ?></a></h4>
+                                                    <p style="font-size: 10pt;">by <a href="<?php echo $this->baboo_lib->urlToUser($urlToUser); ?>"><?php echo $l_book['author_name']; ?></a></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -461,12 +463,13 @@
             <div class="modal-body">
                 <div class="container">
                     <div class="row">
-                        <?php error_reporting(0); foreach ($followers as $fol){ ?>
+                        <?php error_reporting(0); foreach ($followers as $fol){
+                            $urlToUser = url_title($fol['fullname'], 'dash', true).'-'.$fol['user_id']; ?>
                             <div class='col-6 mb-10 pr-5 pl-5'>
                                 <div class='card pt-15 pb-15' style='border: solid 1px #e8ebec;border-radius: 10px !important;'>
                                     <div class='text-center'>
                                         <img class='rounded-circle' height='50' src='<?php echo $fol['prof_pict']; ?>' alt='<?php echo $fol['fullname']; ?>' style='object-fit:cover;' width='50' onerror="this.onerror=null;this.src='<?php echo base_url('public/img/profile/blank-photo.jpg'); ?>';">
-                                        <p class='nametitled'><a href='<?php echo site_url(); ?>penulis/<?php echo $fol['user_id']; ?>-<?php echo url_title($fol['fullname'], 'dash', true); ?>'><?php echo $fol['fullname']; ?></a></p>
+                                        <p class='nametitled'><a href='<?php echo $this->baboo_lib->urlToUser($urlToUser); ?>'><?php echo $fol['fullname']; ?></a></p>
                                     </div>
                                     <div class='row'>
                                         <div class='col-6 text-center rborder pr-0'>
@@ -474,7 +477,7 @@
                                             <h6>Buku</h6>
                                         </div>
                                         <div class='col-6 text-center pl-0'>
-                                            <p style='display: inline-flex;'><img src='<?php echo base_url("public/img/icon-tab/followers.svg") ?>' width='25'> <span style='font-weight: bold;'><?php echo $this->thousand_to_k->ConvertToK($fol['followers']); ?></span></p>
+                                            <p style='display: inline-flex;'><img src='<?php echo base_url("public/img/icon-tab/followers.svg") ?>' width='25'> <span style='font-weight: bold;'><?php echo $this->baboo_lib->ConvertToK($fol['followers']); ?></span></p>
                                             <h6>Teman</h6>
                                         </div>
                                     </div>

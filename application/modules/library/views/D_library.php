@@ -78,7 +78,9 @@
                     </div>
                     <div class="card-body p-0">
                         <ul class="list-group list-group-flush" id="best_book">
-                            <?php foreach ($best['data'] as $best_book): ?>
+                            <?php foreach ($best['data'] as $best_book):
+                                $urlToUser = url_title($best_book['popular_author_name'], 'dash', true).'-'.$best_book['popular_author_id'];
+                                $urlToBook = url_title($best_book['popular_book_title'], 'dash', true).'-'.$best_book['popular_book_id']; ?>
                                 <?php if ($best_book['popular_cover_url'] == null || $best_book['popular_cover_url'] == "Kosong" || $best_book['popular_cover_url'] == ""): ?>
                                     <?php $cover =  base_url()."public/img/blank_cover.png"; ?>
                                 <?php else: ?>
@@ -87,13 +89,13 @@
                                 <li class="list-group-item">
                                     <div class="media">
                                         <div class="media-left mr-10">
-                                            <a href="<?php if ((bool)$best_book['is_pdf'] == true) { echo site_url('penulis/'.$best_book['popular_author_id'].'-'.url_title($best_book['popular_author_name'], 'dash', true).'/'.$best_book['popular_book_id'].'-'.url_title($best_book['popular_book_title'], 'dash', true)).'/pdf'; }else{ echo site_url('penulis/'.$best_book['popular_author_id'].'-'.url_title($best_book['popular_author_name'], 'dash', true).'/'.$best_book['popular_book_id'].'-'.url_title($best_book['popular_book_title'], 'dash', true)); } ?>"><img class="media-object rounded" src="<?php echo $cover; ?>" width="60" height="80" onerror="this.onerror=null;this.src='./public/img/blank_cover.png';" ></a>
+                                            <a href="<?php echo $this->baboo_lib->urlToBook($urlToUser, $urlToBook); ?>"><img class="media-object rounded" src="<?php echo $cover; ?>" width="60" height="80" onerror="this.onerror=null;this.src='./public/img/blank_cover.png';" ></a>
                                         </div>
                                         <div class="media-body">
                                             <h4 class="media-heading bold mt-10">
-                                                <a href="<?php if ((bool)$best_book['is_pdf'] == true) { echo site_url('penulis/'.$best_book['popular_author_id'].'-'.url_title($best_book['popular_author_name'], 'dash', true).'/'.$best_book['popular_book_id'].'-'.url_title($best_book['popular_book_title'], 'dash', true)).'/pdf'; }else{ echo site_url('penulis/'.$best_book['popular_author_id'].'-'.url_title($best_book['popular_author_name'], 'dash', true).'/'.$best_book['popular_book_id'].'-'.url_title($best_book['popular_book_title'], 'dash', true)); } ?>"><?php echo $best_book['popular_book_title'] ?></a>
+                                                <a href="<?php echo $this->baboo_lib->urlToBook($urlToUser, $urlToBook); ?>"><?php echo $best_book['popular_book_title'] ?></a>
                                             </h4>
-                                            <p style="font-size: 10pt;">by <a class="profile" data-usr-prf="<?php echo $best_book['popular_author_id']; ?>" data-usr-name="<?php echo url_title($best_book['popular_author_name']); ?>" href="<?php echo site_url('penulis/'.$best_book['popular_author_id'].'-'.url_title($best_book['popular_author_name'], 'dash', true)); ?>"><?php echo $best_book['popular_author_name']; ?></a></p>
+                                            <p style="font-size: 10pt;">by <a class="profile" data-usr-prf="<?php echo $best_book['popular_author_id']; ?>" data-usr-name="<?php echo url_title($best_book['popular_author_name']); ?>" href="<?php echo $this->baboo_lib->urlToUser($urlToUser); ?>"><?php echo $best_book['popular_author_name']; ?></a></p>
                                         </div>
                                     </div>
                                 </li>

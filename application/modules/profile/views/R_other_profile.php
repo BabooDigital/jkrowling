@@ -226,19 +226,19 @@
 						<hr>
 						<div class="info">
 							<img src="<?php echo base_url('') ?>public/img/icon-tab/book.svg"><b class="label_info">
-								<?php echo $this->thousand_to_k->ConvertToK($userdata['book_made']); ?></b>
+								<?php echo $this->baboo_lib->ConvertToK($userdata['book_made']); ?></b>
 								<p class="text-muted">Buku</p>
 							</div>
 							<div class="info">
 								<a href="<?php echo site_url('profile/'.$this->uri->segment(2).'/all-friends'); ?>" class="view-friends-other">
 									<img src="<?php echo base_url('') ?>public/img/icon-tab/followers.svg"><b
-									class="label_info"> <?php echo $this->thousand_to_k->ConvertToK($userdata['followers']); ?></b>
+									class="label_info"> <?php echo $this->baboo_lib->ConvertToK($userdata['followers']); ?></b>
 									<p class="text-muted">Teman</p>
 								</a>
 							</div>
 							<div class="info_last">
 								<img src="<?php echo base_url('') ?>public/img/icon-tab/sale.svg"><b
-								class="label_info"><?php echo $this->thousand_to_k->ConvertToK($userdata['book_sold']); ?></b>
+								class="label_info"><?php echo $this->baboo_lib->ConvertToK($userdata['book_sold']); ?></b>
 								<p class="text-muted">Terjual</p>
 							</div>
 							<br>

@@ -19,12 +19,12 @@ class C_book extends MX_Controller
         error_reporting(0);
         $auth = $this->session->userdata('authKey');
         $id_book = $this->uri->segment(3);
-        $idb = explode('-', $id_book, 2);
+        $idb = explode('-', $id_book);
         if (is_array($idb)) ;
 
         // START GET CHAPTER
         $data_book1 = array(
-            'book_id' => $idb[0]
+            'book_id' => end($idb)
         );
         $data_before_chapter = $this->curl_request->curl_post_auth($this->API.'book/Books/allChapters/', $data_book1, $auth);
         $data_before_chapter['chapter'] = $data_before_chapter['data'];
@@ -45,7 +45,7 @@ class C_book extends MX_Controller
             $datas[] = $val['chapter_id'];
         }
         $data_book = array(
-            'book_id' => $idb[0],
+            'book_id' => end($idb),
             'chapter' => $count
         );
 
@@ -57,7 +57,7 @@ class C_book extends MX_Controller
             if ($data['data']['book_info']['is_pdf'] != 1) {
                 if (empty($chaptid)) {
                     if ($this->uri->segment(3))
-                    redirect('penulis/' . $id . '/preview');
+                        redirect('penulis/' . $id . '/preview');
                 }else{
                     redirect('penulis/' . $id . '/preview/chapter/'.$chaptid);
                 }
@@ -96,7 +96,7 @@ class C_book extends MX_Controller
                 $chapter_id = $data_before_chapter['chapter']['data']['chapter'][$this->input->get("chapter")]['chapter_id'];
 
                 $data_book = array(
-                    'book_id' => $idb[0],
+                    'book_id' => end($idb),
                     'chapter' => $chapter_id
                 );
 
@@ -190,11 +190,11 @@ class C_book extends MX_Controller
         $auth = $this->session->userdata('authKey');
         $id_book = $this->uri->segment(3);
         $id_chapter = $this->uri->segment(5);
-        $idb = explode('-', $id_book, 2);
+        $idb = explode('-', $id_book);
         if (is_array($idb)) ;
 
         $data_book = array(
-            'book_id' => $idb[0],
+            'book_id' => end($idb),
             'chapter' => $id_chapter
         );
 
@@ -226,11 +226,11 @@ class C_book extends MX_Controller
         $auth = $this->session->userdata('authKey');
 
         $id_book = $this->input->post("id_book", TRUE);
-        $idb = explode('-', $id_book, 2);
+        $idb = explode('-', $id_book);
         if (is_array($idb)) ;
 
         $data_book = array(
-            'book_id' => $idb[0]
+            'book_id' => end($idb)
         );
 
         $resval = $this->curl_request->curl_post_auth($this->API.'book/Books/allChapters', $data_book, $auth);
@@ -271,11 +271,11 @@ class C_book extends MX_Controller
         error_reporting(0);
         $auth = $this->session->userdata('authKey');
         $id_book = $this->uri->segment(3);
-        $idb = explode('-', $id_book, 2);
+        $idb = explode('-', $id_book);
         if (is_array($idb)) ;
 
         $data_book = array(
-            'book_id' => $idb[0]
+            'book_id' => end($idb)
         );
 
         // START GET CHAPTER
@@ -309,7 +309,7 @@ class C_book extends MX_Controller
                 $chapter_id = $data_before_chapter['chapter']['data']['chapter'][$this->input->get("chapter")]['chapter_id'];
 
                 $data_book = array(
-                    'book_id' => $idb[0],
+                    'book_id' => end($idb),
                     'chapter' => $chapter_id
                 );
 
@@ -413,12 +413,12 @@ class C_book extends MX_Controller
         error_reporting(0);
         $auth = $this->session->userdata('authKey');
         $book_id = $this->input->post('book_id', TRUE);
-        $idb = explode('-', $book_id, 2);
+        $idb = explode('-', $book_id);
         if (is_array($idb)) ;
         $parap_id = $this->input->post('paragraph_id', TRUE);
         if (!empty($book_id)) {
             $sendData = array(
-                'book_id' => $idb[0]
+                'book_id' => end($idb)
             );
         } else {
             $sendData = array(

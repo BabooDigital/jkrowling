@@ -108,13 +108,13 @@ class C_profile extends MX_Controller {
 			$idpage = "";
 		}
 		$iduser = $this->uri->segment(2);
-		$ids = explode('-', $iduser, 2);
+		$ids = explode('-', $iduser);
 		if (is_array($ids)) ;
 
 		if ($id_user != NULL || $id_user != "") {
 			$idfix = $id_user;
 		}else {
-			$idfix = $ids[0];
+			$idfix = end($ids);
 		}
 
 		if($idfix == $id_session){
@@ -425,9 +425,9 @@ class C_profile extends MX_Controller {
 		error_reporting(0);
 		$auth = $this->session->userdata('authKey');
 		$id_user = $this->uri->segment(2);
-        $idb = explode('-', $id_user, 2);
+        $idb = explode('-', $id_user);
         if (is_array($idb)) ;
-		$sendData = array('user_id' => $idb[0]);
+		$sendData = array('user_id' => end($idb));
 
 		$resval = $this->curl_request->curl_post_auth($this->API.'auth/OAuth/listFollowers', $sendData, $auth);
 
