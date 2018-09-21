@@ -5,6 +5,9 @@
 	<meta http-equiv="x-ua-compatible" content="ie=edge" />
 	<meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
 
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="googlebot" content="noindex" />
+
 	<link rel="icon" href="<?php echo base_url(); ?>public/img/favicon.ico" sizes="16x16">
 
     <meta name="robots" content="noindex, nofollow" />

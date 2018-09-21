@@ -286,7 +286,7 @@ $(document).ready(function() {
 		$(this);
 		var a = new FormData;
 		$("#iaidubi").val();
-		var b = $(".dbooktitle").text();
+		var b = $(".book-title_name").text();
 		c = +$("#sharecount").text() + 1;
 		e = $(".cover_image").attr("src");
 		k = $(".author_name").text();
@@ -344,7 +344,7 @@ $(document).ready(function() {
 			console.log("error")
 		}).always(function() {})
 	});
-	progressScroll();
+	// progressScroll();
 	getChapter();
 	getmenuChapter(); - 1 != document.URL.indexOf("#comment") && getCommentBook()
 	buyBook();
@@ -423,47 +423,47 @@ function buyBook() {
 		});
 	});
 }
-function progressScroll() {
-	var d = function() {
-		return $(document).height() - $(window).height()
-	};
-	if ("max" in document.getElementById("progress")) {
-		var c = $("progress");
-		c.attr({
-			max: d()
-		});
-		$(document).on("scroll", function() {
-			c.attr({
-				value: $(window).scrollTop()
-			})
-		});
-		$(window).resize(function() {
-			c.attr({
-				max: d(),
-				value: $(window).scrollTop()
-			})
-		})
-	} else {
-		c = $(".progress-bar");
-		var e = d(),
-		a, b, g = function() {
-			a = $(window).scrollTop();
-			b = a / e * 100;
-			return b += "%"
-		},
-		f = function() {
-			c.css({
-				width: g()
-			})
-		};
-		$(document).on("scroll", f);
-		$(window).on("resize",
-			function() {
-				e = d();
-				f()
-			})
-	}
-}
+// function progressScroll() {
+// 	var d = function() {
+// 		return $(document).height() - $(window).height()
+// 	};
+// 	if ("max" in document.getElementById("progress")) {
+// 		var c = $("progress");
+// 		c.attr({
+// 			max: d()
+// 		});
+// 		$(document).on("scroll", function() {
+// 			c.attr({
+// 				value: $(window).scrollTop()
+// 			})
+// 		});
+// 		$(window).resize(function() {
+// 			c.attr({
+// 				max: d(),
+// 				value: $(window).scrollTop()
+// 			})
+// 		})
+// 	} else {
+// 		c = $(".progress-bar");
+// 		var e = d(),
+// 		a, b, g = function() {
+// 			a = $(window).scrollTop();
+// 			b = a / e * 100;
+// 			return b += "%"
+// 		},
+// 		f = function() {
+// 			c.css({
+// 				width: g()
+// 			})
+// 		};
+// 		$(document).on("scroll", f);
+// 		$(window).on("resize",
+// 			function() {
+// 				e = d();
+// 				f()
+// 			})
+// 	}
+// }
 
 function getChapter() {
 	$(".id_chapter").on("click", function() {
@@ -511,14 +511,14 @@ function getmenuChapter() {
 		if (userbook == userdata) {
 			$.each(d, function(d, a) {
 				if (d != 'pay') {
-				c += '<li style="background:transparent;border-bottom: 0.5px #eeeeee;', 0 == d && (c += "background: url("+base_url+"public/img/assets/frame_active.svg) no-repeat; background-position: right; "), c += '" class="list-group-item ', 0 == d && (c += "chapter_active icon_active "), c += '" id="list_chapters"><a href="' + window.location.href + "/ch/" + a.chapter_id + '" class="id_chapter', c += '" id="' + d + '"><h2 style="font-size: 15px;">' + a.chapter_title + "</h2></a>", 0 == d && (c += "</li>");
+				c += '<li style="background:transparent;border-bottom: 0.5px #eeeeee;', 0 == d && (c += "background: url("+base_url+"public/img/assets/frame_active.svg) no-repeat; background-position: right;background-size:17px; "), c += '" class="list-group-item ', 0 == d && (c += "chapter_active icon_active "), c += '" id="list_chapters"><a href="' + window.location.href + "/ch/" + a.chapter_id + '" class="id_chapter', c += '" id="' + d + '"><h2 style="font-size: 12px;width:90%;">' + a.chapter_title + "</h2></a>", 0 == d && (c += "</li>");
 				}
 			});
 		}else{
 			$.each(d, function(d, a) {
 				if (d != 'pay') {
-				false != a.chapter_free ? (c += '<li style="background:transparent;border-bottom: 0.5px #eeeeee;', 0 == d && (c += "background: url("+base_url+"public/img/assets/frame_active.svg) no-repeat; background-position: right; "), c += '" class="list-group-item ', 0 == d && (c += "chapter_active icon_active "), c += '" id="list_chapters"><a href="' + window.location.href + "/ch/" + a.chapter_id + '" class="id_chapter', c += '" id="' + d + '"><h2 class="h6">' + a.chapter_title + "</h2></a>", 0 == d && (c += "</li>")) : (c += '<li class="list-group-item ',
-					c += "chapter_disabled ", c += '" title="Beli buku ini untuk versi full." style="cursor: not-allowed;border-bottom: 0.5px #eeeeee;"><h2 class="h6 id_chapter', c += '" id="' + d + '">' + a.chapter_title + "</h2><img class='float-right sale-icon' src='"+base_url+"public/img/assets/sale_active.svg'></li>")
+				false != a.chapter_free ? (c += '<li style="background:transparent;border-bottom: 0.5px #eeeeee;', 0 == d && (c += "background: url("+base_url+"public/img/assets/frame_active.svg) no-repeat; background-position: right;background-size:17px; "), c += '" class="list-group-item ', 0 == d && (c += "chapter_active icon_active "), c += '" id="list_chapters"><a href="' + window.location.href + "/ch/" + a.chapter_id + '" class="id_chapter', c += '" id="' + d + '"><h2 style="font-size: 12px;width:90%;">' + a.chapter_title + "</h2></a>", 0 == d && (c += "</li>")) : (c += '<li class="list-group-item ',
+					c += "chapter_disabled ", c += '" title="Beli buku ini untuk versi full." style="cursor: not-allowed;border-bottom: 0.5px #eeeeee;"><h2 style="font-size: 12px;width:90%;" class="id_chapter', c += '" id="' + d + '">' + a.chapter_title + "</h2><img class='float-right sale-icon' src='"+base_url+"public/img/assets/sale_active.svg'></li>")
 				}
 			});
 			if (d.pay.is_free == false) {
@@ -551,7 +551,7 @@ function getmenuChapter() {
 			});
 			var b = $(this).children('.id_chapter').attr("href");
 			$(this).siblings().removeClass("chapter_active").end().addClass("chapter_active");
-			$(this).siblings().removeAttr("style").end().attr("style", "background:transparent;border-bottom: 0.5px #eeeeee;background: url("+base_url+"public/img/assets/frame_active.svg) no-repeat; background-position: right;");
+			$(this).siblings().removeAttr("style").end().attr("style", "background:transparent;border-bottom: 0.5px #eeeeee;background: url("+base_url+"public/img/assets/frame_active.svg) no-repeat; background-position: right;background-size:17px;");
 			getContent(b, a);
 		});
 	}).fail(function() {
