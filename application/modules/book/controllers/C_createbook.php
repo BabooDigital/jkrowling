@@ -31,7 +31,9 @@ class C_createbook extends MX_Controller
 		$data['css'][] = "public/plugins/wysiwyg/src/bootstrap-wysihtml5.css";
 
 		$data['js'][] = "public/plugins/wysiwyg/lib/js/wysihtml5-0.3.0.js";
+        $data['js'][] = "public/js/moment.js";
 		$data['js'][] = "public/js/jquery.min.js";
+        $data['js'][] = "public/js/combodate.js";
 
 		$data['css'][] = "public/plugins/froala/css/froala_editor.css";
 		$data['css'][] = "public/plugins/froala/css/froala_style.css";
@@ -689,7 +691,6 @@ class C_createbook extends MX_Controller
 			$data['js'][] = "public/js/combodate.js";
 			$data['js'][] = "public/js/custom/create_book_r.js";
 			$data['js'][] = "public/js/sweetalert2.all.min.js";
-			$data['js'][] = "public/js/swal-form.js";
 
 			$data['book_id'] = $this->uri->segment(2);
 			$data['category'] = $dataCat['data'];
@@ -1117,6 +1118,7 @@ class C_createbook extends MX_Controller
 		$user    = $this->input->post('user_id', TRUE);
 		$parap   = $this->input->post('book_paragraph', TRUE);
 		$price   = $this->input->post('price');
+        $publishdate   = $this->input->post('publish_date', TRUE);
 		$total_price = $this->input->post('total_price', TRUE);
 		$start_chapter = $this->input->post('chapter_start', TRUE);
 
@@ -1159,33 +1161,27 @@ class C_createbook extends MX_Controller
 		    }else{
 		    	$covers = $cover;
 		    }
-		    if (!empty($price)) {
-		    	$bookData = array(
-		    		'book_id' => $book_id,
-		    		'title_book' => $title,
-		    		'file_cover' => $covers,
-		    		'category' => $cat,
-		    		'status_publish' => 'publish',
-		    		'user_id' => $user,
-		    		'chapter_title' => $chapter,
-		    		'paragraph' => $output,
-		    		'is_paid' => true,
-		    		'price' => $price,
-		    		'total_price' => $total_price,
-		    		'chapter_start' => $start_chapter
-		    	);
-		    }else{
-		    	$bookData = array(
-		    		'book_id' => $book_id,
-		    		'title_book' => $title,
-		    		'file_cover' => $covers,
-		    		'category' => $cat,
-		    		'status_publish' => 'publish',
-		    		'user_id' => $user,
-		    		'chapter_title' => $chapter,
-		    		'paragraph' => $output
-		    	);
+            $bookData = array(
+                'book_id' => $book_id,
+                'title_book' => $title,
+                'file_cover' => $covers,
+                'category' => $cat,
+                'user_id' => $user,
+                'publish_date' => $publishdate,
+                'chapter_title' => $chapter,
+                'paragraph' => $output
+            );
+            if(empty($publishdate)){
+                $bookData['status_publish'] = 'publish';
+            }
+            //check publish date
+            if (!empty($price)) {
+		    	$bookData['is_paid'] = true;
+		    	$bookData['price'] = $price;
+		    	$bookData['total_price'] = $total_price;
+		    	$bookData['chapter_start'] = $start_chapter;
 		    }
+		    //check if empty id books
 		    if (!empty($this->input->post('id_books'))) {
 		    	$bookData['book_id'] = $this->input->post('id_books', TRUE);
 		    }

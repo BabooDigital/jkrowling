@@ -108,7 +108,7 @@
 							</div>
 							<input type="hidden" id="what" value="<?php $pin = $this->session->userdata('hasPIN'); if ($pin == 1) {echo 'true';}else{echo 'false';}  ?>">
 							<div class="container mt-20 pb-5 rangebook" style="background: #DDDDDD;">
-								<div class="col-md-15">
+								<div class="col-12">
 									<div class="form-group">
 										<select class="selectbook select-kurs" id="category_id" name="cat_book">
 											<option value="rp">Rp</option>
@@ -157,7 +157,31 @@
 									</div>
 								</div>
 							</div>
-						</div>
+                            <div class="mt-20" id="schedule_pub">
+                                <div class="form-group">
+                                    <span class="text-left">Jadwalkan Penerbitan?</span>
+                                    <label class="switch float-right">
+                                        <input type="checkbox" id="showOptPub" data-toggle='collapse' data-target='#publishSet' class="publishCheck">
+                                        <span class="slider round"></span>
+                                    </label>
+                                    <div class="container mt-20 pb-5 collapse" id="publishSet" style="background: #DDDDDD;">
+                                        <div class="row">
+                                            <div class="form-group col-12">
+                                                <label class="text-muted">Tentukan Tanggal</label>
+                                                <input type="text" class="form-control" id="date_pub" data-format="YYYY-MM-DD" data-template="YYYY MMMM DD" name="date_pub">
+
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-12">
+                                                <label class="text-muted">Tentukan Waktu</label>
+                                                <input type="text" id="time_pub" data-format="HH:mm" data-template="HH : mm" name="time_pub" value="00:00">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 					</div>
 				</div>
 				<div class="col-md-9" id="pageContent">
@@ -216,6 +240,18 @@
 		<?php echo get_js($js) ?>
 	<?php endif ?>
 	<script>
+        $(function(){
+            $('#date_pub').combodate({
+                firstItem: 'name',
+                minYear: 2018,
+                maxYear: 2020,
+                yearDescending: false
+            });
+            $('#time_pub').combodate({
+                firstItem: 'name', //show 'hour' and 'minute' string at first item of dropdown
+                minuteStep: 1
+            });
+        });
 		$(document).on('click','.tncModal',function(){
 			$('#tnc-modal').modal('show');
 			$(document).on('click', '.btn-acc', function() {
