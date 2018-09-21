@@ -602,10 +602,16 @@ $(document).on('click', '#setpin_publish', function() {
 });
 
 $("#publish_book").click(function() {
-	var formData = new FormData();
-	var pr = $(".input-range").val();
-	var slide = $('#is_free:checkbox:checked');
-    var asd = slide.is(':empty');
+    var formData = new FormData(),
+        pr = $(".input-range").val(),
+        slide = $('#is_free:checkbox:checked'),
+        asd = slide.is(':empty'),
+        slidepub = $('.publishCheck:checkbox:checked'),
+        dsa = slidepub.is(':empty'),
+        dateField = $('#date_pub').val(),
+        timeField = $('#time_pub').val(),
+        pub_date = dateField+' '+timeField+':00';
+
 	if (slide.length == 0 || asd == false) {
 		formData.append("is_paid", false);
 	}else{
@@ -613,6 +619,11 @@ $("#publish_book").click(function() {
 		formData.append("chapter_start", $("#chapter_start").val());
 		formData.append("is_paid", true);
 	}
+    if (slidepub.length == 1 && dateField !== null || dateField !== ""){
+        formData.append("publish_date", pub_date)
+    }else{
+
+    }
 	formData.append("book_id", $("#uri").val());
 	formData.append("file_cover", $("#cover_name").val());
 	formData.append("category", $("#category_id").val());
@@ -671,6 +682,7 @@ $("#publish_book").click(function() {
 			location.reload();
 		})
 		.always(function() {
+
 		});
 	}
 

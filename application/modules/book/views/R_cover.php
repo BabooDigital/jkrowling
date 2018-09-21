@@ -294,6 +294,30 @@ if (!empty($query['stat'])) {
                         </div>
                     <?php }else if($uri_v == 'epub'){ ?>
                     <?php } ?>
+                    <div class="mt-20">
+                        <div class="form-group">
+                            <label style="font-size: 14pt;">Jadwalkan Penerbitan?</label>
+                            <label class="switch float-right">
+                                <input type="checkbox" id="showOptPub" data-toggle='collapse' data-target='#publishSet' class="publishCheck">
+                                <span class="slider round"></span>
+                            </label>
+                            <div class="container bg-white collapse p-10" id='publishSet'>
+                                <div class="row">
+                                    <div class="form-group col-12">
+                                        <label class="text-muted">Tentukan Tanggal</label>
+                                        <input type="text" class="form-control" id="date_pub" data-format="YYYY-MM-DD" data-template="YYYY MMMM DD" name="date_pub">
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-12">
+                                        <label class="text-muted">Tentukan Waktu</label>
+                                        <input type="text" id="time_pub" data-format="HH:mm" data-template="HH : mm" name="time_pub" value="00:00">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 				</div>
 			</div>
 			<input type="hidden" name="count_chapter" id="count_chapter" value="" class="w-100" placeholder="Count Chapter" required="">
@@ -326,7 +350,17 @@ if (!empty($query['stat'])) {
 		<script>
 			$('#inputprice').number(true);
 			check_sell();
-			checkingPIN();
+            checkingPIN();
+            $('#date_pub').combodate({
+                firstItem: 'name',
+                minYear: 2018,
+                maxYear: 2020,
+                yearDescending: false
+            });
+            $('#time_pub').combodate({
+                firstItem: 'name', //show 'hour' and 'minute' string at first item of dropdown
+                minuteStep: 1
+            });
 			$(document).on('click','.tncModal',function(){
 				$('#tnc-modal').modal('show');
 				$(document).on('click', '.btn-acc', function() {
