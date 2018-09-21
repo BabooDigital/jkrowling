@@ -8,8 +8,8 @@ class C_search extends MX_Controller
         parent::__construct();
         $api_url = checkBase();
         $this->API = $api_url;
-        $this->title = "Pencarian - Baboo";
-        $this->p_desc = "Cari buku dan teman mu disini. - Baboo";
+        $this->title = "Pencarian | Baboo";
+        $this->p_desc = "Cari buku dan teman mu disini. | Baboo";
 
         if ($this->session->userdata('isLogin') != 200) {
             redirect('home');

@@ -2,7 +2,7 @@
 	foreach ($home['timeline'] as $s_book) {
         $urlToUser = url_title($s_book['author_name'], 'dash', true).'-'.$s_book['author_id'];
         $urlToBook = url_title($s_book['title_book'], 'dash', true).'-'.$s_book['book_id']; ?>
-	<div class="card mb-15" style="padding: 0 10px 10px;">
+	<div class="card mb-15 card-content_container <?php echo strtolower($s_book['category']); ?>" style="padding: 0 10px 10px;">
 		<div class="card-body pt-10 pr-20 pl-20 pb-0">
 			<div class="row mb-15 pb-10" style="border-bottom: 1px rgba(225, 225, 225, 0.28) solid;">
 				<div class="media">

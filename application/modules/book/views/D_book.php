@@ -28,7 +28,7 @@
 			<?php if (!empty($detail_book)) { ?>
 			<div class="card pb-20" style="background: #F5F8FA;">
 				<div class="text-center pr-30 pl-30 pt-20">
-					<img class="cover_image" src="<?php echo ($detail_book['data']['book_info']['cover_url'] != 'Kosong') ? ($detail_book['data']['book_info']['cover_url'] != null ? $detail_book['data']['book_info']['cover_url'] : base_url('public/img/blank_cover.png')) : base_url('public/img/blank_cover.png'); ?>" width="150" height="200">
+					<img class="cover_image effect-img" src="<?php echo ($detail_book['data']['book_info']['cover_url'] != '') ? ($detail_book['data']['book_info']['cover_url'] != null ? $detail_book['data']['book_info']['cover_url'] : base_url('public/img/blank_cover.png')) : base_url('public/img/blank_cover.png'); ?>" width="150" height="200">
 					<div class="card-body">
 						<input type="hidden" name="iaidubi" id="iaidubi" value="<?php echo $detail_book['data']['book_info']['book_id']; ?>">
 						<h1 class="dbooktitle" style="font-size:25px;"><?php echo $detail_book['data']['book_info']['title_book']; ?></h1>
@@ -207,7 +207,7 @@
                     <div class="tab info" data-tab="info">
                         <div class="cover-wrapper">
                             <img src="" alt="" class="cover">
-                            <div class="cover_image" src="<?php echo $detail_book['data']['book_info']['cover_url'] ?>"></div>
+                            <div class="cover_image effect-img" src="<?php echo $detail_book['data']['book_info']['cover_url'] ?>"></div>
                         </div>
                         <h1 class="title dbooktitle"><?php echo $detail_book['data']['book_info']['title_book']; ?></h1>
                         <div class="series-info">
@@ -433,36 +433,6 @@
 				</div><!-- modal-content -->
 			</div><!-- modal-dialog -->
 		</div><!-- modal -->
-
-		<!-- Modal -->
-		<!-- <div class="modal right fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-
-					<div class="modal-header">
-						<button type="button" class="closes" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						<h4 class="modal-title" id="myModalLabel2"><b>Komentar Paragraf</b></h4>
-					</div>
-
-					<div class="modal-body">
-						<div>
-							<p style="padding: 10px 7px;background: #eceff2;"><span class="fs-14px mr-5">&#8220;</span><span class="fs-14px append_txt"> Paragraph </span><span class="fs-14px ml-5">&#8222;</span></p>
-						</div>
-						<br>
-						<div id="paragraphcomment_list">
-
-						</div>
-						<nav class="navbar navbar-light bg-light fixed-bottom">
-							<span class="w-100 mb-20">
-								<input id="pcomments" placeholder="Tulis sesuatu.." type="text"  class="frmcomment commentform mention" style="width: 80%;height: 45px;">
-								<button class="btn post-comment-parap">Kirim</button>
-							</span>
-						</nav>
-					</div>
-
-				</div>
-			</div>
-		</div> -->
 		<!-- modal -->
 		<?php if ($this->session->flashdata('popup_status_payment')): ?>
 			<div class="modal fade" id="notifpayment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

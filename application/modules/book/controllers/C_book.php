@@ -22,6 +22,13 @@ class C_book extends MX_Controller
         $idb = explode('-', $id_book);
         if (is_array($idb)) ;
 
+        $this->curl_multiple->add_call("writter","get",$this->API.'timeline/Home/bestWriter','',array(CURLOPT_HTTPHEADER => array('baboo-auth-key: '.$auth)));
+        $this->curl_multiple->add_call("book","get",$this->API.'timeline/Timelines/bestBook','',array(CURLOPT_HTTPHEADER => array('baboo-auth-key: '.$auth)));
+        $getData = $this->curl_multiple->execute();
+
+        $best_writter = json_decode($getData['writter']['response'], TRUE);
+        $best_book = json_decode($getData['book']['response'], TRUE);
+
         // START GET CHAPTER
         $data_book1 = array(
             'book_id' => end($idb)
@@ -132,6 +139,9 @@ class C_book extends MX_Controller
                 $data['detailChapter'] = 2;
             }
 
+//            Product
+            $data['best_writter'] = $best_writter['data'];
+            $data['best_book'] = $best_book['data'];
 
             $data['js'][] = "public/js/jquery.min.js";
             $data['js'][] = "public/js/umd/popper.min.js";
@@ -177,7 +187,7 @@ class C_book extends MX_Controller
                     $data['js'][] = "public/js/custom/search.js";
                     $data['js'][] = "public/js/custom/detail_book.js";
                     $this->load->view('include/head', $data);
-                    $this->load->view('D_book');
+                    $this->load->view('product_landing/D_product');
                     count($data_before_chapter['chapter']);
                 }
             }
@@ -757,6 +767,79 @@ public function getDetailPDFTest()
             redirect('login', 'refresh');
         } else {
             echo json_encode(array("code"=>$status));
+        }
+    }
+
+//  View For Landing Product Detail Book
+    public function viewProductDetail()
+    {
+        error_reporting(0);
+        $auth = $this->session->userdata('authKey');
+        $id_book = $this->uri->segment(3);
+        $idb = explode('-', $id_book);
+        if (is_array($idb)) ;
+
+        // START GET CHAPTER
+        $data_book = array(
+            'book_id' => end($idb)
+        );
+
+        $this->curl_multiple->add_call("writter","get",$this->API.'timeline/Home/bestWriter','',array(CURLOPT_HTTPHEADER => array('baboo-auth-key: '.$auth)));
+        $this->curl_multiple->add_call("book","get",$this->API.'timeline/Timelines/bestBook','',array(CURLOPT_HTTPHEADER => array('baboo-auth-key: '.$auth)));
+        $resvals = $this->curl_multiple->execute();
+
+        $book_data = $this->curl_request->curl_post_auth($this->API.'book/Books/detailBook', $data_book, $auth);
+        $comm_data = $this->curl_request->curl_post_auth($this->API.'timeline/Timelines/getComment', $data_book, $auth);
+
+        $best_writter = json_decode($resvals['writter']['response'], TRUE);
+        $best_book = json_decode($resvals['book']['response'], TRUE);
+        $resp_comm = $comm_data['data']['data'];
+        $resp_code = $book_data['data']['code'];
+        $resp_data = $book_data['data']['data'];
+        $auth_code = $book_data['bbo_auth'];
+
+        if (isset($resp_code) && $resp_code == 403) {
+            $this->session->unset_userdata('userData');
+            $this->session->unset_userdata('authKey');
+            $this->session->sess_destroy();
+            redirect('login', 'refresh');
+        }else {
+            $this->session->set_userdata('authKey', $auth_code);
+
+            $data['book'] = $resp_data['book_info'];
+            $data['author'] = $resp_data['author'];
+            $data['category'] = $resp_data['category'];
+            $data['chapter'] = $resp_data['chapter'];
+            $data['comment'] = $resp_comm['comments'];
+            $data['best_writter'] = $best_writter['data'];
+            $data['best_book'] = $best_book['data'];
+            $data['comment'] = $resp_comm['comments'];
+
+            $data['title'] = 'Product Detail | Baboo';
+            $data['css'][] = "public/plugins/holdOn/css/HoldOn.css";
+            $data['css'][] = "public/css/sweetalert2.min.css";
+
+            $data['js'][] = "public/js/jquery.min.js";
+            $data['js'][] = "public/js/umd/popper.min.js";
+            $data['js'][] = "public/js/bootstrap.min.js";
+            $data['js'][] = "public/js/sweetalert2.all.min.js";
+            $data['js'][] = "public/js/custom/notification.js";
+            $data['js'][] = "public/js/custom/transaction.js";
+            $data['js'][] = "public/js/custom/search.js";
+
+            if ($this->agent->mobile())
+            {
+                $this->load->view('include/head', $data);
+                $this->load->view('product_landing/R_product');
+            }else{
+                $data['js'][] = "public/plugins/holdOn/js/HoldOn.js";
+                $data['js'][] = "public/js/jquery.sticky-kit.min.js";
+                $data['js'][] = "public/js/custom/search.js";
+//            $data['js'][] = "public/js/custom/detail_book.js";
+
+                $this->load->view('include/head', $data);
+                $this->load->view('product_landing/D_product');
+            }
         }
     }
 }

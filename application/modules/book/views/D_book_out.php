@@ -125,7 +125,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="pr-20 pl-20 subchapter">
+				<div class="pr-20 pl-20">
                 <br>
                 <div class="mx-auto">
                 	<?php echo $this->load->view('ads/250_side_ad'); ?>

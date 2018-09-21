@@ -38,14 +38,15 @@ class C_category extends MX_Controller
             $category = $subcat;
         }
 
-//        if (!empty($this->input->get("page"))) {
-//            $id = 'count/'.$this->input->get("page");
-//        }else{
-//            $id = "";
-//        }
+        if (!empty($this->input->get("page"))) {
+            $id = $this->input->get("page");
+        }else{
+            $id = "";
+        }
 
         $data_book = array(
-            'category' => strtolower($category)
+            'category' => strtolower($category),
+            'count' => $id
         );
 
         $resval = $this->curl_request->curl_post_auth($this->API.'category/Categories/byCategory', $data_book, $auth);
@@ -85,6 +86,37 @@ class C_category extends MX_Controller
                     $this->load->view('D_category_content');
                 }
 //            }
+        }
+    }
+
+    public function postCategoryName()
+    {
+        error_reporting(0);
+        $auth = $this->session->userdata('authKey');
+        $cat = $this->input->post('category', TRUE);
+
+        $catData = array(
+          'category' => $cat
+        );
+
+        $resval = $this->curl_request->curl_post_auth($this->API.'category/Categories/byCategory', $catData, $auth);
+
+        $auth = $resval['bbo_auth'];
+        $status = $resval['data']['code'];
+        $bookdata = $resval['data']['data'];
+
+        $this->session->set_userdata('authKey', $auth);
+        if ($status == 403) {
+            $this->session->unset_userdata('userData');
+            $this->session->unset_userdata('authKey');
+            $this->session->sess_destroy();
+            redirect('login', 'refresh');
+        } else {
+            $data = array(
+              'c' => $status,
+                'd' => $bookdata['timeline']
+            );
+            echo json_encode($data);
         }
     }
 }

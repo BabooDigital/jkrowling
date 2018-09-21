@@ -11,19 +11,14 @@ function showLoading() {
     })
 }
 
-function loadMoreData(e) {
-    $.ajax({
-        url: "?page=" + e,
-        type: "get",
-        beforeSend: function() {
-            $(".loader").show()
-        }
-    }).done(function(e) {
-        " " != e ? ($(".loader").hide(), $("#post-data").append(e)) : $(".loader").html("No more records found")
-    }).fail(function(e, a, t) {
-        console.log("server not responding...")
-    })
-}
+$(document).on('mouseenter mouseleave','.nav-btn_dropdown',function(e){
+    var _d=$(e.target).closest('.dropdown');
+    _d.addClass('show');
+    setTimeout(function(){
+        _d[_d.is(':hover')?'addClass':'removeClass']('show');
+        $('[data-toggle="dropdown"]', _d).attr('aria-expanded',_d.is(':hover'));
+    },1000);
+});
 
 function convertToSlug(e) {
     return e.toLowerCase().replace(/[^\w ]+/g, "").replace(/ +/g, "-")
@@ -33,23 +28,30 @@ function shareBtn() {
     document.getElementById("dropdownShare").classList.toggle("show")
 }
 $(document).ready(function() {
-    // $(document).on('click', '.profile', function() {
-    //     event.preventDefault();
-    //     var boo = $(this);
-    //     var usr_prf = boo.attr("data-usr-prf");
-    //     var usr_name = boo.attr("data-usr-name");
-    //     var formdata = new FormData();
+    // filterSelection("all");
+
+    // $(document).on('click', '.btn-cat_select', function() {
+    //     var aww = $(this),
+    //         FD = new FormData,
+    //         category = aww.attr('dat-category');
     //
-    //     formdata.append("user_prf", usr_prf);
-    //     formdata.append("csrf_test_name", csrf_value);
-    //     var url = base_url+'profile/'+usr_name;
-    //     var form = $('<form action="' + url + '" method="post">' +
-    //       '<input type="hidden" name="' + csrf_name + '" value="' + csrf_value + '" />' +
-    //       '<input type="hidden" name="usr_prf" value="' + usr_prf + '" />' +
-    //       '<input type="hidden" name="usr_name" value="' + usr_name + '" />' +
-    //       '</form>');
-    //     $(boo).append(form);
-    //     form.submit();
+    //     FD.append('category', category);
+    //     FD.append("csrf_test_name", csrf_value);
+    //     $.ajax({
+    //         url: base_url + "category_get",
+    //         type: "POST",
+    //         dataType: "JSON",
+    //         cache: !1,
+    //         contentType: !1,
+    //         processData: !1,
+    //         data: FD
+    //     }).done(function(data) {
+    //
+    //     }).fail(function() {
+    //
+    //     }).always(function() {
+    //
+    //     });
     // });
     $(document).on('click', '.followprofile', function(event) {
         event.preventDefault();
@@ -122,8 +124,12 @@ $(document).ready(function() {
 
     function loadMoreData(page) {
         loaded = false;
+        var field = 'category';
+        var url = window.location.href;
+        if(url.indexOf('?' + field + '=') != -1) var sendUrl = url + '&page=' + page;
+        else var sendUrl = '?page=' + page;
         $.ajax({
-          url: '?page=' + page,
+          url: sendUrl,
           type: "get",
           beforeSend: function() {
             $('.loader').show();
@@ -236,3 +242,46 @@ $(document).ready(function() {
         }
     }
 };
+
+// function filterSelection(c) {
+//     var x, i;
+//     x = document.getElementsByClassName("card-content_container");
+//     if (c == "all") c = "";
+//     for (i = 0; i < x.length; i++) {
+//         w3RemoveClass(x[i], "showss");
+//         if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "showss");
+//     }
+// }
+//
+// function w3AddClass(element, name) {
+//     var i, arr1, arr2;
+//     arr1 = element.className.split(" ");
+//     arr2 = name.split(" ");
+//     for (i = 0; i < arr2.length; i++) {
+//         if (arr1.indexOf(arr2[i]) == -1) {element.className += " " + arr2[i];}
+//     }
+// }
+//
+// function w3RemoveClass(element, name) {
+//     var i, arr1, arr2;
+//     arr1 = element.className.split(" ");
+//     arr2 = name.split(" ");
+//     for (i = 0; i < arr2.length; i++) {
+//         while (arr1.indexOf(arr2[i]) > -1) {
+//             arr1.splice(arr1.indexOf(arr2[i]), 1);
+//         }
+//     }
+//     element.className = arr1.join(" ");
+// }
+//
+//
+// // Add active class to the current button (highlight it)
+// var btnContainer = document.getElementById("myBtnContainer");
+// var btns = btnContainer.getElementsByClassName("nav-btn_link");
+// for (var i = 0; i < btns.length; i++) {
+//     btns[i].addEventListener("click", function(){
+//         var current = document.getElementsByClassName("active");
+//         current[0].className = current[0].className.replace(" active", "");
+//         this.className += " active";
+//     });
+// }

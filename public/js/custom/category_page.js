@@ -33,5 +33,6 @@ function loadMoreData(page) {
         .fail(function(jqXHR, ajaxOptions, thrownError) {
             console.log('server not responding...');
             loaded = true;
+            location.reload();
         });
 }

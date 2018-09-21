@@ -127,6 +127,8 @@ $route['library/all_lastread'] = 'library/C_library/allLatestRead';
 $route['img_book'] = 'book/C_createbook/img_book';
 $route['video_book'] = 'book/C_createbook/video_book';
 
+$route['product'] = 'book/C_book/viewProductDetail';
+
 $route['penulis/:any/:any'] = 'book/C_book';
 $route['penulis/:any/:any/pdf'] = 'book/C_book';
 $route['penulis/:any/:any/:num'] = 'book/C_book';
@@ -135,6 +137,7 @@ $route['penulis/:any/:any/chapter/:num'] = 'book/C_book';
 $route['getmenuchapter'] = 'book/C_book/chapter';
 $route['getChapter'] = 'book/C_createbook/getChapter';
 $route['penulis/:any/:any/reading-mode'] = 'book/C_book/readingMode';
+//$route['penulis/:any/:any/read'] = 'book/C_book';
 $route['my_book/:num/chapter/:num'] = 'book/C_createbook/mybook';
 $route['my_book/:num'] = 'book/C_createbook';
 $route['create_mybook'] = 'book/C_createbook';
@@ -308,3 +311,7 @@ $route['checkingePub'] = 'book/C_createepub/checkDetailEPUB';
 // Category
 $route['kategori/(:any)'] = 'category/C_category/categoryContent';
 $route['kategori/(:any)/(:any)'] = 'category/C_category/categoryContent';
+$route['category_get'] = 'category/C_category/postCategoryName';
+
+// Writer List Content
+$route['penulis'] = 'writer/C_writer';

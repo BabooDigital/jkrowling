@@ -54,7 +54,30 @@
 
 		<!-- Mid Side -->
 		<div class="col-6 mb-50">
-			<div id="post-data">
+            <div>
+                <ul class="nav nav-pills nav-fill" id="myBtnContainer">
+                    <li class="nav-item">
+                        <a href="<?php echo site_url(); ?>" class="nav-link nav-btn_list nav-btn_link" >Semua</a>
+                    </li>
+                    <li class="nav-item dropdown nav-btn_dropdown">
+                        <a href="?category=agama" class="nav-link nav-btn_list dropdown-toggle nav-btn_link btn-cat_select" dat-category="agama">Agama</a>
+                        <div class="dropdown-menu">
+                            <a href="?category=agama&sub=islam" class="dropdown-item btn-cat_select" dat-category="islam">Islam</a>
+                            <a href="?category=agama&sub=kristen" class="dropdown-item btn-cat_select" dat-category="kristen">Kristen</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown nav-btn_dropdown">
+                        <a href="?category=pendidikan" class="nav-link nav-btn_list dropdown-toggle nav-btn_link btn-cat_select" dat-category="pendidikan">Pendidikan</a>
+                        <div class="dropdown-menu">
+                            <a href="?category=pendidikan&sub=journals" class="dropdown-item btn-cat_select" dat-category="journals">Jurnal</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a href="?category=politik" class="nav-link nav-btn_list nav-btn_link btn-cat_select" >Politik</a>
+                    </li>
+                </ul>
+            </div>
+			<div id="post-data" class="mt-15">
 				<?php $this->load->view('data/D_Timeline_in', $home); ?>
 			</div>
 			<div class="loader" style="display: none;margin-left: auto;margin-right: auto;"></div>
@@ -92,7 +115,7 @@
 									<div class="media-body">
 										<div>
 											<h4 class="media-heading bold mt-10">
-												<a href="<?php echo $this->baboo_lib->urlToBook($urlToUserPop,$urlToBookPop); ?>"><?php echo $best_book['popular_book_title'] ?></a>
+												<a href="<?php echo $this->baboo_lib->urlToBook($urlToUserPop,$urlToBookPop); ?>"><?php echo $best_book['popular_book_title']; ?></a>
 											</h4>
 											<p style="font-size: 10pt;">by <a class="profile" data-usr-prf="<?php echo $best_book['popular_author_id']; ?>" data-usr-name="<?php echo url_title($best_book['popular_author_name']); ?>" href="<?php echo $this->baboo_lib->urlToUser($urlToUserPop); ?>"><?php echo $best_book['popular_author_name']; ?></a></p>
 										</div>
