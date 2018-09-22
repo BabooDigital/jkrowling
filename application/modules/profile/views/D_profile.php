@@ -195,7 +195,7 @@
                             <input type="hidden" id="iaiduui" name="iaiduui" value="<?php $name = $this->session->userdata('userData'); echo $name['user_id']; ?>">
                             <img alt="<?php echo $userdata['name']; ?>" class="rounded-circle p-5" height="100" src="<?php if($userdata['prof_pict'] == NULL){ echo base_url('public/img/profile/blank-photo.jpg'); }else{ echo $userdata['prof_pict']; } ?>" style="border: .5px #7554bd solid;" width="100" onerror="this.onerror=null;this.src='<?php echo base_url('public/img/profile/blank-photo.jpg'); ?>'">
                             <p class="mt-10">
-                                <b><?php echo $userdata['fullname']; ?></b>
+                                <h1 class="font-weight-bold" style="font-size: 20px;"><?php echo $userdata['fullname']; ?></h1>
                             </p>
                             <p style="font-size: 15px;">
                                 <?php echo $userdata['address']; ?>
@@ -277,7 +277,7 @@
                         <div id="publishdata" class="w-100">
                             <?php echo $this->load->view('data/D_profile', $bookdata);
                             if ($bookdata == null || $bookdata == [] || empty($bookdata)) {
-                                echo "<div class='container first_login mt-30'> <div class='row'> <div class='mx-auto' style='width: 85%;'> <div class='text-center mb-10'><img src='".base_url('public/img/icon_draft_blank.png')."' width='190'></div> <div class='text-center'> <h4><b>Tentukan konten yang kamu suka!</b></h4> <p style='font-size: 12pt;'>Belum ada buku yg kamu publish</p> </div> </div> </div> </div>";
+                                echo "<div class='container first_login mt-30'> <div class='row'> <div class='mx-auto' style='width: 85%;'> <div class='text-center mb-10'><img src='".base_url('public/img/icon_draft_blank.png')."' width='190'></div> <div class='text-center'> <span class='h4'><b>Tentukan konten yang kamu suka!</b></span> <p style='font-size: 12pt;'>Belum ada buku yg kamu publish</p> </div> </div> </div> </div>";
                             }
                             ?>
                         </div>
@@ -302,7 +302,7 @@
                                     </div>
                                     <div class="card-body">
                                         <img alt="<?php echo $d_book['title_book']; ?>" class="d-flex align-self-start mr-10 float-left rounded" height="170" src="<?php echo ($d_book['cover_url'] != 'Kosong') ? ($d_book['cover_url'] != null ? $d_book['cover_url'] : base_url('public/img/blank_cover.png')) : base_url('public/img/blank_cover.png'); ?>" width="120">
-                                        <h4 class="card-title nametitle3"><span class="titlebooks"><?php echo $d_book['title_book']; ?></span></h4>
+                                        <span class="h4 card-title nametitle3"><span class="titlebooks"><?php echo $d_book['title_book']; ?></span></span>
                                         <p class="catbook mb-10"><span class="btn-no-fill"><?php echo $d_book['category']; ?></span></p>
                                         <p class="text-desc-in"><?php echo $d_book['desc']; ?></p>
                                     </div>
@@ -326,7 +326,7 @@
 
                 <?php echo $this->load->view('data/D_profile', $bookdata);
                 if ($bookdata == null || $bookdata == [] || empty($bookdata)) {
-                    echo "<div class='container first_login mt-30'> <div class='row'> <div class='mx-auto' style='width: 85%;'> <div class='text-center mb-10'><img src='".base_url('public/img/icon_draft_blank.png')."' width='190'></div> <div class='text-center'> <h4><b>Tentukan konten yang kamu suka!</b></h4> <p style='font-size: 12pt;'>Belum ada buku yg kamu publish</p> </div> </div> </div> </div>";
+                    echo "<div class='container first_login mt-30'> <div class='row'> <div class='mx-auto' style='width: 85%;'> <div class='text-center mb-10'><img src='".base_url('public/img/icon_draft_blank.png')."' width='190'></div> <div class='text-center'> <span class='h4'><b>Tentukan konten yang kamu suka!</b></span> <p style='font-size: 12pt;'>Belum ada buku yg kamu publish</p> </div> </div> </div> </div>";
                 }
                 ?>
             </div><!-- Right Side -->
@@ -351,7 +351,7 @@
                                             </div>
                                             <div class="media-body">
                                                 <div>
-                                                    <h4 class="media-heading bold mt-10"><a href="<?php echo $this->baboo_lib->urlToBook($urlToUser, $urlToBook); ?>"><?php echo $l_book['title_book']; ?></a></h4>
+                                                    <span class="media-heading bold mt-10"><a href="<?php echo $this->baboo_lib->urlToBook($urlToUser, $urlToBook); ?>"><?php echo $l_book['title_book']; ?></a></span>
                                                     <p style="font-size: 10pt;">by <a href="<?php echo $this->baboo_lib->urlToUser($urlToUser); ?>"><?php echo $l_book['author_name']; ?></a></p>
                                                 </div>
                                             </div>
@@ -379,7 +379,7 @@
                     <div class="col-lg-12 col-xl-12">
                         <div class="row">
                             <div class="col-lg-12" style="margin-top:55.1px;">
-                                <p class="text-img-modal"><h3><b>Edit Profile</b></h3></p>
+                                <p class="text-img-modal h3"><b>Edit Profile</b></p>
                                 <br>
                             </div>
                             <div class="col-lg-12">
@@ -456,7 +456,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="view-friendsLabel">Semua Teman <strong>(<?php echo $userdata['followers']; ?>)</strong></h5><button type="button" class="closes" data-dismiss="modal" aria-label="Close">
+                <span class="modal-title h5" id="view-friendsLabel">Semua Teman <strong>(<?php echo $userdata['followers']; ?>)</strong></span><button type="button" class="closes" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -474,11 +474,11 @@
                                     <div class='row'>
                                         <div class='col-6 text-center rborder pr-0'>
                                             <p style='display: inline-flex;'><img src='<?php echo base_url("public/img/icon-tab/book.svg") ?>' width='25'> <span style='font-weight: bold;'><?php echo $fol['book_made']; ?></span></p>
-                                            <h6>Buku</h6>
+                                            <span class="h6">Buku</span>
                                         </div>
                                         <div class='col-6 text-center pl-0'>
                                             <p style='display: inline-flex;'><img src='<?php echo base_url("public/img/icon-tab/followers.svg") ?>' width='25'> <span style='font-weight: bold;'><?php echo $this->baboo_lib->ConvertToK($fol['followers']); ?></span></p>
-                                            <h6>Teman</h6>
+                                            <span class="h6">Teman</span>
                                         </div>
                                     </div>
                                     <div class='row mt-10'>
@@ -555,7 +555,7 @@
             }
             else {
                 $('#msgModal').modal('show').find('.modal-body').load(b);
-                var bahtml = "<button type='button' class='closes btn-clear' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'><i class='fa fa-arrow-left'></i></span></button><h4><b>" + boo.attr("data-usr-name") + "</b></h4>";
+                var bahtml = "<button type='button' class='closes btn-clear' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'><i class='fa fa-arrow-left'></i></span></button><span><b>" + boo.attr("data-usr-name") + "</b></span>";
                 $('#msgModal').find('.modal-header').html(bahtml);
                 $.ajaxSetup({cache: false});
             }

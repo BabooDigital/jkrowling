@@ -12,8 +12,8 @@
                                 echo $s_book['author_avatar']; } ?>" width="50" height="50" alt="<?php
                             echo $s_book['author_name']; ?>"></a>
                         <div class="media-body mt-5">
-                            <a data-usr-prf="<?php echo $s_book['author_id']; ?>" data-usr-name="<?php echo url_title($s_book['author_name'], 'dash', true); ?>" href="<?php echo $this->baboo_lib->urlToUser($urlToUser); ?>" class=""><h5 class="nametitle2 mb-0"><?php
-                                    echo $s_book['author_name']; ?></h5></a>
+                            <a data-usr-prf="<?php echo $s_book['author_id']; ?>" data-usr-name="<?php echo url_title($s_book['author_name'], 'dash', true); ?>" href="<?php echo $this->baboo_lib->urlToUser($urlToUser); ?>" class=""><span class="nametitle2 mb-0 d-block"><?php
+                                    echo $s_book['author_name']; ?></span></a>
                             <small>
                                 <span><?php echo $s_book['publish_date'] ?></span></small>
                         </div>
@@ -44,7 +44,7 @@
                                 <img alt="<?php echo $s_book['title_book']; ?>" class="effect-img d-flex align-self-start mr-20 mb-5 float-left rounded" height="170" src="<?php echo ($s_book['cover_url'] != 'Kosong') ? ($s_book['cover_url'] != null ? $s_book['cover_url'] : base_url('public/img/blank_cover.png')) : base_url('public/img/blank_cover.png'); ?>" width="120" onerror="this.onerror=null;this.src='<?php echo base_url('public/img/blank_cover.png'); ?>';">
                             </a>
                             <span class="card-title nametitle3">
-                                <a href="<?php echo $this->baboo_lib->urlToBook($urlToUser, $urlToBook); ?>"><?php echo $s_book['title_book']; ?></a></span>
+                                <a href="<?php echo $this->baboo_lib->urlToBook($urlToUser, $urlToBook); ?>"><h2  class="font-weight-bold" style="font-size: 25px;"><?php echo $s_book['title_book']; ?></h2></a></span>
                             <input type="hidden" name="" class="dbooktitle" value="<?php echo $s_book['title_book']; ?>">
                             <span class="nametitle2" style="display: none;"><?php echo $s_book['author_name']; ?></span>
                             <p class="catbook mt-10 mb-10"><a class="mr-20" href="#"><span class="btn-no-fill"><?php                                        echo $s_book['category']; ?></span></a> <span class="mr-20"><img src="<?php echo base_url('public/img/assets/icon_view.svg'); ?>"> <?php echo $s_book['view_count']; ?></span>

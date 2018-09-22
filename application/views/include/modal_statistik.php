@@ -2,7 +2,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content" style="height: 100vh;">
             <div class="modal-header">
-                <h5 class="modal-title" id="view-statistikLabel">Statistik</strong></h5><button type="button" class="closes" data-dismiss="modal" aria-label="Close">
+                <span class="modal-title h5" id="view-statistikLabel">Statistik</strong></span><button type="button" class="closes" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
