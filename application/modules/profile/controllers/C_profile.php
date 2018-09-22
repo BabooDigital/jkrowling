@@ -39,6 +39,8 @@ class C_profile extends MX_Controller {
 		$data['followers'] = array_slice($followers_list['data']['data'], 0, 20);
 		$data['statistik'] = $statistik['data'];
 		$data['title'] = "Profile Page - Baboo";
+        $data['page_desc'] = 'Profile Page Penulis | Baboo';
+        $data['author_meta'] = $datas['data']['fullname'];
 		$data['css'][] = "public/css/sweetalert2.min.css";
 
 		$data['js'][] = "public/js/jquery.min.js";
@@ -137,6 +139,8 @@ class C_profile extends MX_Controller {
         $data['followers'] = array_slice($followers_list['data']['data'], 0, 20);
 
 		$data['title'] = "Profile Page - Baboo";
+        $data['page_desc'] = 'Profile Page Penulis | Baboo';
+        $data['author_meta'] = $datas['data']['user_info']['fullname'];
 		$data['js'][] = "public/js/jquery.min.js";
 		$data['js'][] = "public/js/umd/popper.min.js";
 		$data['js'][] = "public/js/bootstrap.min.js";
