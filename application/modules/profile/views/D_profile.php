@@ -300,6 +300,9 @@
                                         <?php }else if ($d_book['status_publish']['status_id'] == 3) { ?>
                                             <span><img src='public/img/assets/icon_clock.svg' width='20'> Terbit <?php echo date("d M Y", strtotime($d_book['publish_date'])); ?></span>
                                             <span class='float-right'><img src="<?php echo base_url('public/img/assets/icon_stat_revisi.png'); ?>"></span>
+                                        <?php }else if ($d_book['status_publish']['status_id'] == 4){ ?>
+                                            <span><img src='public/img/assets/icon_clock.svg' width='20'> <?php echo $d_book['latest_update']; ?></span>
+                                            <span class='float-right'><img src="<?php echo base_url('public/img/assets/icon_stat_draft.png'); ?>"></span>
                                         <?php } ?>
                                     </div>
                                     <div class="card-body">
