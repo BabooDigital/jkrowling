@@ -13,7 +13,9 @@
 </nav>
 <br>
 <br>
-<input accept="application/epub+zip" id="file-to-upload" type="file" style="display: none;">
+<div id="epubsay">
+
+</div>
 <div class="app container">
     <div class="dictionary-wrapper hidden">
         <div class="dictionary"></div>
@@ -247,5 +249,7 @@
     $('[data-toggle="tooltip"]').tooltip();
     checking_epub();
 </script>
+
+<input accept="application/epub+zip" id="file-to-upload" type="file" style="display: none;">
 </body>
 </html>

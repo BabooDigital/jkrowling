@@ -196,6 +196,8 @@ class C_createpdf extends MX_Controller {
         $book_id = $this->input->post('id_book', TRUE);
         $is_free = $this->input->post('is_free', TRUE);
         $pdffile = $_FILES["pdf_file"]["tmp_name"];
+        $files = $_FILES["pdf_file"]["name"];
+        $ext = pathinfo($files, PATHINFO_EXTENSION);
 
         if (function_exists('curl_file_create')) {
 			$cFile = curl_file_create($pdffile, $_FILES["pdf_file"]["type"],$_FILES["pdf_file"]["name"]);
@@ -205,17 +207,17 @@ class C_createpdf extends MX_Controller {
 
 		if (empty($pdffile)) {
 			$data_book = array(
-				'book_id' => $book_id,
-                'is_free' => $is_free
+				'book_id' => $book_id
 			);
 		}else{
 			$data_book = array(
 				'book_id' => $book_id,
-				'pdf_book' => $cFile,
-                'is_free' => $is_free
+				'pdf_book' => $cFile
 			);
 		}
-
+		if ($ext == 'epub'){
+            $data_book['is_free'] = $is_free;
+        }
         $resval = $this->curl_request->curl_post_auth($this->API.'book/Books/uploadPDF', $data_book, $auth);
 
         $data = $resval['data'];

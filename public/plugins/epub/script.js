@@ -185,7 +185,8 @@ App.prototype.doOpenBook = function () {
             reader.readAsArrayBuffer(fi.files[0]);
         }
     };
-    document.body.appendChild(fi);
+    document.getElementById('epubsay').appendChild(fi);
+    // document.body.appendChild(fi);
     fi.click();
 };
 
