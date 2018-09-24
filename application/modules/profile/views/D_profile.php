@@ -285,10 +285,12 @@
                     <div class="tab-pane fade" id="pills-draft" role="tabpanel" aria-labelledby="pills-draft-tab">
                         <?php if (!empty($draftdata)) {
                             foreach ($draftdata as $d_book) {
-                                if ((bool)$d_book['is_pdf'] == true) {
+                                if ($d_book['book_type'] == 2) {
                                     $edit_url = site_url('upload_mypdf/'.$d_book['book_id'].'?stat=draft');
-                                }else{
+                                }else if ($d_book['book_type'] == 1){
                                     $edit_url = site_url('my_book/'.$d_book['book_id'].'?stat=draft');
+                                }else if ($d_book['book_type'] == 3){
+                                    $edit_url = site_url('upload_myepub/'.$d_book['book_id'].'?stat=draft');
                                 } ?>
                                 <div class="card mb-20">
                                     <div class="card-header bg-white">

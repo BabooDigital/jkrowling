@@ -19,6 +19,29 @@ class C_createbook extends MX_Controller
 
 	public function index()
 	{
+        error_reporting(0);
+        $auth = $this->session->userdata('authKey');
+        $book_id = $this->uri->segment(2);
+
+        $query = $this->input->get();
+        if (!empty($query['stat'])){
+            $bookData = array(
+                'book_id' => $book_id
+            );
+            $datas = $this->curl_request->curl_post($this->API.'book/Books/allChapters/', $bookData, $auth);
+
+            $bookData2 = array(
+                'book_id' => $book_id,
+                'chapter' => $datas['data']['chapter'][0]['chapter_id']
+            );
+            $datas2 = $this->curl_request->curl_post($this->API.'book/Books/editBook', $bookData2, $auth);
+
+            $data['book_title'] = $datas2['data']['book_info']['title_book'];
+            $data['chapter_id'] = $datas2['data']['chapter']['chapter_id'];
+            $data['chapter_title'] = $datas2['data']['chapter']['chapter_title'];
+            $data['chapter_desc'] = $datas2['data']['chapter']['paragraphs'];
+        }
+
 		$data['title'] = "Buat Sebuah Cerita - Baboo";
 		$data['page_desc'] = "Tentukan Judul Cerita Mu - Baboo";
 
@@ -1106,6 +1129,10 @@ class C_createbook extends MX_Controller
 		$bData = $this->session->userdata('dataBook');
 
 		$title = $this->input->post('title_book', TRUE);
+        $chapter_id = $this->input->post('chapter_id', TRUE);
+        if (!empty($chapter_id)){
+            $chapter_id = $this->input->post('chapter_id', TRUE);
+        }
 		// $chapter = $this->input->post('chapter_title');
 		if (!empty($bData)) {
 			$chapter = $this->input->post('title_chapter', TRUE);
@@ -1171,6 +1198,9 @@ class C_createbook extends MX_Controller
                 'chapter_title' => $chapter,
                 'paragraph' => $output
             );
+            if(!empty($chapter_id)){
+                $bookData['chapter_id'] = $chapter_id;
+            }
             if(empty($publishdate)){
                 $bookData['status_publish'] = 'publish';
             }
@@ -1487,7 +1517,9 @@ class C_createbook extends MX_Controller
 		$data['css'][] = "public/css/baboo.css";
 		$data['css'][] = "public/plugins/holdOn/css/HoldOn.css";
 
-		$data['js'][] = "public/js/jquery.min.js";
+        $data['js'][] = "public/js/moment.js";
+        $data['js'][] = "public/js/jquery.min.js";
+        $data['js'][] = "public/js/combodate.js";
 
 		$data['css'][] = "public/plugins/froala/css/froala_editor.css";
 		$data['css'][] = "public/plugins/froala/css/froala_style.css";

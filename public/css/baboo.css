@@ -1280,6 +1280,17 @@ select.form-control:focus {
 .tulisjudul > input[type=text]:focus {
     outline: none;
 }
+.tulisjuduls > input[type=text] {
+    background: transparent;
+    border: none;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: bold;
+    font-size: 32px;
+    color: #656565;
+}
+.tulisjuduls > input[type=text]:focus {
+    outline: none;
+}
 
 .note-editor.note-frame .note-editing-area .note-editable {
     background: none !important;
