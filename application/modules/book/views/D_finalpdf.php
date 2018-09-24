@@ -480,15 +480,19 @@ if (!empty($query['stat'])) {
         var pin = $('#what').val();
         if (sellbtn.length == 0 && pin == 'false') {
             $('#publish_book').show();
+            $('#publish_book_epub').show();
             $('#setpin_publish').hide();
         }else if (sellbtn.length == 1 && pin == 'true'){
             $('#publish_book').show();
+            $('#publish_book_epub').show();
             $('#setpin_publish').hide();
         }else if (sellbtn.length == 0 && pin == 'true'){
             $('#publish_book').show();
+            $('#publish_book_epub').show();
             $('#setpin_publish').hide();
         }else{
             $('#publish_book').hide();
+            $('#publish_book_epub').hide();
             $('#setpin_publish').show();
         }
     });
