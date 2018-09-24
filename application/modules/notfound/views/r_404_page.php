@@ -11,6 +11,9 @@
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="mobile-web-app-capable" content="yes">
 
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="googlebot" content="noindex" />
+
 	<link rel="icon" href="<?php echo base_url(); ?>public/img/favicon.ico" sizes="16x16">
 
 	<title><?php echo $title; ?></title>
@@ -37,7 +40,7 @@ body, html {
 	background: #7554bd;color: #fff;border: none;border-radius: 35px;width: 70%;height: 40px;box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.32);
 }
 .bg {
-	height: 100%; 
+	height: 100%;
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;

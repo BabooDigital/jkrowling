@@ -624,6 +624,9 @@ $("#publish_book").click(function() {
     }else{
 
     }
+    if ($("#ch_id").val() !== "" || $("#ch_id").val() !== null){
+        formData.append("chapter_id", $("#ch_id").val());
+	}
 	formData.append("book_id", $("#uri").val());
 	formData.append("file_cover", $("#cover_name").val());
 	formData.append("category", $("#category_id").val());
@@ -687,3 +690,48 @@ $("#publish_book").click(function() {
 	}
 
 });
+
+$("#updateChapter").click(function() {
+    HoldOn.open({
+        theme: "sk-bounce",
+        message: "Tunggu sebentar."
+    });
+    var a = new FormData;
+    a.append("title_book", $(".title_book_txt").text());
+    a.append("title_chapter", $("#title_chapter").val());
+    a.append("cover_name", $("#cover_name").val());
+    a.append("category_id", $("#category_id").val());
+    a.append("tag_book", $("#tag_book").val());
+    a.append("book_paragraph", $("#book_paragraph").val());
+    a.append("csrf_test_name", csrf_value);
+    if (null != $("#book_id").val()) {
+        a.append("book_id", $("#uri").val());
+    } else console.log("tidak");
+    null != $("#ch_id").val() ? a.append("chapter_id", $("#ch_id").val()) : console.log("tidak");
+
+
+    $.ajax({
+        url: base_url + "updatechapter",
+        dataType: "json",
+        cache: !1,
+        type: "POST",
+        contentType: !1,
+        processData: !1,
+        data: a
+    }).done(function(data) {
+        HoldOn.close();
+        $("#success").show().delay(5E3).queue(function(a) {
+            $(this).hide();
+            a()
+        });
+    	if (data.code === 200){
+            location.reload()
+        }else{
+    		window.location = 'profile';
+		}
+    }).fail(function() {
+        console.log("error")
+    }).always(function() {
+        console.log("complete")
+    })
+})

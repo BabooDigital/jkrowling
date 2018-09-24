@@ -12,7 +12,7 @@
 </head>
 <body>
 	<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MVW4JD3"
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=<?php echo TAGMNG_GID; ?>"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 	<div class="container-fluid">
@@ -216,7 +216,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 							<span style="font-size: 15px;font-weight: 600;text-align: left;">Buat Cover Buku</span>
 						</div>
 						<div class="col-md-4">
-							<a class="mr-30 backbtn" href="#" style="font-size: 15px;font-weight: bold;">Batal</a> 
+							<a class="mr-30 backbtn" href="#" style="font-size: 15px;font-weight: bold;">Batal</a>
 							 <input class="btnbeliskrg" id="done-cover" type="button" value="Done">
 						</div>
 					</div>
@@ -229,7 +229,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 										<span class="txt-h3" id="parenttxttitle"><span id="textcolor"><span id="texttitle"><span id="txtfontfam"></span></span></span></span>
 									</div>
 									<div class="baboo-cover"></div>
-									
+
 								</div><br>
 							</div>
 						</div>

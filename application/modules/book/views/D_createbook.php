@@ -40,7 +40,7 @@
 </script>
 <body>
 	<!-- Google Tag Manager (noscript) -->
-	<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MVW4JD3"
+	<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=<?php echo TAGMNG_GID; ?>"
 		height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		<!-- End Google Tag Manager (noscript) -->
 	<?php $attr = array('id' => 'form_book');
@@ -80,7 +80,14 @@
 								<div id="btn_chapter">
 									<div class="loads-css ng-scope"><div style="width:20px;height:20px" class="lds-flickr"><div></div><div></div><div></div></div></div>
 								</div>
-								<input type="button" class="btn w-100 mb-10 chapterdata0 addsubchapt" value="Tambah Sub Cerita" />
+                                <?php $query = $this->input->get();
+                                $uri_parts = explode('?', $_SERVER['REQUEST_URI'], 2);
+                                $url_no = 'http://' . $_SERVER['HTTP_HOST'] . $uri_parts[0];
+                                if (!empty($query['stat'])){ ?>
+                                    <a href="<?php echo $url_no; ?>" class="btn w-100 mb-10 chapterdata0" style="cursor: pointer;padding: 12px 0;border-radius: 4px;border: dashed 2px #dde4e9;">Tambah Sub Cerita</a>
+                                <?php }else{ ?>
+                                    <input type="button" class="btn w-100 mb-10 chapterdata0 addsubchapt" value="Tambah Sub Cerita" />
+                                <?php } ?>
 							</div>
 							<div class="mt-5">
 								<div class="form-group">
@@ -157,30 +164,30 @@
 									</div>
 								</div>
 							</div>
-                            <div class="mt-20" id="schedule_pub">
-                                <div class="form-group">
-                                    <span class="text-left">Jadwalkan Penerbitan?</span>
-                                    <label class="switch float-right">
-                                        <input type="checkbox" id="showOptPub" data-toggle='collapse' data-target='#publishSet' class="publishCheck">
-                                        <span class="slider round"></span>
-                                    </label>
-                                    <div class="container mt-20 pb-5 collapse" id="publishSet" style="background: #DDDDDD;">
-                                        <div class="row">
-                                            <div class="form-group col-12">
-                                                <label class="text-muted">Tentukan Tanggal</label>
-                                                <input type="text" class="form-control" id="date_pub" data-format="YYYY-MM-DD" data-template="YYYY MMMM DD" name="date_pub">
-
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="form-group col-12">
-                                                <label class="text-muted">Tentukan Waktu</label>
-                                                <input type="text" id="time_pub" data-format="HH:mm" data-template="HH : mm" name="time_pub" value="00:00">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+<!--                            <div class="mt-20" id="schedule_pub">-->
+<!--                                <div class="form-group">-->
+<!--                                    <span class="text-left">Jadwalkan Penerbitan?</span>-->
+<!--                                    <label class="switch float-right">-->
+<!--                                        <input type="checkbox" id="showOptPub" data-toggle='collapse' data-target='#publishSet' class="publishCheck">-->
+<!--                                        <span class="slider round"></span>-->
+<!--                                    </label>-->
+<!--                                    <div class="container mt-20 pb-5 collapse" id="publishSet" style="background: #DDDDDD;">-->
+<!--                                        <div class="row">-->
+<!--                                            <div class="form-group col-12">-->
+<!--                                                <label class="text-muted">Tentukan Tanggal</label>-->
+<!--                                                <input type="text" class="form-control" id="date_pub" data-format="YYYY-MM-DD" data-template="YYYY MMMM DD" name="date_pub">-->
+<!---->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <div class="row">-->
+<!--                                            <div class="form-group col-12">-->
+<!--                                                <label class="text-muted">Tentukan Waktu</label>-->
+<!--                                                <input type="text" id="time_pub" data-format="HH:mm" data-template="HH : mm" name="time_pub" value="00:00">-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
                         </div>
 					</div>
 				</div>
@@ -203,19 +210,38 @@
 						</div>
 
 						<div>
-							<div class="mt-30 tulisjudul">
+                            <?php
+                            echo "<input type='hidden' id='ch_id' value='".$chapter_id."'>";
+                            $query = $this->input->get();
+                            if (!empty($query['stat'])){
+                                echo "<input type='hidden' id='title_book' value='".$book_title."'>";
+                                $desc = "";
+                                foreach ($chapter_desc as $book) {
+                                    $desc .= $book['paragraph_text'];
+                                }
+                                $btn_save = "<input type='button' class='mr-30' id='updateChapter' style='font-size: 18px; font-weight: bold; background: #7554bd; border: 0px; cursor: pointer; margin-top: 20px; color: #fff; border-radius: 35px; padding: 10px 20px;' value='Update Chapter' />";
+                                ?>
+                                <div class="mt-30 tulisjuduls">
+                                    <input type="text" name="title_chapter" id="title_chapter" class="w-100" placeholder="Masukan Chapter" required="" value="<?php echo $chapter_title; ?>">
+                                </div>
+                            <?php }else{
+                                $desc = "";
+                                $btn_save = "<input type='button' class='mr-30 saveasdraft' ch_id='' style='font-size: 18px;font-weight: bold;background: transparent; border: 0; cursor: pointer;' value='Simpan ke Draft' />";
+                                ?>
+                                <div class="mt-30 tulisjudul">
 
-							</div>
+                                </div>
+                            <?php } ?>
 
 							<div class="tulisbuku mt-10">
-								<textarea id="book_paragraph" class="form-control book_paragraph" style="height: 1000px;" name="book_paragraph" required></textarea>
+								<textarea id="book_paragraph" class="form-control book_paragraph" style="height: 1000px;" name="book_paragraph" required><?php echo $desc; ?></textarea>
 							</div>
 
 						</div>
 					</div>
 
 					<div class="pull-right mb-10">
-						<input type="button" class="mr-30 saveasdraft" ch_id="" style="font-size: 18px;font-weight: bold;background: transparent; border: 0; cursor: pointer;" value="Simpan ke Draft" />
+						<?php echo $btn_save; ?>
 						<button type="button" class="btnbeliskrg" id='publish_book' href="#" style="padding: 10px 50px;"><span class="txtbtnbeliskrg">Publish</span></button>
 						<button type='button' class='btnbeliskrg activeWallet' id='setpin_publish' style="display: none;padding: 10px 50px;"><span class="txtbtnbeliskrg">Publish</span></button>
 					</div>

@@ -7,6 +7,9 @@
 
 	<link rel="icon" href="<?php echo base_url(); ?>public/img/favicon.ico" sizes="16x16">
 
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="googlebot" content="noindex" />
+
 	<title><?php echo $title; ?></title>
 
 	<!-- CSS -->
