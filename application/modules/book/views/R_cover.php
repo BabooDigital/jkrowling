@@ -130,6 +130,32 @@ input:checked + .slider:before {
 }input[type='file'] {
   opacity:0
 }
+.bg-select-epub {
+    background: #fafafa;
+    padding: 30px;
+    border: 1px solid #d5d5d5;
+    border-radius: 5px;
+}
+.btn-select-epub {
+    background:  #ffffff;
+    border: 1px solid #c3c3c3;
+    border-radius:  35px;
+    padding: 15px;
+    font-weight: 600;
+    position:  relative;
+    left: 130px;
+}
+.custom-file-upload {
+    background: #fff;
+    padding: 15px;
+    border-radius: 35px;
+    border: 1px #d5d5d5 solid;
+    cursor: pointer;
+}
+.custom-file-label {
+    font-size: 15pt;
+    font-weight: 600;
+}
 </style>
 <?php
 error_reporting(0);
@@ -271,7 +297,7 @@ if (!empty($query['stat'])) {
                             </div>
                             <div class="row mt-20" style="width: 110%;">
                                 <div class="form-group col-8">
-                                    <?php if ((bool)$book['book_info']['is_pdf'] == true) {
+                                    <?php if ($uri_v == 'pdf') {
                                         echo "<label class='text-muted'>Mulai Jual Pada Halaman</label>";
                                     }else{
                                         echo "<label class='text-muted'>Mulai Jual Pada Chapter</label>";
@@ -293,6 +319,72 @@ if (!empty($query['stat'])) {
                             </div>
                         </div>
                     <?php }else if($uri_v == 'epub'){ ?>
+                        <div class="container bg-white collapse pb-10" id='priceSet'>
+                            <div class="row" style="width: 110%;">
+                                <div class="form-group col-4">
+                                    <label style="color: #fff;">l</label>
+                                    <select id="inputCurrency" class="form-control">
+                                        <option selected>Rp</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-7">
+                                    <label class="text-muted">Harga Buku Lengkap</label>
+                                    <input type="number" class="form-control" id="inputprice" placeholder="( Contoh : 15000 )">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">
+                                    <label class="text-muted fs-10">Penulis (<span id="writen1"></span>)</label>
+                                </div>
+                                <div class="col-8">
+                                    <label class="text-muted fs-10-right"><b style="display: none;" id="rp2">Rp</b> <b id="writen-earn">-</b></label>
+                                </div>
+                                <div class="col-4">
+                                    <label class="text-muted fs-10">Baboo (<span id="baboo1"></span>)</label>
+                                </div>
+                                <div class="col-8">
+                                    <label class="text-muted fs-10-right"> <b style="display: none;" id="rp_fee2">Rp</b> <b id="baboo-earn">-</b></label>
+                                </div>
+                            </div>
+                            <hr class="mt-5 mb-5">
+                            <div class="row">
+                                <div class="col-4">
+                                    <label class="text-muted fs-10">+ Pph 21 (<span id="fee1"></span>)</label>
+                                </div>
+                                <div class="col-8">
+                                    <label class="text-muted fs-10-right"><b style="display: none;" id="rp">Rp</b> <b id="ppn">-</b></label>
+                                </div>
+                                <div class="col-4">
+                                    <label class="text-muted fs-10">+ Biaya Transaksi</label>
+                                </div>
+                                <div class="col-8">
+                                    <label class="text-muted fs-10-right"> <b style="display: none;" id="rp_fee">Rp</b> <b id="payment_fee">-</b></label>
+                                </div>
+                            </div>
+                            <hr class="mt-5 mb-5">
+                            <div class="row">
+                                <div class="col-6">
+                                    <label class="text-muted fs-10" style="font-size: 16px;">Harga Jual Buku</label>
+                                </div>
+                                <div class="col-6">
+                                    <label class="text-muted fs-10-right" style="font-size: 16px;"> <b style="display: none;" id="rp_total">Rp</b> <b id="total">0</b></label>
+                                </div>
+                            </div>
+                            <div class="row mt-20 justify-content-md-center" style="">
+                                <div class="col-12   text-center">
+                                    <p>Buku Veri Gratis</p>
+                                    <div class="bg-select-epub">
+                                        <p>
+                                            <label id="file-name" class="custom-file-label"></label>
+                                        </p>
+                                        <label for="file-to-upload" class="custom-file-upload">
+                                            Upload File .ePub
+                                        </label>
+                                        <input id="file-to-upload" name='upload_cont_img' type="file" style="display:none;" accept="application/epub+zip">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     <?php } ?>
                     <div class="mt-20">
                         <div class="form-group">
@@ -351,6 +443,11 @@ if (!empty($query['stat'])) {
 			$('#inputprice').number(true);
 			check_sell();
             checkingPIN();
+            var type_ = '<?php echo $uri_v; ?>';
+            $("#file-to-upload").change(function(){
+                $("#file-name").text(this.files[0].name);
+                $(".custom-file-upload").text('Ganti File');
+            });
             $('#date_pub').combodate({
                 firstItem: 'name',
                 minYear: 2018,
@@ -377,15 +474,19 @@ if (!empty($query['stat'])) {
 				var pin = $('#what').val();
 				if (sellbtn.length == 0 && pin == 'false') {
 					$('#publish_book').show();
+					$('#publish_book_epub').show();
 					$('#setpin_publish').hide();
 				}else if (sellbtn.length == 1 && pin == 'true'){
 					$('#publish_book').show();
+					$('#publish_book_epub').show();
 					$('#setpin_publish').hide();
 				}else if (sellbtn.length == 0 && pin == 'true'){
 					$('#publish_book').show();
+					$('#publish_book_epub').show();
 					$('#setpin_publish').hide();
 				}else{
 					$('#publish_book').hide();
+					$('#publish_book_epub').hide();
 					$('#setpin_publish').show();
 				}
 			});

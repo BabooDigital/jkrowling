@@ -143,12 +143,11 @@ $(function(){
                     }
                 })
                     .done(function(data) {
-                        console.log(data);
-                        // if (data.code == 200) {
-                        //     window.location = base_url+'timeline';
-                        // }else{
-                        //     location.reload();
-                        // }
+                        if (data.code == 200) {
+                            window.location = base_url+'timeline';
+                        }else{
+                            location.reload();
+                        }
                     })
                     .fail(function() {
                         console.log("errorss");
