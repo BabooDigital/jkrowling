@@ -164,30 +164,30 @@
 									</div>
 								</div>
 							</div>
-<!--                            <div class="mt-20" id="schedule_pub">-->
-<!--                                <div class="form-group">-->
-<!--                                    <span class="text-left">Jadwalkan Penerbitan?</span>-->
-<!--                                    <label class="switch float-right">-->
-<!--                                        <input type="checkbox" id="showOptPub" data-toggle='collapse' data-target='#publishSet' class="publishCheck">-->
-<!--                                        <span class="slider round"></span>-->
-<!--                                    </label>-->
-<!--                                    <div class="container mt-20 pb-5 collapse" id="publishSet" style="background: #DDDDDD;">-->
-<!--                                        <div class="row">-->
-<!--                                            <div class="form-group col-12">-->
-<!--                                                <label class="text-muted">Tentukan Tanggal</label>-->
-<!--                                                <input type="text" class="form-control" id="date_pub" data-format="YYYY-MM-DD" data-template="YYYY MMMM DD" name="date_pub">-->
-<!---->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                        <div class="row">-->
-<!--                                            <div class="form-group col-12">-->
-<!--                                                <label class="text-muted">Tentukan Waktu</label>-->
-<!--                                                <input type="text" id="time_pub" data-format="HH:mm" data-template="HH : mm" name="time_pub" value="00:00">-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
+                            <div class="mt-20" id="schedule_pub">
+                                <div class="form-group">
+                                    <span class="text-left">Jadwalkan Penerbitan?</span>
+                                    <label class="switch float-right">
+                                        <input type="checkbox" id="showOptPub" data-toggle='collapse' data-target='#publishSet' class="publishCheck">
+                                        <span class="slider round"></span>
+                                    </label>
+                                    <div class="container mt-20 pb-5 collapse" id="publishSet" style="background: #DDDDDD;">
+                                        <div class="row">
+                                            <div class="form-group col-12">
+                                                <label class="text-muted">Tentukan Tanggal</label>
+                                                <input type="text" class="form-control" id="date_pub" data-format="YYYY-MM-DD" data-template="YYYY MMMM DD" name="date_pub">
+
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-12">
+                                                <label class="text-muted">Tentukan Waktu</label>
+                                                <input type="text" id="time_pub" data-format="HH:mm" data-template="HH : mm" name="time_pub" value="00:00">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 					</div>
 				</div>
