@@ -175,10 +175,12 @@ class C_profile extends MX_Controller {
 				}else{
 					$data['js'][] = "public/js/custom/profile_page.js";
                 	$data['js'][]   = "public/js/custom/search.js";
-
-					$this->load->view('include/head', $data);
-					$this->load->view('D_profile');
-
+                    if (!empty($this->input->get("page"))) {
+                        $result = $this->load->view('data/D_profile', $data);
+                    }else {
+                        $this->load->view('include/head', $data);
+                        $this->load->view('D_profile');
+                    }
 				}
 			}else {
 				$this->session->set_flashdata('fail_alert', '<script>

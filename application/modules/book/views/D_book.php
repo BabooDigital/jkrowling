@@ -159,7 +159,14 @@
 				</div>
 			</div>
 		</div>
-    <?php }else{ ?>
+    <?php }else{
+        $usDat = $this->session->userdata('userData');
+        if ((bool)$detail_book['data']['book_info']['is_free'] == true || $usDat['user_id'] == $detail_book['data']['author']['author_id']){
+            $c_pb = "";
+        }else{
+            $c_pb = "pb-140";
+        }
+        ?>
     <div class="app">
         <div class="sidebar-wrapper out">
             <div class="sidebar">
@@ -179,7 +186,14 @@
                 </div>
                 <div class="tab-container mb-50">
                     <div class="tab" data-tab="toc">
-                        <div class="toc-list"></div>
+                        <div class="toc-list <?php echo $c_pb; ?>"></div>
+                        <?php if ((bool)$detail_book['data']['book_info']['is_free'] == true || $usDat['user_id'] == $detail_book['data']['author']['author_id']){ ?>
+                        <?php }else{ ?>
+                            <div class="bg-white pb-20 mt-30 text-center" style="position:absolute;bottom:50px;">
+                                <p class="p-5">Beli buku ini untuk mendapatkan versi lengkapnya dengan harga <span class="h3 font-weigh-bold d-block">Rp <?php echo number_format( $detail_book['data']['book_info']['book_price'], 0, ',', '.'); ?></span></p>
+                                <a href="javascript:void(0);" class="btn-buy buyfullbook w-100" stats-book="<?php echo $statusp; ?>" style="padding: 10px 35px;"> Beli Sekarang </a>
+                            </div>
+                        <?php } ?>
                     </div>
                     <div class="tab search" data-tab="search">
                         <div class="search-bar">

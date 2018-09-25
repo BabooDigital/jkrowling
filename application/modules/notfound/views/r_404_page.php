@@ -48,7 +48,7 @@ body, html {
 </style>
 <body>
 	<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MVW4JD3"
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=<?php echo TAGMNG_GID; ?>"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 	<div style="background-image: url(<?php echo base_url('public/img/404_notfound.svg'); ?>);" class="bg"></div>
