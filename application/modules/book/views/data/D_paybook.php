@@ -22,7 +22,7 @@
 								<div class="media">
 									<img class="align-self-start mr-3" src="<?php echo $detail_book['data']['book_info']['cover_url'] ?>" width="150" height="210" alt="Generic placeholder image">
 									<div class="media-body">
-										<span class="h3 mt-0"><a class="book_link" href="<?php echo $detail_book['data']['book_info']['book_id']; ?>"><?php echo $detail_book['data']['book_info']['title_book']; ?></a></span>
+										<span class="h3 mt-0 d-block"><a class="book_link" href="<?php echo $detail_book['data']['book_info']['book_id']; ?>"><?php echo $detail_book['data']['book_info']['title_book']; ?></a></span>
 										<span class="mr-10" style="font-size: 12px;">Fiksi &#8226;</span>
 										<span class="text-muted" style="font-size: 11px;">Dibaca <?php echo $detail_book['data']['book_info']['view_count'] ?> kali</span>
 										<br>

@@ -328,12 +328,14 @@
             <!-- Right Side -->
         <?php else: ?>
             <div class="col-md-6" id="post-data">
-
-                <?php echo $this->load->view('data/D_profile', $bookdata);
-                if ($bookdata == null || $bookdata == [] || empty($bookdata)) {
-                    echo "<div class='container first_login mt-30'> <div class='row'> <div class='mx-auto' style='width: 85%;'> <div class='text-center mb-10'><img src='".base_url('public/img/icon_draft_blank.png')."' width='190'></div> <div class='text-center'> <span class='h4'><b>Tentukan konten yang kamu suka!</b></span> <p style='font-size: 12pt;'>Belum ada buku yg kamu publish</p> </div> </div> </div> </div>";
-                }
-                ?>
+                <div id="publishdata" class="w-100">
+                    <?php echo $this->load->view('data/D_profile', $bookdata);
+                    if ($bookdata == null || $bookdata == [] || empty($bookdata)) {
+                        echo "<div class='container first_login mt-30'> <div class='row'> <div class='mx-auto' style='width: 85%;'> <div class='text-center mb-10'><img src='".base_url('public/img/icon_draft_blank.png')."' width='190'></div> <div class='text-center'> <span class='h4'><b>Penulis ini belum mempublish bukunya...</b></span> <p style='font-size: 12pt;'>Belum ada buku yg di publish...</p> </div> </div> </div> </div>";
+                    }
+                    ?>
+                    <div class="loader" style="display: none;margin-left: auto;margin-right: auto;"></div>
+                </div>
             </div><!-- Right Side -->
         <?php endif ?>
         <div class="col-md-3 tmlin">
