@@ -1,4 +1,6 @@
 <?php
+echo $this->load->view('navbar/D_navbar');
+
 $usD = $this->session->userdata('userData');
 
 $data_paragraph = '';
@@ -12,13 +14,19 @@ if ($detail_book['data']['book_info']['book_type'] == 3){
 }else {
     foreach ($detail_book['data']['chapter']['paragraphs'] as $ch) {
         $text = strip_tags($ch['paragraph_text']);
-        $parap = substr($text, 0, 100).' ';
+        $parap = substr($text, 0, 20).' ';
         $data_paragraph .= $parap;
     }
     $txt_chp = $detail_book['data']['book_info']['chapter_allcount'].' Chapter';
 }
 
-echo $this->load->view('navbar/D_navbar');
+if ($this->session->userdata('isLogin') == 200){
+    $btn_comment = "<button class='post-comment' type='button' style='background: none;border: none;'><img src='".base_url('public/img/assets/icon_sendcomm.png')."' width='43' height='43'></button>";
+    $txt_blank_comm = "Belum ada komentar...";
+}else{
+    $btn_comment = "<a href='".site_url('login')."' class='ml-10' style='background: none;border: none;'><img src='".base_url('public/img/assets/icon_sendcomm.png')."' width='43' height='43'></a>";
+    $txt_blank_comm = "Masuk untuk melihat komentar...";
+}
 
 $urlToUser = url_title($detail_book['data']['author']['author_name'], 'dash', TRUE).'-'.$detail_book['data']['author']['author_id'];
 $urlToBook = url_title($detail_book['data']['book_info']['title_book'], 'dash', TRUE).'-'.$detail_book['data']['book_info']['book_id'];
@@ -58,11 +66,8 @@ if ((bool)$detail_book['data']['book_info']['is_free'] == true) {
     }
 }
 
-if ($detail_book['data']['book_info']['status_payment'] == 'pending') {
-    $statusp = 'pend';
-}else{
-    $statusp = 'done';
-}
+$uri_parts = explode('?', $_SERVER['REQUEST_URI'], 2);
+$shareLinkUrl = 'https://www.' . $_SERVER['HTTP_HOST'] . $uri_parts[0];
 ?>
 
 <div class="container mt-80 mb-80">
@@ -170,7 +175,7 @@ if ($detail_book['data']['book_info']['status_payment'] == 'pending') {
                             <a class="nav-links active mr-5" id="book-tab" data-toggle="tab" href="#booktab" role="tab" aria-controls="booktab" aria-selected="true">Buku</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-links mr-5" id="review-tab" data-toggle="tab" href="#reviewtab" role="tab" aria-controls="reviewtab" aria-selected="false">Komentar</a>
+                            <a class="nav-links mr-5" id="review-tab" data-toggle="tab" href="#reviewtab" role="tab" aria-controls="reviewtab" aria-selected="false">(<?php echo $detail_book['data']['book_info']['book_comment_count']; ?>) Komentar</a>
                         </li>
                     </ul>
 
@@ -206,24 +211,24 @@ if ($detail_book['data']['book_info']['status_payment'] == 'pending') {
                                                 <div class="media-body">
                                                     <div>
                                                         <div class="" style="display: -webkit-box;color: #bbb !important;">
-                                                            <!--                                                    <div class="c-product_rating c-rating float-left">-->
-                                                            <!--                                                        <div class="c-rating c-rating_container">-->
-                                                            <!--                                                            <div class="c-rating__bg">-->
-                                                            <!--                                                                <span class="fa fa-star"></span>-->
-                                                            <!--                                                                <span class="fa fa-star"></span>-->
-                                                            <!--                                                                <span class="fa fa-star"></span>-->
-                                                            <!--                                                                <span class="fa fa-star"></span>-->
-                                                            <!--                                                                <span class="fa fa-star"></span>-->
-                                                            <!--                                                            </div>-->
-                                                            <!--                                                            <div class="c-rating__fg" style="width: 65%;">-->
-                                                            <!--                                                                <span class="fa fa-star"></span>-->
-                                                            <!--                                                                <span class="fa fa-star"></span>-->
-                                                            <!--                                                                <span class="fa fa-star"></span>-->
-                                                            <!--                                                                <span class="fa fa-star"></span>-->
-                                                            <!--                                                                <span class="fa fa-star"></span>-->
-                                                            <!--                                                            </div>-->
-                                                            <!--                                                        </div>-->
-                                                            <!--                                                    </div>-->
+                                                            <div class="c-product_rating c-rating float-left">
+                                                                <div class="c-rating c-rating_container">
+                                                                    <div class="c-rating__bg">
+                                                                        <span class="fa fa-star"></span>
+                                                                        <span class="fa fa-star"></span>
+                                                                        <span class="fa fa-star"></span>
+                                                                        <span class="fa fa-star"></span>
+                                                                        <span class="fa fa-star"></span>
+                                                                    </div>
+                                                                    <div class="c-rating__fg" style="width: 0%;">
+                                                                        <span class="fa fa-star"></span>
+                                                                        <span class="fa fa-star"></span>
+                                                                        <span class="fa fa-star"></span>
+                                                                        <span class="fa fa-star"></span>
+                                                                        <span class="fa fa-star"></span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                         <div class="" style="display: -webkit-box;color: #bbb !important;">
                                                             <span class="d-inline-block">Oleh <a title="" class="c-link-rd d-inline-block" href="<?php echo $this->baboo_lib->urlToUser($urlToUser); ?>" data-id="<?php echo $comm['comment_user_id'];?>"><?php echo $comm['comment_user_name'];?></a>, </span>
@@ -249,9 +254,13 @@ if ($detail_book['data']['book_info']['status_payment'] == 'pending') {
                                             </li>
                                         <?php }
                                     }else{
-                                        echo "<p>Belum ada komentar.</p>";
+                                        echo "<p>".$txt_blank_comm."</p>";
                                     } ?>
                                 </ul>
+                                <textarea class="frmcomment commentform mention" id="comments" placeholder="Tulis komentarmu disini..." type="text" style="width:100%;height: 45px;"></textarea>
+                                <div id="btn-com">
+                                    <?php echo $btn_comment; ?>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -266,7 +275,9 @@ if ($detail_book['data']['book_info']['status_payment'] == 'pending') {
                         <img src="<?php echo $avatar; ?>" alt="<?php echo $detail_book['data']['author']['author_name']; ?>" class="c-avatar__image rounded-circle" width="50" height="50">
                     </div>
                     <div class="media-body">
-                        <p class="h6 mt-10 font-weight-bold mt-0 author_name"><?php echo $detail_book['data']['author']['author_name']; ?></p>
+                        <a href="<?php echo $this->baboo_lib->urlToBook($urlToUser); ?>">
+                            <p class="h6 mt-10 font-weight-bold mt-0 author_name"><?php echo $detail_book['data']['author']['author_name']; ?></p>
+                        </a>
                         <div>
                             <?php if ($usD['user_id'] == $detail_book['data']['author']['author_id']) { ?>
                                 <div></div>
@@ -285,8 +296,18 @@ if ($detail_book['data']['book_info']['status_payment'] == 'pending') {
                             <li style="margin: 0px 6px 0px 0px;width: 42px;display: inline-block;padding: 0;">
                                 <a href="#" class="c-btn share-fb c-btn--tiny d-block w-100"><i class="fa fa-facebook-f c-btn_socmed_fb"></i></a>
                             </li>
-                            <!--                            <li style="margin: 0px 6px 0px 0px;width: 42px;display: inline-block;padding: 0;"><a href="#" class="c-btn c-btn--tiny d-block w-100"><i class="fa fa-twitter c-btn_socmed_twit"></i></a></li>-->
-                            <!--                            <li style="margin: 0px 6px 0px 0px;width: 42px;display: inline-block;padding: 0;"><a href="#" class="c-btn c-btn--tiny d-block w-100"><i class="fa fa-whatsapp c-btn_socmed_wa"></i></a></li>-->
+                            <li style="margin: 0px 6px 0px 0px;width: 42px;display: inline-block;padding: 0;">
+                                <a href="https://twitter.com/home?status=<?php echo $shareLinkUrl; ?>" class="c-btn c-btn--tiny d-block w-100"><i class="fa fa-twitter c-btn_socmed_twit"></i></a>
+                            </li>
+                            <li style="margin: 0px 6px 0px 0px;width: 42px;display: inline-block;padding: 0;">
+                                <a href="https://plus.google.com/share?url=<?php echo $shareLinkUrl; ?>" class="c-btn c-btn--tiny d-block w-100"><i class="fa fa-google-plus-official c-btn_socmed_gplus"></i></a>
+                            </li>
+                            <li style="margin: 0px 6px 0px 0px;width: 42px;display: inline-block;padding: 0;">
+                                <a href="https://pinterest.com/pin/create/button/?url=<?php echo $shareLinkUrl; ?>&media=<?php echo $cover; ?>&description=By : <?php echo $detail_book['data']['author']['author_name']; ?>" class="c-btn c-btn--tiny d-block w-100"><i class="fa fa-pinterest-square c-btn_socmed_pinterest"></i></a>
+                            </li>
+                            <li style="margin: 0px 6px 0px 0px;width: 42px;display: inline-block;padding: 0;">
+                                <a href="https://www.linkedin.com/shareArticle?mini=true&url=<?php echo $shareLinkUrl; ?>&title=<?php echo $detail_book['data']['book_info']['title_book']; ?>&summary=By%20%3A%20<?php echo $detail_book['data']['author']['author_name']; ?>&source=baboo.id" class="c-btn c-btn--tiny d-block w-100"><i class="fa fa-linkedin-square c-btn_socmed_linkedin"></i></a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -307,18 +328,18 @@ if ($detail_book['data']['book_info']['status_payment'] == 'pending') {
                                         }else{
                                             $prof_pict = $writer['avatar'];
                                         }
-                                        if ($writer['isFollow'] == false && $writer['author_id'] != $usD['user_id']) {
-                                            $follow = "<a href='#' data-follow='".$writer['author_id']."' class='addbutton followprofile'><img src='public/img/assets/icon_plus_purple.svg' width='20' class='mt-img'></a>";
-                                        }else{
-                                            $follow = "";
-                                        } ?>
+//                                        if ($writer['isFollow'] == false && $writer['author_id'] != $usD['user_id']) {
+//                                            $follow = "<a href='javascript:void(0);' data-follow='".$writer['author_id']."' class='addbutton followprofile follow-u'><img src='".base_url('public/img/assets/icon_plus_purple.svg')."' width='20' class='mt-img'></a>";
+//                                        }else{
+//                                            $follow = "";
+//                                        } ?>
                                         <li class="media baboocontent">
                                             <a href="<?php echo $this->baboo_lib->urlToUser($urlToUser); ?>"><img class="d-flex mr-3 rounded-circle" src="<?php echo $prof_pict; ?>" width="50" height="50"></a>
                                             <div class="media-body mt-7">
                                                 <a class="" href="<?php echo $this->baboo_lib->urlToUser($urlToUser); ?>">
                                                     <span class="h5 mt-5 mb-1 nametitle"><?php echo $writer['author_name']; ?></span>
                                                 </a>
-                                                <div class="pull-right baboocolor"><?php echo $follow; ?></div>
+                                                <!--                                                <div class="pull-right baboocolor">--><?php //echo $follow; ?><!--</div>-->
                                             </div>
                                         </li>
                                     <?php }
@@ -351,13 +372,13 @@ if ($detail_book['data']['book_info']['status_payment'] == 'pending') {
                                         <li class="list-group-item">
                                             <div class="media">
                                                 <div class="media-left mr-10">
-                                                    <a href="<?php echo $this->baboo_lib->urlToBook($urlToUserPop,$urlToBookPop); ?>"><img class="media-object" src="<?php echo $cover; ?>" onerror="this.onerror=null;this.src='<?php echo base_url("public/img/blank_cover.png"); ?>';" width="60" height="80"></a>
+                                                    <a href="<?php echo $this->baboo_lib->urlToBook($urlToUserPop,$urlToBookPop); ?>"><img class="media-object rounded" src="<?php echo $cover; ?>" onerror="this.onerror=null;this.src='<?php echo base_url("public/img/blank_cover.png"); ?>';" width="60" height="80"></a>
                                                 </div>
                                                 <div class="media-body">
                                                     <div>
-                                                        <h4 class="media-heading bold mt-10">
+                                                        <p class="media-heading bold mt-10">
                                                             <a href="<?php echo $this->baboo_lib->urlToBook($urlToUserPop,$urlToBookPop); ?>"><?php echo $_book['popular_book_title']; ?></a>
-                                                        </h4>
+                                                        </p>
                                                         <p style="font-size: 10pt;">by <a class="profile" href="<?php echo $this->baboo_lib->urlToUser($urlToUserPop); ?>"><?php echo $_book['popular_author_name']; ?></a></p>
                                                     </div>
                                                 </div>
@@ -378,32 +399,6 @@ if ($detail_book['data']['book_info']['status_payment'] == 'pending') {
 <div class="modal fade" id="buymodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <?php $this->load->view('data/D_paybook'); ?>
 </div>
-</div>
-<!-- Modal -->
-<div class="modal right fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="commentLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-
-            <div class="modal-header bg-white">
-                <button type="button" class="closes" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <span class="h4 modal-title" id="commentLabel">Komentar</span>
-            </div>
-
-            <div class="modal-body mb-50" style="overflow-x: auto;">
-                <div>
-                    <div id="bookcomment_list">
-
-                    </div>
-                </div>
-
-                <nav class="pt-5 pb-5 navbar bg-boo fixed-bottom">
-                    <textarea class="frmcomment commentform mention" id="comments" placeholder="Tulis komentarmu disini..." type="text" style="width:100%;height: 45px;"></textarea>
-                    <div id="btn-com"><button class="post-comment" type="button" style="background: none;border: none;"><img src="<?php echo base_url('public/img/assets/icon_sendcomm.png'); ?>" width="43" height="43"></button></div>
-                </nav>
-            </div>
-
-        </div><!-- modal-content -->
-    </div><!-- modal-dialog -->
 </div>
 <!-- modal -->
 <?php if ($this->session->flashdata('popup_status_payment')): ?>

@@ -12,7 +12,7 @@ if ($uri1 == 'penulis' || $uri1 == 'search' || $uri1 == 'timeline') {
 }
 
 // Midtrans
-if ($uri1 == 'penulis') {
+if ($uri1 == 'penulis' && $this->session->userdata('isLogin') == 200) {
 	echo "<script type='text/javascript' src='https://".MID_BASE_URL."/snap/snap.js' data-client-key='".MID_CLIENT."'></script>";
 }
 
