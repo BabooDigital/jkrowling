@@ -130,7 +130,7 @@ $route['video_book'] = 'book/C_createbook/video_book';
 $route['product'] = 'book/C_book/viewProductDetail';
 
 $route['penulis/:any/:any'] = 'book/C_book';
-$route['penulis/:any/:any/pdf'] = 'book/C_book';
+$route['penulis/:any/:any/pdf'] = 'book/C_book_out/directLatest';
 $route['penulis/:any/:any/:num'] = 'book/C_book';
 $route['penulis/:any/:any/ch/:num'] = 'book/C_book/chapterBook';
 $route['penulis/:any/:any/chapter/:num'] = 'book/C_book';
@@ -159,9 +159,9 @@ $route['detaileditchapt'] = 'book/C_createbook/getDataChapter';
 $route['validateSell'] = 'book/C_createbook/validatePublish';
 $route['bookCheck'] = 'book/C_createbook/checkBook';
 
-$route['penulis/:any/:any/preview'] = 'book/C_book_out';
-$route['penulis/:any/:any/preview/chapter/:num'] = 'book/C_book_out';
-$route['penulis/:any/:any/preview/pdf'] = 'book/C_book_out';
+$route['penulis/:any/:any/preview'] = 'book/C_book_out/directLatest';
+$route['penulis/:any/:any/preview/chapter/:num'] = 'book/C_book_out/directLatest';
+$route['penulis/:any/:any/preview/pdf'] = 'book/C_book_out/directLatest';
 
 
 $route['my_book/editor_upload'] = 'book/C_createbook/editor_upload';

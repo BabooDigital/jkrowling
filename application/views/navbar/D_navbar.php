@@ -1,13 +1,6 @@
 <nav class="navbar navbar-expand-lg fixed-top baboonav">
     <div class="container">
         <a class="navbar-brand" href="<?php echo site_url(); ?>"><img alt="Baboo Main Logo" src="<?php echo base_url(); ?>public/img/logo_purple.png" width="100"></a>
-        <div>
-            <form class="form-inline my-2 my-lg-0">
-                <input autocomplete="off" aria-label="Search" class="search-form form-control search_bbo" name="search_bbo" placeholder="Cari di baboo" type="search" style="background: url('<?php echo base_url('public/img/search.png') ?>') no-repeat right;background-size: 18px;background-position: 95% 50%;">
-                <ul class="dropdown-search search_result_bbo hide">
-                </ul>
-            </form>
-        </div>
 
         <?php if ($this->session->userdata('isLogin') != 200) { ?>
 
@@ -27,6 +20,14 @@
             </div>
 
         <?php }else { ?>
+            <div>
+                <form class="form-inline my-2 my-lg-0">
+                    <input autocomplete="off" aria-label="Search" class="search-form form-control search_bbo" name="search_bbo" placeholder="Cari di baboo" type="search" style="background: url('<?php echo base_url('public/img/search.png') ?>') no-repeat right;background-size: 18px;background-position: 95% 50%;">
+                    <ul class="dropdown-search search_result_bbo hide">
+                    </ul>
+                </form>
+            </div>
+
             <input type="hidden" id="uid_sess" value="<?php $sess = $this->session->userdata('userData'); echo $sess['user_id']; ?>">
             <input type="hidden" id="name_sess" value="<?php echo $sess['fullname']; ?>">
             <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbarSupportedContent" data-toggle="collapse" type="button"><span class="fa fa-bars fa-border"></span></button>

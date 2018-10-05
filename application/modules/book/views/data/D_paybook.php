@@ -49,7 +49,11 @@
 								</div>
 							</div>
 							<div class="modal-footer">
-								<button class="btn-acc-tnc" id="buy-btn">Lanjutkan bayar</button>
+                                <?php if ($this->session->userdata('isLogin') == 200 && (bool)$detail_book['data']['book_info']['is_free'] == false){
+                                    echo "<button class='btn-acc-tnc' id='buy-btn'>Lanjutkan bayar</button>";
+                                }else{
+                                    echo "<a href='".site_url('login?w='.$detail_book['data']['author']['author_id'].'&b='.$detail_book['data']['book_info']['book_id'].'&hash=buynow')."' class='btn-acc-tnc text-center pt-5'>Lanjutkan bayar</a>";
+                                } ?>
 							</div>
 						</div>
 					</div>

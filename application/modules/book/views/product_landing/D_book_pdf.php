@@ -1,3 +1,4 @@
+
 <!--<div class="col-4">-->
 <!--    <div class="subchapter stickymenu">-->
 <!--        -->
@@ -13,6 +14,12 @@
 
 <div class="col-12" id="pdfview">
     <?php
+    if ($detail_book['data']['book_info']['status_payment'] == 'pending') {
+        $statusp = 'pend';
+    }else{
+        $statusp = 'done';
+    }
+
     function incrementalHash($len = 5){$charset = "0123456789abcdefghijklmnopqrstuvwxyz"; $base = strlen($charset); $result = ''; $now = explode(' ', microtime())[1]; while ($now >= $base){$i = $now % $base; $result = $charset[$i] . $result; $now /= $base; } return substr($result, -5); }
     $generateDate = $detail_book['data']['book_info']['epoch_time'];
     $datapassword = 'ID#' . $detail_book['data']['book_info']['book_id'] . '#' . $detail_book['data']['book_info']['title_book'] . '#' . strtotime($generateDate);

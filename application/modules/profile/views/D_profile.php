@@ -481,11 +481,11 @@
                                     <div class='row'>
                                         <div class='col-6 text-center rborder pr-0'>
                                             <p style='display: inline-flex;'><img src='<?php echo base_url("public/img/icon-tab/book.svg") ?>' width='25'> <span style='font-weight: bold;'><?php echo $fol['book_made']; ?></span></p>
-                                            <span class="h6">Buku</span>
+                                            <p class="h6">Buku</p>
                                         </div>
                                         <div class='col-6 text-center pl-0'>
                                             <p style='display: inline-flex;'><img src='<?php echo base_url("public/img/icon-tab/followers.svg") ?>' width='25'> <span style='font-weight: bold;'><?php echo $this->baboo_lib->ConvertToK($fol['followers']); ?></span></p>
-                                            <span class="h6">Teman</span>
+                                            <p class="h6">Teman</p>
                                         </div>
                                     </div>
                                     <div class='row mt-10'>

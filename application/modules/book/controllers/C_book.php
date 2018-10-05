@@ -22,8 +22,8 @@ class C_book extends MX_Controller
         $idb = explode('-', $id_book);
         if (is_array($idb)) ;
 
-        $this->curl_multiple->add_call("writter","get",$this->API.'timeline/Home/bestWriter','',array(CURLOPT_HTTPHEADER => array('baboo-auth-key: '.$auth)));
-        $this->curl_multiple->add_call("book","get",$this->API.'timeline/Timelines/bestBook','',array(CURLOPT_HTTPHEADER => array('baboo-auth-key: '.$auth)));
+        $this->curl_multiple->add_call("writter","get",$this->API.'timeline/Home/bestWriter','','');
+        $this->curl_multiple->add_call("book","get",$this->API.'timeline/Home/bestBook','','');
         $getData = $this->curl_multiple->execute();
 
         $best_writter = json_decode($getData['writter']['response'], TRUE);
@@ -33,9 +33,16 @@ class C_book extends MX_Controller
         $data_book1 = array(
             'book_id' => end($idb)
         );
-        $data_before_chapter = $this->curl_request->curl_post_auth($this->API.'book/Books/allChapters/', $data_book1, $auth);
-        $data_before_chapter['chapter'] = $data_before_chapter['data'];
-        $auth = $data_before_chapter['bbo_auth'];
+
+        if ($this->session->userdata('isLogin') == 200){
+            $data_before_chapter = $this->curl_request->curl_post_auth($this->API.'book/Books/allChapters/', $data_book1, $auth);
+            $data_before_chapter['chapter'] = $data_before_chapter['data'];
+            $auth = $data_before_chapter['bbo_auth'];
+        }else{
+            $data_before_chapter = $this->curl_request->curl_post($this->API.'timeline/Home/allChapters/', $data_book1, '');
+            $data_before_chapter['chapter'] = $data_before_chapter;
+        }
+
         if (isset($data_before_chapter['chapter']['code']) && $data_before_chapter['chapter']['code'] == '200') {
             $status = $data_before_chapter['chapter']['code'];
             $this->session->set_userdata('authKey', $auth);
@@ -57,47 +64,43 @@ class C_book extends MX_Controller
         );
 
         // END GET CHAPTER
-        if ($this->session->userdata('isLogin') != 200) {
-            $data = $this->curl_request->curl_post($this->API.'timeline/Home/detailBook', $data_book, '');
-            $id = $this->uri->segment(2).'/'.$this->uri->segment(3);
-            $chaptid = $this->uri->segment(5);
-            if ($data['data']['book_info']['is_pdf'] != 1) {
-                if (empty($chaptid)) {
-                    if ($this->uri->segment(3))
-                        redirect('penulis/' . $id . '/preview');
-                }else{
-                    redirect('penulis/' . $id . '/preview/chapter/'.$chaptid);
-                }
-            }else{
-                redirect('penulis/' . $id . '/preview/pdf');
-            }
+        if ($this->session->userdata('isLogin') == 200) {
+            $resval = $this->curl_request->curl_post_auth($this->API.'book/Books/detailBook/', $data_book, $auth);
+            $resval2 = $this->curl_request->curl_post_auth($this->API.'book/Books/detailPDF/', $data_book, $auth);
+            $data = $resval['data'];
+            $datapdf = $resval2['data'];
+
+            $comm_data = $this->curl_request->curl_post_auth($this->API.'timeline/Timelines/getComment', $data_book, $auth);
         }else{
-            $data = $this->curl_request->curl_post_auth($this->API.'book/Books/detailBook/', $data_book, $auth);
-            $datapdf = $this->curl_request->curl_post_auth($this->API.'book/Books/detailPDF/', $data_book, $auth);
+            $resval = $this->curl_request->curl_post($this->API.'timeline/Home/detailBook', $data_book, '');
+            $resval2 = $this->curl_request->curl_post($this->API.'timeline/Home/detailPDF', $data_book, '');
+            $data = $resval;
+            $datapdf = $resval2;
         }
 
-        if ($data['data']['data']['book_info']['book_type'] == 1) {
-            foreach ($data['data']['data']['chapter']['paragraphs'] as $book) {
+        $datasa = "";
+        if ($data['data']['book_info']['book_type'] == 1) {
+            foreach ($data['data']['chapter']['paragraphs'] as $book) {
                 $text = strip_tags($book['paragraph_text']);
                  $datasa .= "<div>".ucfirst($book['paragraph_text'])."</div>";
              }
              $st1 = strip_tags($datasa);
              $st2 = str_replace('"', '', $st1);
 
-            $data['detail_book'] = $data['data'];
+            $data['detail_book'] = $data;
             $data['page_desc'] = 'Baboo.id - '.substr($st2, 0, 160) .' - '.$data['detail_book']['data']['author']['author_name'];
             $data['title'] = $data['detail_book']['data']['book_info']['title_book'].' - '.$data['detail_book']['data']['author']['author_name'].' | Baboo';
         }else{
-            $st2 = str_replace('"', '', $datapdf['data']['data']['book_info']['desc']);
-            $data['detail_book'] = $datapdf['data'];
+            $st2 = str_replace('"', '', $datapdf['data']['book_info']['desc']);
+            $data['detail_book'] = $datapdf;
             $data['page_desc'] = 'Baboo.id - '.substr($st2, 0, 160).' - '.$data['detail_book']['data']['author']['author_name'];
-            $data['title'] = $datapdf['data']['data']['book_info']['title_book'].' - '.$datapdf['data']['data']['author']['author_name'].' | Baboo';
+            $data['title'] = $datapdf['data']['book_info']['title_book'].' - '.$datapdf['data']['author']['author_name'].' | Baboo';
         }
         $data['author_meta'] = $data['detail_book']['data']['author']['author_name'];
-        $auth = $data['bbo_auth'];
+//        $auth = $data['bbo_auth'];
 
-        if ($this->session->userdata('isLogin') != 200) {
-        }else{
+//        if ($this->session->userdata('isLogin') != 200) {
+//        }else{
             if (!$this->input->get("chapter")) {
             } else {
                 $chapter_id = $data_before_chapter['chapter']['data']['chapter'][$this->input->get("chapter")]['chapter_id'];
@@ -109,15 +112,12 @@ class C_book extends MX_Controller
 
                 $data = $this->curl_request->curl_post_auth($this->API.'book/Books/detailBook/', $data_book, $auth);
 
-                $auth = $data['bbo_auth'];
-            $this->session->set_userdata('authKey', $auth);
-                if (isset($data['detail_book']['code']) && $data['detail_book']['code'] == '200') {
-                    $status = $data['detail_book']['code'];
-                    if(!empty($auth)) $this->session->set_userdata('authKey', $auth);
-                } else {
+                if ($this->session->userdata('isLogin') == 200) {
+                    $auth = $data['bbo_auth'];
+                    $this->session->set_userdata('authKey', $auth);
                     $status = $data['detail_book']['code'];
                 }
-                // unset($data['bbo_auth']);
+
                 $data['detail_book'] = $data['data'];
             }
 
@@ -142,12 +142,13 @@ class C_book extends MX_Controller
 //            Product
             $data['best_writter'] = $best_writter['data'];
             $data['best_book'] = $best_book['data'];
+            $data['comment'] = $comm_data['data']['data']['comments'];
 
             $data['js'][] = "public/js/jquery.min.js";
             $data['js'][] = "public/js/umd/popper.min.js";
             $data['js'][] = "public/js/bootstrap.min.js";
             $data['js'][] = "public/js/jquery.mentionsInput.js";
-            if ($datapdf['data']['data']['book_info']['book_type'] == 3){
+            if ($data['data']['book_info']['book_type'] == 3){
                 $data['css'][] = "public/plugins/epub/epub-style.css";
             }
             $data['id_chapter'] = $this->input->get("chapter");
@@ -166,14 +167,24 @@ class C_book extends MX_Controller
                 $data['js'][] = "public/js/sweetalert2.all.min.js";
                 $data['js'][] = "public/js/custom/mobile/r_detail_book.js";
                 $this->load->view('include/head', $data);
-                $this->load->view('R_book');
+                if (isset($_GET['action']) && $_GET['action'] == 'read'){
+                    $this->load->view('R_book');
+                }else{
+                    $this->load->view('product_landing/R_product');
+                }
+//                print_r($_GET['action'] == 'read');
             } else {
                 $data['css'][] = "public/plugins/holdOn/css/HoldOn.css";
                 $data['css'][] = "public/css/sweetalert2.min.css";
                 $data['js'][] = "public/plugins/holdOn/js/HoldOn.js";
                 $data['js'][] = "public/js/jquery.sticky-kit.min.js";
-                $data['js'][] = "public/js/custom/notification.js";
-                $data['js'][] = "public/js/custom/transaction.js";
+                if ($this->session->userdata('isLogin') == 200) {
+
+                    $data['js'][] = "public/js/custom/notification.js";
+                    $data['js'][] = "public/js/custom/transaction.js";
+                    $data['js'][] = "public/js/custom/search.js";
+                }
+                $data['js'][] = "public/js/custom/detail_book.js";
                 $data['js'][] = "public/js/sweetalert2.all.min.js";
                 if ($this->input->get("chapter")) {
                     if ($data_before_chapter['chapter']['data']['chapter'][$this->input->get("chapter")] == null || $data_before_chapter['chapter']['data']['chapter'][$this->input->get("chapter")] == '') {
@@ -184,13 +195,11 @@ class C_book extends MX_Controller
                     }
                 } else {
                     // print_r($content);
-                    $data['js'][] = "public/js/custom/search.js";
-                    $data['js'][] = "public/js/custom/detail_book.js";
                     $this->load->view('include/head', $data);
                     $this->load->view('product_landing/D_product');
                     count($data_before_chapter['chapter']);
                 }
-            }
+//            }
         }
     }
 
@@ -207,27 +216,31 @@ class C_book extends MX_Controller
             'book_id' => end($idb),
             'chapter' => $id_chapter
         );
-
-        $resval = $this->curl_request->curl_post_auth($this->API.'book/Books/detailBook', $data_book, $auth);
-
-        $data['detail_book'] = $resval['data'];
-        $auth = $resval['bbo_auth'];
-        if (isset($data['detail_book']['code']) && $data['detail_book']['code'] == '200') {
-            $status = $data['detail_book']['code'];
-            $this->session->set_userdata('authKey', $auth);
-        } else {
-            $status = $data['detail_book']['code'];
+        if ($this->session->userdata('isLogin') == 200) {
+            $chbook = $this->curl_request->curl_post_auth($this->API.'book/Books/detailBook', $data_book, $auth);
+            $resval = $chbook['data'];
+        }else{
+            $resval = $this->curl_request->curl_post($this->API.'timeline/Home/detailBook', $data_book, '');
         }
-        if ($data['detail_book']['code'] == 403) {
-            $this->session->unset_userdata('userData');
-            $this->session->unset_userdata('authKey');
-            $this->session->sess_destroy();
-            redirect('login', 'refresh');
-        } else {
+
+        $data['detail_book'] = $resval;
+//        $auth = $resval['bbo_auth'];
+//        if (isset($data['detail_book']['code']) && $data['detail_book']['code'] == '200') {
+//            $status = $data['detail_book']['code'];
+//            $this->session->set_userdata('authKey', $auth);
+//        } else {
+//            $status = $data['detail_book']['code'];
+//        }
+//        if ($data['detail_book']['code'] == 403) {
+//            $this->session->unset_userdata('userData');
+//            $this->session->unset_userdata('authKey');
+//            $this->session->sess_destroy();
+//            redirect('login', 'refresh');
+//        } else {
             echo json_encode(array(
                 'chapter' => $data['detail_book']['data']['chapter']
             ));
-        }
+//        }
     }
 
     public function chapter()
@@ -236,44 +249,50 @@ class C_book extends MX_Controller
         $auth = $this->session->userdata('authKey');
 
         $id_book = $this->input->post("id_book", TRUE);
-        $idb = explode('-', $id_book);
-        if (is_array($idb)) ;
+//        $idb = explode('-', $id_book);
+//        if (is_array($idb)) ;
 
         $data_book = array(
-            'book_id' => end($idb)
+            'book_id' => $id_book
         );
-
-        $resval = $this->curl_request->curl_post_auth($this->API.'book/Books/allChapters', $data_book, $auth);
-        $resval2 = $this->curl_request->curl_post_auth($this->API.'book/Books/detailBook', $data_book, $auth);
-
-        $data_before_chapter['chapter'] = $resval['data'];
-        $data_author = $resval2['data']['data']['author'];
-
-        $auth = $resval['bbo_auth'];
-        if (isset($data_before_chapter['chapter']['code']) && $data_before_chapter['chapter']['code'] == '200') {
-            $status = $data_before_chapter['chapter']['code'];
-            $this->session->set_userdata('authKey', $auth);
-        } else {
-            $status = $data_before_chapter['chapter']['code'];
+        if ($this->session->userdata('isLogin') == 200) {
+            $allch = $this->curl_request->curl_post_auth($this->API.'book/Books/allChapters/', $data_book, $auth);
+            $detch = $this->curl_request->curl_post_auth($this->API.'book/Books/detailBook', $data_book, $auth);
+            $resval = $allch['data'];
+            $resval2 = $detch['data'];
+        }else{
+            $resval = $this->curl_request->curl_post($this->API.'timeline/Home/allChapters/', $data_book, '');
+            $resval2 = $this->curl_request->curl_post($this->API.'timeline/Home/detailBook', $data_book, '');
         }
+
+        $data_before_chapter['chapter'] = $resval;
+        $data_author = $resval2['data']['author'];
+
+//        $auth = $resval['bbo_auth'];
+//        if (isset($data_before_chapter['chapter']['code']) && $data_before_chapter['chapter']['code'] == '200') {
+//            $status = $data_before_chapter['chapter']['code'];
+//            $this->session->set_userdata('authKey', $auth);
+//        } else {
+//            $status = $data_before_chapter['chapter']['code'];
+//        }
         $data_price = $data_before_chapter['chapter']['data']['book_info']['book_price'];
         $is_free = $data_before_chapter['chapter']['data']['book_info']['is_free'];
         $author_id = $data_author['author_id'];
-        $status_pay = $resval2['data']['data']['book_info']['status_payment'];
+        $status_pay = $resval2['data']['book_info']['status_payment'];
 
         $data_before_chapter['chapter']['data']['chapter']['pay']['book_price'] = number_format($data_price);
         $data_before_chapter['chapter']['data']['chapter']['pay']['is_free'] = $is_free;
         $data_before_chapter['chapter']['data']['chapter']['pay']['author_id'] = $author_id;
         $data_before_chapter['chapter']['data']['chapter']['pay']['stats'] = $status_pay;
 
-        if ($data_before_chapter['chapter']['code'] == 403) {
-            $this->session->unset_userdata('userData');
-            $this->session->unset_userdata('authKey');
-            $this->session->sess_destroy();
-            redirect('login', 'refresh');
-        } else {
+//        if ($data_before_chapter['chapter']['code'] == 403) {
+//            $this->session->unset_userdata('userData');
+//            $this->session->unset_userdata('authKey');
+//            $this->session->sess_destroy();
+//            redirect('login', 'refresh');
+//        } else {
             echo json_encode($data_before_chapter['chapter']['data']['chapter']);
-        }
+//        }
     }
 
     public function readingMode()
@@ -289,7 +308,7 @@ class C_book extends MX_Controller
         );
 
         // START GET CHAPTER
-        $resval = $this->curl_request->curl_post_auth($this->API.'book/Books/allChapters', $data_book, $auth);
+        $resval = $this->curl_request->curl_post_auth($this->API.'book/Books/allChapters/', $data_book, $auth);
 
         $data_before_chapter['chapter'] = $resval['data'];
         $auth = $resval['bbo_auth'];
@@ -712,23 +731,26 @@ public function getDetailPDFTest()
     $data_book = array(
         'book_id' => $id_book
     );
+    if ($this->session->userdata('isLogin') == 200) {
+        $resvals = $this->curl_request->curl_post_auth($this->API.'book/Books/detailPDF/', $data_book, $auth);             $resval = $resvals['data'];
+    }else{
+        $resval = $this->curl_request->curl_post($this->API.'timeline/Home/detailPDF', $data_book, '');
+    }
 
-    $resval = $this->curl_request->curl_post_auth($this->API.'book/Books/detailPDF/', $data_book, $auth);
+    $comm_data = $resval;
 
-    $comm_data = $resval['data'];
-
-    $auth = $resval['bbo_auth'];
-    $this->session->set_userdata('authKey', $auth);
-    $status = $resval['data']['code'];
-    if ($status == 403) {
-        $this->session->unset_userdata('userData');
-        $this->session->unset_userdata('authKey');
-        $this->session->sess_destroy();
-        redirect('login', 'refresh');
-    } else {
+//    $auth = $resval['bbo_auth'];
+//    $this->session->set_userdata('authKey', $auth);
+    $status = $comm_data['code'];
+//    if ($status == 403) {
+//        $this->session->unset_userdata('userData');
+//        $this->session->unset_userdata('authKey');
+//        $this->session->sess_destroy();
+//        redirect('login', 'refresh');
+//    } else {
         echo json_encode(
             array(
-                'c' => $resval['data']['code'],
+                'c' => $comm_data['code'],
                 'dat' => array(
                     'u' => base64_encode($comm_data['data']['book_info']['url_book']),
                     // 'e' => $comm_data['data']['book_info']['epoch_time'],
@@ -738,7 +760,7 @@ public function getDetailPDFTest()
                 )
             )
         );
-    }
+//    }
 }
 
 //Archive Book
@@ -784,8 +806,8 @@ public function getDetailPDFTest()
             'book_id' => end($idb)
         );
 
-        $this->curl_multiple->add_call("writter","get",$this->API.'timeline/Home/bestWriter','',array(CURLOPT_HTTPHEADER => array('baboo-auth-key: '.$auth)));
-        $this->curl_multiple->add_call("book","get",$this->API.'timeline/Timelines/bestBook','',array(CURLOPT_HTTPHEADER => array('baboo-auth-key: '.$auth)));
+        $this->curl_multiple->add_call("writter","get",$this->API.'timeline/Home/bestWriter','','');
+        $this->curl_multiple->add_call("book","get",$this->API.'timeline/Timelines/bestBook','','');
         $resvals = $this->curl_multiple->execute();
 
         $book_data = $this->curl_request->curl_post_auth($this->API.'book/Books/detailBook', $data_book, $auth);

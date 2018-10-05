@@ -1482,13 +1482,20 @@ button:focus, a:focus {
     max-height: 240px;
 }
 .product-product_icon_img {
-    width: calc(100%/3);
+    width: calc(100%/4);
     float: left;
+    text-align: center;
 }
 .product-product_rating {
     font-size: 16px;
     line-height: 1.2;
     display: inline-block;
+}
+.product_heading-title {
+    font-size: 19px;
+    font-weight: 600;
+    max-height: 50px;
+    overflow: hidden;
 }
 .product-rating {
     position: relative;
@@ -1506,8 +1513,10 @@ button:focus, a:focus {
 }
 .product-rating__bg {
     color: #ddd;
+    font-size: 13px;
 }
 .product-rating__fg {
+    font-size: 13px;
     position: absolute;
     top: 0;
     left: 0;
@@ -1541,15 +1550,17 @@ button:focus, a:focus {
 }
 .product-product_price_primary {
     color: #ffce00;
-    font-size: 35px;
+    font-size: 25px;
 }
 .product-product_price_discount {
     color: #b7c3d0 !important;
-    font-size: 20px;
+    font-size: 15px;
     text-decoration: line-through;
 }
-.product-product_buybtn_img:active {
-    margin-top: 2px;
+.product-product_buybtn {
+    text-align: center;
+    position: relative;
+    top: 10px;
 }
 .product-product_morebtn:active {
     margin-top: 2px;
@@ -1565,10 +1576,10 @@ button:focus, a:focus {
     font-weight: 600;
 }
 .product-product_chapter_count {
-    font-size: 20px;
+    font-size: 15px;
     position: absolute;
-    bottom: 35px;
-    right: 50px;
+    bottom: 25px;
+    right: 25px;
 }
 
 .product-avatar {
@@ -1579,8 +1590,8 @@ button:focus, a:focus {
     height: 36px;
 }
 .product-avatar_author_detail {
-    width: 60px !important;
-    height: 60px !important;
+    width: 90px !important;
+    height: 90px !important;
 }
 .product-avatar__image {
     display: block;
@@ -1682,4 +1693,27 @@ button:focus, a:focus {
 }
 .product-btn_socmed_wa {
     color: #43c354 !important;
+}
+.product-btn_socmed_gplus {
+    color: #dd5144 !important;
+}
+.product-btn_socmed_linkedin {
+    color: #0274b3 !important;
+}
+.product-btn_socmed_pinterest {
+    color: #bd081b !important;
+}
+
+/*Scrolling Horizontal*/
+.product-scrolling_wrapper {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+.product-scrolling_wrapper::webkit-scrollbar {
+    display: none;
+}
+.product-scrolling_card {
+    flex: 0 0 auto;
 }

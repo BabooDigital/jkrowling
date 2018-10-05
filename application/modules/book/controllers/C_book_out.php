@@ -101,4 +101,10 @@ class C_book_out extends MX_Controller {
 			$this->load->view('D_book_out', $book);
 		}
 	}
+
+	public function directLatest() {
+	    $a = $this->uri->segment(2);
+	    $b = $this->uri->segment(3);
+	    redirect('penulis/'.$a.'/'.$b);
+    }
 }

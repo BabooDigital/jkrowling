@@ -114,6 +114,7 @@ $(document).ready(function() {
                         }
                         dats = "<div class='media pb-15 mb-15 coment_'> <img class='d-flex align-self-start mr-15 rounded-circle' src='" + ava + "' width='40' height='40' alt='" + a.comment_user_name + "' style='object-fit:cover;'> <div class='media-body'> <a href='" + base_url + "penulis/" + convertToSlug(a.comment_user_name) + "-" + a.comment_user_id + "'><span class='card-title' style='font-size: 12pt;font-weight: 800;'>" + a.comment_user_name + "</span></a><div class='dropdown right-posi'> <button aria-expanded='false' aria-haspopup='true' class='btn-clear' data-toggle='dropdown' id='dropEditComm' style='font-size:11pt;' type='button'>&#8226;&#8226;&#8226;</button> <div aria-labelledby='dropEditComm' class='dropdown-menu'> <a class='dropdown-item editcomm' href='javascript:void(0);' dataedit='" + a.comment_id + "' datacom='" + a.comment_text + "'><img src='" + base_url + "public/img/assets/icon_pen.svg'> Ubah Komentar</a> <hr style='margin-top: 10px !important;margin-bottom: 10px !important;'> <a class='dropdown-item delcomm' href='javascript:void(0);' datadel='" + a.comment_id + "'><img src='" + base_url + "public/img/icon-tab/dustbin.svg'> Hapus Komentar</a> </div></div> <p class='commenttxt' com-id='" + a.comment_id + "'>" + a.comment_text + "</p><div><small><span class='text-muted'>" + a.comment_time + "</span> <a href='javascript:void(0);' class='ml-20 replcom' com-id='" + a.comment_id + "' com-name='" + a.comment_user_name + "'>Balas</a></small></div></div></div>";
                         $("#bookcomment_list").append(dats);
+                        location.reload();
                     }).fail(function () {
                         console.log("error")
                     }).always(function () {
@@ -391,7 +392,7 @@ function buyBook() {
 			$.ajax({
 				url: base_url+'pay_book/token',
 				type: "POST",
-				data:{id_book:$("#iaidubi").val(),user_id:$("#uid_sess").val(), url_redirect:window.location.href, csrf_test_name: csrf_value},
+				data:{id_book:$("#iaidubi").val(),user_id:$("#uid_sess").val(), url_redirect:document.location.href.match(/(^[^#]*)/)[0], csrf_test_name: csrf_value},
 				cache: false,
 				success: function(data) {
 		        var resultType = document.getElementById('result-type');
@@ -499,7 +500,7 @@ function getmenuChapter() {
 		type: "POST",
 		dataType: "json",
 		data: {
-			id_book: segment,
+			id_book: $('#iaidubi').val(),
 			csrf_test_name: csrf_value
 		},
 		beforeSend: function() {
@@ -511,14 +512,14 @@ function getmenuChapter() {
 		if (userbook == userdata) {
 			$.each(d, function(d, a) {
 				if (d != 'pay') {
-				c += '<li style="background:transparent;border-bottom: 0.5px #eeeeee;', 0 == d && (c += "background: url("+base_url+"public/img/assets/frame_active.svg) no-repeat; background-position: right;background-size:17px; "), c += '" class="list-group-item ', 0 == d && (c += "chapter_active icon_active "), c += '" id="list_chapters"><a href="' + window.location.href + "/ch/" + a.chapter_id + '" class="id_chapter', c += '" id="' + d + '"><h2 style="font-size: 12px;width:90%;">' + a.chapter_title + "</h2></a>", 0 == d && (c += "</li>");
+				c += '<li style="background:transparent;border-bottom: 0.5px #eeeeee;', 0 == d && (c += "background: url("+base_url+"public/img/assets/frame_active.svg) no-repeat; background-position: right;background-size:17px; "), c += '" class="list-group-item ', 0 == d && (c += "chapter_active icon_active "), c += '" id="list_chapters"><a href="' + document.location.href.match(/(^[^#]*)/)[0] + "/ch/" + a.chapter_id + '" class="id_chapter', c += '" id="' + d + '"><h2 style="font-size: 12px;width:90%;">' + a.chapter_title + "</h2></a>", 0 == d && (c += "</li>");
 				}
 			});
 		}else{
 			$.each(d, function(d, a) {
 				if (d != 'pay') {
-				false != a.chapter_free ? (c += '<li style="background:transparent;border-bottom: 0.5px #eeeeee;', 0 == d && (c += "background: url("+base_url+"public/img/assets/frame_active.svg) no-repeat; background-position: right;background-size:17px; "), c += '" class="list-group-item ', 0 == d && (c += "chapter_active icon_active "), c += '" id="list_chapters"><a href="' + window.location.href + "/ch/" + a.chapter_id + '" class="id_chapter', c += '" id="' + d + '"><h2 style="font-size: 12px;width:90%;">' + a.chapter_title + "</h2></a>", 0 == d && (c += "</li>")) : (c += '<li class="list-group-item ',
-					c += "chapter_disabled ", c += '" title="Beli buku ini untuk versi full." style="cursor: not-allowed;border-bottom: 0.5px #eeeeee;"><h2 style="font-size: 12px;width:90%;" class="id_chapter', c += '" id="' + d + '">' + a.chapter_title + "</h2><img class='float-right sale-icon' src='"+base_url+"public/img/assets/sale_active.svg'></li>")
+				false != a.chapter_free ? (c += '<li style="background:transparent;border-bottom: 0.5px #eeeeee;', 0 == d && (c += "background: url("+base_url+"public/img/assets/frame_active.svg) no-repeat; background-position: right;background-size:17px; "), c += '" class="list-group-item ', 0 == d && (c += "chapter_active icon_active "), c += '" id="list_chapters"><a href="' + document.location.href.match(/(^[^#]*)/)[0] + "/ch/" + a.chapter_id + '" class="id_chapter', c += '" id="' + d + '"><h2 style="font-size: 12px;width:90%;">' + a.chapter_title + "</h2></a>", 0 == d && (c += "</li>")) : (c += '<li class="list-group-item ',
+					c += "chapter_disabled ", c += '" title="Beli buku ini untuk versi full." style="cursor: not-allowed;border-bottom: 0.5px #eeeeee;"><h2 style="font-size: 12px;width:90%;" class="id_chapter float-left', c += '" id="' + d + '">' + a.chapter_title + "</h2><img class='float-right sale-icon' src='"+base_url+"public/img/assets/sale_active.svg'></li>")
 				}
 			});
 			if (d.pay.is_free == false) {

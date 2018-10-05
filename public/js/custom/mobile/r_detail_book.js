@@ -15,8 +15,8 @@ $(document).ready(function() {
     });
 
     $(document).on("click", ".backfrmbook", function() {
-        // history.go(-1);
-        window.location = base_url+'timeline';
+        history.go(-1);
+        // window.location = base_url+'timeline';
     });
     $(document).on("click", ".btncompar", function() {
         var b = $(this).parents(".textp").attr("data-text");
@@ -81,6 +81,7 @@ $(document).ready(function() {
                         }
                         dats = "<div class='media pb-15 mb-15 coment_'> <img class='d-flex align-self-start mr-15 rounded-circle' src='"+ava+"' width='40' height='40' alt='"+a.comment_user_name+"' style='object-fit:cover;'> <div class='media-body'> <a href='#'><span class='card-title' style='font-size: 12pt;font-weight: 800;'>"+a.comment_user_name+"</span></a><div class='dropdown right-posi'> <button aria-expanded='false' aria-haspopup='true' class='btn-clear' data-toggle='dropdown' id='dropEditComm' style='font-size:11pt;' type='button'>&#8226;&#8226;&#8226;</button> <div aria-labelledby='dropEditComm' class='dropdown-menu'> <a class='dropdown-item editcomm' href='javascript:void(0);' dataedit='"+a.comment_id+"' datacom='"+a.comment_text+"'><img src='"+base_url+"public/img/assets/icon_pen.svg'> Ubah Komentar</a> <hr style='margin-top: 10px !important;margin-bottom: 10px !important;'> <a class='dropdown-item delcomm' href='javascript:void(0);' datadel='"+a.comment_id+"'><img src='"+base_url+"public/img/icon-tab/dustbin.svg'> Hapus Komentar</a> </div></div> <p class='commenttxt' com-id='"+a.comment_id+"'>"+a.comment_text+"</p><div><small><span class='text-muted'>"+a.comment_time+"</span> <a href='javascript:void(0);' class='ml-20 replcom' com-id='"+a.comment_id+"' com-name='" + a.comment_user_name + "'>Balas</a></small></div></div></div>";
                         $("#Rbookcomment_list").append(dats);
+                        location.reload();
                     }).fail(function() {
                         console.log("error")
                     }).always(function() {})
@@ -444,7 +445,7 @@ function buyBook() {
         $.ajax({
             url: base_url+'pay_book/token',
             type: "POST",
-            data:{id_book:$("#iaidubi").val(), url_redirect:window.location.href, csrf_test_name: csrf_value},
+            data:{id_book:$("#iaidubi").val(), url_redirect:document.location.href.match(/(^[^#]*)/)[0], csrf_test_name: csrf_value},
             cache: false,
             beforeSend: function() {
                 $(".lds-css").show();
