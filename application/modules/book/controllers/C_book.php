@@ -22,8 +22,8 @@ class C_book extends MX_Controller
         $idb = explode('-', $id_book);
         if (is_array($idb)) ;
 
-        $this->curl_multiple->add_call("writter","get",$this->API.'timeline/Home/bestWriter','','');
-        $this->curl_multiple->add_call("book","get",$this->API.'timeline/Home/bestBook','','');
+        $this->curl_multiple->add_call("writter","get",$this->API.'timeline/Home/bestWriter','',array());
+        $this->curl_multiple->add_call("book","get",$this->API.'timeline/Home/bestBook','',array());
         $getData = $this->curl_multiple->execute();
 
         $best_writter = json_decode($getData['writter']['response'], TRUE);
