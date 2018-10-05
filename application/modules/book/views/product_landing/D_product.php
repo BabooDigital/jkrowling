@@ -312,81 +312,83 @@ $shareLinkUrl = 'https://www.' . $_SERVER['HTTP_HOST'] . $uri_parts[0];
                     </div>
                 </div>
             </div>
-            <div class="row mb-15 mt-15">
-                <div class="col-12">
-                    <div class="side-card w-100">
-                        <div class="card-header">
-                            Penulis minggu ini
-                        </div>
-                        <div class="card-body p-0">
-                            <ul class="list-group list-group-flush" id="author_this_week">
-                                <?php if (!empty($best_writter)){
-                                    foreach ($best_writter as $writer){
-                                        $urlToUser = url_title($writer['author_name'], 'dash', true).'-'.$writer['author_id'];
-                                        if ($writer['avatar'] == "" || $writer == null){
-                                            $prof_pict =  base_url().'public/img/profile/blank-photo.jpg';
-                                        }else{
-                                            $prof_pict = $writer['avatar'];
-                                        }
+            <div class="stickymenu">
+                <div class="row mb-15 mt-15">
+                    <div class="col-12">
+                        <div class="side-card w-100">
+                            <div class="card-header">
+                                Penulis minggu ini
+                            </div>
+                            <div class="card-body p-0">
+                                <ul class="list-group list-group-flush" id="author_this_week">
+                                    <?php if (!empty($best_writter)){
+                                        foreach ($best_writter as $writer){
+                                            $urlToUser = url_title($writer['author_name'], 'dash', true).'-'.$writer['author_id'];
+                                            if ($writer['avatar'] == "" || $writer == null){
+                                                $prof_pict =  base_url().'public/img/profile/blank-photo.jpg';
+                                            }else{
+                                                $prof_pict = $writer['avatar'];
+                                            }
 //                                        if ($writer['isFollow'] == false && $writer['author_id'] != $usD['user_id']) {
 //                                            $follow = "<a href='javascript:void(0);' data-follow='".$writer['author_id']."' class='addbutton followprofile follow-u'><img src='".base_url('public/img/assets/icon_plus_purple.svg')."' width='20' class='mt-img'></a>";
 //                                        }else{
 //                                            $follow = "";
 //                                        } ?>
-                                        <li class="media baboocontent">
-                                            <a href="<?php echo $this->baboo_lib->urlToUser($urlToUser); ?>"><img class="d-flex mr-3 rounded-circle" src="<?php echo $prof_pict; ?>" width="50" height="50"></a>
-                                            <div class="media-body mt-7">
-                                                <a class="" href="<?php echo $this->baboo_lib->urlToUser($urlToUser); ?>">
-                                                    <span class="h5 mt-5 mb-1 nametitle"><?php echo $writer['author_name']; ?></span>
-                                                </a>
-                                                <!--                                                <div class="pull-right baboocolor">--><?php //echo $follow; ?><!--</div>-->
-                                            </div>
-                                        </li>
-                                    <?php }
-                                }else{
+                                            <li class="media baboocontent">
+                                                <a href="<?php echo $this->baboo_lib->urlToUser($urlToUser); ?>"><img class="d-flex mr-3 rounded-circle" src="<?php echo $prof_pict; ?>" width="50" height="50"></a>
+                                                <div class="media-body mt-7">
+                                                    <a class="" href="<?php echo $this->baboo_lib->urlToUser($urlToUser); ?>">
+                                                        <span class="h5 mt-5 mb-1 nametitle"><?php echo $writer['author_name']; ?></span>
+                                                    </a>
+                                                    <!--                                                <div class="pull-right baboocolor">--><?php //echo $follow; ?><!--</div>-->
+                                                </div>
+                                            </li>
+                                        <?php }
+                                    }else{
 
-                                } ?>
-                            </ul>
+                                    } ?>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row mb-15 mt-15">
-                <div class="col-12">
-                    <div class="side-card w-100">
-                        <div class="card-header">
-                            Buku Populer
-                        </div>
-                        <div class="card-body p-0">
-                            <ul class="list-group list-group-flush" id="best_book">
-                                <?php if (!empty($best_book)){
-                                    foreach ($best_book as $_book){
-                                        $urlToUserPop = url_title($_book['popular_author_name'], 'dash', true).'-'.$_book['popular_author_id'];
-                                        $urlToBookPop = url_title($_book['popular_book_title'], 'dash', true).'-'.$_book['popular_book_id'];
-                                        if ($_book['popular_cover_url'] == null || $_book['popular_cover_url'] == ""){
-                                            $cover =  base_url()."public/img/blank_cover.png";
-                                        }else{
-                                            $cover =  $_book['popular_cover_url'];
-                                        }
-                                        ?>
-                                        <li class="list-group-item">
-                                            <div class="media">
-                                                <div class="media-left mr-10">
-                                                    <a href="<?php echo $this->baboo_lib->urlToBook($urlToUserPop,$urlToBookPop); ?>"><img class="media-object rounded" src="<?php echo $cover; ?>" onerror="this.onerror=null;this.src='<?php echo base_url("public/img/blank_cover.png"); ?>';" width="60" height="80"></a>
-                                                </div>
-                                                <div class="media-body">
-                                                    <div>
-                                                        <p class="media-heading bold mt-10">
-                                                            <a href="<?php echo $this->baboo_lib->urlToBook($urlToUserPop,$urlToBookPop); ?>"><?php echo $_book['popular_book_title']; ?></a>
-                                                        </p>
-                                                        <p style="font-size: 10pt;">by <a class="profile" href="<?php echo $this->baboo_lib->urlToUser($urlToUserPop); ?>"><?php echo $_book['popular_author_name']; ?></a></p>
+                <div class="row mb-15 mt-15">
+                    <div class="col-12">
+                        <div class="side-card w-100">
+                            <div class="card-header">
+                                Buku Populer
+                            </div>
+                            <div class="card-body p-0">
+                                <ul class="list-group list-group-flush" id="best_book">
+                                    <?php if (!empty($best_book)){
+                                        foreach ($best_book as $_book){
+                                            $urlToUserPop = url_title($_book['popular_author_name'], 'dash', true).'-'.$_book['popular_author_id'];
+                                            $urlToBookPop = url_title($_book['popular_book_title'], 'dash', true).'-'.$_book['popular_book_id'];
+                                            if ($_book['popular_cover_url'] == null || $_book['popular_cover_url'] == ""){
+                                                $cover =  base_url()."public/img/blank_cover.png";
+                                            }else{
+                                                $cover =  $_book['popular_cover_url'];
+                                            }
+                                            ?>
+                                            <li class="list-group-item">
+                                                <div class="media">
+                                                    <div class="media-left mr-10">
+                                                        <a href="<?php echo $this->baboo_lib->urlToBook($urlToUserPop,$urlToBookPop); ?>"><img class="media-object rounded" src="<?php echo $cover; ?>" onerror="this.onerror=null;this.src='<?php echo base_url("public/img/blank_cover.png"); ?>';" width="60" height="80"></a>
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <div>
+                                                            <p class="media-heading bold mt-10">
+                                                                <a href="<?php echo $this->baboo_lib->urlToBook($urlToUserPop,$urlToBookPop); ?>"><?php echo $_book['popular_book_title']; ?></a>
+                                                            </p>
+                                                            <p style="font-size: 10pt;">by <a class="profile" href="<?php echo $this->baboo_lib->urlToUser($urlToUserPop); ?>"><?php echo $_book['popular_author_name']; ?></a></p>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </li>
-                                    <?php }
-                                } ?>
-                            </ul>
+                                            </li>
+                                        <?php }
+                                    } ?>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
