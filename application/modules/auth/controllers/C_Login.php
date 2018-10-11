@@ -23,7 +23,7 @@ class C_Login extends MX_Controller
 
         if ($this->session->userdata('isLogin') == 200)
         {
-            redirect('timeline');
+            redirect('');
         }
     }
 
@@ -116,7 +116,7 @@ class C_Login extends MX_Controller
                         }
                     }
                 }else{
-                    $redirect .= "timeline";
+                    $redirect .= "";
                 }
                 redirect($redirect);
             }
@@ -180,7 +180,7 @@ class C_Login extends MX_Controller
                         }
                     }
                 }else{
-                    $redirect .= "timeline";
+                    $redirect .= "";
                 }
                 redirect($redirect);
             }else{
@@ -244,7 +244,7 @@ class C_Login extends MX_Controller
                         }
                     }
                 }else{
-                    $redirect .= "timeline";
+                    $redirect .= "";
                 }
                 redirect($redirect);
             }

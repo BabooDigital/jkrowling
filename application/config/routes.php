@@ -61,13 +61,13 @@ $route['booRegis'] = 'auth/C_Login/postregisteruser';
 // $route['facebook_event'] = 'auth/C_Login/facebook_event';
 
 /*Timeline*/
-$route['home'] = 'timeline/C_home';
+$route['home'] = 'timeline/C_home/homeDirect';
 // $route['event'] = 'timeline/C_home';
 // $route['event'] = 'event/C_event';
 // $route['follow_event'] = 'event/C_event/followEvent';
 
 // $route['home/:num'] = 'timeline/C_home';
-$route['timeline'] = 'timeline/C_timeline';
+$route['timeline'] = 'timeline/C_home/homeDirect';
 // $route['timeline/:any'] = 'timeline/C_timeline';
 $route['message'] = 'message/C_message';
 $route['message/:any'] = 'message/C_message/detailMessage';

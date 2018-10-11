@@ -117,7 +117,7 @@ if ((bool)$detail_book['data']['book_info']['is_free'] == true) {
 }
 
 $uri_parts = explode('?', $_SERVER['REQUEST_URI'], 2);
-$shareLinkUrl = 'https://www.' . $_SERVER['HTTP_HOST'] . $uri_parts[0];
+$shareLinkUrl = 'https://' . $_SERVER['HTTP_HOST'] . $uri_parts[0];
 ?>
 <input id="iaidubi" name="iaidubi" type="hidden" value="<?php echo $detail_book['data']['book_info']['book_id']; ?>"> <input id="iaiduui" name="iaiduui" type="hidden" value="<?php $dat = $this->session->userdata('userData'); echo $dat['user_id']; ?>">
 <?php echo $container_mt; ?>

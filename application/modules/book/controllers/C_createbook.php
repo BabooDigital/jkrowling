@@ -265,7 +265,7 @@ class C_createbook extends MX_Controller
 			$this->load->view('include/head', $data);
 			$this->load->view('R_chapter');
 		}else{
-			redirect('timeline','refresh');
+			redirect('','refresh');
 		}
 	}
 

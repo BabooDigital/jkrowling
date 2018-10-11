@@ -1,3 +1,4 @@
+<?php if ($this->session->userdata('isLogin')): ?>
 <div class="zoom">
 	<a class="zoom-fab zoom-btn-large" id="zoomBtn"><img src="<?php echo base_url(); ?>public/img/assets/icon_tulis.svg"></a>
 	<ul class="zoom-menu">
@@ -6,3 +7,4 @@
 		<li><a href="<?php echo site_url('upload_mypdf'); ?>" class="zoom-fab zoom-btn-sm zoom-btn-doc scale-transition scale-out"><span class="zoom-menu-left">Upload PDF</span> <img src="<?php echo base_url('public/img/assets/icon_btn_pdf.svg'); ?>" width="47"></a></li>
 	</ul>
 </div>
+<?php endif; ?>

@@ -38,10 +38,10 @@
 								<div class='pull-right'>
 									<div class='dropdown'>
 										<button class='share-btn dropbtn' type='button' id='dropShare' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
-											<img src='../public/img/assets/icon_share.svg' width='23'>
+											<img src="<?php echo base_url('public/img/assets/icon_share.svg'); ?>" width='23'>
 										</button>
 										<div class='dropdown-menu' aria-labelledby='dropShare'>
-											<a class='dropdown-item share-fb' href='javascript:void(0);' data-share='<?php echo $book['book_id']; ?>'><img src='../public/img/assets/fb-icon.svg' width='20'> Facebook</a>
+											<a class='dropdown-item share-fb' href='javascript:void(0);' data-share='<?php echo $book['book_id']; ?>'><img src="<?php echo base_url('public/img/assets/fb-icon.svg'); ?>" width='20'> Facebook</a>
 										</div>
 									</div>
 								</div>

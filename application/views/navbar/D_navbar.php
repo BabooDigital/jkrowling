@@ -34,7 +34,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav text-center" style="margin-bottom: -8px;">
                     <li class="nav-item active mt-7">
-                        <a class="nav-link  <?php if ($this->uri->segment('1') == 'timeline') { echo 'boo-menu-des-active'; }else { echo 'boo-menu-des'; } ?>" href="<?php echo site_url(); ?>"><img src="<?php if ($this->uri->segment('1') == 'timeline') { echo base_url('public/img/icon-tab/feed_icon_active.svg'); }else { echo base_url('public/img/icon-tab/feed_icon.svg'); } ?>" height="27"><p class="fs-12px">Explore</p></a>
+                        <a class="nav-link  <?php if ($this->uri->segment('1') == '') { echo 'boo-menu-des-active'; }else { echo 'boo-menu-des'; } ?>" href="<?php echo site_url(); ?>"><img src="<?php if ($this->uri->segment('1') == '') { echo base_url('public/img/icon-tab/feed_icon_active.svg'); }else { echo base_url('public/img/icon-tab/feed_icon.svg'); } ?>" height="27"><p class="fs-12px">Explore</p></a>
                     </li>
                     <li class="nav-item mt-7 transaction_container">
                         <div id="transaction_counter" style="top: -10px;cursor: pointer;" title="Ada transaksi pembayaran yang harus kamu bayar"></div>

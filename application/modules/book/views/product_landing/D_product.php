@@ -67,7 +67,7 @@ if ((bool)$detail_book['data']['book_info']['is_free'] == true) {
 }
 
 $uri_parts = explode('?', $_SERVER['REQUEST_URI'], 2);
-$shareLinkUrl = 'https://www.' . $_SERVER['HTTP_HOST'] . $uri_parts[0];
+$shareLinkUrl = 'https://' . $_SERVER['HTTP_HOST'] . $uri_parts[0];
 ?>
 
 <div class="container mt-80 mb-80">

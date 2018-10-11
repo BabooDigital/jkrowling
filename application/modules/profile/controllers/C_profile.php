@@ -6,9 +6,9 @@ class C_profile extends MX_Controller {
 		parent::__construct();
 		$api_url = checkBase();
 		$this->API = $api_url;
-		if ($this->session->userdata('isLogin') != 200) {
-			redirect('login');
-		}
+//		if ($this->session->userdata('isLogin') != 200) {
+//			redirect('login');
+//		}
 	}
 	public function index()
 	{
@@ -94,7 +94,7 @@ class C_profile extends MX_Controller {
 						swal("Gagal", "Maaf, terjadi sebuah kesalahan", "error");
 						});
 						</script>');
-				redirect('timeline','refresh');
+				redirect('','refresh');
 			}
 		}
 	}
@@ -127,20 +127,27 @@ class C_profile extends MX_Controller {
 			'user_profile' => $idfix,
 			'count' => $idpage
 		);
-		$datas = $this->curl_request->curl_post($this->API.'auth/OAuth/otherProfile', $sendData, $auth);
-		$datas2 = $this->curl_request->curl_post($this->API.'book/Books/latestRead', $sendData, $auth);
 
-		$uid = array('user_id' => $idfix);
-        $followers_list = $this->curl_request->curl_post_auth($this->API.'auth/OAuth/listFollowers', $uid, $auth);
+		if ($this->session->userdata('isLogin') == 200){
+            $datas = $this->curl_request->curl_post($this->API.'auth/OAuth/otherProfile', $sendData, $auth);
+            $datas2 = $this->curl_request->curl_post($this->API.'book/Books/latestRead', $sendData, $auth);
+
+            $uid = array('user_id' => $idfix);
+            $followers_list = $this->curl_request->curl_post_auth($this->API.'auth/OAuth/listFollowers', $uid, $auth);
+        }else{
+            $datas = $this->curl_request->curl_post($this->API.'auth/OAuth/otherProfileWeb', $sendData, '');
+            $datasbook = $this->curl_request->curl_get($this->API.'timeline/Home/bestBook', '', '');
+        }
 
 		$data['userdata'] = $datas['data']['user_info'];
 		$data['bookdata'] = $datas['data']['book_published'];
 		$data['latestread'] = $datas2['data'];
+		$data['best_book'] = $datasbook['data'];
         $data['followers'] = array_slice($followers_list['data']['data'], 0, 20);
-
-		$data['title'] = "Profile Page - Baboo";
-        $data['page_desc'] = 'Profile Page Penulis | Baboo';
         $data['author_meta'] = $datas['data']['user_info']['fullname'];
+
+        $data['title'] = "Penulis ".ucwords($data['author_meta'])." | Baboo";
+        $data['page_desc'] = "Salah satu penulis handal ".ucwords($data['author_meta']).", cari tau buku apa saja yang dia buat... | Baboo";
 		$data['js'][] = "public/js/jquery.min.js";
 		$data['js'][] = "public/js/umd/popper.min.js";
 		$data['js'][] = "public/js/bootstrap.min.js";
@@ -149,13 +156,13 @@ class C_profile extends MX_Controller {
 		$data['js'][] = "public/js/custom/notification.js";
 		$data['js'][] = "public/js/custom/transaction.js";
 
-		if (http_response_code() == 403){
-			$this->session->unset_userdata('userData');
-			$this->session->unset_userdata('authKey');
-			$this->session->sess_destroy();
-			redirect('login','refresh');
-		}else{
-			$this->session->set_userdata('authKey', $auth);
+//		if (http_response_code() == 403){
+//			$this->session->unset_userdata('userData');
+//			$this->session->unset_userdata('authKey');
+//			$this->session->sess_destroy();
+//			redirect('login','refresh');
+//		}else{
+//			$this->session->set_userdata('authKey', $auth);
 
 			if ($datas['code'] == 200) {
 				if ($this->agent->mobile()) {
@@ -188,9 +195,9 @@ class C_profile extends MX_Controller {
 						swal("Gagal", "Maaf, terjadi sebuah kesalahan", "error");
 						});
 						</script>');
-				redirect('timeline','refresh');
+				redirect('','refresh');
 			}
-		}
+//		}
 	}
 	public function getPublishBook() {
 		error_reporting(0);

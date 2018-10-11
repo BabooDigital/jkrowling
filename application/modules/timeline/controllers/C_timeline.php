@@ -18,7 +18,7 @@ class C_timeline extends MX_Controller {
 		error_reporting(0);
 		$auth = $this->session->userdata('authKey');
 		$userdata = $this->session->userdata('userData');
-		$ch = curl_init();
+
 		if (!empty($this->input->get("page"))) {
 			$idpage = $this->input->get("page");
 		}else{
