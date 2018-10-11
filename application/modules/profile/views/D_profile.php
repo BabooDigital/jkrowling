@@ -195,7 +195,7 @@
                             <input type="hidden" id="iaiduui" name="iaiduui" value="<?php $name = $this->session->userdata('userData'); echo $name['user_id']; ?>">
                             <img alt="<?php echo $userdata['name']; ?>" class="rounded-circle p-5" height="100" src="<?php if($userdata['prof_pict'] == NULL){ echo base_url('public/img/profile/blank-photo.jpg'); }else{ echo $userdata['prof_pict']; } ?>" style="border: .5px #7554bd solid;" width="100" onerror="this.onerror=null;this.src='<?php echo base_url('public/img/profile/blank-photo.jpg'); ?>'">
                             <p class="mt-10">
-                                <h1 class="font-weight-bold" style="font-size: 20px;"><?php echo $userdata['fullname']; ?></h1>
+                            <h1 class="font-weight-bold" style="font-size: 20px;"><?php echo $userdata['fullname']; ?></h1>
                             </p>
                             <p style="font-size: 15px;">
                                 <?php echo $userdata['address']; ?>
@@ -212,12 +212,14 @@
                                     <div class="mt-15">
                                         <a data-toggle="modal" data-target="#view-statistik" href="#" class="btn-edprof fs-12px mr-10">Statistik</a>
                                     </div>
-                                <?php else: ?>
-                                    <a href="javascript:void(0);" class="btn-edprof fs-12px mr-10 message-user" data-usr-msg="<?php echo $userdata["user_id"]; ?>" data-usr-name ="<?php echo $userdata["fullname"]; ?>">Kirim Pesan
-                                    </a>
-                                    <a href="#" data-follow="<?php echo $userdata['user_id']; ?>" class="btn-edprof fs-12px <?php if ($userdata['isFollow'] == false) { echo "follow-u"; }else{ echo "unfollow-u"; } ?>"><span class=" txtfollow"><?php if ($userdata['isFollow'] == false) { echo "Ikuti"; }else{ echo "Diikuti"; } ?></span></a>
-                                    <input type="hidden" name="iaiduui" id="iaiduui" value="<?php $dat = $this->session->userdata('userData'); echo $dat['user_id']; ?>">
-                                <?php endif ?>
+                                <?php else:
+                                    if ($this->session->userdata('isLogin') == 200) { ?>
+                                        <a href="javascript:void(0);" class="btn-edprof fs-12px mr-10 message-user" data-usr-msg="<?php echo $userdata["user_id"]; ?>" data-usr-name ="<?php echo $userdata["fullname"]; ?>">Kirim Pesan
+                                        </a>
+                                        <a href="#" data-follow="<?php echo $userdata['user_id']; ?>" class="btn-edprof fs-12px <?php if ($userdata['isFollow'] == false) { echo "follow-u"; }else{ echo "unfollow-u"; } ?>"><span class=" txtfollow"><?php if ($userdata['isFollow'] == false) { echo "Ikuti"; }else{ echo "Diikuti"; } ?></span></a>
+                                        <input type="hidden" name="iaiduui" id="iaiduui" value="<?php $dat = $this->session->userdata('userData'); echo $dat['user_id']; ?>">
+                                    <?php }
+                                endif ?>
                             </div>
                             <hr>
                             <?php if (!$this->uri->segment(2)): ?>
@@ -340,34 +342,76 @@
         <?php endif ?>
         <div class="col-md-3 tmlin">
             <div class="stickymenu">
-                <!-- Buku Populer -->
-                <div class="card mb-15">
-                    <div class="card-header">
-                        Terakhir Dibaca
-                    </div>
-                    <div class="card-body p-0">
-                        <ul class="list-group list-group-flush">
-                            <?php if (!empty($latestread)) {
-                                foreach ($latestread as $l_book) {
-                                    $urlToUser = url_title($l_book['author_name'], 'dash', true).'-'.$l_book['author_id'];
-                                    $urlToBook = url_title($l_book['title_book'], 'dash', true).'-'.$l_book['book_id']; ?>
-                                    <li class="list-group-item">
-                                        <div class="media">
-                                            <div class="media-left mr-10">
-                                                <a href="<?php echo $this->baboo_lib->urlToBook($urlToUser, $urlToBook); ?>"><img class="media-object rounded" height="80" src="<?php echo ($l_book['cover_url'] != 'Kosong') ? ($l_book['cover_url'] != null ? $l_book['cover_url'] : base_url('public/img/blank_cover.png')) : base_url('public/img/blank_cover.png'); ?>" onerror="this.onerror=null;this.src='<?php echo base_url('public/img/blank_cover.png'); ?>';" width="60" style="object-fit: cover;"></a>
-                                            </div>
-                                            <div class="media-body">
-                                                <div>
-                                                    <span class="media-heading bold mt-10"><a href="<?php echo $this->baboo_lib->urlToBook($urlToUser, $urlToBook); ?>"><?php echo $l_book['title_book']; ?></a></span>
-                                                    <p style="font-size: 10pt;">by <a href="<?php echo $this->baboo_lib->urlToUser($urlToUser); ?>"><?php echo $l_book['author_name']; ?></a></p>
+                <?php
+                if ($this->session->userdata('isLogin') == 200){ ?>
+                    <!-- Buku Populer -->
+                    <div class="card mb-15">
+                        <div class="card-header">
+                            Terakhir Dibaca
+                        </div>
+                        <div class="card-body p-0">
+                            <ul class="list-group list-group-flush">
+                                <?php if (!empty($latestread)) {
+                                    foreach ($latestread as $l_book) {
+                                        $urlToUser = url_title($l_book['author_name'], 'dash', true).'-'.$l_book['author_id'];
+                                        $urlToBook = url_title($l_book['title_book'], 'dash', true).'-'.$l_book['book_id']; ?>
+                                        <li class="list-group-item">
+                                            <div class="media">
+                                                <div class="media-left mr-10">
+                                                    <a href="<?php echo $this->baboo_lib->urlToBook($urlToUser, $urlToBook); ?>"><img class="media-object rounded" height="80" src="<?php echo ($l_book['cover_url'] != 'Kosong') ? ($l_book['cover_url'] != null ? $l_book['cover_url'] : base_url('public/img/blank_cover.png')) : base_url('public/img/blank_cover.png'); ?>" onerror="this.onerror=null;this.src='<?php echo base_url('public/img/blank_cover.png'); ?>';" width="60" style="object-fit: cover;"></a>
+                                                </div>
+                                                <div class="media-body">
+                                                    <div>
+                                                        <span class="media-heading bold mt-10"><a href="<?php echo $this->baboo_lib->urlToBook($urlToUser, $urlToBook); ?>"><?php echo $l_book['title_book']; ?></a></span>
+                                                        <p style="font-size: 10pt;">by <a href="<?php echo $this->baboo_lib->urlToUser($urlToUser); ?>"><?php echo $l_book['author_name']; ?></a></p>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </li>
-                                <?php } }else { } ?>
-                        </ul>
+                                        </li>
+                                    <?php } }else { } ?>
+                            </ul>
+                        </div>
                     </div>
-                </div><!-- Buku Populer -->
+                    <!-- Buku Populer -->
+                <?php }else{ ?>
+                    <div class="card w-100">
+                        <div class="card-header">
+                            Buku Populer
+                        </div>
+                        <div class="card-body p-0">
+                            <ul class="list-group list-group-flush" id="best_book">
+                                <?php if (!empty($best_book)){
+                                    foreach ($best_book as $_book){
+                                        $urlToUserPop = url_title($_book['popular_author_name'], 'dash', true).'-'.$_book['popular_author_id'];
+                                        $urlToBookPop = url_title($_book['popular_book_title'], 'dash', true).'-'.$_book['popular_book_id'];
+                                        if ($_book['popular_cover_url'] == null || $_book['popular_cover_url'] == ""){
+                                            $cover =  base_url()."public/img/blank_cover.png";
+                                        }else{
+                                            $cover =  $_book['popular_cover_url'];
+                                        }
+                                        ?>
+                                        <li class="list-group-item">
+                                            <div class="media">
+                                                <div class="media-left mr-10">
+                                                    <a href="<?php echo $this->baboo_lib->urlToBook($urlToUserPop,$urlToBookPop); ?>"><img class="media-object rounded" src="<?php echo $cover; ?>" onerror="this.onerror=null;this.src='<?php echo base_url("public/img/blank_cover.png"); ?>';" width="60" height="80"></a>
+                                                </div>
+                                                <div class="media-body">
+                                                    <div>
+                                                        <p class="media-heading bold mt-10">
+                                                            <a href="<?php echo $this->baboo_lib->urlToBook($urlToUserPop,$urlToBookPop); ?>"><?php echo $_book['popular_book_title']; ?></a>
+                                                        </p>
+                                                        <p style="font-size: 10pt;">by <a class="profile" href="<?php echo $this->baboo_lib->urlToUser($urlToUserPop); ?>"><?php echo $_book['popular_author_name']; ?></a></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    <?php }
+                                } ?>
+                            </ul>
+                        </div>
+                    </div>
+                <?php }
+                ?>
             </div>
         </div>
     </div>

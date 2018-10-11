@@ -4,19 +4,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class C_forgot_pin extends MX_Controller {
 
 	var $API = "";
-	
+
 	function __construct()
 	{
 		parent::__construct();
 		$api_url = checkBase();
 		$this->API = $api_url;
-		
+
 		$usrPin = $this->session->userdata('hasPIN');
 		if ($this->session->userdata('isLogin') != 200 || $usrPin != 1) {
 			$this->session->set_flashdata('fail_alert', '<script>
 					swal("Gagal", "Maaf, sepertinya anda sudah membuat PIN", "warning");
 				</script>');
-			redirect('timeline', 'refresh');
+			redirect('', 'refresh');
 		}
 	}
 
@@ -165,7 +165,7 @@ class C_forgot_pin extends MX_Controller {
 		$auth = $this->session->userdata('authKey');
 
 		$datas = $this->curl_request->curl_get($this->API.'auth/OAuth/resendOTP', '', $auth);
-		
+
 		if (http_response_code() == 403){
 			$this->session->sess_destroy();
 			redirect('login','refresh');

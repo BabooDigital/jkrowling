@@ -1,5 +1,5 @@
-<?php if (!empty($home)) {
-    foreach ($home['data'] as $s_book) {
+<?php if (!empty($home['data'])) {
+    foreach ($home['data']['timeline'] as $s_book) {
         $urlToUser = url_title($s_book['author_name'], 'dash', true).'-'.$s_book['author_id'];
         $urlToBook = url_title($s_book['title_book'], 'dash', true).'-'.$s_book['book_id']; ?>
         <div class="col-md-6 mb-10 all fiksi" style="margin-right: -15px;">

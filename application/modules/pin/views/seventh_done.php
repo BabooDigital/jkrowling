@@ -38,7 +38,7 @@
 	<script>
 		$(document).ready(function () {
 			$('.btn-ok-purp').click(function () {
-				window.location = base_url+'timeline';
+				window.location = base_url;
 				location.reload();
 			});
 		});

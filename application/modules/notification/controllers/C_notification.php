@@ -3,9 +3,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class C_notification extends MX_Controller
 {
-	
+
 	function __construct(){
-		parent::__construct();	
+		parent::__construct();
 		if ($this->session->userdata('isLogin') != 200) {
 			redirect('login');
 		}
@@ -144,7 +144,7 @@ class C_notification extends MX_Controller
 			// print_r($result);
 
 		}else{
-			redirect('timeline','refresh');
+			redirect('','refresh');
 		}
 	}
 	public function updateNtf()

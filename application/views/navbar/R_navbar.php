@@ -19,7 +19,7 @@
 			<div class="row" style="">
 				<div class="col-2 mt-5 mb-1">
 					<center>
-						<a class="menu-page <?php if ($this->uri->segment('1') == 'timeline') { echo 'boo-menu-active'; }else { echo 'boo-menu'; } ?>" href="<?php echo site_url('timeline'); ?>" id="tab_page" dat-title="Timeline"><img height="30" src="<?php if ($this->uri->segment('1') == 'timeline') { echo base_url('public/img/icon-tab/feed_icon_active.svg'); }else { echo base_url('public/img/icon-tab/feed_icon.svg'); } ?>" width="30">
+						<a class="menu-page <?php if ($this->uri->segment('1') == '') { echo 'boo-menu-active'; }else { echo 'boo-menu'; } ?>" href="<?php echo site_url(''); ?>" id="tab_page" dat-title="Timeline"><img height="30" src="<?php if ($this->uri->segment('1') == '') { echo base_url('public/img/icon-tab/feed_icon_active.svg'); }else { echo base_url('public/img/icon-tab/feed_icon.svg'); } ?>" width="30">
 						<p>Explore</p></a>
 					</center>
 				</div>
