@@ -8,7 +8,7 @@ if ($this->agent->is_mobile()) {
 }
 ?>
 
-<div class="container mt-80 mb-80">
+<div class="container mt-80 mb-130">
     <div class="row">
         <div class="head col-sm-12">
             <?php if (!empty($userlist)) { ?>
