@@ -5,10 +5,11 @@
  */
 class Baboo_lib
 {
+    public $ci;
 
     function __construct()
     {
-
+        $this->ci = &get_instance();
     }
 
     function ConvertToK($num)

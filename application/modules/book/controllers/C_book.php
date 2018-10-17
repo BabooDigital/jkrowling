@@ -78,6 +78,10 @@ class C_book extends MX_Controller
             $datapdf = $resval2;
         }
 
+        if ($data['code'] == '404'){
+            redirect('404_override');
+        }
+
         $datasa = "";
         if ($data['data']['book_info']['book_type'] == 1) {
             foreach ($data['data']['chapter']['paragraphs'] as $book) {

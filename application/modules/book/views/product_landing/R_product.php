@@ -431,6 +431,27 @@ $shareLinkUrl = 'https://' . $_SERVER['HTTP_HOST'] . $uri_parts[0];
     <textarea class="frmcomment commentform mention" id="comments" placeholder="Tulis komentarmu disini..." type="text" style="width:100%;height: 45px;"></textarea>
     <div id="btn-com"><button class="Rpost-comment" type="button" style="background: none;border: none;"><img src="<?php echo base_url('public/img/assets/icon_sendcomm.png'); ?>" width="43" height="43"></button></div>
 </div>
+
+<nav aria-label="breadcrumb">
+    <?php
+    $uri2 = $this->uri->segment(2);
+    $urii2 = explode("-", $uri2);
+    $uriii2 = array_pop($urii2);
+    $uriiiii2 = implode(' ', $urii2);
+
+    $uri3 = $this->uri->segment(3);
+    $urii3 = explode("-", $uri3);
+    $uriii3 = array_pop($urii3);
+    $uriiiii3 = implode(' ', $urii3);
+
+    $this->breadcumb_lib->add('Timeline', base_url());
+    $this->breadcumb_lib->add('Penulis', base_url('penulis'));
+    $this->breadcumb_lib->add(ucwords($uriiiii2), base_url('penulis/'.$uri2));
+    $this->breadcumb_lib->add(ucwords($uriiiii3), base_url('penulis/'.$uri2.'/'.$uri3));
+    echo $this->breadcumb_lib->render();
+    ?>
+</nav>
+
 <!--            </div>-->
 <!--        </div>-->
 <!--    </div>-->

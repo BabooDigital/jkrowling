@@ -301,6 +301,21 @@ if ($this->session->userdata('isLogin') == 200){
             </div>
         </div>
     </div>
+    <div class="row mx-auto">
+        <nav aria-label="breadcrumb">
+            <?php
+            $uri2 = $this->uri->segment(2);
+            $urii = explode("-", $uri2);
+            $uriii = array_pop($urii);
+            $uriiiii = implode(' ', $urii);
+
+            $this->breadcumb_lib->add('Timeline', base_url());
+            $this->breadcumb_lib->add('Penulis', base_url('penulis'));
+            $this->breadcumb_lib->add(ucwords($uriiiii), base_url('penulis/'.$uri2));
+            echo $this->breadcumb_lib->render();
+            ?>
+        </nav>
+    </div>
 </div>
 </div>
 </div>

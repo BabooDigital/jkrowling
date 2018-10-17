@@ -3,8 +3,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class C_notfound extends MX_Controller {
 
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
 	public function index()
 	{
+        $this->output->set_status_header('404');
 		$data['title'] = 'Kamu Tersesat.. | 404 Page Not Found - Baboo.id';
 		if ($this->agent->is_mobile()) {
 			$this->load->view('r_404_page', $data);
