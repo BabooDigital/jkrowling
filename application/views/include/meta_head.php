@@ -4,7 +4,7 @@
 ?>
 
 <meta name="description" content="<?php if (!empty($page_desc)) { echo $page_desc; } ?>" />
-<meta name="author" content="<?php if (!empty($author_meta)) { echo $author_meta; } ?>">
+<meta name="author" content="<?php if (!empty($author_meta)) { echo $author_meta; } else { echo "Baboo Digital Indonesia"; } ?>">
 <meta property="og:url" content="<?php echo current_url(); ?>" />
 <meta property="og:description" content="<?php if (!empty($page_desc)) { echo $page_desc; } ?>" />
 <meta property="og:site_name" content="Baboo.id" />
@@ -16,6 +16,7 @@
 
 <meta name="google-site-verification" content="H1TyRzWK3ppRRDlk8GuM6Rpv2tArZPXOgrDHuPTgM9s" />
 
+<link href="https://plus.google.com/106535919547018503020" rel="publisher"/>
 <link rel="canonical" href="<?php echo $url_fix; ?>">
 
 <?php if ($this->uri->segment(1) == 'penulis') {

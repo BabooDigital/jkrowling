@@ -186,6 +186,21 @@
 </style>
 <div class="container babooidin">
     <div class="row">
+        <nav aria-label="breadcrumb">
+            <?php
+            $uri2 = $this->uri->segment(2);
+            $urii = explode("-", $uri2);
+            $uriii = array_pop($urii);
+            $uriiiii = implode(' ', $urii);
+
+            $this->breadcumb_lib->add('Timeline', base_url());
+            $this->breadcumb_lib->add('Penulis', base_url('penulis'));
+            $this->breadcumb_lib->add(ucwords($uriiiii), base_url('penulis/'.$uri2));
+            echo $this->breadcumb_lib->render();
+            ?>
+        </nav>
+    </div>
+    <div class="row">
         <!-- Left Side -->
         <div class="col-md-3">
             <div class="stickymenu">
@@ -546,7 +561,7 @@
                 </div>
             </div>
 
-            <?php if (empty($this->uri->segment(2))){$url = 'all-friends';}else{$url = 'penulis/'.$this->uri->segment(2).'/all-friends';} if (count($followers) == 20){ ?>
+            <?php if (empty($this->uri->segment(2))){$url = 'all-friends';}else{$url = 'profile/'.$this->uri->segment(2).'/all-friends';} if (count($followers) == 20){ ?>
                 <div class="modal-footer">
                     <a href="<?php echo site_url($url); ?>" class="mx-auto text-white rounded" style="background: #482d8e;padding: 10px 80px;">Lihat Semua</a>
                 </div>

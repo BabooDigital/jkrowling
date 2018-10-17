@@ -39,12 +39,15 @@
     </div>
     <div class="row">
         <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="<?php echo site_url(); ?>">Timeline</a></li>
-                <li class="breadcrumb-item"><a href="<?php echo site_url('kategori'); ?>"><?php echo ucwords(str_replace("-"," ",$this->uri->segment(1))); ?></a></li>
-                <li class="breadcrumb-item active" aria-current="page"><?php echo ucwords(str_replace("-"," ",$this->uri->segment(2))); ?></li>
-                <?php if (!empty($this->uri->segment(3))){ echo "<li class='breadcrumb-item active' aria-current='page'>".ucwords(str_replace('-',' ',$this->uri->segment(3)))."</li>"; } else { } ?>
-            </ol>
+            <?php
+            $uri2 = $this->uri->segment(3);
+            $title =  ucwords(str_replace('-',' ' , $uri2));
+
+            $this->breadcumb_lib->add('Timeline', base_url());
+            $this->breadcumb_lib->add('Kategori', base_url('kategori'));
+            $this->breadcumb_lib->add($title, base_url('kategori/'.$uri2));
+            echo $this->breadcumb_lib->render();
+            ?>
         </nav>
     </div>
     <div class="row" id="post-data">

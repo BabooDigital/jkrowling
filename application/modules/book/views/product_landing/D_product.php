@@ -39,7 +39,7 @@ if ($detail_book['data']['book_info']['cover_url'] == null || $detail_book['data
 }
 
 if ($detail_book['data']['author']['avatar'] == null || $detail_book['data']['author']['avatar'] == "") {
-    $avatar =  base_url()."public/img/blank_cover.png";
+    $avatar =  base_url()."public/img/profile/blank-photo.jpg";
 }else{
     $avatar =  $detail_book['data']['author']['avatar'];
 }
@@ -72,6 +72,28 @@ $shareLinkUrl = 'https://' . $_SERVER['HTTP_HOST'] . $uri_parts[0];
 
 <div class="container mt-80 mb-80">
     <input type="hidden" name="iaidubi" id="iaidubi" value="<?php echo $detail_book['data']['book_info']['book_id']; ?>">
+
+    <div class="row">
+        <nav aria-label="breadcrumb">
+            <?php
+            $uri2 = $this->uri->segment(2);
+            $urii2 = explode("-", $uri2);
+            $uriii2 = array_pop($urii2);
+            $uriiiii2 = implode(' ', $urii2);
+
+            $uri3 = $this->uri->segment(3);
+            $urii3 = explode("-", $uri3);
+            $uriii3 = array_pop($urii3);
+            $uriiiii3 = implode(' ', $urii3);
+
+            $this->breadcumb_lib->add('Timeline', base_url());
+            $this->breadcumb_lib->add('Penulis', base_url('penulis'));
+            $this->breadcumb_lib->add(ucwords($uriiiii2), base_url('penulis/'.$uri2));
+            $this->breadcumb_lib->add(ucwords($uriiiii3), base_url('penulis/'.$uri2.'/'.$uri3));
+            echo $this->breadcumb_lib->render();
+            ?>
+        </nav>
+    </div>
 
     <div class="row">
         <div class="col-9">
