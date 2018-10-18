@@ -19,9 +19,18 @@
 <link href="https://plus.google.com/106535919547018503020" rel="publisher"/>
 <link rel="canonical" href="<?php echo $url_fix; ?>">
 
-<meta name="robots" content="noindex, nofollow, noimageindex, noarchive, nosnippet">
-<meta name="googlebot" content="noindex">
-<meta name="googlebot-news" content="nosnippet">
+<?php if (empty($_GET)){
+    $robots = "index, follow";
+    $googlebot = "index";
+    $googlebotnews = "snippet";
+}else{
+    $robots = "noindex, nofollow";
+    $googlebot = "noindex";
+    $googlebotnews = "nosnippet";
+} ?>
+<meta name="robots" content="<?php echo $robots; ?>">
+<meta name="googlebot" content="<?php echo $googlebot; ?>">
+<meta name="googlebot-news" content="<?php echo $googlebotnews; ?>">
 
 <?php if ($this->uri->segment(1) == 'penulis') {
     echo "<meta name='twitter:title' content='".$title."' />";
