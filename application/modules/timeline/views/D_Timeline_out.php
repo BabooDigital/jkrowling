@@ -28,19 +28,21 @@
 							</div>
 							<div class="card-body p-0">
 								<ul class="list-group list-group-flush" id="author_this_week">
-									<?php foreach ($writter['data'] as $wr) { ?>
+									<?php foreach ($writter['data'] as $wr) {
+									    $urlToUser = url_title($wr['author_name'], 'dash', TRUE).'-'.$wr['author_id'];;
+									    ?>
 									<li class="media baboocontent">
-										<a href="<?php echo site_url('penulis/'.$wr['author_id']); ?>">
+										<a href="<?php echo $this->baboo_lib->urlToUser($urlToUser); ?>">
 											<img alt="<?php echo $wr['author_name']; ?>" class="d-flex mr-3 rounded-circle" src="<?php echo $wr['avatar']; ?>" width="50" height="50">
 										</a>
 										<div class="media-body mt-7">
-											<a href="<?php echo site_url('penulis/'.$wr['author_id']); ?>">
+											<a href="<?php echo $this->baboo_lib->urlToUser($urlToUser); ?>">
 												<h5 class="mt-0 mb-1 nametitle"><?php if(strlen($wr['author_name']) > 25){ $str =  substr($wr['author_name'], 0, 23).'...'; echo $str; }else { echo $wr['author_name']; }  ?>
 												</h5>
 												<small>Penulis</small>
 											</a>
 											<div class="pull-right baboocolor">
-												<a href="<?php echo site_url('penulis/'.$wr['author_id']); ?>"></a>
+												<a href="<?php echo $this->baboo_lib->urlToUser($urlToUser); ?>"></a>
 												<a href="<?php echo site_url('login'); ?>" class="addbutton">
 													<img src="<?php echo base_url('public/img/assets/icon_plus_purple.svg'); ?>" width="20" class="mt-img">
 												</a>
