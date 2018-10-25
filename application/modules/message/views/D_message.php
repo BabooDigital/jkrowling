@@ -83,4 +83,8 @@
 			</div>
 		</div>
 	</div>
-</div><?php if (isset($js)): ?><?php echo get_js($js) ?><?php endif ?>
+</div>
+
+<?php $this->load->view('footer/D_footer'); ?>
+
+<?php if (isset($js)): ?><?php echo get_js($js) ?><?php endif ?>

@@ -4527,7 +4527,7 @@ var Contents = function () {
 									position = container.parentNode.getBoundingClientRect();
 								}
 							} catch (e) {
-								console.error(e, e.stack);
+								console.log(e, e.stack);
 							}
 						} else {
 							position = range.getBoundingClientRect();
@@ -10373,7 +10373,7 @@ var Book = function () {
 				this.replacements().then(function () {
 					_this6.opening.resolve(_this6);
 				}).catch(function (err) {
-					console.error(err);
+					console.log(err);
 				});
 			} else {
 				// Resolve book opened promise
@@ -13010,7 +13010,7 @@ var Resources = function () {
 				var absolute = _this.settings.resolver(url);
 
 				return _this.createUrl(absolute).catch(function (err) {
-					console.error(err);
+					console.log(err);
 					return null;
 				});
 			});

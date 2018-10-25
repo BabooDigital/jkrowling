@@ -159,12 +159,6 @@ if ((bool)$detail_book['data']['book_info']['is_free'] == true || $usDat['user_i
                 </div>
             </div>
         </div>
-        <div class="error hidden">
-            <div class="error-title"></div>
-            <div class="error-description"></div>
-            <div class="error-info"></div>
-            <div class="error-dump"></div>
-        </div>
         <div class="bar">
             <div class="left">
 

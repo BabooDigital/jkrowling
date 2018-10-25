@@ -37,7 +37,7 @@
 	padding: 0px 8px !important;
 }
 </style>
-<?php if ($this->uri->segment(1) == 'book') {
+<?php if ($this->uri->segment(1) == 'penulis' && !empty($this->uri->segment(3))) {
 	echo "<body oncontextmenu='return false;'>";
 }else{
 	echo "<body>";
