@@ -2369,6 +2369,9 @@ input:checked + .slider:before {
 .c-btn_socmed_pinterest {
     color: #bd081b !important;
 }
+.c-btn_socmed_instagram {
+    color: #983ac1 !important;
+}
 
 .card-content_container {
     /*display: none;*/
@@ -2538,4 +2541,21 @@ input:checked + .slider:before {
 .writer-media-border {
     box-shadow: 0px 0px 10px #bdbdbd;
     border-radius: 10px;
+}
+
+/*For Footer*/
+.foot-row {
+    font-size: 14px;line-height: 1.4; padding: 10px 0px;
+}
+.foot-fs_17 {
+    font-size: 17px;font-weight: 600;
+}
+.foot-fs_17_grey {
+    font-size: 17px;font-weight: 600;color: #717171;
+}
+.foot-list_li {
+    margin: 0px 6px 0px 0px;width: 42px;display: inline-block;padding: 0;
+}
+.foot-list_li_download_app {
+    margin: 0px 6px 0px 0px;width: 160px;display: inline-block;padding: 0;
 }

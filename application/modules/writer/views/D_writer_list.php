@@ -8,7 +8,6 @@ if ($this->agent->is_mobile()) {
 }
 ?>
 
-<div class="container mt-80 mb-130">
     <div class="row">
         <div class="head col-sm-12">
             <?php if (!empty($userlist)) { ?>
@@ -41,6 +40,8 @@ if ($this->agent->is_mobile()) {
         <div class="loader" style="display: none;margin-left: auto;margin-right: auto;"></div>
     </div>
 </div>
+
+<?php $this->load->view('footer/D_footer'); ?>
 
 <?php if (isset($js)): ?>
     <?php echo get_js($js) ?>

@@ -1,5 +1,5 @@
 <?php $this->load->view('navbar/D_navbar'); ?>
-<div class="container mt-80">
+<div class="container mt-80 mb-60">
 	<div class="row mb-5">
 		<div class="col-2"></div>
 		<div class="col-8">
@@ -132,6 +132,9 @@
 		</div>
 	</div>
 </div>
+
+<?php $this->load->view('footer/D_footer'); ?>
+
 <?php if (isset($js)): ?>
 	<?php echo get_js($js) ?>
 <?php endif ?>

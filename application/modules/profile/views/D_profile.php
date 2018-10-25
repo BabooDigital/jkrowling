@@ -1,4 +1,3 @@
-<?php $this->load->view('navbar/D_navbar'); ?>
 <style type="text/css">
     button {
         cursor: pointer;
@@ -184,7 +183,10 @@
         font-size: 14pt;
     }
 </style>
-<div class="container babooidin">
+
+<?php $this->load->view('navbar/D_navbar'); ?>
+
+<div class="container mb-50 babooidin">
     <div class="row">
         <nav aria-label="breadcrumb">
             <?php
@@ -431,6 +433,9 @@
         </div>
     </div>
 </div>
+
+<?php $this->load->view('footer/D_footer'); ?>
+
 <div class="modal fade" id="edit-profile" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content" style="width: 105% !important;height: 800px;">

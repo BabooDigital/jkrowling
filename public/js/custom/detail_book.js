@@ -392,7 +392,7 @@ function buyBook() {
 			$.ajax({
 				url: base_url+'pay_book/token',
 				type: "POST",
-				data:{id_book:$("#iaidubi").val(),user_id:$("#uid_sess").val(), url_redirect:document.location.href.match(/(^[^#]*)/)[0], csrf_test_name: csrf_value},
+				data:{id_book:$("#iaidubi").val(),user_id:$("#uid_sess").val(), url_redirect:full_url, csrf_test_name: csrf_value},
 				cache: false,
 				success: function(data) {
 		        var resultType = document.getElementById('result-type');
@@ -512,13 +512,13 @@ function getmenuChapter() {
 		if (userbook == userdata) {
 			$.each(d, function(d, a) {
 				if (d != 'pay') {
-				c += '<li style="background:transparent;border-bottom: 0.5px #eeeeee;', 0 == d && (c += "background: url("+base_url+"public/img/assets/frame_active.svg) no-repeat; background-position: right;background-size:17px; "), c += '" class="list-group-item ', 0 == d && (c += "chapter_active icon_active "), c += '" id="list_chapters"><a href="' + document.location.href.match(/(^[^#]*)/)[0] + "/ch/" + a.chapter_id + '" class="id_chapter', c += '" id="' + d + '"><h2 style="font-size: 12px;width:90%;">' + a.chapter_title + "</h2></a>", 0 == d && (c += "</li>");
+				c += '<li style="background:transparent;border-bottom: 0.5px #eeeeee;', 0 == d && (c += "background: url("+base_url+"public/img/assets/frame_active.svg) no-repeat; background-position: right;background-size:17px; "), c += '" class="list-group-item ', 0 == d && (c += "chapter_active icon_active "), c += '" id="list_chapters"><a href="' + full_url + "/ch/" + a.chapter_id + '" class="id_chapter', c += '" id="' + d + '"><h2 style="font-size: 12px;width:90%;">' + a.chapter_title + "</h2></a>", 0 == d && (c += "</li>");
 				}
 			});
 		}else{
 			$.each(d, function(d, a) {
 				if (d != 'pay') {
-				false != a.chapter_free ? (c += '<li style="background:transparent;border-bottom: 0.5px #eeeeee;', 0 == d && (c += "background: url("+base_url+"public/img/assets/frame_active.svg) no-repeat; background-position: right;background-size:17px; "), c += '" class="list-group-item ', 0 == d && (c += "chapter_active icon_active "), c += '" id="list_chapters"><a href="' + document.location.href.match(/(^[^#]*)/)[0] + "/ch/" + a.chapter_id + '" class="id_chapter', c += '" id="' + d + '"><h2 style="font-size: 12px;width:90%;">' + a.chapter_title + "</h2></a>", 0 == d && (c += "</li>")) : (c += '<li class="list-group-item ',
+				false != a.chapter_free ? (c += '<li style="background:transparent;border-bottom: 0.5px #eeeeee;', 0 == d && (c += "background: url("+base_url+"public/img/assets/frame_active.svg) no-repeat; background-position: right;background-size:17px; "), c += '" class="list-group-item ', 0 == d && (c += "chapter_active icon_active "), c += '" id="list_chapters"><a href="' + full_url + "/ch/" + a.chapter_id + '" class="id_chapter', c += '" id="' + d + '"><h2 style="font-size: 12px;width:90%;">' + a.chapter_title + "</h2></a>", 0 == d && (c += "</li>")) : (c += '<li class="list-group-item ',
 					c += "chapter_disabled ", c += '" title="Beli buku ini untuk versi full." style="cursor: not-allowed;border-bottom: 0.5px #eeeeee;"><h2 style="font-size: 12px;width:90%;" class="id_chapter float-left', c += '" id="' + d + '">' + a.chapter_title + "</h2><img class='float-right sale-icon' src='"+base_url+"public/img/assets/sale_active.svg'></li>")
 				}
 			});

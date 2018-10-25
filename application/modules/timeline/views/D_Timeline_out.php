@@ -1,6 +1,5 @@
-
-
 	<?php $this->load->view('navbar/D_navbar'); ?>
+
 <div class="mt-50 hidden-sm hidden-xs">
 	<div class="slideboo">
 		<div class="leftboo"></div>
@@ -16,7 +15,7 @@
 		</div>
 	</div>
 
-	<div class="container babooid">
+	<div class="container babooid mb-60">
 		<div class="row">
 			<div class="col-md-3 outleft">
 				<div class="stickymenu">
@@ -124,6 +123,9 @@
 			</div>
 		</div>
 	</div>
+
+    <?php $this->load->view('footer/D_footer'); ?>
+
 	<?php if (isset($js)): ?><?php echo get_js($js) ?><?php endif ?>
 </div>
 

@@ -70,7 +70,7 @@ $uri_parts = explode('?', $_SERVER['REQUEST_URI'], 2);
 $shareLinkUrl = 'https://' . $_SERVER['HTTP_HOST'] . $uri_parts[0];
 ?>
 
-<div class="container mt-80 mb-80">
+<div class="container mt-80 mb-60">
     <input type="hidden" name="iaidubi" id="iaidubi" value="<?php echo $detail_book['data']['book_info']['book_id']; ?>">
 
     <div class="row">
@@ -419,6 +419,8 @@ $shareLinkUrl = 'https://' . $_SERVER['HTTP_HOST'] . $uri_parts[0];
     </div>
 </div>
 
+<?php $this->load->view('footer/D_footer'); ?>
+
 <!-- modal -->
 <div class="modal fade" id="buymodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <?php $this->load->view('data/D_paybook'); ?>
@@ -442,7 +444,8 @@ if (isset($js)): ?>
     var count_data = '<?php echo $detailChapter; ?>';
     var userdata = '<?php echo $usD['user_id']; ?>';
     var userbook = '<?php echo $detail_book['data']['author']['author_id']; ?>';
-    var full_url = '<?php echo (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; ?>';
+    var full_url = '<?php $uri_parts = explode('?', $_SERVER['REQUEST_URI'], 2);
+        $url_fix = 'https://' . $_SERVER['HTTP_HOST'] . $uri_parts[0]; echo $url_fix; ?>';
     <?php if ($detail_book['data']['book_info']['book_type'] != 1) { ?>
     var desc = $('.desc_pdf').text();
     <?php }else{ ?>
