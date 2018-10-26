@@ -96,7 +96,7 @@ URL = 'https://staging.baboo.id/'
 @@@ DEVELOPMENT @@@
 URL = 'https://dev-baboo.co.id/'
 */
-defined('BASE_URL_WEB')		OR define('BASE_URL_WEB', 'https://staging.baboo.id/');
+defined('BASE_URL_WEB')		OR define('BASE_URL_WEB', 'https://www.baboo.id/');
 defined('BASE_URL_DEEPLINK')		OR define('BASE_URL_DEEPLINK', 'www.baboo.id/');
 
 // CONFIG DB
@@ -180,8 +180,8 @@ data-ad-slot	= ""
 data-ad-client	= "ca-pub-4994852796413443"
 data-ad-slot	= "7276054409"
 */
-defined('AD_CLIENT')	OR	define('AD_CLIENT', 'ca-pub-4994852796413443');
-defined('AD_SLOT')		OR	define('AD_SLOT', '7276054409');
+defined('AD_CLIENT')	OR	define('AD_CLIENT', 'ca-pub-3590496162921239');
+defined('AD_SLOT')		OR	define('AD_SLOT', '');
 // CONFIG ID GOOGLE ANALYTICS / GOOGLE TAG MANAGER
 /*
 @@@ PRODUCTION @@@
@@ -194,6 +194,6 @@ GTAGSM ID = 'GTM-MFRWL46'
 ANALYTIS ID = 'UA-122651746-1'
 GTAGSM ID = 'GTM-NLSFN85'
 */
-defined('ANALYTICS_GID')	OR	define('ANALYTICS_GID', 'UA-122668478-1');
-defined('TAGMNG_GID')	OR	define('TAGMNG_GID', 'GTM-MFRWL46');
+defined('ANALYTICS_GID')	OR	define('ANALYTICS_GID', 'UA-125466050-1');
+defined('TAGMNG_GID')	OR	define('TAGMNG_GID', 'GTM-NR9NJMX');
 defined('FBPIXEL_ID')	OR	define('FBPIXEL_ID', '1016375711895493');
