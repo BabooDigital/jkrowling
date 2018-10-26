@@ -156,6 +156,11 @@ class C_profile extends MX_Controller {
 		$data['js'][] = "public/js/custom/notification.js";
 		$data['js'][] = "public/js/custom/transaction.js";
 
+		$url_title = url_title($data['author_meta'], '-', true).'-'.$data['userdata']['user_id'];
+		if (sizeof($ids) == 1){
+		    redirect('penulis/'.$url_title);
+        }
+
 //		if (http_response_code() == 403){
 //			$this->session->unset_userdata('userData');
 //			$this->session->unset_userdata('authKey');
