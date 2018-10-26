@@ -143,6 +143,11 @@ class C_book extends MX_Controller
                 $data['detailChapter'] = 2;
             }
 
+            $url_title = url_title($data['detail_book']['data']['book_info']['title_book'], '-', true).'-'.$data['data']['book_info']['book_id'];
+            if (sizeof($idb) == 1){
+                redirect('penulis/'.$this->uri->segment(2).'/'.$url_title);
+            }
+
 //            Product
             $data['best_writter'] = $best_writter['data'];
             $data['best_book'] = $best_book['data'];
