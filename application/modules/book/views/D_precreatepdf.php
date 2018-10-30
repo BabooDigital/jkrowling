@@ -67,7 +67,7 @@ textarea:-ms-input-placeholder {
 				<div class="mt-20 pt-15 pl-10">
 					<h4 for="title_book_out">Judul Buku</h4>
 					<br>
-					<textarea type="text" name="title_book_out" id="judul_buku" class="title_book_form" data-min-rows='3' placeholder="Tulis di sini" style="width: 100%"></textarea>
+					<textarea type="text" name="title_book_out" id="judul_buku" class="title_book_form" data-min-rows='3' placeholder="Tulis di sini" style="width: 100%" maxlength="50"></textarea>
 				</div>
 			</div>
 		</div>
