@@ -576,11 +576,13 @@ public function token_pay()
             'billing_address'  => $billing_address,
             'shipping_address' => $shipping_address
         );
+//        $productName = rtrim(mb_strimwidth($data['data']['book_info']['title_book'], 0, 47))."...";
+        $productName = strlen($data['data']['book_info']['title_book']) > 50 ? substr($data['data']['book_info']['title_book'],0,47)."..." : $data['data']['book_info']['title_book'];
         $item_details = array(
             'id' => $data['data']['book_info']['book_id'],
             'price' => $data['data']['book_info']['book_price'],
             'quantity' => 1,
-            'name' => $data['data']['book_info']['title_book']
+            'name' => $productName
         );
         $transaction = array(
           'transaction_details' => $transaction_details,
