@@ -187,6 +187,7 @@ class C_book extends MX_Controller
                 $data['css'][] = "public/css/sweetalert2.min.css";
                 $data['js'][] = "public/plugins/holdOn/js/HoldOn.js";
                 $data['js'][] = "public/js/jquery.sticky-kit.min.js";
+                $data['js'][] = "public/js/custom/search.js";
                 if ($this->session->userdata('isLogin') == 200) {
 
                     $data['js'][] = "public/js/custom/notification.js";

@@ -125,6 +125,7 @@ class C_home extends MX_Controller {
             else
             {
                 $data['js'][]   = "public/js/jquery.sticky-kit.min.js";
+                $data['js'][]   = "public/js/custom/search.js";
 
                 if (!empty($this->input->get("page"))) {
                     $result = $this->load->view('data/D_Timeline_out', $data);

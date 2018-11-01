@@ -197,7 +197,7 @@ $(document).ready(function () {
     });
 
     $('.search_bbo').bind("enterKey",function(e){
-        window.location = base_url+'search/'+$(this).val();
+        window.location = base_url+'search?keywords='+$(this).val();
     });
     $('.search_bbo').keyup(function(e){
         if(e.keyCode == 13)
@@ -259,7 +259,7 @@ $(document).ready(function () {
                         }
                         list_user += '<a class=""  data-usr-prf="'+val.user_id+'" data-usr-name="'+convertToSlug(val.fullname)+'" href="'+base_url+'penulis/'+convertToSlug(val.fullname)+'-'+val.user_id+'"><li class="dropdown-item"><img class="img-fluid rounded mr-10 obj-fit-cover prof_pict_search" src="'+prof_pict+'" width="20" height="25">'+val.fullname+'</li></a>';
                     });
-                    list_all += '<hr class="mb-5"><a href="'+base_url+'search/'+convertSearch(search)+'"><li class="dropdown-item font-weight-bold text-center">Lihat Semua</li></a>';
+                    list_all += '<hr class="mb-5"><a href="'+base_url+'search?keywords='+convertSearch(search)+'"><li class="dropdown-item font-weight-bold text-center">Lihat Semua</li></a>';
                     if (data['books'].length === 0 && data['user'].length === 0){
                         $(".search_result_bbo").html('<li class="dropdown-item">Kata kunci yang anda cari tidak ada...</li>');
                     }else{
