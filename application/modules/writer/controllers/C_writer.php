@@ -33,11 +33,11 @@ class C_writer extends MX_Controller {
         $data['js'][] = "public/js/umd/popper.min.js";
         $data['js'][] = "public/js/bootstrap.min.js";
         $data['js'][] = "public/js/sweetalert2.all.min.js";
+        $data['js'][] = "public/js/custom/search.js";
 
         if ($this->session->userdata('isLogin') == '200'){
             $data['js'][] = "public/js/custom/notification.js";
             $data['js'][] = "public/js/custom/transaction.js";
-            $data['js'][] = "public/js/custom/search.js";
             $data['js'][] = "public/js/custom/follow.js";
         }
 

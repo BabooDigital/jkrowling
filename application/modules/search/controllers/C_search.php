@@ -11,9 +11,9 @@ class C_search extends MX_Controller
         $this->title = "Pencarian | Baboo";
         $this->p_desc = "Cari buku dan teman mu disini. | Baboo";
 
-        if ($this->session->userdata('isLogin') != 200) {
-            redirect('home');
-        }
+//        if ($this->session->userdata('isLogin') != 200) {
+//            redirect('home');
+//        }
     }
 
     public function index()
@@ -39,7 +39,8 @@ class C_search extends MX_Controller
             $auth = $this->session->userdata('authKey');
 
             $search = $this->uri->segment(2);
-            $ids = str_replace('+', ' ', $search);
+            $param = $_GET['keywords'];
+            $ids = str_replace('+', ' ', $param);
             $idss = str_replace('%20', ' ', $ids);
 
 
@@ -47,9 +48,9 @@ class C_search extends MX_Controller
                 'search' => $idss
             );
 
-            $datas = $this->curl_request->curl_post_auth($this->API.'timeline/Timelines/search', $sendData, $auth);
-            $data_user = $this->curl_request->curl_post_auth($this->API.'timeline/Timelines/searchUsers', $sendData, $auth);
-            $data_book = $this->curl_request->curl_post_auth($this->API.'timeline/Timelines/searchBooks', $sendData, $auth);
+            $datas = $this->curl_request->curl_post_auth($this->API.'timeline/Timelines/searchWeb', $sendData, $auth);
+            $data_user = $this->curl_request->curl_post_auth($this->API.'timeline/Timelines/searchUsersWeb', $sendData, $auth);
+            $data_book = $this->curl_request->curl_post_auth($this->API.'timeline/Timelines/searchBooksWeb', $sendData, $auth);
 
             $resval = $datas['data'];
 
@@ -100,7 +101,7 @@ class C_search extends MX_Controller
             'search' => $search
         );
 
-        $datas = $this->curl_request->curl_post_auth($this->API.'timeline/Timelines/search', $sendData, $auth);
+        $datas = $this->curl_request->curl_post_auth($this->API.'timeline/Timelines/searchWeb', $sendData, $auth);
 
         $resval = $datas['data'];
 
@@ -130,7 +131,7 @@ class C_search extends MX_Controller
             'search' => $search
         );
 
-        $datas = $this->curl_request->curl_post_auth($this->API.'timeline/Timelines/searchUsers', $sendData, $auth);
+        $datas = $this->curl_request->curl_post_auth($this->API.'timeline/Timelines/searchUsersWeb', $sendData, $auth);
 
         $resval = $datas['data'];
 
