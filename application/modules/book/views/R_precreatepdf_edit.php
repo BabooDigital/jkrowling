@@ -44,7 +44,7 @@ textarea:-ms-input-placeholder {
 				<button type="button" class="clear-btn" onclick="history.go(-1)"><i class="fa fa-arrow-left"></i> &nbsp; <span>Kembali</span> </button>
 			</form>
 			<form class="form-inline">
-				<a href="javascript:void(0);" class="btn-transparant" id="post-prepdfedit" data-id="<?php echo $desc['data']['book_id']; ?>" style="color: #7554bd;"><i class="fa fa-check" aria-hidden="true"></i> &nbsp;<span>Lanjut</span></a>
+				<a href="javascript:void(0);" class="btn-transparant" id="post-prepdfedit" data-id="<?php echo $desc['data']['book_id']; ?>" style="color: #7554bd;"><i class="fa fa-check" aria-hidden="true"></i> &nbsp;<span>Baca</span></a>
 			</form>
 		</div>
 	</nav>
