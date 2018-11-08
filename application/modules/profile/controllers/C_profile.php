@@ -159,7 +159,9 @@ class C_profile extends MX_Controller {
 
 		$url_title = url_title($data['author_meta'], '-', true).'-'.$data['userdata']['user_id'];
 		if (sizeof($ids) == 1){
-		    redirect('penulis/'.$url_title);
+            header("Location: ".$url_title, true, 301); /* Redirect browser */
+
+            exit; /* Make sure that code below does not get executed when we redirect. */
         }
 
 //		if (http_response_code() == 403){

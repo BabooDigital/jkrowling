@@ -40,7 +40,7 @@
                                 <p class="text-desc-in text-justify desc<?php
                                 echo $s_book['book_id']; ?>"><span class="ptexts" style="font-family: 'Noto Serif', serif;"><?php
                                         echo $s_book['desc']; ?> </span><a class="segment" style="color: #7554bd;" data-href="<?php
-                                    echo $s_book['book_id']; ?>-<?php echo url_title($s_book['title_book'], 'dash', true); ?>" onclick="showLoading()" href="<?php echo $this->baboo_lib->urlToBook($urlToUser, $urlToBook); ?>" class="readmore">Lanjut</a>
+                                    echo $s_book['book_id']; ?>-<?php echo url_title($s_book['title_book'], 'dash', true); ?>" onclick="showLoading()" href="<?php echo $this->baboo_lib->urlToBook($urlToUser, $urlToBook); ?>" class="readmore">Baca</a>
                                 </p>
                             </div>
                         </div>

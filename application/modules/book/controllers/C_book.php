@@ -145,7 +145,9 @@ class C_book extends MX_Controller
 
             $url_title = url_title($data['detail_book']['data']['book_info']['title_book'], '-', true).'-'.$data['data']['book_info']['book_id'];
             if (sizeof($idb) == 1){
-                redirect('penulis/'.$this->uri->segment(2).'/'.$url_title);
+                header("Location: ".$url_title, true, 301); /* Redirect browser */
+
+                exit; /* Make sure that code below does not get executed when we redirect. */
             }
 
 //            Product

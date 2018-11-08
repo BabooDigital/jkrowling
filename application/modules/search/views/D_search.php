@@ -130,7 +130,7 @@
                                                 echo $s_book['share_count']; ?></span></p>
                                         <p class="text-desc-in text-justify desc<?php
                                         echo $s_book['book_id']; ?>"><?php
-                                            echo $s_book['desc']; ?> <a class="segment" onclick="showLoading()" href="<?php echo $this->baboo_lib->urlToBook($urlToUser, $urlToBook); ?>" class="readmore" style="color:#7554bd;">Lanjut</a>
+                                            echo $s_book['desc']; ?> <a class="segment" onclick="showLoading()" href="<?php echo $this->baboo_lib->urlToBook($urlToUser, $urlToBook); ?>" class="readmore" style="color:#7554bd;">Baca</a>
                                         </p>
                                     </div>
                                 </div>

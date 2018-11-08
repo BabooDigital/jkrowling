@@ -51,7 +51,7 @@
                                 <span><img src="<?php echo base_url('public/img/assets/icon_share.svg'); ?>">  <?php echo $s_book['share_count']; ?></span></p>
                             <p class="text-desc-in ptexts text-justify"><?php
                                 echo $s_book['desc']; ?> <a class="segment readmore" data-href="<?php
-                                echo $s_book['book_id']; ?>-<?php echo url_title($s_book['title_book'], 'dash', true); ?>" onclick="showLoading()" href="<?php echo $this->baboo_lib->urlToBook($urlToUser, $urlToBook); ?>">Lanjut</a></p>
+                                echo $s_book['book_id']; ?>-<?php echo url_title($s_book['title_book'], 'dash', true); ?>" onclick="showLoading()" href="<?php echo $this->baboo_lib->urlToBook($urlToUser, $urlToBook); ?>">Baca</a></p>
                         </div>
                     </div>
                 </div>
