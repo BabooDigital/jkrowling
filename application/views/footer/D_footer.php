@@ -74,6 +74,7 @@
                         <?php if($this->session->userdata('isLogin') == 200){ ?>
                             <li><a href="<?php echo site_url('library'); ?>">Library</a></li>
                             <li><a href="<?php echo site_url('message'); ?>">Pesan</a></li>
+                            <li><a href="<?php echo site_url('profile/laporan'); ?>">Laporan</a></li>
                         <?php }else{ ?>
                             <li><a href="<?php echo site_url('login'); ?>">Masuk</a></li>
                             <li><a href="<?php echo site_url('login#btndaftar'); ?>">Daftar</a></li>
