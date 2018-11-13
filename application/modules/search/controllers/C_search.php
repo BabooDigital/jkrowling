@@ -124,29 +124,28 @@ class C_search extends MX_Controller
     public function searchUser()
     {
         error_reporting(0);
-        $auth = $this->session->userdata('authKey');
+//        $auth = $this->session->userdata('authKey');
         $search = $this->input->post('search');
 
         $sendData = array(
             'search' => $search
         );
 
-        $datas = $this->curl_request->curl_post_auth($this->API.'timeline/Timelines/searchUsersWeb', $sendData, $auth);
-
+        $datas = $this->curl_request->curl_post_auth($this->API.'timeline/Timelines/searchUsersWeb', $sendData, '');
         $resval = $datas['data'];
 
         $userdetail = $resval['data'];
-        $auth = $datas['bbo_auth'];
+//        $auth = $datas['bbo_auth'];
 
-        $this->session->set_userdata('authKey', $auth);
-        $status = $resval['code'];
-        if ($status == 403) {
-            $this->session->unset_userdata('userData');
-            $this->session->unset_userdata('authKey');
-            $this->session->sess_destroy();
-            redirect('login', 'refresh');
-        } else {
+//        $this->session->set_userdata('authKey', $auth);
+//        $status = $resval['code'];
+//        if ($status == 403) {
+//            $this->session->unset_userdata('userData');
+//            $this->session->unset_userdata('authKey');
+//            $this->session->sess_destroy();
+//            redirect('login', 'refresh');
+//        } else {
             echo json_encode($userdetail);
-        }
+//        }
     }
 }

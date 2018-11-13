@@ -483,4 +483,111 @@ class C_profile extends MX_Controller {
 //			}
 		}
 	}
+
+    public function getReportUser()
+    {
+        if ($this->session->userdata('isLogin') != 200) {
+            redirect('login');
+        }
+        error_reporting(0);
+        $usd = $this->session->userdata('userData');
+        $auth = $this->session->userdata('authKey');
+        $param = $_GET['uid'];
+
+        if ($usd['user_id'] != 1){
+            $uid = $usd['user_id'];
+        }else{
+            $uid = $param;
+        }
+
+        $sendData = array(
+            'user_id' => $uid
+        );
+
+        $resval = $this->curl_request->curl_post_auth($this->API.'auth/OAuth/bookReportUser', $sendData, $auth);
+
+        $code = $resval['data']['code'];
+        $result = $resval['data']['data'];
+        $auth = $resval['bbo_auth'];
+        if (http_response_code(200) && $code !== 404){
+            $this->session->set_userdata('authKey', $auth);
+
+                $data['user_result'] = $result['user_info'];
+                $data['book_result'] = $result['book_info'];
+        }else{
+            $this->session->sess_destroy();
+            redirect('login');
+        }
+
+        $data['title'] = "Laporan Interaksi Buku Anda | Baboo.id";
+
+        $data['css'][] = "public/plugins/datatable/datatables.min.css";
+
+        $data['js'][] = "public/js/jquery.min.js";
+        $data['js'][] = "public/js/umd/popper.min.js";
+        $data['js'][] = "public/js/bootstrap.min.js";
+        $data['js'][] = "public/plugins/datatable/datatables.min.js";
+        $data['js'][] = "public/js/custom/notification.js";
+        $data['js'][] = "public/js/custom/transaction.js";
+        $data['js'][] = "public/js/custom/search.js";
+        $data['js'][] = "public/js/custom/report_user.js";
+
+        if ($this->agent->mobile()) {
+            redirect('profile','refresh');
+        }else{
+            $this->load->view('include/head', $data);
+            $this->load->view('report/D_report_user');
+        }
+    }
+
+    public function getReportAdmin()
+    {
+        error_reporting(0);
+        $usd = $this->session->userdata('userData');
+        $auth = $this->session->userdata('authKey');
+        $param = $_GET['uid'];
+
+        if ($this->session->userdata('isLogin') != 200 && $usd['user_id'] != '1') {
+            redirect('profile');
+        }
+
+        $sendData = array(
+            'user_id' => $param
+        );
+
+        $resval = $this->curl_request->curl_post_auth($this->API.'auth/OAuth/bookReportUser', $sendData, $auth);
+
+        $code = $resval['data']['code'];
+        $result = $resval['data']['data'];
+        $auth = $resval['bbo_auth'];
+        if (http_response_code(200) && $code !== 404){
+            $this->session->set_userdata('authKey', $auth);
+
+            $data['user_result'] = $result['user_info'];
+            $data['book_result'] = $result['book_info'];
+        }else{
+            $this->session->sess_destroy();
+            redirect('login');
+        }
+
+        $data['title'] = "Laporan Interaksi Buku Anda | Baboo.id";
+
+        $data['css'][] = "public/plugins/datatable/datatables.min.css";
+
+        $data['js'][] = "public/js/jquery.min.js";
+        $data['js'][] = "public/js/umd/popper.min.js";
+        $data['js'][] = "public/js/bootstrap.min.js";
+        $data['js'][] = "public/plugins/datatable/datatables.min.js";
+        $data['js'][] = "public/js/custom/notification.js";
+        $data['js'][] = "public/js/custom/transaction.js";
+        $data['js'][] = "public/js/custom/search.js";
+        $data['js'][] = "public/js/custom/report_user.js";
+
+        if ($this->agent->mobile()) {
+            redirect('profile','refresh');
+        }else{
+            $this->load->view('include/head', $data);
+            $this->load->view('report/D_report_user');
+        }
+    }
 }

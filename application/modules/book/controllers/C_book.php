@@ -45,7 +45,6 @@ class C_book extends MX_Controller
 
         if (isset($data_before_chapter['chapter']['code']) && $data_before_chapter['chapter']['code'] == '200') {
             $status = $data_before_chapter['chapter']['code'];
-            $this->session->set_userdata('authKey', $auth);
         } else {
             $status = $data_before_chapter['chapter']['code'];
         }
@@ -117,8 +116,8 @@ class C_book extends MX_Controller
                 $data = $this->curl_request->curl_post_auth($this->API.'book/Books/detailBook/', $data_book, $auth);
 
                 if ($this->session->userdata('isLogin') == 200) {
-                    $auth = $data['bbo_auth'];
-                    $this->session->set_userdata('authKey', $auth);
+                    $auths = $data['bbo_auth'];
+                    $this->session->set_userdata('authKey', $auths);
                     $status = $data['detail_book']['code'];
                 }
 

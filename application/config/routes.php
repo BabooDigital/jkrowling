@@ -201,6 +201,7 @@ $route['getpublishbook'] = 'profile/C_profile/getPublishBook';
 $route['getpublishbookother'] = 'profile/C_profile/getPublishBookOther';
 $route['getdraftbook'] = 'profile/C_profile/getDraftBook';
 $route['getlatestread'] = 'profile/C_profile/getLatestRead';
+$route['profile/laporan'] = 'profile/C_profile/getReportUser';
 
 $route['all-friends'] = 'profile/C_profile/getFollowersList';
 $route['profile/(:any)/all-friends'] = 'profile/C_profile/getFollowersListOther';
