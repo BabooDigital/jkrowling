@@ -228,6 +228,7 @@
                                     <a href="<?php echo site_url('message'); ?>" class="btn-edprof fs-12px">Message</a>
                                     <div class="mt-15">
                                         <a data-toggle="modal" data-target="#view-statistik" href="#" class="btn-edprof fs-12px mr-10">Statistik</a>
+                                        <a href="<?php echo site_url('profile/laporan'); ?>" class="btn-edprof fs-12px mr-10"><b>Laporan</b></a>
                                     </div>
                                 <?php else:
                                     if ($this->session->userdata('isLogin') == 200) { ?>
